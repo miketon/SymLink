@@ -1,0 +1,62 @@
+//Maya ASCII 2009 scene [ZBrush,SetModifier,FlipImageV,1]
+//Name: [ZBrush,WriteString,FileName].ma
+//Last modified: Sat, May 2, 2009 11:38:32 PM
+//Codeset: UTF-8
+requires maya "2008";
+createNode transform -n "[ZBrush,WriteString,FileName]"; [ZBrush,If,[Equal,ImportedDataType,1],
+
+	setAttr ".t" -type "double3" [ZBrush,Write,ImportedData0] [ZBrush,Write,ImportedData1] [ZBrush,Write,ImportedData2];  //translate
+	setAttr ".r" -type "double3" [ZBrush,Write,ImportedData6] [ZBrush,Write,ImportedData7] [ZBrush,Write,ImportedData8];  //rotate
+	setAttr ".s" -type "double3" [ZBrush,Write,ImportedData3] [ZBrush,Write,ImportedData4] [ZBrush,Write,ImportedData5];] //scale
+	addAttr -ci true -sn "GoZBrushID" -ln "GoZBrushID" -nn "GoZBrushID" -dt "string";
+	setAttr -cb on ". GoZBrushID" -type "string" "[ZBrush,WriteString,FileName]";
+	createNode mesh -n "[ZBrush,WriteString,FileName]Shape" -p "[ZBrush,WriteString,FileName]";
+	addAttr -ci true -sn "GoZBrushID" -ln "GoZBrushID" -nn "GoZBrushID" -dt "string";
+	setAttr -cb on ". GoZBrushID" -type "string" "[ZBrush,WriteString,FileName]";
+	[ZBrush,If,DisplacementMapCount,addAttr -ci true -sn "mso" -ln "miShadingSamplesOverride" -min 0 -max 1 -at "bool";
+	addAttr -ci true -sn "msh" -ln "miShadingSamples" -min 0 -max 12 -smx 8 -at "float";
+	addAttr -ci true -sn "mdo" -ln "miMaxDisplaceOverride" -min 0 -max 1 -at "bool";
+	addAttr -ci true -sn "mmd" -ln "miMaxDisplace" -min 0 -smx 1 -at "float";
+	addAttr -ci true -sn "miva" -ln "miSubdivApprox" -at "message";]
+ 	setAttr -k off ".v"; 
+//===================================
+//UVs - segmented to 250 entries per block
+//===================================
+	[ZBrush,if,UVCount,setAttr ".uvst[0].uvsn" -type "string" "map1";setAttr -s [ZBrush,Write,UVCount] ".uvst[0].uvsp";
+  	[ZBrush,While,[Larger, [Sub, UVCount, UVIndex],249],
+	setAttr ".uvst[0].uvsp[[ZBrush,Write,UVIndex]:[ZBrush,Write,[Add, UVIndex,249]]]" -type "float2" 
+[ZBrush,Repeat,250, [ZBrush,Write,U] [ZBrush,Write,V]];]
+ 	[ZBrush,If,[Smaller,UVIndex, UVCount],setAttr ".uvst[0].uvsp[[ZBrush,Write,UVIndex]:[ZBrush,Write,[Sub, UVCount,1]]]" -type "float2" 
+[ZBrush,Repeat,[Sub, UVCount,UVIndex], [ZBrush,Write,U] [ZBrush,Write,V]];]
+  	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse"; //end UV]  
+//===================================
+// Vertices  - segmented to 165 entries per block
+//===================================
+  	setAttr -s [ZBrush,Write,VertexCount] ".vt";
+	[ZBrush,While,[Larger, [Sub, VertexCount, VertexIndex],164],
+	setAttr ".vt[[ZBrush,Write, VertexIndex]:[ZBrush,Write,[Add, VertexIndex,164]]]"
+[ZBrush, Repeat,165, [ZBrush,Write,X] [ZBrush,Write,Y] [ZBrush,Write,Z]];] 
+ 	[ZBrush,If,[Smaller,VertexIndex, VertexCount],setAttr ".vt[[ZBrush,Write, VertexIndex]:[ZBrush,Write,[Sub, VertexCount,1]]]"
+[ZBrush, Repeat,[Sub, VertexCount,vertexIndex], [ZBrush,Write,X] [ZBrush,Write,Y] [ZBrush,Write,Z]]; ] 
+//===================================
+// Edges - segmented to 165 entries per block
+//===================================
+ 	setAttr -s [ZBrush,Write,EdgeCount] ".ed";
+	[ZBrush,While,[Larger, [Sub, EdgeCount, EdgeIndex],164],
+	setAttr ".ed[[ZBrush,Write, EdgeIndex]:[ZBrush,Write,[Add, EdgeIndex,164]]]"
+[ZBrush, Repeat,165, [ZBrush,Write,EdgeStart] [ZBrush,Write,EdgeEnd] 0];] 
+ 	[ZBrush,If,[Smaller,EdgeIndex, EdgeCount],setAttr ".ed[[ZBrush,Write, EdgeIndex]:[ZBrush,Write,[Sub, EdgeCount,1]]]"
+[ZBrush, Repeat,[Sub, EdgeCount,EdgeIndex], [ZBrush,Write,EdgeStart] [ZBrush,Write,EdgeEnd] 0]; ]
+   	setAttr ".n[0]" -type "float3"  1e+20 1e+20 1e+20;
+//===================================
+// Faces - segmented to 500 entries per block
+//===================================
+   	setAttr -s [ZBrush,Write,FaceCount] ".fc";
+  	[ZBrush,While,[Larger, [Sub,FaceCount,faceIndex],499],
+	setAttr ".fc[[ZBrush,Write,faceIndex]:[ZBrush,Write,[Add,faceIndex,499]]]" -type "polyFaces" 
+[ZBrush, Repeat,500, f [ZBrush,Write, EdgeCountInFace][ZBrush,Repeat, EdgeCountInFace, [ZBrush,Write, EdgeIndexInFace]] mu 0 [ZBrush,Write,UVCountInFace] [ZBrush,Repeat,UVCountInFace, [ZBrush,Write,UVIndexInFace]]];]
+	[ZBrush,If,[Smaller,faceIndex, FaceCount],
+ 		setAttr ".fc[[ZBrush,Write,faceIndex]:[ZBrush,Write,[Sub, FaceCount,1]]]" -type "polyFaces" 
+[ZBrush, Repeat,[Sub, FaceCount,faceIndex], f [ZBrush,Write, EdgeCountInFace][ZBrush,Repeat, EdgeCountInFace, [ZBrush,Write,EdgeIndexInFace]] mu 0 [ZBrush,Write,UVCountInFace] [ZBrush,Repeat,UVCountInFace, [ZBrush,Write, UVIndexInFace]]];  ]
+//=========================================================================================================

@@ -1,0 +1,51 @@
+
+
+//===================================
+// Start of [ZBrush,WriteString,FileName] blend shape
+//===================================
+
+createNode transform -n "[ZBrush,WriteString,FileName]";
+
+	setAttr ".t" -type "double3" 1 0 0;  //translate	- adjust this for each shape
+	setAttr ".v" no; //visibility option
+	addAttr -ci true -sn "GoZBrushID" -ln "GoZBrushID" -nn "GoZBrushID" -dt "string";
+	setAttr -cb on ". GoZBrushID" -type "string" "[ZBrush,WriteString,FileName]";
+	createNode mesh -n "[ZBrush,WriteString,FileName]Shape" -p "[ZBrush,WriteString,FileName]";
+	addAttr -ci true -sn "GoZBrushID" -ln "GoZBrushID" -nn "GoZBrushID" -dt "string";
+	setAttr -cb on ". GoZBrushID" -type "string" "[ZBrush,WriteString,FileName]";
+	
+ 	setAttr -k off ".v"; 
+ 	
+//===================================
+// Vertices  - segmented to 165 entries per block
+//===================================
+  	setAttr -s [ZBrush,Write,VertexCount] ".vt";
+	[ZBrush,While,[Larger, [Sub, VertexCount, VertexIndex],164],
+	setAttr ".vt[[ZBrush,Write, VertexIndex]:[ZBrush,Write,[Add, VertexIndex,164]]]"
+[ZBrush, Repeat,165, [ZBrush,Write,X] [ZBrush,Write,Y] [ZBrush,Write,Z]];] 
+ 	[ZBrush,If,[Smaller,VertexIndex, VertexCount],setAttr ".vt[[ZBrush,Write, VertexIndex]:[ZBrush,Write,[Sub, VertexCount,1]]]"
+[ZBrush, Repeat,[Sub, VertexCount,vertexIndex], [ZBrush,Write,X] [ZBrush,Write,Y] [ZBrush,Write,Z]]; ] 
+//===================================
+// Edges - segmented to 165 entries per block
+//===================================
+ 	setAttr -s [ZBrush,Write,EdgeCount] ".ed";
+	[ZBrush,While,[Larger, [Sub, EdgeCount, EdgeIndex],164],
+	setAttr ".ed[[ZBrush,Write, EdgeIndex]:[ZBrush,Write,[Add, EdgeIndex,164]]]"
+[ZBrush, Repeat,165, [ZBrush,Write,EdgeStart] [ZBrush,Write,EdgeEnd] 0];] 
+ 	[ZBrush,If,[Smaller,EdgeIndex, EdgeCount],setAttr ".ed[[ZBrush,Write, EdgeIndex]:[ZBrush,Write,[Sub, EdgeCount,1]]]"
+[ZBrush, Repeat,[Sub, EdgeCount,EdgeIndex], [ZBrush,Write,EdgeStart] [ZBrush,Write,EdgeEnd] 0]; ]
+   	setAttr ".n[0]" -type "float3"  1e+20 1e+20 1e+20;
+//===================================
+// Faces - segmented to 500 entries per block
+//===================================
+   	setAttr -s [ZBrush,Write,FaceCount] ".fc";
+  	[ZBrush,While,[Larger, [Sub,FaceCount,faceIndex],499],
+	setAttr ".fc[[ZBrush,Write,faceIndex]:[ZBrush,Write,[Add,faceIndex,499]]]" -type "polyFaces" 
+[ZBrush, Repeat,500, f [ZBrush,Write, EdgeCountInFace][ZBrush,Repeat, EdgeCountInFace, [ZBrush,Write, EdgeIndexInFace]] mu 0 [ZBrush,Write,UVCountInFace] [ZBrush,Repeat,UVCountInFace, [ZBrush,Write,UVIndexInFace]]];]
+	[ZBrush,If,[Smaller,faceIndex, FaceCount],
+ 		setAttr ".fc[[ZBrush,Write,faceIndex]:[ZBrush,Write,[Sub, FaceCount,1]]]" -type "polyFaces" 
+[ZBrush, Repeat,[Sub, FaceCount,faceIndex], f [ZBrush,Write, EdgeCountInFace][ZBrush,Repeat, EdgeCountInFace, [ZBrush,Write,EdgeIndexInFace]] mu 0 [ZBrush,Write,UVCountInFace] [ZBrush,Repeat,UVCountInFace, [ZBrush,Write, UVIndexInFace]]];  ]
+//===================================
+// End of [ZBrush,WriteString,FileName] blend shape
+//===================================
+
