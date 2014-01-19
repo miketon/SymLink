@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.1//EN"
+	"http://www.web3d.org/specifications/x3d-3.1.dtd">
+<X3D version="3.1" profile="Interchange">
+  <head>
+    <meta name="creator" content=""/>
+    <meta name="rights" content="Copyright (c) 2009"/>
+     <meta name="generator" content="modo, http://www.pixologic.com/"/>
+   </head>
+  <Scene>
+    <Transform DEF="Mesh_XForm">
+      <Group DEF="Mesh_MeshItem">
+        <Shape DEF="Default_Shape">
+          <Appearance DEF="Base_Material_Surf">
+            <Material diffuseColor="0.8 0.8 0.8" specularColor="0.2 0.2 0.2" shininess="0.6"/>
+          </Appearance>
+ 	 <IndexedFaceSet creaseAngle="0.698132" coordIndex="[ZBrush,Repeat,[Sub,faceCount,1],[ZBrush,Repeat,ptCountInFace,[ZBrush,Write,ptIndexInFace],]-1, ][ZBrush,Repeat, ptCountInFace,[ZBrush,Write,ptIndexInFace],]-1"> 
+   	   <Coordinate DEF="Mesh_Pts" point="[ZBrush, Repeat,[Sub,VertexCount,1], 
+		[ZBrush,Write,X] [ZBrush,Write,Y] [ZBrush,Write,Z],] 
+		[ZBrush,Write,X] [ZBrush,Write,Y] [ZBrush,Write,Z]"/>
+           </IndexedFaceSet>
+        </Shape>
+      </Group>
+    </Transform>
+    <Transform DEF="Camera_XForm" translation="0 0.75 4" rotation="-1 0 0 0.0872665">
+      <Viewpoint DEF="Camera_View" position="0 0 0" description="Camera"/>
+    </Transform>
+    <Transform DEF="Directional_Light_XForm" translation="-2 2 2" rotation="-0.529904 -0.819161 -0.219493 0.936324">
+      <DirectionalLight DEF="Directional_Light_Lite" intensity="0.3" color="1 1 1"/>
+    </Transform>
+  </Scene>
+</X3D>
+
+
+ 

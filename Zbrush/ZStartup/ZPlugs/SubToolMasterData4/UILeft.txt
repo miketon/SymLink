@@ -1,0 +1,2 @@
+For the SubToolMaster UI to appear on the lefthand side of the canvas this file should be named "UILeft.txt".
+Rename the file "UIRight.txt" for the UI to appear on the righthand side. (Deleting the file will make the UI show on the right.)

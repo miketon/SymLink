@@ -1,0 +1,48 @@
+
+   SizeAjustor Plugin v0.92
+		   by JJJ
+
+
+   Made for ZBrush4, Windows and OSx.
+
+   SizeAjustor let you ajust Draw Size and Focal Shift by simply holding some
+hotkey and moving your mouse, just like in photoshop or maya, mudbox, etc...
+
+   Many more features, help included in the plugin.
+
+
+> Installation :
+
+   Just extract the whole archive in zBrush plugins folder, depending of your
+OS : "C:\Program Files (x86)\Pixologic\ZBrush 4R?\ZStartup\ZPlugs" for PC, or
+"/Applications/ZBrushOSX 4R?/ZStartup/ZPlugs" for Mac. If you have a previous
+version installed, just choose to overwrite all the old files when extracting
+or manually delete them before installing. (Don't mix old and new files, or I
+will tell santa !!! )
+ 
+
+   Made and tested in 4R6 but should work with other versions.
+
+
+
+   Hope you'll like it !
+
+
+
+
+> Version history :
+
+   *** v0.9b  : 1st release
+
+   *** v0.91b : 2nd release :
+	_ Interface bug where buttons could be on top of each other depending 
+on [Preferences:UI:Buttons Size]. Should now look good on any interface setup.
+	_ Recompiled the dll with CodeLite(g++) instead of Visual Studio 2013,
+so no more need to install Microsoft VC blah blah Runtimes or whatever to fix 
+dependencies issues. Dll should now work ok without installing anything.
+
+   *** v0.92  : 3rd release :
+	_ Added support for Mac OSx : now everyone's happy.
+
+
+Happy sculpting !!!
