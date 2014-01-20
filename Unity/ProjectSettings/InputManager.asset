@@ -5,6 +5,7 @@ InputManager:
   m_ObjectHideFlags: 0
   m_Axes:
 
+#Defaults
   - serializedVersion: 3
     m_Name: Horizontal
     descriptiveName: 
@@ -277,10 +278,9 @@ InputManager:
     type: 0
     axis: 0
     joyNum: 0
+#defaults
 
-
-
-
+#Icarus Physics Platformer Kit
   - serializedVersion: 3
     m_Name: Horizontal
     descriptiveName: 
@@ -393,3 +393,4 @@ InputManager:
     type: 1
     axis: 1
     joyNum: 0
+#Icarus Physics Platformer Kit
