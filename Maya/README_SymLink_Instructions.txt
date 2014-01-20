@@ -1,4 +1,4 @@
-SymLink commands :
+SymLink commands : Maya
 
 MAC OSX : ln -s SOURCE_PATH TARGET_PATH
 
