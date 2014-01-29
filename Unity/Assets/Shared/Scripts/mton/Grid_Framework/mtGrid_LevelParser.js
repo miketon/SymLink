@@ -147,7 +147,7 @@ class mtGrid_LevelParser extends __gameObjectMT_Grid_BG{
 
     if(block){
       var obj:GameObject = Instantiate(block, bPos, Quaternion.identity) as GameObject ;
-      obj.transform.eulerAngles = gPlane                                               ;
+      obj.transform.eulerAngles = gAngle                                               ;
       //objScaleToGrid(obj)                                                            ;
       blocksGO.Add(obj)                                                                ; //track blocksGO just in case need to clear level
       blocksID.Add(obj.transform.GetInstanceID())                                      ;
