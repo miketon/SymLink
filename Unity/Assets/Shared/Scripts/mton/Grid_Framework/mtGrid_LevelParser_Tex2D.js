@@ -17,10 +17,10 @@ class mtGrid_LevelParser_Tex2D extends mtGrid_LevelParser{
     gridHeight = imgHght          ;
 
     //SetGridRange(Vector3(0,-imgHght,0), Vector3(imgWdth,0,0)); //Top Left corner
-    if(xzBool){ //set for topdown
+    if(gPlane == GFGrid.GridPlane.XZ){ //set for topdown
       SetGridRange(Vector3(0,0,0), Vector3(imgWdth,0, imgHght)); //Bottom Right corner
     }
-    else{ //set for sidescroll
+    else if(gPlane == GFGrid.GridPlane.XY){ //set for sidescroll
       SetGridRange(Vector3(0,0,0), Vector3(imgWdth,imgHght,0)); //Bottom Right corner 
     }
     //for(var h:int=imgHght-1; h>=0; h--){ //starts at bottom left

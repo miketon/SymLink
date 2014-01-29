@@ -6,10 +6,11 @@ class __gameObjectMT_Grid extends MonoBehaviour{
 
   protected var xform        : Transform     ;
   //grid var
-  protected var GRID_TYPE_mt : System.Type   ;
-  protected var gOffSet      : float   = 0.0 ;                  //position offset based on gridtype
-  protected var gPlane       : Vector3 = Vector3(0.0,0.0,0.0) ; //rotation offset based on gridtype
-  protected var gCellSize    : Vector3 = Vector3(0.0,0.0,0.0) ; 
+  protected var GRID_TYPE_mt : System.Type                    ;
+  protected var gOffSet      : float   = 0.0                  ; //position offset based on gridtype
+  protected var gAngle       : Vector3 = Vector3(0.0,0.0,0.0) ; //rotation offset based on gridtype
+  protected var gPlane       : GFGrid.GridPlane               ;
+  protected var gCellSize    : Vector3 = Vector3(0.0,0.0,0.0) ;
   //cell var
   protected var cellRng      : Vector3 = Vector3(0.0,0.0,0.0) ;
   protected var cellPos      : Vector3 = Vector3(0.0,0.0,0.0) ;
@@ -17,8 +18,6 @@ class __gameObjectMT_Grid extends MonoBehaviour{
   protected var cellRoot     : Transform                      ; //stores the root of cell/prefab
 
   var debugCollisionSphere : GameObject;
-  
-  protected var xzBool : boolean = false;
 
   function Awake(){
     xform = transform;
@@ -27,26 +26,16 @@ class __gameObjectMT_Grid extends MonoBehaviour{
       if(gridObj){
         var gridComp:GFGrid = gridObj.GetComponent.<GFGrid>(); //GetComponent(GFGrid);
         if(gridComp){
-          GRID_mt = gridComp;
-          GRID_TYPE_mt = typeof(GRID_mt);
+          GRID_mt = gridComp             ;
+          GRID_TYPE_mt = typeof(GRID_mt) ;
           if(GRID_TYPE_mt == GFRectGrid){
             gOffSet = 0.5;
           }
           else if(GRID_TYPE_mt == GFHexGrid){
-            var grid:GFHexGrid;
-            grid = gridObj.GetComponent(GFHexGrid);  //GetComponent.<GFHexGrid>(); // HACK : Interchangeable??
-            print("What: The heck : "+GRID_mt.GridPlane + GFGrid.GridPlane.XY+" -> "+grid.gridPlane);
-
-            //if(GRID_mt.GridPlane == 0){ //GFGrid.GridPlane.XY){ //asssumes y-up
-              xzBool = true;
-              if(xzBool){
-                gPlane = Vector3(00,180.0,0.0); //rotating for top down
-              }
-              else{
-                gPlane = Vector3(90,180.0,0.0); //rotating for side
-              }
-              Debug.Log("rotating to 90");
-            //}
+            var grid:GFHexGrid = gridObj.GetComponent(GFHexGrid)                             ; //GetComponent.<GFHexGrid>() ; // HACK : Interchangeable??
+            gPlane = grid.gridPlane                                                          ;
+            gAngle = GetAngleFromPlane(gPlane)                                               ;
+            print("What: The heck : "+GRID_mt.GridPlane + GFGrid.GridPlane.XY+" -> "+gPlane) ;
           }
           gCellSize = GetCellSize() ;
           cellRng   = GetCellRange();
@@ -60,6 +49,18 @@ class __gameObjectMT_Grid extends MonoBehaviour{
         Debug.LogError("GRID : WARNING: __gameObjectMT_Grid -> Can't find object with Grid Tag " + this);
       }
     }
+  }
+
+  function GetAngleFromPlane(gPlane_IN:GFGrid.GridPlane):Vector3{
+    var gAngle:Vector3;
+    if(gPlane_IN == GFGrid.GridPlane.XZ){
+      gAngle = Vector3(00,180.0,0.0); //rotating for top down
+    }
+    else if(gPlane_IN == GFGrid.GridPlane.XY){
+      gAngle = Vector3(90,180.0,0.0); //rotating for side
+    }
+    //Debug.Log("rotating to 90"); 
+    return gAngle;
   }
 
   function SetGridRange(gridBegin:Vector3, gridEnd:Vector3){
@@ -154,6 +155,6 @@ var distanceToObstacle = hit.distance;
     }
     return range_Return;
   }
-  
+
   function doUpdateDebugClass(){ /*PUT DEBUG UPDATE HERE*/ }
 }
