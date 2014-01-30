@@ -18,7 +18,7 @@ class mtGrid_LevelParser extends __gameObjectMT_Grid_BG{
   // HACK:Temp GameObject and ID List during the creation process. Change to builtins for Processing functions.
   private var blocksGO   : Array = new Array (); //generic list faster than normal list? Javascript arrays...equal to ???
   private var blocksID   : Array = new Array (); //List of blocksGO instance ID
-  
+
   function Awake(){
     super.Awake()                        ;
     //blocksGO = new List.<GameObject>() ;
@@ -32,6 +32,20 @@ class mtGrid_LevelParser extends __gameObjectMT_Grid_BG{
       BuildLevel();
     }  
   }
+
+  function SetGridRangeLevel(gridBegin:Vector3, gridEnd:Vector3){
+    var gridEnd_To_gPlane : Vector3;
+    if(gPlane == GFGrid.GridPlane.XZ){ //set for topdown
+      gridEnd_To_gPlane = Vector3(gridEnd.x, gridEnd.z, gridEnd.y); //Bottom Right corner
+    }
+    else if(gPlane == GFGrid.GridPlane.XY){ //set for sidescroll
+      gridEnd_To_gPlane = Vector3(gridEnd.x, gridEnd.y, gridEnd.z); //Bottom Right corner
+    }
+    else if(gPlane == GFGrid.GridPlane.YZ){ //set for frontscroll
+      gridEnd_To_gPlane = Vector3(gridEnd.z, gridEnd.x, gridEnd.y); //Bottom Right corner
+    }
+    SetGridRange(gridBegin, gridEnd_To_gPlane);
+  } 
 
   function Update(){
     doUpdateDebugClass(); //comment out in production
@@ -51,60 +65,6 @@ class mtGrid_LevelParser extends __gameObjectMT_Grid_BG{
         doCellSetLights(deletemeLightInstance);
       }
     }
-    else if(Input.GetKeyUp(KeyCode.P)){
-         Debug.Log((GRID_mt.GridPlane)+ " It's a plane of type Print."+parseInt(GFGrid.GridPlane.XY) ); 
-    if (GRID_mt.GridPlane == parseInt(GFGrid.GridPlane.XY)){
-    //if (GRID_mt.GridPlane == GFGrid.GridPlane.XY){
-      Debug.Log( "It's a plane of type XY."+parseInt(GFGrid.GridPlane.XY) );
-    }
-    else if (GRID_mt.GridPlane == parseInt(GFGrid.GridPlane.XZ)){
-      Debug.Log( "It's a plane of type XZ."+parseInt(GFGrid.GridPlane.XZ) );
-    }
-    GRID_mt.AlignTransform(blocksGOID[0].transform); 
-    var myPlane: GFGrid.GridPlane = GRID_mt.GridPlane.XY;
-    //var planeIndex:int = int.Parse(myPlane) ; // sets the variable to 1
-    var planeIndex = myPlane ; // sets the variable to 1
-    var mPlane = GRID_mt.GridPlane.XY.ToString();
-      print("GRID TYPE "+ GRID_TYPE_mt + " : GRID_mt -> " + GRID_mt +" GRIDPLANE "+myPlane + mPlane); // + GRID_TYPE_mt.HexOrientation);
-      
-      if(planeIndex){
-        print("YEAS "+mPlane);
-      }
-      else{
-        print("NO");
-      }
-      /*
-      for(var i=0; i < blocksGO.length; i++){
-        print(this + "Printing Blocks : ID " + blocksID[i] +" GO : " + blocksGO[i] + " Length of blocks : "+blocksGO.length);
-        if(blocksGOID[i] == null){
-          Debug.LogWarning(this + " blocksGOID = " + blocksGOID[i] + i);
-        }
-      }
-      */
-    }   
-    /* 
-    else if(Input.GetKeyUp(KeyCode.D)){
-      delxpos = delxpos+1.0                       ;
-      GetGridCell(Vector3(delxpos, delypos, 0.0)) ;
-      SetGridCell()                               ;
-    }
-    else if(Input.GetKeyUp(KeyCode.A)){
-      delxpos = delxpos-1.0                       ;
-      GetGridCell(Vector3(delxpos, delypos, 0.0)) ;
-      SetGridCell()                               ;
-    }
-    else if(Input.GetKeyUp(KeyCode.W)){
-      delypos = delypos+1.0                       ;
-      GetGridCell(Vector3(delxpos, delypos, 0.0)) ;
-      SetGridCell()                               ;
-    }
-    else if(Input.GetKeyUp(KeyCode.S)){
-      delypos = delypos-1.0                       ;
-      GetGridCell(Vector3(delxpos, delypos, 0.0)) ;
-      SetGridCell()                               ;
-    }
-    */
-
   }
 
   function BuildLevel(){
@@ -113,11 +73,11 @@ class mtGrid_LevelParser extends __gameObjectMT_Grid_BG{
     doTileLevel()    ; //build level/populate tiles , then doProcess on tile/prefab elements
     doProcessTiles() ;
   }
-  
+
   function doTileLevel(){
     //print("doTileLevel");
   }
-  
+
   function doProcessTiles(){
     blocksGUID = blocksID.ToBuiltin(int) as int[]               ;
     blocksGOID = blocksGO.ToBuiltin(GameObject) as GameObject[] ;
@@ -169,7 +129,7 @@ class mtGrid_LevelParser extends __gameObjectMT_Grid_BG{
     var boolScle  : boolean = false;  
 
     var AABB:GameObject = getAABB(obj);
-    
+
     if(AABB!=null){
       print(this + " processing block ."+AABB);
       if(AABB.renderer){

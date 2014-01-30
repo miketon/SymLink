@@ -35,7 +35,6 @@ class __gameObjectMT_Grid extends MonoBehaviour{
             var grid:GFHexGrid = gridObj.GetComponent(GFHexGrid)                             ; //GetComponent.<GFHexGrid>() ; // HACK : Interchangeable??
             gPlane = grid.gridPlane                                                          ;
             gAngle = GetAngleFromPlane(gPlane)                                               ;
-            print("What: The heck : "+GRID_mt.GridPlane + GFGrid.GridPlane.XY+" -> "+gPlane) ;
           }
           gCellSize = GetCellSize() ;
           cellRng   = GetCellRange();
