@@ -3,15 +3,15 @@
 --- !u!78 &1
 TagManager:
   tags:
-  - 
-  - Bullet
+  - Pickup
+  - Pushable
+  - Water
+  - Enemy
   - Coin
   - MovingPlatform
-  - Pushable
+  - Checkpoint
   - Waypoint
-  - Enemy
-  - Water
-  - Pickup
+  - Bullet
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
