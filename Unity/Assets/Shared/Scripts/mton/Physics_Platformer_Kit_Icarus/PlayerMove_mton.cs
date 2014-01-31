@@ -111,10 +111,10 @@ public class PlayerMove_mton : MonoBehaviour
 		//are we grounded
 		grounded = IsGrounded ();
 		//move, rotate, manage speed
-		characterMotor.MoveTo (moveDirection, curAccel, 0.7f, true);
+		characterMotor.MoveTo (moveDirection, curAccel, 0.7f, true); //MoveTo(destination, acceleration, stopDistance, ignoreY)
 		if (rotateSpeed != 0 && direction.magnitude != 0)
 			characterMotor.RotateToDirection (moveDirection , curRotateSpeed * 5, true);
-		characterMotor.ManageSpeed (curDecel, maxSpeed + movingObjSpeed.magnitude, true);
+		characterMotor.ManageSpeed (curDecel, maxSpeed + movingObjSpeed.magnitude, true); //ManageSpeed(deceleration, maxSpeed, ignoreY)
 		//set animation values
 		if(animator)
 		{
