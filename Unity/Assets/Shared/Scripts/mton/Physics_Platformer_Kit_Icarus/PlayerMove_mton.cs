@@ -103,6 +103,11 @@ public class PlayerMove_mton : MonoBehaviour
 		else
 			direction = Vector3.right * h;
 		moveDirection = transform.position + direction;
+
+		if(Input.GetKeyUp(KeyCode.P)){
+			print("P is for power");
+			movingObjSpeed.y = 5;
+		}
 	}
 	
 	//apply correct player movement (fixedUpdate for physics calculations)
