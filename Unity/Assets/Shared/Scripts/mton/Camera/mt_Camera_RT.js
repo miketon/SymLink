@@ -6,7 +6,7 @@
 @script AddComponentMenu("Image Effects/mton_PIXL")
 @script RequireComponent(Camera)
 
-var renderThingsShader : Shader;
+var replaceShader : Shader;
 
 private var renderTexture : RenderTexture;
 private var shaderCamera : GameObject;
@@ -53,15 +53,23 @@ function OnPreRender()
 	cam.CopyFrom (camera);
 	cam.backgroundColor = Color(1,0,0,0);
 	cam.clearFlags = CameraClearFlags.SolidColor;
+	//cam.clearFlags = CameraClearFlags.Nothing; //Don't clear anything
+	//cam.depthTextureMode = DepthTextureMode.Depth; //activate camera depth gen
 	cam.targetTexture = renderTexture;
 	cam.Render();
-	//cam.RenderWithShader (renderThingsShader, "RenderType");	
+	//Debug.Log("LAYER : "+LayerMask.NameToLayer("Ethereal"));
+	var maskTemp : int = LayerMask.NameToLayer("Ethereal"); //find layer by String
+    var layrTemp : LayerMask =	~(1<<maskTemp); // ~ invert everything but that layer
+    cam.cullingMask = layrTemp; //pass layerMask to camera culling Mask
+    //cam.cullingMask = 1<<(LayerMask.NameToLayer("Ethereal")); //short cut
+	cam.RenderWithShader (replaceShader,"RenderType"); //if replacement tag == "", all objects in scene rendered with replacment shaders	
 }
 
 // Called by the camera to apply the image effect
 function OnRenderImage (source : RenderTexture, destination : RenderTexture) : void{
 
 	Graphics.Blit(renderTexture, destination); // mat); 
+	//renderTexture.DiscardContents(true, true); //??? does nothing
 
 	if (renderTexture != null) {
 		RenderTexture.ReleaseTemporary (renderTexture);
