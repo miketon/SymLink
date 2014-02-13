@@ -5,7 +5,7 @@ Properties {
 }
 
 SubShader {
-	Tags { "RenderType"="Ethereal" }
+	Tags { "RenderType"="Funky" }
 	
 	Pass {
 		Material {
