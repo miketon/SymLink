@@ -4,6 +4,7 @@ Properties {
 	_BlurTex ("", RECT) = "white" {}
 	_ColorRamp ("", 2D) = "gray" {}
 	_BlurRamp ("", 2D) = "gray" {}
+	_mtonTex ("", RECT) = "white" {}
 	mtonTime("", float)=1.0
 }
 
@@ -21,6 +22,7 @@ uniform sampler2D _MainTex : register(s0);
 uniform sampler2D _BlurTex : register(s1);
 uniform sampler2D _ColorRamp : register(s2);
 uniform sampler2D _BlurRamp : register(s3);
+uniform sampler2D _mtonTex : register(s4);
 uniform float mtonTime;
 
 struct v2f {
@@ -47,7 +49,8 @@ half4 frag (v2f i) : COLOR
 	//color = tex2D(_BlurTex, i.uv[i]);
 	//color = colorRamped;
 	//color = maskRamped;
-	color = tex2D(_MainTex, i.uv[0]);
+	//color = tex2D(_MainTex, i.uv[0]);
+	color = tex2D(_mtonTex, i.uv[0]);
 	//color = half4(0.0, 1.0, 0.0, 1.0);
 	return color;
 }
