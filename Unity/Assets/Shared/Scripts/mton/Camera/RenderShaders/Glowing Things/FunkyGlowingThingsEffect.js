@@ -128,7 +128,7 @@ function OnPreRender()
 	cam.targetTexture = renderTexture;
 	cam.RenderWithShader (renderThingsShader, "RenderType");	
 }
-
+var mtonTex : Texture2D;
 // Called by the camera to apply the image effect
 function OnRenderImage (source : RenderTexture, destination : RenderTexture) : void{
     //Graphics.Blit(colorRamp, destination);
@@ -156,11 +156,12 @@ function OnRenderImage (source : RenderTexture, destination : RenderTexture) : v
 	compositeMat.SetTexture ("_BlurTex", oddEven ? buffer : buffer2);
 	compositeMat.SetTexture ("_ColorRamp", colorRamp);
 	compositeMat.SetTexture ("_BlurRamp", blurRamp);
+	compositeMat.SetTexture ("_mtonTex", mtonTex);
 	compositeMat.SetFloat("mtonTime", mtonTime);
 		
-	//ImageEffects.BlitWithMaterial(compositeMat, source, destination);
+	ImageEffects.BlitWithMaterial(compositeMat, source, destination);
 	//ImageEffects.BlitWithMaterial(m_Material, source, destination);
-	Graphics.Blit(renderTexture, destination); // mat); 
+	//Graphics.Blit(renderTexture, destination); // mat); 
 	
 	RenderTexture.ReleaseTemporary(buffer);
 	RenderTexture.ReleaseTemporary(buffer2);
