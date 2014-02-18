@@ -44,8 +44,8 @@ function OnPreRender()
     renderTexture = null                           ;
   }
   //renderTexture          = RenderTexture.GetTemporary (camera.pixelWidth, camera.pixelHeight, 16)                ; //Allocate a temporary render texture.
-  //renderTexture            = RenderTexture.GetTemporary (camera.pixelWidth * 0.125, camera.pixelHeight * 0.125, 8) ; //Allocate a temporary render texture.
-  renderTexture            = RenderTexture.GetTemporary (camera.pixelWidth * 0.125, camera.pixelHeight * 0.125, 8); //, RenderTextureFormat.ARGB32) ; //Allocate a temporary render texture.
+  renderTexture            = RenderTexture.GetTemporary (camera.pixelWidth * 0.125, camera.pixelHeight * 0.125, 8) ; //Allocate a temporary render texture.
+  //renderTexture            = RenderTexture.GetTemporary (camera.pixelWidth * 0.125, camera.pixelHeight * 0.125, 8, RenderTextureFormat.ARGB32) ; //Allocate a temporary render texture.
   renderTexture.filterMode = FilterMode.Point                                                                      ;
   
   if (!shaderCamera) {
@@ -58,19 +58,22 @@ function OnPreRender()
   cam.backgroundColor    = Color(1,0,0,0)                   ;
   cam.clearFlags         = CameraClearFlags.SolidColor      ;
   //cam.clearFlags       = CameraClearFlags.Nothing         ; //Don't clear anything
+  //cam.Render()                                            ; // ??? Do I need this on?
+  
+  //---Transform Level---//
+  //cam.cullingMask = 1<<(LayerMask.NameToLayer(layerMaskString)); //short cut : find layer by Strin : ~invert everything but that layer : pass bit to culling Mask
+  
+  //---Material Level---//
+  cam.RenderWithShader (replaceShader,"RenderType"); //if replacement tag == "", all objects in scene rendered with replacment shaders	replaceShader
+  
+  /*
+  //Generating DepthNormal Info
   cam.depthTextureMode = DepthTextureMode.DepthNormals      ; //activate camera depth gen
   cam.targetTexture      = renderTexture                    ;
-  //cam.Render()                                            ; // ??? Do I need this on?
-  //Debug.Log("LAYER : "+LayerMask.NameToLayer("Ethereal")) ;
-/*
-var maskTemp : int = LayerMask.NameToLayer(layerMaskString); //find layer by String
-var layrTemp : LayerMask =	~(1<<maskTemp); // ~ invert everything but that layer
-cam.cullingMask = layrTemp; //pass layerMask to camera culling Mask
-*/
-  //cam.cullingMask = 1<<(LayerMask.NameToLayer("Ethereal")); //short cut
-  //cam.RenderWithShader (replaceShader,"RenderType"); //if replacement tag == "", all objects in scene rendered with replacment shaders	replaceShader
   var depthNormalShader : Shader = Shader.Find("Hidden/Camera-DepthNormalTexture");
-  cam.RenderWithShader (depthNormalShader,null); //if replacement tag == "", all objects in scene rendered with replacment shaders	replaceShader
+  cam.RenderWithShader (depthNormalShader,null); //if replacement tag == "", all objects in scene rendered with replacment shaders	
+  */
+  
 }
 
 // Called by the camera to apply the image effect
