@@ -33,13 +33,16 @@
         half4 color = lerp (cTex, eTex, mTex.g) ;
         //half4 mnormal    = UnpackNormal(tex2D(_NormTex, i.uv[0])); //UnpackNormal=n*2-1
         //color = half4(cTex.a, cTex.a, cTex.a, 1.0);
+        color = cTex;
+        
+        /*
         float depth;
         float3 norm;
         DecodeDepthNormal(tex2D(_MainTex, i.uv[0]), depth, norm);
         color = half4(norm.x, norm.y, norm.z, 0.0);
-        //depth = 1-depth;
-        //color = half4(depth, depth, depth, 0.0);
-        //color = cTex;
+        color = half4(depth, depth, depth, 0.0);
+        */
+        
         return color                            ;
       }
       ENDCG
