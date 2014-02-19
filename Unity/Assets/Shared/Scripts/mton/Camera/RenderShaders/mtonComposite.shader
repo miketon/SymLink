@@ -30,10 +30,13 @@
         half4 cTex  = tex2D(_MainTex, i.uv[0])  ; //_MainTex == camera render view
         half4 eTex  = tex2D(_EthrTex, i.uv[0])  ;
         half4 mTex  = tex2D(_MaskTex, i.uv[0])  ;
-        half4 color = lerp (cTex, eTex, mTex.g) ;
+        half4 color = half4(0.0, 0.0, 1.0, 1.0);
+        //color = lerp (cTex, eTex, mTex.g) ;
+        //color = lerp (cTex, eTex, 1.0-cTex.a) ;
+        color = eTex + cTex;
         //half4 mnormal    = UnpackNormal(tex2D(_NormTex, i.uv[0])); //UnpackNormal=n*2-1
         //color = half4(cTex.a, cTex.a, cTex.a, 1.0);
-        color = cTex;
+        //color = cTex;
         
         /*
         float depth;
