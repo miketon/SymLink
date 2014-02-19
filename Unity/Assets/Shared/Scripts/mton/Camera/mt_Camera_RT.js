@@ -50,26 +50,28 @@ function OnPreRender()
   
   if (!shaderCamera) {
     shaderCamera                = new GameObject("ShaderCamera", Camera) ;
+    shaderCamera.camera.depth   = camera.depth + 1;
     shaderCamera.camera.enabled = false                                  ;
     shaderCamera.hideFlags      = HideFlags.HideAndDontSave              ;
   }
   var cam = shaderCamera.camera                             ;
   cam.CopyFrom (camera)                                     ;
-  cam.backgroundColor    = Color(1,0,0,0)                   ;
+  cam.backgroundColor    = Color(0,0,0,0)                   ;
   cam.clearFlags         = CameraClearFlags.SolidColor      ;
+  //cam.clearFlags         = CameraClearFlags.Depth      ;
   //cam.clearFlags       = CameraClearFlags.Nothing         ; //Don't clear anything
+  cam.targetTexture      = renderTexture                    ;
   //cam.Render()                                            ; // ??? Do I need this on?
   
   //---Transform Level---//
   //cam.cullingMask = 1<<(LayerMask.NameToLayer(layerMaskString)); //short cut : find layer by Strin : ~invert everything but that layer : pass bit to culling Mask
   
   //---Material Level---//
-  cam.RenderWithShader (replaceShader,"RenderType"); //if replacement tag == "", all objects in scene rendered with replacment shaders	replaceShader
+  cam.RenderWithShader (replaceShader,"RenderType_TON"); //if replacement tag == "", all objects in scene rendered with replacment shaders	replaceShader
   
   /*
   //Generating DepthNormal Info
   cam.depthTextureMode = DepthTextureMode.DepthNormals      ; //activate camera depth gen
-  cam.targetTexture      = renderTexture                    ;
   var depthNormalShader : Shader = Shader.Find("Hidden/Camera-DepthNormalTexture");
   cam.RenderWithShader (depthNormalShader,null); //if replacement tag == "", all objects in scene rendered with replacment shaders	
   */

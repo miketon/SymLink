@@ -5,7 +5,7 @@ Properties {
 }
 
 SubShader {
-	Tags { "RenderType"="Funky" }
+	Tags { "RenderType_TON"="Funky" }
 	
 	Pass {
 		Material {

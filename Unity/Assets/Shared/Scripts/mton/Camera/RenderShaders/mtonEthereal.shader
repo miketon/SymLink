@@ -21,7 +21,7 @@ Properties {
 }
 
 SubShader {
-    Tags { "RenderType"="Ethereal" }
+    Tags { "RenderType_TON"="Ethereal" }
     	
 	Pass {
 		Material {

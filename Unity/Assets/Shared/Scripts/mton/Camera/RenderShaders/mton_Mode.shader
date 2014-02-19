@@ -1,15 +1,49 @@
 ﻿Shader "MTON/mton_Mode" {
-
+    Properties {
+      _RimColor ("Rim Color", Color) = (0.7,0.7,1.0,1.0)
+      _RimPower ("Rim Power", Range(0.2,2.0)) = 0.5
+      _Brightness ("Brightness",Range(0.0,3.0)) = 1.0
+    }
     SubShader {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType_TON"="Opaque" }
         Pass { Color (0,0,0,1) } //color.a == _MainTex.a in composite shader
     }
     
     SubShader {
-        Tags { "RenderType"="Funky" }
-        Pass { Color (1,1,0,0) }
-    }    
+        Tags { "RenderType_TON"="Funky" }
+        Pass { Color (1,1,0,1) }
+    }   
     
+    SubShader {
+      Tags { "RenderType_TON" = "Ethereal" "Queue"="Transparent" "IgnoreProjector"="True"}
+      Pass {
+        //ZWrite On
+        //ColorMask 0
+      }
+      CGPROGRAM
+//      #pragma surface surf Lambert  alpha noambient nolightmap nodirlightmap  novertexlights
+      #pragma surface surf Lambert noambient nolightmap nodirlightmap novertexlights
+      struct Input {
+          float2 uv_MainTex;
+          float3 viewDir;
+      };
+      
+      float4 _RimColor;
+      float _RimPower;
+      float _Brightness;
+      
+      void surf (Input IN, inout SurfaceOutput o) {
+          _RimColor = half4(0.7, 0.7, 1.0, 1.0);
+          _RimPower = 2.5;
+          _Brightness = 2.5;
+          half rim = 1.0 - saturate(dot (normalize(IN.viewDir), o.Normal));
+          o.Emission = _RimColor.rgb * pow (rim, _RimPower) * _Brightness;
+          o.Alpha = 1.0;
+          //o.Alpha = (o.Emission.r+o.Emission.g+o.Emission.b) / 3.0;
+      }
+      ENDCG
+    }
+
     SubShader {
         Tags { "RenderType"="Ethereal" }
         Pass { Color (0,0,1,1) }
@@ -45,4 +79,5 @@ ENDCG
 
         }
     }
+    Fallback "Diffuse"
 } 
