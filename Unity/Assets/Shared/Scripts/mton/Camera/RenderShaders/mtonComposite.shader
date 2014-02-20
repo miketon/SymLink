@@ -37,6 +37,7 @@
         //half4 mnormal    = UnpackNormal(tex2D(_NormTex, i.uv[0])); //UnpackNormal=n*2-1
         //color = half4(cTex.a, cTex.a, cTex.a, 1.0);
         //color = cTex;
+        color = eTex;
         
         /*
         float depth;

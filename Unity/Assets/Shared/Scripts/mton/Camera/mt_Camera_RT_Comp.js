@@ -24,7 +24,9 @@ public class mt_Camera_RT_Comp extends mt_Camera_RT {
 
   function doOnRenderImage(source : RenderTexture, destination : RenderTexture) : void {
     var compositeMat:Material = GetCompositeMaterial()               ;
-    compositeMat.SetTexture ("_EthrTex", ethTexture)                 ;
+    //compositeMat.SetTexture ("_EthrTex", ethTexture)                 ;
+    compositeMat.SetTexture ("_EthrTex", renderTexture)                 ;
+    //compositeMat.SetTexture ("_EthrTex", renderTexture.depthBuffer)                 ;
     compositeMat.SetTexture ("_MaskTex", mskTexture)                 ;
     compositeMat.SetTexture ("_NormTex", nrmTexture)                 ;
     ImageEffects.BlitWithMaterial(compositeMat, source, destination) ;
