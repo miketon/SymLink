@@ -6,19 +6,43 @@
 @script AddComponentMenu("Image Effects/mton_PIXL")
 @script RequireComponent(Camera)
 
-public var replaceShader   : Shader;
-public var layerMaskString : String;
+private var shaderCamera    : GameObject;
+public  var replaceShader   : Shader;
+public  var layerMaskString : String;
+
+protected var mainRnTexture : RenderTexture; //main camera RenderTexture
+private var scaleResolution : float = 0.125;
+
+function Update(){
+  //Mode 7 like hack
+  if(Input.GetKeyUp(KeyCode.P)){
+    scaleResolution *= 2.0;
+  }
+  else if(Input.GetKeyUp(KeyCode.O)){
+    scaleResolution *= 0.5;
+  }
+}
+
+/*** HACK: Function can not be generalized...only operates on explicit RenderTexture :(  ***/
 
 protected var renderTexture : RenderTexture;
 
-private var shaderCamera  : GameObject;
+function initRendTexture(){
+  renderTexture            = RenderTexture.GetTemporary (camera.pixelWidth * scaleResolution, camera.pixelHeight * scaleResolution, 8) ; //Allocate a temporary render texture.
+  renderTexture.filterMode = FilterMode.Point                                                                      ; 
+}
 
-function OnDisable() {	
-  DestroyImmediate (shaderCamera);
+function nullRendTexture():void{ //HACK: Function can not be generalized...only operates on explicit RenderTexture :(
   if (renderTexture != null) {
     RenderTexture.ReleaseTemporary (renderTexture);
     renderTexture = null;
   }
+}
+/*** HACK: Function can not be generalized...only operates on explicit RenderTexture :(  ***/
+
+function OnDisable() {	
+  DestroyImmediate (shaderCamera);
+  nullRendTexture();
 }
 
 // --------------------------------------------------------
@@ -38,15 +62,9 @@ function OnPreRender()
 {
   if (!enabled || !gameObject.active)
     return;
-
-  if (renderTexture != null) {
-    RenderTexture.ReleaseTemporary (renderTexture) ;
-    renderTexture = null                           ;
-  }
-  //renderTexture          = RenderTexture.GetTemporary (camera.pixelWidth, camera.pixelHeight, 16)                ; //Allocate a temporary render texture.
-  renderTexture            = RenderTexture.GetTemporary (camera.pixelWidth * 0.125, camera.pixelHeight * 0.125, 8) ; //Allocate a temporary render texture.
-  //renderTexture            = RenderTexture.GetTemporary (camera.pixelWidth * 0.125, camera.pixelHeight * 0.125, 8, RenderTextureFormat.ARGB32) ; //Allocate a temporary render texture.
-  renderTexture.filterMode = FilterMode.Point                                                                      ;
+    
+  nullRendTexture();
+  initRendTexture();
   
   if (!shaderCamera) {
     shaderCamera                = new GameObject("ShaderCamera", Camera) ;
@@ -58,7 +76,7 @@ function OnPreRender()
   cam.CopyFrom (camera)                                     ;
   cam.backgroundColor    = Color(0,0,0,0)                   ;
   cam.clearFlags         = CameraClearFlags.SolidColor      ;
-  //cam.clearFlags         = CameraClearFlags.Depth      ;
+  //cam.clearFlags       = CameraClearFlags.Depth           ;
   //cam.clearFlags       = CameraClearFlags.Nothing         ; //Don't clear anything
   cam.targetTexture      = renderTexture                    ;
   //cam.Render()                                            ; // ??? Do I need this on?
@@ -82,11 +100,9 @@ function OnPreRender()
 function OnRenderImage (source : RenderTexture, destination : RenderTexture) : void{
 
   doOnRenderImage(renderTexture, destination);
+  
+  nullRendTexture();
 
-  if (renderTexture != null) {
-    RenderTexture.ReleaseTemporary (renderTexture) ;
-    renderTexture = null                           ;
-  }
 }
 
 function doOnRenderImage(source : RenderTexture, destination : RenderTexture) : void{

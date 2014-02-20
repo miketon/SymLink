@@ -1,18 +1,4 @@
-﻿/*
-Shader "MTON/Camera/Ethereal" {
-   SubShader {
-      Tags {"RenderEffect"="Multidimensional"}
-      Pass {
-         ColorMaterial AmbientAndDiffuse
-         Lighting Off
-         SetTexture [_DreamTex] {
-            Combine texture * primary, primary
-         }
-      }
-   }
-}
-*/
-
+﻿
 Shader "MTON/Camera/Ethereal" {
 Properties {
 	//_MainTex ("", RECT) = "white" {}
@@ -80,3 +66,18 @@ ENDCG
 Fallback off
 
 }
+
+/*
+Shader "MTON/Camera/Ethereal" {
+   SubShader {
+      Tags {"RenderEffect"="Multidimensional"}
+      Pass {
+         ColorMaterial AmbientAndDiffuse
+         Lighting Off
+         SetTexture [_DreamTex] {
+            Combine texture * primary, primary
+         }
+      }
+   }
+}
+*/
