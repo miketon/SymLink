@@ -60,6 +60,9 @@ class mt_Car_Tank_UI extends mt_Car_Tank{
       } 
 
       return closest;
+    }
+    else{
+      return null;
     }    
   }
 

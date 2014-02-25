@@ -57,6 +57,7 @@ class mtGrid_LevelParser extends __gameObjectMT_Grid_BG{
       GetGridCell(Vector3(delxpos, delypos, 0.0)) ;
       SetGridCell()                               ;
     }
+    /*
     else if(Input.GetKeyUp(KeyCode.L)){
       cellGetLights();
       CellSetLights();
@@ -65,6 +66,7 @@ class mtGrid_LevelParser extends __gameObjectMT_Grid_BG{
         doCellSetLights(deletemeLightInstance);
       }
     }
+    */
   }
 
   function BuildLevel(){

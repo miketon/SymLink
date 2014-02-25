@@ -106,7 +106,7 @@ function Start() {
 
 function OnPreRender()
 {
-	if (!enabled || !gameObject.active)
+	if (!enabled || !gameObject.activeInHierarchy)
 		return;
 		
 	if (renderTexture != null) {
@@ -159,7 +159,7 @@ function OnRenderImage (source : RenderTexture, destination : RenderTexture) : v
 	compositeMat.SetTexture ("_mtonTex", mtonTex);
 	compositeMat.SetFloat("mtonTime", mtonTime);
 		
-	ImageEffects.BlitWithMaterial(compositeMat, source, destination);
+	Graphics.Blit( source, destination, compositeMat);
 	//ImageEffects.BlitWithMaterial(m_Material, source, destination);
 	//Graphics.Blit(renderTexture, destination); // mat); 
 	

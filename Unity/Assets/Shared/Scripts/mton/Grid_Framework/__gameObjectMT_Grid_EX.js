@@ -33,7 +33,7 @@ class __gameObjectMT_Grid_EX extends __gameObjectMT_Grid{ //adding neighbor func
       if(dir_Array_IN[i]){
         var allChild:Component[] = curCell.GetComponentsInChildren(Transform);
         for(child in allChild){
-          if(child.CompareTag(wallTags[i])){
+          if(child.CompareTag(wallTags[i] as String)){
             child.gameObject.SetActive(false);
           }
         }
