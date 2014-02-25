@@ -29,9 +29,8 @@ public class mt_Camera_RT_Comp extends mt_Camera_RT {
     //compositeMat.SetTexture ("_EthrTex", renderTexture.depthBuffer) ;
     compositeMat.SetTexture ("_MaskTex", mskTexture)                  ;
     compositeMat.SetTexture ("_NormTex", nrmTexture)                  ;
-    ImageEffects.BlitWithMaterial(compositeMat, source, destination)  ;
-    //Graphics.Blit(renderTexture, destination)                       ; // mat) ;
-    //Graphics.Blit(delTexture, destination)                          ; // mat) ;
+    Graphics.Blit(source, destination, compositeMat)                  ;
+    //ImageEffects.BlitWithMaterial(compositeMat, source, destination)  ; //Obsolete
   }
 
 /*
