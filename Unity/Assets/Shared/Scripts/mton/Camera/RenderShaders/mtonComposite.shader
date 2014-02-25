@@ -27,51 +27,30 @@
       };
 
       half4 frag (v2f i) : COLOR {
-        half4 cTex  = tex2D(_MainTex, i.uv[0])  ; //_MainTex == camera render view
-        half4 eTex  = tex2D(_EthrTex, i.uv[0])  ;
-        half4 mTex  = tex2D(_MaskTex, i.uv[0])  ;
-        half4 color = half4(0.0, 0.0, 1.0, 1.0);
-        //color = lerp (cTex, eTex, mTex.g) ;
-        //color = lerp (cTex, eTex, 1.0-cTex.a) ;
-        color = eTex + cTex;
-        //half4 mnormal    = UnpackNormal(tex2D(_NormTex, i.uv[0])); //UnpackNormal=n*2-1
-        //color = half4(cTex.a, cTex.a, cTex.a, 1.0);
-        //color = cTex;
-        
+        half4 cTex  = tex2D(_MainTex, i.uv[0])       ; //_MainTex == camera render view
+        half4 eTex  = tex2D(_EthrTex, i.uv[0])       ;
+        half4 mTex  = tex2D(_MaskTex, i.uv[0])       ;
+        half4 color = half4(0.0, 0.0, 1.0, 1.0)      ;
+
+        //color = lerp (cTex, eTex, mTex.g)          ;
+        color   = lerp (cTex, eTex, eTex.a)          ;
+        //color = eTex + cTex                        ;
+        color  += eTex * 2                           ; // + cTex ;
+        //color = half4(cTex.a, cTex.a, cTex.a, 1.0) ;
+        //color = cTex                               ;
+        //color = eTex                               ;
+
         /*
-        float depth;
-        float3 norm;
-        DecodeDepthNormal(tex2D(_MainTex, i.uv[0]), depth, norm);
-        color = half4(norm.x, norm.y, norm.z, 0.0);
-        color = half4(depth, depth, depth, 0.0);
+           float depth                                              ;
+           float3 norm                                              ;
+           DecodeDepthNormal(tex2D(_MainTex, i.uv[0]), depth, norm) ;
+           color = half4(norm.x, norm.y, norm.z, 0.0)               ;
+           color = half4(depth, depth, depth, 0.0)                  ;
         */
-        
-        return color                            ;
+
+        return color ;
       }
       ENDCG
     }
   }
 }
-
-
-/*
-   SubShader {
-   Tags {"RenderEffect"="Ethereal"}
-   Pass {
-   ColorMaterial AmbientAndDiffuse
-   Lighting Off
-   SetTexture [_MainTex] {
-   Combine texture
-   }
-
-   SetTexture [_EthrTex] {
-   constantColor [_MaskColor]
-   combine previous lerp(constant) texture
-   }
-   SetTexture [_EthrTex] {
-   combine previous * primary
-   }
-
-   }
-   }
- */
