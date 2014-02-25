@@ -4,4 +4,6 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Physics_Platformer_Kit_Icarus/2D_Demo_Scene_mton_TrickyNinja.unity

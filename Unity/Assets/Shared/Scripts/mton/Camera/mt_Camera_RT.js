@@ -66,9 +66,15 @@ function OnDisable() {
 
 function Start() {
   // Disable if we don't support image effects
+  camera.enabled = true;
   if (!SystemInfo.supportsImageEffects) {
     enabled = false ;
     return          ;
+  }
+  else{
+    //camera.renderingPath = RenderingPath.VertexLit;
+    //camera.renderingPath = RenderingPath.Forward;
+    //camera.cullingMask = //Set to nothing
   }
 
 }
@@ -101,7 +107,7 @@ shaderCamera.RenderWithShader (depthNormalShader,null); //if replacement tag == 
 
 function OnPreRender()
 {
-  if (!enabled || !gameObject.active)
+  if (!enabled || !gameObject.activeInHierarchy)
     return;
 
   nullRendTexture();
