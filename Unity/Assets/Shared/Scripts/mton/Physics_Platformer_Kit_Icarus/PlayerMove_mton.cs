@@ -2,7 +2,7 @@
 using System.Collections;
 
 //handles player movement, utilising the CharacterMotor class
-[RequireComponent(typeof(CharacterMotor))]
+[RequireComponent(typeof(__goMotor))]
 [RequireComponent(typeof(DealDamage))]
 [RequireComponent(typeof(AudioSource))]
 public class PlayerMove_mton : MonoBehaviour 
@@ -41,7 +41,7 @@ public class PlayerMove_mton : MonoBehaviour
 	private float airPressTime, groundedCount, curAccel, curDecel, curRotateSpeed, slope;
 	private Vector3 direction, moveDirection, screenMovementForward, screenMovementRight, movingObjSpeed;
 	
-	private CharacterMotor characterMotor;
+	private __goMotor characterMotor;
 	private EnemyAI enemyAI;
 	private DealDamage dealDamage;
 	
@@ -70,7 +70,7 @@ public class PlayerMove_mton : MonoBehaviour
 		//usual setup
 		mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
 		dealDamage = GetComponent<DealDamage>();
-		characterMotor = GetComponent<CharacterMotor>();
+		characterMotor = GetComponent<__goMotor>();
 		//gets child objects of floorcheckers, and puts them in an array
 		//later these are used to raycast downward and see if we are on the ground
 		floorCheckers = new Transform[floorChecks.childCount];
