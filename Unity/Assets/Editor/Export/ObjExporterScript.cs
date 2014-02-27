@@ -39,13 +39,14 @@ public class ObjExporterScript
 		{
 			Vector3 v = t.TransformPoint(vv);
 			numVertices++;
-			sb.Append(string.Format("v {0} {1} {2}\n",v.x,v.y,v.z));
+			//sb.Append(string.Format("v {0} {1} {2}\n",v.x,v.y,v.z));
+			sb.Append(string.Format("v {0} {1} {2}\n",-v.x,v.y,v.z)); //Flipped to Maya axis
 		}
 		sb.Append("\n");
 		foreach(Vector3 nn in m.normals) 
 		{
 			Vector3 v = r * nn;
-			sb.Append(string.Format("vn {0} {1} {2}\n",v.x,v.y,v.z));
+			sb.Append(string.Format("vn {0} {1} {2}\n",v.x,v.y,v.z)); //HACK : need to figure flip normal :(
 		}
 		sb.Append("\n");
 		foreach(Vector3 v in m.uv) 
