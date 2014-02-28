@@ -25,17 +25,21 @@ class __gameObjectMT_Grid_BG extends __gameObjectMT_Grid_EX{
   }
 
   function cellGetLights(){
-  
+
     if(cellRoot){
-      var lights_Return:Light[]=new Light[1];
-      for (var child : Transform in cellRoot) {
-        //print(this + child.name)                      ;
+      var lights_Return:Light[]=new Light[1]     ;
+      var xformCount : int = cellRoot.childCount ;
+
+      for (var i:int = 0; i < xformCount; ++i){
+        var child : Transform = cellRoot.GetChild(i)    ;
+        //print("CHILD : " + xformCount + child)        ;
         var lightComp:Light = null                      ;
         lightComp           = child.GetComponent(Light) ;
         if(lightComp){
           lights_Return[0] = lightComp;
         }
       }
+
       if(lights_Return[0]){
         //print("cellGetLights Hit : " + lights_Return[0]) ;
         bgLights = lights_Return                           ;
@@ -66,9 +70,9 @@ class __gameObjectMT_Grid_BG extends __gameObjectMT_Grid_EX{
     }
   }
 /*
-  function OnGUI () {
-    GUI.TextArea (new Rect (10, 10, 400, 20 * gui_DebugMessageLineCount), gui_DebugMessage);
-  }
+function OnGUI () {
+GUI.TextArea (new Rect (10, 10, 400, 20 * gui_DebugMessageLineCount), gui_DebugMessage);
+}
 */
   function mtDebugMessageAppend(IN_message:String){
     gui_DebugMessage += "\n" + IN_message ;

@@ -184,7 +184,8 @@ class mtGrid_LevelParser extends __gameObjectMT_Grid_BG{
   }
 
   function ClearLevel(){
-    for(var go:GameObject in blocksGO){
+    for(var i:int = 0; i<blocksGO.Count; i++){
+      var go:GameObject = blocksGO[i] as GameObject;
       if(go){       //look to make sure not hole, or already destroyed during gameplay
         Destroy(go);
       }
