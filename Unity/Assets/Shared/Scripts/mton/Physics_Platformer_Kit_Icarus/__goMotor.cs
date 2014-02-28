@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 //this class holds movement functions for a rigidbody character such as player, enemy, npc..
 //you can then call these functions from another script, in order to move the character
 [RequireComponent(typeof(Rigidbody))]
@@ -9,14 +10,14 @@ public class __goMotor : __go {
   public Vector3 currentSpeed   ;
   public float DistanceToTarget ;
 
-	protected override void doAwake(){
-		base.doAwake();
-		xform = transform; //caching component lookup: transform == GetComponent(transform)
-	}
+  protected override void doAwake(){
+    base.doAwake()    ;
+    xform = transform ; //caching component lookup: transform == GetComponent(transform)
+  }
 
   protected override void Awake(){
-		base.Awake();
-		print("Transform here : " + xform);
+    base.Awake();
+    print("Transform here : " + xform);
     //set up rigidbody constraints
     rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
     if(sidescroller){

@@ -48,7 +48,7 @@ public class mton_GLOBAL extends MonoBehaviour{
     }
   }
   
-  static function findObjectsWithScript(scriptName):Object[]{
+  static function findObjectsWithScript(scriptName:System.Type):Object[]{ //Specified input type : HACK : Have not verified working in progress; only print
     var mt_ObjColl:Object[] = FindObjectsOfType(scriptName) as Object[];
     for(each in mt_ObjColl){
       print("mton_GLOBAL.findObjectsWithScript() : " + each);
