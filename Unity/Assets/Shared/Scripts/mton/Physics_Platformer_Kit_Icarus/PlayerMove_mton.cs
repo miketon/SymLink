@@ -108,6 +108,12 @@ public class PlayerMove_mton : MonoBehaviour
 			print("P is for power");
 			movingObjSpeed.y = 5;
 		}
+		
+		doUpdate();
+	}
+	
+    public virtual void doUpdate(){
+	  //print("I am updating.");
 	}
 	
 	//apply correct player movement (fixedUpdate for physics calculations)
