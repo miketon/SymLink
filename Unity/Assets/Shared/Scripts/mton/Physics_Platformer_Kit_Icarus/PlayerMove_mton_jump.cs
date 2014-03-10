@@ -27,7 +27,7 @@ public class PlayerMove_mton_jump : PlayerMove_mton{
 		bool modifierPressed = Input.GetKey(KeyCode.LeftCommand);
 		Color color = new Color(255.0f, 255.0f, 255.0f, 1.0f);
 
-	  print("Grid Force!");
+	  //print("Grid Force!");
 		if(Input.mousePosition.x > 250){
 			if(Input.GetMouseButton(0) && !modifierPressed){
 				Ray screenRay = Camera.main.ScreenPointToRay(Input.mousePosition);

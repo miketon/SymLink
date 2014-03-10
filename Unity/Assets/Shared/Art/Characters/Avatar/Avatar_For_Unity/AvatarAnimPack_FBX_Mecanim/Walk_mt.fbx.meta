@@ -1,0 +1,1535 @@
+fileFormatVersion: 2
+guid: 4223d54b1515b48b2a0440a9fb80b506
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: BACKA__Skeleton
+    100002: BACKB__Skeleton
+    100004: BASE__Skeleton
+    100006: HEAD__Skeleton
+    100008: HEAD_END__Skeleton
+    100010: LF_A__Skeleton
+    100012: LF_C__Skeleton
+    100014: LF_E__Skeleton
+    100016: LF_E_TWIST__Skeleton
+    100018: LF_E_TWIST_END__Skeleton
+    100020: LF_FINGA1__Skeleton
+    100022: LF_FINGA2__Skeleton
+    100024: LF_FINGA__Skeleton
+    100026: LF_FINGA_END__Skeleton
+    100028: LF_FINGB1__Skeleton
+    100030: LF_FINGB2__Skeleton
+    100032: LF_FINGB__Skeleton
+    100034: LF_FINGB_END__Skeleton
+    100036: LF_FINGC1__Skeleton
+    100038: LF_FINGC2__Skeleton
+    100040: LF_FINGC__Skeleton
+    100042: LF_FINGC_END__Skeleton
+    100044: LF_FINGD1__Skeleton
+    100046: LF_FINGD2__Skeleton
+    100048: LF_FINGD__Skeleton
+    100050: LF_FINGD_END__Skeleton
+    100052: LF_H__Skeleton
+    100054: LF_K__Skeleton
+    100056: LF_PROP__Skeleton
+    100058: LF_PROP_END__Skeleton
+    100060: LF_S__Skeleton
+    100062: LF_SC_E__Skeleton
+    100064: LF_SC_E_END__Skeleton
+    100066: LF_SC_H__Skeleton
+    100068: LF_SC_H_END__Skeleton
+    100070: LF_SC_K__Skeleton
+    100072: LF_SC_K_END__Skeleton
+    100074: LF_SC_S__Skeleton
+    100076: LF_SC_S_END__Skeleton
+    100078: LF_SC_TWIST_S__Skeleton
+    100080: LF_SC_TWIST_S_END__Skeleton
+    100082: LF_SPECIAL__Skeleton
+    100084: LF_SPECIAL_END__Skeleton
+    100086: LF_T__Skeleton
+    100088: LF_T_END__Skeleton
+    100090: LF_THUMB1__Skeleton
+    100092: LF_THUMB2__Skeleton
+    100094: LF_THUMB__Skeleton
+    100096: LF_THUMB_END__Skeleton
+    100098: LF_W__Skeleton
+    100100: NECK__Skeleton
+    100102: RT_A__Skeleton
+    100104: RT_C__Skeleton
+    100106: RT_E__Skeleton
+    100108: RT_E_TWIST__Skeleton
+    100110: RT_E_TWIST_END__Skeleton
+    100112: RT_FINGA1__Skeleton
+    100114: RT_FINGA2__Skeleton
+    100116: RT_FINGA__Skeleton
+    100118: RT_FINGA_END__Skeleton
+    100120: RT_FINGB1__Skeleton
+    100122: RT_FINGB2__Skeleton
+    100124: RT_FINGB__Skeleton
+    100126: RT_FINGB_END__Skeleton
+    100128: RT_FINGC1__Skeleton
+    100130: RT_FINGC2__Skeleton
+    100132: RT_FINGC__Skeleton
+    100134: RT_FINGC_END__Skeleton
+    100136: RT_FINGD1__Skeleton
+    100138: RT_FINGD2__Skeleton
+    100140: RT_FINGD__Skeleton
+    100142: RT_FINGD_END__Skeleton
+    100144: RT_H__Skeleton
+    100146: RT_K__Skeleton
+    100148: RT_PROP__Skeleton
+    100150: RT_PROP_END__Skeleton
+    100152: RT_S__Skeleton
+    100154: RT_SC_E__Skeleton
+    100156: RT_SC_E_END__Skeleton
+    100158: RT_SC_H__Skeleton
+    100160: RT_SC_H_END__Skeleton
+    100162: RT_SC_K__Skeleton
+    100164: RT_SC_K_END__Skeleton
+    100166: RT_SC_S__Skeleton
+    100168: RT_SC_S_END__Skeleton
+    100170: RT_SC_TWIST_S__Skeleton
+    100172: RT_SC_TWIST_S_END__Skeleton
+    100174: RT_SPECIAL__Skeleton
+    100176: RT_SPECIAL_END__Skeleton
+    100178: RT_T__Skeleton
+    100180: RT_T_END__Skeleton
+    100182: RT_THUMB1__Skeleton
+    100184: RT_THUMB2__Skeleton
+    100186: RT_THUMB__Skeleton
+    100188: RT_THUMB_END__Skeleton
+    100190: RT_W__Skeleton
+    100192: SC_BACKA__Skeleton
+    100194: SC_BACKA_END__Skeleton
+    100196: SC_BACKB__Skeleton
+    100198: SC_BACKB_END__Skeleton
+    100200: SC_BASE__Skeleton
+    100202: SC_BASE_END__Skeleton
+    100204: SC_NECK__Skeleton
+    100206: SC_NECK_END__Skeleton
+    100208: //RootNode
+    400000: BACKA__Skeleton
+    400002: BACKB__Skeleton
+    400004: BASE__Skeleton
+    400006: HEAD__Skeleton
+    400008: HEAD_END__Skeleton
+    400010: LF_A__Skeleton
+    400012: LF_C__Skeleton
+    400014: LF_E__Skeleton
+    400016: LF_E_TWIST__Skeleton
+    400018: LF_E_TWIST_END__Skeleton
+    400020: LF_FINGA1__Skeleton
+    400022: LF_FINGA2__Skeleton
+    400024: LF_FINGA__Skeleton
+    400026: LF_FINGA_END__Skeleton
+    400028: LF_FINGB1__Skeleton
+    400030: LF_FINGB2__Skeleton
+    400032: LF_FINGB__Skeleton
+    400034: LF_FINGB_END__Skeleton
+    400036: LF_FINGC1__Skeleton
+    400038: LF_FINGC2__Skeleton
+    400040: LF_FINGC__Skeleton
+    400042: LF_FINGC_END__Skeleton
+    400044: LF_FINGD1__Skeleton
+    400046: LF_FINGD2__Skeleton
+    400048: LF_FINGD__Skeleton
+    400050: LF_FINGD_END__Skeleton
+    400052: LF_H__Skeleton
+    400054: LF_K__Skeleton
+    400056: LF_PROP__Skeleton
+    400058: LF_PROP_END__Skeleton
+    400060: LF_S__Skeleton
+    400062: LF_SC_E__Skeleton
+    400064: LF_SC_E_END__Skeleton
+    400066: LF_SC_H__Skeleton
+    400068: LF_SC_H_END__Skeleton
+    400070: LF_SC_K__Skeleton
+    400072: LF_SC_K_END__Skeleton
+    400074: LF_SC_S__Skeleton
+    400076: LF_SC_S_END__Skeleton
+    400078: LF_SC_TWIST_S__Skeleton
+    400080: LF_SC_TWIST_S_END__Skeleton
+    400082: LF_SPECIAL__Skeleton
+    400084: LF_SPECIAL_END__Skeleton
+    400086: LF_T__Skeleton
+    400088: LF_T_END__Skeleton
+    400090: LF_THUMB1__Skeleton
+    400092: LF_THUMB2__Skeleton
+    400094: LF_THUMB__Skeleton
+    400096: LF_THUMB_END__Skeleton
+    400098: LF_W__Skeleton
+    400100: NECK__Skeleton
+    400102: RT_A__Skeleton
+    400104: RT_C__Skeleton
+    400106: RT_E__Skeleton
+    400108: RT_E_TWIST__Skeleton
+    400110: RT_E_TWIST_END__Skeleton
+    400112: RT_FINGA1__Skeleton
+    400114: RT_FINGA2__Skeleton
+    400116: RT_FINGA__Skeleton
+    400118: RT_FINGA_END__Skeleton
+    400120: RT_FINGB1__Skeleton
+    400122: RT_FINGB2__Skeleton
+    400124: RT_FINGB__Skeleton
+    400126: RT_FINGB_END__Skeleton
+    400128: RT_FINGC1__Skeleton
+    400130: RT_FINGC2__Skeleton
+    400132: RT_FINGC__Skeleton
+    400134: RT_FINGC_END__Skeleton
+    400136: RT_FINGD1__Skeleton
+    400138: RT_FINGD2__Skeleton
+    400140: RT_FINGD__Skeleton
+    400142: RT_FINGD_END__Skeleton
+    400144: RT_H__Skeleton
+    400146: RT_K__Skeleton
+    400148: RT_PROP__Skeleton
+    400150: RT_PROP_END__Skeleton
+    400152: RT_S__Skeleton
+    400154: RT_SC_E__Skeleton
+    400156: RT_SC_E_END__Skeleton
+    400158: RT_SC_H__Skeleton
+    400160: RT_SC_H_END__Skeleton
+    400162: RT_SC_K__Skeleton
+    400164: RT_SC_K_END__Skeleton
+    400166: RT_SC_S__Skeleton
+    400168: RT_SC_S_END__Skeleton
+    400170: RT_SC_TWIST_S__Skeleton
+    400172: RT_SC_TWIST_S_END__Skeleton
+    400174: RT_SPECIAL__Skeleton
+    400176: RT_SPECIAL_END__Skeleton
+    400178: RT_T__Skeleton
+    400180: RT_T_END__Skeleton
+    400182: RT_THUMB1__Skeleton
+    400184: RT_THUMB2__Skeleton
+    400186: RT_THUMB__Skeleton
+    400188: RT_THUMB_END__Skeleton
+    400190: RT_W__Skeleton
+    400192: SC_BACKA__Skeleton
+    400194: SC_BACKA_END__Skeleton
+    400196: SC_BACKB__Skeleton
+    400198: SC_BACKB_END__Skeleton
+    400200: SC_BASE__Skeleton
+    400202: SC_BASE_END__Skeleton
+    400204: SC_NECK__Skeleton
+    400206: SC_NECK_END__Skeleton
+    400208: //RootNode
+    7400000: walk
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: walk
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BASE__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_E_TWIST__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_E_TWIST__Skeleton/LF_E_TWIST_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_SC_E__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_SC_E__Skeleton/LF_SC_E_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGA__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGA__Skeleton/LF_FINGA1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGA__Skeleton/LF_FINGA1__Skeleton/LF_FINGA2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGA__Skeleton/LF_FINGA1__Skeleton/LF_FINGA2__Skeleton/LF_FINGA_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGB__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGB__Skeleton/LF_FINGB1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGB__Skeleton/LF_FINGB1__Skeleton/LF_FINGB2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGB__Skeleton/LF_FINGB1__Skeleton/LF_FINGB2__Skeleton/LF_FINGB_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGC__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGC__Skeleton/LF_FINGC1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGC__Skeleton/LF_FINGC1__Skeleton/LF_FINGC2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGC__Skeleton/LF_FINGC1__Skeleton/LF_FINGC2__Skeleton/LF_FINGC_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGD__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGD__Skeleton/LF_FINGD1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGD__Skeleton/LF_FINGD1__Skeleton/LF_FINGD2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGD__Skeleton/LF_FINGD1__Skeleton/LF_FINGD2__Skeleton/LF_FINGD_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_PROP__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_PROP__Skeleton/LF_PROP_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_SPECIAL__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_SPECIAL__Skeleton/LF_SPECIAL_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_THUMB__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_THUMB__Skeleton/LF_THUMB1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_THUMB__Skeleton/LF_THUMB1__Skeleton/LF_THUMB2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_THUMB__Skeleton/LF_THUMB1__Skeleton/LF_THUMB2__Skeleton/LF_THUMB_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_SC_S__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_SC_S__Skeleton/LF_SC_S_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_SC_TWIST_S__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_SC_TWIST_S__Skeleton/LF_SC_TWIST_S_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/NECK__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/NECK__Skeleton/HEAD__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/NECK__Skeleton/HEAD__Skeleton/HEAD_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/NECK__Skeleton/SC_NECK__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/NECK__Skeleton/SC_NECK__Skeleton/SC_NECK_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_E_TWIST__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_E_TWIST__Skeleton/RT_E_TWIST_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_SC_E__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_SC_E__Skeleton/RT_SC_E_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGA__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGA__Skeleton/RT_FINGA1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGA__Skeleton/RT_FINGA1__Skeleton/RT_FINGA2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGA__Skeleton/RT_FINGA1__Skeleton/RT_FINGA2__Skeleton/RT_FINGA_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGB__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGB__Skeleton/RT_FINGB1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGB__Skeleton/RT_FINGB1__Skeleton/RT_FINGB2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGB__Skeleton/RT_FINGB1__Skeleton/RT_FINGB2__Skeleton/RT_FINGB_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGC__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGC__Skeleton/RT_FINGC1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGC__Skeleton/RT_FINGC1__Skeleton/RT_FINGC2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGC__Skeleton/RT_FINGC1__Skeleton/RT_FINGC2__Skeleton/RT_FINGC_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGD__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGD__Skeleton/RT_FINGD1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGD__Skeleton/RT_FINGD1__Skeleton/RT_FINGD2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGD__Skeleton/RT_FINGD1__Skeleton/RT_FINGD2__Skeleton/RT_FINGD_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_PROP__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_PROP__Skeleton/RT_PROP_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_SPECIAL__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_SPECIAL__Skeleton/RT_SPECIAL_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_THUMB__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_THUMB__Skeleton/RT_THUMB1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_THUMB__Skeleton/RT_THUMB1__Skeleton/RT_THUMB2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_THUMB__Skeleton/RT_THUMB1__Skeleton/RT_THUMB2__Skeleton/RT_THUMB_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_SC_S__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_SC_S__Skeleton/RT_SC_S_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_SC_TWIST_S__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_SC_TWIST_S__Skeleton/RT_SC_TWIST_S_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/SC_BACKB__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/SC_BACKB__Skeleton/SC_BACKB_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/SC_BACKA__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/SC_BACKA__Skeleton/SC_BACKA_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/LF_H__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/LF_H__Skeleton/LF_K__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/LF_H__Skeleton/LF_K__Skeleton/LF_A__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/LF_H__Skeleton/LF_K__Skeleton/LF_A__Skeleton/LF_T__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/LF_H__Skeleton/LF_K__Skeleton/LF_A__Skeleton/LF_T__Skeleton/LF_T_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/LF_H__Skeleton/LF_K__Skeleton/LF_SC_K__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/LF_H__Skeleton/LF_K__Skeleton/LF_SC_K__Skeleton/LF_SC_K_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/LF_H__Skeleton/LF_SC_H__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/LF_H__Skeleton/LF_SC_H__Skeleton/LF_SC_H_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/RT_H__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/RT_H__Skeleton/RT_K__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/RT_H__Skeleton/RT_K__Skeleton/RT_A__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/RT_H__Skeleton/RT_K__Skeleton/RT_A__Skeleton/RT_T__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/RT_H__Skeleton/RT_K__Skeleton/RT_A__Skeleton/RT_T__Skeleton/RT_T_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/RT_H__Skeleton/RT_K__Skeleton/RT_SC_K__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/RT_H__Skeleton/RT_K__Skeleton/RT_SC_K__Skeleton/RT_SC_K_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/RT_H__Skeleton/RT_SC_H__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/RT_H__Skeleton/RT_SC_H__Skeleton/RT_SC_H_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/SC_BASE__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/SC_BASE__Skeleton/SC_BASE_END__Skeleton
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human:
+    - boneName: BASE__Skeleton
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_H__Skeleton
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_H__Skeleton
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_K__Skeleton
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_K__Skeleton
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_A__Skeleton
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_A__Skeleton
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: BACKA__Skeleton
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: BACKB__Skeleton
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: NECK__Skeleton
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HEAD__Skeleton
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_C__Skeleton
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_C__Skeleton
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_S__Skeleton
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_S__Skeleton
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_E__Skeleton
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_E__Skeleton
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_W__Skeleton
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_W__Skeleton
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_T__Skeleton
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_T__Skeleton
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_THUMB__Skeleton
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_THUMB1__Skeleton
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_THUMB2__Skeleton
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGA__Skeleton
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGA1__Skeleton
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGA2__Skeleton
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGB__Skeleton
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGB1__Skeleton
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGB2__Skeleton
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGC__Skeleton
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGC1__Skeleton
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGC2__Skeleton
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGD__Skeleton
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGD1__Skeleton
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGD2__Skeleton
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_THUMB__Skeleton
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_THUMB1__Skeleton
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_THUMB2__Skeleton
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGA__Skeleton
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGA1__Skeleton
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGA2__Skeleton
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGB__Skeleton
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGB1__Skeleton
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGB2__Skeleton
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGC__Skeleton
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGC1__Skeleton
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGC2__Skeleton
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGD__Skeleton
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGD1__Skeleton
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGD2__Skeleton
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Avatar_Xna_Base_Mton(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Avatar_Mesh
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BOY
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BlendShapeEarDefault_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: boy_body_mesh_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: boy_bottoms_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: boy_hair_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: boy_shoes_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: boy_top_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: GIRL
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: girl_bottoms_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: girl_hair_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: GIRL_HIGH_HEELS
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: girl_body_heelleg_mesh_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: girl_highheels_mesh_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: GIRL_LOW_HEELS
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: girl_body_mesh_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: girl_shoes_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: girl_top_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: girlHead_BlendShapeEarDefault_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BASE__Skeleton
+      position: {x: 0, y: .776924789, z: -.00866430998}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BACKA__Skeleton
+      position: {x: 0, y: .0240310673, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BACKB__Skeleton
+      position: {x: 0, y: .115834117, z: -.00771705015}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_C__Skeleton
+      position: {x: -.0074, y: .122415997, z: .0142705198}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_S__Skeleton
+      position: {x: -.11761371, y: 5.91844691e-05, z: -.0279203504}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_E__Skeleton
+      position: {x: -.220122039, y: -.00518591236, z: .000761144212}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_E_TWIST__Skeleton
+      position: {x: -.11307691, y: -.00266402843, z: .00172300579}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_E_TWIST_END__Skeleton
+      position: {x: -0, y: .0408902727, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_E__Skeleton
+      position: {x: -.0848076791, y: -.00172553654, z: .00111603492}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_E_END__Skeleton
+      position: {x: 7.1054272e-17, y: 0, z: -.0281199999}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_W__Skeleton
+      position: {x: -.169615373, y: -.0039960444, z: .00258450746}
+      rotation: {x: -.000436959934, y: -5.1461393e-06, z: -.0286846478, w: .99958843}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGA__Skeleton
+      position: {x: -.0921267271, y: -.0243492126, z: .0360598974}
+      rotation: {x: .000379902951, y: .0172193423, z: .0462431051, w: .998781741}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGA1__Skeleton
+      position: {x: -.0398709103, y: 0, z: .000327560905}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGA2__Skeleton
+      position: {x: -.0287409201, y: 0, z: 3.24964526e-06}
+      rotation: {x: -1.43789812e-05, y: 5.68375071e-05, z: -.126987517, w: .991904318}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGA_END__Skeleton
+      position: {x: -.0247940216, y: -.00836857595, z: -9.35727371e-07}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGB__Skeleton
+      position: {x: -.0936603174, y: -.0233958438, z: .00948124006}
+      rotation: {x: -1.59454084e-05, y: .019199945, z: .0472200364, w: .998700023}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGB1__Skeleton
+      position: {x: -.042272415, y: 0, z: -1.42598146e-05}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGB2__Skeleton
+      position: {x: -.0298789963, y: 0, z: 7.33971592e-06}
+      rotation: {x: -2.70665842e-05, y: .000273167738, z: -.110232338, w: .993905783}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGB_END__Skeleton
+      position: {x: -.026948344, y: -.00814196374, z: -1.35609798e-05}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGC__Skeleton
+      position: {x: -.0879339948, y: -.0260538477, z: -.0158236567}
+      rotation: {x: -.000357283076, y: .0209088586, z: .0480650254, w: .998625278}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGC1__Skeleton
+      position: {x: -.0405278765, y: 0, z: -.000301222783}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGC2__Skeleton
+      position: {x: -.0293477625, y: 0, z: 6.85214991e-06}
+      rotation: {x: -2.47587468e-05, y: .000207250981, z: -.106002286, w: .994365871}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGC_END__Skeleton
+      position: {x: -.0258883368, y: -.00759338588, z: -8.80210973e-06}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGD__Skeleton
+      position: {x: -.0767439604, y: -.029780196, z: -.0396565683}
+      rotation: {x: -.000423360121, y: .0212399326, z: .0482292473, w: .998610377}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGD1__Skeleton
+      position: {x: -.0342390426, y: 0, z: -.000300550455}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGD2__Skeleton
+      position: {x: -.0251552574, y: 0, z: 2.79903406e-06}
+      rotation: {x: -1.28787051e-05, y: -.000198305599, z: -.115429528, w: .993315637}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGD_END__Skeleton
+      position: {x: -.0225922931, y: -.00707197469, z: 1.46710299e-05}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_PROP__Skeleton
+      position: {x: -.0628999993, y: -.157250002, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_PROP_END__Skeleton
+      position: {x: -0, y: -1.42108544e-16, z: .157250002}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SPECIAL__Skeleton
+      position: {x: -.0943500027, y: -.0943500027, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SPECIAL_END__Skeleton
+      position: {x: -0, y: -1.42108544e-16, z: .157250002}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_THUMB__Skeleton
+      position: {x: 0, y: 0, z: .00840703025}
+      rotation: {x: -.0661847889, y: .0641151592, z: -.0392483547, w: .994971633}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_THUMB1__Skeleton
+      position: {x: -.0556060411, y: -.0316471085, z: .0420709774}
+      rotation: {x: -.00193462824, y: .00450256607, z: .000829940836, w: .999987662}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_THUMB2__Skeleton
+      position: {x: -.0272806156, y: -.0147783654, z: .0165830515}
+      rotation: {x: -.0275322907, y: .0775403455, z: .023808606, w: .996324539}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_THUMB_END__Skeleton
+      position: {x: -.0286235847, y: -.012676686, z: .00818544719}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_S__Skeleton
+      position: {x: -.110061035, y: -.00189809734, z: .00027859211}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_S_END__Skeleton
+      position: {x: 3.5527136e-17, y: 0, z: -.042179998}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_TWIST_S__Skeleton
+      position: {x: -.00440244656, y: 1.96322798e-08, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_TWIST_S_END__Skeleton
+      position: {x: -0, y: .0483403876, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: NECK__Skeleton
+      position: {x: 0, y: .173775777, z: -.0188221391}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: HEAD__Skeleton
+      position: {x: 0, y: .100578688, z: .0194150787}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: HEAD_END__Skeleton
+      position: {x: 8.28512539e-18, y: .297407508, z: .0159297436}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SC_NECK__Skeleton
+      position: {x: 0, y: .0335262306, z: .00647168839}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SC_NECK_END__Skeleton
+      position: {x: -0, y: 0, z: .0440299995}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_C__Skeleton
+      position: {x: .0074, y: .122415997, z: .0142705198}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_S__Skeleton
+      position: {x: .11761371, y: 5.91844691e-05, z: -.0279203504}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_E__Skeleton
+      position: {x: .220122039, y: -.00518591236, z: .000761144212}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_E_TWIST__Skeleton
+      position: {x: .11307691, y: -.00266402843, z: .00172300579}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_E_TWIST_END__Skeleton
+      position: {x: -0, y: .0408902727, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_E__Skeleton
+      position: {x: .0848076791, y: -.00172553654, z: .00111603492}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_E_END__Skeleton
+      position: {x: -7.1054272e-17, y: 0, z: -.0281199999}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_W__Skeleton
+      position: {x: .169615373, y: -.0039960444, z: .00258450746}
+      rotation: {x: -.000436959934, y: 5.1461393e-06, z: .0286846478, w: .99958843}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGA__Skeleton
+      position: {x: .0921267271, y: -.0243492126, z: .0360598974}
+      rotation: {x: .000379902951, y: -.0172193423, z: -.0462431051, w: .998781741}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGA1__Skeleton
+      position: {x: .0398709103, y: 0, z: .000327560905}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGA2__Skeleton
+      position: {x: .0287409201, y: 0, z: 3.24964526e-06}
+      rotation: {x: -1.43789812e-05, y: -5.68375071e-05, z: .126987517, w: .991904318}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGA_END__Skeleton
+      position: {x: .0247940216, y: -.00836857595, z: -9.35727371e-07}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGB__Skeleton
+      position: {x: .0936603174, y: -.0233958438, z: .00948124006}
+      rotation: {x: -1.59454084e-05, y: -.019199945, z: -.0472200364, w: .998700023}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGB1__Skeleton
+      position: {x: .042272415, y: 0, z: -1.42598146e-05}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGB2__Skeleton
+      position: {x: .0298789963, y: 0, z: 7.33971592e-06}
+      rotation: {x: -2.70665842e-05, y: -.000273167738, z: .110232338, w: .993905783}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGB_END__Skeleton
+      position: {x: .026948344, y: -.00814196374, z: -1.35609798e-05}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGC__Skeleton
+      position: {x: .0879339948, y: -.0260538477, z: -.0158236567}
+      rotation: {x: -.000357283076, y: -.0209088586, z: -.0480650254, w: .998625278}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGC1__Skeleton
+      position: {x: .0405278765, y: 0, z: -.000301222783}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGC2__Skeleton
+      position: {x: .0293477625, y: 0, z: 6.85214991e-06}
+      rotation: {x: -2.47587468e-05, y: -.000207250981, z: .106002286, w: .994365871}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGC_END__Skeleton
+      position: {x: .0258883368, y: -.00759338588, z: -8.80210973e-06}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGD__Skeleton
+      position: {x: .0767439604, y: -.029780196, z: -.0396565683}
+      rotation: {x: -.000423360121, y: -.0212399326, z: -.0482292473, w: .998610377}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGD1__Skeleton
+      position: {x: .0342390426, y: 0, z: -.000300550455}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGD2__Skeleton
+      position: {x: .0251552574, y: 0, z: 2.79903406e-06}
+      rotation: {x: -1.28787051e-05, y: .000198305599, z: .115429528, w: .993315637}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGD_END__Skeleton
+      position: {x: .0225922931, y: -.00707197469, z: 1.46710299e-05}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_PROP__Skeleton
+      position: {x: .0628999993, y: -.157250002, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_PROP_END__Skeleton
+      position: {x: -0, y: -1.42108544e-16, z: .157250002}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SPECIAL__Skeleton
+      position: {x: .0943500027, y: -.0943500027, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SPECIAL_END__Skeleton
+      position: {x: -0, y: -1.42108544e-16, z: .157250002}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_THUMB__Skeleton
+      position: {x: 0, y: 0, z: .00840703025}
+      rotation: {x: -.0661847889, y: -.0641151592, z: .0392483547, w: .994971633}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_THUMB1__Skeleton
+      position: {x: .0556060411, y: -.0316471085, z: .0420709774}
+      rotation: {x: -.00193462824, y: -.00450256607, z: -.000829940836, w: .999987662}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_THUMB2__Skeleton
+      position: {x: .0272806156, y: -.0147783654, z: .0165830515}
+      rotation: {x: -.0275322907, y: -.0775403455, z: -.023808606, w: .996324539}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_THUMB_END__Skeleton
+      position: {x: .0286235847, y: -.012676686, z: .00818544719}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_S__Skeleton
+      position: {x: .110061035, y: -.00189809734, z: .00027859211}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_S_END__Skeleton
+      position: {x: -3.5527136e-17, y: 0, z: -.042179998}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_TWIST_S__Skeleton
+      position: {x: .00440244656, y: 1.96322798e-08, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_TWIST_S_END__Skeleton
+      position: {x: -0, y: .0483403876, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SC_BACKB__Skeleton
+      position: {x: 0, y: .0434439071, z: -.00470553013}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SC_BACKB_END__Skeleton
+      position: {x: -0, y: 0, z: .0961999968}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SC_BACKA__Skeleton
+      position: {x: 0, y: .0612020083, z: -.00514469948}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SC_BACKA_END__Skeleton
+      position: {x: -0, y: 0, z: .0961999968}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_H__Skeleton
+      position: {x: -.0900579989, y: -.107266307, z: .00866453722}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_K__Skeleton
+      position: {x: 0, y: -.288904369, z: -.0139676975}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_A__Skeleton
+      position: {x: -.00623546587, y: -.279170781, z: -.0272812713}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_T__Skeleton
+      position: {x: -.00668293005, y: -.0858741775, z: .114114903}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_T_END__Skeleton
+      position: {x: -0, y: -.0129692182, z: .0516487882}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_K__Skeleton
+      position: {x: -.00275510782, y: -.137149572, z: -.0120540783}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_K_END__Skeleton
+      position: {x: -0, y: 0, z: -.0562399998}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_H__Skeleton
+      position: {x: 0, y: -.14445217, z: -.00649636751}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_H_END__Skeleton
+      position: {x: -0, y: 0, z: -.0592}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_H__Skeleton
+      position: {x: .0900579989, y: -.107266307, z: .00866453722}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_K__Skeleton
+      position: {x: 0, y: -.288904369, z: -.0139676975}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_A__Skeleton
+      position: {x: .00623546587, y: -.279170781, z: -.0272812713}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_T__Skeleton
+      position: {x: .00668293005, y: -.0858741775, z: .114114903}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_T_END__Skeleton
+      position: {x: -0, y: -.0129692182, z: .0516487882}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_K__Skeleton
+      position: {x: .00275510782, y: -.137149572, z: -.0120540783}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_K_END__Skeleton
+      position: {x: -0, y: 0, z: -.0562399998}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_H__Skeleton
+      position: {x: 0, y: -.14445217, z: -.00649636751}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_H_END__Skeleton
+      position: {x: -0, y: 0, z: -.0592}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SC_BASE__Skeleton
+      position: {x: 0, y: .0306010433, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SC_BASE_END__Skeleton
+      position: {x: -0, y: 0, z: .0961999968}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 78004e6e16c3a471896ccc8da613e471,
+    type: 3}
+  animationType: 3
+  additionalBone: 0
+  userData: 

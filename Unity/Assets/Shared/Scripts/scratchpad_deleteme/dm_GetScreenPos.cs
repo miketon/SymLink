@@ -21,7 +21,7 @@ public class dm_GetScreenPos : MonoBehaviour {
 	  if(xformFollow){
 	    xform.position = xformFollow.position + offSet;
 	    Vector3 viewPos = cam.WorldToViewportPoint(xform.position);
-	    txt.text = ("y: " + viewPos.y + "/nx:" + viewPos.x);
+		txt.text = ("y:" + viewPos.y.ToString("0.00") + "\nx:" + viewPos.x.ToString("0.00"));
 	  }
 	}
 }

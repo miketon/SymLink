@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 999c69d2ccd72464faa2cd4e055eed3f
 ModelImporter:
-  serializedVersion: 15
+  serializedVersion: 16
   fileIDToRecycleName:
     100000: DragonMom
     100002: //RootNode
@@ -66,5 +66,6 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
+  additionalBone: 0
   userData: 
