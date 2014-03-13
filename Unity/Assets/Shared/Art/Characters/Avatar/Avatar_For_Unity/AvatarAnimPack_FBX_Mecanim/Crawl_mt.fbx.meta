@@ -233,7 +233,7 @@ ModelImporter:
     - serializedVersion: 16
       name: crawl
       takeName: Take 001
-      firstFrame: 1
+      firstFrame: 0
       lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0

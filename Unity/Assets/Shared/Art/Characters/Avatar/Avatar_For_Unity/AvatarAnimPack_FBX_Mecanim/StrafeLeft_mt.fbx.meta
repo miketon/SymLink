@@ -233,7 +233,7 @@ ModelImporter:
     - serializedVersion: 16
       name: strafeleft
       takeName: Take 001
-      firstFrame: 1
+      firstFrame: 0
       lastFrame: 23
       wrapMode: 0
       orientationOffsetY: 0

@@ -233,7 +233,7 @@ ModelImporter:
     - serializedVersion: 16
       name: swimunderwater
       takeName: Take 001
-      firstFrame: 1
+      firstFrame: .959999979
       lastFrame: 18
       wrapMode: 0
       orientationOffsetY: 0

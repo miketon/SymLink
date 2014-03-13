@@ -9,6 +9,8 @@ public class mt_Camera_RT_Comp extends mt_Camera_RT {
   public var mskTexture      : Texture2D ;
   public var nrmTexture      : Texture2D ;
 
+  public var ShowRenderTarget : boolean;
+
   function Start() {
     super.Start();
   }
@@ -23,14 +25,30 @@ public class mt_Camera_RT_Comp extends mt_Camera_RT {
   } 
 
   function doOnRenderImage(source : RenderTexture, destination : RenderTexture) : void {
-    var compositeMat:Material = GetCompositeMaterial()                ;
-    //compositeMat.SetTexture ("_EthrTex", ethTexture)                ;
-    compositeMat.SetTexture ("_EthrTex", renderTexture_m)             ;
-    //compositeMat.SetTexture ("_EthrTex", renderTexture.depthBuffer) ;
-    compositeMat.SetTexture ("_MaskTex", mskTexture)                  ;
-    compositeMat.SetTexture ("_NormTex", nrmTexture)                  ;
-    Graphics.Blit(source, destination, compositeMat)                  ;
-    //ImageEffects.BlitWithMaterial(compositeMat, source, destination)  ; //Obsolete
+    var compositeMat:Material = GetCompositeMaterial()                 ;
+    //compositeMat.SetTexture ("_EthrTex", ethTexture)                 ;
+    compositeMat.SetTexture ("_EthrTex", renderTexture_m)              ;
+    //compositeMat.SetTexture ("_EthrTex", renderTexture.depthBuffer)  ;
+    compositeMat.SetTexture ("_MaskTex", mskTexture)                   ;
+    compositeMat.SetTexture ("_NormTex", nrmTexture)                   ;
+    Graphics.Blit(source, destination, compositeMat)                   ;
+    //ImageEffects.BlitWithMaterial(compositeMat, source, destination) ; //Obsolete
+  }
+
+  function OnGUI (){
+    if(ShowRenderTarget){
+      var scale:float = 0.2f                                                            ;
+      var GUItexSize:Vector2 = new Vector2(Screen.width * scale, Screen.height * scale) ;
+     
+      //var RTT_1:Texture2D = RenderTexture.GetTemporary (Screen.width, Screen.height, 0, RenderTextureFormat.ARGB32);
+
+      GUI.DrawTexture(new Rect(10, Screen.height - (GUItexSize.y + 25), GUItexSize.x, GUItexSize.y), ethTexture ,ScaleMode.StretchToFill, false)                  ;
+      GUI.DrawTexture(new Rect(20+GUItexSize.x, Screen.height - (GUItexSize.y + 25), GUItexSize.x, GUItexSize.y), mskTexture ,ScaleMode.StretchToFill, false)     ;
+      GUI.DrawTexture(new Rect(30+GUItexSize.x*2.0, Screen.height - (GUItexSize.y + 25), GUItexSize.x, GUItexSize.y), nrmTexture ,ScaleMode.StretchToFill, false) ;
+      //GUI.DrawTexture(new Rect(40+GUItexSize.x*3.0, Screen.height - (GUItexSize.y + 25), GUItexSize.x, GUItexSize.y), renderTexture ,ScaleMode.StretchToFill, false) ;
+      
+      //RenderTexture.ReleaseTemporary (RTT_1);
+    }
   }
 
 /*
