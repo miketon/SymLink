@@ -7,15 +7,15 @@ public class PlayerMove_mton_jump : PlayerMove_mton{
 	public override void Jump(Vector3 jumpVelocity){
 	    print("I am jumping.");
 		base.Jump(jumpVelocity);
-		gridForce();
+		//gridForce();
 	}
 	
 	public override void doUpdate(){
 	  base.doUpdate();
 	  //print("doUpdate Plus ++++");
-		gridForce();
+	  //gridForce();
 	}
-	
+	/*
 	public VectorGrid m_VectorGrid;
 	public float m_ExplosiveForce = 1.0f;
 	public float m_ImplosiveForce = 1.0f;
@@ -24,6 +24,7 @@ public class PlayerMove_mton_jump : PlayerMove_mton{
 	
 	// Update is called once per frame
 	void gridForce () {
+	
 		bool modifierPressed = Input.GetKey(KeyCode.LeftCommand);
 		Color color = new Color(255.0f, 255.0f, 255.0f, 1.0f);
 
@@ -43,4 +44,5 @@ public class PlayerMove_mton_jump : PlayerMove_mton{
 			}
 		}
 	}
+	*/
 }

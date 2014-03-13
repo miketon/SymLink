@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e9a03ecb8621943d3b10f7c2a11b77a1
+guid: 89917de8ca9554368be376227414c0ad
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -99,15 +99,15 @@ ModelImporter:
     100186: RT_THUMB__Skeleton
     100188: RT_THUMB_END__Skeleton
     100190: RT_W__Skeleton
-    100192: SC_BACKA__Skeleton
-    100194: SC_BACKA_END__Skeleton
-    100196: SC_BACKB__Skeleton
-    100198: SC_BACKB_END__Skeleton
-    100200: SC_BASE__Skeleton
-    100202: SC_BASE_END__Skeleton
-    100204: SC_NECK__Skeleton
-    100206: SC_NECK_END__Skeleton
-    100208: //RootNode
+    100192: //RootNode
+    100194: SC_BACKA__Skeleton
+    100196: SC_BACKA_END__Skeleton
+    100198: SC_BACKB__Skeleton
+    100200: SC_BACKB_END__Skeleton
+    100202: SC_BASE__Skeleton
+    100204: SC_BASE_END__Skeleton
+    100206: SC_NECK__Skeleton
+    100208: SC_NECK_END__Skeleton
     400000: BACKA__Skeleton
     400002: BACKB__Skeleton
     400004: BASE__Skeleton
@@ -204,16 +204,16 @@ ModelImporter:
     400186: RT_THUMB__Skeleton
     400188: RT_THUMB_END__Skeleton
     400190: RT_W__Skeleton
-    400192: SC_BACKA__Skeleton
-    400194: SC_BACKA_END__Skeleton
-    400196: SC_BACKB__Skeleton
-    400198: SC_BACKB_END__Skeleton
-    400200: SC_BASE__Skeleton
-    400202: SC_BASE_END__Skeleton
-    400204: SC_NECK__Skeleton
-    400206: SC_NECK_END__Skeleton
-    400208: //RootNode
-    7400000: swimunderwater
+    400192: //RootNode
+    400194: SC_BACKA__Skeleton
+    400196: SC_BACKA_END__Skeleton
+    400198: SC_BACKB__Skeleton
+    400200: SC_BACKB_END__Skeleton
+    400202: SC_BASE__Skeleton
+    400204: SC_BASE_END__Skeleton
+    400206: SC_NECK__Skeleton
+    400208: SC_NECK_END__Skeleton
+    7400000: run_3
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -231,17 +231,17 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: swimunderwater
+      name: run_3
       takeName: Take 001
-      firstFrame: .959999979
-      lastFrame: 18
+      firstFrame: 0
+      lastFrame: 17
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
@@ -249,7 +249,7 @@ ModelImporter:
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
-      mirror: 0
+      mirror: 1
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []

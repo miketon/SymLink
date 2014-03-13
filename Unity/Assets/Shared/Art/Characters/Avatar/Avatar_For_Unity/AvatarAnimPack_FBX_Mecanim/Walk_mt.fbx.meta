@@ -233,15 +233,15 @@ ModelImporter:
     - serializedVersion: 16
       name: walk
       takeName: Take 001
-      firstFrame: 1
+      firstFrame: 0
       lastFrame: 26
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
@@ -251,7 +251,28 @@ ModelImporter:
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
+      curves:
+      - name: rootSpeedWalk
+        curve:
+          serializedVersion: 2
+          curve:
+          - time: -.00245047058
+            value: 1.00046754
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          - time: .643077016
+            value: .600000024
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          - time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          preInfinity: 2
+          postInfinity: 2
       events: []
       transformMask:
       - path: 
