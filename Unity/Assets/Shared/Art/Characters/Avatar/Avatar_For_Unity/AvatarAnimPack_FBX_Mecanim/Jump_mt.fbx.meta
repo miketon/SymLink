@@ -214,6 +214,7 @@ ModelImporter:
     400206: SC_NECK__Skeleton
     400208: SC_NECK_END__Skeleton
     7400000: jump
+    7400002: jump_UP
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -249,6 +250,242 @@ ModelImporter:
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BASE__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_E_TWIST__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_E_TWIST__Skeleton/LF_E_TWIST_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_SC_E__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_SC_E__Skeleton/LF_SC_E_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGA__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGA__Skeleton/LF_FINGA1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGA__Skeleton/LF_FINGA1__Skeleton/LF_FINGA2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGA__Skeleton/LF_FINGA1__Skeleton/LF_FINGA2__Skeleton/LF_FINGA_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGB__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGB__Skeleton/LF_FINGB1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGB__Skeleton/LF_FINGB1__Skeleton/LF_FINGB2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGB__Skeleton/LF_FINGB1__Skeleton/LF_FINGB2__Skeleton/LF_FINGB_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGC__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGC__Skeleton/LF_FINGC1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGC__Skeleton/LF_FINGC1__Skeleton/LF_FINGC2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGC__Skeleton/LF_FINGC1__Skeleton/LF_FINGC2__Skeleton/LF_FINGC_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGD__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGD__Skeleton/LF_FINGD1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGD__Skeleton/LF_FINGD1__Skeleton/LF_FINGD2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_FINGD__Skeleton/LF_FINGD1__Skeleton/LF_FINGD2__Skeleton/LF_FINGD_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_PROP__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_PROP__Skeleton/LF_PROP_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_SPECIAL__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_SPECIAL__Skeleton/LF_SPECIAL_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_THUMB__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_THUMB__Skeleton/LF_THUMB1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_THUMB__Skeleton/LF_THUMB1__Skeleton/LF_THUMB2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_E__Skeleton/LF_W__Skeleton/LF_THUMB__Skeleton/LF_THUMB1__Skeleton/LF_THUMB2__Skeleton/LF_THUMB_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_SC_S__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_SC_S__Skeleton/LF_SC_S_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_SC_TWIST_S__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/LF_C__Skeleton/LF_S__Skeleton/LF_SC_TWIST_S__Skeleton/LF_SC_TWIST_S_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/NECK__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/NECK__Skeleton/HEAD__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/NECK__Skeleton/HEAD__Skeleton/HEAD_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/NECK__Skeleton/SC_NECK__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/NECK__Skeleton/SC_NECK__Skeleton/SC_NECK_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_E_TWIST__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_E_TWIST__Skeleton/RT_E_TWIST_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_SC_E__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_SC_E__Skeleton/RT_SC_E_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGA__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGA__Skeleton/RT_FINGA1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGA__Skeleton/RT_FINGA1__Skeleton/RT_FINGA2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGA__Skeleton/RT_FINGA1__Skeleton/RT_FINGA2__Skeleton/RT_FINGA_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGB__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGB__Skeleton/RT_FINGB1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGB__Skeleton/RT_FINGB1__Skeleton/RT_FINGB2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGB__Skeleton/RT_FINGB1__Skeleton/RT_FINGB2__Skeleton/RT_FINGB_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGC__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGC__Skeleton/RT_FINGC1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGC__Skeleton/RT_FINGC1__Skeleton/RT_FINGC2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGC__Skeleton/RT_FINGC1__Skeleton/RT_FINGC2__Skeleton/RT_FINGC_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGD__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGD__Skeleton/RT_FINGD1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGD__Skeleton/RT_FINGD1__Skeleton/RT_FINGD2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_FINGD__Skeleton/RT_FINGD1__Skeleton/RT_FINGD2__Skeleton/RT_FINGD_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_PROP__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_PROP__Skeleton/RT_PROP_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_SPECIAL__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_SPECIAL__Skeleton/RT_SPECIAL_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_THUMB__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_THUMB__Skeleton/RT_THUMB1__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_THUMB__Skeleton/RT_THUMB1__Skeleton/RT_THUMB2__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_E__Skeleton/RT_W__Skeleton/RT_THUMB__Skeleton/RT_THUMB1__Skeleton/RT_THUMB2__Skeleton/RT_THUMB_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_SC_S__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_SC_S__Skeleton/RT_SC_S_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_SC_TWIST_S__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/RT_C__Skeleton/RT_S__Skeleton/RT_SC_TWIST_S__Skeleton/RT_SC_TWIST_S_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/SC_BACKB__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/BACKB__Skeleton/SC_BACKB__Skeleton/SC_BACKB_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/SC_BACKA__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/BACKA__Skeleton/SC_BACKA__Skeleton/SC_BACKA_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/LF_H__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/LF_H__Skeleton/LF_K__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/LF_H__Skeleton/LF_K__Skeleton/LF_A__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/LF_H__Skeleton/LF_K__Skeleton/LF_A__Skeleton/LF_T__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/LF_H__Skeleton/LF_K__Skeleton/LF_A__Skeleton/LF_T__Skeleton/LF_T_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/LF_H__Skeleton/LF_K__Skeleton/LF_SC_K__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/LF_H__Skeleton/LF_K__Skeleton/LF_SC_K__Skeleton/LF_SC_K_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/LF_H__Skeleton/LF_SC_H__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/LF_H__Skeleton/LF_SC_H__Skeleton/LF_SC_H_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/RT_H__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/RT_H__Skeleton/RT_K__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/RT_H__Skeleton/RT_K__Skeleton/RT_A__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/RT_H__Skeleton/RT_K__Skeleton/RT_A__Skeleton/RT_T__Skeleton
+        weight: 1
+      - path: BASE__Skeleton/RT_H__Skeleton/RT_K__Skeleton/RT_A__Skeleton/RT_T__Skeleton/RT_T_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/RT_H__Skeleton/RT_K__Skeleton/RT_SC_K__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/RT_H__Skeleton/RT_K__Skeleton/RT_SC_K__Skeleton/RT_SC_K_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/RT_H__Skeleton/RT_SC_H__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/RT_H__Skeleton/RT_SC_H__Skeleton/RT_SC_H_END__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/SC_BASE__Skeleton
+        weight: 0
+      - path: BASE__Skeleton/SC_BASE__Skeleton/SC_BASE_END__Skeleton
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: jump_UP
+      takeName: Take 001
+      firstFrame: 15
+      lastFrame: 18
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 0
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
