@@ -234,14 +234,14 @@ ModelImporter:
       name: run_3
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 17
+      lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       loopTime: 1
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
@@ -249,10 +249,24 @@ ModelImporter:
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
-      mirror: 1
+      mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: .0106761213
+        functionName: playRun
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 1.39999998
+        intParameter: 0
+        messageOptions: 0
+      - time: .512455523
+        functionName: playRun
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 1.60000002
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -1021,17 +1035,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: LF_S__Skeleton
-      position: {x: -.11761371, y: 5.91844691e-05, z: -.0279203504}
+      position: {x: -.117613703, y: 5.91844691e-05, z: -.0279203504}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: LF_E__Skeleton
-      position: {x: -.220122039, y: -.00518591236, z: .000761144212}
+      position: {x: -.220122024, y: -.00518591236, z: .000761144212}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: LF_E_TWIST__Skeleton
-      position: {x: -.11307691, y: -.00266402843, z: .00172300579}
+      position: {x: -.113076903, y: -.00266402843, z: .00172300579}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1051,7 +1065,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: LF_W__Skeleton
-      position: {x: -.169615373, y: -.0039960444, z: .00258450746}
+      position: {x: -.169615358, y: -.0039960444, z: .00258450746}
       rotation: {x: -.000436959934, y: -5.1461393e-06, z: -.0286846478, w: .99958843}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1071,7 +1085,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: LF_FINGA_END__Skeleton
-      position: {x: -.0247940216, y: -.00836857595, z: -9.35727371e-07}
+      position: {x: -.0247940198, y: -.00836857595, z: -9.35727371e-07}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1086,7 +1100,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: LF_FINGB2__Skeleton
-      position: {x: -.0298789963, y: 0, z: 7.33971592e-06}
+      position: {x: -.0298789944, y: 0, z: 7.33971592e-06}
       rotation: {x: -2.70665842e-05, y: .000273167738, z: -.110232338, w: .993905783}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1111,7 +1125,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: LF_FINGC_END__Skeleton
-      position: {x: -.0258883368, y: -.00759338588, z: -8.80210973e-06}
+      position: {x: -.025888335, y: -.00759338588, z: -8.80210973e-06}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1161,12 +1175,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: LF_THUMB1__Skeleton
-      position: {x: -.0556060411, y: -.0316471085, z: .0420709774}
+      position: {x: -.0556060411, y: -.0316471085, z: .0420709737}
       rotation: {x: -.00193462824, y: .00450256607, z: .000829940836, w: .999987662}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: LF_THUMB2__Skeleton
-      position: {x: -.0272806156, y: -.0147783654, z: .0165830515}
+      position: {x: -.0272806156, y: -.0147783644, z: .0165830515}
       rotation: {x: -.0275322907, y: .0775403455, z: .023808606, w: .996324539}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1196,12 +1210,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: NECK__Skeleton
-      position: {x: 0, y: .173775777, z: -.0188221391}
+      position: {x: 0, y: .173775762, z: -.0188221391}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: HEAD__Skeleton
-      position: {x: 0, y: .100578688, z: .0194150787}
+      position: {x: 0, y: .100578688, z: .0194150768}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1211,7 +1225,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: SC_NECK__Skeleton
-      position: {x: 0, y: .0335262306, z: .00647168839}
+      position: {x: 0, y: .0335262306, z: .00647168793}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1226,17 +1240,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: RT_S__Skeleton
-      position: {x: .11761371, y: 5.91844691e-05, z: -.0279203504}
+      position: {x: .117613703, y: 5.91844691e-05, z: -.0279203504}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: RT_E__Skeleton
-      position: {x: .220122039, y: -.00518591236, z: .000761144212}
+      position: {x: .220122024, y: -.00518591236, z: .000761144212}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: RT_E_TWIST__Skeleton
-      position: {x: .11307691, y: -.00266402843, z: .00172300579}
+      position: {x: .113076903, y: -.00266402843, z: .00172300579}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1256,7 +1270,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: RT_W__Skeleton
-      position: {x: .169615373, y: -.0039960444, z: .00258450746}
+      position: {x: .169615358, y: -.0039960444, z: .00258450746}
       rotation: {x: -.000436959934, y: 5.1461393e-06, z: .0286846478, w: .99958843}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1276,7 +1290,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: RT_FINGA_END__Skeleton
-      position: {x: .0247940216, y: -.00836857595, z: -9.35727371e-07}
+      position: {x: .0247940198, y: -.00836857595, z: -9.35727371e-07}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1291,7 +1305,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: RT_FINGB2__Skeleton
-      position: {x: .0298789963, y: 0, z: 7.33971592e-06}
+      position: {x: .0298789944, y: 0, z: 7.33971592e-06}
       rotation: {x: -2.70665842e-05, y: -.000273167738, z: .110232338, w: .993905783}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1316,7 +1330,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: RT_FINGC_END__Skeleton
-      position: {x: .0258883368, y: -.00759338588, z: -8.80210973e-06}
+      position: {x: .025888335, y: -.00759338588, z: -8.80210973e-06}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1366,12 +1380,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: RT_THUMB1__Skeleton
-      position: {x: .0556060411, y: -.0316471085, z: .0420709774}
+      position: {x: .0556060411, y: -.0316471085, z: .0420709737}
       rotation: {x: -.00193462824, y: -.00450256607, z: -.000829940836, w: .999987662}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: RT_THUMB2__Skeleton
-      position: {x: .0272806156, y: -.0147783654, z: .0165830515}
+      position: {x: .0272806156, y: -.0147783644, z: .0165830515}
       rotation: {x: -.0275322907, y: -.0775403455, z: -.023808606, w: .996324539}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1411,7 +1425,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: SC_BACKA__Skeleton
-      position: {x: 0, y: .0612020083, z: -.00514469948}
+      position: {x: 0, y: .0612020046, z: -.00514469901}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
