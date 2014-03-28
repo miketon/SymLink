@@ -42,6 +42,7 @@ public class mt_Attack_Slash extends mt_Attack{
       var colliders   : Collider[]  = Physics.OverlapSphere (xform.position, cRadius, slshLayerMaskID) ;
       for(each in colliders){
         slshColor();
+        /* TODO : Generalize to not require TK2DObject
         var eachHit : mt_OnHit2D = each.GetComponent(mt_OnHit2D);
         if(eachHit){
           if(mt_TimeStep(slshTimeDur, 0)){
@@ -51,6 +52,7 @@ public class mt_Attack_Slash extends mt_Attack{
             }
           }
         }
+        */
       }
     }
   }

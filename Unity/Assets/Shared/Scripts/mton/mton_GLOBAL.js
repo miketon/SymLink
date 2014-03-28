@@ -14,11 +14,11 @@ public class mton_GLOBAL extends MonoBehaviour{
 
   //global/static var and functions here
   static var uiTimeBool:boolean = false       ;
-  static var playerCollection   = new Array() ;
+  //static var playerCollection   = new Array() ;
   static var xformCollection    = new Array() ;
   
   function Start():void{
-    playerCollection = findObjectsWithScript(Unit2D);
+    //playerCollection = findObjectsWithScript(Unit2D);
   }
 
   public var textField   : TextMesh;
