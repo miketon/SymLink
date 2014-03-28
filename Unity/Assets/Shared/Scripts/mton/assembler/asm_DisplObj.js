@@ -1,6 +1,6 @@
 ﻿#pragma strict
-@script RequireComponent(tk2dSprite)
-@script RequireComponent(tk2dSpriteAnimator)
+//@script RequireComponent(tk2dSprite)
+//@script RequireComponent(tk2dSpriteAnimator)
 
 class asm_DisplObj extends __asmMT{ //map state to animation playback
 
