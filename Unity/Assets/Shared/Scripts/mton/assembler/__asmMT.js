@@ -11,7 +11,8 @@ class __asmMT extends __gameObjectMT{ //map state to animation playback
     xform.GetComponent(Transform);
   }
   
-  function pathToComponent33(IN_component){    
+  /*
+  function pathToComponent(IN_component){    
     var return_io;// = xform.GetComponent(IN_component) ;  //look in current hiearchy first //WTH - ambigous reference??
     if(!return_io){
       return_io = xform.root.GetComponentInChildren(IN_component) ; //look in root last
@@ -26,4 +27,5 @@ class __asmMT extends __gameObjectMT{ //map state to animation playback
     }
     return return_io;
   }
+ */
 }

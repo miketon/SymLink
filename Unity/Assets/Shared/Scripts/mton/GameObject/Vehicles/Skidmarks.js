@@ -1,3 +1,4 @@
+/* HACK : Commenting out for Android
 //Script used by the car Script to create skidmark meshes when cornering.
 //Just create an empty GameObject and attach this.
 RequireComponent(MeshFilter);
@@ -35,7 +36,7 @@ var skidmarks : markSection[];
 function Start () {
 	//create structures
 	skidmarks=new markSection[maxMarks];
-	for(i=0;i<maxMarks;i++)
+	for(var i=0;i<maxMarks;i++)
 		skidmarks[i]=new markSection();
 	if(GetComponent(MeshFilter).mesh==null)
 		GetComponent(MeshFilter).mesh=new Mesh();
@@ -50,14 +51,14 @@ function AddSkidMark(pos : Vector3, normal : Vector3,intensity : float,lastIndex
 	intensity=Mathf.Clamp01(intensity);
 	
 	//get index for new segment
-	currIndex=numMarks;
+	var currIndex=numMarks;
 	
 	//reuse lastIndex if we don't need to create a new one this frame
 	if(lastIndex!=-1 && !newTrackFlag)
 		currIndex=lastIndex;
 		
 	//setup skidmark structure
-	curr=skidmarks[currIndex%maxMarks];
+	var curr=skidmarks[currIndex%maxMarks];
 	curr.pos=pos+normal*0.05-transform.position;
 	curr.normal=normal;
 	curr.intensity=intensity;
@@ -68,9 +69,9 @@ function AddSkidMark(pos : Vector3, normal : Vector3,intensity : float,lastIndex
 	//if we have a valid lastIndex, get positions for marks
 	if(curr.lastIndex!=-1)
 	{
-		last=skidmarks[curr.lastIndex%maxMarks];
-		dir=(curr.pos-last.pos);
-		xDir=Vector3.Cross(dir,normal).normalized;
+		var last=skidmarks[curr.lastIndex%maxMarks];
+		var dir=(curr.pos-last.pos);
+		var xDir=Vector3.Cross(dir,normal).normalized;
 		
 		curr.posl=curr.pos+xDir*markWidth*0.5;
 		curr.posr=curr.pos-xDir*markWidth*0.5;
@@ -90,23 +91,23 @@ function AddSkidMark(pos : Vector3, normal : Vector3,intensity : float,lastIndex
 //regenerate the skidmarks mesh	
 function UpdateMesh () {
 	//count visible segments
-	segmentCount=0;
-	for(i=0;i<numMarks&&i<maxMarks;i++)
+	var segmentCount=0;
+	for(var i=0;i<numMarks&&i<maxMarks;i++)
 		if(skidmarks[i].lastIndex!=-1&&skidmarks[i].lastIndex>numMarks-maxMarks)
 			segmentCount++;
 	
 	//create skidmark mesh coordinates
-	vertices=new Vector3[segmentCount*4];
-	normals=new Vector3[segmentCount*4];
-	colors=new Color[segmentCount*4];
-	uvs = new Vector2[segmentCount*4];
-	triangles=new int[segmentCount*6];
+	var vertices=new Vector3[segmentCount*4];
+	var normals=new Vector3[segmentCount*4];
+	var colors=new Color[segmentCount*4];
+	var uvs = new Vector2[segmentCount*4];
+	var triangles=new int[segmentCount*6];
 	segmentCount=0;
 	for(i=0;i<numMarks&&i<maxMarks;i++)
 		if(skidmarks[i].lastIndex!=-1&&skidmarks[i].lastIndex>numMarks-maxMarks)
 		{
-			curr=skidmarks[i];
-			last=skidmarks[curr.lastIndex%maxMarks];
+			var curr=skidmarks[i];
+			var last=skidmarks[curr.lastIndex%maxMarks];
 						
 			vertices[segmentCount*4+0]=last.posl;
 			vertices[segmentCount*4+1]=last.posr;
@@ -167,3 +168,5 @@ function FixedUpdate()
 		updateTime -= updateRate;
 	}
 }
+
+*/
