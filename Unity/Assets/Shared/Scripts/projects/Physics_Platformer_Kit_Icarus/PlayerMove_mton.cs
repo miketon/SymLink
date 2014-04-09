@@ -8,7 +8,8 @@ using System.Collections;
 public class PlayerMove_mton : MonoBehaviour 
 {
   //setup
-  public bool bInput = true             ; //will accept controller input?
+  public int  bInput = 1                ; //will accept controller input? 0 == no ; 1 == gamepad ; 2 == touch
+  public bool bJump  = false            ; //button Jump? 0 = released; 1 = onPress; 
   public bool sidescroller              ; //if true, won't apply vertical input
   public Transform mainCam, floorChecks ; //main camera, and floorChecks object. FloorChecks are raycasted down from to check the player is grounded.
   public Animator animator              ; //object with animation controller on, which you want to animate
@@ -95,34 +96,77 @@ public class PlayerMove_mton : MonoBehaviour
     screenMovementSpace   = Quaternion.Euler (0, mainCam.eulerAngles.y, 0) ;
     screenMovementForward = screenMovementSpace * Vector3.forward          ;
     screenMovementRight   = screenMovementSpace * Vector3.right            ;
-    if(bInput){	
-      //get movement input, set direction to move in
-      float h = Input.GetAxisRaw ("Horizontal") ;
-      float v = Input.GetAxisRaw ("Vertical")   ;
-
-      //only apply vertical input to movemement, if player is not sidescroller
-      if(!sidescroller){
-        direction = (screenMovementForward * v) + (screenMovementRight * h);
-      }
-      else{
-        direction = Vector3.right * h;
-      }
-
-      if(Input.GetKeyUp(KeyCode.P)){
-        print("P is for power") ;
-        movingObjSpeed.y = 5    ;
-      }
-      if(Input.GetButtonDown ("Fire1")){
-        print("I am attacking") ;
-        bAttack = true          ;
-      }
-      else{
-        bAttack = false;
-      }
+    if(bInput==1){	
+	  io_Controller();
     }
+		else if(bInput==2){
+			io_Touch();
+		}
 
     moveDirection = transform.position + direction; //must be outside bInput check??? else slide
     doUpdate();
+
+		if(Input.GetKeyUp(KeyCode.P)){
+			print("P is for power") ;
+			movingObjSpeed.y = 5    ;
+		}
+
+  }
+
+  public virtual void io_Touch(){
+				//get movement input, set direction to move in
+		float h = CFInput.GetAxisRaw ("Horizontal") ;
+		float v = CFInput.GetAxisRaw ("Vertical")   ;
+		
+		//only apply vertical input to movemement, if player is not sidescroller
+		if(!sidescroller){
+			direction = (screenMovementForward * v) + (screenMovementRight * h);
+		}
+		else{
+			direction = Vector3.right * h;
+		}
+		
+		if(CFInput.GetButtonDown ("Jump")){
+			bJump = true;
+		}
+		else{
+			bJump = false;
+		}
+		if(CFInput.GetButtonDown ("Fire1")){
+			print("I am attacking") ;
+			bAttack = true          ;
+		}
+		else{
+			bAttack = false;
+		}
+
+  }
+  public virtual void io_Controller(){
+		//get movement input, set direction to move in
+		float h = Input.GetAxisRaw ("Horizontal") ;
+		float v = Input.GetAxisRaw ("Vertical")   ;
+		
+		//only apply vertical input to movemement, if player is not sidescroller
+		if(!sidescroller){
+			direction = (screenMovementForward * v) + (screenMovementRight * h);
+		}
+		else{
+			direction = Vector3.right * h;
+		}
+
+		if(Input.GetButtonDown ("Jump")){
+			bJump = true;
+		}
+		else{
+			bJump = false;
+		}
+		if(Input.GetButtonDown ("Fire1")){
+			print("I am attacking") ;
+			bAttack = true          ;
+		}
+		else{
+			bAttack = false;
+		}
   }
 
   public virtual void doUpdate(){
@@ -232,14 +276,15 @@ public class PlayerMove_mton : MonoBehaviour
       audio.Play ();
     }
     //if we press jump in the air, save the time
-    if (Input.GetButtonDown ("Jump") && !grounded)
+    if (bJump && !grounded){
       airPressTime = Time.time;
+	}
 
     //if were on ground within slope limit
     if (grounded && slope < slopeLimit)
     {
       //and we press jump, or we pressed jump justt before hitting the ground
-      if (Input.GetButtonDown ("Jump") || airPressTime + jumpLeniancy > Time.time)
+      if (bJump || airPressTime + jumpLeniancy > Time.time)
       {	
         //increment our jump type if we haven't been on the ground for long
         onJump = (groundedCount < jumpDelay) ? Mathf.Min(2, onJump + 1) : 0;

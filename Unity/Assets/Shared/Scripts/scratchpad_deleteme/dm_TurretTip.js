@@ -1,5 +1,5 @@
 #pragma strict
-import Vectrosity;
+//import Vectrosity;
 
 protected var xform : Transform ;
 public var xformTarget : Transform;
