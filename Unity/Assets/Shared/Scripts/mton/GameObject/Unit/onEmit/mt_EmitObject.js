@@ -45,7 +45,7 @@ class mt_EmitObject extends __gameObjectMT{
     if(Input.GetButtonDown("Fire1")){ //start hold counter on Fire Button Down
       durnHold = Time.time + emitDelay ;
       boolEmit = false                 ;
-    }    
+    }  
     if(Time.time > durnHold){         //if time longer than hold duration, then emitter is eligible to fire
       boolEmit = true;
     }  
