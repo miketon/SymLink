@@ -7,7 +7,7 @@ public class mt_EmitRotate : MonoBehaviour { //put me on same transform as anima
   private Transform xform    ;
   private Vector3   spawnPos ;
   private Quaternion   spawnRot ;
-  private float     spinScale = 90.0f;
+  public  float     spinScale = 90.0f;
 
 	public bool bRotate = true;
 
@@ -18,9 +18,9 @@ public class mt_EmitRotate : MonoBehaviour { //put me on same transform as anima
   }
   
 	void Update(){
-		float magDist = (spawnPos - xform.position).magnitude + 0.5f;
+		float magDist = (spawnPos - xform.position).magnitude + 3.5f;
 		if(bRotate){
-		  xform.Rotate(Vector3.right * spinScale * Time.deltaTime * magDist * magDist);
+			xform.Rotate((Vector3.right * spinScale * Time.deltaTime)*(magDist)); // * magDist);
 		}
 		xform.Translate(Vector3.forward * Time.deltaTime);
 	}
