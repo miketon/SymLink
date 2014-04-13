@@ -7,3 +7,25 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: Assets/Scenes/Physics_Platformer_Kit_Icarus/2D_Demo_Scene_mton_TrickyNinja.unity
+  - enabled: 0
+    path: Assets/Scenes/Physics_Platformer_Kit_Icarus/2D_Demo_Scene_mton_TrickyNinja_baked.unity
+  - enabled: 0
+    path: Assets/Scenes/zzzPlayground_Animation/zzzAnimBox.unity
+  - enabled: 1
+    path: Assets/Scenes/Control-Freak-Demos/Demos-CS/CF-Demo-CS-Menu_mton.unity
+  - enabled: 1
+    path: Assets/Scenes/AndroidTouch/SoundGenPlatformer_CoreKit.unity
+  - enabled: 0
+    path: Assets/Scenes/AndroidTouch/SoundGenPlatformer.unity
+  - enabled: 1
+    path: Assets/Scenes/Control-Freak-Demos/Demos-CS/CF-Demo-CS-Dual-Stick-Shooter.unity
+  - enabled: 1
+    path: Assets/Scenes/Control-Freak-Demos/Demos-CS/CF-Demo-CS-Fpp.unity
+  - enabled: 1
+    path: Assets/Scenes/Control-Freak-Demos/Demos-CS/CF-Demo-CS-Map.unity
+  - enabled: 1
+    path: Assets/Scenes/Control-Freak-Demos/Demos-CS/CF-Demo-CS-RPG.unity
+  - enabled: 0
+    path: Assets/Scenes/Control-Freak-Demos/Demos-CS/CF-Demo-CS-Menu.unity
+  - enabled: 0
+    path: Assets/Scenes/Control-Freak-Demos/WebDemo-Scenes/CF-Demo-Exit-Screen.unity

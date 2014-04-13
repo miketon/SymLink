@@ -170,7 +170,7 @@ function MakeWindow (id : int) {
 				var name = element.gameName + " " + element.connectedPlayers + " / " + element.playerLimit;
 				GUILayout.Label(name);	
 				GUILayout.Space(5);
-				var hostInfo;
+				var hostInfo:String;
 				hostInfo = "[";
 				// Here we display all IP addresses, there can be multiple in cases where
 				// internal LAN connections are being attempted. In the GUI we could just display

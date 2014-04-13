@@ -4,8 +4,6 @@
 InputManager:
   m_ObjectHideFlags: 0
   m_Axes:
-
-#Defaults
   - serializedVersion: 3
     m_Name: Horizontal
     descriptiveName: 
@@ -45,7 +43,7 @@ InputManager:
     negativeButton: 
     positiveButton: left ctrl
     altNegativeButton: 
-    altPositiveButton: mouse 0
+    altPositiveButton: 
     gravity: 1000
     dead: .00100000005
     sensitivity: 1000
@@ -61,7 +59,7 @@ InputManager:
     negativeButton: 
     positiveButton: left alt
     altNegativeButton: 
-    altPositiveButton: mouse 1
+    altPositiveButton: 
     gravity: 1000
     dead: .00100000005
     sensitivity: 1000
@@ -77,7 +75,7 @@ InputManager:
     negativeButton: 
     positiveButton: left cmd
     altNegativeButton: 
-    altPositiveButton: mouse 2
+    altPositiveButton: 
     gravity: 1000
     dead: .00100000005
     sensitivity: 1000
@@ -278,9 +276,6 @@ InputManager:
     type: 0
     axis: 0
     joyNum: 0
-#defaults
-
-#Icarus Physics Platformer Kit
   - serializedVersion: 3
     m_Name: Horizontal
     descriptiveName: 
@@ -393,4 +388,51 @@ InputManager:
     type: 1
     axis: 1
     joyNum: 0
-#Icarus Physics Platformer Kit
+  - serializedVersion: 3
+    m_Name: Fire1_Mouse
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: left ctrl
+    altNegativeButton: 
+    altPositiveButton: mouse 0
+    gravity: 1000
+    dead: .00100000005
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Fire2_Mouse
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: left alt
+    altNegativeButton: 
+    altPositiveButton: mouse 1
+    gravity: 1000
+    dead: .00100000005
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Fire3_Mouse
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: left cmd
+    altNegativeButton: 
+    altPositiveButton: mouse 2
+    gravity: 1000
+    dead: .00100000005
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0

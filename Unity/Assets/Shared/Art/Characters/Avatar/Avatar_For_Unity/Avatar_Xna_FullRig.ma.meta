@@ -1,0 +1,2325 @@
+fileFormatVersion: 2
+guid: 41eed4e546def44fea63f144954ccb01
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: arm_ik_systems
+    100002: Avatar_Mesh
+    100004: //RootNode
+    100006: BACKA__Skeleton
+    100008: BACKB__Skeleton
+    100010: BASE__Skeleton
+    100012: Base_Control
+    100014: BlendShapeEarDefault_Natal
+    100016: BOY
+    100018: boy_body_mesh_Natal
+    100020: boy_bottoms_Natal
+    100022: boy_hair_Natal
+    100024: boy_shoes_Natal
+    100026: boy_top_Natal
+    100028: clavicle_and_neck_adjuster_group
+    100030: Controls
+    100032: DONT_TOUCH
+    100034: Face__TextureControlEyeBrows
+    100036: Face__TextureControlEyes
+    100038: Face__TextureControlMouth
+    100040: FaceTextureControls
+    100042: GIRL
+    100044: girl_body_heelleg_mesh_Natal
+    100046: girl_body_mesh_Natal
+    100048: girl_bottoms_Natal
+    100050: girl_hair_Natal
+    100052: GIRL_HIGH_HEELS
+    100054: girl_highheels_mesh_Natal
+    100056: GIRL_LOW_HEELS
+    100058: girl_shoes_Natal
+    100060: girl_top_Natal
+    100062: girlHead_BlendShapeEarDefault_Natal
+    100064: HEAD__Skeleton
+    100066: Head_Control
+    100068: head_control_orientation_group
+    100070: HEAD_END__Skeleton
+    100072: head_local_orient_group
+    100074: leg_ik_systems
+    100076: LF_A__Skeleton
+    100078: lf_ankle_ik
+    100080: lf_ankle_pivot
+    100082: LF_Arm_IK_Control
+    100084: lf_arm_ik_group
+    100086: LF_Arm_IK_User_Attach_Group
+    100088: LF_Arm_Pole_Vector_Constraint
+    100090: lf_arm_pole_vector_constraint_group
+    100092: LF_C__Skeleton
+    100094: LF_C_Control
+    100096: LF_C_par_LF_S_offset_group
+    100098: LF_E__Skeleton
+    100100: LF_E_TWIST__Skeleton
+    100102: LF_E_TWIST_END__Skeleton
+    100104: LF_FINGA1__Skeleton
+    100106: LF_FINGA2__Skeleton
+    100108: LF_FINGA__Skeleton
+    100110: LF_FINGA_END__Skeleton
+    100112: LF_FINGA_ik
+    100114: LF_FINGA_pole_vector
+    100116: LF_FINGB1__Skeleton
+    100118: LF_FINGB2__Skeleton
+    100120: LF_FINGB__Skeleton
+    100122: LF_FINGB_END__Skeleton
+    100124: LF_FINGB_ik
+    100126: LF_FINGB_pole_vector
+    100128: LF_FINGC1__Skeleton
+    100130: LF_FINGC2__Skeleton
+    100132: LF_FINGC__Skeleton
+    100134: LF_FINGC_END__Skeleton
+    100136: LF_FINGC_ik
+    100138: LF_FINGC_pole_vector
+    100140: LF_FINGD1__Skeleton
+    100142: LF_FINGD2__Skeleton
+    100144: LF_FINGD__Skeleton
+    100146: LF_FINGD_END__Skeleton
+    100148: LF_FINGD_ik
+    100150: LF_FINGD_pole_vector
+    100152: lf_foot_ik
+    100154: LF_H__Skeleton
+    100156: lf_hand_ik
+    100158: lf_heel_pivot
+    100160: lf_heel_pivot_snapper
+    100162: lf_heel_snap_via_toe
+    100164: lf_heel_snapper_group
+    100166: LF_Index_Finger_IK_Control
+    100168: LF_Index_Finger_IK_Control_snapper
+    100170: LF_K__Skeleton
+    100172: LF_Leg_IK__MotionFootLeft
+    100174: lf_leg_ik_group
+    100176: LF_Leg_Pole_Vector_Constraint
+    100178: lf_leg_pole_vector_constraint_group
+    100180: lf_leg_pole_vector_follow_group
+    100182: lf_leg_pole_vector_world_group
+    100184: LF_Little_Finger_IK_Control
+    100186: LF_Little_Finger_IK_Control_snapper
+    100188: LF_Mid_Finger_IK_Control
+    100190: LF_Mid_Finger_IK_Control_snapper
+    100192: LF_NonFinger_Arm_IK_Control
+    100194: LF_PROP__Skeleton
+    100196: LF_PROP_END__Skeleton
+    100198: LF_Ring_Finger_IK_Control
+    100200: LF_Ring_Finger_IK_Control_snapper
+    100202: LF_S__Skeleton
+    100204: LF_SC_E__Skeleton
+    100206: LF_SC_E_END__Skeleton
+    100208: LF_SC_H__Skeleton
+    100210: LF_SC_H_END__Skeleton
+    100212: LF_SC_K__Skeleton
+    100214: LF_SC_K_END__Skeleton
+    100216: LF_SC_S__Skeleton
+    100218: LF_SC_S_END__Skeleton
+    100220: LF_SC_TWIST_S__Skeleton
+    100222: LF_SC_TWIST_S_END__Skeleton
+    100224: LF_sh_rotateXYZ
+    100226: LF_sh_rotateXZY
+    100228: LF_SPECIAL__Skeleton
+    100230: LF_SPECIAL_END__Skeleton
+    100232: LF_T__Skeleton
+    100234: LF_T_END__Skeleton
+    100236: LF_THUMB1__Skeleton
+    100238: LF_THUMB1_constrainer
+    100240: LF_THUMB2__Skeleton
+    100242: LF_THUMB2_constrainer
+    100244: LF_THUMB__Skeleton
+    100246: LF_THUMB_END__Skeleton
+    100248: LF_THUMB_lower_control
+    100250: LF_THUMB_lower_control_group
+    100252: lf_thumb_new_controls_group
+    100254: LF_THUMB_upper_control
+    100256: LF_THUMB_upper_control_group
+    100258: lf_toe_ik
+    100260: lf_toe_pivot
+    100262: lf_toe_pivot_snapper
+    100264: lf_toe_wiggle
+    100266: LF_W__Skeleton
+    100268: lf_wrist_ik
+    100270: lf_wrist_par_LF_FINGA_offset_group
+    100272: lf_wrist_par_LF_FINGB_offset_group
+    100274: lf_wrist_par_LF_FINGC_offset_group
+    100276: lf_wrist_par_LF_FINGD_offset_group
+    100278: localGlobal_groupsGRP
+    100280: MaxCostumeTemplate_Natal
+    100282: middle_neck_adj
+    100284: middle_neck_group
+    100286: middle_spine_adj
+    100288: middle_spine_group
+    100290: Movement__MotionBase
+    100292: NECK__Skeleton
+    100294: Neck_Control
+    100296: RT_A__Skeleton
+    100298: rt_ankle_ik
+    100300: rt_ankle_pivot
+    100302: RT_Arm_IK_Control
+    100304: rt_arm_ik_group
+    100306: RT_Arm_IK_User_Attach_Group
+    100308: RT_Arm_Pole_Vector_Constraint
+    100310: rt_arm_pole_vector_constraint_group
+    100312: RT_C__Skeleton
+    100314: RT_C_Control
+    100316: RT_C_par_RT_S_offset_group
+    100318: RT_E__Skeleton
+    100320: RT_E_TWIST__Skeleton
+    100322: RT_E_TWIST_END__Skeleton
+    100324: RT_FINGA1__Skeleton
+    100326: RT_FINGA2__Skeleton
+    100328: RT_FINGA__Skeleton
+    100330: RT_FINGA_END__Skeleton
+    100332: RT_FINGA_ik
+    100334: RT_FINGA_pole_vector
+    100336: RT_FINGB1__Skeleton
+    100338: RT_FINGB2__Skeleton
+    100340: RT_FINGB__Skeleton
+    100342: RT_FINGB_END__Skeleton
+    100344: RT_FINGB_ik
+    100346: RT_FINGB_pole_vector
+    100348: RT_FINGC1__Skeleton
+    100350: RT_FINGC2__Skeleton
+    100352: RT_FINGC__Skeleton
+    100354: RT_FINGC_END__Skeleton
+    100356: RT_FINGC_ik
+    100358: RT_FINGC_pole_vector
+    100360: RT_FINGD1__Skeleton
+    100362: RT_FINGD2__Skeleton
+    100364: RT_FINGD__Skeleton
+    100366: RT_FINGD_END__Skeleton
+    100368: RT_FINGD_ik
+    100370: RT_FINGD_pole_vector
+    100372: rt_foot_ik
+    100374: RT_H__Skeleton
+    100376: rt_hand_ik
+    100378: rt_heel_pivot
+    100380: rt_heel_pivot_snapper
+    100382: rt_heel_snap_via_toe
+    100384: rt_heel_snapper_group
+    100386: RT_Index_Finger_IK_Control
+    100388: RT_Index_Finger_IK_Control_snapper
+    100390: RT_K__Skeleton
+    100392: RT_Leg_IK__MotionFootRight
+    100394: rt_leg_ik_group
+    100396: RT_Leg_Pole_Vector_Constraint
+    100398: rt_leg_pole_vector_constraint_group
+    100400: rt_leg_pole_vector_follow_group
+    100402: rt_leg_pole_vector_world_group
+    100404: RT_Little_Finger_IK_Control
+    100406: RT_Little_Finger_IK_Control_snapper
+    100408: RT_Mid_Finger_IK_Control
+    100410: RT_Mid_Finger_IK_Control_snapper
+    100412: RT_NonFinger_Arm_IK_Control
+    100414: RT_PROP__Skeleton
+    100416: RT_PROP_END__Skeleton
+    100418: RT_Ring_Finger_IK_Control
+    100420: RT_Ring_Finger_IK_Control_snapper
+    100422: RT_S__Skeleton
+    100424: RT_SC_E__Skeleton
+    100426: RT_SC_E_END__Skeleton
+    100428: RT_SC_H__Skeleton
+    100430: RT_SC_H_END__Skeleton
+    100432: RT_SC_K__Skeleton
+    100434: RT_SC_K_END__Skeleton
+    100436: RT_SC_S__Skeleton
+    100438: RT_SC_S_END__Skeleton
+    100440: RT_SC_TWIST_S__Skeleton
+    100442: RT_SC_TWIST_S_END__Skeleton
+    100444: RT_sh_rotateXYZ
+    100446: RT_sh_rotateXZY
+    100448: RT_SPECIAL__Skeleton
+    100450: RT_SPECIAL_END__Skeleton
+    100452: RT_T__Skeleton
+    100454: RT_T_END__Skeleton
+    100456: RT_THUMB1__Skeleton
+    100458: RT_THUMB1_constrainer
+    100460: RT_THUMB2__Skeleton
+    100462: RT_THUMB2_constrainer
+    100464: RT_THUMB__Skeleton
+    100466: RT_THUMB_END__Skeleton
+    100468: RT_THUMB_lower_control
+    100470: RT_THUMB_lower_control_group
+    100472: rt_thumb_new_controls_group
+    100474: RT_THUMB_upper_control
+    100476: RT_THUMB_upper_control_group
+    100478: rt_toe_ik
+    100480: rt_toe_pivot
+    100482: rt_toe_pivot_snapper
+    100484: rt_toe_wiggle
+    100486: RT_W__Skeleton
+    100488: rt_wrist_ik
+    100490: rt_wrist_par_RT_FINGA_offset_group
+    100492: rt_wrist_par_RT_FINGB_offset_group
+    100494: rt_wrist_par_RT_FINGC_offset_group
+    100496: rt_wrist_par_RT_FINGD_offset_group
+    100498: SC_BACKA__Skeleton
+    100500: SC_BACKA_END__Skeleton
+    100502: SC_BACKB__Skeleton
+    100504: SC_BACKB_END__Skeleton
+    100506: SC_BASE__Skeleton
+    100508: SC_BASE_END__Skeleton
+    100510: SC_NECK__Skeleton
+    100512: SC_NECK_END__Skeleton
+    100514: torso_control_orientation_group
+    100516: Torso_Control_Rotate
+    100518: Torso_Control_Translate
+    100520: Waist_Control
+    400000: arm_ik_systems
+    400002: Avatar_Mesh
+    400004: //RootNode
+    400006: BACKA__Skeleton
+    400008: BACKB__Skeleton
+    400010: BASE__Skeleton
+    400012: Base_Control
+    400014: BlendShapeEarDefault_Natal
+    400016: BOY
+    400018: boy_body_mesh_Natal
+    400020: boy_bottoms_Natal
+    400022: boy_hair_Natal
+    400024: boy_shoes_Natal
+    400026: boy_top_Natal
+    400028: clavicle_and_neck_adjuster_group
+    400030: Controls
+    400032: DONT_TOUCH
+    400034: Face__TextureControlEyeBrows
+    400036: Face__TextureControlEyes
+    400038: Face__TextureControlMouth
+    400040: FaceTextureControls
+    400042: GIRL
+    400044: girl_body_heelleg_mesh_Natal
+    400046: girl_body_mesh_Natal
+    400048: girl_bottoms_Natal
+    400050: girl_hair_Natal
+    400052: GIRL_HIGH_HEELS
+    400054: girl_highheels_mesh_Natal
+    400056: GIRL_LOW_HEELS
+    400058: girl_shoes_Natal
+    400060: girl_top_Natal
+    400062: girlHead_BlendShapeEarDefault_Natal
+    400064: HEAD__Skeleton
+    400066: Head_Control
+    400068: head_control_orientation_group
+    400070: HEAD_END__Skeleton
+    400072: head_local_orient_group
+    400074: leg_ik_systems
+    400076: LF_A__Skeleton
+    400078: lf_ankle_ik
+    400080: lf_ankle_pivot
+    400082: LF_Arm_IK_Control
+    400084: lf_arm_ik_group
+    400086: LF_Arm_IK_User_Attach_Group
+    400088: LF_Arm_Pole_Vector_Constraint
+    400090: lf_arm_pole_vector_constraint_group
+    400092: LF_C__Skeleton
+    400094: LF_C_Control
+    400096: LF_C_par_LF_S_offset_group
+    400098: LF_E__Skeleton
+    400100: LF_E_TWIST__Skeleton
+    400102: LF_E_TWIST_END__Skeleton
+    400104: LF_FINGA1__Skeleton
+    400106: LF_FINGA2__Skeleton
+    400108: LF_FINGA__Skeleton
+    400110: LF_FINGA_END__Skeleton
+    400112: LF_FINGA_ik
+    400114: LF_FINGA_pole_vector
+    400116: LF_FINGB1__Skeleton
+    400118: LF_FINGB2__Skeleton
+    400120: LF_FINGB__Skeleton
+    400122: LF_FINGB_END__Skeleton
+    400124: LF_FINGB_ik
+    400126: LF_FINGB_pole_vector
+    400128: LF_FINGC1__Skeleton
+    400130: LF_FINGC2__Skeleton
+    400132: LF_FINGC__Skeleton
+    400134: LF_FINGC_END__Skeleton
+    400136: LF_FINGC_ik
+    400138: LF_FINGC_pole_vector
+    400140: LF_FINGD1__Skeleton
+    400142: LF_FINGD2__Skeleton
+    400144: LF_FINGD__Skeleton
+    400146: LF_FINGD_END__Skeleton
+    400148: LF_FINGD_ik
+    400150: LF_FINGD_pole_vector
+    400152: lf_foot_ik
+    400154: LF_H__Skeleton
+    400156: lf_hand_ik
+    400158: lf_heel_pivot
+    400160: lf_heel_pivot_snapper
+    400162: lf_heel_snap_via_toe
+    400164: lf_heel_snapper_group
+    400166: LF_Index_Finger_IK_Control
+    400168: LF_Index_Finger_IK_Control_snapper
+    400170: LF_K__Skeleton
+    400172: LF_Leg_IK__MotionFootLeft
+    400174: lf_leg_ik_group
+    400176: LF_Leg_Pole_Vector_Constraint
+    400178: lf_leg_pole_vector_constraint_group
+    400180: lf_leg_pole_vector_follow_group
+    400182: lf_leg_pole_vector_world_group
+    400184: LF_Little_Finger_IK_Control
+    400186: LF_Little_Finger_IK_Control_snapper
+    400188: LF_Mid_Finger_IK_Control
+    400190: LF_Mid_Finger_IK_Control_snapper
+    400192: LF_NonFinger_Arm_IK_Control
+    400194: LF_PROP__Skeleton
+    400196: LF_PROP_END__Skeleton
+    400198: LF_Ring_Finger_IK_Control
+    400200: LF_Ring_Finger_IK_Control_snapper
+    400202: LF_S__Skeleton
+    400204: LF_SC_E__Skeleton
+    400206: LF_SC_E_END__Skeleton
+    400208: LF_SC_H__Skeleton
+    400210: LF_SC_H_END__Skeleton
+    400212: LF_SC_K__Skeleton
+    400214: LF_SC_K_END__Skeleton
+    400216: LF_SC_S__Skeleton
+    400218: LF_SC_S_END__Skeleton
+    400220: LF_SC_TWIST_S__Skeleton
+    400222: LF_SC_TWIST_S_END__Skeleton
+    400224: LF_sh_rotateXYZ
+    400226: LF_sh_rotateXZY
+    400228: LF_SPECIAL__Skeleton
+    400230: LF_SPECIAL_END__Skeleton
+    400232: LF_T__Skeleton
+    400234: LF_T_END__Skeleton
+    400236: LF_THUMB1__Skeleton
+    400238: LF_THUMB1_constrainer
+    400240: LF_THUMB2__Skeleton
+    400242: LF_THUMB2_constrainer
+    400244: LF_THUMB__Skeleton
+    400246: LF_THUMB_END__Skeleton
+    400248: LF_THUMB_lower_control
+    400250: LF_THUMB_lower_control_group
+    400252: lf_thumb_new_controls_group
+    400254: LF_THUMB_upper_control
+    400256: LF_THUMB_upper_control_group
+    400258: lf_toe_ik
+    400260: lf_toe_pivot
+    400262: lf_toe_pivot_snapper
+    400264: lf_toe_wiggle
+    400266: LF_W__Skeleton
+    400268: lf_wrist_ik
+    400270: lf_wrist_par_LF_FINGA_offset_group
+    400272: lf_wrist_par_LF_FINGB_offset_group
+    400274: lf_wrist_par_LF_FINGC_offset_group
+    400276: lf_wrist_par_LF_FINGD_offset_group
+    400278: localGlobal_groupsGRP
+    400280: MaxCostumeTemplate_Natal
+    400282: middle_neck_adj
+    400284: middle_neck_group
+    400286: middle_spine_adj
+    400288: middle_spine_group
+    400290: Movement__MotionBase
+    400292: NECK__Skeleton
+    400294: Neck_Control
+    400296: RT_A__Skeleton
+    400298: rt_ankle_ik
+    400300: rt_ankle_pivot
+    400302: RT_Arm_IK_Control
+    400304: rt_arm_ik_group
+    400306: RT_Arm_IK_User_Attach_Group
+    400308: RT_Arm_Pole_Vector_Constraint
+    400310: rt_arm_pole_vector_constraint_group
+    400312: RT_C__Skeleton
+    400314: RT_C_Control
+    400316: RT_C_par_RT_S_offset_group
+    400318: RT_E__Skeleton
+    400320: RT_E_TWIST__Skeleton
+    400322: RT_E_TWIST_END__Skeleton
+    400324: RT_FINGA1__Skeleton
+    400326: RT_FINGA2__Skeleton
+    400328: RT_FINGA__Skeleton
+    400330: RT_FINGA_END__Skeleton
+    400332: RT_FINGA_ik
+    400334: RT_FINGA_pole_vector
+    400336: RT_FINGB1__Skeleton
+    400338: RT_FINGB2__Skeleton
+    400340: RT_FINGB__Skeleton
+    400342: RT_FINGB_END__Skeleton
+    400344: RT_FINGB_ik
+    400346: RT_FINGB_pole_vector
+    400348: RT_FINGC1__Skeleton
+    400350: RT_FINGC2__Skeleton
+    400352: RT_FINGC__Skeleton
+    400354: RT_FINGC_END__Skeleton
+    400356: RT_FINGC_ik
+    400358: RT_FINGC_pole_vector
+    400360: RT_FINGD1__Skeleton
+    400362: RT_FINGD2__Skeleton
+    400364: RT_FINGD__Skeleton
+    400366: RT_FINGD_END__Skeleton
+    400368: RT_FINGD_ik
+    400370: RT_FINGD_pole_vector
+    400372: rt_foot_ik
+    400374: RT_H__Skeleton
+    400376: rt_hand_ik
+    400378: rt_heel_pivot
+    400380: rt_heel_pivot_snapper
+    400382: rt_heel_snap_via_toe
+    400384: rt_heel_snapper_group
+    400386: RT_Index_Finger_IK_Control
+    400388: RT_Index_Finger_IK_Control_snapper
+    400390: RT_K__Skeleton
+    400392: RT_Leg_IK__MotionFootRight
+    400394: rt_leg_ik_group
+    400396: RT_Leg_Pole_Vector_Constraint
+    400398: rt_leg_pole_vector_constraint_group
+    400400: rt_leg_pole_vector_follow_group
+    400402: rt_leg_pole_vector_world_group
+    400404: RT_Little_Finger_IK_Control
+    400406: RT_Little_Finger_IK_Control_snapper
+    400408: RT_Mid_Finger_IK_Control
+    400410: RT_Mid_Finger_IK_Control_snapper
+    400412: RT_NonFinger_Arm_IK_Control
+    400414: RT_PROP__Skeleton
+    400416: RT_PROP_END__Skeleton
+    400418: RT_Ring_Finger_IK_Control
+    400420: RT_Ring_Finger_IK_Control_snapper
+    400422: RT_S__Skeleton
+    400424: RT_SC_E__Skeleton
+    400426: RT_SC_E_END__Skeleton
+    400428: RT_SC_H__Skeleton
+    400430: RT_SC_H_END__Skeleton
+    400432: RT_SC_K__Skeleton
+    400434: RT_SC_K_END__Skeleton
+    400436: RT_SC_S__Skeleton
+    400438: RT_SC_S_END__Skeleton
+    400440: RT_SC_TWIST_S__Skeleton
+    400442: RT_SC_TWIST_S_END__Skeleton
+    400444: RT_sh_rotateXYZ
+    400446: RT_sh_rotateXZY
+    400448: RT_SPECIAL__Skeleton
+    400450: RT_SPECIAL_END__Skeleton
+    400452: RT_T__Skeleton
+    400454: RT_T_END__Skeleton
+    400456: RT_THUMB1__Skeleton
+    400458: RT_THUMB1_constrainer
+    400460: RT_THUMB2__Skeleton
+    400462: RT_THUMB2_constrainer
+    400464: RT_THUMB__Skeleton
+    400466: RT_THUMB_END__Skeleton
+    400468: RT_THUMB_lower_control
+    400470: RT_THUMB_lower_control_group
+    400472: rt_thumb_new_controls_group
+    400474: RT_THUMB_upper_control
+    400476: RT_THUMB_upper_control_group
+    400478: rt_toe_ik
+    400480: rt_toe_pivot
+    400482: rt_toe_pivot_snapper
+    400484: rt_toe_wiggle
+    400486: RT_W__Skeleton
+    400488: rt_wrist_ik
+    400490: rt_wrist_par_RT_FINGA_offset_group
+    400492: rt_wrist_par_RT_FINGB_offset_group
+    400494: rt_wrist_par_RT_FINGC_offset_group
+    400496: rt_wrist_par_RT_FINGD_offset_group
+    400498: SC_BACKA__Skeleton
+    400500: SC_BACKA_END__Skeleton
+    400502: SC_BACKB__Skeleton
+    400504: SC_BACKB_END__Skeleton
+    400506: SC_BASE__Skeleton
+    400508: SC_BASE_END__Skeleton
+    400510: SC_NECK__Skeleton
+    400512: SC_NECK_END__Skeleton
+    400514: torso_control_orientation_group
+    400516: Torso_Control_Rotate
+    400518: Torso_Control_Translate
+    400520: Waist_Control
+    4300000: boy_body_mesh_Natal
+    4300002: boy_bottoms_Natal
+    4300004: boy_hair_Natal
+    4300006: boy_shoes_Natal
+    4300008: boy_top_Natal
+    4300010: BlendShapeEarDefault_Natal
+    4300012: girl_body_mesh_Natal
+    4300014: girl_shoes_Natal
+    4300016: girl_body_heelleg_mesh_Natal
+    4300018: girl_highheels_mesh_Natal
+    4300020: girl_bottoms_Natal
+    4300022: girl_top_Natal
+    4300024: girl_hair_Natal
+    4300026: girlHead_BlendShapeEarDefault_Natal
+    4300028: MaxCostumeTemplate_Natal
+    9500000: //RootNode
+    13700000: BlendShapeEarDefault_Natal
+    13700002: boy_body_mesh_Natal
+    13700004: boy_bottoms_Natal
+    13700006: boy_hair_Natal
+    13700008: boy_shoes_Natal
+    13700010: boy_top_Natal
+    13700012: girl_body_heelleg_mesh_Natal
+    13700014: girl_body_mesh_Natal
+    13700016: girl_bottoms_Natal
+    13700018: girl_hair_Natal
+    13700020: girl_highheels_mesh_Natal
+    13700022: girl_shoes_Natal
+    13700024: girl_top_Natal
+    13700026: girlHead_BlendShapeEarDefault_Natal
+    13700028: MaxCostumeTemplate_Natal
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: BASE__Skeleton
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_H__Skeleton
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_H__Skeleton
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_K__Skeleton
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_K__Skeleton
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_A__Skeleton
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_A__Skeleton
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: BACKA__Skeleton
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: BACKB__Skeleton
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: NECK__Skeleton
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HEAD__Skeleton
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_C__Skeleton
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_C__Skeleton
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_S__Skeleton
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_S__Skeleton
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_E__Skeleton
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_E__Skeleton
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_W__Skeleton
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_W__Skeleton
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_T__Skeleton
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_T__Skeleton
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_THUMB__Skeleton
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_THUMB1__Skeleton
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_THUMB2__Skeleton
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGA__Skeleton
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGA1__Skeleton
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGA2__Skeleton
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGB__Skeleton
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGB1__Skeleton
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGB2__Skeleton
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGC__Skeleton
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGC1__Skeleton
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGC2__Skeleton
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGD__Skeleton
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGD1__Skeleton
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LF_FINGD2__Skeleton
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_THUMB__Skeleton
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_THUMB1__Skeleton
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_THUMB2__Skeleton
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGA__Skeleton
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGA1__Skeleton
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGA2__Skeleton
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGB__Skeleton
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGB1__Skeleton
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGB2__Skeleton
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGC__Skeleton
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGC1__Skeleton
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGC2__Skeleton
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGD__Skeleton
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGD1__Skeleton
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RT_FINGD2__Skeleton
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Avatar_Xna_Base_Full(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Avatar_Mesh
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BOY
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BlendShapeEarDefault_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: boy_body_mesh_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: boy_bottoms_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: boy_hair_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: boy_shoes_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: boy_top_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: GIRL
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: girl_bottoms_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: girl_hair_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: GIRL_HIGH_HEELS
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: girl_body_heelleg_mesh_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: girl_highheels_mesh_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: GIRL_LOW_HEELS
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: girl_body_mesh_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: girl_shoes_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: girl_top_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: girlHead_BlendShapeEarDefault_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: MaxCostumeTemplate_Natal
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BASE__Skeleton
+      position: {x: 0, y: .776924789, z: -.00866430905}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BACKA__Skeleton
+      position: {x: 0, y: .0240310431, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BACKB__Skeleton
+      position: {x: 0, y: .115834236, z: -.00771704782}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_C__Skeleton
+      position: {x: -.0074, y: .12241596, z: .014270517}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_S__Skeleton
+      position: {x: -.11761371, y: 5.91844691e-05, z: -.0279203504}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_E__Skeleton
+      position: {x: -.220122039, y: -.00518591236, z: .000761144212}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_E_TWIST__Skeleton
+      position: {x: -.113076925, y: -.00266407616, z: .00172300043}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_E_TWIST_END__Skeleton
+      position: {x: -0, y: .0408902727, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_E__Skeleton
+      position: {x: -.084807694, y: -.00172554143, z: .00111603516}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_E_END__Skeleton
+      position: {x: 7.1054272e-17, y: 0, z: -.0281199999}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_W__Skeleton
+      position: {x: -.169615418, y: -.00399612077, z: .00258449977}
+      rotation: {x: -.00043694771, y: -5.14665317e-06, z: -.028683953, w: .99958843}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGA__Skeleton
+      position: {x: -.0921267271, y: -.0243492126, z: .0360599086}
+      rotation: {x: .000379919016, y: .0172193963, z: .0462433249, w: .998781741}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGA1__Skeleton
+      position: {x: -.0398709178, y: 0, z: .000327557325}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGA2__Skeleton
+      position: {x: -.0287409425, y: 0, z: 3.24845314e-06}
+      rotation: {x: -1.43619554e-05, y: 5.67027055e-05, z: -.126989141, w: .99190414}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGA_END__Skeleton
+      position: {x: -.0247940216, y: -.00836857595, z: -9.35727371e-07}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGB__Skeleton
+      position: {x: -.0936603546, y: -.0233957767, z: .00948124006}
+      rotation: {x: -1.59500087e-05, y: .0191997606, z: .0472194441, w: .998700023}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGB1__Skeleton
+      position: {x: -.0422723889, y: 0, z: -1.42529607e-05}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGB2__Skeleton
+      position: {x: -.0298790336, y: 0, z: 7.3350966e-06}
+      rotation: {x: -2.70670243e-05, y: .000273211685, z: -.110232316, w: .993905783}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGB_END__Skeleton
+      position: {x: -.026948344, y: -.00814196374, z: -1.35609798e-05}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGC__Skeleton
+      position: {x: -.0879340172, y: -.0260537863, z: -.015823653}
+      rotation: {x: -.000357211742, y: .0209091958, z: .0480664708, w: .998625219}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGC1__Skeleton
+      position: {x: -.0405278802, y: 0, z: -.000301223248}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGC2__Skeleton
+      position: {x: -.0293477774, y: 0, z: 6.84708357e-06}
+      rotation: {x: -2.47391326e-05, y: .000207231235, z: -.106002651, w: .994365811}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGC_END__Skeleton
+      position: {x: -.0258883368, y: -.00759338588, z: -8.80210973e-06}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGD__Skeleton
+      position: {x: -.0767439604, y: -.0297801495, z: -.0396565646}
+      rotation: {x: -.000423353864, y: .021239765, z: .0482288003, w: .998610377}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGD1__Skeleton
+      position: {x: -.0342390537, y: 0, z: -.000300548971}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGD2__Skeleton
+      position: {x: -.0251552463, y: 0, z: 2.79396772e-06}
+      rotation: {x: -1.28120009e-05, y: -.000198604423, z: -.115432769, w: .993315339}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGD_END__Skeleton
+      position: {x: -.0225922931, y: -.00707197469, z: 1.46710299e-05}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_PROP__Skeleton
+      position: {x: -.0628999993, y: -.157250002, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_PROP_END__Skeleton
+      position: {x: -0, y: -1.42108544e-16, z: .157250002}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SPECIAL__Skeleton
+      position: {x: -.0943500027, y: -.0943500027, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SPECIAL_END__Skeleton
+      position: {x: -0, y: -1.42108544e-16, z: .157250002}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_THUMB__Skeleton
+      position: {x: 0, y: 0, z: .00840703584}
+      rotation: {x: -.0661854148, y: .0641155019, z: -.0392488241, w: .994971514}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_THUMB1__Skeleton
+      position: {x: -.0556060672, y: -.0316471457, z: .0420709774}
+      rotation: {x: -.00193475955, y: .004502906, z: .000830011326, w: .999987721}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_THUMB2__Skeleton
+      position: {x: -.0272806287, y: -.014778316, z: .0165830478}
+      rotation: {x: -.0275321379, y: .0775397569, z: .0238082893, w: .996324658}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_THUMB_END__Skeleton
+      position: {x: -.0286235847, y: -.012676686, z: .00818544719}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_S__Skeleton
+      position: {x: -.110061027, y: -.001898107, z: .000278586522}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_S_END__Skeleton
+      position: {x: 3.5527136e-17, y: 0, z: -.042179998}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_TWIST_S__Skeleton
+      position: {x: -.00440244377, y: -5.66615199e-08, z: 1.86264515e-09}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_TWIST_S_END__Skeleton
+      position: {x: -0, y: .0483403876, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: NECK__Skeleton
+      position: {x: 0, y: .173775733, z: -.018822141}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: HEAD__Skeleton
+      position: {x: 0, y: .100578666, z: .0194150768}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: HEAD_END__Skeleton
+      position: {x: 8.28512539e-18, y: .297407508, z: .0159297436}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SC_NECK__Skeleton
+      position: {x: 0, y: .0335261822, z: .00647169072}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SC_NECK_END__Skeleton
+      position: {x: -0, y: 0, z: .0440299995}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_C__Skeleton
+      position: {x: .0074, y: .12241596, z: .014270517}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_S__Skeleton
+      position: {x: .11761371, y: 5.91844691e-05, z: -.0279203504}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_E__Skeleton
+      position: {x: .220122039, y: -.00518591236, z: .000761144212}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_E_TWIST__Skeleton
+      position: {x: .113076925, y: -.00266407616, z: .00172300043}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_E_TWIST_END__Skeleton
+      position: {x: -0, y: .0408902727, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_E__Skeleton
+      position: {x: .084807694, y: -.00172554143, z: .00111603516}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_E_END__Skeleton
+      position: {x: -7.1054272e-17, y: 0, z: -.0281199999}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_W__Skeleton
+      position: {x: .169615418, y: -.00399612077, z: .00258449977}
+      rotation: {x: -.00043694771, y: 5.14665317e-06, z: .028683953, w: .99958843}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGA__Skeleton
+      position: {x: .0921267271, y: -.0243492126, z: .0360599086}
+      rotation: {x: .000379919016, y: -.0172193963, z: -.0462433249, w: .998781741}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGA1__Skeleton
+      position: {x: .0398709178, y: 0, z: .000327557325}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGA2__Skeleton
+      position: {x: .0287409425, y: 0, z: 3.24845314e-06}
+      rotation: {x: -1.43619554e-05, y: -5.67027055e-05, z: .126989141, w: .99190414}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGA_END__Skeleton
+      position: {x: .0247940216, y: -.00836857595, z: -9.35727371e-07}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGB__Skeleton
+      position: {x: .0936603546, y: -.0233957767, z: .00948124006}
+      rotation: {x: -1.59500087e-05, y: -.0191997606, z: -.0472194441, w: .998700023}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGB1__Skeleton
+      position: {x: .0422723889, y: 0, z: -1.42529607e-05}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGB2__Skeleton
+      position: {x: .0298790336, y: 0, z: 7.3350966e-06}
+      rotation: {x: -2.70670243e-05, y: -.000273211685, z: .110232316, w: .993905783}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGB_END__Skeleton
+      position: {x: .026948344, y: -.00814196374, z: -1.35609798e-05}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGC__Skeleton
+      position: {x: .0879340172, y: -.0260537863, z: -.015823653}
+      rotation: {x: -.000357211742, y: -.0209091958, z: -.0480664708, w: .998625219}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGC1__Skeleton
+      position: {x: .0405278802, y: 0, z: -.000301223248}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGC2__Skeleton
+      position: {x: .0293477774, y: 0, z: 6.84708357e-06}
+      rotation: {x: -2.47391326e-05, y: -.000207231235, z: .106002651, w: .994365811}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGC_END__Skeleton
+      position: {x: .0258883368, y: -.00759338588, z: -8.80210973e-06}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGD__Skeleton
+      position: {x: .0767439604, y: -.0297801495, z: -.0396565646}
+      rotation: {x: -.000423353864, y: -.021239765, z: -.0482288003, w: .998610377}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGD1__Skeleton
+      position: {x: .0342390537, y: 0, z: -.000300548971}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGD2__Skeleton
+      position: {x: .0251552463, y: 0, z: 2.79396772e-06}
+      rotation: {x: -1.28120009e-05, y: .000198604423, z: .115432769, w: .993315339}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGD_END__Skeleton
+      position: {x: .0225922931, y: -.00707197469, z: 1.46710299e-05}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_PROP__Skeleton
+      position: {x: .0628999993, y: -.157250002, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_PROP_END__Skeleton
+      position: {x: -0, y: -1.42108544e-16, z: .157250002}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SPECIAL__Skeleton
+      position: {x: .0943500027, y: -.0943500027, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SPECIAL_END__Skeleton
+      position: {x: -0, y: -1.42108544e-16, z: .157250002}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_THUMB__Skeleton
+      position: {x: 0, y: 0, z: .00840703584}
+      rotation: {x: -.0661854148, y: -.0641155019, z: .0392488241, w: .994971514}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_THUMB1__Skeleton
+      position: {x: .0556060672, y: -.0316471457, z: .0420709774}
+      rotation: {x: -.00193475955, y: -.004502906, z: -.000830011326, w: .999987721}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_THUMB2__Skeleton
+      position: {x: .0272806287, y: -.014778316, z: .0165830478}
+      rotation: {x: -.0275321379, y: -.0775397569, z: -.0238082893, w: .996324658}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_THUMB_END__Skeleton
+      position: {x: .0286235847, y: -.012676686, z: .00818544719}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_S__Skeleton
+      position: {x: .110061027, y: -.001898107, z: .000278586522}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_S_END__Skeleton
+      position: {x: -3.5527136e-17, y: 0, z: -.042179998}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_TWIST_S__Skeleton
+      position: {x: .00440244377, y: -5.66615199e-08, z: 1.86264515e-09}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_TWIST_S_END__Skeleton
+      position: {x: -0, y: .0483403876, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SC_BACKB__Skeleton
+      position: {x: 0, y: .043443799, z: -.00470553339}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SC_BACKB_END__Skeleton
+      position: {x: -0, y: 0, z: .0961999968}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SC_BACKA__Skeleton
+      position: {x: 0, y: .0612020493, z: -.00514469855}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SC_BACKA_END__Skeleton
+      position: {x: -0, y: 0, z: .0961999968}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_H__Skeleton
+      position: {x: -.0900579989, y: -.107266307, z: .00866453629}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_K__Skeleton
+      position: {x: 0, y: -.288904369, z: -.0139677012}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_A__Skeleton
+      position: {x: -.00623546541, y: -.279170811, z: -.0272812657}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_T__Skeleton
+      position: {x: -.00668293238, y: -.0858741999, z: .11411491}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_T_END__Skeleton
+      position: {x: -0, y: -.0129692182, z: .0516487882}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_K__Skeleton
+      position: {x: -.00275509059, y: -.137149572, z: -.0120540699}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_K_END__Skeleton
+      position: {x: -0, y: 0, z: -.0562399998}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_H__Skeleton
+      position: {x: 0, y: -.144452214, z: -.00649636611}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_SC_H_END__Skeleton
+      position: {x: -0, y: 0, z: -.0592}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_H__Skeleton
+      position: {x: .0900579989, y: -.107266307, z: .00866453629}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_K__Skeleton
+      position: {x: 0, y: -.288904369, z: -.0139677012}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_A__Skeleton
+      position: {x: .00623546541, y: -.279170811, z: -.0272812657}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_T__Skeleton
+      position: {x: .00668293238, y: -.0858741999, z: .11411491}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_T_END__Skeleton
+      position: {x: -0, y: -.0129692182, z: .0516487882}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_K__Skeleton
+      position: {x: .00275509059, y: -.137149572, z: -.0120540699}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_K_END__Skeleton
+      position: {x: -0, y: 0, z: -.0562399998}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_H__Skeleton
+      position: {x: 0, y: -.144452214, z: -.00649636611}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_SC_H_END__Skeleton
+      position: {x: -0, y: 0, z: -.0592}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SC_BASE__Skeleton
+      position: {x: 0, y: .0306010246, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SC_BASE_END__Skeleton
+      position: {x: -0, y: 0, z: .0961999968}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Controls
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: clavicle_and_neck_adjuster_group
+      position: {x: -0, y: .916790009, z: -.0163813569}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_C_Control
+      position: {x: -.0074, y: .122416005, z: .0142705161}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: middle_neck_group
+      position: {x: -0, y: .173775762, z: -.0188221447}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Neck_Control
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: middle_neck_adj
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_C_Control
+      position: {x: .0074, y: .122416005, z: .0142705161}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_Leg_IK__MotionFootLeft
+      position: {x: -.100397967, y: .0105388127, z: -.0901628956}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_leg_pole_vector_constraint_group
+      position: {x: .100397967, y: -.0105388127, z: .0901628956}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_leg_pole_vector_follow_group
+      position: {x: -.100397967, y: .0105388127, z: -.0901628956}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_Leg_Pole_Vector_Constraint
+      position: {x: .0352981202, y: .384956956, z: .3484267}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_thumb_new_controls_group
+      position: {x: -.514751136, y: 1.03008318, z: -.0182785094}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .850000024, y: .850000024, z: .850000024}
+      transformModified: 1
+    - name: LF_THUMB_upper_control_group
+      position: {x: -.0654188842, y: -.0372319296, z: .0494952612}
+      rotation: {x: .0911707431, y: .270546407, z: .197674558, w: .937772512}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_THUMB_upper_control
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_THUMB1_constrainer
+      position: {x: -3.2862602e-17, y: -1.05160325e-16, z: 0}
+      rotation: {x: -.0911707431, y: -.270546407, z: -.197674558, w: .937772512}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_THUMB_lower_control_group
+      position: {x: -.0413882025, y: -1.05160325e-16, z: -1.05160325e-16}
+      rotation: {x: 5.40252437e-17, y: 1.35063109e-17, z: -7.29681736e-34, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_THUMB_lower_control
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_THUMB2_constrainer
+      position: {x: 5.25801625e-17, y: -1.05160325e-16, z: 1.05160325e-16}
+      rotation: {x: -.0911707431, y: -.270546407, z: -.197674558, w: .937772512}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Movement__MotionBase
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Base_Control
+      position: {x: -0, y: .776924789, z: -.00866430905}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: middle_spine_group
+      position: {x: -0, y: .0240310226, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Waist_Control
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: middle_spine_adj
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: FaceTextureControls
+      position: {x: -.399999976, y: 1.26864052, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Face__TextureControlEyeBrows
+      position: {x: -0, y: .0982123986, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Face__TextureControlEyes
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Face__TextureControlMouth
+      position: {x: -0, y: -.134707913, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: head_control_orientation_group
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: head_local_orient_group
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Head_Control
+      position: {x: -0, y: 1.19114447, z: -.015788421}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_Arm_IK_User_Attach_Group
+      position: {x: -.514751136, y: 1.03008318, z: -.0266855452}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_Arm_IK_Control
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .850000024, y: .850000024, z: .850000024}
+      transformModified: 1
+    - name: lf_arm_pole_vector_constraint_group
+      position: {x: .458514631, y: .0108022643, z: -.00393605279}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.17647064, y: 1.17647064, z: 1.17647064}
+      transformModified: 1
+    - name: LF_Arm_Pole_Vector_Constraint
+      position: {x: -.169615403, y: -.00524050696, z: -.199413508}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_Index_Finger_IK_Control
+      position: {x: -.21827361, y: -.038491521, z: .0428115018}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_Little_Finger_IK_Control
+      position: {x: -.186741799, y: -.0433555059, z: -.0469878204}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_Mid_Finger_IK_Control
+      position: {x: -.22677657, y: -.0371033438, z: .0111303078}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_NonFinger_Arm_IK_Control
+      position: {x: -.110188626, y: -.0275245644, z: .0111544002}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_Ring_Finger_IK_Control
+      position: {x: -.216115236, y: -.0395849906, z: -.0189727414}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_Arm_IK_User_Attach_Group
+      position: {x: .514751136, y: 1.03008318, z: -.0266855452}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_Arm_IK_Control
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .850000024, y: .850000024, z: .850000024}
+      transformModified: 1
+    - name: rt_arm_pole_vector_constraint_group
+      position: {x: -.458514631, y: .0108022643, z: -.00393605279}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.17647064, y: 1.17647064, z: 1.17647064}
+      transformModified: 1
+    - name: RT_Arm_Pole_Vector_Constraint
+      position: {x: .169615403, y: -.00524050696, z: -.199413508}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_Index_Finger_IK_Control
+      position: {x: .21827361, y: -.038491521, z: .0428115018}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_Little_Finger_IK_Control
+      position: {x: .186741799, y: -.0433555059, z: -.0469878204}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_Mid_Finger_IK_Control
+      position: {x: .22677657, y: -.0371033438, z: .0111303078}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_NonFinger_Arm_IK_Control
+      position: {x: .110188626, y: -.0275245644, z: .0111544002}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_Ring_Finger_IK_Control
+      position: {x: .216115236, y: -.0395849906, z: -.0189727414}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: torso_control_orientation_group
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Torso_Control_Translate
+      position: {x: -0, y: .916790009, z: -.0163813569}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Torso_Control_Rotate
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_Leg_IK__MotionFootRight
+      position: {x: .100397967, y: .0105388127, z: -.0901628956}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_leg_pole_vector_constraint_group
+      position: {x: -.100397967, y: -.0105388127, z: .0901628956}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_leg_pole_vector_follow_group
+      position: {x: .100397967, y: .0105388127, z: -.0901628956}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_Leg_Pole_Vector_Constraint
+      position: {x: -.0352981202, y: .384956956, z: .3484267}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_thumb_new_controls_group
+      position: {x: .514751136, y: 1.03008318, z: -.0182785094}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .850000024, y: .850000024, z: .850000024}
+      transformModified: 1
+    - name: RT_THUMB_upper_control_group
+      position: {x: .0654188842, y: -.0372319296, z: .0494952612}
+      rotation: {x: .0911707431, y: -.270546407, z: -.197674558, w: .937772512}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_THUMB_upper_control
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_THUMB1_constrainer
+      position: {x: -9.85878059e-17, y: -1.05160325e-16, z: 0}
+      rotation: {x: -.0911707431, y: .270546407, z: .197674558, w: .937772512}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_THUMB_lower_control_group
+      position: {x: .0413882025, y: 6.30961936e-16, z: 7.36122241e-16}
+      rotation: {x: 2.77555756e-17, y: -1.38777878e-17, z: -2.77555756e-17, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_THUMB_lower_control
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_THUMB2_constrainer
+      position: {x: -3.9435121e-17, y: 2.1032065e-16, z: 1.05160325e-16}
+      rotation: {x: -.0911707431, y: .270546407, z: .197674558, w: .937772512}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: DONT_TOUCH
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: arm_ik_systems
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_arm_ik_group
+      position: {x: -.608411491, y: 1.0066874, z: -.0172043052}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_hand_ik
+      position: {x: -0, y: 0, z: -5.5866422e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_wrist_ik
+      position: {x: .0936606675, y: .0233958866, z: -.00948124286}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_arm_ik_group
+      position: {x: .608411491, y: 1.0066874, z: -.0172043052}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_hand_ik
+      position: {x: -0, y: 0, z: 1.67599266e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_wrist_ik
+      position: {x: -.0936606675, y: .0233958866, z: -.00948124286}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: leg_ik_systems
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_heel_snapper_group
+      position: {x: -.0962934643, y: .101583317, z: -.0412487388}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_heel_pivot_snapper
+      position: {x: -.00410450017, y: -.0910445005, z: -.0489141494}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_leg_ik_group
+      position: {x: -.100397967, y: .0105388127, z: -.0901628956}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_heel_pivot
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_toe_pivot
+      position: {x: -.00257843407, y: -.0077988985, z: .21467784}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_ankle_pivot
+      position: {x: -0, y: .0129692182, z: -.0516487882}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_ankle_ik
+      position: {x: .00668293471, y: .085874185, z: -.114114903}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_foot_ik
+      position: {x: -0, y: .0129692182, z: -.0516487882}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_toe_wiggle
+      position: {x: -0, y: .0129692182, z: -.0516487882}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_toe_ik
+      position: {x: -0, y: -.0129692182, z: .0516487882}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_toe_pivot_snapper
+      position: {x: -.102976397, y: .00273991423, z: .124514952}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_heel_snap_via_toe
+      position: {x: .00257843407, y: .0077988985, z: -.21467784}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_heel_snapper_group
+      position: {x: .0962934643, y: .101583317, z: -.0412487388}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_heel_pivot_snapper
+      position: {x: .00410450017, y: -.0910445005, z: -.0489141494}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_leg_ik_group
+      position: {x: .100397967, y: .0105388127, z: -.0901628956}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_heel_pivot
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_toe_pivot
+      position: {x: .00257843407, y: -.0077988985, z: .21467784}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_ankle_pivot
+      position: {x: -0, y: .0129692182, z: -.0516487882}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_ankle_ik
+      position: {x: -.00668293471, y: .085874185, z: -.114114903}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_foot_ik
+      position: {x: -0, y: .0129692182, z: -.0516487882}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_toe_wiggle
+      position: {x: -0, y: .0129692182, z: -.0516487882}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_toe_ik
+      position: {x: -0, y: -.0129692182, z: .0516487882}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_toe_pivot_snapper
+      position: {x: .102976397, y: .00273991423, z: .124514952}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_heel_snap_via_toe
+      position: {x: -.00257843407, y: .0077988985, z: -.21467784}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_C_par_LF_S_offset_group
+      position: {x: -.125013709, y: 1.03926516, z: -.0300311893}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_sh_rotateXYZ
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_sh_rotateXZY
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGA_ik
+      position: {x: -.700283706, y: .997365475, z: .00970423408}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGB_ik
+      position: {x: -.707511246, y: .998545349, z: -.0172247831}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGC_ik
+      position: {x: -.698449075, y: .996436, z: -.0428123735}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGD_ik
+      position: {x: -.673481643, y: .993230999, z: -.0666251928}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_Index_Finger_IK_Control_snapper
+      position: {x: -.700283706, y: .997365475, z: .00970423408}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_Little_Finger_IK_Control_snapper
+      position: {x: -.673481643, y: .993230999, z: -.0666251928}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_Mid_Finger_IK_Control_snapper
+      position: {x: -.707511246, y: .998545349, z: -.0172247831}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_Ring_Finger_IK_Control_snapper
+      position: {x: -.698449075, y: .996436, z: -.0428123735}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_wrist_par_LF_FINGA_offset_group
+      position: {x: -.606877863, y: 1.00573397, z: .00937436149}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGA_pole_vector
+      position: {x: -.000554999977, y: .000369999994, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_wrist_par_LF_FINGB_offset_group
+      position: {x: -.608411491, y: 1.0066874, z: -.0172043052}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGB_pole_vector
+      position: {x: -.000554999977, y: .000369999994, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_wrist_par_LF_FINGC_offset_group
+      position: {x: -.602685153, y: 1.00402939, z: -.0425091982}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGC_pole_vector
+      position: {x: -.000554999977, y: .000369999994, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_wrist_par_LF_FINGD_offset_group
+      position: {x: -.591495097, y: 1.00030303, z: -.066342108}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LF_FINGD_pole_vector
+      position: {x: -.000554999977, y: .000369999994, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: localGlobal_groupsGRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: lf_leg_pole_vector_world_group
+      position: {x: -.100397967, y: .0105388127, z: -.0901628956}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_leg_pole_vector_world_group
+      position: {x: .100397967, y: .0105388127, z: -.0901628956}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_C_par_RT_S_offset_group
+      position: {x: .125013709, y: 1.03926516, z: -.0300311893}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_sh_rotateXYZ
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_sh_rotateXZY
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGA_ik
+      position: {x: .700283706, y: .997365475, z: .00970423408}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGB_ik
+      position: {x: .707511246, y: .998545349, z: -.0172247831}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGC_ik
+      position: {x: .698449075, y: .996436, z: -.0428123735}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGD_ik
+      position: {x: .673481643, y: .993230999, z: -.0666251928}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_Index_Finger_IK_Control_snapper
+      position: {x: .700283706, y: .997365475, z: .00970423408}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_Little_Finger_IK_Control_snapper
+      position: {x: .673481643, y: .993230999, z: -.0666251928}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_Mid_Finger_IK_Control_snapper
+      position: {x: .707511246, y: .998545349, z: -.0172247831}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_Ring_Finger_IK_Control_snapper
+      position: {x: .698449075, y: .996436, z: -.0428123735}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_wrist_par_RT_FINGA_offset_group
+      position: {x: .606877863, y: 1.00573397, z: .00937436149}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGA_pole_vector
+      position: {x: .000554999977, y: .000369999994, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_wrist_par_RT_FINGB_offset_group
+      position: {x: .608411491, y: 1.0066874, z: -.0172043052}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGB_pole_vector
+      position: {x: .000554999977, y: .000369999994, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_wrist_par_RT_FINGC_offset_group
+      position: {x: .602685153, y: 1.00402939, z: -.0425091982}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGC_pole_vector
+      position: {x: .000554999977, y: .000369999994, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: rt_wrist_par_RT_FINGD_offset_group
+      position: {x: .591495097, y: 1.00030303, z: -.066342108}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RT_FINGD_pole_vector
+      position: {x: .000554999977, y: .000369999994, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 78004e6e16c3a471896ccc8da613e471,
+    type: 3}
+  animationType: 3
+  additionalBone: 0
+  userData: 
