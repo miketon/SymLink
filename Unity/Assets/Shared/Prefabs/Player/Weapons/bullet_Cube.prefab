@@ -47,7 +47,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 62499f4481ecf46f69b5599a0d932c68, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
   health: 5
   preCollisionDelay: .0500000007
   postCollisionLife: 0
-  fx_Impact: {fileID: 100000, guid: 7ebd1496dfa094c85bd355ca8af9f670, type: 2}
+  fx_Impact: {fileID: 100008, guid: d4458bc561fd20342a1cd2856b77cb94, type: 2}
   maxLife: 2
 --- !u!148 &14800000
 NetworkView:

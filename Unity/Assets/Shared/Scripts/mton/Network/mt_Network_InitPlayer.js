@@ -15,9 +15,10 @@ class mt_Network_InitPlayer extends __gameObjectMT{
 		// This is our own player
 		if (networkView.isMine){
 			//Camera.main.SendMessage("SetTarget", xform)      ;
-			GetComponent("NetworkRigidbody").enabled = false ;
+			GetComponent("NetworkRigidbody").active  = false   ;
 		}
 		// This is just some remote controlled player, don't execute direct user input on this
+		/* HACK : Disabled for Android -- Debug later
 		else{
 			name += "Remote";
 			if(controlScript!="ENTER OBJECT TO DISABLE USER INPUT HERE"){
@@ -34,6 +35,7 @@ class mt_Network_InitPlayer extends __gameObjectMT{
 			}
 			GetComponent("NetworkRigidbody").enabled = true        ;
 		}
+		*/
 	}
 	
 }

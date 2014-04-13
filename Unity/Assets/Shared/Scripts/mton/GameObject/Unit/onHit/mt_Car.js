@@ -200,10 +200,13 @@ class mt_Car extends mt_OnHitDeath{
         }
 
         //and skid marks				
-        if(slip>0.75 && skidmarks != null)
-          w.lastSkidMark=skidmarks.AddSkidMark(hit.point,hit.normal,(slip-0.75)*2,w.lastSkidMark);
-        else
+        if(slip>0.75 && skidmarks != null){
+          //HACK : Commenting out for Android
+          //w.lastSkidMark=skidmarks.AddSkidMark(hit.point,hit.normal,(slip-0.75)*2,w.lastSkidMark);
+        }
+        else{
           w.lastSkidMark=-1;
+        }
       }
       else w.lastSkidMark=-1;
     }

@@ -1,3 +1,5 @@
+/* HACK : Commenting out for Android
+
 //Attach this script to an object to create a foam layer on top 
 //of the attached trigger collider, which automatically creates foam whenever anything
 //touches the trigger.
@@ -151,9 +153,9 @@ function GetComponentRigidBody(cmp) : Rigidbody
 }
 
 //if something fell into the water...
-function OnTriggerStay(other) 
+function OnTriggerStay(other:Collider) 
 {
-	rb=GetComponentRigidBody(other);
+	var rb=GetComponentRigidBody(other);
 	//...and it has a rigidbody...
 	if(rb!=null)
 	{
@@ -163,3 +165,4 @@ function OnTriggerStay(other)
 	}
 }
 
+*/
