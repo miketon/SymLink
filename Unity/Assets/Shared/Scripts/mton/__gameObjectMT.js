@@ -38,7 +38,8 @@ public class __gameObjectMT extends MonoBehaviour{
     queryUserInput=enableInput;
   }
  
-/* Doesn't work when building for android
+#if !UNITY_ANDROID
+// || UNITY_IPHONE || UNITY_WP8 || UNITY_BLACKBERRY
   function pathToComponent(IN_component){    
     var return_io = xform.GetComponent(IN_component) ;  //look in current hiearchy first
     if(!return_io){
@@ -54,7 +55,8 @@ public class __gameObjectMT extends MonoBehaviour{
     }
     return return_io;
   }
-*/
+#endif
+
 //  function DefaultAddComponent(targetGObj:GameObject, checkThisComponent){ //Need strict typing for Android
   function DefaultAddComponent(targetGObj:GameObject, checkThisComponent:String){
     var doesComponentExist = targetGObj.GetComponent(checkThisComponent) ;
