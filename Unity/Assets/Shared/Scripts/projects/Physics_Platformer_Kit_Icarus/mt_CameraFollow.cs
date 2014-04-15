@@ -30,7 +30,7 @@ public class mt_CameraFollow : MonoBehaviour
       waterFilter.renderer.enabled = false;
     }
     if(!target){
-      Debug.LogError("'CameraFollow script' has no target assigned to it", transform);
+      Debug.LogError("'CameraFollow script' has no target assigned to it", xformMT);
     }
     //don't smooth rotate if were using mouselook
     if(mouseFreelook){
@@ -61,8 +61,8 @@ public class mt_CameraFollow : MonoBehaviour
       SmoothLookAt();
     }
     else{
-      //			transform.LookAt(target.position);
-      transform.LookAt(targetMton);
+      //xformMT.LookAt(target.position);
+      xformMT.LookAt(targetMton);
     }
   }
 
@@ -82,24 +82,20 @@ public class mt_CameraFollow : MonoBehaviour
 
   //rotate smoothly toward the target
   void SmoothLookAt(){
-    Quaternion rotation = Quaternion.LookRotation (target.position - transform.position)                  ;
-    transform.rotation  = Quaternion.Slerp (transform.rotation, rotation, rotateDamping * Time.deltaTime) ;
+    Quaternion rotation = Quaternion.LookRotation (target.position - xformMT.position)                ;
+    xformMT.rotation  = Quaternion.Slerp (xformMT.rotation, rotation, rotateDamping * Time.deltaTime) ;
   }
 
   //move camera smoothly toward its target
   void SmoothFollow(){
     //move the followTarget (empty gameobject created in awake) to correct position each frame
-    followTarget.position = target.position          ;
-    followTarget.Translate(targetOffset, Space.Self) ;
+    followTarget.position = target.position + targetOffset ;
+    //followTarget.Translate(targetOffset, Space.Self)     ; //just add offset, no need to translate
     if (lockRotation){
       followTarget.rotation = target.rotation;
-    }
-    if(mouseFreelook){
-      //mouse look
-      float axisX = Input.GetAxis ("Mouse X") * inputRotationSpeed * Time.deltaTime ;
-      followTarget.RotateAround (target.position,Vector3.up, axisX)                 ;
-      float axisY = Input.GetAxis ("Mouse Y") * inputRotationSpeed * Time.deltaTime ;
-      followTarget.RotateAround (target.position, transform.right, -axisY)          ;
+      if(mouseFreelook){
+        mouseLook();
+      }
     }
     else{
       //keyboard camera rotation look
@@ -108,21 +104,29 @@ public class mt_CameraFollow : MonoBehaviour
     }
 
     //where should the camera be next frame?
-    Vector3 nextFramePosition = Vector3.Lerp(transform.position, followTarget.position, followSpeed * Time.deltaTime) ;
-    Vector3 direction         = Vector3.up                                                                            ; //nextFramePosition - target.position ;
+    Vector3 nextFramePosition = Vector3.Lerp(xformMT.position, followTarget.position, followSpeed * Time.deltaTime) ;
+    Vector3 direction         = Vector3.up                                                                          ; //nextFramePosition - target.position ;
     //raycast to this position
     RaycastHit hit;
     if(Physics.Raycast (target.position, direction, out hit, direction.magnitude + 0.3f)){
-      transform.position = nextFramePosition;
+      xformMT.position = nextFramePosition;
       foreach(string tag in avoidClippingTags){
         if(hit.transform.tag == tag){
-          transform.position = hit.point - direction.normalized * 0.01f; // 0.3f;
+          xformMT.position = hit.point - direction.normalized * 0.01f; // 0.3f;
         }
       }
     }
     else{
       //otherwise, move cam to intended position
-      transform.position = nextFramePosition;
+      xformMT.position = nextFramePosition;
     }
   }
+
+  void mouseLook(){
+    float axisX = Input.GetAxis ("Mouse X") * inputRotationSpeed * Time.deltaTime ;
+    followTarget.RotateAround (target.position,Vector3.up, axisX)                 ;
+    float axisY = Input.GetAxis ("Mouse Y") * inputRotationSpeed * Time.deltaTime ;
+    followTarget.RotateAround (target.position, xformMT.right, -axisY)            ;
+  }
+
 }
