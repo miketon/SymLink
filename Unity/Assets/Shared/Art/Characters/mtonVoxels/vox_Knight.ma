@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
 //Name: vox_Knight.ma
-//Last modified: Mon, Apr 14, 2014 03:22:32 PM
+//Last modified: Mon, Apr 14, 2014 04:17:26 PM
 //Codeset: UTF-8
 requires maya "2014";
 requires -nodeType "mentalrayFramebuffer" -nodeType "mentalrayOutputPass" -nodeType "mentalrayRenderPass"
@@ -15400,20 +15400,21 @@ createNode animCurveTL -n "Axe_translateX";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -s 24 ".ktv[0:23]"  0 0 1 0 7 0 15 0 20 0 24 0 25 0 30 0 36 0
-		 42 0 48 0 49 0 52 0 53 -1.8386256022300125 55 -5.2425661452334893 56 -6.2134058021186043
-		 59 0 61 0 74 0 75 0 79 0 80 0 84 0 85 0;
+		 42 0 48 0 49 0 52 2.1570574567546412 53 -1.8386256022300125 55 -5.2425661452334893
+		 56 -6.2134058021186043 59 0 61 0 74 0 75 0 79 0 80 0 84 0 85 0;
 createNode animCurveTL -n "Axe_translateY";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -s 24 ".ktv[0:23]"  0 0 1 0 7 0 15 0 20 0 24 0 25 0 30 2 36 0
-		 42 2 48 0 49 0 52 0 53 5.6752546818700713 55 1.0280577432957465 56 1.218437644876345
-		 59 0 61 0 74 0 75 0 79 -3.721307869396016 80 0 84 3.6969563773344749 85 0;
+		 42 2 48 0 49 0 52 2.7412140081540466 53 5.6752546818700713 55 1.0280577432957465
+		 56 1.218437644876345 59 0 61 0 74 0 75 0 79 -3.721307869396016 80 0 84 3.6969563773344749
+		 85 0;
 createNode animCurveTL -n "Axe_translateZ";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -s 24 ".ktv[0:23]"  0 0 1 0 7 0 15 0 20 0 24 0 25 0 30 0 36 0
-		 42 0 48 0 49 0 52 0 53 -4.9303806576313238e-32 55 0 56 0 59 0 61 0 74 0 75 0 79 0
-		 80 0 84 0 85 0;
+		 42 0 48 0 49 0 52 5.0343866419256852e-17 53 -4.9303806576313238e-32 55 0 56 0 59 0
+		 61 0 74 0 75 0 79 0 80 0 84 0 85 0;
 createNode animCurveTL -n "L_leg_translateX";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
@@ -15595,13 +15596,13 @@ createNode animCurveTU -n "Axe_scaleX";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -s 22 ".ktv[0:21]"  0 1 1 1 7 1 15 1 20 1 24 1 25 1 30 1 36 1
-		 42 1 48 1 49 1 52 0.96934042293432865 54 2.2575109326273388 59 0.9 61 1 74 1 75 1
+		 42 1 48 1 49 1 52 2.0936940479938744 54 2.2575109326273388 59 0.9 61 1 74 1 75 1
 		 79 1 80 1 84 1 85 1;
 createNode animCurveTU -n "Axe_scaleY";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -s 22 ".ktv[0:21]"  0 1 1 1 7 1 15 1 20 1 24 1 25 1 30 1 36 1
-		 42 1 48 1 49 1 52 0.86869470067467458 54 2.2429061872449294 59 0.9 61 1 74 1 75 1
+		 42 1 48 1 49 1 52 1.7706448354974897 54 2.2429061872449294 59 0.9 61 1 74 1 75 1
 		 79 1 80 1 84 1 85 1;
 createNode animCurveTU -n "Axe_scaleZ";
 	setAttr ".tan" 18;
