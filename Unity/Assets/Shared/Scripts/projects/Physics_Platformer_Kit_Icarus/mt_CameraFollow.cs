@@ -19,7 +19,6 @@ public class mt_CameraFollow : MonoBehaviour
   private Transform xform      ;
   private Vector3 targetMton   ;
   private Camera camMT         ;
-  private float camYmod = 0.0f ;
 
   //setup objects
   void Awake()
@@ -67,9 +66,11 @@ public class mt_CameraFollow : MonoBehaviour
   private float yLow = 0.15f;
   private float yHigh = 0.75f;
   private Vector3 targetPrevPos;
-
+	private float yVelocity = 0.0f;
 
   void CamSpaceDeadZone(){
+    targetMton = target.position                        ;
+	float yOffset = 0.0f;
     float yVel = target.position.y - targetPrevPos.y;
     float yDir = 0.0f;
     if(yVel>0.1f){
@@ -82,32 +83,24 @@ public class mt_CameraFollow : MonoBehaviour
       yDir = 0.0f;
       //yAccel = 0.0f;
     }
-    targetMton      = target.position                        ;
     Vector3 viewPos = camMT.WorldToViewportPoint(targetMton) ;
     if(viewPos.y > yLow && viewPos.y < yHigh){
-      camYmod = 0.0f;
       yZone = 0; //middle
       yAccel = Mathf.Clamp((Mathf.Abs(yAccel)-yDelta), 0.0f, 1.0f);
     }
     else if(viewPos.y <= yLow ){
       yZone = -1; //lower
-      //if(yDir < 0.0f){
       yAccel = Mathf.Clamp((yAccel - yDelta), -1.0f, 1.0f);
-      //}
     }
     else{
       //camYmod = 1.0f;
       yZone = 1; //higher
-      if(yDir > 0.1f){
-        yAccel = Mathf.Clamp((yAccel + yDelta), -1.0f, 1.0f);
-      }
-      else{
-        yAccel = Mathf.Clamp((yAccel - yDelta), -1.0f, 1.0f);
-
-      }
+      yAccel = Mathf.Clamp((yAccel + yDelta), -1.0f, 1.0f);
     }
-    targetMton.y    = xform.position.y * yAccel; //camYmod;
-    print("yZone : " + yZone +" yVel: "+ yVel +  "vPos.y   = " + viewPos.y +" yAccel: "+ yAccel + " camYmod : " + camYmod + " targetY : " + target.position.y +" deadY : " + targetMton.y) ;
+	float newYPosition = Mathf.SmoothDamp(targetMton.y, target.position.y + yAccel*5.0f, ref yVelocity, 0.3f );
+	//targetMton.y    = newYPosition ; 
+	targetMton.y    = xform.position.y * yAccel; 
+    //print("yZone : " + yZone +" yVel: "+ yVel +  "vPos.y   = " + viewPos.y +" yAccel: "+ yAccel + " camYmod : " + camYmod + " targetY : " + target.position.y +" deadY : " + targetMton.y) ;
   }
 
   //move camera smoothly toward its target
