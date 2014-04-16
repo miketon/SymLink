@@ -49,12 +49,10 @@ public class PlayerMove_mton : MonoBehaviour
   private DealDamage dealDamage    ;
 
   //setup
-  void Awake()
-  {
+  void Awake(){
     direction = moveDirection = screenMovementForward = screenMovementRight = movingObjSpeed = Vector3.zero;
     //create single floorcheck in centre of object, if none are assigned
-    if(!floorChecks)
-    {
+    if(!floorChecks){
       floorChecks              = new GameObject().transform                                                                    ;
       floorChecks.name         = "FloorChecks"                                                                                 ;
       floorChecks.parent       = transform                                                                                     ;
@@ -66,8 +64,7 @@ public class PlayerMove_mton : MonoBehaviour
       Debug.LogWarning("No 'floorChecks' assigned to PlayerMove script, so a single floorcheck has been created", floorChecks) ;
     }
     //assign player tag if not already
-    if(tag != "Player")
-    {
+    if(tag != "Player"){
       tag = "Player";
       Debug.LogWarning ("PlayerMove script assigned to object without the tag 'Player', tag has been assigned automatically", transform);
     }
@@ -78,13 +75,13 @@ public class PlayerMove_mton : MonoBehaviour
     //gets child objects of floorcheckers, and puts them in an array
     //later these are used to raycast downward and see if we are on the ground
     floorCheckers = new Transform[floorChecks.childCount];
-    for (int i=0; i < floorCheckers.Length; i++)
+    for (int i=0; i < floorCheckers.Length; i++){
       floorCheckers[i] = floorChecks.GetChild(i);
+    }
   }
 
   //get state of player, values and input
-  void Update()
-  {	
+  void Update(){	
     //handle jumping
     JumpCalculations ();
     //adjust movement values if we're in the air or on the ground
@@ -97,76 +94,76 @@ public class PlayerMove_mton : MonoBehaviour
     screenMovementForward = screenMovementSpace * Vector3.forward          ;
     screenMovementRight   = screenMovementSpace * Vector3.right            ;
     if(bInput==1){	
-	  io_Controller();
+      io_Controller();
     }
-		else if(bInput==2){
-			io_Touch();
-		}
+    else if(bInput==2){
+      io_Touch();
+    }
 
     moveDirection = transform.position + direction; //must be outside bInput check??? else slide
     doUpdate();
 
-		if(Input.GetKeyUp(KeyCode.P)){
-			print("P is for power") ;
-			movingObjSpeed.y = 5    ;
-		}
+    if(Input.GetKeyUp(KeyCode.P)){
+      print("P is for power") ;
+      movingObjSpeed.y = 5    ;
+    }
 
   }
 
   public virtual void io_Touch(){
-				//get movement input, set direction to move in
-		float h = CFInput.GetAxisRaw ("Horizontal") ;
-		float v = CFInput.GetAxisRaw ("Vertical")   ;
-		
-		//only apply vertical input to movemement, if player is not sidescroller
-		if(!sidescroller){
-			direction = (screenMovementForward * v) + (screenMovementRight * h);
-		}
-		else{
-			direction = Vector3.right * h;
-		}
-		
-		if(CFInput.GetButtonDown ("Jump")){
-			bJump = true;
-		}
-		else{
-			bJump = false;
-		}
-		if(CFInput.GetButtonDown ("Fire1")){
-			print("I am attacking") ;
-			bAttack = true          ;
-		}
-		else{
-			bAttack = false;
-		}
+    //get movement input, set direction to move in
+    float h = CFInput.GetAxisRaw ("Horizontal") ;
+    float v = CFInput.GetAxisRaw ("Vertical")   ;
 
+    //only apply vertical input to movemement, if player is not sidescroller
+    if(!sidescroller){
+      direction = (screenMovementForward * v) + (screenMovementRight * h);
+    }
+    else{
+      direction = Vector3.right * h;
+    }
+
+    if(CFInput.GetButtonDown ("Jump")){
+      bJump = true;
+    }
+    else{
+      bJump = false;
+    }
+    if(CFInput.GetButtonDown ("Fire1")){
+      print("I am attacking") ;
+      bAttack = true          ;
+    }
+    else{
+      bAttack = false;
+    }
   }
-  public virtual void io_Controller(){
-		//get movement input, set direction to move in
-		float h = Input.GetAxisRaw ("Horizontal") ;
-		float v = Input.GetAxisRaw ("Vertical")   ;
-		
-		//only apply vertical input to movemement, if player is not sidescroller
-		if(!sidescroller){
-			direction = (screenMovementForward * v) + (screenMovementRight * h);
-		}
-		else{
-			direction = Vector3.right * h;
-		}
 
-		if(Input.GetButtonDown ("Jump")){
-			bJump = true;
-		}
-		else{
-			bJump = false;
-		}
-		if(Input.GetButtonDown ("Fire1")){
-			print("I am attacking") ;
-			bAttack = true          ;
-		}
-		else{
-			bAttack = false;
-		}
+  public virtual void io_Controller(){
+    //get movement input, set direction to move in
+    float h = Input.GetAxisRaw ("Horizontal") ;
+    float v = Input.GetAxisRaw ("Vertical")   ;
+
+    //only apply vertical input to movemement, if player is not sidescroller
+    if(!sidescroller){
+      direction = (screenMovementForward * v) + (screenMovementRight * h);
+    }
+    else{
+      direction = Vector3.right * h;
+    }
+
+    if(Input.GetButtonDown ("Jump")){
+      bJump = true;
+    }
+    else{
+      bJump = false;
+    }
+    if(Input.GetButtonDown ("Fire1")){
+      print("I am attacking") ;
+      bAttack = true          ;
+    }
+    else{
+      bAttack = false;
+    }
   }
 
   public virtual void doUpdate(){
@@ -174,18 +171,17 @@ public class PlayerMove_mton : MonoBehaviour
   }
 
   //apply correct player movement (fixedUpdate for physics calculations)
-  void FixedUpdate() 
-  {
+  void FixedUpdate() {
     //are we grounded
     grounded = IsGrounded ();
     //move, rotate, manage speed
     characterMotor.MoveTo (moveDirection, curAccel, 0.7f, true); //MoveTo(destination, acceleration, stopDistance, ignoreY)
-    if (rotateSpeed != 0 && direction.magnitude != 0)
+    if (rotateSpeed != 0 && direction.magnitude != 0){
       characterMotor.RotateToDirection (moveDirection , curRotateSpeed * 5, true)    ;
+    }
     characterMotor.ManageSpeed (curDecel, maxSpeed + movingObjSpeed.magnitude, true) ; //ManageSpeed(deceleration, maxSpeed, ignoreY)
     //set animation values
-    if(animator)
-    {
+    if(animator){
       animator.SetFloat("DistanceToTarget", characterMotor.DistanceToTarget) ;
       animator.SetBool("Grounded", grounded)                                 ;
       animator.SetBool("Attack", bAttack)                                    ;
@@ -194,14 +190,13 @@ public class PlayerMove_mton : MonoBehaviour
   }
 
   //prevents rigidbody from sliding down slight slopes (read notes in characterMotor class for more info on friction)
-  void OnCollisionStay(Collision other)
-  {
+  void OnCollisionStay(Collision other){
     //only stop movement on slight slopes if we aren't being touched by anything else
-    if (other.collider.tag != "Untagged" || grounded == false)
+    if (other.collider.tag != "Untagged" || grounded == false){
       return;
+    }
     //if no movement should be happening, stop player moving in Z/X axis
-    if(direction.magnitude == 0 && slope < slopeLimit && rigidbody.velocity.magnitude < 2)
-    {
+    if(direction.magnitude == 0 && slope < slopeLimit && rigidbody.velocity.magnitude < 2){
       //it's usually not a good idea to alter a rigidbodies velocity every frame
       //but this is the cleanest way i could think of, and we have a lot of checks beforehand, so it shou
       rigidbody.velocity = Vector3.zero;
@@ -210,46 +205,39 @@ public class PlayerMove_mton : MonoBehaviour
 
   //returns whether we are on the ground or not
   //also: bouncing on enemies, keeping player on moving platforms and slope checking
-  private bool IsGrounded() 
-  {
+  private bool IsGrounded() {
     //get distance to ground, from centre of collider (where floorcheckers should be)
     float dist = collider.bounds.extents.y;
     //check whats at players feet, at each floorcheckers position
-    foreach (Transform check in floorCheckers)
-    {
+    foreach (Transform check in floorCheckers){
       RaycastHit hit;
-      if(Physics.Raycast(check.position, Vector3.down, out hit, dist + 0.05f))
-      {
-        if(!hit.transform.collider.isTrigger)
-        {
+      if(Physics.Raycast(check.position, Vector3.down, out hit, dist + 0.05f)){
+        if(!hit.transform.collider.isTrigger){
           //slope control
           slope = Vector3.Angle (hit.normal, Vector3.up);
           //slide down slopes
-          if(slope > slopeLimit && hit.transform.tag != "Pushable")
-          {
-            Vector3 slide = new Vector3(0f, -slideAmount, 0f);
-            rigidbody.AddForce (slide, ForceMode.Force);
+          if(slope > slopeLimit && hit.transform.tag != "Pushable"){
+            Vector3 slide = new Vector3(0f, -slideAmount, 0f) ;
+            rigidbody.AddForce (slide, ForceMode.Force)       ;
           }
           //enemy bouncing
-          if (hit.transform.tag == "Enemy" && rigidbody.velocity.y < 0)
-          {
-            enemyAI = hit.transform.GetComponent<EnemyAI>();
-            enemyAI.BouncedOn();
-            onEnemyBounce ++;
-            dealDamage.Attack(hit.transform.gameObject, 1, 0f, 0f);
+          if (hit.transform.tag == "Enemy" && rigidbody.velocity.y < 0){
+            enemyAI = hit.transform.GetComponent<EnemyAI>()        ;
+            enemyAI.BouncedOn()                                    ;
+            onEnemyBounce ++                                       ;
+            dealDamage.Attack(hit.transform.gameObject, 1, 0f, 0f) ;
           }
-          else
+          else{
             onEnemyBounce = 0;
+          }
           //moving platforms
-          if (hit.transform.tag == "MovingPlatform" || hit.transform.tag == "Pushable")
-          {
-            movingObjSpeed = hit.transform.rigidbody.velocity;
-            movingObjSpeed.y = 0f;
+          if (hit.transform.tag == "MovingPlatform" || hit.transform.tag == "Pushable"){
+            movingObjSpeed   = hit.transform.rigidbody.velocity ;
+            movingObjSpeed.y = 0f                               ;
             //9.5f is a magic number, if youre not moving properly on platforms, experiment with this number
             rigidbody.AddForce(movingObjSpeed * movingPlatformFriction * Time.fixedDeltaTime, ForceMode.VelocityChange);
           }
-          else
-          {
+          else{
             movingObjSpeed = Vector3.zero;
           }
           //yes our feet are on something
@@ -269,47 +257,45 @@ public class PlayerMove_mton : MonoBehaviour
     groundedCount = (grounded) ? groundedCount += Time.deltaTime : 0f;
 
     //play landing sound
-    if(groundedCount < 0.25 && groundedCount != 0 && !audio.isPlaying && landSound && rigidbody.velocity.y < 1)
-    {
-      audio.volume = Mathf.Abs(rigidbody.velocity.y)/40;
-      audio.clip = landSound;
-      audio.Play ();
+    if(groundedCount < 0.25 && groundedCount != 0 && !audio.isPlaying && landSound && rigidbody.velocity.y < 1){
+      audio.volume = Mathf.Abs(rigidbody.velocity.y)/40 ;
+      audio.clip   = landSound                          ;
+      audio.Play ()                                     ;
     }
     //if we press jump in the air, save the time
     if (bJump && !grounded){
       airPressTime = Time.time;
-	}
+    }
 
     //if were on ground within slope limit
-    if (grounded && slope < slopeLimit)
-    {
+    if (grounded && slope < slopeLimit){
       //and we press jump, or we pressed jump justt before hitting the ground
-      if (bJump || airPressTime + jumpLeniancy > Time.time)
-      {	
+      if (bJump || airPressTime + jumpLeniancy > Time.time){	
         //increment our jump type if we haven't been on the ground for long
         onJump = (groundedCount < jumpDelay) ? Mathf.Min(2, onJump + 1) : 0;
         //execute the correct jump (like in mario64, jumping 3 times quickly will do higher jumps)
-        if (onJump == 0)
+        if (onJump == 0){
           Jump (jumpForce);
-        else if (onJump == 1)
+        }
+        else if (onJump == 1){
           Jump (secondJumpForce);
-        else if (onJump == 2)
+        }
+        else if (onJump == 2){
           Jump (thirdJumpForce);
+        }
       }
     }
   }
 
   //push player at jump force
-  public virtual void Jump(Vector3 jumpVelocity)
-  {
-    if(jumpSound)
-    {
-      audio.volume = 1;
-      audio.clip = jumpSound;
-      audio.Play ();
+  public virtual void Jump(Vector3 jumpVelocity){
+    if(jumpSound){
+      audio.volume = 1         ;
+      audio.clip   = jumpSound ;
+      audio.Play ()            ;
     }
-    rigidbody.velocity = new Vector3(rigidbody.velocity.x, 0f, rigidbody.velocity.z);
-    rigidbody.AddRelativeForce (jumpVelocity, ForceMode.Impulse);
-    airPressTime = 0f;
+    rigidbody.velocity = new Vector3(rigidbody.velocity.x, 0f, rigidbody.velocity.z) ;
+    rigidbody.AddRelativeForce (jumpVelocity, ForceMode.Impulse)                     ;
+    airPressTime = 0f                                                                ;
   }
 }
