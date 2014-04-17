@@ -130,7 +130,7 @@ public class PlayerMove_mton : MonoBehaviour
       bJump = false;
     }
     if(CFInput.GetButtonDown ("Fire1")){
-      print("I am attacking") ;
+      //print("I am attacking") ;
       bAttack = true          ;
     }
     else{
@@ -158,7 +158,7 @@ public class PlayerMove_mton : MonoBehaviour
       bJump = false;
     }
     if(Input.GetButtonDown ("Fire1")){
-      print("I am attacking") ;
+      //print("I am attacking") ;
       bAttack = true          ;
     }
     else{
