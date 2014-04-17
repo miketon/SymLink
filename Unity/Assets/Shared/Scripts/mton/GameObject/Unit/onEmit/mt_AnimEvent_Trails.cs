@@ -8,15 +8,18 @@ public class mt_AnimEvent_Trails : mt_AnimEvent { //put me on same transform as 
   public List<mt_WeaponTrail> trails ;
   public float timeToTweenTo = 1.0f  ;
   public float fadeInTime    = 1.0f  ;
+  public float fadeOutTime   = 1.0f  ;
 
   private bool bSwipe = false;
 
   void TrailStart(int indexT){
     trails[indexT].StartTrail(timeToTweenTo, fadeInTime)   ; // Starts trail
+		Debug.Log("TrailStart");
   }
 
   void TrailFadeOut(int indexT){
-    trails[indexT].FadeOut(0.5f) ; // Fades the trail out
+    trails[indexT].FadeOut(fadeOutTime) ; // Fades the trail out
+		Debug.Log("FadeOut");
   }
 
   void TrailClear(int indexT){
@@ -33,6 +36,7 @@ public class mt_AnimEvent_Trails : mt_AnimEvent { //put me on same transform as 
 
   protected void Start (){
 	animationController.AddTrail (trails[0]) ; // Adds the trails to the animationController which will run them
+		TrailClear(0) ; // Forces the trail to clear
     //Initialise ()                            ;
   }
 

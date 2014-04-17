@@ -83,7 +83,7 @@ public class mt_WeaponTrail : MonoBehaviour {
 			timeTransitionSpeed = Mathf.Abs(desiredTime -time) / fadeInTime;
 		}
 		if (time <= 0){
-			time = 0.01f;
+			time = timeToTweenTo; //0.01f; //HACK at 0.01f swipe doesn't appear; Assigning time ToTweenTo; I don't know what I'm doing 
 		}
     }
     public void SetTime(float trailTime, float timeToTweenTo, float tweenSpeed) {
@@ -199,7 +199,7 @@ public class mt_WeaponTrail : MonoBehaviour {
     }
     public void ClearTrail() {
 		desiredTime = 0;
-		time = 0;
+		time = 0; 
         if (mesh != null) {
             mesh.Clear();
             sections.Clear();
