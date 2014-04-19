@@ -14,18 +14,36 @@ public class mt_AnimEvent_Trails : mt_AnimEvent { //put me on same transform as 
 
   void TrailStart(int indexT){
     trails[indexT].StartTrail(timeToTweenTo, fadeInTime) ; // Starts trail
-    Debug.Log("TrailStart")                              ;
+    //Debug.Log("TrailStart")                              ;
   }
 
   void TrailFadeOut(int indexT){
     trails[indexT].FadeOut(fadeOutTime) ; // Fades the trail out
-    Debug.Log("FadeOut")                ;
+    //Debug.Log("FadeOut")                ;
   }
 
   void TrailClear(int indexT){
     trails[indexT].ClearTrail() ; // Forces the trail to clear
-    Debug.Log("TrailClear")     ;
+    //Debug.Log("TrailClear")     ;
   }
+
+  //HACK : *** //
+  void TrailSetTime(int indexT){ //Used to determine train display; if fadeInTime <= 0.0f, trail automatically cleared
+    trails[indexT].SetTime(fadeInTime, timeToTweenTo, fadeOutTime); //HACK : timeTransitionSpeed replaced by fadeOutTime ?? Not sure what I'm doing here
+  }
+
+  public  MeshRenderer meshRenderer;
+  private Material trailMaterial;
+
+  void initMeshMaterial(){ //so we can change material values
+    //meshRenderer = GetComponent(typeof(MeshRenderer)) as MeshRenderer;
+    trailMaterial = meshRenderer.material;
+  }
+
+  void TrailSetColor(Color color){
+    trailMaterial.SetColor("_TintColor", color);
+  }
+  //END HACK *** // 
 
   protected mt_AnimIntervalControl animationController ;
   protected float t         = 0.033f                   ;
@@ -33,6 +51,7 @@ public class mt_AnimEvent_Trails : mt_AnimEvent { //put me on same transform as 
 
   protected void Awake (){
     animationController = GetComponent<mt_AnimIntervalControl> ();
+    initMeshMaterial();
   }
 
   protected void Start (){
