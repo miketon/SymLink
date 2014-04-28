@@ -37,7 +37,7 @@ public class mt_AnimEvent_Trails : mt_AnimEvent { //put me on same transform as 
 
   void initMeshMaterial(){ //so we can change material values
     //meshRenderer = GetComponent(typeof(MeshRenderer)) as MeshRenderer;
-    trailMaterial = meshRenderer.material;
+    //trailMaterial = meshRenderer.material;
   }
 
   void TrailSetColor(Color color){

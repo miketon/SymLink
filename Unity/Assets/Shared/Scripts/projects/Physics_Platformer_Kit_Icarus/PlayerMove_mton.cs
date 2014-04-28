@@ -49,6 +49,10 @@ public class PlayerMove_mton : MonoBehaviour
   private EnemyAI enemyAI          ;
   private DealDamage dealDamage    ;
 
+  //io values
+	protected float __h = 0.0f;
+	protected float __v = 0.0f;
+
   //setup
   void Awake(){
     direction = moveDirection = screenMovementForward = screenMovementRight = movingObjSpeed = Vector3.zero;
@@ -80,6 +84,14 @@ public class PlayerMove_mton : MonoBehaviour
       floorCheckers[i] = floorChecks.GetChild(i);
     }
   }
+
+	void Start(){
+		doStart();
+	}
+
+	public virtual void doStart(){
+		Debug.Log("I am starting.");
+	}
 
   //get state of player, values and input
   void Update(){	
@@ -113,15 +125,15 @@ public class PlayerMove_mton : MonoBehaviour
 
   public virtual void io_Touch(){
     //get movement input, set direction to move in
-    float h = CFInput.GetAxisRaw ("Horizontal") ;
-    float v = CFInput.GetAxisRaw ("Vertical")   ;
+    __h = CFInput.GetAxisRaw ("Horizontal") ;
+    __v = CFInput.GetAxisRaw ("Vertical")   ;
 
     //only apply vertical input to movemement, if player is not sidescroller
     if(!sidescroller){
-      direction = (screenMovementForward * v) + (screenMovementRight * h);
+      direction = (screenMovementForward * __v) + (screenMovementRight * __h);
     }
     else{
-      direction = Vector3.right * h;
+      direction = Vector3.right * __h;
     }
 
     if(CFInput.GetButtonDown ("Jump")){
@@ -141,15 +153,15 @@ public class PlayerMove_mton : MonoBehaviour
 
   public virtual void io_Controller(){
     //get movement input, set direction to move in
-    float h = Input.GetAxisRaw ("Horizontal") ;
-    float v = Input.GetAxisRaw ("Vertical")   ;
+    __h = Input.GetAxisRaw ("Horizontal") ;
+    __v = Input.GetAxisRaw ("Vertical")   ;
 
     //only apply vertical input to movemement, if player is not sidescroller
     if(!sidescroller){
-      direction = (screenMovementForward * v) + (screenMovementRight * h);
+      direction = (screenMovementForward * __v) + (screenMovementRight * __h);
     }
     else{
-      direction = Vector3.right * h;
+      direction = Vector3.right * __h;
     }
 
     if(Input.GetButtonDown ("Jump")){

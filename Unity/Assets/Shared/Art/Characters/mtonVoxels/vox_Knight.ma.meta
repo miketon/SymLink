@@ -267,9 +267,9 @@ ModelImporter:
       - path: Body/Axe
         weight: 1
       - path: L_leg
-        weight: 1
+        weight: 0
       - path: R_Leg
-        weight: 1
+        weight: 0
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
