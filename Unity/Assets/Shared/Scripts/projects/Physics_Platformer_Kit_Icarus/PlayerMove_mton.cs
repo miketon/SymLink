@@ -122,6 +122,17 @@ public class PlayerMove_mton : MonoBehaviour
     }
 
   }
+	 
+	public void doAttack(){
+      bAttack = true          ;
+	}
+	public void doJump(){
+      bJump = true          ;
+	}
+	public void clearBoolState(){
+		bAttack = false;
+		bJump   = false;
+	}
 
   public virtual void io_Touch(){
     //get movement input, set direction to move in
