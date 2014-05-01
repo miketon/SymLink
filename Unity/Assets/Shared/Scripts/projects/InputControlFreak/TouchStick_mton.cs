@@ -20,13 +20,19 @@ public class TouchStick_mton : MonoBehaviour{
   // Controller Variable 
   // ----------------------
 
-  public	TouchController	ctrl                           ;
-  public	float buttonScale = 0.1f                       ;
-  public  GameObject button_A_Display                    ;
-  private Transform button_A_Xform                       ;
-  private Vector2 screenRes    = new Vector2(0.0f, 0.0f) ;
-  private float screenAspRatio = 0.0f                    ; //controller radius
-  private float cRadius        = 0.0f                    ; //controller radius
+  public  TouchController	ctrl                           ;
+  public  GUIElement buttona_A_GUI                       ;
+  public  GUIElement buttona_B_GUI                       ;
+  public  GUIElement buttona_C_GUI                       ;
+  public  GUIElement buttona_D_GUI                       ;
+
+  public  float buttonScale  = 0.1f  ;
+  public  float buttonOffSet = 1.75f ;
+
+  private Vector2 screenRes      = new Vector2(0.0f, 0.0f) ;
+  private float   screenAspRatio = 0.0f                    ; //screen aspect ratio; used to scale GUIElements to be proportional
+  private float   cRadius        = 0.0f                    ; //controller radius
+  private bool 	  button_A_Show  = false                   ;
 
   // ----------------------
   // Constants
@@ -57,9 +63,25 @@ public class TouchStick_mton : MonoBehaviour{
       screenRes.y               = Screen.height                                                       ;
       screenAspRatio            = screenRes.x/screenRes.y                                             ;
       cRadius                   = stick_attackStick.GetScreenRad ()                                   ; ///screenRes.y                 ;
-      button_A_Xform            = button_A_Display.transform                                          ;
-      button_A_Xform.localScale = new Vector3(buttonScale, buttonScale * screenAspRatio, buttonScale) ; //scale adjust to screen ratio
+
+      buttona_A_GUI.transform.localScale = new Vector3(buttonScale, buttonScale * screenAspRatio, buttonScale) ; //scale adjust to screen ratio
+      buttona_A_GUI.enabled              = false                                                               ;
+      buttona_B_GUI.transform.localScale = new Vector3(buttonScale, buttonScale * screenAspRatio, buttonScale) ; //scale adjust to screen ratio
+      buttona_B_GUI.enabled              = false                                                               ;
+      buttona_C_GUI.transform.localScale = new Vector3(buttonScale, buttonScale * screenAspRatio, buttonScale) ; //scale adjust to screen ratio
+      buttona_C_GUI.enabled              = false                                                               ;
+      buttona_D_GUI.transform.localScale = new Vector3(buttonScale, buttonScale * screenAspRatio, buttonScale) ; //scale adjust to screen ratio
+      buttona_D_GUI.enabled              = false                                                               ;
     }
+  }
+
+  void doModalButton(GUIElement goGUI, float goPos){
+    Vector2 pStick           = stick_attackStick.GetScreenPos()                                                              ;
+    //Vector3 p              = Camera.main.ScreenToWorldPoint(new Vector3(pStick.x, screenRes.y-pStick.y, 5.0f))             ; //matching go to cam projection ; 5.0f is a guess.
+    Vector2 screenPosNorm    = new Vector2(pStick.x/screenRes.x, 1.0f-pStick.y/screenRes.y)                                  ;
+    Vector3 p                = new Vector3(screenPosNorm.x+cRadius/screenRes.x* buttonOffSet * goPos, screenPosNorm.y, 0.0f) ;
+    goGUI.transform.position = p                                                                                             ;
+    goGUI.enabled            = true                                                                                          ;
   }
 
   // ----------------------
@@ -85,29 +107,48 @@ public class TouchStick_mton : MonoBehaviour{
         // Your code here.
         stick_attackDir = stick_attackStick.GetFourWayDir() ; //get digital fourway
         if(stick_attackDir == TouchStick.StickDir.NEUTRAL){
-          //Debug.Log ("MTON NEUTRAL:" + stick_attackDir)                                 ;
-          Rect rectTrue = stick_attackStick.GetRect(true)                                 ;
-          Rect rectFals = stick_attackStick.GetRect(false)                                ;
-          //Debug.Log ("TRUE :" + rectTrue.x + "FALSE : " + rectFals.x)                   ;
-          this.ctrl.GetZone(ZONE_PAUSE).SetRect(new Rect(rectFals.x, rectFals.y, -32,64)) ;
+          buttona_A_GUI.enabled = false;
+          buttona_B_GUI.enabled = false;
+          buttona_C_GUI.enabled = false;
+          buttona_D_GUI.enabled = false;
+          /* Updating TouchZone Button
+             Rect rectTrue = stick_attackStick.GetRect(true)                                 ;
+             Rect rectFals = stick_attackStick.GetRect(false)                                ;
+             Debug.Log ("TRUE :" + rectTrue.x + "FALSE : " + rectFals.x)                     ;
+             this.ctrl.GetZone(ZONE_PAUSE).SetRect(new Rect(rectFals.x, rectFals.y, -32,64)) ;
+             */
         }
         else if(stick_attackDir == TouchStick.StickDir.U){
-          Debug.Log ("MTON UP:" + stick_attackDir);
+          doModalButton(buttona_C_GUI, 1.0f) ;
+          buttona_A_GUI.enabled = false      ;
+          buttona_B_GUI.enabled = false      ;
+          buttona_D_GUI.enabled = false      ;
         }
         else if(stick_attackDir == TouchStick.StickDir.R){
-          Vector2 pStick = stick_attackStick.GetScreenPos()                                                  ;
-          Debug.Log ("MTON RIGHT:" + stick_attackDir + pStick)                                               ;
-          //Vector3 p = Camera.main.ScreenToWorldPoint(new Vector3(pStick.x, screenRes.y-pStick.y, 5.0f))    ; //matching go to cam projection ; 5.0f is a guess.
-          Vector2 screenPosNorm = new Vector2(pStick.x/screenRes.x, 1.0f-pStick.y/screenRes.y)               ;
-          //Vector3 p =new Vector3(0.25f, 0.25f, 0.0f)                                                       ;
-          Vector3 p =new Vector3(screenPosNorm.x, screenPosNorm.y, 0.0f)                                     ;
-          //Vector3 p =Camera.main.ViewportToWorldPoint(new Vector3(screenPosNorm.x, screenPosNorm.y, 5.0f)) ;
-          button_A_Xform.position = p                                                                        ;
-          //button_A_Xform.position = new Vector3(100.0f, 50.0f, 0.0f)                                       ;
+          doModalButton(buttona_A_GUI, 1.0f) ;
+          buttona_B_GUI.enabled = false      ;
+          buttona_C_GUI.enabled = false      ;
+          buttona_D_GUI.enabled = false      ;
+        }
+        else if(stick_attackDir == TouchStick.StickDir.L){
+          doModalButton(buttona_B_GUI, -1.0f) ;
+          buttona_A_GUI.enabled = false       ;
+          buttona_C_GUI.enabled = false       ;
+          buttona_D_GUI.enabled = false       ;
+        }
+        else if(stick_attackDir == TouchStick.StickDir.D){
+          doModalButton(buttona_D_GUI, -1.0f) ;
+          buttona_A_GUI.enabled = false       ;
+          buttona_B_GUI.enabled = false       ;
+          buttona_C_GUI.enabled = false       ;
         }
       }
       else if(stick_attackStick.JustReleased()){
-        Debug.Log ("MTON JUMP RELEASE:" + this);
+        Debug.Log ("MTON JUMP RELEASE:" + this) ;
+        buttona_A_GUI.enabled = false           ;
+        buttona_B_GUI.enabled = false           ;
+        buttona_C_GUI.enabled = false           ;
+        buttona_D_GUI.enabled = false           ;
       }
 
       // ----------------
