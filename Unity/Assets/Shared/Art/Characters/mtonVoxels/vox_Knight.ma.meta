@@ -40,6 +40,10 @@ ModelImporter:
     100068: onionSkinFramePoly85
     100070: onionSkinFramePoly37
     100072: onionSkinFramePoly43
+    100074: Axe_Left
+    100076: Axe_Right
+    100078: locator_Axe_Left
+    100080: locator_Axe_Right
     400000: //RootNode
     400002: Axe
     400004: Body
@@ -77,27 +81,38 @@ ModelImporter:
     400068: onionSkinFramePoly85
     400070: onionSkinFramePoly37
     400072: onionSkinFramePoly43
+    400074: Axe_Left
+    400076: Axe_Right
+    400078: locator_Axe_Left
+    400080: locator_Axe_Right
     2300000: //RootNode
     2300002: Axe
     2300004: Body
     2300006: L_leg
     2300008: R_Leg
+    2300010: Axe_Left
+    2300012: Axe_Right
     3300000: //RootNode
     3300002: Axe
     3300004: Body
     3300006: L_leg
     3300008: R_Leg
+    3300010: Axe_Left
+    3300012: Axe_Right
     4300000: chr_knight:Mesh
     4300002: R_Leg
     4300004: L_leg
     4300006: Body
     4300008: Axe
+    4300010: Axe_Right
+    4300012: Axe_Left
     7400000: All
     7400002: Idle
     7400004: Run
     7400006: Attack
     7400008: Jump
     7400010: Fall
+    7400012: Attack_Flipped
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -142,7 +157,13 @@ ModelImporter:
         weight: 1
       - path: Body
         weight: 1
-      - path: Body/Axe
+      - path: Body/locator_Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Left/Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Right
+        weight: 1
+      - path: Body/locator_Axe_Right/Axe_Right
         weight: 1
       - path: L_leg
         weight: 1
@@ -178,7 +199,13 @@ ModelImporter:
         weight: 1
       - path: Body
         weight: 1
-      - path: Body/Axe
+      - path: Body/locator_Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Left/Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Right
+        weight: 1
+      - path: Body/locator_Axe_Right/Axe_Right
         weight: 1
       - path: L_leg
         weight: 1
@@ -214,7 +241,13 @@ ModelImporter:
         weight: 1
       - path: Body
         weight: 1
-      - path: Body/Axe
+      - path: Body/locator_Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Left/Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Right
+        weight: 1
+      - path: Body/locator_Axe_Right/Axe_Right
         weight: 1
       - path: L_leg
         weight: 1
@@ -264,12 +297,18 @@ ModelImporter:
         weight: 1
       - path: Body
         weight: 1
-      - path: Body/Axe
+      - path: Body/locator_Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Left/Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Right
+        weight: 1
+      - path: Body/locator_Axe_Right/Axe_Right
         weight: 1
       - path: L_leg
-        weight: 0
+        weight: 1
       - path: R_Leg
-        weight: 0
+        weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
@@ -300,7 +339,13 @@ ModelImporter:
         weight: 1
       - path: Body
         weight: 1
-      - path: Body/Axe
+      - path: Body/locator_Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Left/Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Right
+        weight: 1
+      - path: Body/locator_Axe_Right/Axe_Right
         weight: 1
       - path: L_leg
         weight: 1
@@ -336,7 +381,55 @@ ModelImporter:
         weight: 1
       - path: Body
         weight: 1
-      - path: Body/Axe
+      - path: Body/locator_Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Left/Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Right
+        weight: 1
+      - path: Body/locator_Axe_Right/Axe_Right
+        weight: 1
+      - path: L_leg
+        weight: 1
+      - path: R_Leg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Attack_Flipped
+      takeName: Take 001
+      firstFrame: 52
+      lastFrame: 58
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Body/locator_Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Left/Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Right
+        weight: 1
+      - path: Body/locator_Axe_Right/Axe_Right
         weight: 1
       - path: L_leg
         weight: 1

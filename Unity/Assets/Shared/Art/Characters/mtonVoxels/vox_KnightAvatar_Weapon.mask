@@ -12,7 +12,13 @@ AvatarMask:
     m_Weight: 1
   - m_Path: Body
     m_Weight: 1
-  - m_Path: Body/Axe
+  - m_Path: Body/locator_Axe_Left
+    m_Weight: 1
+  - m_Path: Body/locator_Axe_Left/Axe_Left
+    m_Weight: 1
+  - m_Path: Body/locator_Axe_Right
+    m_Weight: 1
+  - m_Path: Body/locator_Axe_Right/Axe_Right
     m_Weight: 1
   - m_Path: L_leg
     m_Weight: 0
