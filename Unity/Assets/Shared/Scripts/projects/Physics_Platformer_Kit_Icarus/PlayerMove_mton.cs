@@ -7,10 +7,10 @@ using System.Collections;
 [RequireComponent(typeof(AudioSource))]
 public class PlayerMove_mton : MonoBehaviour 
 {
-  //setup
-  public int  bInput = 1                ; //will accept controller input? 0 == no ; 1 == gamepad ; 2 == touch
-  public bool bJump  = false            ; //button Jump? 0 = released; 1 = onPress; 
-  public bool sidescroller              ; //if true, won't apply vertical input
+
+  public bool bAttack                   ;
+  public bool bJump  = false            ; //button Jump? 0 = released                                                                                 ; 1 = onPress  ;
+  public bool bFlip  = false            ; //false == right                                                                                            ; true == left
   public Transform mainCam, floorChecks ; //main camera, and floorChecks object. FloorChecks are raycasted down from to check the player is grounded.
   public Animator animator              ; //object with animation controller on, which you want to animate
   public AudioClip jumpSound            ; //play when jumping
@@ -22,11 +22,12 @@ public class PlayerMove_mton : MonoBehaviour
   public float decel    = 7.6f ;
   public float airDecel = 1.1f ;
   [Range(0f, 5f)]
-	public float rotateSpeed    = 0.7f ; //rotateSpeed = 0 for voxel and storybook look
-	public float airRotateSpeed = 0.4f ; //how fast to rotate on the ground, how fast to rotate in the air
-  public float maxSpeed = 9;								//maximum speed of movement in X/Z axis
-  public float slopeLimit = 40, slideAmount = 35;			//maximum angle of slopes you can walk on, how fast to slide down slopes you can't
-  public float movingPlatformFriction = 7.7f;				//you'll need to tweak this to get the player to stay on moving platforms properly
+    public float rotateSpeed          = 0.7f ; //rotateSpeed                                                                           = 0 for voxel and storybook look
+  public float airRotateSpeed         = 0.4f ; //how fast to rotate on the ground, how fast to rotate in the air
+  public float maxSpeed               = 9    ; //maximum speed of movement in X/Z axis
+  public float slopeLimit             = 40   ;
+  public float slideAmount            = 35   ; //maximum angle of slopes you can walk on, how fast to slide down slopes you can't
+  public float movingPlatformFriction = 7.7f ; //you'll need to tweak this to get the player to stay on moving platforms properly
 
   //jumping
   public Vector3 jumpForce       = new Vector3(0, 13, 0) ; //normal jump force
@@ -37,21 +38,29 @@ public class PlayerMove_mton : MonoBehaviour
   [HideInInspector]
     public int onEnemyBounce;					
 
-  private int onJump                                                                                   ;
-  private bool grounded                                                                                ;
-  private bool bAttack                                                                                 ;
-  private Transform[] floorCheckers                                                                    ;
-  private Quaternion screenMovementSpace                                                               ;
-  private float airPressTime, groundedCount, curAccel, curDecel, curRotateSpeed, slope                 ;
-  private Vector3 direction, moveDirection, screenMovementForward, screenMovementRight, movingObjSpeed ;
+  private int  onJump                                                                                    ;
+  private bool grounded                                                                                  ;
+  private Transform[] floorCheckers                                                                      ;
+  private Quaternion screenMovementSpace                                                                 ;
+  private float airPressTime, groundedCount, curAccel, curDecel, curRotateSpeed, slope                   ;
+  protected Vector3 direction, moveDirection, screenMovementForward, screenMovementRight, movingObjSpeed ;
 
   private __goMotor characterMotor ;
   private EnemyAI enemyAI          ;
   private DealDamage dealDamage    ;
 
   //io values
-	protected float __h = 0.0f;
-	protected float __v = 0.0f;
+  protected float __h = 0.0f;
+  protected float __v = 0.0f;
+
+  public virtual void doStart(){
+    Debug.Log("I am starting.");
+  }
+
+  public virtual void doUpdate(){
+    //print("I am updating.");
+  }
+
 
   //setup
   void Awake(){
@@ -70,8 +79,8 @@ public class PlayerMove_mton : MonoBehaviour
     }
     //assign player tag if not already
     if(tag != "Player"){
-      tag = "Player";
-      Debug.LogWarning ("PlayerMove script assigned to object without the tag 'Player', tag has been assigned automatically", transform);
+      tag = "Player"                                                                                                                     ;
+      Debug.LogWarning ("PlayerMove script assigned to object without the tag 'Player', tag has been assigned automatically", transform) ;
     }
     //usual setup
     mainCam        = GameObject.FindGameObjectWithTag("MainCamera").transform ;
@@ -85,13 +94,9 @@ public class PlayerMove_mton : MonoBehaviour
     }
   }
 
-	void Start(){
-		doStart();
-	}
-
-	public virtual void doStart(){
-		Debug.Log("I am starting.");
-	}
+  void Start(){
+    doStart();
+  }
 
   //get state of player, values and input
   void Update(){	
@@ -106,92 +111,11 @@ public class PlayerMove_mton : MonoBehaviour
     screenMovementSpace   = Quaternion.Euler (0, mainCam.eulerAngles.y, 0) ;
     screenMovementForward = screenMovementSpace * Vector3.forward          ;
     screenMovementRight   = screenMovementSpace * Vector3.right            ;
-    if(bInput==1){	
-      io_Controller();
-    }
-    else if(bInput==2){
-      io_Touch();
-    }
 
-    moveDirection = transform.position + direction; //must be outside bInput check??? else slide
-    doUpdate();
 
-    if(Input.GetKeyUp(KeyCode.P)){
-      print("P is for power") ;
-      movingObjSpeed.y = 5    ;
-    }
+    moveDirection = transform.position + direction ; //must be outside bInput check??? else slide
+    doUpdate()                                     ;
 
-  }
-	 
-	public void doAttack(){
-      bAttack = true          ;
-	}
-	public void doJump(){
-      bJump = true          ;
-	}
-	public void clearBoolState(){
-		bAttack = false;
-		bJump   = false;
-	}
-
-  public virtual void io_Touch(){
-    //get movement input, set direction to move in
-    __h = CFInput.GetAxisRaw ("Horizontal") ;
-    __v = CFInput.GetAxisRaw ("Vertical")   ;
-
-    //only apply vertical input to movemement, if player is not sidescroller
-    if(!sidescroller){
-      direction = (screenMovementForward * __v) + (screenMovementRight * __h);
-    }
-    else{
-      direction = Vector3.right * __h;
-    }
-
-    if(CFInput.GetButtonDown ("Jump")){
-      bJump = true;
-    }
-    else{
-      bJump = false;
-    }
-    if(CFInput.GetButtonDown ("Fire1")){
-      //print("I am attacking") ;
-      bAttack = true          ;
-    }
-    else{
-      bAttack = false;
-    }
-  }
-
-  public virtual void io_Controller(){
-    //get movement input, set direction to move in
-    __h = Input.GetAxisRaw ("Horizontal") ;
-    __v = Input.GetAxisRaw ("Vertical")   ;
-
-    //only apply vertical input to movemement, if player is not sidescroller
-    if(!sidescroller){
-      direction = (screenMovementForward * __v) + (screenMovementRight * __h);
-    }
-    else{
-      direction = Vector3.right * __h;
-    }
-
-    if(Input.GetButtonDown ("Jump")){
-      bJump = true;
-    }
-    else{
-      bJump = false;
-    }
-    if(Input.GetButtonDown ("Fire1")){
-      //print("I am attacking") ;
-      bAttack = true          ;
-    }
-    else{
-      bAttack = false;
-    }
-  }
-
-  public virtual void doUpdate(){
-    //print("I am updating.");
   }
 
   //apply correct player movement (fixedUpdate for physics calculations)

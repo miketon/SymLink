@@ -1,4 +1,5 @@
 // -----------------------------------------------
+//
 // Control Freak - The Ultimate Virtual Controller
 // Copyright (C) 2013 Dan's Game Tools
 // -----------------------------------------------
@@ -7,8 +8,8 @@
 #	define DEBUG_KEYBOARD_CONTROL
 #endif
 
-using UnityEngine;
-using System.Collections;
+using UnityEngine        ;
+using System.Collections ;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -20,15 +21,17 @@ public class TouchStick_mton : MonoBehaviour{
   // Controller Variable 
   // ----------------------
 
-  public  TouchController	ctrl   ;
-  public  PlayerMove_mton   mton   ;
+  public  TouchController	 ctrl    ;
+  public  PlayerMove_mton_IO mton  ;
   public  GUIElement buttona_A_GUI ;
   public  GUIElement buttona_B_GUI ;
   public  GUIElement buttona_C_GUI ;
   public  GUIElement buttona_D_GUI ;
 
-  public  float buttonScale  = 0.1f  ;
-  public  float buttonOffSet = 1.75f ;
+  public  float timeModalTapDelta = 0.25f ; //delta between when io is read as tap vs. press
+  public  float buttonScale       = 0.1f  ;
+  public  float buttonOffSet      = 1.75f ;
+  private float timeLastPressed   = 0.0f  ;
 
   private Vector2 screenRes      = new Vector2(0.0f, 0.0f) ;
   private float   screenAspRatio = 0.0f                    ; //screen aspect ratio; used to scale GUIElements to be proportional
@@ -83,7 +86,7 @@ public class TouchStick_mton : MonoBehaviour{
     Vector2 screenPosNorm    = new Vector2(pStick.x/screenRes.x, 1.0f-pStick.y/screenRes.y)                                  ;
     Vector3 radialPos        = indexToRadialPosition(indexE, 4)                                                              ;
     //Vector3 p              = new Vector3(screenPosNorm.x+cRadius/screenRes.x* buttonOffSet * goPos, screenPosNorm.y, 0.0f) ;
-    Vector3 p                = new Vector3(radialPos.x + screenPosNorm.x, radialPos.y + screenPosNorm.y, 0.0f)               ;
+    Vector3 p                = new Vector3(radialPos.x + screenPosNorm.x, radialPos.y + screenPosNorm.y, 1.0f)               ;
     goGUI.transform.position = p                                                                                             ;
     goGUI.enabled            = true                                                                                          ;
   }
@@ -112,7 +115,8 @@ public class TouchStick_mton : MonoBehaviour{
       // ----------------
 
       if(stick_attackStick.JustPressed()){
-        Debug.Log ("MTON JUMP Justpressed:" + this);
+        timeLastPressed = Time.time                 ;
+        Debug.Log ("MTON JUMP Justpressed:" + this) ;
       }
       else if (stick_attackStick.Pressed()){
         // Your code here.
@@ -135,19 +139,23 @@ public class TouchStick_mton : MonoBehaviour{
           buttona_B_GUI.enabled = false   ;
           buttona_C_GUI.enabled = false   ;
           buttona_D_GUI.enabled = false   ;
-		  mton.doAttack();
+          mton.bFlip = true               ; //facing right
+          mton.doAttack()                 ;
         }
         else if(stick_attackDir == TouchStick.StickDir.U){
           doModalButton(buttona_C_GUI, 1) ;
           buttona_A_GUI.enabled = false   ;
           buttona_B_GUI.enabled = false   ;
           buttona_D_GUI.enabled = false   ;
+          //mton.doAttack()               ;
         }
         else if(stick_attackDir == TouchStick.StickDir.L){
           doModalButton(buttona_B_GUI, 2) ;
           buttona_A_GUI.enabled = false   ;
           buttona_C_GUI.enabled = false   ;
           buttona_D_GUI.enabled = false   ;
+          mton.bFlip = false              ; //facing left
+          mton.doAttack()                 ;
         }
         else if(stick_attackDir == TouchStick.StickDir.D){
           doModalButton(buttona_D_GUI, 3) ;
@@ -157,12 +165,19 @@ public class TouchStick_mton : MonoBehaviour{
         }
       }
       else if(stick_attackStick.JustReleased()){
-        Debug.Log ("MTON JUMP RELEASE:" + this) ;
-        buttona_A_GUI.enabled = false           ;
-        buttona_B_GUI.enabled = false           ;
-        buttona_C_GUI.enabled = false           ;
-        buttona_D_GUI.enabled = false           ;
-		mton.clearBoolState();
+        float timeSincePressed = Time.time - timeLastPressed;
+        if((Time.time - timeLastPressed) < timeModalTapDelta){
+          mton.doJump();
+        }
+
+        Debug.Log ("MTON JUMP RELEASE:" + this + " TimeSincePressed :" + timeSincePressed + " Time : " + Time.time) ;
+        buttona_A_GUI.enabled = false                                                                               ;
+        buttona_B_GUI.enabled = false                                                                               ;
+        buttona_C_GUI.enabled = false                                                                               ;
+        buttona_D_GUI.enabled = false                                                                               ;
+      }
+      else{
+        mton.clearBoolState();
       }
 
       // ----------------

@@ -169,9 +169,9 @@ MonoBehaviour:
   twistThresh: 5
   pinchMinDistCm: .5
   twistSafeFingerDistCm: 1
-  curTime: 8.62742615
-  deltaTime: .0408630371
-  invDeltaTime: 24.4719944
+  curTime: 69.1495819
+  deltaTime: .105545044
+  invDeltaTime: 9.47462749
   sticks:
   - initiallyDisabled: 0
     initiallyHidden: 0
@@ -212,12 +212,12 @@ MonoBehaviour:
       width: .5
       height: .5
     dynamicAlwaysReset: 1
-    hatMoveScale: .5
+    hatMoveScale: 0
     disableX: 0
     disableY: 0
-    releasedHatImg: {fileID: 2800000, guid: e962ceca498cc184982202be7e3b25b0, type: 3}
+    releasedHatImg: {fileID: 2800000, guid: 843f0fef55c05054f854712d832fc29f, type: 3}
     releasedBaseImg: {fileID: 2800000, guid: 6a15efc046ec45e419e117a285098afb, type: 3}
-    pressedHatImg: {fileID: 2800000, guid: a38e3f9693a0be140b757ef7d71ba2fa, type: 3}
+    pressedHatImg: {fileID: 0}
     pressedBaseImg: {fileID: 2800000, guid: 6a15efc046ec45e419e117a285098afb, type: 3}
     overrideScale: 0
     releasedHatScale: .75
@@ -244,7 +244,7 @@ MonoBehaviour:
     getKeyCodeLeftAlt: 276
     getKeyCodeRight: 100
     getKeyCodeRightAlt: 275
-    enableGetButton: 1
+    enableGetButton: 0
     getButtonName: Jump
     enableGetAxis: 0
     axisHorzName: Horizontal
@@ -742,12 +742,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ctrl: {fileID: 11400000}
+  mton: {fileID: 0}
   buttona_A_GUI: {fileID: 13100000}
   buttona_B_GUI: {fileID: 13100006}
   buttona_C_GUI: {fileID: 13100004}
   buttona_D_GUI: {fileID: 13100002}
+  timeModalTapDelta: .25
   buttonScale: .075000003
-  buttonOffSet: 1.75
+  buttonOffSet: 1
 --- !u!131 &13100000
 GUITexture:
   m_ObjectHideFlags: 1
