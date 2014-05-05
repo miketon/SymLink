@@ -71,9 +71,9 @@ MonoBehaviour:
   height: .5
   time: 1
   alwaysUp: 0
-  minDistance: .0149999997
+  minDistance: 0
   timeTransitionSpeed: 1
-  desiredTime: 1
+  desiredTime: 2
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1001 &100100000
