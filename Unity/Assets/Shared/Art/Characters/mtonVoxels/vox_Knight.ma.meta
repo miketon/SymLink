@@ -4,10 +4,115 @@ ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Axe
+    100004: Body
+    100006: L_leg
+    100008: R_Leg
+    100010: chr_knight:Mesh
+    100012: onionSkinController
+    100014: onionSkinFrameGroup
+    100016: onionSkinFrameGroup_onionSkinSet1
+    100018: onionSkinFramePoly0
+    100020: onionSkinFramePoly1
+    100022: onionSkinFramePoly15
+    100024: onionSkinFramePoly20
+    100026: onionSkinFramePoly24
+    100028: onionSkinFramePoly25
+    100030: onionSkinFramePoly30
+    100032: onionSkinFramePoly36
+    100034: onionSkinFramePoly42
+    100036: onionSkinFramePoly48
+    100038: onionSkinFramePoly49
+    100040: onionSkinFramePoly50
+    100042: onionSkinFramePoly52
+    100044: onionSkinFramePoly53
+    100046: onionSkinFramePoly54
+    100048: onionSkinFramePoly55
+    100050: onionSkinFramePoly56
+    100052: onionSkinFramePoly59
+    100054: onionSkinFramePoly61
+    100056: onionSkinFramePoly7
+    100058: onionSkinFramePoly74
+    100060: onionSkinFramePoly75
+    100062: onionSkinFramePoly79
+    100064: onionSkinFramePoly80
+    100066: onionSkinFramePoly84
+    100068: onionSkinFramePoly85
+    100070: onionSkinFramePoly37
+    100072: onionSkinFramePoly43
+    100074: Axe_Left
+    100076: Axe_Right
+    100078: locator_Axe_Left
+    100080: locator_Axe_Right
     400000: //RootNode
+    400002: Axe
+    400004: Body
+    400006: L_leg
+    400008: R_Leg
+    400010: chr_knight:Mesh
+    400012: onionSkinController
+    400014: onionSkinFrameGroup
+    400016: onionSkinFrameGroup_onionSkinSet1
+    400018: onionSkinFramePoly0
+    400020: onionSkinFramePoly1
+    400022: onionSkinFramePoly15
+    400024: onionSkinFramePoly20
+    400026: onionSkinFramePoly24
+    400028: onionSkinFramePoly25
+    400030: onionSkinFramePoly30
+    400032: onionSkinFramePoly36
+    400034: onionSkinFramePoly42
+    400036: onionSkinFramePoly48
+    400038: onionSkinFramePoly49
+    400040: onionSkinFramePoly50
+    400042: onionSkinFramePoly52
+    400044: onionSkinFramePoly53
+    400046: onionSkinFramePoly54
+    400048: onionSkinFramePoly55
+    400050: onionSkinFramePoly56
+    400052: onionSkinFramePoly59
+    400054: onionSkinFramePoly61
+    400056: onionSkinFramePoly7
+    400058: onionSkinFramePoly74
+    400060: onionSkinFramePoly75
+    400062: onionSkinFramePoly79
+    400064: onionSkinFramePoly80
+    400066: onionSkinFramePoly84
+    400068: onionSkinFramePoly85
+    400070: onionSkinFramePoly37
+    400072: onionSkinFramePoly43
+    400074: Axe_Left
+    400076: Axe_Right
+    400078: locator_Axe_Left
+    400080: locator_Axe_Right
     2300000: //RootNode
+    2300002: Axe
+    2300004: Body
+    2300006: L_leg
+    2300008: R_Leg
+    2300010: Axe_Left
+    2300012: Axe_Right
     3300000: //RootNode
+    3300002: Axe
+    3300004: Body
+    3300006: L_leg
+    3300008: R_Leg
+    3300010: Axe_Left
+    3300012: Axe_Right
     4300000: chr_knight:Mesh
+    4300002: R_Leg
+    4300004: L_leg
+    4300006: Body
+    4300008: Axe
+    4300010: Axe_Right
+    4300012: Axe_Left
+    7400000: All
+    7400002: Idle
+    7400004: Run
+    7400006: Attack
+    7400008: Jump
+    7400010: Fall
+    7400012: Attack_Flipped
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -15,15 +120,323 @@ ModelImporter:
     materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
-    bakeSimulation: 0
+    bakeSimulation: 1
     optimizeGameObjects: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: All
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 79
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Body/locator_Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Left/Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Right
+        weight: 1
+      - path: Body/locator_Axe_Right/Axe_Right
+        weight: 1
+      - path: L_leg
+        weight: 1
+      - path: R_Leg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Body/locator_Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Left/Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Right
+        weight: 1
+      - path: Body/locator_Axe_Right/Axe_Right
+        weight: 1
+      - path: L_leg
+        weight: 1
+      - path: R_Leg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Run
+      takeName: Take 001
+      firstFrame: 25
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Body/locator_Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Left/Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Right
+        weight: 1
+      - path: Body/locator_Axe_Right/Axe_Right
+        weight: 1
+      - path: L_leg
+        weight: 1
+      - path: R_Leg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Attack
+      takeName: Take 001
+      firstFrame: 52
+      lastFrame: 58
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0
+        functionName: TrailStart
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: .977635384
+        functionName: TrailClear
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Body/locator_Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Left/Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Right
+        weight: 1
+      - path: Body/locator_Axe_Right/Axe_Right
+        weight: 1
+      - path: L_leg
+        weight: 1
+      - path: R_Leg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Jump
+      takeName: Take 001
+      firstFrame: 75
+      lastFrame: 79
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Body/locator_Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Left/Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Right
+        weight: 1
+      - path: Body/locator_Axe_Right/Axe_Right
+        weight: 1
+      - path: L_leg
+        weight: 1
+      - path: R_Leg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Fall
+      takeName: Take 001
+      firstFrame: 80
+      lastFrame: 84
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Body/locator_Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Left/Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Right
+        weight: 1
+      - path: Body/locator_Axe_Right/Axe_Right
+        weight: 1
+      - path: L_leg
+        weight: 1
+      - path: R_Leg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Attack_Flipped
+      takeName: Take 001
+      firstFrame: 52
+      lastFrame: 58
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Body/locator_Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Left/Axe_Left
+        weight: 1
+      - path: Body/locator_Axe_Right
+        weight: 1
+      - path: Body/locator_Axe_Right/Axe_Right
+        weight: 1
+      - path: L_leg
+        weight: 1
+      - path: R_Leg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -59,6 +472,6 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   additionalBone: 0
   userData: 

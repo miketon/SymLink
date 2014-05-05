@@ -10,8 +10,9 @@ class __asmMT extends __gameObjectMT{ //map state to animation playback
     super.Start();
     xform.GetComponent(Transform);
   }
-  
-  /*
+ 
+  #if !UNITY_ANDROID
+// || UNITY_IPHONE || UNITY_WP8 || UNITY_BLACKBERRY 
   function pathToComponent(IN_component){    
     var return_io;// = xform.GetComponent(IN_component) ;  //look in current hiearchy first //WTH - ambigous reference??
     if(!return_io){
@@ -27,5 +28,5 @@ class __asmMT extends __gameObjectMT{ //map state to animation playback
     }
     return return_io;
   }
- */
+  #endif
 }
