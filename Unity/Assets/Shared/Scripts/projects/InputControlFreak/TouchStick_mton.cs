@@ -27,6 +27,7 @@ public class TouchStick_mton : MonoBehaviour{
   public  GUIElement buttona_B_GUI ;
   public  GUIElement buttona_C_GUI ;
   public  GUIElement buttona_D_GUI ;
+	public Texture aTexture;
 
   public  float timeModalTapDelta = 0.25f ; //delta between when io is read as tap vs. press
   public  float buttonScale       = 0.1f  ;
@@ -53,7 +54,6 @@ public class TouchStick_mton : MonoBehaviour{
 
   void Awake(){ //caching most used var
     if (this.ctrl != null){
-
       // ----------------------
       // Stick and Zone Variables
       // ----------------------
@@ -63,6 +63,8 @@ public class TouchStick_mton : MonoBehaviour{
       pauseZone         = this.ctrl.GetZone(ZONE_PAUSE)          ;
 
       // mton Stuff
+	  //stick_attackStick.Hide(false); //hide and skip animation
+
       screenRes.x               = Screen.width                      ;
       screenRes.y               = Screen.height                     ;
       screenAspRatio            = screenRes.x/screenRes.y           ;
@@ -220,5 +222,11 @@ public class TouchStick_mton : MonoBehaviour{
 
     }
   }
-
+	void OnGUI(){
+		if (this.ctrl != null){
+		  this.ctrl.DrawControllerGUI();
+	      //GUI.color = new Color(1,1,1,1.0f); //setting GUI to be opaque
+		  //GUI.DrawTexture(stick_attackStick.GetHatDisplayRect(true), aTexture, ScaleMode.ScaleToFit, true, 1.0f);
+		}
+	}
 }
