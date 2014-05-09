@@ -49,10 +49,6 @@ public class PlayerMove_mton : MonoBehaviour
   private EnemyAI enemyAI          ;
   private DealDamage dealDamage    ;
 
-  //io values
-  protected float __h = 0.0f;
-  protected float __v = 0.0f;
-
   public virtual void doStart(){
     Debug.Log("I am starting.");
   }
@@ -112,10 +108,8 @@ public class PlayerMove_mton : MonoBehaviour
     screenMovementForward = screenMovementSpace * Vector3.forward          ;
     screenMovementRight   = screenMovementSpace * Vector3.right            ;
 
-
-    moveDirection = transform.position + direction ; //must be outside bInput check??? else slide
     doUpdate()                                     ;
-
+    moveDirection = transform.position + direction ; //must be outside bInput check??? else slide
   }
 
   //apply correct player movement (fixedUpdate for physics calculations)

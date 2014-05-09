@@ -15,8 +15,8 @@ public class PlayerMove_mton_IO_audio : PlayerMove_mton_IO{
   public float hVolume = 1.0f ;
 
   // map audio to touch movement
-  public override void io_Touch(){
-    base.io_Touch()                             ;
+	public override void io_Controller(){
+		base.io_Controller()                             ;
     doAudioTouch()                              ;
     //print("I am filtering audio." + this.__h) ;
   }
