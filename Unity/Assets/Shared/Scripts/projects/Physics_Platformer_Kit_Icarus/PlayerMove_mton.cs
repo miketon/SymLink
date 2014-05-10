@@ -5,8 +5,7 @@ using System.Collections;
 [RequireComponent(typeof(__goMotor))]
 [RequireComponent(typeof(DealDamage))]
 [RequireComponent(typeof(AudioSource))]
-public class PlayerMove_mton : MonoBehaviour 
-{
+public class PlayerMove_mton : MonoBehaviour {
 
   public bool bAttack                   ;
   public bool bJump  = false            ; //button Jump? 0 = released                                                                                 ; 1 = onPress  ;
