@@ -21,8 +21,7 @@ public class TouchStick_mton : MonoBehaviour{
   // Controller Variable 
   // ----------------------
 
-  public  TouchController	 ctrl  ;
-  public  PlayerMove_mton_IO mton  ;
+  public  TouchController	 ctrl    ;
   public  GUIElement buttona_A_GUI ;
   public  GUIElement buttona_B_GUI ;
   public  GUIElement buttona_C_GUI ;
@@ -133,7 +132,7 @@ public class TouchStick_mton : MonoBehaviour{
              Rect rectFals = stick_attackStick.GetRect(false)                                ;
              Debug.Log ("TRUE :" + rectTrue.x + "FALSE : " + rectFals.x)                     ;
              this.ctrl.GetZone(ZONE_PAUSE).SetRect(new Rect(rectFals.x, rectFals.y, -32,64)) ;
-          */
+             */
         }
 
         else if(stick_attackDir == TouchStick.StickDir.R){  
@@ -186,21 +185,17 @@ public class TouchStick_mton : MonoBehaviour{
 
       if (walkStick.Pressed()){
         TouchStick.StickDir	walkDir = walkStick.GetDigitalDir(true) ;
-        //Vector2	walkVec         = walkStick.GetVec()            ;
+        //Vector2	walkVec           = walkStick.GetVec()            ;
         //float	    walkTilt        = walkStick.GetTilt()           ;
         //float	    walkAngle       = walkStick.GetAngle()          ;
-        //Vector3	walkWorldVec    = walkStick.GetVec3d(false, 0)  ;
+        //Vector3	walkWorldVec      = walkStick.GetVec3d(false, 0)  ;
 
         // Your code here.
-        if(walkDir == TouchStick.StickDir.L){
-          doStick_LEFT();
-        }
-        else if(walkDir == TouchStick.StickDir.R){
-          doStick_RIGHT();
-        }
-        else{
-		  doStick_RELEASED();
-        }
+        if     (walkDir == TouchStick.StickDir.L ) { doStick_LEFT()    ; }
+        else if(walkDir == TouchStick.StickDir.R ) { doStick_RIGHT()   ; }
+        else if(walkDir == TouchStick.StickDir.U ) { doStick_UP()      ; }
+        else if(walkDir == TouchStick.StickDir.D ) { doStick_DOWN()    ; }
+        else                                       { doStick_NEUTRAL() ; } //else neutral
       }
       else{
         doStick_RELEASED();
@@ -232,48 +227,20 @@ public class TouchStick_mton : MonoBehaviour{
     }
   }
 
-  public virtual void doStick_RELEASED(){
-    mton.set_H(0.0f);
-    mton.set_V(0.0f);
-  }
-  public virtual void doStick_NEUTRAL(){
-  }
-  public virtual void doStick_LEFT(){
-    //Debug.Log("PRESSING LEFT : " + this) ;
-    //mton.io_Controller()               ;
-    mton.set_H(-1.0f)                    ;
-  }
+  public virtual void doStick_RELEASED() { }
+  public virtual void doStick_NEUTRAL()  { }
+  public virtual void doStick_LEFT()     { }
+  public virtual void doStick_RIGHT()    { }
+  public virtual void doStick_UP()       { }
+  public virtual void doStick_DOWN()     { }
 
-  public virtual void doStick_RIGHT(){
-    mton.set_H(1.0f)                    ;
-  }
-  public virtual void doStick_UP(){
-  }
-  public virtual void doStick_DOWN(){
-  }
-  public virtual void doButton_LEFT(){
-    mton.bFlip = false ; //facing left
-    mton.doAttack()    ;
-  }
+  public virtual void doButton_LEFT()    { }
+  public virtual void doButton_RIGHT()   { }
+  public virtual void doButton_UP()      { }
+  public virtual void doButton_DOWN()    { }
+  public virtual void doButton_NEUTRAL() { }
 
-  public virtual void doButton_RIGHT(){
-    mton.bFlip = true ; //facing right
-    mton.doAttack()   ;
-  }
-
-  public virtual void doButton_UP(){
-  }
-
-  public virtual void doButton_DOWN(){
-  }
-
-  public virtual void doButton_NEUTRAL(){
-    mton.doJump();
-  }
-
-  public virtual void doClearState(){
-    mton.clearBoolState();
-  }
+  public virtual void doClearState(){}
 
   void OnGUI(){
     if (this.ctrl != null){
