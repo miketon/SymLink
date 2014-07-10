@@ -1,0 +1,35 @@
+//Maya Preference 2014 (Release 1)
+//
+//
+windowPref -topLeftCorner 225 150 -widthHeight 250 400 -maximized false outlinerPanel1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 700 400 -maximized false hyperGraphPanel1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 660 400 -maximized false graphEditor1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 660 400 -maximized false dopeSheetPanel1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 660 400 -maximized false clipEditorPanel1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 524 470 -maximized false devicePanel1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 700 400 -maximized false hyperShadePanel1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 700 400 -maximized false dynPaintScriptedPanelWindow;
+windowPref -topLeftCorner 250 200 -widthHeight 550 562 -maximized false blindDataEditor1Window;
+windowPref -topLeftCorner 33 9 -widthHeight 1262 856 -maximized true MayaWindow;
+windowPref -topLeftCorner 334 232 -widthHeight 475 325 -maximized false referenceEditorPanel1Window;
+windowPref -topLeftCorner 186 706 -widthHeight 665 500 -maximized false PreferencesWindow;
+windowPref -topLeftCorner 383 987 -widthHeight 168 110 -maximized false bhGhost;
+windowPref -topLeftCorner 126 499 -widthHeight 546 350 -maximized false OptionBoxWindow;
+windowPref -topLeftCorner 196 162 -widthHeight 645 414 -maximized false scriptEditorPanel1Window;
+windowPref -topLeftCorner 335 811 -widthHeight 475 325 -maximized false visorPanel1Window;
+windowPref -topLeftCorner 314 482 -widthHeight 550 411 -maximized false pluginManagerWindow;
+windowPref -topLeftCorner 314 482 -widthHeight 268 31 -maximized false TSMGBakingReassuranceWindow;
+windowPref -topLeftCorner 314 482 -widthHeight 500 500 -maximized false FbxWarningWindow;
+windowPref -topLeftCorner 248 360 -widthHeight 475 325 -maximized false relationshipPanel1Window;
+windowPref -topLeftCorner 235 922 -widthHeight 450 580 -maximized false poseLibWindow;
+windowPref -topLeftCorner 314 482 -widthHeight 470 555 -maximized false shelfEditor;
+windowPref -topLeftCorner 266 682 -widthHeight 410 104 -maximized false poseLibCreateNewPoseWindow;
+windowPref -topLeftCorner 314 482 -widthHeight 342 402 -maximized false poseLibOptionsWindow;
+windowPref -topLeftCorner 283 482 -widthHeight 694 595 -maximized false learningMoviesLaunchWnd;
+windowPref -topLeftCorner 314 482 -widthHeight 450 320 -maximized false NewFeatureHighlightWnd;
+windowPref -topLeftCorner 314 482 -widthHeight 550 500 -maximized false projectWindow;
+windowPref -topLeftCorner 314 482 -widthHeight 429 224 -maximized false TSMGRigOptionsWindow;
+windowPref -topLeftCorner 314 482 -widthHeight 338 31 -maximized false TSMGRiggingReassuranceWindow;
+windowPref -topLeftCorner 247 14 -widthHeight 1426 580 -maximized false refEditsWin_femaleTSMG_rigRN;
+windowPref -topLeftCorner 547 1065 -widthHeight 475 325 -maximized false hyperGraphPanel3Window;
+windowPref -topLeftCorner 253 104 -widthHeight 407 438 -maximized false Viewport20OptionsWindow;

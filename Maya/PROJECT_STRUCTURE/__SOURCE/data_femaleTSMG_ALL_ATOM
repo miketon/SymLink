@@ -1,0 +1,1387 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<templates>
+	<using package='maya'/>
+	<using package='std'/>
+	<template name='data_femaleTSMG_ALL_ATOM'>
+		<attribute name='rightLeg1_LegIKControl_AntiIKPop' type='maya.double'>
+			<label>Right Leg 1 Leg IKControl Anti IKPop</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKControl_AutoStretch' type='maya.double'>
+			<label>Right Leg 1 Leg IKControl Auto Stretch</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKControl_FootStretch' type='maya.double'>
+			<label>Right Leg 1 Leg IKControl Foot Stretch</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKControl_HeelRaise' type='maya.double'>
+			<label>Right Leg 1 Leg IKControl Heel Raise</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKControl_HeelSwivel' type='maya.double'>
+			<label>Right Leg 1 Leg IKControl Heel Swivel</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKControl_LowerLegStretch' type='maya.double'>
+			<label>Right Leg 1 Leg IKControl Lower Leg Stretch</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKControl_rotateX' type='maya.doubleAngle'>
+			<label>Right Leg 1 Leg IKControl Rotate X</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKControl_rotateY' type='maya.doubleAngle'>
+			<label>Right Leg 1 Leg IKControl Rotate Y</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKControl_rotateZ' type='maya.doubleAngle'>
+			<label>Right Leg 1 Leg IKControl Rotate Z</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKControl_scaleX' type='maya.double'>
+			<label>Right Leg 1 Leg IKControl Scale X</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKControl_scaleY' type='maya.double'>
+			<label>Right Leg 1 Leg IKControl Scale Y</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKControl_scaleZ' type='maya.double'>
+			<label>Right Leg 1 Leg IKControl Scale Z</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKControl_ToeRaise' type='maya.double'>
+			<label>Right Leg 1 Leg IKControl Toe Raise</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKControl_ToeSwivel' type='maya.double'>
+			<label>Right Leg 1 Leg IKControl Toe Swivel</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKControl_translateX' type='maya.doubleLinear'>
+			<label>Right Leg 1 Leg IKControl Translate X</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKControl_translateY' type='maya.doubleLinear'>
+			<label>Right Leg 1 Leg IKControl Translate Y</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKControl_translateZ' type='maya.doubleLinear'>
+			<label>Right Leg 1 Leg IKControl Translate Z</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKControl_UpperLegStretch' type='maya.double'>
+			<label>Right Leg 1 Leg IKControl Upper Leg Stretch</label>
+		</attribute>
+		<attribute name='leftArm1_ArmIKControl_AntiIKPop' type='maya.double'>
+			<label>Left Arm 1 Arm IKControl Anti IKPop</label>
+		</attribute>
+		<attribute name='leftArm1_ArmIKControl_AutoStretch' type='maya.double'>
+			<label>Left Arm 1 Arm IKControl Auto Stretch</label>
+		</attribute>
+		<attribute name='leftArm1_ArmIKControl_LowerArmStretch' type='maya.double'>
+			<label>Left Arm 1 Arm IKControl Lower Arm Stretch</label>
+		</attribute>
+		<attribute name='leftArm1_ArmIKControl_rotateX' type='maya.doubleAngle'>
+			<label>Left Arm 1 Arm IKControl Rotate X</label>
+		</attribute>
+		<attribute name='leftArm1_ArmIKControl_rotateY' type='maya.doubleAngle'>
+			<label>Left Arm 1 Arm IKControl Rotate Y</label>
+		</attribute>
+		<attribute name='leftArm1_ArmIKControl_rotateZ' type='maya.doubleAngle'>
+			<label>Left Arm 1 Arm IKControl Rotate Z</label>
+		</attribute>
+		<attribute name='leftArm1_ArmIKControl_scaleX' type='maya.double'>
+			<label>Left Arm 1 Arm IKControl Scale X</label>
+		</attribute>
+		<attribute name='leftArm1_ArmIKControl_scaleY' type='maya.double'>
+			<label>Left Arm 1 Arm IKControl Scale Y</label>
+		</attribute>
+		<attribute name='leftArm1_ArmIKControl_scaleZ' type='maya.double'>
+			<label>Left Arm 1 Arm IKControl Scale Z</label>
+		</attribute>
+		<attribute name='leftArm1_ArmIKControl_translateX' type='maya.doubleLinear'>
+			<label>Left Arm 1 Arm IKControl Translate X</label>
+		</attribute>
+		<attribute name='leftArm1_ArmIKControl_translateY' type='maya.doubleLinear'>
+			<label>Left Arm 1 Arm IKControl Translate Y</label>
+		</attribute>
+		<attribute name='leftArm1_ArmIKControl_translateZ' type='maya.doubleLinear'>
+			<label>Left Arm 1 Arm IKControl Translate Z</label>
+		</attribute>
+		<attribute name='leftArm1_ArmIKControl_UpperArmStretch' type='maya.double'>
+			<label>Left Arm 1 Arm IKControl Upper Arm Stretch</label>
+		</attribute>
+		<attribute name='TSMG_root_rotateX' type='maya.doubleAngle'>
+			<label>TSMG Root Rotate X</label>
+		</attribute>
+		<attribute name='TSMG_root_rotateY' type='maya.doubleAngle'>
+			<label>TSMG Root Rotate Y</label>
+		</attribute>
+		<attribute name='TSMG_root_rotateZ' type='maya.doubleAngle'>
+			<label>TSMG Root Rotate Z</label>
+		</attribute>
+		<attribute name='TSMG_root_translateX' type='maya.doubleLinear'>
+			<label>TSMG Root Translate X</label>
+		</attribute>
+		<attribute name='TSMG_root_translateY' type='maya.doubleLinear'>
+			<label>TSMG Root Translate Y</label>
+		</attribute>
+		<attribute name='TSMG_root_translateZ' type='maya.doubleLinear'>
+			<label>TSMG Root Translate Z</label>
+		</attribute>
+		<attribute name='TSMG_root_visibility' type='maya.bool'>
+			<label>TSMG Root Visibility</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_head1_controlSize' type='maya.double'>
+			<label>TSMG Upper Body Head 1 Control Size</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_head1_RotationIsolationSwitch' type='maya.double'>
+			<label>TSMG Upper Body Head 1 Rotation Isolation Switch</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_leftArm1_controlSize' type='maya.double'>
+			<label>TSMG Upper Body Left Arm 1 Control Size</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_leftArm1_FKIKSwitch' type='maya.double'>
+			<label>TSMG Upper Body Left Arm 1 FKIKSwitch</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_leftArm1_RotationIsolationSwitch' type='maya.double'>
+			<label>TSMG Upper Body Left Arm 1 Rotation Isolation Switch</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_leftLeg1_ControlSize' type='maya.double'>
+			<label>TSMG Upper Body Left Leg 1 Control Size</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_leftLeg1_FKIKSwitch' type='maya.double'>
+			<label>TSMG Upper Body Left Leg 1 FKIKSwitch</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_leftLeg1_RotationIsolationSwitch' type='maya.double'>
+			<label>TSMG Upper Body Left Leg 1 Rotation Isolation Switch</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_rightArm1_controlSize' type='maya.double'>
+			<label>TSMG Upper Body Right Arm 1 Control Size</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_rightArm1_FKIKSwitch' type='maya.double'>
+			<label>TSMG Upper Body Right Arm 1 FKIKSwitch</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_rightArm1_RotationIsolationSwitch' type='maya.double'>
+			<label>TSMG Upper Body Right Arm 1 Rotation Isolation Switch</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_rightLeg1_ControlSize' type='maya.double'>
+			<label>TSMG Upper Body Right Leg 1 Control Size</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_rightLeg1_FKIKSwitch' type='maya.double'>
+			<label>TSMG Upper Body Right Leg 1 FKIKSwitch</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_rightLeg1_RotationIsolationSwitch' type='maya.double'>
+			<label>TSMG Upper Body Right Leg 1 Rotation Isolation Switch</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_rotateX' type='maya.doubleAngle'>
+			<label>TSMG Upper Body Rotate X</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_rotateY' type='maya.doubleAngle'>
+			<label>TSMG Upper Body Rotate Y</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_rotateZ' type='maya.doubleAngle'>
+			<label>TSMG Upper Body Rotate Z</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_spine1_ControlSize' type='maya.double'>
+			<label>TSMG Upper Body Spine 1 Control Size</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_spine1_FKIKSwitch' type='maya.double'>
+			<label>TSMG Upper Body Spine 1 FKIKSwitch</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_translateX' type='maya.doubleLinear'>
+			<label>TSMG Upper Body Translate X</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_translateY' type='maya.doubleLinear'>
+			<label>TSMG Upper Body Translate Y</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_translateZ' type='maya.doubleLinear'>
+			<label>TSMG Upper Body Translate Z</label>
+		</attribute>
+		<attribute name='TSMG_upper_body_visibility' type='maya.bool'>
+			<label>TSMG Upper Body Visibility</label>
+		</attribute>
+		<attribute name='leftLeg1_IKHeelControl_rotateX' type='maya.doubleAngle'>
+			<label>Left Leg 1 IKHeel Control Rotate X</label>
+		</attribute>
+		<attribute name='leftLeg1_IKHeelControl_rotateY' type='maya.doubleAngle'>
+			<label>Left Leg 1 IKHeel Control Rotate Y</label>
+		</attribute>
+		<attribute name='leftLeg1_IKHeelControl_rotateZ' type='maya.doubleAngle'>
+			<label>Left Leg 1 IKHeel Control Rotate Z</label>
+		</attribute>
+		<attribute name='rightLeg1_IKHeelControl_rotateX' type='maya.doubleAngle'>
+			<label>Right Leg 1 IKHeel Control Rotate X</label>
+		</attribute>
+		<attribute name='rightLeg1_IKHeelControl_rotateY' type='maya.doubleAngle'>
+			<label>Right Leg 1 IKHeel Control Rotate Y</label>
+		</attribute>
+		<attribute name='rightLeg1_IKHeelControl_rotateZ' type='maya.doubleAngle'>
+			<label>Right Leg 1 IKHeel Control Rotate Z</label>
+		</attribute>
+		<attribute name='leftFinger3_Control_EndJoint' type='maya.double'>
+			<label>Left Finger 3 Control End Joint</label>
+		</attribute>
+		<attribute name='leftFinger3_Control_MiddleJoint' type='maya.double'>
+			<label>Left Finger 3 Control Middle Joint</label>
+		</attribute>
+		<attribute name='leftFinger3_Control_rotateX' type='maya.doubleAngle'>
+			<label>Left Finger 3 Control Rotate X</label>
+		</attribute>
+		<attribute name='leftFinger3_Control_rotateY' type='maya.doubleAngle'>
+			<label>Left Finger 3 Control Rotate Y</label>
+		</attribute>
+		<attribute name='leftFinger3_Control_rotateZ' type='maya.doubleAngle'>
+			<label>Left Finger 3 Control Rotate Z</label>
+		</attribute>
+		<attribute name='leftFinger3_Control_SideToSide' type='maya.double'>
+			<label>Left Finger 3 Control Side To Side</label>
+		</attribute>
+		<attribute name='leftFinger3_Control_translateX' type='maya.doubleLinear'>
+			<label>Left Finger 3 Control Translate X</label>
+		</attribute>
+		<attribute name='leftFinger3_Control_translateY' type='maya.doubleLinear'>
+			<label>Left Finger 3 Control Translate Y</label>
+		</attribute>
+		<attribute name='leftFinger3_Control_translateZ' type='maya.doubleLinear'>
+			<label>Left Finger 3 Control Translate Z</label>
+		</attribute>
+		<attribute name='leftFinger4_Control_EndJoint' type='maya.double'>
+			<label>Left Finger 4 Control End Joint</label>
+		</attribute>
+		<attribute name='leftFinger4_Control_MiddleJoint' type='maya.double'>
+			<label>Left Finger 4 Control Middle Joint</label>
+		</attribute>
+		<attribute name='leftFinger4_Control_rotateX' type='maya.doubleAngle'>
+			<label>Left Finger 4 Control Rotate X</label>
+		</attribute>
+		<attribute name='leftFinger4_Control_rotateY' type='maya.doubleAngle'>
+			<label>Left Finger 4 Control Rotate Y</label>
+		</attribute>
+		<attribute name='leftFinger4_Control_rotateZ' type='maya.doubleAngle'>
+			<label>Left Finger 4 Control Rotate Z</label>
+		</attribute>
+		<attribute name='leftFinger4_Control_SideToSide' type='maya.double'>
+			<label>Left Finger 4 Control Side To Side</label>
+		</attribute>
+		<attribute name='leftFinger4_Control_translateX' type='maya.doubleLinear'>
+			<label>Left Finger 4 Control Translate X</label>
+		</attribute>
+		<attribute name='leftFinger4_Control_translateY' type='maya.doubleLinear'>
+			<label>Left Finger 4 Control Translate Y</label>
+		</attribute>
+		<attribute name='leftFinger4_Control_translateZ' type='maya.doubleLinear'>
+			<label>Left Finger 4 Control Translate Z</label>
+		</attribute>
+		<attribute name='leftLeg1_UpperLegControl_rotateX' type='maya.doubleAngle'>
+			<label>Left Leg 1 Upper Leg Control Rotate X</label>
+		</attribute>
+		<attribute name='leftLeg1_UpperLegControl_rotateY' type='maya.doubleAngle'>
+			<label>Left Leg 1 Upper Leg Control Rotate Y</label>
+		</attribute>
+		<attribute name='leftLeg1_UpperLegControl_rotateZ' type='maya.doubleAngle'>
+			<label>Left Leg 1 Upper Leg Control Rotate Z</label>
+		</attribute>
+		<attribute name='leftLeg1_UpperLegControl_stretch' type='maya.double'>
+			<label>Left Leg 1 Upper Leg Control Stretch</label>
+		</attribute>
+		<attribute name='leftLeg1_LowerLegControl_rotateY' type='maya.doubleAngle'>
+			<label>Left Leg 1 Lower Leg Control Rotate Y</label>
+		</attribute>
+		<attribute name='leftLeg1_LowerLegControl_stretch' type='maya.double'>
+			<label>Left Leg 1 Lower Leg Control Stretch</label>
+		</attribute>
+		<attribute name='leftLeg1_FootControl_rotateX' type='maya.doubleAngle'>
+			<label>Left Leg 1 Foot Control Rotate X</label>
+		</attribute>
+		<attribute name='leftLeg1_FootControl_rotateY' type='maya.doubleAngle'>
+			<label>Left Leg 1 Foot Control Rotate Y</label>
+		</attribute>
+		<attribute name='leftLeg1_FootControl_rotateZ' type='maya.doubleAngle'>
+			<label>Left Leg 1 Foot Control Rotate Z</label>
+		</attribute>
+		<attribute name='leftLeg1_FootControl_stretch' type='maya.double'>
+			<label>Left Leg 1 Foot Control Stretch</label>
+		</attribute>
+		<attribute name='leftLeg1_ToeControl_rotateX' type='maya.doubleAngle'>
+			<label>Left Leg 1 Toe Control Rotate X</label>
+		</attribute>
+		<attribute name='leftLeg1_ToeControl_rotateY' type='maya.doubleAngle'>
+			<label>Left Leg 1 Toe Control Rotate Y</label>
+		</attribute>
+		<attribute name='leftLeg1_ToeControl_rotateZ' type='maya.doubleAngle'>
+			<label>Left Leg 1 Toe Control Rotate Z</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKKneeControl_rotateX' type='maya.doubleAngle'>
+			<label>Left Leg 1 Leg IKKnee Control Rotate X</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKKneeControl_rotateY' type='maya.doubleAngle'>
+			<label>Left Leg 1 Leg IKKnee Control Rotate Y</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKKneeControl_rotateZ' type='maya.doubleAngle'>
+			<label>Left Leg 1 Leg IKKnee Control Rotate Z</label>
+		</attribute>
+		<attribute name='leftThumb1_Control_EndJoint' type='maya.double'>
+			<label>Left Thumb 1 Control End Joint</label>
+		</attribute>
+		<attribute name='leftThumb1_Control_MiddleJoint' type='maya.double'>
+			<label>Left Thumb 1 Control Middle Joint</label>
+		</attribute>
+		<attribute name='leftThumb1_Control_rotateX' type='maya.doubleAngle'>
+			<label>Left Thumb 1 Control Rotate X</label>
+		</attribute>
+		<attribute name='leftThumb1_Control_rotateY' type='maya.doubleAngle'>
+			<label>Left Thumb 1 Control Rotate Y</label>
+		</attribute>
+		<attribute name='leftThumb1_Control_rotateZ' type='maya.doubleAngle'>
+			<label>Left Thumb 1 Control Rotate Z</label>
+		</attribute>
+		<attribute name='leftThumb1_Control_SideToSide' type='maya.double'>
+			<label>Left Thumb 1 Control Side To Side</label>
+		</attribute>
+		<attribute name='leftThumb1_Control_translateX' type='maya.doubleLinear'>
+			<label>Left Thumb 1 Control Translate X</label>
+		</attribute>
+		<attribute name='leftThumb1_Control_translateY' type='maya.doubleLinear'>
+			<label>Left Thumb 1 Control Translate Y</label>
+		</attribute>
+		<attribute name='leftThumb1_Control_translateZ' type='maya.doubleLinear'>
+			<label>Left Thumb 1 Control Translate Z</label>
+		</attribute>
+		<attribute name='rightArm1_ClavicalControl_rotateX' type='maya.doubleAngle'>
+			<label>Right Arm 1 Clavical Control Rotate X</label>
+		</attribute>
+		<attribute name='rightArm1_ClavicalControl_rotateY' type='maya.doubleAngle'>
+			<label>Right Arm 1 Clavical Control Rotate Y</label>
+		</attribute>
+		<attribute name='rightArm1_ClavicalControl_rotateZ' type='maya.doubleAngle'>
+			<label>Right Arm 1 Clavical Control Rotate Z</label>
+		</attribute>
+		<attribute name='rightArm1_ClavicalControl_stretch' type='maya.double'>
+			<label>Right Arm 1 Clavical Control Stretch</label>
+		</attribute>
+		<attribute name='rightArm1_UpperArmControl_rotateX' type='maya.doubleAngle'>
+			<label>Right Arm 1 Upper Arm Control Rotate X</label>
+		</attribute>
+		<attribute name='rightArm1_UpperArmControl_rotateY' type='maya.doubleAngle'>
+			<label>Right Arm 1 Upper Arm Control Rotate Y</label>
+		</attribute>
+		<attribute name='rightArm1_UpperArmControl_rotateZ' type='maya.doubleAngle'>
+			<label>Right Arm 1 Upper Arm Control Rotate Z</label>
+		</attribute>
+		<attribute name='rightArm1_UpperArmControl_stretch' type='maya.double'>
+			<label>Right Arm 1 Upper Arm Control Stretch</label>
+		</attribute>
+		<attribute name='rightArm1_LowerArmControl_rotateY' type='maya.doubleAngle'>
+			<label>Right Arm 1 Lower Arm Control Rotate Y</label>
+		</attribute>
+		<attribute name='rightArm1_LowerArmControl_stretch' type='maya.double'>
+			<label>Right Arm 1 Lower Arm Control Stretch</label>
+		</attribute>
+		<attribute name='rightArm1_HandControl_rotateX' type='maya.doubleAngle'>
+			<label>Right Arm 1 Hand Control Rotate X</label>
+		</attribute>
+		<attribute name='rightArm1_HandControl_rotateY' type='maya.doubleAngle'>
+			<label>Right Arm 1 Hand Control Rotate Y</label>
+		</attribute>
+		<attribute name='rightArm1_HandControl_rotateZ' type='maya.doubleAngle'>
+			<label>Right Arm 1 Hand Control Rotate Z</label>
+		</attribute>
+		<attribute name='rightArm1_HandControl_scaleX' type='maya.double'>
+			<label>Right Arm 1 Hand Control Scale X</label>
+		</attribute>
+		<attribute name='rightArm1_HandControl_scaleY' type='maya.double'>
+			<label>Right Arm 1 Hand Control Scale Y</label>
+		</attribute>
+		<attribute name='rightArm1_HandControl_scaleZ' type='maya.double'>
+			<label>Right Arm 1 Hand Control Scale Z</label>
+		</attribute>
+		<attribute name='rightArm1_ArmIKElbowControl_rotateX' type='maya.doubleAngle'>
+			<label>Right Arm 1 Arm IKElbow Control Rotate X</label>
+		</attribute>
+		<attribute name='rightArm1_ArmIKElbowControl_rotateY' type='maya.doubleAngle'>
+			<label>Right Arm 1 Arm IKElbow Control Rotate Y</label>
+		</attribute>
+		<attribute name='rightArm1_ArmIKElbowControl_rotateZ' type='maya.doubleAngle'>
+			<label>Right Arm 1 Arm IKElbow Control Rotate Z</label>
+		</attribute>
+		<attribute name='rightFinger1_Control_EndJoint' type='maya.double'>
+			<label>Right Finger 1 Control End Joint</label>
+		</attribute>
+		<attribute name='rightFinger1_Control_MiddleJoint' type='maya.double'>
+			<label>Right Finger 1 Control Middle Joint</label>
+		</attribute>
+		<attribute name='rightFinger1_Control_rotateX' type='maya.doubleAngle'>
+			<label>Right Finger 1 Control Rotate X</label>
+		</attribute>
+		<attribute name='rightFinger1_Control_rotateY' type='maya.doubleAngle'>
+			<label>Right Finger 1 Control Rotate Y</label>
+		</attribute>
+		<attribute name='rightFinger1_Control_rotateZ' type='maya.doubleAngle'>
+			<label>Right Finger 1 Control Rotate Z</label>
+		</attribute>
+		<attribute name='rightFinger1_Control_SideToSide' type='maya.double'>
+			<label>Right Finger 1 Control Side To Side</label>
+		</attribute>
+		<attribute name='rightFinger1_Control_translateX' type='maya.doubleLinear'>
+			<label>Right Finger 1 Control Translate X</label>
+		</attribute>
+		<attribute name='rightFinger1_Control_translateY' type='maya.doubleLinear'>
+			<label>Right Finger 1 Control Translate Y</label>
+		</attribute>
+		<attribute name='rightFinger1_Control_translateZ' type='maya.doubleLinear'>
+			<label>Right Finger 1 Control Translate Z</label>
+		</attribute>
+		<attribute name='rightFinger2_Control_EndJoint' type='maya.double'>
+			<label>Right Finger 2 Control End Joint</label>
+		</attribute>
+		<attribute name='rightFinger2_Control_MiddleJoint' type='maya.double'>
+			<label>Right Finger 2 Control Middle Joint</label>
+		</attribute>
+		<attribute name='rightFinger2_Control_rotateX' type='maya.doubleAngle'>
+			<label>Right Finger 2 Control Rotate X</label>
+		</attribute>
+		<attribute name='rightFinger2_Control_rotateY' type='maya.doubleAngle'>
+			<label>Right Finger 2 Control Rotate Y</label>
+		</attribute>
+		<attribute name='rightFinger2_Control_rotateZ' type='maya.doubleAngle'>
+			<label>Right Finger 2 Control Rotate Z</label>
+		</attribute>
+		<attribute name='rightFinger2_Control_SideToSide' type='maya.double'>
+			<label>Right Finger 2 Control Side To Side</label>
+		</attribute>
+		<attribute name='rightFinger2_Control_translateX' type='maya.doubleLinear'>
+			<label>Right Finger 2 Control Translate X</label>
+		</attribute>
+		<attribute name='rightFinger2_Control_translateY' type='maya.doubleLinear'>
+			<label>Right Finger 2 Control Translate Y</label>
+		</attribute>
+		<attribute name='rightFinger2_Control_translateZ' type='maya.doubleLinear'>
+			<label>Right Finger 2 Control Translate Z</label>
+		</attribute>
+		<attribute name='rightFinger3_Control_EndJoint' type='maya.double'>
+			<label>Right Finger 3 Control End Joint</label>
+		</attribute>
+		<attribute name='rightFinger3_Control_MiddleJoint' type='maya.double'>
+			<label>Right Finger 3 Control Middle Joint</label>
+		</attribute>
+		<attribute name='rightFinger3_Control_rotateX' type='maya.doubleAngle'>
+			<label>Right Finger 3 Control Rotate X</label>
+		</attribute>
+		<attribute name='rightFinger3_Control_rotateY' type='maya.doubleAngle'>
+			<label>Right Finger 3 Control Rotate Y</label>
+		</attribute>
+		<attribute name='rightFinger3_Control_rotateZ' type='maya.doubleAngle'>
+			<label>Right Finger 3 Control Rotate Z</label>
+		</attribute>
+		<attribute name='rightFinger3_Control_SideToSide' type='maya.double'>
+			<label>Right Finger 3 Control Side To Side</label>
+		</attribute>
+		<attribute name='rightFinger3_Control_translateX' type='maya.doubleLinear'>
+			<label>Right Finger 3 Control Translate X</label>
+		</attribute>
+		<attribute name='rightFinger3_Control_translateY' type='maya.doubleLinear'>
+			<label>Right Finger 3 Control Translate Y</label>
+		</attribute>
+		<attribute name='rightFinger3_Control_translateZ' type='maya.doubleLinear'>
+			<label>Right Finger 3 Control Translate Z</label>
+		</attribute>
+		<attribute name='rightFinger4_Control_EndJoint' type='maya.double'>
+			<label>Right Finger 4 Control End Joint</label>
+		</attribute>
+		<attribute name='rightFinger4_Control_MiddleJoint' type='maya.double'>
+			<label>Right Finger 4 Control Middle Joint</label>
+		</attribute>
+		<attribute name='rightFinger4_Control_rotateX' type='maya.doubleAngle'>
+			<label>Right Finger 4 Control Rotate X</label>
+		</attribute>
+		<attribute name='rightFinger4_Control_rotateY' type='maya.doubleAngle'>
+			<label>Right Finger 4 Control Rotate Y</label>
+		</attribute>
+		<attribute name='rightFinger4_Control_rotateZ' type='maya.doubleAngle'>
+			<label>Right Finger 4 Control Rotate Z</label>
+		</attribute>
+		<attribute name='rightFinger4_Control_SideToSide' type='maya.double'>
+			<label>Right Finger 4 Control Side To Side</label>
+		</attribute>
+		<attribute name='rightFinger4_Control_translateX' type='maya.doubleLinear'>
+			<label>Right Finger 4 Control Translate X</label>
+		</attribute>
+		<attribute name='rightFinger4_Control_translateY' type='maya.doubleLinear'>
+			<label>Right Finger 4 Control Translate Y</label>
+		</attribute>
+		<attribute name='rightFinger4_Control_translateZ' type='maya.doubleLinear'>
+			<label>Right Finger 4 Control Translate Z</label>
+		</attribute>
+		<attribute name='rightLeg1_UpperLegControl_rotateX' type='maya.doubleAngle'>
+			<label>Right Leg 1 Upper Leg Control Rotate X</label>
+		</attribute>
+		<attribute name='rightLeg1_UpperLegControl_rotateY' type='maya.doubleAngle'>
+			<label>Right Leg 1 Upper Leg Control Rotate Y</label>
+		</attribute>
+		<attribute name='rightLeg1_UpperLegControl_rotateZ' type='maya.doubleAngle'>
+			<label>Right Leg 1 Upper Leg Control Rotate Z</label>
+		</attribute>
+		<attribute name='rightLeg1_UpperLegControl_stretch' type='maya.double'>
+			<label>Right Leg 1 Upper Leg Control Stretch</label>
+		</attribute>
+		<attribute name='rightLeg1_LowerLegControl_rotateY' type='maya.doubleAngle'>
+			<label>Right Leg 1 Lower Leg Control Rotate Y</label>
+		</attribute>
+		<attribute name='rightLeg1_LowerLegControl_stretch' type='maya.double'>
+			<label>Right Leg 1 Lower Leg Control Stretch</label>
+		</attribute>
+		<attribute name='rightLeg1_FootControl_rotateX' type='maya.doubleAngle'>
+			<label>Right Leg 1 Foot Control Rotate X</label>
+		</attribute>
+		<attribute name='rightLeg1_FootControl_rotateY' type='maya.doubleAngle'>
+			<label>Right Leg 1 Foot Control Rotate Y</label>
+		</attribute>
+		<attribute name='rightLeg1_FootControl_rotateZ' type='maya.doubleAngle'>
+			<label>Right Leg 1 Foot Control Rotate Z</label>
+		</attribute>
+		<attribute name='rightLeg1_FootControl_stretch' type='maya.double'>
+			<label>Right Leg 1 Foot Control Stretch</label>
+		</attribute>
+		<attribute name='rightLeg1_ToeControl_rotateX' type='maya.doubleAngle'>
+			<label>Right Leg 1 Toe Control Rotate X</label>
+		</attribute>
+		<attribute name='rightLeg1_ToeControl_rotateY' type='maya.doubleAngle'>
+			<label>Right Leg 1 Toe Control Rotate Y</label>
+		</attribute>
+		<attribute name='rightLeg1_ToeControl_rotateZ' type='maya.doubleAngle'>
+			<label>Right Leg 1 Toe Control Rotate Z</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKKneeControl_rotateX' type='maya.doubleAngle'>
+			<label>Right Leg 1 Leg IKKnee Control Rotate X</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKKneeControl_rotateY' type='maya.doubleAngle'>
+			<label>Right Leg 1 Leg IKKnee Control Rotate Y</label>
+		</attribute>
+		<attribute name='rightLeg1_LegIKKneeControl_rotateZ' type='maya.doubleAngle'>
+			<label>Right Leg 1 Leg IKKnee Control Rotate Z</label>
+		</attribute>
+		<attribute name='rightThumb1_Control_EndJoint' type='maya.double'>
+			<label>Right Thumb 1 Control End Joint</label>
+		</attribute>
+		<attribute name='rightThumb1_Control_MiddleJoint' type='maya.double'>
+			<label>Right Thumb 1 Control Middle Joint</label>
+		</attribute>
+		<attribute name='rightThumb1_Control_rotateX' type='maya.doubleAngle'>
+			<label>Right Thumb 1 Control Rotate X</label>
+		</attribute>
+		<attribute name='rightThumb1_Control_rotateY' type='maya.doubleAngle'>
+			<label>Right Thumb 1 Control Rotate Y</label>
+		</attribute>
+		<attribute name='rightThumb1_Control_rotateZ' type='maya.doubleAngle'>
+			<label>Right Thumb 1 Control Rotate Z</label>
+		</attribute>
+		<attribute name='rightThumb1_Control_SideToSide' type='maya.double'>
+			<label>Right Thumb 1 Control Side To Side</label>
+		</attribute>
+		<attribute name='rightThumb1_Control_translateX' type='maya.doubleLinear'>
+			<label>Right Thumb 1 Control Translate X</label>
+		</attribute>
+		<attribute name='rightThumb1_Control_translateY' type='maya.doubleLinear'>
+			<label>Right Thumb 1 Control Translate Y</label>
+		</attribute>
+		<attribute name='rightThumb1_Control_translateZ' type='maya.doubleLinear'>
+			<label>Right Thumb 1 Control Translate Z</label>
+		</attribute>
+		<attribute name='spine1_lowerSpineControl_rotateX' type='maya.doubleAngle'>
+			<label>Spine 1 Lower Spine Control Rotate X</label>
+		</attribute>
+		<attribute name='spine1_lowerSpineControl_rotateY' type='maya.doubleAngle'>
+			<label>Spine 1 Lower Spine Control Rotate Y</label>
+		</attribute>
+		<attribute name='spine1_lowerSpineControl_rotateZ' type='maya.doubleAngle'>
+			<label>Spine 1 Lower Spine Control Rotate Z</label>
+		</attribute>
+		<attribute name='spine1_lowerSpineControl_translateX' type='maya.doubleLinear'>
+			<label>Spine 1 Lower Spine Control Translate X</label>
+		</attribute>
+		<attribute name='spine1_lowerSpineControl_translateY' type='maya.doubleLinear'>
+			<label>Spine 1 Lower Spine Control Translate Y</label>
+		</attribute>
+		<attribute name='spine1_lowerSpineControl_translateZ' type='maya.doubleLinear'>
+			<label>Spine 1 Lower Spine Control Translate Z</label>
+		</attribute>
+		<attribute name='spine1_middleSpineControl_rotateX' type='maya.doubleAngle'>
+			<label>Spine 1 Middle Spine Control Rotate X</label>
+		</attribute>
+		<attribute name='spine1_middleSpineControl_rotateY' type='maya.doubleAngle'>
+			<label>Spine 1 Middle Spine Control Rotate Y</label>
+		</attribute>
+		<attribute name='spine1_middleSpineControl_rotateZ' type='maya.doubleAngle'>
+			<label>Spine 1 Middle Spine Control Rotate Z</label>
+		</attribute>
+		<attribute name='spine1_middleSpineControl_translateX' type='maya.doubleLinear'>
+			<label>Spine 1 Middle Spine Control Translate X</label>
+		</attribute>
+		<attribute name='spine1_middleSpineControl_translateY' type='maya.doubleLinear'>
+			<label>Spine 1 Middle Spine Control Translate Y</label>
+		</attribute>
+		<attribute name='spine1_middleSpineControl_translateZ' type='maya.doubleLinear'>
+			<label>Spine 1 Middle Spine Control Translate Z</label>
+		</attribute>
+		<attribute name='spine1_torsoControl_rotateX' type='maya.doubleAngle'>
+			<label>Spine 1 Torso Control Rotate X</label>
+		</attribute>
+		<attribute name='spine1_torsoControl_rotateY' type='maya.doubleAngle'>
+			<label>Spine 1 Torso Control Rotate Y</label>
+		</attribute>
+		<attribute name='spine1_torsoControl_rotateZ' type='maya.doubleAngle'>
+			<label>Spine 1 Torso Control Rotate Z</label>
+		</attribute>
+		<attribute name='spine1_torsoControl_translateX' type='maya.doubleLinear'>
+			<label>Spine 1 Torso Control Translate X</label>
+		</attribute>
+		<attribute name='spine1_torsoControl_translateY' type='maya.doubleLinear'>
+			<label>Spine 1 Torso Control Translate Y</label>
+		</attribute>
+		<attribute name='spine1_torsoControl_translateZ' type='maya.doubleLinear'>
+			<label>Spine 1 Torso Control Translate Z</label>
+		</attribute>
+		<attribute name='spine1_hipsControl_rotateX' type='maya.doubleAngle'>
+			<label>Spine 1 Hips Control Rotate X</label>
+		</attribute>
+		<attribute name='spine1_hipsControl_rotateY' type='maya.doubleAngle'>
+			<label>Spine 1 Hips Control Rotate Y</label>
+		</attribute>
+		<attribute name='spine1_hipsControl_rotateZ' type='maya.doubleAngle'>
+			<label>Spine 1 Hips Control Rotate Z</label>
+		</attribute>
+		<attribute name='spine1_hipsControl_translateX' type='maya.doubleLinear'>
+			<label>Spine 1 Hips Control Translate X</label>
+		</attribute>
+		<attribute name='spine1_hipsControl_translateY' type='maya.doubleLinear'>
+			<label>Spine 1 Hips Control Translate Y</label>
+		</attribute>
+		<attribute name='spine1_hipsControl_translateZ' type='maya.doubleLinear'>
+			<label>Spine 1 Hips Control Translate Z</label>
+		</attribute>
+		<attribute name='spine1_hipsIKControl_rotateX' type='maya.doubleAngle'>
+			<label>Spine 1 Hips IKControl Rotate X</label>
+		</attribute>
+		<attribute name='spine1_hipsIKControl_rotateY' type='maya.doubleAngle'>
+			<label>Spine 1 Hips IKControl Rotate Y</label>
+		</attribute>
+		<attribute name='spine1_hipsIKControl_rotateZ' type='maya.doubleAngle'>
+			<label>Spine 1 Hips IKControl Rotate Z</label>
+		</attribute>
+		<attribute name='spine1_hipsIKControl_scaleX' type='maya.double'>
+			<label>Spine 1 Hips IKControl Scale X</label>
+		</attribute>
+		<attribute name='spine1_hipsIKControl_scaleY' type='maya.double'>
+			<label>Spine 1 Hips IKControl Scale Y</label>
+		</attribute>
+		<attribute name='spine1_hipsIKControl_scaleZ' type='maya.double'>
+			<label>Spine 1 Hips IKControl Scale Z</label>
+		</attribute>
+		<attribute name='spine1_hipsIKControl_translateX' type='maya.doubleLinear'>
+			<label>Spine 1 Hips IKControl Translate X</label>
+		</attribute>
+		<attribute name='spine1_hipsIKControl_translateY' type='maya.doubleLinear'>
+			<label>Spine 1 Hips IKControl Translate Y</label>
+		</attribute>
+		<attribute name='spine1_hipsIKControl_translateZ' type='maya.doubleLinear'>
+			<label>Spine 1 Hips IKControl Translate Z</label>
+		</attribute>
+		<attribute name='spine1_torsoIKControl_rotateX' type='maya.doubleAngle'>
+			<label>Spine 1 Torso IKControl Rotate X</label>
+		</attribute>
+		<attribute name='spine1_torsoIKControl_rotateY' type='maya.doubleAngle'>
+			<label>Spine 1 Torso IKControl Rotate Y</label>
+		</attribute>
+		<attribute name='spine1_torsoIKControl_rotateZ' type='maya.doubleAngle'>
+			<label>Spine 1 Torso IKControl Rotate Z</label>
+		</attribute>
+		<attribute name='spine1_torsoIKControl_scaleX' type='maya.double'>
+			<label>Spine 1 Torso IKControl Scale X</label>
+		</attribute>
+		<attribute name='spine1_torsoIKControl_scaleY' type='maya.double'>
+			<label>Spine 1 Torso IKControl Scale Y</label>
+		</attribute>
+		<attribute name='spine1_torsoIKControl_scaleZ' type='maya.double'>
+			<label>Spine 1 Torso IKControl Scale Z</label>
+		</attribute>
+		<attribute name='spine1_torsoIKControl_translateX' type='maya.doubleLinear'>
+			<label>Spine 1 Torso IKControl Translate X</label>
+		</attribute>
+		<attribute name='spine1_torsoIKControl_translateY' type='maya.doubleLinear'>
+			<label>Spine 1 Torso IKControl Translate Y</label>
+		</attribute>
+		<attribute name='spine1_torsoIKControl_translateZ' type='maya.doubleLinear'>
+			<label>Spine 1 Torso IKControl Translate Z</label>
+		</attribute>
+		<attribute name='spine1_middleSpineIKControl_rotateX' type='maya.doubleAngle'>
+			<label>Spine 1 Middle Spine IKControl Rotate X</label>
+		</attribute>
+		<attribute name='spine1_middleSpineIKControl_rotateY' type='maya.doubleAngle'>
+			<label>Spine 1 Middle Spine IKControl Rotate Y</label>
+		</attribute>
+		<attribute name='spine1_middleSpineIKControl_rotateZ' type='maya.doubleAngle'>
+			<label>Spine 1 Middle Spine IKControl Rotate Z</label>
+		</attribute>
+		<attribute name='spine1_middleSpineIKControl_scaleX' type='maya.double'>
+			<label>Spine 1 Middle Spine IKControl Scale X</label>
+		</attribute>
+		<attribute name='spine1_middleSpineIKControl_scaleY' type='maya.double'>
+			<label>Spine 1 Middle Spine IKControl Scale Y</label>
+		</attribute>
+		<attribute name='spine1_middleSpineIKControl_scaleZ' type='maya.double'>
+			<label>Spine 1 Middle Spine IKControl Scale Z</label>
+		</attribute>
+		<attribute name='spine1_middleSpineIKControl_translateX' type='maya.doubleLinear'>
+			<label>Spine 1 Middle Spine IKControl Translate X</label>
+		</attribute>
+		<attribute name='spine1_middleSpineIKControl_translateY' type='maya.doubleLinear'>
+			<label>Spine 1 Middle Spine IKControl Translate Y</label>
+		</attribute>
+		<attribute name='spine1_middleSpineIKControl_translateZ' type='maya.doubleLinear'>
+			<label>Spine 1 Middle Spine IKControl Translate Z</label>
+		</attribute>
+		<attribute name='leftArm1_ClavicalControl_rotateX' type='maya.doubleAngle'>
+			<label>Left Arm 1 Clavical Control Rotate X</label>
+		</attribute>
+		<attribute name='leftArm1_ClavicalControl_rotateY' type='maya.doubleAngle'>
+			<label>Left Arm 1 Clavical Control Rotate Y</label>
+		</attribute>
+		<attribute name='leftArm1_ClavicalControl_rotateZ' type='maya.doubleAngle'>
+			<label>Left Arm 1 Clavical Control Rotate Z</label>
+		</attribute>
+		<attribute name='leftArm1_ClavicalControl_stretch' type='maya.double'>
+			<label>Left Arm 1 Clavical Control Stretch</label>
+		</attribute>
+		<attribute name='leftArm1_UpperArmControl_rotateX' type='maya.doubleAngle'>
+			<label>Left Arm 1 Upper Arm Control Rotate X</label>
+		</attribute>
+		<attribute name='leftArm1_UpperArmControl_rotateY' type='maya.doubleAngle'>
+			<label>Left Arm 1 Upper Arm Control Rotate Y</label>
+		</attribute>
+		<attribute name='leftArm1_UpperArmControl_rotateZ' type='maya.doubleAngle'>
+			<label>Left Arm 1 Upper Arm Control Rotate Z</label>
+		</attribute>
+		<attribute name='leftArm1_UpperArmControl_stretch' type='maya.double'>
+			<label>Left Arm 1 Upper Arm Control Stretch</label>
+		</attribute>
+		<attribute name='leftArm1_LowerArmControl_rotateY' type='maya.doubleAngle'>
+			<label>Left Arm 1 Lower Arm Control Rotate Y</label>
+		</attribute>
+		<attribute name='leftArm1_LowerArmControl_stretch' type='maya.double'>
+			<label>Left Arm 1 Lower Arm Control Stretch</label>
+		</attribute>
+		<attribute name='leftArm1_HandControl_rotateX' type='maya.doubleAngle'>
+			<label>Left Arm 1 Hand Control Rotate X</label>
+		</attribute>
+		<attribute name='leftArm1_HandControl_rotateY' type='maya.doubleAngle'>
+			<label>Left Arm 1 Hand Control Rotate Y</label>
+		</attribute>
+		<attribute name='leftArm1_HandControl_rotateZ' type='maya.doubleAngle'>
+			<label>Left Arm 1 Hand Control Rotate Z</label>
+		</attribute>
+		<attribute name='leftArm1_HandControl_scaleX' type='maya.double'>
+			<label>Left Arm 1 Hand Control Scale X</label>
+		</attribute>
+		<attribute name='leftArm1_HandControl_scaleY' type='maya.double'>
+			<label>Left Arm 1 Hand Control Scale Y</label>
+		</attribute>
+		<attribute name='leftArm1_HandControl_scaleZ' type='maya.double'>
+			<label>Left Arm 1 Hand Control Scale Z</label>
+		</attribute>
+		<attribute name='leftArm1_ArmIKElbowControl_rotateX' type='maya.doubleAngle'>
+			<label>Left Arm 1 Arm IKElbow Control Rotate X</label>
+		</attribute>
+		<attribute name='leftArm1_ArmIKElbowControl_rotateY' type='maya.doubleAngle'>
+			<label>Left Arm 1 Arm IKElbow Control Rotate Y</label>
+		</attribute>
+		<attribute name='leftArm1_ArmIKElbowControl_rotateZ' type='maya.doubleAngle'>
+			<label>Left Arm 1 Arm IKElbow Control Rotate Z</label>
+		</attribute>
+		<attribute name='leftFinger1_Control_EndJoint' type='maya.double'>
+			<label>Left Finger 1 Control End Joint</label>
+		</attribute>
+		<attribute name='leftFinger1_Control_MiddleJoint' type='maya.double'>
+			<label>Left Finger 1 Control Middle Joint</label>
+		</attribute>
+		<attribute name='leftFinger1_Control_rotateX' type='maya.doubleAngle'>
+			<label>Left Finger 1 Control Rotate X</label>
+		</attribute>
+		<attribute name='leftFinger1_Control_rotateY' type='maya.doubleAngle'>
+			<label>Left Finger 1 Control Rotate Y</label>
+		</attribute>
+		<attribute name='leftFinger1_Control_rotateZ' type='maya.doubleAngle'>
+			<label>Left Finger 1 Control Rotate Z</label>
+		</attribute>
+		<attribute name='leftFinger1_Control_SideToSide' type='maya.double'>
+			<label>Left Finger 1 Control Side To Side</label>
+		</attribute>
+		<attribute name='leftFinger1_Control_translateX' type='maya.doubleLinear'>
+			<label>Left Finger 1 Control Translate X</label>
+		</attribute>
+		<attribute name='leftFinger1_Control_translateY' type='maya.doubleLinear'>
+			<label>Left Finger 1 Control Translate Y</label>
+		</attribute>
+		<attribute name='leftFinger1_Control_translateZ' type='maya.doubleLinear'>
+			<label>Left Finger 1 Control Translate Z</label>
+		</attribute>
+		<attribute name='leftFinger2_Control_EndJoint' type='maya.double'>
+			<label>Left Finger 2 Control End Joint</label>
+		</attribute>
+		<attribute name='leftFinger2_Control_MiddleJoint' type='maya.double'>
+			<label>Left Finger 2 Control Middle Joint</label>
+		</attribute>
+		<attribute name='leftFinger2_Control_rotateX' type='maya.doubleAngle'>
+			<label>Left Finger 2 Control Rotate X</label>
+		</attribute>
+		<attribute name='leftFinger2_Control_rotateY' type='maya.doubleAngle'>
+			<label>Left Finger 2 Control Rotate Y</label>
+		</attribute>
+		<attribute name='leftFinger2_Control_rotateZ' type='maya.doubleAngle'>
+			<label>Left Finger 2 Control Rotate Z</label>
+		</attribute>
+		<attribute name='leftFinger2_Control_SideToSide' type='maya.double'>
+			<label>Left Finger 2 Control Side To Side</label>
+		</attribute>
+		<attribute name='leftFinger2_Control_translateX' type='maya.doubleLinear'>
+			<label>Left Finger 2 Control Translate X</label>
+		</attribute>
+		<attribute name='leftFinger2_Control_translateY' type='maya.doubleLinear'>
+			<label>Left Finger 2 Control Translate Y</label>
+		</attribute>
+		<attribute name='leftFinger2_Control_translateZ' type='maya.doubleLinear'>
+			<label>Left Finger 2 Control Translate Z</label>
+		</attribute>
+		<attribute name='head1_neckControl_rotateX' type='maya.doubleAngle'>
+			<label>Head 1 Neck Control Rotate X</label>
+		</attribute>
+		<attribute name='head1_neckControl_rotateY' type='maya.doubleAngle'>
+			<label>Head 1 Neck Control Rotate Y</label>
+		</attribute>
+		<attribute name='head1_neckControl_rotateZ' type='maya.doubleAngle'>
+			<label>Head 1 Neck Control Rotate Z</label>
+		</attribute>
+		<attribute name='head1_Control_rotateX' type='maya.doubleAngle'>
+			<label>Head 1 Control Rotate X</label>
+		</attribute>
+		<attribute name='head1_Control_rotateY' type='maya.doubleAngle'>
+			<label>Head 1 Control Rotate Y</label>
+		</attribute>
+		<attribute name='head1_Control_rotateZ' type='maya.doubleAngle'>
+			<label>Head 1 Control Rotate Z</label>
+		</attribute>
+		<attribute name='head1_Control_scaleX' type='maya.double'>
+			<label>Head 1 Control Scale X</label>
+		</attribute>
+		<attribute name='head1_Control_scaleY' type='maya.double'>
+			<label>Head 1 Control Scale Y</label>
+		</attribute>
+		<attribute name='head1_Control_scaleZ' type='maya.double'>
+			<label>Head 1 Control Scale Z</label>
+		</attribute>
+		<attribute name='head1_Control_translateX' type='maya.doubleLinear'>
+			<label>Head 1 Control Translate X</label>
+		</attribute>
+		<attribute name='head1_Control_translateY' type='maya.doubleLinear'>
+			<label>Head 1 Control Translate Y</label>
+		</attribute>
+		<attribute name='head1_Control_translateZ' type='maya.doubleLinear'>
+			<label>Head 1 Control Translate Z</label>
+		</attribute>
+		<attribute name='rightArm1_ArmIKControl_AntiIKPop' type='maya.double'>
+			<label>Right Arm 1 Arm IKControl Anti IKPop</label>
+		</attribute>
+		<attribute name='rightArm1_ArmIKControl_AutoStretch' type='maya.double'>
+			<label>Right Arm 1 Arm IKControl Auto Stretch</label>
+		</attribute>
+		<attribute name='rightArm1_ArmIKControl_LowerArmStretch' type='maya.double'>
+			<label>Right Arm 1 Arm IKControl Lower Arm Stretch</label>
+		</attribute>
+		<attribute name='rightArm1_ArmIKControl_rotateX' type='maya.doubleAngle'>
+			<label>Right Arm 1 Arm IKControl Rotate X</label>
+		</attribute>
+		<attribute name='rightArm1_ArmIKControl_rotateY' type='maya.doubleAngle'>
+			<label>Right Arm 1 Arm IKControl Rotate Y</label>
+		</attribute>
+		<attribute name='rightArm1_ArmIKControl_rotateZ' type='maya.doubleAngle'>
+			<label>Right Arm 1 Arm IKControl Rotate Z</label>
+		</attribute>
+		<attribute name='rightArm1_ArmIKControl_scaleX' type='maya.double'>
+			<label>Right Arm 1 Arm IKControl Scale X</label>
+		</attribute>
+		<attribute name='rightArm1_ArmIKControl_scaleY' type='maya.double'>
+			<label>Right Arm 1 Arm IKControl Scale Y</label>
+		</attribute>
+		<attribute name='rightArm1_ArmIKControl_scaleZ' type='maya.double'>
+			<label>Right Arm 1 Arm IKControl Scale Z</label>
+		</attribute>
+		<attribute name='rightArm1_ArmIKControl_translateX' type='maya.doubleLinear'>
+			<label>Right Arm 1 Arm IKControl Translate X</label>
+		</attribute>
+		<attribute name='rightArm1_ArmIKControl_translateY' type='maya.doubleLinear'>
+			<label>Right Arm 1 Arm IKControl Translate Y</label>
+		</attribute>
+		<attribute name='rightArm1_ArmIKControl_translateZ' type='maya.doubleLinear'>
+			<label>Right Arm 1 Arm IKControl Translate Z</label>
+		</attribute>
+		<attribute name='rightArm1_ArmIKControl_UpperArmStretch' type='maya.double'>
+			<label>Right Arm 1 Arm IKControl Upper Arm Stretch</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_AntiIKPop' type='maya.double'>
+			<label>Left Leg 1 Leg IKControl Anti IKPop</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_AutoStretch' type='maya.double'>
+			<label>Left Leg 1 Leg IKControl Auto Stretch</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_FootStretch' type='maya.double'>
+			<label>Left Leg 1 Leg IKControl Foot Stretch</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_HeelRaise' type='maya.double'>
+			<label>Left Leg 1 Leg IKControl Heel Raise</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_HeelSwivel' type='maya.double'>
+			<label>Left Leg 1 Leg IKControl Heel Swivel</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_LowerLegStretch' type='maya.double'>
+			<label>Left Leg 1 Leg IKControl Lower Leg Stretch</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_rotateX' type='maya.doubleAngle'>
+			<label>Left Leg 1 Leg IKControl Rotate X</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_rotateY' type='maya.doubleAngle'>
+			<label>Left Leg 1 Leg IKControl Rotate Y</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_rotateZ' type='maya.doubleAngle'>
+			<label>Left Leg 1 Leg IKControl Rotate Z</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_scaleX' type='maya.double'>
+			<label>Left Leg 1 Leg IKControl Scale X</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_scaleY' type='maya.double'>
+			<label>Left Leg 1 Leg IKControl Scale Y</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_scaleZ' type='maya.double'>
+			<label>Left Leg 1 Leg IKControl Scale Z</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_ToeRaise' type='maya.double'>
+			<label>Left Leg 1 Leg IKControl Toe Raise</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_ToeSwivel' type='maya.double'>
+			<label>Left Leg 1 Leg IKControl Toe Swivel</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_translateX' type='maya.doubleLinear'>
+			<label>Left Leg 1 Leg IKControl Translate X</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_translateY' type='maya.doubleLinear'>
+			<label>Left Leg 1 Leg IKControl Translate Y</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_translateZ' type='maya.doubleLinear'>
+			<label>Left Leg 1 Leg IKControl Translate Z</label>
+		</attribute>
+		<attribute name='leftLeg1_LegIKControl_UpperLegStretch' type='maya.double'>
+			<label>Left Leg 1 Leg IKControl Upper Leg Stretch</label>
+		</attribute>
+	</template>
+	<view name='0' template='data_femaleTSMG_ALL_ATOM'>
+		<group name='rightLeg1_LegIKControl'>
+			<property name='rightLeg1_LegIKControl_AntiIKPop'/>
+			<property name='rightLeg1_LegIKControl_AutoStretch'/>
+			<property name='rightLeg1_LegIKControl_FootStretch'/>
+			<property name='rightLeg1_LegIKControl_HeelRaise'/>
+			<property name='rightLeg1_LegIKControl_HeelSwivel'/>
+			<property name='rightLeg1_LegIKControl_LowerLegStretch'/>
+			<property name='rightLeg1_LegIKControl_rotateX'/>
+			<property name='rightLeg1_LegIKControl_rotateY'/>
+			<property name='rightLeg1_LegIKControl_rotateZ'/>
+			<property name='rightLeg1_LegIKControl_scaleX'/>
+			<property name='rightLeg1_LegIKControl_scaleY'/>
+			<property name='rightLeg1_LegIKControl_scaleZ'/>
+			<property name='rightLeg1_LegIKControl_ToeRaise'/>
+			<property name='rightLeg1_LegIKControl_ToeSwivel'/>
+			<property name='rightLeg1_LegIKControl_translateX'/>
+			<property name='rightLeg1_LegIKControl_translateY'/>
+			<property name='rightLeg1_LegIKControl_translateZ'/>
+			<property name='rightLeg1_LegIKControl_UpperLegStretch'/>
+		</group>
+		<group name='leftArm1_ArmIKControl'>
+			<property name='leftArm1_ArmIKControl_AntiIKPop'/>
+			<property name='leftArm1_ArmIKControl_AutoStretch'/>
+			<property name='leftArm1_ArmIKControl_LowerArmStretch'/>
+			<property name='leftArm1_ArmIKControl_rotateX'/>
+			<property name='leftArm1_ArmIKControl_rotateY'/>
+			<property name='leftArm1_ArmIKControl_rotateZ'/>
+			<property name='leftArm1_ArmIKControl_scaleX'/>
+			<property name='leftArm1_ArmIKControl_scaleY'/>
+			<property name='leftArm1_ArmIKControl_scaleZ'/>
+			<property name='leftArm1_ArmIKControl_translateX'/>
+			<property name='leftArm1_ArmIKControl_translateY'/>
+			<property name='leftArm1_ArmIKControl_translateZ'/>
+			<property name='leftArm1_ArmIKControl_UpperArmStretch'/>
+		</group>
+		<group name='TSMG_root'>
+			<property name='TSMG_root_rotateX'/>
+			<property name='TSMG_root_rotateY'/>
+			<property name='TSMG_root_rotateZ'/>
+			<property name='TSMG_root_translateX'/>
+			<property name='TSMG_root_translateY'/>
+			<property name='TSMG_root_translateZ'/>
+			<property name='TSMG_root_visibility'/>
+		</group>
+		<group name='TSMG_upper_body'>
+			<property name='TSMG_upper_body_head1_controlSize'/>
+			<property name='TSMG_upper_body_head1_RotationIsolationSwitch'/>
+			<property name='TSMG_upper_body_leftArm1_controlSize'/>
+			<property name='TSMG_upper_body_leftArm1_FKIKSwitch'/>
+			<property name='TSMG_upper_body_leftArm1_RotationIsolationSwitch'/>
+			<property name='TSMG_upper_body_leftLeg1_ControlSize'/>
+			<property name='TSMG_upper_body_leftLeg1_FKIKSwitch'/>
+			<property name='TSMG_upper_body_leftLeg1_RotationIsolationSwitch'/>
+			<property name='TSMG_upper_body_rightArm1_controlSize'/>
+			<property name='TSMG_upper_body_rightArm1_FKIKSwitch'/>
+			<property name='TSMG_upper_body_rightArm1_RotationIsolationSwitch'/>
+			<property name='TSMG_upper_body_rightLeg1_ControlSize'/>
+			<property name='TSMG_upper_body_rightLeg1_FKIKSwitch'/>
+			<property name='TSMG_upper_body_rightLeg1_RotationIsolationSwitch'/>
+			<property name='TSMG_upper_body_rotateX'/>
+			<property name='TSMG_upper_body_rotateY'/>
+			<property name='TSMG_upper_body_rotateZ'/>
+			<property name='TSMG_upper_body_spine1_ControlSize'/>
+			<property name='TSMG_upper_body_spine1_FKIKSwitch'/>
+			<property name='TSMG_upper_body_translateX'/>
+			<property name='TSMG_upper_body_translateY'/>
+			<property name='TSMG_upper_body_translateZ'/>
+			<property name='TSMG_upper_body_visibility'/>
+		</group>
+		<group name='leftLeg1_IKHeelControl'>
+			<property name='leftLeg1_IKHeelControl_rotateX'/>
+			<property name='leftLeg1_IKHeelControl_rotateY'/>
+			<property name='leftLeg1_IKHeelControl_rotateZ'/>
+		</group>
+		<group name='rightLeg1_IKHeelControl'>
+			<property name='rightLeg1_IKHeelControl_rotateX'/>
+			<property name='rightLeg1_IKHeelControl_rotateY'/>
+			<property name='rightLeg1_IKHeelControl_rotateZ'/>
+		</group>
+		<group name='leftFinger3_Control'>
+			<property name='leftFinger3_Control_EndJoint'/>
+			<property name='leftFinger3_Control_MiddleJoint'/>
+			<property name='leftFinger3_Control_rotateX'/>
+			<property name='leftFinger3_Control_rotateY'/>
+			<property name='leftFinger3_Control_rotateZ'/>
+			<property name='leftFinger3_Control_SideToSide'/>
+			<property name='leftFinger3_Control_translateX'/>
+			<property name='leftFinger3_Control_translateY'/>
+			<property name='leftFinger3_Control_translateZ'/>
+		</group>
+		<group name='leftFinger4_Control'>
+			<property name='leftFinger4_Control_EndJoint'/>
+			<property name='leftFinger4_Control_MiddleJoint'/>
+			<property name='leftFinger4_Control_rotateX'/>
+			<property name='leftFinger4_Control_rotateY'/>
+			<property name='leftFinger4_Control_rotateZ'/>
+			<property name='leftFinger4_Control_SideToSide'/>
+			<property name='leftFinger4_Control_translateX'/>
+			<property name='leftFinger4_Control_translateY'/>
+			<property name='leftFinger4_Control_translateZ'/>
+		</group>
+		<group name='leftLeg1_UpperLegControl'>
+			<property name='leftLeg1_UpperLegControl_rotateX'/>
+			<property name='leftLeg1_UpperLegControl_rotateY'/>
+			<property name='leftLeg1_UpperLegControl_rotateZ'/>
+			<property name='leftLeg1_UpperLegControl_stretch'/>
+		</group>
+		<group name='leftLeg1_LowerLegControl'>
+			<property name='leftLeg1_LowerLegControl_rotateY'/>
+			<property name='leftLeg1_LowerLegControl_stretch'/>
+		</group>
+		<group name='leftLeg1_FootControl'>
+			<property name='leftLeg1_FootControl_rotateX'/>
+			<property name='leftLeg1_FootControl_rotateY'/>
+			<property name='leftLeg1_FootControl_rotateZ'/>
+			<property name='leftLeg1_FootControl_stretch'/>
+		</group>
+		<group name='leftLeg1_ToeControl'>
+			<property name='leftLeg1_ToeControl_rotateX'/>
+			<property name='leftLeg1_ToeControl_rotateY'/>
+			<property name='leftLeg1_ToeControl_rotateZ'/>
+		</group>
+		<group name='leftLeg1_LegIKKneeControl'>
+			<property name='leftLeg1_LegIKKneeControl_rotateX'/>
+			<property name='leftLeg1_LegIKKneeControl_rotateY'/>
+			<property name='leftLeg1_LegIKKneeControl_rotateZ'/>
+		</group>
+		<group name='leftThumb1_Control'>
+			<property name='leftThumb1_Control_EndJoint'/>
+			<property name='leftThumb1_Control_MiddleJoint'/>
+			<property name='leftThumb1_Control_rotateX'/>
+			<property name='leftThumb1_Control_rotateY'/>
+			<property name='leftThumb1_Control_rotateZ'/>
+			<property name='leftThumb1_Control_SideToSide'/>
+			<property name='leftThumb1_Control_translateX'/>
+			<property name='leftThumb1_Control_translateY'/>
+			<property name='leftThumb1_Control_translateZ'/>
+		</group>
+		<group name='rightArm1_ClavicalControl'>
+			<property name='rightArm1_ClavicalControl_rotateX'/>
+			<property name='rightArm1_ClavicalControl_rotateY'/>
+			<property name='rightArm1_ClavicalControl_rotateZ'/>
+			<property name='rightArm1_ClavicalControl_stretch'/>
+		</group>
+		<group name='rightArm1_UpperArmControl'>
+			<property name='rightArm1_UpperArmControl_rotateX'/>
+			<property name='rightArm1_UpperArmControl_rotateY'/>
+			<property name='rightArm1_UpperArmControl_rotateZ'/>
+			<property name='rightArm1_UpperArmControl_stretch'/>
+		</group>
+		<group name='rightArm1_LowerArmControl'>
+			<property name='rightArm1_LowerArmControl_rotateY'/>
+			<property name='rightArm1_LowerArmControl_stretch'/>
+		</group>
+		<group name='rightArm1_HandControl'>
+			<property name='rightArm1_HandControl_rotateX'/>
+			<property name='rightArm1_HandControl_rotateY'/>
+			<property name='rightArm1_HandControl_rotateZ'/>
+			<property name='rightArm1_HandControl_scaleX'/>
+			<property name='rightArm1_HandControl_scaleY'/>
+			<property name='rightArm1_HandControl_scaleZ'/>
+		</group>
+		<group name='rightArm1_ArmIKElbowControl'>
+			<property name='rightArm1_ArmIKElbowControl_rotateX'/>
+			<property name='rightArm1_ArmIKElbowControl_rotateY'/>
+			<property name='rightArm1_ArmIKElbowControl_rotateZ'/>
+		</group>
+		<group name='rightFinger1_Control'>
+			<property name='rightFinger1_Control_EndJoint'/>
+			<property name='rightFinger1_Control_MiddleJoint'/>
+			<property name='rightFinger1_Control_rotateX'/>
+			<property name='rightFinger1_Control_rotateY'/>
+			<property name='rightFinger1_Control_rotateZ'/>
+			<property name='rightFinger1_Control_SideToSide'/>
+			<property name='rightFinger1_Control_translateX'/>
+			<property name='rightFinger1_Control_translateY'/>
+			<property name='rightFinger1_Control_translateZ'/>
+		</group>
+		<group name='rightFinger2_Control'>
+			<property name='rightFinger2_Control_EndJoint'/>
+			<property name='rightFinger2_Control_MiddleJoint'/>
+			<property name='rightFinger2_Control_rotateX'/>
+			<property name='rightFinger2_Control_rotateY'/>
+			<property name='rightFinger2_Control_rotateZ'/>
+			<property name='rightFinger2_Control_SideToSide'/>
+			<property name='rightFinger2_Control_translateX'/>
+			<property name='rightFinger2_Control_translateY'/>
+			<property name='rightFinger2_Control_translateZ'/>
+		</group>
+		<group name='rightFinger3_Control'>
+			<property name='rightFinger3_Control_EndJoint'/>
+			<property name='rightFinger3_Control_MiddleJoint'/>
+			<property name='rightFinger3_Control_rotateX'/>
+			<property name='rightFinger3_Control_rotateY'/>
+			<property name='rightFinger3_Control_rotateZ'/>
+			<property name='rightFinger3_Control_SideToSide'/>
+			<property name='rightFinger3_Control_translateX'/>
+			<property name='rightFinger3_Control_translateY'/>
+			<property name='rightFinger3_Control_translateZ'/>
+		</group>
+		<group name='rightFinger4_Control'>
+			<property name='rightFinger4_Control_EndJoint'/>
+			<property name='rightFinger4_Control_MiddleJoint'/>
+			<property name='rightFinger4_Control_rotateX'/>
+			<property name='rightFinger4_Control_rotateY'/>
+			<property name='rightFinger4_Control_rotateZ'/>
+			<property name='rightFinger4_Control_SideToSide'/>
+			<property name='rightFinger4_Control_translateX'/>
+			<property name='rightFinger4_Control_translateY'/>
+			<property name='rightFinger4_Control_translateZ'/>
+		</group>
+		<group name='rightLeg1_UpperLegControl'>
+			<property name='rightLeg1_UpperLegControl_rotateX'/>
+			<property name='rightLeg1_UpperLegControl_rotateY'/>
+			<property name='rightLeg1_UpperLegControl_rotateZ'/>
+			<property name='rightLeg1_UpperLegControl_stretch'/>
+		</group>
+		<group name='rightLeg1_LowerLegControl'>
+			<property name='rightLeg1_LowerLegControl_rotateY'/>
+			<property name='rightLeg1_LowerLegControl_stretch'/>
+		</group>
+		<group name='rightLeg1_FootControl'>
+			<property name='rightLeg1_FootControl_rotateX'/>
+			<property name='rightLeg1_FootControl_rotateY'/>
+			<property name='rightLeg1_FootControl_rotateZ'/>
+			<property name='rightLeg1_FootControl_stretch'/>
+		</group>
+		<group name='rightLeg1_ToeControl'>
+			<property name='rightLeg1_ToeControl_rotateX'/>
+			<property name='rightLeg1_ToeControl_rotateY'/>
+			<property name='rightLeg1_ToeControl_rotateZ'/>
+		</group>
+		<group name='rightLeg1_LegIKKneeControl'>
+			<property name='rightLeg1_LegIKKneeControl_rotateX'/>
+			<property name='rightLeg1_LegIKKneeControl_rotateY'/>
+			<property name='rightLeg1_LegIKKneeControl_rotateZ'/>
+		</group>
+		<group name='rightThumb1_Control'>
+			<property name='rightThumb1_Control_EndJoint'/>
+			<property name='rightThumb1_Control_MiddleJoint'/>
+			<property name='rightThumb1_Control_rotateX'/>
+			<property name='rightThumb1_Control_rotateY'/>
+			<property name='rightThumb1_Control_rotateZ'/>
+			<property name='rightThumb1_Control_SideToSide'/>
+			<property name='rightThumb1_Control_translateX'/>
+			<property name='rightThumb1_Control_translateY'/>
+			<property name='rightThumb1_Control_translateZ'/>
+		</group>
+		<group name='spine1_lowerSpineControl'>
+			<property name='spine1_lowerSpineControl_rotateX'/>
+			<property name='spine1_lowerSpineControl_rotateY'/>
+			<property name='spine1_lowerSpineControl_rotateZ'/>
+			<property name='spine1_lowerSpineControl_translateX'/>
+			<property name='spine1_lowerSpineControl_translateY'/>
+			<property name='spine1_lowerSpineControl_translateZ'/>
+		</group>
+		<group name='spine1_middleSpineControl'>
+			<property name='spine1_middleSpineControl_rotateX'/>
+			<property name='spine1_middleSpineControl_rotateY'/>
+			<property name='spine1_middleSpineControl_rotateZ'/>
+			<property name='spine1_middleSpineControl_translateX'/>
+			<property name='spine1_middleSpineControl_translateY'/>
+			<property name='spine1_middleSpineControl_translateZ'/>
+		</group>
+		<group name='spine1_torsoControl'>
+			<property name='spine1_torsoControl_rotateX'/>
+			<property name='spine1_torsoControl_rotateY'/>
+			<property name='spine1_torsoControl_rotateZ'/>
+			<property name='spine1_torsoControl_translateX'/>
+			<property name='spine1_torsoControl_translateY'/>
+			<property name='spine1_torsoControl_translateZ'/>
+		</group>
+		<group name='spine1_hipsControl'>
+			<property name='spine1_hipsControl_rotateX'/>
+			<property name='spine1_hipsControl_rotateY'/>
+			<property name='spine1_hipsControl_rotateZ'/>
+			<property name='spine1_hipsControl_translateX'/>
+			<property name='spine1_hipsControl_translateY'/>
+			<property name='spine1_hipsControl_translateZ'/>
+		</group>
+		<group name='spine1_hipsIKControl'>
+			<property name='spine1_hipsIKControl_rotateX'/>
+			<property name='spine1_hipsIKControl_rotateY'/>
+			<property name='spine1_hipsIKControl_rotateZ'/>
+			<property name='spine1_hipsIKControl_scaleX'/>
+			<property name='spine1_hipsIKControl_scaleY'/>
+			<property name='spine1_hipsIKControl_scaleZ'/>
+			<property name='spine1_hipsIKControl_translateX'/>
+			<property name='spine1_hipsIKControl_translateY'/>
+			<property name='spine1_hipsIKControl_translateZ'/>
+		</group>
+		<group name='spine1_torsoIKControl'>
+			<property name='spine1_torsoIKControl_rotateX'/>
+			<property name='spine1_torsoIKControl_rotateY'/>
+			<property name='spine1_torsoIKControl_rotateZ'/>
+			<property name='spine1_torsoIKControl_scaleX'/>
+			<property name='spine1_torsoIKControl_scaleY'/>
+			<property name='spine1_torsoIKControl_scaleZ'/>
+			<property name='spine1_torsoIKControl_translateX'/>
+			<property name='spine1_torsoIKControl_translateY'/>
+			<property name='spine1_torsoIKControl_translateZ'/>
+		</group>
+		<group name='spine1_middleSpineIKControl'>
+			<property name='spine1_middleSpineIKControl_rotateX'/>
+			<property name='spine1_middleSpineIKControl_rotateY'/>
+			<property name='spine1_middleSpineIKControl_rotateZ'/>
+			<property name='spine1_middleSpineIKControl_scaleX'/>
+			<property name='spine1_middleSpineIKControl_scaleY'/>
+			<property name='spine1_middleSpineIKControl_scaleZ'/>
+			<property name='spine1_middleSpineIKControl_translateX'/>
+			<property name='spine1_middleSpineIKControl_translateY'/>
+			<property name='spine1_middleSpineIKControl_translateZ'/>
+		</group>
+		<group name='leftArm1_ClavicalControl'>
+			<property name='leftArm1_ClavicalControl_rotateX'/>
+			<property name='leftArm1_ClavicalControl_rotateY'/>
+			<property name='leftArm1_ClavicalControl_rotateZ'/>
+			<property name='leftArm1_ClavicalControl_stretch'/>
+		</group>
+		<group name='leftArm1_UpperArmControl'>
+			<property name='leftArm1_UpperArmControl_rotateX'/>
+			<property name='leftArm1_UpperArmControl_rotateY'/>
+			<property name='leftArm1_UpperArmControl_rotateZ'/>
+			<property name='leftArm1_UpperArmControl_stretch'/>
+		</group>
+		<group name='leftArm1_LowerArmControl'>
+			<property name='leftArm1_LowerArmControl_rotateY'/>
+			<property name='leftArm1_LowerArmControl_stretch'/>
+		</group>
+		<group name='leftArm1_HandControl'>
+			<property name='leftArm1_HandControl_rotateX'/>
+			<property name='leftArm1_HandControl_rotateY'/>
+			<property name='leftArm1_HandControl_rotateZ'/>
+			<property name='leftArm1_HandControl_scaleX'/>
+			<property name='leftArm1_HandControl_scaleY'/>
+			<property name='leftArm1_HandControl_scaleZ'/>
+		</group>
+		<group name='leftArm1_ArmIKElbowControl'>
+			<property name='leftArm1_ArmIKElbowControl_rotateX'/>
+			<property name='leftArm1_ArmIKElbowControl_rotateY'/>
+			<property name='leftArm1_ArmIKElbowControl_rotateZ'/>
+		</group>
+		<group name='leftFinger1_Control'>
+			<property name='leftFinger1_Control_EndJoint'/>
+			<property name='leftFinger1_Control_MiddleJoint'/>
+			<property name='leftFinger1_Control_rotateX'/>
+			<property name='leftFinger1_Control_rotateY'/>
+			<property name='leftFinger1_Control_rotateZ'/>
+			<property name='leftFinger1_Control_SideToSide'/>
+			<property name='leftFinger1_Control_translateX'/>
+			<property name='leftFinger1_Control_translateY'/>
+			<property name='leftFinger1_Control_translateZ'/>
+		</group>
+		<group name='leftFinger2_Control'>
+			<property name='leftFinger2_Control_EndJoint'/>
+			<property name='leftFinger2_Control_MiddleJoint'/>
+			<property name='leftFinger2_Control_rotateX'/>
+			<property name='leftFinger2_Control_rotateY'/>
+			<property name='leftFinger2_Control_rotateZ'/>
+			<property name='leftFinger2_Control_SideToSide'/>
+			<property name='leftFinger2_Control_translateX'/>
+			<property name='leftFinger2_Control_translateY'/>
+			<property name='leftFinger2_Control_translateZ'/>
+		</group>
+		<group name='head1_neckControl'>
+			<property name='head1_neckControl_rotateX'/>
+			<property name='head1_neckControl_rotateY'/>
+			<property name='head1_neckControl_rotateZ'/>
+		</group>
+		<group name='head1_Control'>
+			<property name='head1_Control_rotateX'/>
+			<property name='head1_Control_rotateY'/>
+			<property name='head1_Control_rotateZ'/>
+			<property name='head1_Control_scaleX'/>
+			<property name='head1_Control_scaleY'/>
+			<property name='head1_Control_scaleZ'/>
+			<property name='head1_Control_translateX'/>
+			<property name='head1_Control_translateY'/>
+			<property name='head1_Control_translateZ'/>
+		</group>
+		<group name='rightArm1_ArmIKControl'>
+			<property name='rightArm1_ArmIKControl_AntiIKPop'/>
+			<property name='rightArm1_ArmIKControl_AutoStretch'/>
+			<property name='rightArm1_ArmIKControl_LowerArmStretch'/>
+			<property name='rightArm1_ArmIKControl_rotateX'/>
+			<property name='rightArm1_ArmIKControl_rotateY'/>
+			<property name='rightArm1_ArmIKControl_rotateZ'/>
+			<property name='rightArm1_ArmIKControl_scaleX'/>
+			<property name='rightArm1_ArmIKControl_scaleY'/>
+			<property name='rightArm1_ArmIKControl_scaleZ'/>
+			<property name='rightArm1_ArmIKControl_translateX'/>
+			<property name='rightArm1_ArmIKControl_translateY'/>
+			<property name='rightArm1_ArmIKControl_translateZ'/>
+			<property name='rightArm1_ArmIKControl_UpperArmStretch'/>
+		</group>
+		<group name='leftLeg1_LegIKControl'>
+			<property name='leftLeg1_LegIKControl_AntiIKPop'/>
+			<property name='leftLeg1_LegIKControl_AutoStretch'/>
+			<property name='leftLeg1_LegIKControl_FootStretch'/>
+			<property name='leftLeg1_LegIKControl_HeelRaise'/>
+			<property name='leftLeg1_LegIKControl_HeelSwivel'/>
+			<property name='leftLeg1_LegIKControl_LowerLegStretch'/>
+			<property name='leftLeg1_LegIKControl_rotateX'/>
+			<property name='leftLeg1_LegIKControl_rotateY'/>
+			<property name='leftLeg1_LegIKControl_rotateZ'/>
+			<property name='leftLeg1_LegIKControl_scaleX'/>
+			<property name='leftLeg1_LegIKControl_scaleY'/>
+			<property name='leftLeg1_LegIKControl_scaleZ'/>
+			<property name='leftLeg1_LegIKControl_ToeRaise'/>
+			<property name='leftLeg1_LegIKControl_ToeSwivel'/>
+			<property name='leftLeg1_LegIKControl_translateX'/>
+			<property name='leftLeg1_LegIKControl_translateY'/>
+			<property name='leftLeg1_LegIKControl_translateZ'/>
+			<property name='leftLeg1_LegIKControl_UpperLegStretch'/>
+		</group>
+	</view>
+</templates>
