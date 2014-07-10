@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
 //Name: clip_Psy_Walk.ma
-//Last modified: Wed, Jul 09, 2014 07:45:11 PM
+//Last modified: Wed, Jul 09, 2014 08:24:16 PM
 //Codeset: UTF-8
 file -rdi 1 -ns "Psylocke_wHair" -rfn "Psylocke_wHairRN" "/Users/mton/Dropbox/Code/SymLink/Maya/PROJECT_STRUCTURE/__SOURCE//Art/CHAR/anim/rigs/Psylocke/Psylocke_wHair.ma";
 file -r -ns "Psylocke_wHair" -dr 1 -rfn "Psylocke_wHairRN" "/Users/mton/Dropbox/Code/SymLink/Maya/PROJECT_STRUCTURE/__SOURCE//Art/CHAR/anim/rigs/Psylocke/Psylocke_wHair.ma";
@@ -92,14 +92,14 @@ fileInfo "osv" "Mac OS X 10.9.3";
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -68.848355309792723 7.9778907480342385 0.83778340754418024 ;
-	setAttr ".r" -type "double3" 0 -89.999999999999986 0 ;
+	setAttr ".t" -type "double3" -35.739295602693076 11.442123086534659 75.377920863473264 ;
+	setAttr ".r" -type "double3" -2.400000000010404 -745.59999999999559 2.2042304061027632e-16 ;
 	setAttr ".rp" -type "double3" 1.7763568394002505e-15 -8.8817841970012523e-16 7.1054273576010019e-15 ;
 	setAttr ".rpt" -type "double3" -7.84317998497166e-15 4.1105697801291421e-15 6.7689223602528622e-15 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999979;
-	setAttr ".coi" 68.822709598198259;
+	setAttr ".coi" 82.726644959083458;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -758,7 +758,7 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        setFocus `paneLayout -q -p1 $gMainPane`;\n        sceneUIReplacement -deleteRemaining;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 5 -size 12 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels no -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition axis -orthographicLabelPosition edge;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
 	setAttr ".st" 3;
 createNode script -n "sceneConfigurationScriptNode";
-	setAttr ".b" -type "string" "playbackOptions -min 1 -max 24 -ast 0 -aet 48 ";
+	setAttr ".b" -type "string" "playbackOptions -min 0 -max 24 -ast 0 -aet 48 ";
 	setAttr ".st" 6;
 createNode reference -n "Psylocke_wHairRN";
 	setAttr -s 207 ".phl";
@@ -992,7 +992,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot" 
 		"rotateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG" 
-		"translate" " -type \"double3\" 0.16812 -0.448592 0.207922"
+		"translate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG" 
@@ -1000,7 +1000,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG" 
-		"rotate" " -type \"double3\" 20 -60 -15"
+		"rotate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG" 
@@ -1008,7 +1008,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG" 
 		"rotateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:MidRot|Psylocke_wHair:MidBackGRP|Psylocke_wHair:cnt_MidBackLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_MidBackLocator" 
-		"translate" " -type \"double3\" -0.0621605 0 -0.0366075"
+		"translate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:MidRot|Psylocke_wHair:MidBackGRP|Psylocke_wHair:cnt_MidBackLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_MidBackLocator" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:MidRot|Psylocke_wHair:MidBackGRP|Psylocke_wHair:cnt_MidBackLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_MidBackLocator" 
@@ -1024,7 +1024,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:MidRot|Psylocke_wHair:MidBackGRP|Psylocke_wHair:cnt_MidBackLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_MidBackLocator" 
 		"rotateZ" " -k 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody" 
-		"translate" " -type \"double3\" 0.170026 0.0335743 0.182068"
+		"translate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody" 
@@ -1032,7 +1032,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody" 
 		"translateY" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody" 
-		"rotate" " -type \"double3\" -20.625851 -54.997573 33.753206"
+		"rotate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody" 
@@ -1048,7 +1048,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody" 
 		"twistFlex" " -av -k 1 0.5"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_shoulder_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_shoulder_Loc" 
-		"rotate" " -type \"double3\" 24.306591 9.169008 3.251552"
+		"rotate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_shoulder_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_shoulder_Loc" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_shoulder_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_shoulder_Loc" 
@@ -1056,7 +1056,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_shoulder_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_shoulder_Loc" 
 		"rotateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_shoulder_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_shoulder_Loc" 
-		"rotate" " -type \"double3\" -28.649855 -17.037036 -2.20656"
+		"rotate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_shoulder_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_shoulder_Loc" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_shoulder_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_shoulder_Loc" 
@@ -1064,7 +1064,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_shoulder_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_shoulder_Loc" 
 		"rotateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
-		"translate" " -type \"double3\" 1.474692 0.780479 0.2512"
+		"translate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
@@ -1072,7 +1072,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
-		"rotate" " -type \"double3\" 87.469135 3.078698 50.546436"
+		"rotate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
 		"rotateY" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
@@ -1082,11 +1082,11 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
 		"ikBlend" " -av -k 1 10"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
-		"elbowTwist" " -av -k 1 -2.9"
+		"elbowTwist" " -av -k 1 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
 		"handToWorld" " -av -k 1 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
-		"translate" " -type \"double3\" -2.837195 -2.3 -0.3"
+		"translate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
@@ -1094,7 +1094,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
-		"rotate" " -type \"double3\" 109.807342 40.755066 -55.16549"
+		"rotate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
 		"rotateY" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
@@ -1104,7 +1104,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
 		"ikBlend" " -av -k 1 10"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
-		"elbowTwist" " -av -k 1 3.2"
+		"elbowTwist" " -av -k 1 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
 		"handToWorld" " -av -k 1 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_poleConstraint_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_poleConstraint" 
@@ -1124,7 +1124,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_poleConstraint_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_poleConstraint" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_HipLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_HipLocator" 
-		"translate" " -type \"double3\" -0.0405438 0.00711607 0.2185"
+		"translate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_HipLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_HipLocator" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_HipLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_HipLocator" 
@@ -1132,7 +1132,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_HipLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_HipLocator" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_HipLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_HipLocator" 
-		"rotate" " -type \"double3\" 0 -8.690827 0"
+		"rotate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_HipLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_HipLocator" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_HipLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_HipLocator" 
@@ -1140,7 +1140,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_HipLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_HipLocator" 
 		"rotateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_Neck_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Neck_1_Loc" 
-		"rotate" " -type \"double3\" 0 7.54171 0"
+		"rotate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_Neck_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Neck_1_Loc" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_Neck_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Neck_1_Loc" 
@@ -1148,7 +1148,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_Neck_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Neck_1_Loc" 
 		"rotateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_Neck_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Neck_1_Loc|Psylocke_wHair:cnt_Head_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Head_1_Loc" 
-		"rotate" " -type \"double3\" 51.872862 -8.119711 0.718315"
+		"rotate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_Neck_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Neck_1_Loc|Psylocke_wHair:cnt_Head_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Head_1_Loc" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_Neck_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Neck_1_Loc|Psylocke_wHair:cnt_Head_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Head_1_Loc" 
@@ -1156,7 +1156,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_Neck_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Neck_1_Loc|Psylocke_wHair:cnt_Head_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Head_1_Loc" 
 		"rotateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:jStick_L_wrist_posNode_ZERO_NODE_DNT|Psylocke_wHair:jStick_L_wrist_posNode|Psylocke_wHair:jStick_L_wrist" 
-		"translate" " -type \"double3\" 0.474159 0.283188 0"
+		"translate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:jStick_L_wrist_posNode_ZERO_NODE_DNT|Psylocke_wHair:jStick_L_wrist_posNode|Psylocke_wHair:jStick_L_wrist" 
 		"translateY" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:jStick_L_wrist_posNode_ZERO_NODE_DNT|Psylocke_wHair:jStick_L_wrist_posNode|Psylocke_wHair:jStick_L_wrist" 
@@ -1172,7 +1172,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:jStick_L_wrist_posNode_ZERO_NODE_DNT|Psylocke_wHair:jStick_L_wrist_posNode|Psylocke_wHair:jStick_L_wrist" 
 		"rotateZ" " -k 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:jStick_R_wrist_posNode_ZERO_NODE_DNT|Psylocke_wHair:jStick_R_wrist_posNode|Psylocke_wHair:jStick_R_wrist" 
-		"translate" " -type \"double3\" 1 0.393479 0"
+		"translate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:jStick_R_wrist_posNode_ZERO_NODE_DNT|Psylocke_wHair:jStick_R_wrist_posNode|Psylocke_wHair:jStick_R_wrist" 
 		"translateY" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:jStick_R_wrist_posNode_ZERO_NODE_DNT|Psylocke_wHair:jStick_R_wrist_posNode|Psylocke_wHair:jStick_R_wrist" 
@@ -1180,7 +1180,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:jStick_R_wrist_posNode_ZERO_NODE_DNT|Psylocke_wHair:jStick_R_wrist_posNode|Psylocke_wHair:jStick_R_wrist" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
-		"translate" " -type \"double3\" 1.659306 0.813938 1.352675"
+		"translate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
@@ -1188,7 +1188,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
-		"rotate" " -type \"double3\" 14.895234 21.187134 -15.644275"
+		"rotate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
@@ -1198,9 +1198,9 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
 		"ikBlend" " -av -k 1 10"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
-		"KneeTwist" " -av -k 1 1.823764"
+		"KneeTwist" " -av -k 1 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
-		"Roll" " -av -k 1 -1.9824"
+		"Roll" " -av -k 1 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
 		"ToeTwist" " -av -k 1 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
@@ -1222,7 +1222,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group|Psylocke_wHair:L_toe_Group_ZERO_NODE_DNT|Psylocke_wHair:L_toe_Group|Psylocke_wHair:L_heel_Pivot_ZERO_NODE_DNT|Psylocke_wHair:L_heel_Pivot|Psylocke_wHair:hnd_L_ball" 
 		"translateZ" " -k 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
-		"translate" " -type \"double3\" 2.723191 0.218417 0.00189945"
+		"translate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
@@ -1230,7 +1230,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
-		"rotate" " -type \"double3\" 0 0 56.317141"
+		"rotate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
@@ -1242,7 +1242,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
 		"KneeTwist" " -av -k 1 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
-		"Roll" " -av -k 1 3.55"
+		"Roll" " -av -k 1 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
 		"ToeTwist" " -av -k 1 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
@@ -1256,7 +1256,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
 		"__rollTOE_OFFSET" " -av -k 1 3.5"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wrist_World" 
-		"translate" " -type \"double3\" 3.5 2 3"
+		"translate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wrist_World" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wrist_World" 
@@ -1264,7 +1264,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wrist_World" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wrist_World" 
-		"rotate" " -type \"double3\" 163.761336 17.687548 86.4262"
+		"rotate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wrist_World" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wrist_World" 
@@ -1272,7 +1272,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wrist_World" 
 		"rotateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wrist_World" 
-		"translate" " -type \"double3\" -5 -5.095679 1.618709"
+		"translate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wrist_World" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wrist_World" 
@@ -1280,14 +1280,14 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wrist_World" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wrist_World" 
-		"rotate" " -type \"double3\" 169.436627 -18.463869 -21.246901"
+		"rotate" " -type \"double3\" 0 0 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wrist_World" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wrist_World" 
 		"rotateY" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wrist_World" 
 		"rotateZ" " -av"
-		2 "Psylocke_wHair:Mike_Rig" "uv[1:28]" " -s 28 0.5 0.5 0.5 0.2 0 -5 10 0 3.2 10 3.5 4 6 90 0 0 -1.9824 1.823764 10 3.5 4 6 90 0 0 3.55 0 10"
+		2 "Psylocke_wHair:Mike_Rig" "uv[1:28]" " -s 28 0.5 0.5 0.5 0.2 0 0 10 0 0 10 3.5 4 6 90 0 0 0 0 10 3.5 4 6 90 0 0 0 0 10"
 		
 		2 "Psylocke_wHair:Mike_Rig" "unitlessValues" " -s 28"
 		2 "Psylocke_wHair:Mike_Rig" "unitlessValues[1]" " -av"
@@ -1297,7 +1297,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "Psylocke_wHair:Mike_Rig" "unitlessValues[5]" " -av"
 		2 "Psylocke_wHair:Mike_Rig" "unitlessValues[6]" " -av"
 		2 "Psylocke_wHair:Mike_Rig" "unitlessValues[7]" " -av"
-		2 "Psylocke_wHair:Mike_Rig" "lv[1:45]" " -s 45 0 0 0 -0.264937 -0.448592 0.16812 -0.0366075 0 -0.0621605 0.0372257 -0.019144 -0.0969485 0.2185 0.00711607 -0.0405438 0 0 0 0.579545 0.035477 0.484835 3 2 3.5 0 0 0 -0.3 -2.3 -2.837195 1.618709 -5.095679 -5 0 0.283188 0.474159 0 0.393479 1 1.352675 0.813938 1.659306 0.00189945 0.218417 2.723191"
+		2 "Psylocke_wHair:Mike_Rig" "lv[1:45]" " -s 45 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
 		
 		2 "Psylocke_wHair:Mike_Rig" "linearValues" " -s 45"
 		2 "Psylocke_wHair:Mike_Rig" "linearValues[4]" " -av"
@@ -1309,7 +1309,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "Psylocke_wHair:Mike_Rig" "linearValues[19]" " -av"
 		2 "Psylocke_wHair:Mike_Rig" "linearValues[20]" " -av"
 		2 "Psylocke_wHair:Mike_Rig" "linearValues[21]" " -av"
-		2 "Psylocke_wHair:Mike_Rig" "av[1:42]" " -s 42 0 0 0 -15 -60 20 9.342257 -17.340466 -7.598735 0 -8.690827 0 0.670594 -16.285523 23.392492 57.520687 3.38805 87.845566 86.4262 17.687548 163.761336 -2.20656 -17.037036 -28.649855 -55.16549 40.755066 109.807342 -21.246901 -18.463869 169.436627 -15.644275 21.187134 14.895234 56.317141 0 0 0 7.54171 0 0.718315 -8.119711 51.872862"
+		2 "Psylocke_wHair:Mike_Rig" "av[1:42]" " -s 42 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
 		
 		2 "Psylocke_wHair:Mike_Rig" "angularValues" " -s 42"
 		2 "Psylocke_wHair:Mike_Rig" "angularValues[4]" " -av"
@@ -2486,7 +2486,7 @@ createNode animCurveTL -n "Mike_Rig_cnt_L_wristIK_Loc_translateZ";
 createNode animCurveTA -n "Mike_Rig_cnt_L_wristIK_Loc_rotateX";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  0 6.9926699392100142e-31 1 87.845565979
+	setAttr -s 5 ".ktv[0:4]"  0 6.9926699392100159e-31 1 87.845565979
 		 6 87.845565979 12 87.845565979 24 87.845565979;
 	setAttr -s 5 ".kit[1:4]"  1 18 18 18;
 	setAttr -s 5 ".kot[1:4]"  1 18 18 18;
@@ -2612,25 +2612,30 @@ createNode animCurveTL -n "Mike_Rig_cnt_R_wristIK_poleConstraint_translateZ";
 	setAttr ".wgt" no;
 	setAttr -s 5 ".ktv[0:4]"  0 0 1 0 6 0 12 0 24 0;
 createNode animCurveTL -n "Mike_Rig_cnt_HipLocator_translateX";
-	setAttr ".tan" 18;
+	setAttr ".tan" 1;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  0 0 1 0.1 6 0.38944418056476932 18 -0.074770108421609249
-		 24 0.1;
-	setAttr -s 5 ".kit[1:4]"  1 18 18 1;
-	setAttr -s 5 ".kot[1:4]"  1 18 18 1;
-	setAttr -s 5 ".kix[1:4]"  0.49811866879463196 1 1 0.50678098201751709;
-	setAttr -s 5 ".kiy[1:4]"  0.86710888147354126 0 0 0.86207485198974609;
-	setAttr -s 5 ".kox[1:4]"  0.49811869859695435 1 1 0.50678068399429321;
-	setAttr -s 5 ".koy[1:4]"  0.86710888147354126 0 0 0.86207503080368042;
+	setAttr -s 6 ".ktv[0:5]"  0 0 1 0.19012569074960053 6 0.38944418056476926
+		 12 0.06085577450557713 18 -0.21943284999507784 24 0.19012569074960053;
+	setAttr -s 6 ".kit[0:5]"  18 1 1 1 1 1;
+	setAttr -s 6 ".kot[0:5]"  18 1 1 1 1 1;
+	setAttr -s 6 ".kix[1:5]"  0.49811866879463196 0.98961383104324341 
+		0.42376691102981567 0.90273571014404297 0.50678098201751709;
+	setAttr -s 6 ".kiy[1:5]"  0.86710888147354126 -0.14375124871730804 
+		-0.90577131509780884 0.43019565939903259 0.86207485198974609;
+	setAttr -s 6 ".kox[1:5]"  0.49811869859695435 0.98961389064788818 
+		0.42376691102981567 0.90273571014404297 0.50678068399429321;
+	setAttr -s 6 ".koy[1:5]"  0.86710888147354126 -0.14375124871730804 
+		-0.90577131509780884 0.43019559979438782 0.86207503080368042;
 createNode animCurveTL -n "Mike_Rig_cnt_HipLocator_translateY";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 4 ".ktv[0:3]"  0 0 1 0 12 0.045542832107853266 24 0;
+	setAttr -s 5 ".ktv[0:4]"  0 0 1 0 12 0.082637881606197588 18 0.055368559071821477
+		 24 0;
 createNode animCurveTL -n "Mike_Rig_cnt_HipLocator_translateZ";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 6 ".ktv[0:5]"  0 0 1 0 6 0.43728089367139672 12 0 18 0.437
-		 24 0;
+	setAttr -s 6 ".ktv[0:5]"  0 0 1 0 6 0.43728089367139672 12 -0.32445096828560865
+		 18 0.46186166135086276 24 0;
 	setAttr -s 6 ".kit[1:5]"  3 18 3 18 3;
 	setAttr -s 6 ".kot[1:5]"  3 18 3 18 3;
 createNode animCurveTA -n "Mike_Rig_cnt_HipLocator_rotateX";
@@ -2668,8 +2673,8 @@ createNode animCurveTA -n "Mike_Rig_cnt_Neck_1_Loc_rotateY";
 createNode animCurveTA -n "Mike_Rig_cnt_Neck_1_Loc_rotateZ";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  0 3.0897344086400073e-31 1 3.0897344086400073e-31
-		 6 3.0897344086400073e-31 12 3.0897344086400073e-31 24 3.0897344086400073e-31;
+	setAttr -s 5 ".ktv[0:4]"  0 3.0897344086400086e-31 1 3.0897344086400086e-31
+		 6 3.0897344086400086e-31 12 3.0897344086400086e-31 24 3.0897344086400086e-31;
 createNode animCurveTA -n "Mike_Rig_cnt_Head_1_Loc_rotateX";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
@@ -2683,7 +2688,7 @@ createNode animCurveTA -n "Mike_Rig_cnt_Head_1_Loc_rotateY";
 createNode animCurveTA -n "Mike_Rig_cnt_Head_1_Loc_rotateZ";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  0 3.0897344086400073e-31 1 0.71831466233100005
+	setAttr -s 5 ".ktv[0:4]"  0 3.0897344086400086e-31 1 0.71831466233100005
 		 6 0.71831466233100005 12 0.71831466233100005 24 0.71831466233100005;
 createNode animCurveTL -n "Mike_Rig_jStick_L_wrist_translateX";
 	setAttr ".tan" 1;
@@ -3102,7 +3107,7 @@ createNode animCurveTL -n "Mike_Rig_cnt_L_wrist_World_translateZ";
 createNode animCurveTA -n "Mike_Rig_cnt_L_wrist_World_rotateX";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  0 6.9926699392100142e-31 1 163.76133578
+	setAttr -s 5 ".ktv[0:4]"  0 6.9926699392100159e-31 1 163.76133578
 		 6 163.76133578 12 163.76133578 24 163.76133578;
 createNode animCurveTA -n "Mike_Rig_cnt_L_wrist_World_rotateY";
 	setAttr ".tan" 18;
@@ -3156,16 +3161,14 @@ createNode animLayer -n "BaseAnimation";
 createNode animLayer -n "COG_adjust";
 	setAttr -s 28 ".dsm";
 	setAttr -s 20 ".bnds";
+	setAttr ".mt" yes;
+	setAttr ".lo" yes;
 	setAttr ".pref" yes;
 	setAttr ".slct" yes;
 createNode animBlendNodeAdditiveDL -n "cnt_UpperBody_translateX_COG_adjust";
-	setAttr ".o" 0.17002601549664481;
 createNode animBlendNodeAdditiveDL -n "cnt_UpperBody_translateY_COG_adjust";
-	setAttr ".o" 0.033574258869969516;
 createNode animBlendNodeAdditiveDL -n "cnt_UpperBody_translateZ_COG_adjust";
-	setAttr ".o" 0.18206786579988271;
 createNode animBlendNodeAdditiveRotation -n "cnt_UpperBody_rotate_COG_adjust";
-	setAttr ".o" -type "double3" -20.625851379176261 -54.997573277273467 33.753205714349868 ;
 createNode animBlendNodeAdditive -n "cnt_UpperBody_shoulderFlex_COG_adjust";
 	setAttr ".o" 0.2;
 createNode animBlendNodeAdditive -n "cnt_UpperBody_sideFlex_COG_adjust";
@@ -3177,155 +3180,176 @@ createNode animBlendNodeAdditive -n "cnt_UpperBody_twistFlex_COG_adjust";
 createNode animCurveTU -n "COG_adjust_weight";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 3 ".ktv[0:2]"  0 0 1 1 24 1;
 createNode animCurveTL -n "cnt_UpperBody_translateX_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 0.26697453839798263;
+	setAttr -l on ".ktv[0]"  1 0.26697453839798263;
+	setAttr -l on ".ktv";
 createNode animCurveTL -n "cnt_UpperBody_translateY_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 0.05271823983925069;
+	setAttr -l on ".ktv[0]"  1 0.05271823983925069;
+	setAttr -l on ".ktv";
 createNode animCurveTL -n "cnt_UpperBody_translateZ_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 0.14484217355173198;
+	setAttr -l on ".ktv[0]"  1 0.14484217355173198;
+	setAttr -l on ".ktv";
 createNode animCurveTA -n "cnt_UpperBody_rotate_COG_adjust_inputBX";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 -13.027116842175433;
+	setAttr -l on ".ktv[0]"  1 0;
+	setAttr -l on ".ktv";
 createNode animCurveTA -n "cnt_UpperBody_rotate_COG_adjust_inputBY";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 -37.657107591105216;
+	setAttr -l on ".ktv[0]"  1 0;
+	setAttr -l on ".ktv";
 createNode animCurveTA -n "cnt_UpperBody_rotate_COG_adjust_inputBZ";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 24.410949030028799;
+	setAttr -l on ".ktv[0]"  1 0;
+	setAttr -l on ".ktv";
 createNode animCurveTU -n "cnt_UpperBody_shoulderFlex_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 0;
+	setAttr -l on ".ktv[0]"  1 0;
+	setAttr -l on ".ktv";
 createNode animCurveTU -n "cnt_UpperBody_sideFlex_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 0;
+	setAttr -l on ".ktv[0]"  1 0;
+	setAttr -l on ".ktv";
 createNode animCurveTU -n "cnt_UpperBody_frontFlex_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 0;
+	setAttr -l on ".ktv[0]"  1 0;
+	setAttr -l on ".ktv";
 createNode animCurveTU -n "cnt_UpperBody_twistFlex_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 0;
+	setAttr -l on ".ktv[0]"  1 0;
+	setAttr -l on ".ktv";
 createNode animBlendNodeAdditiveRotation -n "Psylocke_wHair:cnt_L_shoulder_Loc_rotate_COG_adjust";
-	setAttr ".o" -type "double3" 24.306591090548881 9.1690082603574954 3.2515519181248935 ;
+	setAttr ".o" -type "double3" 1.7655625192200017e-31 1.59027734073e-15 1.4756444637800001e-30 ;
 createNode animCurveTA -n "cnt_L_shoulder_Loc_rotate_COG_adjust_inputBX";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 0.91409887934888001;
+	setAttr -l on ".ktv[0]"  1 0.91409887934888001;
+	setAttr -l on ".ktv";
 createNode animCurveTA -n "cnt_L_shoulder_Loc_rotate_COG_adjust_inputBY";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 25.454530828257493;
+	setAttr -l on ".ktv[0]"  1 25.454530828257493;
+	setAttr -l on ".ktv";
 createNode animCurveTA -n "cnt_L_shoulder_Loc_rotate_COG_adjust_inputBZ";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 2.5809577503818932;
+	setAttr -l on ".ktv[0]"  1 2.5809577503818932;
+	setAttr -l on ".ktv";
 createNode animBlendNodeAdditiveDL -n "Psylocke_wHair:cnt_L_wristIK_Loc_translateX_COG_adjust";
-	setAttr ".o" 1.474691524500908;
 createNode animBlendNodeAdditiveDL -n "Psylocke_wHair:cnt_L_wristIK_Loc_translateY_COG_adjust";
-	setAttr ".o" 0.78047910783757724;
+	setAttr ".o" 1.7763568394e-15;
 createNode animBlendNodeAdditiveDL -n "Psylocke_wHair:cnt_L_wristIK_Loc_translateZ_COG_adjust";
-	setAttr ".o" 0.25119995757290992;
+	setAttr ".o" 1.1102230246299999e-16;
 createNode animBlendNodeAdditiveRotation -n "Psylocke_wHair:cnt_L_wristIK_Loc_rotate_COG_adjust";
-	setAttr ".o" -type "double3" 87.469134942047063 3.0786975773788594 50.546435823061159 ;
+	setAttr ".o" -type "double3" 6.9926699392100159e-31 3.18055468146e-15 1.1299600123000001e-29 ;
 createNode animBlendNodeAdditive -n "Psylocke_wHair:cnt_L_wristIK_Loc_ikBlend_COG_adjust";
 	setAttr ".o" 10;
 createNode animBlendNodeAdditive -n "Psylocke_wHair:cnt_L_wristIK_Loc_elbowTwist_COG_adjust";
-	setAttr ".o" -2.9;
 createNode animBlendNodeAdditive -n "Psylocke_wHair:cnt_L_wristIK_Loc_handToWorld_COG_adjust";
 createNode animCurveTL -n "cnt_L_wristIK_Loc_translateX_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  1 0.96272012766564496 6 1.0251781515231893
+	setAttr -s 5 -l on ".ktv[0:4]"  1 0.96272012766564496 6 1.0251781515231893
 		 12 0.96272012766564496 18 1.0169938813501711 24 0.96272012766564496;
+	setAttr -l on ".ktv";
 createNode animCurveTL -n "cnt_L_wristIK_Loc_translateY_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  1 0.54278647425008064 6 1.1053119820230848
+	setAttr -s 5 -l on ".ktv[0:4]"  1 0.54278647425008064 6 1.1053119820230848
 		 12 0.54278647425008064 18 0.94721768668247397 24 0.54278647425008064;
+	setAttr -l on ".ktv";
 createNode animCurveTL -n "cnt_L_wristIK_Loc_translateZ_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  1 -0.34211428932449217 6 -0.31865560111162139
+	setAttr -s 5 -l on ".ktv[0:4]"  1 -0.34211428932449217 6 -0.31865560111162139
 		 12 -0.34211428932449217 18 -0.31457617690368789 24 -0.34211428932449217;
+	setAttr -l on ".ktv";
 createNode animCurveTA -n "cnt_L_wristIK_Loc_rotate_COG_adjust_inputBX";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  1 0 6 -0.85312363920590173 12 0 18 -0.7528620739058981
+	setAttr -s 5 -l on ".ktv[0:4]"  1 0 6 -0.85312363920590173 12 0 18 -0.7528620739058981
 		 24 0;
+	setAttr -l on ".ktv";
 createNode animCurveTA -n "cnt_L_wristIK_Loc_rotate_COG_adjust_inputBY";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  1 0 6 -0.72794560077699733 12 0 18 -0.61870515962228179
+	setAttr -s 5 -l on ".ktv[0:4]"  1 0 6 -0.72794560077699733 12 0 18 -0.61870515962228179
 		 24 0;
+	setAttr -l on ".ktv";
 createNode animCurveTA -n "cnt_L_wristIK_Loc_rotate_COG_adjust_inputBZ";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  1 0 6 -16.065129141861981 12 0 18 -13.948502140877673
+	setAttr -s 5 -l on ".ktv[0:4]"  1 0 6 -16.065129141861981 12 0 18 -13.948502140877673
 		 24 0;
+	setAttr -l on ".ktv";
 createNode animCurveTU -n "cnt_L_wristIK_Loc_ikBlend_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  1 0 6 0 12 0 18 0 24 0;
+	setAttr -s 5 -l on ".ktv[0:4]"  1 0 6 0 12 0 18 0 24 0;
+	setAttr -l on ".ktv";
 createNode animCurveTU -n "cnt_L_wristIK_Loc_elbowTwist_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  1 2.1 6 2.1 12 2.1 18 2.1 24 2.1;
+	setAttr -s 5 -l on ".ktv[0:4]"  1 2.1 6 2.1 12 2.1 18 2.1 24 2.1;
+	setAttr -l on ".ktv";
 createNode animCurveTU -n "cnt_L_wristIK_Loc_handToWorld_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  1 0 6 0 12 0 18 0 24 0;
+	setAttr -s 5 -l on ".ktv[0:4]"  1 0 6 0 12 0 18 0 24 0;
+	setAttr -l on ".ktv";
 createNode animBlendNodeAdditiveDL -n "Psylocke_wHair:cnt_COG_translateX_COG_adjust";
-	setAttr ".o" 0.1681197144769998;
 createNode animBlendNodeAdditiveDL -n "Psylocke_wHair:cnt_COG_translateY_COG_adjust";
-	setAttr ".o" -0.44859234434336337;
 createNode animBlendNodeAdditiveDL -n "Psylocke_wHair:cnt_COG_translateZ_COG_adjust";
-	setAttr ".o" 0.20792206407355451;
 createNode animBlendNodeAdditiveRotation -n "Psylocke_wHair:cnt_COG_rotate_COG_adjust";
-	setAttr ".o" -type "double3" 20 -59.999999999999993 -14.999999999999998 ;
 createNode animCurveTL -n "cnt_COG_translateX_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 -2.2204460492503131e-16;
+	setAttr -l on ".ktv[0]"  1 -2.2204460492503131e-16;
+	setAttr -l on ".ktv";
 createNode animCurveTL -n "cnt_COG_translateY_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 0;
+	setAttr -l on ".ktv[0]"  1 0;
+	setAttr -l on ".ktv";
 createNode animCurveTL -n "cnt_COG_translateZ_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 0.47285915866051464;
+	setAttr -l on ".ktv[0]"  1 0.47285915866051464;
+	setAttr -l on ".ktv";
 createNode animCurveTA -n "cnt_COG_rotate_COG_adjust_inputBX";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 0;
+	setAttr -l on ".ktv[0]"  1 0;
+	setAttr -l on ".ktv";
 createNode animCurveTA -n "cnt_COG_rotate_COG_adjust_inputBY";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 0;
+	setAttr -l on ".ktv[0]"  1 0;
+	setAttr -l on ".ktv";
 createNode animCurveTA -n "cnt_COG_rotate_COG_adjust_inputBZ";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 0;
+	setAttr -l on ".ktv[0]"  1 0;
+	setAttr -l on ".ktv";
 select -ne :time1;
 	setAttr -av -k on ".cch";
 	setAttr -cb on ".ihi";
 	setAttr -k on ".nds";
 	setAttr -cb on ".bnm";
-	setAttr ".o" 21;
-	setAttr ".unw" 21;
+	setAttr ".o" 0;
 select -ne :renderPartition;
 	setAttr -k on ".cch";
 	setAttr -cb on ".ihi";
