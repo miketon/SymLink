@@ -1,0 +1,160 @@
+<?xml version="1.0" ?>
+<Main>
+	<Pose author="mton" date="2014-07-07 11:08:38" index="0" modifiedBy="mton" modifiedDate="2014-07-07 11:08:38" multipleNamespaces="False" name="Psylocke_Stance">
+		<Controls>
+			<Control name="cnt_charRoot" namespace="">
+				<Attribute name="translateX" value="0.0"/>
+				<Attribute name="translateY" value="0.0"/>
+				<Attribute name="translateZ" value="0.0"/>
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="0.0"/>
+				<Attribute name="rotateZ" value="0.0"/>
+			</Control>
+			<Control name="cnt_COG" namespace="">
+				<Attribute name="translateX" value="0.168119714477"/>
+				<Attribute name="translateY" value="-2.15"/>
+				<Attribute name="translateZ" value="-1.01479785132"/>
+				<Attribute name="rotateX" value="23.2657219342"/>
+				<Attribute name="rotateY" value="-52.635672608"/>
+				<Attribute name="rotateZ" value="-16.7885593662"/>
+			</Control>
+			<Control name="cnt_MidBackLocator" namespace="">
+				<Attribute name="translateX" value="0.0"/>
+				<Attribute name="translateY" value="0.0"/>
+				<Attribute name="translateZ" value="0.0"/>
+			</Control>
+			<Control name="cnt_UpperBody" namespace="">
+				<Attribute name="shoulderFlex" value="0.2"/>
+				<Attribute name="translateX" value="0.0"/>
+				<Attribute name="translateY" value="0.0"/>
+				<Attribute name="translateZ" value="0.0"/>
+				<Attribute name="twistFlex" value="0.5"/>
+				<Attribute name="rotateX" value="-8.797"/>
+				<Attribute name="rotateY" value="-15.636"/>
+				<Attribute name="rotateZ" value="19.297"/>
+				<Attribute name="frontFlex" value="0.5"/>
+				<Attribute name="sideFlex" value="0.5"/>
+			</Control>
+			<Control name="cnt_L_shoulder_Loc" namespace="">
+				<Attribute name="rotateX" value="23.3924922112"/>
+				<Attribute name="rotateY" value="-16.2855225679"/>
+				<Attribute name="rotateZ" value="0.670594167743"/>
+			</Control>
+			<Control name="cnt_R_shoulder_Loc" namespace="">
+				<Attribute name="rotateX" value="-28.649855287"/>
+				<Attribute name="rotateY" value="-17.0370355134"/>
+				<Attribute name="rotateZ" value="-2.20656048932"/>
+			</Control>
+			<Control name="cnt_L_wristIK_Loc" namespace="">
+				<Attribute name="elbowTwist" value="-5.0"/>
+				<Attribute name="translateX" value="0.484834519993"/>
+				<Attribute name="translateY" value="0.0354770273713"/>
+				<Attribute name="translateZ" value="0.579545190687"/>
+				<Attribute name="handToWorld" value="10.0"/>
+				<Attribute name="ikBlend" value="10.0"/>
+				<Attribute name="rotateX" value="87.845565979"/>
+				<Attribute name="rotateY" value="3.38805015719"/>
+				<Attribute name="rotateZ" value="57.5206868935"/>
+			</Control>
+			<Control name="cnt_R_wristIK_Loc" namespace="">
+				<Attribute name="elbowTwist" value="3.2"/>
+				<Attribute name="translateX" value="-2.83719512195"/>
+				<Attribute name="translateY" value="-2.3"/>
+				<Attribute name="translateZ" value="-0.3"/>
+				<Attribute name="handToWorld" value="10.0"/>
+				<Attribute name="ikBlend" value="10.0"/>
+				<Attribute name="rotateX" value="109.807342318"/>
+				<Attribute name="rotateY" value="40.7550664669"/>
+				<Attribute name="rotateZ" value="-55.1654902579"/>
+			</Control>
+			<Control name="cnt_L_wristIK_poleConstraint" namespace="">
+				<Attribute name="translateX" value="0.0"/>
+				<Attribute name="translateY" value="0.0"/>
+				<Attribute name="translateZ" value="0.0"/>
+			</Control>
+			<Control name="cnt_R_wristIK_poleConstraint" namespace="">
+				<Attribute name="translateX" value="0.0"/>
+				<Attribute name="translateY" value="0.0"/>
+				<Attribute name="translateZ" value="0.0"/>
+			</Control>
+			<Control name="cnt_HipLocator" namespace="">
+				<Attribute name="translateX" value="0.1"/>
+				<Attribute name="translateY" value="0.0"/>
+				<Attribute name="translateZ" value="0.0"/>
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="0.0"/>
+				<Attribute name="rotateZ" value="0.0"/>
+			</Control>
+			<Control name="cnt_Neck_1_Loc" namespace="">
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="7.5417098372"/>
+				<Attribute name="rotateZ" value="3.08973440864e-31"/>
+			</Control>
+			<Control name="cnt_Head_1_Loc" namespace="">
+				<Attribute name="rotateX" value="51.8728620532"/>
+				<Attribute name="rotateY" value="-8.11971081429"/>
+				<Attribute name="rotateZ" value="0.718314662331"/>
+			</Control>
+			<Control name="jStick_L_wrist" namespace="">
+				<Attribute name="translateX" value="0.352555451746"/>
+				<Attribute name="translateY" value="0.121868659178"/>
+				<Attribute name="translateZ" value="0.0"/>
+			</Control>
+			<Control name="jStick_R_wrist" namespace="">
+				<Attribute name="translateX" value="1.0"/>
+				<Attribute name="translateY" value="0.393478794509"/>
+				<Attribute name="translateZ" value="0.0"/>
+			</Control>
+			<Control name="cnt_L_foot_Group" namespace="">
+				<Attribute name="KneeTwist" value="2.6"/>
+				<Attribute name="translateX" value="4.33143064203"/>
+				<Attribute name="translateY" value="1.123681669"/>
+				<Attribute name="translateZ" value="0.0031689768344"/>
+				<Attribute name="__rollHEEL_OFFSET" value="6.0"/>
+				<Attribute name="ikBlend" value="10.0"/>
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="0.0"/>
+				<Attribute name="rotateZ" value="-33.2915846191"/>
+				<Attribute name="FootLean" value="10.0"/>
+				<Attribute name="__rollTOE_OFFSET" value="3.5"/>
+				<Attribute name="__rollANKLE_OFFSET" value="4.0"/>
+				<Attribute name="ToeTwist" value="5.4"/>
+				<Attribute name="__KneeTWIST_OFFSET" value="90.0"/>
+				<Attribute name="Roll" value="1.73717771138"/>
+			</Control>
+			<Control name="cnt_R_foot_Group" namespace="">
+				<Attribute name="KneeTwist" value="0.0"/>
+				<Attribute name="translateX" value="3.23044096129"/>
+				<Attribute name="translateY" value="0.226710221539"/>
+				<Attribute name="translateZ" value="0.00208708364524"/>
+				<Attribute name="__rollHEEL_OFFSET" value="6.0"/>
+				<Attribute name="ikBlend" value="10.0"/>
+				<Attribute name="rotateX" value="5.34317850559e-13"/>
+				<Attribute name="rotateY" value="0.0"/>
+				<Attribute name="rotateZ" value="60.5204419356"/>
+				<Attribute name="FootLean" value="0.0"/>
+				<Attribute name="__rollTOE_OFFSET" value="3.5"/>
+				<Attribute name="__rollANKLE_OFFSET" value="4.0"/>
+				<Attribute name="ToeTwist" value="0.0"/>
+				<Attribute name="__KneeTWIST_OFFSET" value="90.0"/>
+				<Attribute name="Roll" value="0.0"/>
+			</Control>
+			<Control name="cnt_L_wrist_World" namespace="">
+				<Attribute name="translateX" value="3.5"/>
+				<Attribute name="translateY" value="2.0"/>
+				<Attribute name="translateZ" value="3.0"/>
+				<Attribute name="rotateX" value="163.76133578"/>
+				<Attribute name="rotateY" value="17.6875481539"/>
+				<Attribute name="rotateZ" value="86.426200129"/>
+			</Control>
+			<Control name="cnt_R_wrist_World" namespace="">
+				<Attribute name="translateX" value="-5.0"/>
+				<Attribute name="translateY" value="-5.09567927285"/>
+				<Attribute name="translateZ" value="1.61870869415"/>
+				<Attribute name="rotateX" value="169.436626755"/>
+				<Attribute name="rotateY" value="-18.4638693482"/>
+				<Attribute name="rotateZ" value="-21.2469011005"/>
+			</Control>
+		</Controls>
+	</Pose>
+</Main>

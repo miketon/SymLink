@@ -4,7 +4,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-
+/*
 [AddComponentMenu("ControlFreak-Demos-CS/DemoSwipeMenuCS_mton")]
 public class DemoSwipeMenuCS_mton : MonoBehaviour
 {
@@ -54,7 +54,7 @@ public class DemoSwipeMenuCS_mton : MonoBehaviour
   private void Start()
   {
     //this.itemWidth = Screen.width * 0.9f;
-    this.menu.Init(ITEM_COUNT, 0, Screen.width /*this.itemWidth*/, 
+    this.menu.Init(ITEM_COUNT, 0, Screen.width //this.itemWidth, 
         this.ctrl.GetDPI(), false);
 
     this.fadeInTimer.Start(this.fadeInDuration);
@@ -253,3 +253,5 @@ public class DemoSwipeMenuCS_mton : MonoBehaviour
   private const string	AUD_DEMO_DESCRIPTION	= 
     "AUDIO TOUCH CONTROL DEMO.";
 }
+*/
+

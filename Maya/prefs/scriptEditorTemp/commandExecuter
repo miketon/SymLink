@@ -1,0 +1,54 @@
+scaleKey -iub false -ts 1 -tp 0 -fs 1 -fp 0 -vs -1.0 -vp -20.902834 -animation keys ;
+
+blindDataEditor
+
+rotate -r -ws 0 90 0 ;
+
+move -r 1.925555 2.49351 -3.795687 ;
+select -cl  ;
+select -r pCube1.f[0] pCube1.f[5] ;
+getenv MAYA_APP_DIR;
+
+//cube map generation
+string $camera = "persp";//`createNode "camera"`;
+string $parent[] = `listRelatives -p $camera`;
+
+setAttr defaultRenderGlobals.imageFormat 32; //PNG
+setAttr defaultResolution.width 512;
+setAttr defaultResolution.height 512;
+//workspace -renderType "images" "..";
+//viewPlace -eyePoint 0.0 0.0 0.0 -lookAt 0.0 0.0 1.0 -fov 90.0 -perspective $camera;
+
+//Forward
+viewPlace -eyePoint 0.0 0.0 0.0 -fov 90.0 -perspective -lookAt 0.0 0.0 1.0 $camera;
+setAttr -type "string" defaultRenderGlobals.imageFilePrefix ("sky_pz");
+render;
+
+//Backward
+viewPlace -eyePoint 0.0 0.0 0.0 -fov 90.0 -perspective -lookAt 0.0 0.0 -1.0 $camera;
+setAttr -type "string" defaultRenderGlobals.imageFilePrefix ("sky_nz");
+render;
+
+//Left
+viewPlace -eyePoint 0.0 0.0 0.0 -fov 90.0 -perspective -lookAt -1.0 0.0 0.0 $camera;
+setAttr -type "string" defaultRenderGlobals.imageFilePrefix ("sky_nx");
+render;
+
+//Right
+viewPlace -eyePoint 0.0 0.0 0.0 -fov 90.0 -perspective -lookAt 1.0 0.0 0.0 $camera;
+setAttr -type "string" defaultRenderGlobals.imageFilePrefix ("sky_px");
+render;
+
+//Up
+viewPlace -eyePoint 0.0 0.0 0.0 -fov 90.0 -perspective -lookAt 0.0 1.0 0.0 $camera;
+setAttr -type "string" defaultRenderGlobals.imageFilePrefix ("sky_py");
+render;
+
+//Down
+viewPlace -eyePoint 0.0 0.0 0.0 -fov 90.0 -perspective -lookAt 0.0 -1.0 0.0 $camera;
+setAttr -type "string" defaultRenderGlobals.imageFilePrefix ("sky_ny");
+render;
+
+viewPlace -eyePoint 25.0 15.0 25.0 -lookAt 0.0 0.0 0.0 -fov 70.0 -perspective $camera;
+
+aimConstraint -offset 0 0 0 -weight 1 -aimVector 0 0 -1 -upVector 0 1 0 -worldUpType "vector" -worldUpVector 0 1 0 -skip x -skip z persp pPlane1;
