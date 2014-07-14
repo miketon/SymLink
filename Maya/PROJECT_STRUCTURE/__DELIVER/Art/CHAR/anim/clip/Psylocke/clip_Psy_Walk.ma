@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
 //Name: clip_Psy_Walk.ma
-//Last modified: Wed, Jul 09, 2014 08:24:16 PM
+//Last modified: Thu, Jul 10, 2014 09:00:41 AM
 //Codeset: UTF-8
 file -rdi 1 -ns "Psylocke_wHair" -rfn "Psylocke_wHairRN" "/Users/mton/Dropbox/Code/SymLink/Maya/PROJECT_STRUCTURE/__SOURCE//Art/CHAR/anim/rigs/Psylocke/Psylocke_wHair.ma";
 file -r -ns "Psylocke_wHair" -dr 1 -rfn "Psylocke_wHairRN" "/Users/mton/Dropbox/Code/SymLink/Maya/PROJECT_STRUCTURE/__SOURCE//Art/CHAR/anim/rigs/Psylocke/Psylocke_wHair.ma";
@@ -92,14 +92,14 @@ fileInfo "osv" "Mac OS X 10.9.3";
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -35.739295602693076 11.442123086534659 75.377920863473264 ;
-	setAttr ".r" -type "double3" -2.400000000010404 -745.59999999999559 2.2042304061027632e-16 ;
-	setAttr ".rp" -type "double3" 1.7763568394002505e-15 -8.8817841970012523e-16 7.1054273576010019e-15 ;
-	setAttr ".rpt" -type "double3" -7.84317998497166e-15 4.1105697801291421e-15 6.7689223602528622e-15 ;
+	setAttr ".t" -type "double3" -26.336861662996544 7.9778907480342385 0.83778340754417968 ;
+	setAttr ".r" -type "double3" 0 -89.999999999999986 0 ;
+	setAttr ".rp" -type "double3" -7.1054273576010019e-15 -1.7763568394002505e-15 0 ;
+	setAttr ".rpt" -type "double3" -3.9198874032675151e-15 3.8138044478795827e-15 3.6679145631482493e-15 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999979;
-	setAttr ".coi" 82.726644959083458;
+	setAttr ".coi" 26.311215951401781;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -749,12 +749,12 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\tblendShapePanel -unParent -l (localizedPanelLabel(\"Blend Shape\")) -mbv $menusOkayInPanels ;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tblendShapePanel -edit -l (localizedPanelLabel(\"Blend Shape\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynRelEdPanel\" (localizedPanelLabel(\"Dynamic Relationships\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"dynRelEdPanel\" -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"relationshipPanel\" (localizedPanelLabel(\"Relationship Editor\")) `;\n"
 		+ "\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"relationshipPanel\" -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"referenceEditorPanel\" (localizedPanelLabel(\"Reference Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"referenceEditorPanel\" -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"componentEditorPanel\" (localizedPanelLabel(\"Component Editor\")) `;\n"
 		+ "\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"componentEditorPanel\" -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynPaintScriptedPanelType\" (localizedPanelLabel(\"Paint Effects\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"dynPaintScriptedPanelType\" -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"scriptEditorPanel\" (localizedPanelLabel(\"Script Editor\")) `;\n"
-		+ "\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"scriptEditorPanel\" -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"horizontal2\\\" -ps 1 100 46 -ps 2 100 54 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
+		+ "\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"scriptEditorPanel\" -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"vertical2\\\" -ps 1 45 100 -ps 2 55 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Outliner\")) \n\t\t\t\t\t\"outlinerPanel\"\n"
+		+ "\t\t\t\t\t\"$panelName = `outlinerPanel -unParent -l (localizedPanelLabel(\\\"Outliner\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\noutlinerEditor -e \\n    -docTag \\\"isolOutln_fromSeln\\\" \\n    -showShapes 0\\n    -showReferenceNodes 0\\n    -showReferenceMembers 0\\n    -showAttributes 0\\n    -showConnected 1\\n    -showAnimCurvesOnly 0\\n    -showMuteInfo 0\\n    -organizeByLayer 1\\n    -showAnimLayerWeight 1\\n    -autoExpandLayers 1\\n    -autoExpand 0\\n    -showDagOnly 1\\n    -showAssets 1\\n    -showContainedOnly 1\\n    -showPublishedAsConnected 0\\n    -showContainerContents 1\\n    -ignoreDagHierarchy 0\\n    -expandConnections 0\\n    -showUpstreamCurves 1\\n    -showUnitlessCurves 1\\n    -showCompounds 1\\n    -showLeafs 1\\n    -showNumericAttrsOnly 0\\n    -highlightActive 1\\n    -autoSelectNewObjects 0\\n    -doNotSelectNewObjects 0\\n    -dropIsParent 1\\n    -transmitFilters 0\\n    -setFilter \\\"defaultSetFilter\\\" \\n    -showSetMembers 1\\n    -allowMultiSelection 1\\n    -alwaysToggleSelect 0\\n    -directSelect 0\\n    -displayMode \\\"DAG\\\" \\n    -expandObjects 0\\n    -setsIgnoreFilters 1\\n    -containersIgnoreFilters 0\\n    -editAttrName 0\\n    -showAttrValues 0\\n    -highlightSecondary 0\\n    -showUVAttrsOnly 0\\n    -showTextureNodesOnly 0\\n    -attrAlphaOrder \\\"default\\\" \\n    -animLayerFilterOptions \\\"allAffecting\\\" \\n    -sortOrder \\\"none\\\" \\n    -longNames 0\\n    -niceNames 1\\n    -showNamespace 1\\n    -showPinIcons 0\\n    -mapMotionTrails 0\\n    $editorName\"\n"
+		+ "\t\t\t\t\t\"outlinerPanel -edit -l (localizedPanelLabel(\\\"Outliner\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\noutlinerEditor -e \\n    -docTag \\\"isolOutln_fromSeln\\\" \\n    -showShapes 0\\n    -showReferenceNodes 0\\n    -showReferenceMembers 0\\n    -showAttributes 0\\n    -showConnected 1\\n    -showAnimCurvesOnly 0\\n    -showMuteInfo 0\\n    -organizeByLayer 1\\n    -showAnimLayerWeight 1\\n    -autoExpandLayers 1\\n    -autoExpand 0\\n    -showDagOnly 1\\n    -showAssets 1\\n    -showContainedOnly 1\\n    -showPublishedAsConnected 0\\n    -showContainerContents 1\\n    -ignoreDagHierarchy 0\\n    -expandConnections 0\\n    -showUpstreamCurves 1\\n    -showUnitlessCurves 1\\n    -showCompounds 1\\n    -showLeafs 1\\n    -showNumericAttrsOnly 0\\n    -highlightActive 1\\n    -autoSelectNewObjects 0\\n    -doNotSelectNewObjects 0\\n    -dropIsParent 1\\n    -transmitFilters 0\\n    -setFilter \\\"defaultSetFilter\\\" \\n    -showSetMembers 1\\n    -allowMultiSelection 1\\n    -alwaysToggleSelect 0\\n    -directSelect 0\\n    -displayMode \\\"DAG\\\" \\n    -expandObjects 0\\n    -setsIgnoreFilters 1\\n    -containersIgnoreFilters 0\\n    -editAttrName 0\\n    -showAttrValues 0\\n    -highlightSecondary 0\\n    -showUVAttrsOnly 0\\n    -showTextureNodesOnly 0\\n    -attrAlphaOrder \\\"default\\\" \\n    -animLayerFilterOptions \\\"allAffecting\\\" \\n    -sortOrder \\\"none\\\" \\n    -longNames 0\\n    -niceNames 1\\n    -showNamespace 1\\n    -showPinIcons 0\\n    -mapMotionTrails 0\\n    $editorName\"\n"
+		+ "\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
 		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 1\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -maxConstantTransparency 1\\n    -rendererName \\\"base_OpenGL_Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 0\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 0\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
 		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 1\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -maxConstantTransparency 1\\n    -rendererName \\\"base_OpenGL_Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 0\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 0\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
-		+ "\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Graph Editor\")) \n\t\t\t\t\t\"scriptedPanel\"\n"
-		+ "\t\t\t\t\t\"$panelName = `scriptedPanel -unParent  -type \\\"graphEditor\\\" -l (localizedPanelLabel(\\\"Graph Editor\\\")) -mbv $menusOkayInPanels `;\\n\\n\\t\\t\\t$editorName = ($panelName+\\\"OutlineEd\\\");\\n            outlinerEditor -e \\n                -showShapes 1\\n                -showReferenceNodes 0\\n                -showReferenceMembers 0\\n                -showAttributes 1\\n                -showConnected 1\\n                -showAnimCurvesOnly 1\\n                -showMuteInfo 0\\n                -organizeByLayer 1\\n                -showAnimLayerWeight 1\\n                -autoExpandLayers 1\\n                -autoExpand 1\\n                -showDagOnly 0\\n                -showAssets 1\\n                -showContainedOnly 0\\n                -showPublishedAsConnected 0\\n                -showContainerContents 0\\n                -ignoreDagHierarchy 0\\n                -expandConnections 1\\n                -showUpstreamCurves 1\\n                -showUnitlessCurves 1\\n                -showCompounds 0\\n                -showLeafs 1\\n                -showNumericAttrsOnly 1\\n                -highlightActive 0\\n                -autoSelectNewObjects 1\\n                -doNotSelectNewObjects 0\\n                -dropIsParent 1\\n                -transmitFilters 1\\n                -setFilter \\\"0\\\" \\n                -showSetMembers 0\\n                -allowMultiSelection 1\\n                -alwaysToggleSelect 0\\n                -directSelect 0\\n                -displayMode \\\"DAG\\\" \\n                -expandObjects 0\\n                -setsIgnoreFilters 1\\n                -containersIgnoreFilters 0\\n                -editAttrName 0\\n                -showAttrValues 0\\n                -highlightSecondary 0\\n                -showUVAttrsOnly 0\\n                -showTextureNodesOnly 0\\n                -attrAlphaOrder \\\"default\\\" \\n                -animLayerFilterOptions \\\"allAffecting\\\" \\n                -sortOrder \\\"none\\\" \\n                -longNames 0\\n                -niceNames 1\\n                -showNamespace 1\\n                -showPinIcons 1\\n                -mapMotionTrails 1\\n                $editorName;\\n\\n\\t\\t\\t$editorName = ($panelName+\\\"GraphEd\\\");\\n            animCurveEditor -e \\n                -displayKeys 1\\n                -displayTangents 0\\n                -displayActiveKeys 0\\n                -displayActiveKeyTangents 1\\n                -displayInfinities 0\\n                -autoFit 0\\n                -snapTime \\\"integer\\\" \\n                -snapValue \\\"none\\\" \\n                -showResults \\\"off\\\" \\n                -showBufferCurves \\\"off\\\" \\n                -smoothness \\\"fine\\\" \\n                -resultSamples 1\\n                -resultScreenSamples 0\\n                -resultUpdate \\\"delayed\\\" \\n                -showUpstreamCurves 1\\n                -clipTime \\\"on\\\" \\n                -stackedCurves 0\\n                -stackedCurvesMin -1\\n                -stackedCurvesMax 1\\n                -stackedCurvesSpace 0.2\\n                -displayNormalized 0\\n                -preSelectionHighlight 0\\n                -constrainDrag 0\\n                -classicMode 1\\n                $editorName\"\n"
-		+ "\t\t\t\t\t\"scriptedPanel -edit -l (localizedPanelLabel(\\\"Graph Editor\\\")) -mbv $menusOkayInPanels  $panelName;\\n\\n\\t\\t\\t$editorName = ($panelName+\\\"OutlineEd\\\");\\n            outlinerEditor -e \\n                -showShapes 1\\n                -showReferenceNodes 0\\n                -showReferenceMembers 0\\n                -showAttributes 1\\n                -showConnected 1\\n                -showAnimCurvesOnly 1\\n                -showMuteInfo 0\\n                -organizeByLayer 1\\n                -showAnimLayerWeight 1\\n                -autoExpandLayers 1\\n                -autoExpand 1\\n                -showDagOnly 0\\n                -showAssets 1\\n                -showContainedOnly 0\\n                -showPublishedAsConnected 0\\n                -showContainerContents 0\\n                -ignoreDagHierarchy 0\\n                -expandConnections 1\\n                -showUpstreamCurves 1\\n                -showUnitlessCurves 1\\n                -showCompounds 0\\n                -showLeafs 1\\n                -showNumericAttrsOnly 1\\n                -highlightActive 0\\n                -autoSelectNewObjects 1\\n                -doNotSelectNewObjects 0\\n                -dropIsParent 1\\n                -transmitFilters 1\\n                -setFilter \\\"0\\\" \\n                -showSetMembers 0\\n                -allowMultiSelection 1\\n                -alwaysToggleSelect 0\\n                -directSelect 0\\n                -displayMode \\\"DAG\\\" \\n                -expandObjects 0\\n                -setsIgnoreFilters 1\\n                -containersIgnoreFilters 0\\n                -editAttrName 0\\n                -showAttrValues 0\\n                -highlightSecondary 0\\n                -showUVAttrsOnly 0\\n                -showTextureNodesOnly 0\\n                -attrAlphaOrder \\\"default\\\" \\n                -animLayerFilterOptions \\\"allAffecting\\\" \\n                -sortOrder \\\"none\\\" \\n                -longNames 0\\n                -niceNames 1\\n                -showNamespace 1\\n                -showPinIcons 1\\n                -mapMotionTrails 1\\n                $editorName;\\n\\n\\t\\t\\t$editorName = ($panelName+\\\"GraphEd\\\");\\n            animCurveEditor -e \\n                -displayKeys 1\\n                -displayTangents 0\\n                -displayActiveKeys 0\\n                -displayActiveKeyTangents 1\\n                -displayInfinities 0\\n                -autoFit 0\\n                -snapTime \\\"integer\\\" \\n                -snapValue \\\"none\\\" \\n                -showResults \\\"off\\\" \\n                -showBufferCurves \\\"off\\\" \\n                -smoothness \\\"fine\\\" \\n                -resultSamples 1\\n                -resultScreenSamples 0\\n                -resultUpdate \\\"delayed\\\" \\n                -showUpstreamCurves 1\\n                -clipTime \\\"on\\\" \\n                -stackedCurves 0\\n                -stackedCurvesMin -1\\n                -stackedCurvesMax 1\\n                -stackedCurvesSpace 0.2\\n                -displayNormalized 0\\n                -preSelectionHighlight 0\\n                -constrainDrag 0\\n                -classicMode 1\\n                $editorName\"\n"
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        setFocus `paneLayout -q -p1 $gMainPane`;\n        sceneUIReplacement -deleteRemaining;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 5 -size 12 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels no -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition axis -orthographicLabelPosition edge;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
 	setAttr ".st" 3;
 createNode script -n "sceneConfigurationScriptNode";
@@ -992,7 +992,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot" 
 		"rotateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" 0.16812 -0.310632 -0.304457"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG" 
@@ -1000,7 +1000,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG" 
-		"rotate" " -type \"double3\" 0 0 0"
+		"rotate" " -type \"double3\" 20 -60 -15"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG" 
@@ -1008,7 +1008,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG" 
 		"rotateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:MidRot|Psylocke_wHair:MidBackGRP|Psylocke_wHair:cnt_MidBackLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_MidBackLocator" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" 0.0304144 0 -0.0839491"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:MidRot|Psylocke_wHair:MidBackGRP|Psylocke_wHair:cnt_MidBackLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_MidBackLocator" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:MidRot|Psylocke_wHair:MidBackGRP|Psylocke_wHair:cnt_MidBackLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_MidBackLocator" 
@@ -1024,7 +1024,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:MidRot|Psylocke_wHair:MidBackGRP|Psylocke_wHair:cnt_MidBackLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_MidBackLocator" 
 		"rotateZ" " -k 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" 0.310411 0.0597364 0.166646"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody" 
@@ -1032,7 +1032,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody" 
 		"translateY" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody" 
-		"rotate" " -type \"double3\" 0 0 0"
+		"rotate" " -type \"double3\" -7.598735 -17.340466 9.389629"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody" 
@@ -1048,7 +1048,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody" 
 		"twistFlex" " -av -k 1 0.5"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_shoulder_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_shoulder_Loc" 
-		"rotate" " -type \"double3\" 0 0 0"
+		"rotate" " -type \"double3\" 23.392492 -16.285523 0.670594"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_shoulder_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_shoulder_Loc" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_shoulder_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_shoulder_Loc" 
@@ -1056,7 +1056,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_shoulder_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_shoulder_Loc" 
 		"rotateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_shoulder_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_shoulder_Loc" 
-		"rotate" " -type \"double3\" 0 0 0"
+		"rotate" " -type \"double3\" -28.649855 -17.037036 -2.20656"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_shoulder_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_shoulder_Loc" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_shoulder_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_shoulder_Loc" 
@@ -1064,7 +1064,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_shoulder_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_shoulder_Loc" 
 		"rotateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" 0.484835 0.035477 0.579545"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
@@ -1072,7 +1072,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
-		"rotate" " -type \"double3\" 0 0 0"
+		"rotate" " -type \"double3\" 87.845566 3.38805 57.520687"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
 		"rotateY" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
@@ -1082,11 +1082,11 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
 		"ikBlend" " -av -k 1 10"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
-		"elbowTwist" " -av -k 1 0"
+		"elbowTwist" " -av -k 1 -5"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_Loc" 
 		"handToWorld" " -av -k 1 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" -2.837195 -2.3 -0.3"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
@@ -1094,7 +1094,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
-		"rotate" " -type \"double3\" 0 0 0"
+		"rotate" " -type \"double3\" 109.807342 40.755066 -55.16549"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
 		"rotateY" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
@@ -1104,7 +1104,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
 		"ikBlend" " -av -k 1 10"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
-		"elbowTwist" " -av -k 1 0"
+		"elbowTwist" " -av -k 1 3.2"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_Loc" 
 		"handToWorld" " -av -k 1 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_L_wristIK_poleConstraint_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wristIK_poleConstraint" 
@@ -1124,7 +1124,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_UpperBody_ZERO_NODE_DNT|Psylocke_wHair:cnt_UpperBody|Psylocke_wHair:cnt_R_wristIK_poleConstraint_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wristIK_poleConstraint" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_HipLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_HipLocator" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" 0.338457 0.0578031 0.239795"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_HipLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_HipLocator" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_HipLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_HipLocator" 
@@ -1132,7 +1132,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_HipLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_HipLocator" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_HipLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_HipLocator" 
-		"rotate" " -type \"double3\" 0 0 0"
+		"rotate" " -type \"double3\" 2.450379 18.43808 3.038083"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_HipLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_HipLocator" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_HipLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_HipLocator" 
@@ -1140,7 +1140,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_HipLocator_ZERO_NODE_DNT|Psylocke_wHair:cnt_HipLocator" 
 		"rotateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_Neck_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Neck_1_Loc" 
-		"rotate" " -type \"double3\" 0 0 0"
+		"rotate" " -type \"double3\" 0 7.54171 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_Neck_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Neck_1_Loc" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_Neck_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Neck_1_Loc" 
@@ -1148,7 +1148,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_Neck_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Neck_1_Loc" 
 		"rotateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_Neck_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Neck_1_Loc|Psylocke_wHair:cnt_Head_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Head_1_Loc" 
-		"rotate" " -type \"double3\" 0 0 0"
+		"rotate" " -type \"double3\" 51.872862 -8.119711 0.718315"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_Neck_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Neck_1_Loc|Psylocke_wHair:cnt_Head_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Head_1_Loc" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_Neck_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Neck_1_Loc|Psylocke_wHair:cnt_Head_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Head_1_Loc" 
@@ -1156,7 +1156,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:cnt_Neck_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Neck_1_Loc|Psylocke_wHair:cnt_Head_1_Loc_ZERO_NODE_DNT|Psylocke_wHair:cnt_Head_1_Loc" 
 		"rotateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:jStick_L_wrist_posNode_ZERO_NODE_DNT|Psylocke_wHair:jStick_L_wrist_posNode|Psylocke_wHair:jStick_L_wrist" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" 0.398221 0.726716 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:jStick_L_wrist_posNode_ZERO_NODE_DNT|Psylocke_wHair:jStick_L_wrist_posNode|Psylocke_wHair:jStick_L_wrist" 
 		"translateY" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:jStick_L_wrist_posNode_ZERO_NODE_DNT|Psylocke_wHair:jStick_L_wrist_posNode|Psylocke_wHair:jStick_L_wrist" 
@@ -1172,7 +1172,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:jStick_L_wrist_posNode_ZERO_NODE_DNT|Psylocke_wHair:jStick_L_wrist_posNode|Psylocke_wHair:jStick_L_wrist" 
 		"rotateZ" " -k 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:jStick_R_wrist_posNode_ZERO_NODE_DNT|Psylocke_wHair:jStick_R_wrist_posNode|Psylocke_wHair:jStick_R_wrist" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" 1 0.393479 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:jStick_R_wrist_posNode_ZERO_NODE_DNT|Psylocke_wHair:jStick_R_wrist_posNode|Psylocke_wHair:jStick_R_wrist" 
 		"translateY" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:jStick_R_wrist_posNode_ZERO_NODE_DNT|Psylocke_wHair:jStick_R_wrist_posNode|Psylocke_wHair:jStick_R_wrist" 
@@ -1180,7 +1180,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_COG_ZERO_NODE_DNT|Psylocke_wHair:cnt_COG|Psylocke_wHair:jStick_R_wrist_posNode_ZERO_NODE_DNT|Psylocke_wHair:jStick_R_wrist_posNode|Psylocke_wHair:jStick_R_wrist" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" -0.416766 0.631447 -0.00871105"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
@@ -1188,7 +1188,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
-		"rotate" " -type \"double3\" 0 0 0"
+		"rotate" " -type \"double3\" 0 0 -33.291585"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
@@ -1198,7 +1198,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
 		"ikBlend" " -av -k 1 10"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
-		"KneeTwist" " -av -k 1 0"
+		"KneeTwist" " -av -k 1 0.866311"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
 		"Roll" " -av -k 1 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group" 
@@ -1222,7 +1222,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_foot_Group|Psylocke_wHair:L_toe_Group_ZERO_NODE_DNT|Psylocke_wHair:L_toe_Group|Psylocke_wHair:L_heel_Pivot_ZERO_NODE_DNT|Psylocke_wHair:L_heel_Pivot|Psylocke_wHair:hnd_L_ball" 
 		"translateZ" " -k 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" -0.997138 0.842724 -1.569527"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
@@ -1230,7 +1230,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
-		"rotate" " -type \"double3\" 0 0 0"
+		"rotate" " -type \"double3\" 0 52.120659 48.130936"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
@@ -1240,9 +1240,9 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
 		"ikBlend" " -av -k 1 10"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
-		"KneeTwist" " -av -k 1 0"
+		"KneeTwist" " -av -k 1 0.518519"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
-		"Roll" " -av -k 1 0"
+		"Roll" " -av -k 1 -1.763704"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
 		"ToeTwist" " -av -k 1 0"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
@@ -1256,7 +1256,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_foot_Group_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_foot_Group" 
 		"__rollTOE_OFFSET" " -av -k 1 3.5"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wrist_World" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" 3.5 2 3"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wrist_World" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wrist_World" 
@@ -1264,7 +1264,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wrist_World" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wrist_World" 
-		"rotate" " -type \"double3\" 0 0 0"
+		"rotate" " -type \"double3\" 163.761336 17.687548 86.4262"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wrist_World" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wrist_World" 
@@ -1272,7 +1272,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_L_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_L_wrist_World" 
 		"rotateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wrist_World" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" -5 -5.095679 1.618709"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wrist_World" 
 		"translateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wrist_World" 
@@ -1280,14 +1280,14 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wrist_World" 
 		"translateZ" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wrist_World" 
-		"rotate" " -type \"double3\" 0 0 0"
+		"rotate" " -type \"double3\" 169.436627 -18.463869 -21.246901"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wrist_World" 
 		"rotateX" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wrist_World" 
 		"rotateY" " -av"
 		2 "|Psylocke_wHair:cnt_charRoot_ZERO_NODE_DNT|Psylocke_wHair:cnt_charRoot|Psylocke_wHair:cnt_R_wrist_World_ZERO_NODE_DNT|Psylocke_wHair:cnt_R_wrist_World" 
 		"rotateZ" " -av"
-		2 "Psylocke_wHair:Mike_Rig" "uv[1:28]" " -s 28 0.5 0.5 0.5 0.2 0 0 10 0 0 10 3.5 4 6 90 0 0 0 0 10 3.5 4 6 90 0 0 0 0 10"
+		2 "Psylocke_wHair:Mike_Rig" "uv[1:28]" " -s 28 0.5 0.5 0.5 0.2 0 -5 10 0 3.2 10 3.5 4 6 90 0 0 0 0.866311 10 3.5 4 6 90 0 0 -1.763704 0.518519 10"
 		
 		2 "Psylocke_wHair:Mike_Rig" "unitlessValues" " -s 28"
 		2 "Psylocke_wHair:Mike_Rig" "unitlessValues[1]" " -av"
@@ -1297,7 +1297,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "Psylocke_wHair:Mike_Rig" "unitlessValues[5]" " -av"
 		2 "Psylocke_wHair:Mike_Rig" "unitlessValues[6]" " -av"
 		2 "Psylocke_wHair:Mike_Rig" "unitlessValues[7]" " -av"
-		2 "Psylocke_wHair:Mike_Rig" "lv[1:45]" " -s 45 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+		2 "Psylocke_wHair:Mike_Rig" "lv[1:45]" " -s 45 0 0 0 -0.304457 -0.310632 0.16812 -0.0839491 0 0.0304144 0.166646 0.0597364 0.310411 0.239795 0.0578031 0.338457 0 0 0 0.579545 0.035477 0.484835 3 2 3.5 0 0 0 -0.3 -2.3 -2.837195 1.618709 -5.095679 -5 0 0.726716 0.398221 0 0.393479 1 -0.00871105 0.631447 -0.416766 -1.569527 0.842724 -0.997138"
 		
 		2 "Psylocke_wHair:Mike_Rig" "linearValues" " -s 45"
 		2 "Psylocke_wHair:Mike_Rig" "linearValues[4]" " -av"
@@ -1309,7 +1309,7 @@ createNode reference -n "Psylocke_wHairRN";
 		2 "Psylocke_wHair:Mike_Rig" "linearValues[19]" " -av"
 		2 "Psylocke_wHair:Mike_Rig" "linearValues[20]" " -av"
 		2 "Psylocke_wHair:Mike_Rig" "linearValues[21]" " -av"
-		2 "Psylocke_wHair:Mike_Rig" "av[1:42]" " -s 42 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+		2 "Psylocke_wHair:Mike_Rig" "av[1:42]" " -s 42 0 0 0 -15 -60 20 9.389629 -17.340466 -7.598735 3.038083 18.43808 2.450379 0.670594 -16.285523 23.392492 57.520687 3.38805 87.845566 86.4262 17.687548 163.761336 -2.20656 -17.037036 -28.649855 -55.16549 40.755066 109.807342 -21.246901 -18.463869 169.436627 -33.291585 0 0 48.130936 52.120659 0 0 7.54171 0 0.718315 -8.119711 51.872862"
 		
 		2 "Psylocke_wHair:Mike_Rig" "angularValues" " -s 42"
 		2 "Psylocke_wHair:Mike_Rig" "angularValues[4]" " -av"
@@ -2486,7 +2486,7 @@ createNode animCurveTL -n "Mike_Rig_cnt_L_wristIK_Loc_translateZ";
 createNode animCurveTA -n "Mike_Rig_cnt_L_wristIK_Loc_rotateX";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  0 6.9926699392100159e-31 1 87.845565979
+	setAttr -s 5 ".ktv[0:4]"  0 6.9926699392100168e-31 1 87.845565979
 		 6 87.845565979 12 87.845565979 24 87.845565979;
 	setAttr -s 5 ".kit[1:4]"  1 18 18 18;
 	setAttr -s 5 ".kot[1:4]"  1 18 18 18;
@@ -2614,8 +2614,8 @@ createNode animCurveTL -n "Mike_Rig_cnt_R_wristIK_poleConstraint_translateZ";
 createNode animCurveTL -n "Mike_Rig_cnt_HipLocator_translateX";
 	setAttr ".tan" 1;
 	setAttr ".wgt" no;
-	setAttr -s 6 ".ktv[0:5]"  0 0 1 0.19012569074960053 6 0.38944418056476926
-		 12 0.06085577450557713 18 -0.21943284999507784 24 0.19012569074960053;
+	setAttr -s 6 ".ktv[0:5]"  0 0 1 0.19012569074960051 6 0.38944418056476926
+		 12 0.06085577450557713 18 -0.21943284999507784 24 0.19012569074960051;
 	setAttr -s 6 ".kit[0:5]"  18 1 1 1 1 1;
 	setAttr -s 6 ".kot[0:5]"  18 1 1 1 1 1;
 	setAttr -s 6 ".kix[1:5]"  0.49811866879463196 0.98961383104324341 
@@ -2635,7 +2635,7 @@ createNode animCurveTL -n "Mike_Rig_cnt_HipLocator_translateZ";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -s 6 ".ktv[0:5]"  0 0 1 0 6 0.43728089367139672 12 -0.32445096828560865
-		 18 0.46186166135086276 24 0;
+		 18 0.46186166135086271 24 0;
 	setAttr -s 6 ".kit[1:5]"  3 18 3 18 3;
 	setAttr -s 6 ".kot[1:5]"  3 18 3 18 3;
 createNode animCurveTA -n "Mike_Rig_cnt_HipLocator_rotateX";
@@ -2673,8 +2673,8 @@ createNode animCurveTA -n "Mike_Rig_cnt_Neck_1_Loc_rotateY";
 createNode animCurveTA -n "Mike_Rig_cnt_Neck_1_Loc_rotateZ";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  0 3.0897344086400086e-31 1 3.0897344086400086e-31
-		 6 3.0897344086400086e-31 12 3.0897344086400086e-31 24 3.0897344086400086e-31;
+	setAttr -s 5 ".ktv[0:4]"  0 3.0897344086400094e-31 1 3.0897344086400094e-31
+		 6 3.0897344086400094e-31 12 3.0897344086400094e-31 24 3.0897344086400094e-31;
 createNode animCurveTA -n "Mike_Rig_cnt_Head_1_Loc_rotateX";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
@@ -2688,7 +2688,7 @@ createNode animCurveTA -n "Mike_Rig_cnt_Head_1_Loc_rotateY";
 createNode animCurveTA -n "Mike_Rig_cnt_Head_1_Loc_rotateZ";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  0 3.0897344086400086e-31 1 0.71831466233100005
+	setAttr -s 5 ".ktv[0:4]"  0 3.0897344086400094e-31 1 0.71831466233100005
 		 6 0.71831466233100005 12 0.71831466233100005 24 0.71831466233100005;
 createNode animCurveTL -n "Mike_Rig_jStick_L_wrist_translateX";
 	setAttr ".tan" 1;
@@ -3107,7 +3107,7 @@ createNode animCurveTL -n "Mike_Rig_cnt_L_wrist_World_translateZ";
 createNode animCurveTA -n "Mike_Rig_cnt_L_wrist_World_rotateX";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  0 6.9926699392100159e-31 1 163.76133578
+	setAttr -s 5 ".ktv[0:4]"  0 6.9926699392100168e-31 1 163.76133578
 		 6 163.76133578 12 163.76133578 24 163.76133578;
 createNode animCurveTA -n "Mike_Rig_cnt_L_wrist_World_rotateY";
 	setAttr ".tan" 18;
@@ -3166,9 +3166,13 @@ createNode animLayer -n "COG_adjust";
 	setAttr ".pref" yes;
 	setAttr ".slct" yes;
 createNode animBlendNodeAdditiveDL -n "cnt_UpperBody_translateX_COG_adjust";
+	setAttr ".o" 0.31041051286757837;
 createNode animBlendNodeAdditiveDL -n "cnt_UpperBody_translateY_COG_adjust";
+	setAttr ".o" 0.059736419973408297;
 createNode animBlendNodeAdditiveDL -n "cnt_UpperBody_translateZ_COG_adjust";
+	setAttr ".o" 0.1666458105186629;
 createNode animBlendNodeAdditiveRotation -n "cnt_UpperBody_rotate_COG_adjust";
+	setAttr ".o" -type "double3" -7.598734537000829 -17.340465686168255 9.3896290180424771 ;
 createNode animBlendNodeAdditive -n "cnt_UpperBody_shoulderFlex_COG_adjust";
 	setAttr ".o" 0.2;
 createNode animBlendNodeAdditive -n "cnt_UpperBody_sideFlex_COG_adjust";
@@ -3186,78 +3190,93 @@ createNode animCurveTL -n "cnt_UpperBody_translateX_COG_adjust_inputB";
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 0.26697453839798263;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animCurveTL -n "cnt_UpperBody_translateY_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 0.05271823983925069;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animCurveTL -n "cnt_UpperBody_translateZ_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 0.14484217355173198;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animCurveTA -n "cnt_UpperBody_rotate_COG_adjust_inputBX";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 0;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animCurveTA -n "cnt_UpperBody_rotate_COG_adjust_inputBY";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 0;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animCurveTA -n "cnt_UpperBody_rotate_COG_adjust_inputBZ";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 0;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animCurveTU -n "cnt_UpperBody_shoulderFlex_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 0;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animCurveTU -n "cnt_UpperBody_sideFlex_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 0;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animCurveTU -n "cnt_UpperBody_frontFlex_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 0;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animCurveTU -n "cnt_UpperBody_twistFlex_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 0;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animBlendNodeAdditiveRotation -n "Psylocke_wHair:cnt_L_shoulder_Loc_rotate_COG_adjust";
-	setAttr ".o" -type "double3" 1.7655625192200017e-31 1.59027734073e-15 1.4756444637800001e-30 ;
+	setAttr ".o" -type "double3" 23.3924922112 -16.285522567899999 0.67059416774299996 ;
 createNode animCurveTA -n "cnt_L_shoulder_Loc_rotate_COG_adjust_inputBX";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 0.91409887934888001;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animCurveTA -n "cnt_L_shoulder_Loc_rotate_COG_adjust_inputBY";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 25.454530828257493;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animCurveTA -n "cnt_L_shoulder_Loc_rotate_COG_adjust_inputBZ";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 2.5809577503818932;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animBlendNodeAdditiveDL -n "Psylocke_wHair:cnt_L_wristIK_Loc_translateX_COG_adjust";
+	setAttr ".o" 0.48483451999299998;
 createNode animBlendNodeAdditiveDL -n "Psylocke_wHair:cnt_L_wristIK_Loc_translateY_COG_adjust";
-	setAttr ".o" 1.7763568394e-15;
+	setAttr ".o" 0.035477027371299999;
 createNode animBlendNodeAdditiveDL -n "Psylocke_wHair:cnt_L_wristIK_Loc_translateZ_COG_adjust";
-	setAttr ".o" 1.1102230246299999e-16;
+	setAttr ".o" 0.57954519068699994;
 createNode animBlendNodeAdditiveRotation -n "Psylocke_wHair:cnt_L_wristIK_Loc_rotate_COG_adjust";
-	setAttr ".o" -type "double3" 6.9926699392100159e-31 3.18055468146e-15 1.1299600123000001e-29 ;
+	setAttr ".o" -type "double3" 87.845565979 3.3880501571899999 57.520686893499992 ;
 createNode animBlendNodeAdditive -n "Psylocke_wHair:cnt_L_wristIK_Loc_ikBlend_COG_adjust";
 	setAttr ".o" 10;
 createNode animBlendNodeAdditive -n "Psylocke_wHair:cnt_L_wristIK_Loc_elbowTwist_COG_adjust";
+	setAttr ".o" -5;
 createNode animBlendNodeAdditive -n "Psylocke_wHair:cnt_L_wristIK_Loc_handToWorld_COG_adjust";
 createNode animCurveTL -n "cnt_L_wristIK_Loc_translateX_COG_adjust_inputB";
 	setAttr ".tan" 18;
@@ -3311,45 +3330,56 @@ createNode animCurveTU -n "cnt_L_wristIK_Loc_handToWorld_COG_adjust_inputB";
 	setAttr -s 5 -l on ".ktv[0:4]"  1 0 6 0 12 0 18 0 24 0;
 	setAttr -l on ".ktv";
 createNode animBlendNodeAdditiveDL -n "Psylocke_wHair:cnt_COG_translateX_COG_adjust";
+	setAttr ".o" 0.16811971447700041;
 createNode animBlendNodeAdditiveDL -n "Psylocke_wHair:cnt_COG_translateY_COG_adjust";
+	setAttr ".o" -0.31063172699531394;
 createNode animBlendNodeAdditiveDL -n "Psylocke_wHair:cnt_COG_translateZ_COG_adjust";
+	setAttr ".o" -0.30445739709430986;
 createNode animBlendNodeAdditiveRotation -n "Psylocke_wHair:cnt_COG_rotate_COG_adjust";
+	setAttr ".o" -type "double3" 20 -59.999999999999993 -14.999999999999998 ;
 createNode animCurveTL -n "cnt_COG_translateX_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 -2.2204460492503131e-16;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animCurveTL -n "cnt_COG_translateY_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 0;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animCurveTL -n "cnt_COG_translateZ_COG_adjust_inputB";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 0.47285915866051464;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animCurveTA -n "cnt_COG_rotate_COG_adjust_inputBX";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 0;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animCurveTA -n "cnt_COG_rotate_COG_adjust_inputBY";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 0;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 createNode animCurveTA -n "cnt_COG_rotate_COG_adjust_inputBZ";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -l on ".ktv[0]"  1 0;
 	setAttr -l on ".ktv";
+	setAttr -l on ".ktv[0]";
 select -ne :time1;
 	setAttr -av -k on ".cch";
 	setAttr -cb on ".ihi";
 	setAttr -k on ".nds";
 	setAttr -cb on ".bnm";
-	setAttr ".o" 0;
+	setAttr ".o" 8;
+	setAttr ".unw" 8;
 select -ne :renderPartition;
 	setAttr -k on ".cch";
 	setAttr -cb on ".ihi";
