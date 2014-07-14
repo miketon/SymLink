@@ -22,11 +22,11 @@ public class TouchStick_mton : MonoBehaviour{
   // ----------------------
 
   public  TouchController	 ctrl    ;
-  public  PlayerMove_mton_IO mton  ;
   public  GUIElement buttona_A_GUI ;
   public  GUIElement buttona_B_GUI ;
   public  GUIElement buttona_C_GUI ;
   public  GUIElement buttona_D_GUI ;
+  public Texture aTexture          ;
 
   public  float timeModalTapDelta = 0.25f ; //delta between when io is read as tap vs. press
   public  float buttonScale       = 0.1f  ;
@@ -53,7 +53,6 @@ public class TouchStick_mton : MonoBehaviour{
 
   void Awake(){ //caching most used var
     if (this.ctrl != null){
-
       // ----------------------
       // Stick and Zone Variables
       // ----------------------
@@ -63,6 +62,8 @@ public class TouchStick_mton : MonoBehaviour{
       pauseZone         = this.ctrl.GetZone(ZONE_PAUSE)          ;
 
       // mton Stuff
+      //stick_attackStick.Hide(false); //hide and skip animation
+
       screenRes.x               = Screen.width                      ;
       screenRes.y               = Screen.height                     ;
       screenAspRatio            = screenRes.x/screenRes.y           ;
@@ -139,8 +140,7 @@ public class TouchStick_mton : MonoBehaviour{
           buttona_B_GUI.enabled = false   ;
           buttona_C_GUI.enabled = false   ;
           buttona_D_GUI.enabled = false   ;
-          mton.bFlip = true               ; //facing right
-          mton.doAttack()                 ;
+          doButton_RIGHT()                ;
         }
         else if(stick_attackDir == TouchStick.StickDir.U){
           doModalButton(buttona_C_GUI, 1) ;
@@ -154,8 +154,7 @@ public class TouchStick_mton : MonoBehaviour{
           buttona_A_GUI.enabled = false   ;
           buttona_C_GUI.enabled = false   ;
           buttona_D_GUI.enabled = false   ;
-          mton.bFlip = false              ; //facing left
-          mton.doAttack()                 ;
+          doButton_LEFT()                 ;
         }
         else if(stick_attackDir == TouchStick.StickDir.D){
           doModalButton(buttona_D_GUI, 3) ;
@@ -167,7 +166,7 @@ public class TouchStick_mton : MonoBehaviour{
       else if(stick_attackStick.JustReleased()){
         float timeSincePressed = Time.time - timeLastPressed;
         if((Time.time - timeLastPressed) < timeModalTapDelta){
-          mton.doJump();
+          doButton_NEUTRAL();
         }
 
         Debug.Log ("MTON JUMP RELEASE:" + this + " TimeSincePressed :" + timeSincePressed + " Time : " + Time.time) ;
@@ -177,7 +176,7 @@ public class TouchStick_mton : MonoBehaviour{
         buttona_D_GUI.enabled = false                                                                               ;
       }
       else{
-        mton.clearBoolState();
+        doClearState();
       }
 
       // ----------------
@@ -185,14 +184,21 @@ public class TouchStick_mton : MonoBehaviour{
       // ----------------
 
       if (walkStick.Pressed()){
-
-        Vector2	walkVec             = walkStick.GetVec()            ;
-        float	walkTilt              = walkStick.GetTilt()           ;
-        float	walkAngle             = walkStick.GetAngle()          ;
         TouchStick.StickDir	walkDir = walkStick.GetDigitalDir(true) ;
-        Vector3	walkWorldVec        = walkStick.GetVec3d(false, 0)  ;
+        //Vector2	walkVec           = walkStick.GetVec()            ;
+        //float	    walkTilt        = walkStick.GetTilt()           ;
+        //float	    walkAngle       = walkStick.GetAngle()          ;
+        //Vector3	walkWorldVec      = walkStick.GetVec3d(false, 0)  ;
 
         // Your code here.
+        if     (walkDir == TouchStick.StickDir.L ) { doStick_LEFT()    ; }
+        else if(walkDir == TouchStick.StickDir.R ) { doStick_RIGHT()   ; }
+        else if(walkDir == TouchStick.StickDir.U ) { doStick_UP()      ; }
+        else if(walkDir == TouchStick.StickDir.D ) { doStick_DOWN()    ; }
+        else                                       { doStick_NEUTRAL() ; } //else neutral
+      }
+      else{
+        doStick_RELEASED();
       }
 
       // ----------------
@@ -221,4 +227,26 @@ public class TouchStick_mton : MonoBehaviour{
     }
   }
 
+  public virtual void doStick_RELEASED() { }
+  public virtual void doStick_NEUTRAL()  { }
+  public virtual void doStick_LEFT()     { }
+  public virtual void doStick_RIGHT()    { }
+  public virtual void doStick_UP()       { }
+  public virtual void doStick_DOWN()     { }
+
+  public virtual void doButton_LEFT()    { }
+  public virtual void doButton_RIGHT()   { }
+  public virtual void doButton_UP()      { }
+  public virtual void doButton_DOWN()    { }
+  public virtual void doButton_NEUTRAL() { }
+
+  public virtual void doClearState(){}
+
+  void OnGUI(){
+    if (this.ctrl != null){
+      this.ctrl.DrawControllerGUI()                                                                            ;
+      //GUI.color = new Color(1,1,1,1.0f)                                                                      ; //setting GUI to be opaque
+      //GUI.DrawTexture(stick_attackStick.GetHatDisplayRect(true), aTexture, ScaleMode.ScaleToFit, true, 1.0f) ;
+    }
+  }
 }

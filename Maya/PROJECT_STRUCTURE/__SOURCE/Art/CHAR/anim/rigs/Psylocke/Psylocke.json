@@ -1,0 +1,2514 @@
+{
+    "upperBody": {
+        "scale": [
+            0.009531409168081508, 
+            0.009531409168081508, 
+            0.009531409168081508
+        ], 
+        "name": "TSMG_upper_body", 
+        "nodeId": "TSMG_upper_body", 
+        "translation": [
+            0.0, 
+            1.1869650139527508, 
+            0.0
+        ], 
+        "rotation": [
+            0.0, 
+            0.0, 
+            0.0
+        ], 
+        "bodyPartId": null
+    }, 
+    "bodyParts": {
+        "6f10f3bac34f468285056ed831916fcd": {
+            "localWidgets": [
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftArm1_Widget1", 
+                    "nodeId": "Widget1", 
+                    "translation": [
+                        0.04522405587011602, 
+                        1.4210854715202004e-14, 
+                        -1.3877787807814457e-17
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "6f10f3bac34f468285056ed831916fcd"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftArm1_Widget2", 
+                    "nodeId": "Widget2", 
+                    "translation": [
+                        -0.7555847233939845, 
+                        0.058689055836184334, 
+                        -0.20654696999355437
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "6f10f3bac34f468285056ed831916fcd"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftArm1_Widget3", 
+                    "nodeId": "Widget3", 
+                    "translation": [
+                        -1.7268966240239325, 
+                        -0.3208656000342738, 
+                        -0.5262836442542702
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "6f10f3bac34f468285056ed831916fcd"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftArm1_Widget4", 
+                    "nodeId": "Widget4", 
+                    "translation": [
+                        -2.2632144617444276, 
+                        -0.27869286049311176, 
+                        -0.18637743206372248
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "6f10f3bac34f468285056ed831916fcd"
+                }
+            ], 
+            "partType": 0, 
+            "globalWidget": {
+                "scale": [
+                    7.0, 
+                    7.0, 
+                    7.0
+                ], 
+                "name": "leftArm1_Widget", 
+                "nodeId": "Widget", 
+                "translation": [
+                    1.8418093584756572, 
+                    108.94251672374523, 
+                    -1.0923319809566423
+                ], 
+                "resolution": 0, 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "6f10f3bac34f468285056ed831916fcd", 
+                "attachmentBodyPartId": "d36d57e0948a4446887213cd02ee8c1f"
+            }, 
+            "prefix": "leftArm1", 
+            "bodyPartId": "6f10f3bac34f468285056ed831916fcd", 
+            "isTail": false, 
+            "widgetBuffer": {
+                "scale": [
+                    0.011428571428571429, 
+                    0.011428571428571429, 
+                    0.011428571428571429
+                ], 
+                "name": "leftArm1_WidgetBuffer", 
+                "nodeId": "WidgetBuffer", 
+                "translation": [
+                    1.0251106592740509e-35, 
+                    0.3784052676753056, 
+                    0.020860692703003655
+                ], 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "6f10f3bac34f468285056ed831916fcd"
+            }
+        }, 
+        "184a38a812804eda81cbfe32694fc54d": {
+            "localWidgets": [
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger1_Widget1", 
+                    "nodeId": "Widget1", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.5248332553883968
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "184a38a812804eda81cbfe32694fc54d"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger1_Widget2", 
+                    "nodeId": "Widget2", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "184a38a812804eda81cbfe32694fc54d"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger1_Widget3", 
+                    "nodeId": "Widget3", 
+                    "translation": [
+                        0.7758546391204906, 
+                        0.019405224721595005, 
+                        -0.39394385617158
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "184a38a812804eda81cbfe32694fc54d"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger1_Widget4", 
+                    "nodeId": "Widget4", 
+                    "translation": [
+                        1.1753817762323298, 
+                        -0.40240046181315847, 
+                        -0.4972583618566855
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "184a38a812804eda81cbfe32694fc54d"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger1_Widget5", 
+                    "nodeId": "Widget5", 
+                    "translation": [
+                        1.54615103173707, 
+                        -0.38071674987446613, 
+                        -0.670914513110719
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "184a38a812804eda81cbfe32694fc54d"
+                }
+            ], 
+            "partType": 4, 
+            "globalWidget": {
+                "scale": [
+                    1.00400003558314, 
+                    1.00400003558314, 
+                    1.00400003558314
+                ], 
+                "name": "leftFinger1_Widget", 
+                "nodeId": "Widget", 
+                "translation": [
+                    93.53438101581537, 
+                    120.51614885094244, 
+                    -5.839576252871111
+                ], 
+                "resolution": 0, 
+                "rotation": [
+                    0.0, 
+                    -0.0, 
+                    -23.22888026574246
+                ], 
+                "bodyPartId": "184a38a812804eda81cbfe32694fc54d", 
+                "attachmentBodyPartId": "6f10f3bac34f468285056ed831916fcd"
+            }, 
+            "prefix": "leftFinger1", 
+            "bodyPartId": "184a38a812804eda81cbfe32694fc54d", 
+            "isTail": false, 
+            "widgetBuffer": {
+                "scale": [
+                    0.011428571428571429, 
+                    0.011428571428571429, 
+                    0.011428571428571429
+                ], 
+                "name": "leftFinger1_WidgetBuffer", 
+                "nodeId": "WidgetBuffer", 
+                "translation": [
+                    -0.21895075018884963, 
+                    0.18346260166096529, 
+                    0.008376898634927743
+                ], 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "184a38a812804eda81cbfe32694fc54d"
+            }
+        }, 
+        "180f93c0b41b4c1ba7fb7d37a64f30d1": {
+            "localWidgets": [
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger3_Widget1", 
+                    "nodeId": "Widget1", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "180f93c0b41b4c1ba7fb7d37a64f30d1"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger3_Widget2", 
+                    "nodeId": "Widget2", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "180f93c0b41b4c1ba7fb7d37a64f30d1"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger3_Widget3", 
+                    "nodeId": "Widget3", 
+                    "translation": [
+                        1.0907592781709763, 
+                        -0.022276036566566404, 
+                        0.11866262837679808
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "180f93c0b41b4c1ba7fb7d37a64f30d1"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger3_Widget4", 
+                    "nodeId": "Widget4", 
+                    "translation": [
+                        1.4364356704169534, 
+                        -0.1002849805065722, 
+                        0.18430311053711734
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "180f93c0b41b4c1ba7fb7d37a64f30d1"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger3_Widget5", 
+                    "nodeId": "Widget5", 
+                    "translation": [
+                        2.1145354759776236, 
+                        0.4016818546884764, 
+                        0.4954612575992522
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "180f93c0b41b4c1ba7fb7d37a64f30d1"
+                }
+            ], 
+            "partType": 4, 
+            "globalWidget": {
+                "scale": [
+                    1.3534005165755296, 
+                    1.3534005165755296, 
+                    1.3534005165755296
+                ], 
+                "name": "leftFinger3_Widget", 
+                "nodeId": "Widget", 
+                "translation": [
+                    95.99954305608695, 
+                    120.63584968404206, 
+                    0.20902318090947447
+                ], 
+                "resolution": 0, 
+                "rotation": [
+                    0.0, 
+                    -0.0, 
+                    -27.78806794822927
+                ], 
+                "bodyPartId": "180f93c0b41b4c1ba7fb7d37a64f30d1", 
+                "attachmentBodyPartId": "6f10f3bac34f468285056ed831916fcd"
+            }, 
+            "prefix": "leftFinger3", 
+            "bodyPartId": "180f93c0b41b4c1ba7fb7d37a64f30d1", 
+            "isTail": false, 
+            "widgetBuffer": {
+                "scale": [
+                    0.011428571428571429, 
+                    0.011428571428571429, 
+                    0.011428571428571429
+                ], 
+                "name": "leftFinger3_WidgetBuffer", 
+                "nodeId": "WidgetBuffer", 
+                "translation": [
+                    -0.21895075018884963, 
+                    0.18346260166096529, 
+                    0.008376898634927743
+                ], 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "180f93c0b41b4c1ba7fb7d37a64f30d1"
+            }
+        }, 
+        "7b527945e1944161b0be5382fc8c4a20": {
+            "localWidgets": [
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftLeg1_Widget1", 
+                    "nodeId": "Widget1", 
+                    "translation": [
+                        -0.0077226072846861005, 
+                        2.059089635251988, 
+                        0.7090524017355087
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "7b527945e1944161b0be5382fc8c4a20"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftLeg1_Widget2", 
+                    "nodeId": "Widget2", 
+                    "translation": [
+                        0.0, 
+                        0.9929983571286509, 
+                        0.4236398896583206
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "7b527945e1944161b0be5382fc8c4a20"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftLeg1_Widget3", 
+                    "nodeId": "Widget3", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "7b527945e1944161b0be5382fc8c4a20"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftLeg1_Widget4", 
+                    "nodeId": "Widget4", 
+                    "translation": [
+                        0.0, 
+                        -1.5514285437891506, 
+                        0.015602923017759895
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "7b527945e1944161b0be5382fc8c4a20"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftLeg1_Widget5", 
+                    "nodeId": "Widget5", 
+                    "translation": [
+                        0.0, 
+                        -1.5514323495346118, 
+                        -0.020278243685389108
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "7b527945e1944161b0be5382fc8c4a20"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftLeg1_WidgetFootControl", 
+                    "nodeId": "WidgetFootControl", 
+                    "translation": [
+                        0.0, 
+                        -1.551, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "7b527945e1944161b0be5382fc8c4a20"
+                }
+            ], 
+            "partType": 2, 
+            "globalWidget": {
+                "scale": [
+                    8.4, 
+                    8.4, 
+                    8.4
+                ], 
+                "name": "leftLeg1_Widget", 
+                "nodeId": "Widget", 
+                "translation": [
+                    11.396224628437333, 
+                    -20.186152616898994, 
+                    -6.182315919184512
+                ], 
+                "resolution": 0, 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "7b527945e1944161b0be5382fc8c4a20", 
+                "attachmentBodyPartId": "d36d57e0948a4446887213cd02ee8c1f"
+            }, 
+            "prefix": "leftLeg1", 
+            "bodyPartId": "7b527945e1944161b0be5382fc8c4a20", 
+            "isTail": false, 
+            "widgetBuffer": {
+                "scale": [
+                    0.011428571428571429, 
+                    0.011428571428571429, 
+                    0.011428571428571429
+                ], 
+                "name": "leftLeg1_WidgetBuffer", 
+                "nodeId": "WidgetBuffer", 
+                "translation": [
+                    1.0251106592740509e-35, 
+                    0.3784052676753056, 
+                    0.020860692703003655
+                ], 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "7b527945e1944161b0be5382fc8c4a20"
+            }
+        }, 
+        "92fbd17be1dd4fa9b8c27cd2f71427e3": {
+            "localWidgets": [
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "head1_Widget1", 
+                    "nodeId": "Widget1", 
+                    "translation": [
+                        2.1889495930927476e-15, 
+                        0.4847307623624172, 
+                        -0.35881151360851193
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "92fbd17be1dd4fa9b8c27cd2f71427e3"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "head1_Widget2", 
+                    "nodeId": "Widget2", 
+                    "translation": [
+                        3.0521161850149015e-15, 
+                        -0.5242850789972606, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "92fbd17be1dd4fa9b8c27cd2f71427e3"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "head1_Widget3", 
+                    "nodeId": "Widget3", 
+                    "translation": [
+                        0.0, 
+                        -1.35361578369404, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "92fbd17be1dd4fa9b8c27cd2f71427e3"
+                }
+            ], 
+            "partType": 3, 
+            "globalWidget": {
+                "scale": [
+                    7.0, 
+                    7.0, 
+                    7.0
+                ], 
+                "name": "head1_Widget", 
+                "nodeId": "Widget", 
+                "translation": [
+                    0.0, 
+                    109.77193002836711, 
+                    0.0
+                ], 
+                "resolution": 0, 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "92fbd17be1dd4fa9b8c27cd2f71427e3", 
+                "attachmentBodyPartId": "d36d57e0948a4446887213cd02ee8c1f"
+            }, 
+            "prefix": "head1", 
+            "bodyPartId": "92fbd17be1dd4fa9b8c27cd2f71427e3", 
+            "isTail": false, 
+            "widgetBuffer": {
+                "scale": [
+                    0.011428571428571429, 
+                    0.011428571428571429, 
+                    0.011428571428571429
+                ], 
+                "name": "head1_WidgetBuffer", 
+                "nodeId": "WidgetBuffer", 
+                "translation": [
+                    1.0251106592740509e-35, 
+                    0.3784052676753056, 
+                    0.020860692703003655
+                ], 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "92fbd17be1dd4fa9b8c27cd2f71427e3"
+            }
+        }, 
+        "8ec9356ae7b04f5c96fe486a282ce1f5": {
+            "localWidgets": [
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightLeg1_Widget1", 
+                    "nodeId": "Widget1", 
+                    "translation": [
+                        -0.0077226072846861005, 
+                        2.059089635251988, 
+                        0.7090524017355087
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "8ec9356ae7b04f5c96fe486a282ce1f5"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightLeg1_Widget2", 
+                    "nodeId": "Widget2", 
+                    "translation": [
+                        0.0, 
+                        0.9929983571286509, 
+                        0.4236398896583206
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "8ec9356ae7b04f5c96fe486a282ce1f5"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightLeg1_Widget3", 
+                    "nodeId": "Widget3", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "8ec9356ae7b04f5c96fe486a282ce1f5"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightLeg1_Widget4", 
+                    "nodeId": "Widget4", 
+                    "translation": [
+                        0.0, 
+                        -1.5514285437891506, 
+                        0.015602923017759895
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "8ec9356ae7b04f5c96fe486a282ce1f5"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightLeg1_Widget5", 
+                    "nodeId": "Widget5", 
+                    "translation": [
+                        0.0, 
+                        -1.5514323495346118, 
+                        -0.020278243685389108
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "8ec9356ae7b04f5c96fe486a282ce1f5"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightLeg1_WidgetFootControl", 
+                    "nodeId": "WidgetFootControl", 
+                    "translation": [
+                        0.0, 
+                        -1.551, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "8ec9356ae7b04f5c96fe486a282ce1f5"
+                }
+            ], 
+            "partType": 2, 
+            "globalWidget": {
+                "scale": [
+                    -8.4, 
+                    8.4, 
+                    8.4
+                ], 
+                "name": "rightLeg1_Widget", 
+                "nodeId": "Widget", 
+                "translation": [
+                    -11.396224628437333, 
+                    -20.186152616898994, 
+                    -6.182315919184512
+                ], 
+                "resolution": 0, 
+                "rotation": [
+                    0.0, 
+                    -0.0, 
+                    -0.0
+                ], 
+                "bodyPartId": "8ec9356ae7b04f5c96fe486a282ce1f5", 
+                "attachmentBodyPartId": "d36d57e0948a4446887213cd02ee8c1f"
+            }, 
+            "prefix": "rightLeg1", 
+            "bodyPartId": "8ec9356ae7b04f5c96fe486a282ce1f5", 
+            "isTail": false, 
+            "widgetBuffer": {
+                "scale": [
+                    0.011428571428571429, 
+                    0.011428571428571429, 
+                    0.011428571428571429
+                ], 
+                "name": "rightLeg1_WidgetBuffer", 
+                "nodeId": "WidgetBuffer", 
+                "translation": [
+                    1.0251106592740509e-35, 
+                    0.3784052676753056, 
+                    0.020860692703003655
+                ], 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "8ec9356ae7b04f5c96fe486a282ce1f5"
+            }
+        }, 
+        "d36d57e0948a4446887213cd02ee8c1f": {
+            "localWidgets": [
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "spine1_Widget1", 
+                    "nodeId": "Widget1", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "d36d57e0948a4446887213cd02ee8c1f"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "spine1_Widget2", 
+                    "nodeId": "Widget2", 
+                    "translation": [
+                        1.7622945937195734e-16, 
+                        -1.086927739700661, 
+                        0.02939192577347799
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "d36d57e0948a4446887213cd02ee8c1f"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "spine1_Widget3", 
+                    "nodeId": "Widget3", 
+                    "translation": [
+                        3.0521161850149015e-15, 
+                        -0.35770349357893316, 
+                        -0.08751781379312812
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "d36d57e0948a4446887213cd02ee8c1f"
+                }
+            ], 
+            "partType": 1, 
+            "globalWidget": {
+                "scale": [
+                    0.08, 
+                    0.08, 
+                    0.08
+                ], 
+                "name": "spine1_Widget", 
+                "nodeId": "Widget", 
+                "translation": [
+                    1.0251106592740509e-35, 
+                    1.1784052676753056, 
+                    0.020860692703003655
+                ], 
+                "attachmentBodyPartId": null, 
+                "resolution": 0, 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "d36d57e0948a4446887213cd02ee8c1f", 
+                "pelvisIncluded": 1
+            }, 
+            "prefix": "spine1", 
+            "bodyPartId": "d36d57e0948a4446887213cd02ee8c1f", 
+            "isTail": false, 
+            "widgetBuffer": {
+                "scale": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "name": "spine1_WidgetBuffer", 
+                "nodeId": "WidgetBuffer", 
+                "translation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "d36d57e0948a4446887213cd02ee8c1f"
+            }
+        }, 
+        "1af35f2436de4ed694d5b9393f8c4e4f": {
+            "localWidgets": [
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger2_Widget1", 
+                    "nodeId": "Widget1", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "1af35f2436de4ed694d5b9393f8c4e4f"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger2_Widget2", 
+                    "nodeId": "Widget2", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "1af35f2436de4ed694d5b9393f8c4e4f"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger2_Widget3", 
+                    "nodeId": "Widget3", 
+                    "translation": [
+                        -0.13133867454733572, 
+                        -0.06266761931311748, 
+                        -0.055757468544717526
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "1af35f2436de4ed694d5b9393f8c4e4f"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger2_Widget4", 
+                    "nodeId": "Widget4", 
+                    "translation": [
+                        0.9061920949380005, 
+                        -0.20147500358829973, 
+                        -0.16308038516503576
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "1af35f2436de4ed694d5b9393f8c4e4f"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger2_Widget5", 
+                    "nodeId": "Widget5", 
+                    "translation": [
+                        1.573895809289703, 
+                        0.5328936340833366, 
+                        0.0734218414283585
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "1af35f2436de4ed694d5b9393f8c4e4f"
+                }
+            ], 
+            "partType": 4, 
+            "globalWidget": {
+                "scale": [
+                    -1.3534005165755296, 
+                    1.3534005165755296, 
+                    1.3534005165755296
+                ], 
+                "name": "rightFinger2_Widget", 
+                "nodeId": "Widget", 
+                "translation": [
+                    -95.59436943094484, 
+                    120.5473732241035, 
+                    -2.9638426683958397
+                ], 
+                "resolution": 0, 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    26.506445649082508
+                ], 
+                "bodyPartId": "1af35f2436de4ed694d5b9393f8c4e4f", 
+                "attachmentBodyPartId": "7674bc7249054e108780324e6c713c5f"
+            }, 
+            "prefix": "rightFinger2", 
+            "bodyPartId": "1af35f2436de4ed694d5b9393f8c4e4f", 
+            "isTail": false, 
+            "widgetBuffer": {
+                "scale": [
+                    0.011428571428571429, 
+                    0.011428571428571429, 
+                    0.011428571428571429
+                ], 
+                "name": "rightFinger2_WidgetBuffer", 
+                "nodeId": "WidgetBuffer", 
+                "translation": [
+                    0.21895075018884963, 
+                    0.18346260166096529, 
+                    0.008376898634927743
+                ], 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "1af35f2436de4ed694d5b9393f8c4e4f"
+            }
+        }, 
+        "5df10f420b574a97941d936761c699c6": {
+            "localWidgets": [
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftThumb1_Widget2", 
+                    "nodeId": "Widget2", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "5df10f420b574a97941d936761c699c6"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftThumb1_Widget3", 
+                    "nodeId": "Widget3", 
+                    "translation": [
+                        -1.6199124497599655, 
+                        -0.9723042168913985, 
+                        0.709758353778625
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "5df10f420b574a97941d936761c699c6"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftThumb1_Widget4", 
+                    "nodeId": "Widget4", 
+                    "translation": [
+                        -1.831745965012857, 
+                        -1.411706213224722, 
+                        1.3019829761018116
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "5df10f420b574a97941d936761c699c6"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftThumb1_Widget5", 
+                    "nodeId": "Widget5", 
+                    "translation": [
+                        -2.2239806593243365, 
+                        -1.8213592670702308, 
+                        1.5582008390826732
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "5df10f420b574a97941d936761c699c6"
+                }
+            ], 
+            "partType": 6, 
+            "globalWidget": {
+                "scale": [
+                    2.33, 
+                    2.33, 
+                    2.33
+                ], 
+                "name": "leftThumb1_Widget", 
+                "nodeId": "Widget", 
+                "translation": [
+                    83.72015634666208, 
+                    122.33638323378375, 
+                    3.4774109150001578
+                ], 
+                "resolution": 0, 
+                "rotation": [
+                    89.9999999999999, 
+                    -58.86076422970617, 
+                    -0.0
+                ], 
+                "bodyPartId": "5df10f420b574a97941d936761c699c6", 
+                "attachmentBodyPartId": "6f10f3bac34f468285056ed831916fcd"
+            }, 
+            "prefix": "leftThumb1", 
+            "bodyPartId": "5df10f420b574a97941d936761c699c6", 
+            "isTail": false, 
+            "widgetBuffer": {
+                "scale": [
+                    0.011428571428571429, 
+                    0.011428571428571429, 
+                    0.011428571428571429
+                ], 
+                "name": "leftThumb1_WidgetBuffer", 
+                "nodeId": "WidgetBuffer", 
+                "translation": [
+                    -0.21895075018884963, 
+                    0.18346260166096529, 
+                    0.008376898634927743
+                ], 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "5df10f420b574a97941d936761c699c6"
+            }
+        }, 
+        "afe64c16368f464f8600cf37749ce6bc": {
+            "localWidgets": [
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger1_Widget1", 
+                    "nodeId": "Widget1", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.5248332553883968
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "afe64c16368f464f8600cf37749ce6bc"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger1_Widget2", 
+                    "nodeId": "Widget2", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "afe64c16368f464f8600cf37749ce6bc"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger1_Widget3", 
+                    "nodeId": "Widget3", 
+                    "translation": [
+                        0.7758546391204906, 
+                        0.019405224721595005, 
+                        -0.39394385617158
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "afe64c16368f464f8600cf37749ce6bc"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger1_Widget4", 
+                    "nodeId": "Widget4", 
+                    "translation": [
+                        1.1753817762323298, 
+                        -0.40240046181315847, 
+                        -0.4972583618566855
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "afe64c16368f464f8600cf37749ce6bc"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger1_Widget5", 
+                    "nodeId": "Widget5", 
+                    "translation": [
+                        1.54615103173707, 
+                        -0.38071674987446613, 
+                        -0.670914513110719
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "afe64c16368f464f8600cf37749ce6bc"
+                }
+            ], 
+            "partType": 4, 
+            "globalWidget": {
+                "scale": [
+                    -1.00400003558314, 
+                    1.00400003558314, 
+                    1.00400003558314
+                ], 
+                "name": "rightFinger1_Widget", 
+                "nodeId": "Widget", 
+                "translation": [
+                    -93.53438101581537, 
+                    120.51614885094244, 
+                    -5.839576252871111
+                ], 
+                "resolution": 0, 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    23.22888026574246
+                ], 
+                "bodyPartId": "afe64c16368f464f8600cf37749ce6bc", 
+                "attachmentBodyPartId": "7674bc7249054e108780324e6c713c5f"
+            }, 
+            "prefix": "rightFinger1", 
+            "bodyPartId": "afe64c16368f464f8600cf37749ce6bc", 
+            "isTail": false, 
+            "widgetBuffer": {
+                "scale": [
+                    0.011428571428571429, 
+                    0.011428571428571429, 
+                    0.011428571428571429
+                ], 
+                "name": "rightFinger1_WidgetBuffer", 
+                "nodeId": "WidgetBuffer", 
+                "translation": [
+                    0.21895075018884963, 
+                    0.18346260166096529, 
+                    0.008376898634927743
+                ], 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "afe64c16368f464f8600cf37749ce6bc"
+            }
+        }, 
+        "39721b599fda4e4fb45cee8b8d9884eb": {
+            "localWidgets": [
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger4_Widget1", 
+                    "nodeId": "Widget1", 
+                    "translation": [
+                        0.0, 
+                        -1.4210854715201956e-14, 
+                        -0.4415393985594047
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "39721b599fda4e4fb45cee8b8d9884eb"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger4_Widget2", 
+                    "nodeId": "Widget2", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "39721b599fda4e4fb45cee8b8d9884eb"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger4_Widget3", 
+                    "nodeId": "Widget3", 
+                    "translation": [
+                        -0.4130532300852092, 
+                        -0.08570425333314802, 
+                        0.2972044263726943
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "39721b599fda4e4fb45cee8b8d9884eb"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger4_Widget4", 
+                    "nodeId": "Widget4", 
+                    "translation": [
+                        0.09581379286187719, 
+                        -0.04724555729978874, 
+                        0.48199244631197
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "39721b599fda4e4fb45cee8b8d9884eb"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger4_Widget5", 
+                    "nodeId": "Widget5", 
+                    "translation": [
+                        0.5050396666162218, 
+                        0.5129643658947742, 
+                        0.8945742099976726
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "39721b599fda4e4fb45cee8b8d9884eb"
+                }
+            ], 
+            "partType": 4, 
+            "globalWidget": {
+                "scale": [
+                    1.3534005165755296, 
+                    1.3534005165755296, 
+                    1.3534005165755296
+                ], 
+                "name": "leftFinger4_Widget", 
+                "nodeId": "Widget", 
+                "translation": [
+                    95.63240720217566, 
+                    120.00649719994848, 
+                    3.442163109615779
+                ], 
+                "resolution": 0, 
+                "rotation": [
+                    0.0, 
+                    -0.0, 
+                    -26.62290180175634
+                ], 
+                "bodyPartId": "39721b599fda4e4fb45cee8b8d9884eb", 
+                "attachmentBodyPartId": "6f10f3bac34f468285056ed831916fcd"
+            }, 
+            "prefix": "leftFinger4", 
+            "bodyPartId": "39721b599fda4e4fb45cee8b8d9884eb", 
+            "isTail": false, 
+            "widgetBuffer": {
+                "scale": [
+                    0.011428571428571429, 
+                    0.011428571428571429, 
+                    0.011428571428571429
+                ], 
+                "name": "leftFinger4_WidgetBuffer", 
+                "nodeId": "WidgetBuffer", 
+                "translation": [
+                    -0.21895075018884963, 
+                    0.18346260166096529, 
+                    0.008376898634927743
+                ], 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "39721b599fda4e4fb45cee8b8d9884eb"
+            }
+        }, 
+        "7674bc7249054e108780324e6c713c5f": {
+            "localWidgets": [
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightArm1_Widget1", 
+                    "nodeId": "Widget1", 
+                    "translation": [
+                        0.04522405587011602, 
+                        1.4210854715202004e-14, 
+                        -1.3877787807814457e-17
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "7674bc7249054e108780324e6c713c5f"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightArm1_Widget2", 
+                    "nodeId": "Widget2", 
+                    "translation": [
+                        -0.7555847233939845, 
+                        0.058689055836184334, 
+                        -0.20654696999355437
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "7674bc7249054e108780324e6c713c5f"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightArm1_Widget3", 
+                    "nodeId": "Widget3", 
+                    "translation": [
+                        -1.7268966240239325, 
+                        -0.3208656000342738, 
+                        -0.5262836442542702
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "7674bc7249054e108780324e6c713c5f"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightArm1_Widget4", 
+                    "nodeId": "Widget4", 
+                    "translation": [
+                        -2.2632144617444276, 
+                        -0.27869286049311176, 
+                        -0.18637743206372248
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "7674bc7249054e108780324e6c713c5f"
+                }
+            ], 
+            "partType": 0, 
+            "globalWidget": {
+                "scale": [
+                    -7.0, 
+                    7.0, 
+                    7.0
+                ], 
+                "name": "rightArm1_Widget", 
+                "nodeId": "Widget", 
+                "translation": [
+                    -1.8418093584756572, 
+                    108.94251672374523, 
+                    -1.0923319809566423
+                ], 
+                "resolution": 0, 
+                "rotation": [
+                    0.0, 
+                    -0.0, 
+                    -0.0
+                ], 
+                "bodyPartId": "7674bc7249054e108780324e6c713c5f", 
+                "attachmentBodyPartId": "d36d57e0948a4446887213cd02ee8c1f"
+            }, 
+            "prefix": "rightArm1", 
+            "bodyPartId": "7674bc7249054e108780324e6c713c5f", 
+            "isTail": false, 
+            "widgetBuffer": {
+                "scale": [
+                    0.011428571428571429, 
+                    0.011428571428571429, 
+                    0.011428571428571429
+                ], 
+                "name": "rightArm1_WidgetBuffer", 
+                "nodeId": "WidgetBuffer", 
+                "translation": [
+                    1.0251106592740509e-35, 
+                    0.3784052676753056, 
+                    0.020860692703003655
+                ], 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "7674bc7249054e108780324e6c713c5f"
+            }
+        }, 
+        "3422926b66914896aed7abac550d613a": {
+            "localWidgets": [
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger2_Widget1", 
+                    "nodeId": "Widget1", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "3422926b66914896aed7abac550d613a"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger2_Widget2", 
+                    "nodeId": "Widget2", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "3422926b66914896aed7abac550d613a"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger2_Widget3", 
+                    "nodeId": "Widget3", 
+                    "translation": [
+                        -0.13133867454733572, 
+                        -0.06266761931311748, 
+                        -0.055757468544717526
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "3422926b66914896aed7abac550d613a"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger2_Widget4", 
+                    "nodeId": "Widget4", 
+                    "translation": [
+                        0.9061920949380005, 
+                        -0.20147500358829973, 
+                        -0.16308038516503576
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "3422926b66914896aed7abac550d613a"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "leftFinger2_Widget5", 
+                    "nodeId": "Widget5", 
+                    "translation": [
+                        1.573895809289703, 
+                        0.5328936340833366, 
+                        0.0734218414283585
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "3422926b66914896aed7abac550d613a"
+                }
+            ], 
+            "partType": 4, 
+            "globalWidget": {
+                "scale": [
+                    1.3534005165755296, 
+                    1.3534005165755296, 
+                    1.3534005165755296
+                ], 
+                "name": "leftFinger2_Widget", 
+                "nodeId": "Widget", 
+                "translation": [
+                    95.59436943094484, 
+                    120.5473732241035, 
+                    -2.9638426683958397
+                ], 
+                "resolution": 0, 
+                "rotation": [
+                    0.0, 
+                    -0.0, 
+                    -26.506445649082508
+                ], 
+                "bodyPartId": "3422926b66914896aed7abac550d613a", 
+                "attachmentBodyPartId": "6f10f3bac34f468285056ed831916fcd"
+            }, 
+            "prefix": "leftFinger2", 
+            "bodyPartId": "3422926b66914896aed7abac550d613a", 
+            "isTail": false, 
+            "widgetBuffer": {
+                "scale": [
+                    0.011428571428571429, 
+                    0.011428571428571429, 
+                    0.011428571428571429
+                ], 
+                "name": "leftFinger2_WidgetBuffer", 
+                "nodeId": "WidgetBuffer", 
+                "translation": [
+                    -0.21895075018884963, 
+                    0.18346260166096529, 
+                    0.008376898634927743
+                ], 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "3422926b66914896aed7abac550d613a"
+            }
+        }, 
+        "4fb64cda4d3f442aac8a11a4b84fe298": {
+            "localWidgets": [
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger3_Widget1", 
+                    "nodeId": "Widget1", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "4fb64cda4d3f442aac8a11a4b84fe298"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger3_Widget2", 
+                    "nodeId": "Widget2", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "4fb64cda4d3f442aac8a11a4b84fe298"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger3_Widget3", 
+                    "nodeId": "Widget3", 
+                    "translation": [
+                        1.0907592781709763, 
+                        -0.022276036566566404, 
+                        0.11866262837679808
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "4fb64cda4d3f442aac8a11a4b84fe298"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger3_Widget4", 
+                    "nodeId": "Widget4", 
+                    "translation": [
+                        1.4364356704169534, 
+                        -0.1002849805065722, 
+                        0.18430311053711734
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "4fb64cda4d3f442aac8a11a4b84fe298"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger3_Widget5", 
+                    "nodeId": "Widget5", 
+                    "translation": [
+                        2.1145354759776236, 
+                        0.4016818546884764, 
+                        0.4954612575992522
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "4fb64cda4d3f442aac8a11a4b84fe298"
+                }
+            ], 
+            "partType": 4, 
+            "globalWidget": {
+                "scale": [
+                    -1.3534005165755296, 
+                    1.3534005165755296, 
+                    1.3534005165755296
+                ], 
+                "name": "rightFinger3_Widget", 
+                "nodeId": "Widget", 
+                "translation": [
+                    -95.99954305608695, 
+                    120.63584968404206, 
+                    0.20902318090947447
+                ], 
+                "resolution": 0, 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    27.78806794822927
+                ], 
+                "bodyPartId": "4fb64cda4d3f442aac8a11a4b84fe298", 
+                "attachmentBodyPartId": "7674bc7249054e108780324e6c713c5f"
+            }, 
+            "prefix": "rightFinger3", 
+            "bodyPartId": "4fb64cda4d3f442aac8a11a4b84fe298", 
+            "isTail": false, 
+            "widgetBuffer": {
+                "scale": [
+                    0.011428571428571429, 
+                    0.011428571428571429, 
+                    0.011428571428571429
+                ], 
+                "name": "rightFinger3_WidgetBuffer", 
+                "nodeId": "WidgetBuffer", 
+                "translation": [
+                    0.21895075018884963, 
+                    0.18346260166096529, 
+                    0.008376898634927743
+                ], 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "4fb64cda4d3f442aac8a11a4b84fe298"
+            }
+        }, 
+        "ad3ec3191d3a4c9fa450a4a0d24560a3": {
+            "localWidgets": [
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger4_Widget1", 
+                    "nodeId": "Widget1", 
+                    "translation": [
+                        0.0, 
+                        -1.4210854715201956e-14, 
+                        -0.4415393985594047
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "ad3ec3191d3a4c9fa450a4a0d24560a3"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger4_Widget2", 
+                    "nodeId": "Widget2", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "ad3ec3191d3a4c9fa450a4a0d24560a3"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger4_Widget3", 
+                    "nodeId": "Widget3", 
+                    "translation": [
+                        -0.4130532300852092, 
+                        -0.08570425333314802, 
+                        0.2972044263726943
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "ad3ec3191d3a4c9fa450a4a0d24560a3"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger4_Widget4", 
+                    "nodeId": "Widget4", 
+                    "translation": [
+                        0.09581379286187719, 
+                        -0.04724555729978874, 
+                        0.48199244631197
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "ad3ec3191d3a4c9fa450a4a0d24560a3"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightFinger4_Widget5", 
+                    "nodeId": "Widget5", 
+                    "translation": [
+                        0.5050396666162218, 
+                        0.5129643658947742, 
+                        0.8945742099976726
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "ad3ec3191d3a4c9fa450a4a0d24560a3"
+                }
+            ], 
+            "partType": 4, 
+            "globalWidget": {
+                "scale": [
+                    -1.3534005165755296, 
+                    1.3534005165755296, 
+                    1.3534005165755296
+                ], 
+                "name": "rightFinger4_Widget", 
+                "nodeId": "Widget", 
+                "translation": [
+                    -95.63240720217566, 
+                    120.00649719994848, 
+                    3.442163109615779
+                ], 
+                "resolution": 0, 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    26.62290180175634
+                ], 
+                "bodyPartId": "ad3ec3191d3a4c9fa450a4a0d24560a3", 
+                "attachmentBodyPartId": "7674bc7249054e108780324e6c713c5f"
+            }, 
+            "prefix": "rightFinger4", 
+            "bodyPartId": "ad3ec3191d3a4c9fa450a4a0d24560a3", 
+            "isTail": false, 
+            "widgetBuffer": {
+                "scale": [
+                    0.011428571428571429, 
+                    0.011428571428571429, 
+                    0.011428571428571429
+                ], 
+                "name": "rightFinger4_WidgetBuffer", 
+                "nodeId": "WidgetBuffer", 
+                "translation": [
+                    0.21895075018884963, 
+                    0.18346260166096529, 
+                    0.008376898634927743
+                ], 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "ad3ec3191d3a4c9fa450a4a0d24560a3"
+            }
+        }, 
+        "6079ecb56cc34ed084b58478e63b1cc5": {
+            "localWidgets": [
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightThumb1_Widget2", 
+                    "nodeId": "Widget2", 
+                    "translation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "6079ecb56cc34ed084b58478e63b1cc5"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightThumb1_Widget3", 
+                    "nodeId": "Widget3", 
+                    "translation": [
+                        -1.6199124497599655, 
+                        -0.9723042168913985, 
+                        0.709758353778625
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "6079ecb56cc34ed084b58478e63b1cc5"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightThumb1_Widget4", 
+                    "nodeId": "Widget4", 
+                    "translation": [
+                        -1.831745965012857, 
+                        -1.411706213224722, 
+                        1.3019829761018116
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "6079ecb56cc34ed084b58478e63b1cc5"
+                }, 
+                {
+                    "scale": [
+                        1.0, 
+                        1.0, 
+                        1.0
+                    ], 
+                    "name": "rightThumb1_Widget5", 
+                    "nodeId": "Widget5", 
+                    "translation": [
+                        -2.2239806593243365, 
+                        -1.8213592670702308, 
+                        1.5582008390826732
+                    ], 
+                    "rotation": [
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "bodyPartId": "6079ecb56cc34ed084b58478e63b1cc5"
+                }
+            ], 
+            "partType": 6, 
+            "globalWidget": {
+                "scale": [
+                    -2.33, 
+                    2.33, 
+                    2.33
+                ], 
+                "name": "rightThumb1_Widget", 
+                "nodeId": "Widget", 
+                "translation": [
+                    -83.72015634666208, 
+                    122.33638323378375, 
+                    3.4774109150001578
+                ], 
+                "resolution": 0, 
+                "rotation": [
+                    89.9999999999999, 
+                    58.86076422970617, 
+                    0.0
+                ], 
+                "bodyPartId": "6079ecb56cc34ed084b58478e63b1cc5", 
+                "attachmentBodyPartId": "7674bc7249054e108780324e6c713c5f"
+            }, 
+            "prefix": "rightThumb1", 
+            "bodyPartId": "6079ecb56cc34ed084b58478e63b1cc5", 
+            "isTail": false, 
+            "widgetBuffer": {
+                "scale": [
+                    0.011428571428571429, 
+                    0.011428571428571429, 
+                    0.011428571428571429
+                ], 
+                "name": "rightThumb1_WidgetBuffer", 
+                "nodeId": "WidgetBuffer", 
+                "translation": [
+                    0.21895075018884963, 
+                    0.18346260166096529, 
+                    0.008376898634927743
+                ], 
+                "rotation": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "bodyPartId": "6079ecb56cc34ed084b58478e63b1cc5"
+            }
+        }
+    }, 
+    "characterGeometry": [], 
+    "mode": "Restore", 
+    "mirrors": [
+        {
+            "subTransformNode": "rightFinger1_Widget", 
+            "domTransformNode": "leftFinger1_Widget", 
+            "axis": "X"
+        }, 
+        {
+            "subTransformNode": "rightFinger1_Widget1", 
+            "domTransformNode": "leftFinger1_Widget1", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger1_Widget2", 
+            "domTransformNode": "leftFinger1_Widget2", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger1_Widget3", 
+            "domTransformNode": "leftFinger1_Widget3", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger1_Widget4", 
+            "domTransformNode": "leftFinger1_Widget4", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger1_Widget5", 
+            "domTransformNode": "leftFinger1_Widget5", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger2_Widget", 
+            "domTransformNode": "leftFinger2_Widget", 
+            "axis": "X"
+        }, 
+        {
+            "subTransformNode": "rightFinger2_Widget1", 
+            "domTransformNode": "leftFinger2_Widget1", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger2_Widget2", 
+            "domTransformNode": "leftFinger2_Widget2", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger2_Widget3", 
+            "domTransformNode": "leftFinger2_Widget3", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger2_Widget4", 
+            "domTransformNode": "leftFinger2_Widget4", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger2_Widget5", 
+            "domTransformNode": "leftFinger2_Widget5", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger3_Widget", 
+            "domTransformNode": "leftFinger3_Widget", 
+            "axis": "X"
+        }, 
+        {
+            "subTransformNode": "rightFinger3_Widget1", 
+            "domTransformNode": "leftFinger3_Widget1", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger3_Widget2", 
+            "domTransformNode": "leftFinger3_Widget2", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger3_Widget3", 
+            "domTransformNode": "leftFinger3_Widget3", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger3_Widget4", 
+            "domTransformNode": "leftFinger3_Widget4", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger3_Widget5", 
+            "domTransformNode": "leftFinger3_Widget5", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger4_Widget", 
+            "domTransformNode": "leftFinger4_Widget", 
+            "axis": "X"
+        }, 
+        {
+            "subTransformNode": "rightFinger4_Widget1", 
+            "domTransformNode": "leftFinger4_Widget1", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger4_Widget2", 
+            "domTransformNode": "leftFinger4_Widget2", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger4_Widget3", 
+            "domTransformNode": "leftFinger4_Widget3", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger4_Widget4", 
+            "domTransformNode": "leftFinger4_Widget4", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightFinger4_Widget5", 
+            "domTransformNode": "leftFinger4_Widget5", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightThumb1_Widget", 
+            "domTransformNode": "leftThumb1_Widget", 
+            "axis": "X"
+        }, 
+        {
+            "subTransformNode": "rightThumb1_Widget2", 
+            "domTransformNode": "leftThumb1_Widget2", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightThumb1_Widget3", 
+            "domTransformNode": "leftThumb1_Widget3", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightThumb1_Widget4", 
+            "domTransformNode": "leftThumb1_Widget4", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightThumb1_Widget5", 
+            "domTransformNode": "leftThumb1_Widget5", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightArm1_Widget", 
+            "domTransformNode": "leftArm1_Widget", 
+            "axis": "X"
+        }, 
+        {
+            "subTransformNode": "rightArm1_Widget1", 
+            "domTransformNode": "leftArm1_Widget1", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightArm1_Widget2", 
+            "domTransformNode": "leftArm1_Widget2", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightArm1_Widget3", 
+            "domTransformNode": "leftArm1_Widget3", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightArm1_Widget4", 
+            "domTransformNode": "leftArm1_Widget4", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightLeg1_Widget", 
+            "domTransformNode": "leftLeg1_Widget", 
+            "axis": "X"
+        }, 
+        {
+            "subTransformNode": "rightLeg1_Widget1", 
+            "domTransformNode": "leftLeg1_Widget1", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightLeg1_Widget2", 
+            "domTransformNode": "leftLeg1_Widget2", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightLeg1_Widget3", 
+            "domTransformNode": "leftLeg1_Widget3", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightLeg1_Widget4", 
+            "domTransformNode": "leftLeg1_Widget4", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightLeg1_Widget5", 
+            "domTransformNode": "leftLeg1_Widget5", 
+            "axis": null
+        }, 
+        {
+            "subTransformNode": "rightLeg1_WidgetFootControl", 
+            "domTransformNode": "leftLeg1_WidgetFootControl", 
+            "axis": null
+        }
+    ]
+}

@@ -1,0 +1,68 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//srbJointChainFromCurve.mel - MEL Script
+//Copyright (C) Suchan Raj Bajracharya
+//Title: srbJointChainFromCurve.mel
+//AUTHOR:	Suchan Raj Bajracharya
+//				suchan@incessantrain.com	
+//VERSION: 0.2	
+//DATE: January 2nd, 2009
+//DESCRIPTION: Use this Tool to create a joint chain from selected curves...
+//USAGE: Select the curve or curves and execute "srbJointChainFromCurveProc"... 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//CREATE THE GLOBAL PROCEDURE FOR srbJointChainFromCurve.mel---
+global proc srbJointChainFromCurveProc () 
+{
+  //STORE SOME VARIABLES--
+  string $selCurve[] = `ls -sl`;
+  int $noSelCurve = `size($selCurve)`;
+
+  //ERROR CHECKING---
+  if ($noSelCurve == 0)
+  {
+    warning "Select atleast one curve to create the joint chain...\n";
+  }
+  else
+  {
+    //THIS IS THE FOR LOOP FOR CREATING JOINT CHAIN ON SELECTED CURVES---
+    for ($i = 0; $i < ($noSelCurve); $i++)
+    {
+      select -r ($selCurve[$i] + ".cv[*]");
+      string $cvPos[] = `ls -sl -flatten`;
+      int $Cs = `size($cvPos)`;
+      string $dummyJnt = `joint -p 0 0 0`; 
+
+      //THIS LOOP CREATES A JOINT FOR EACH CV IN THE CURVE---
+      for ($cv in $cvPos)
+      {
+        string $jnt = `joint -p 0 0 0`; 
+        float $xyz[] = `xform -a -ws -q -t $cv`;
+        xform -a -ws -t $xyz[0] $xyz[1] $xyz[2] $jnt;
+      }
+
+      select -r $dummyJnt;
+      joint -e -oj xyz -secondaryAxisOrient ydown -ch -zso;
+      pickWalk -d down;
+      string $rootJJ[] = `ls -sl`;
+      parent -w $rootJJ[0];
+      delete $dummyJnt;
+
+      //RENAME THE JOINTS---	
+      /*
+         int $i;
+         int $s;
+
+         string $allJnt[] = `ls -type joint -dag $rootJJ`;
+         for ($i = 0; $i < $Cs; $i++)
+         {
+         $s = $i + 1;	
+         rename $allJnt[$i] ($name + $s + "_jj");
+         }
+       */
+    }
+    print "Created joint chain for selected curves...\n";
+  }
+}
+//THE END---
+
+srbJointChainFromCurveProc () 

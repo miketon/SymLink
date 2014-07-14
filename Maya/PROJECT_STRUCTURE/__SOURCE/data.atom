@@ -1,0 +1,23 @@
+atomVersion 1.0;
+mayaVersion 2014 x64;
+mayaSceneFile /Users/mton/Dropbox/Code/SymLink/Maya/PROJECT_STRUCTURE/__SOURCE/Art/CHAR/anim/rigs/TSMG/femaleTSMG_rig.ma;
+timeUnit film;
+linearUnit cm;
+angularUnit deg;
+startTime 1;
+endTime 1;
+dagNode {
+  TSMG_root 2 2;
+  cached rotate.rx rotateX 0;
+  { 0  }
+  cached rotate.ry rotateY 1;
+  { 0  }
+  cached rotate.rz rotateZ 2;
+  { 0  }
+  cached translate.tx translateX 3;
+  { 0  }
+  cached translate.ty translateY 4;
+  { 0  }
+  cached translate.tz translateZ 5;
+  { 0  }
+}

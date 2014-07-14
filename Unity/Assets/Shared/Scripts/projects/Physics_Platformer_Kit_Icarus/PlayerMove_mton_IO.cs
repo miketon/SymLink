@@ -8,6 +8,17 @@ public class PlayerMove_mton_IO : PlayerMove_mton{
   public GameObject go_Right ;
   public GameObject go_Left  ;
 
+  //io values
+  protected float __h = 0.0f;
+  protected float __v = 0.0f;
+
+	public void set_H(float float_IN){
+		__h = float_IN;
+	}
+	public void set_V(float float_IN){
+		__v = float_IN;
+	}
+
   public void doAttack(){
     bAttack = true ;
     if(!bFlip){
@@ -36,7 +47,13 @@ public class PlayerMove_mton_IO : PlayerMove_mton{
   public override void doUpdate(){
     base.doUpdate()               ;
     doInput()                     ;
-    //print("doUpdate Plus ++++") ;
+	//only apply vertical input to movemement, if player is not sidescroller
+    if(!sidescroller){
+      direction = (screenMovementForward * __v) + (screenMovementRight * __h);
+    }
+    else{
+      direction = Vector3.right * __h;
+    }
     //gridForce()                 ;
   }
 
@@ -44,41 +61,10 @@ public class PlayerMove_mton_IO : PlayerMove_mton{
     if(bInput==1){	
       io_Controller();
     }
-    else if(bInput==2){
-      io_Touch();
-    }
+
     if(Input.GetKeyUp(KeyCode.P)){
       print("P is for power") ;
       movingObjSpeed.y = 5    ;
-    }
-  }
-
-  public virtual void io_Touch(){
-    //get movement input, set direction to move in
-    __h = CFInput.GetAxisRaw ("Horizontal") ;
-    __v = CFInput.GetAxisRaw ("Vertical")   ;
-
-    //only apply vertical input to movemement, if player is not sidescroller
-    if(!sidescroller){
-      direction = (screenMovementForward * __v) + (screenMovementRight * __h);
-    }
-    else{
-      direction = Vector3.right * __h;
-    }
-    /*
-       if(CFInput.GetButtonDown ("Jump")){
-       bJump = true;
-       }
-       else{
-       bJump = false;
-       }
-       */
-    if(CFInput.GetButtonDown ("Fire1")){
-      //print("I am attacking") ;
-      bAttack = true          ;
-    }
-    else{
-      bAttack = false;
     }
   }
 
@@ -87,13 +73,6 @@ public class PlayerMove_mton_IO : PlayerMove_mton{
     __h = Input.GetAxisRaw ("Horizontal") ;
     __v = Input.GetAxisRaw ("Vertical")   ;
 
-    //only apply vertical input to movemement, if player is not sidescroller
-    if(!sidescroller){
-      direction = (screenMovementForward * __v) + (screenMovementRight * __h);
-    }
-    else{
-      direction = Vector3.right * __h;
-    }
 
     if(Input.GetButtonDown ("Jump")){
       bJump = true;
@@ -102,7 +81,7 @@ public class PlayerMove_mton_IO : PlayerMove_mton{
       bJump = false;
     }
     if(Input.GetButtonDown ("Fire1")){
-      //print("I am attacking") ;
+      print("I am attacking") ;
       bAttack = true          ;
     }
     else{

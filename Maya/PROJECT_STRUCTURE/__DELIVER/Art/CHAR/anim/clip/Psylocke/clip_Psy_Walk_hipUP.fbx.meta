@@ -1,0 +1,1354 @@
+fileFormatVersion: 2
+guid: 5246b8c794c6c4e3883149c1b418cec8
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: locatorAim
+    100004: locatorYrotate
+    100006: Psylocke_wHair:Collar
+    100008: Psylocke_wHair:Head_1
+    100010: Psylocke_wHair:joint10_rightDetail
+    100012: Psylocke_wHair:joint11
+    100014: Psylocke_wHair:joint12
+    100016: Psylocke_wHair:joint13
+    100018: Psylocke_wHair:joint14
+    100020: Psylocke_wHair:joint15
+    100022: Psylocke_wHair:joint16
+    100024: Psylocke_wHair:joint18_rightBang
+    100026: Psylocke_wHair:joint19
+    100028: Psylocke_wHair:joint20
+    100030: Psylocke_wHair:joint21
+    100032: Psylocke_wHair:joint22
+    100034: Psylocke_wHair:joint23
+    100036: Psylocke_wHair:joint24
+    100038: Psylocke_wHair:joint26_leftBang
+    100040: Psylocke_wHair:joint27
+    100042: Psylocke_wHair:joint28
+    100044: Psylocke_wHair:joint29
+    100046: Psylocke_wHair:joint2_mainHair
+    100048: Psylocke_wHair:joint30
+    100050: Psylocke_wHair:joint31
+    100052: Psylocke_wHair:joint32
+    100054: Psylocke_wHair:joint3_mainLine
+    100056: Psylocke_wHair:joint4
+    100058: Psylocke_wHair:joint5
+    100060: Psylocke_wHair:joint6
+    100062: Psylocke_wHair:joint7
+    100064: Psylocke_wHair:joint8
+    100066: Psylocke_wHair:L_ankle
+    100068: Psylocke_wHair:L_ball
+    100070: Psylocke_wHair:L_collar
+    100072: Psylocke_wHair:L_elbow
+    100074: Psylocke_wHair:L_forearm
+    100076: Psylocke_wHair:L_heel
+    100078: Psylocke_wHair:L_hip
+    100080: Psylocke_wHair:L_index_1
+    100082: Psylocke_wHair:L_index_2
+    100084: Psylocke_wHair:L_index_end
+    100086: Psylocke_wHair:L_knee
+    100088: Psylocke_wHair:L_middle_1
+    100090: Psylocke_wHair:L_middle_2
+    100092: Psylocke_wHair:L_middle_end
+    100094: Psylocke_wHair:L_pinky_1
+    100096: Psylocke_wHair:L_pinky_2
+    100098: Psylocke_wHair:L_pinky_end
+    100100: Psylocke_wHair:L_ring_1
+    100102: Psylocke_wHair:L_ring_2
+    100104: Psylocke_wHair:L_ring_end
+    100106: Psylocke_wHair:L_shoulder
+    100108: Psylocke_wHair:L_thumb_1
+    100110: Psylocke_wHair:L_thumb_2
+    100112: Psylocke_wHair:L_thumb_end
+    100114: Psylocke_wHair:L_toe
+    100116: Psylocke_wHair:L_wrist
+    100118: Psylocke_wHair:Neck_1
+    100120: Psylocke_wHair:Psylocke_hair
+    100122: Psylocke_wHair:Psylocke_New
+    100124: Psylocke_wHair:Psylocke_Shoes
+    100126: Psylocke_wHair:R_ankle
+    100128: Psylocke_wHair:R_ball
+    100130: Psylocke_wHair:R_collar
+    100132: Psylocke_wHair:R_elbow
+    100134: Psylocke_wHair:R_forearm
+    100136: Psylocke_wHair:R_heel
+    100138: Psylocke_wHair:R_hip
+    100140: Psylocke_wHair:R_index_1
+    100142: Psylocke_wHair:R_index_2
+    100144: Psylocke_wHair:R_index_end
+    100146: Psylocke_wHair:R_knee
+    100148: Psylocke_wHair:R_middle_1
+    100150: Psylocke_wHair:R_middle_2
+    100152: Psylocke_wHair:R_middle_end
+    100154: Psylocke_wHair:R_pinky_1
+    100156: Psylocke_wHair:R_pinky_2
+    100158: Psylocke_wHair:R_pinky_end
+    100160: Psylocke_wHair:R_ring_1
+    100162: Psylocke_wHair:R_ring_2
+    100164: Psylocke_wHair:R_ring_end
+    100166: Psylocke_wHair:R_shoulder
+    100168: Psylocke_wHair:R_thumb_1
+    100170: Psylocke_wHair:R_thumb_2
+    100172: Psylocke_wHair:R_thumb_end
+    100174: Psylocke_wHair:R_toe
+    100176: Psylocke_wHair:R_wrist
+    100178: Psylocke_wHair:Skeleton_Root
+    100180: Psylocke_wHair:Spine_1
+    100182: Psylocke_wHair:Spine_2
+    400000: //RootNode
+    400002: locatorAim
+    400004: locatorYrotate
+    400006: Psylocke_wHair:Collar
+    400008: Psylocke_wHair:Head_1
+    400010: Psylocke_wHair:joint10_rightDetail
+    400012: Psylocke_wHair:joint11
+    400014: Psylocke_wHair:joint12
+    400016: Psylocke_wHair:joint13
+    400018: Psylocke_wHair:joint14
+    400020: Psylocke_wHair:joint15
+    400022: Psylocke_wHair:joint16
+    400024: Psylocke_wHair:joint18_rightBang
+    400026: Psylocke_wHair:joint19
+    400028: Psylocke_wHair:joint20
+    400030: Psylocke_wHair:joint21
+    400032: Psylocke_wHair:joint22
+    400034: Psylocke_wHair:joint23
+    400036: Psylocke_wHair:joint24
+    400038: Psylocke_wHair:joint26_leftBang
+    400040: Psylocke_wHair:joint27
+    400042: Psylocke_wHair:joint28
+    400044: Psylocke_wHair:joint29
+    400046: Psylocke_wHair:joint2_mainHair
+    400048: Psylocke_wHair:joint30
+    400050: Psylocke_wHair:joint31
+    400052: Psylocke_wHair:joint32
+    400054: Psylocke_wHair:joint3_mainLine
+    400056: Psylocke_wHair:joint4
+    400058: Psylocke_wHair:joint5
+    400060: Psylocke_wHair:joint6
+    400062: Psylocke_wHair:joint7
+    400064: Psylocke_wHair:joint8
+    400066: Psylocke_wHair:L_ankle
+    400068: Psylocke_wHair:L_ball
+    400070: Psylocke_wHair:L_collar
+    400072: Psylocke_wHair:L_elbow
+    400074: Psylocke_wHair:L_forearm
+    400076: Psylocke_wHair:L_heel
+    400078: Psylocke_wHair:L_hip
+    400080: Psylocke_wHair:L_index_1
+    400082: Psylocke_wHair:L_index_2
+    400084: Psylocke_wHair:L_index_end
+    400086: Psylocke_wHair:L_knee
+    400088: Psylocke_wHair:L_middle_1
+    400090: Psylocke_wHair:L_middle_2
+    400092: Psylocke_wHair:L_middle_end
+    400094: Psylocke_wHair:L_pinky_1
+    400096: Psylocke_wHair:L_pinky_2
+    400098: Psylocke_wHair:L_pinky_end
+    400100: Psylocke_wHair:L_ring_1
+    400102: Psylocke_wHair:L_ring_2
+    400104: Psylocke_wHair:L_ring_end
+    400106: Psylocke_wHair:L_shoulder
+    400108: Psylocke_wHair:L_thumb_1
+    400110: Psylocke_wHair:L_thumb_2
+    400112: Psylocke_wHair:L_thumb_end
+    400114: Psylocke_wHair:L_toe
+    400116: Psylocke_wHair:L_wrist
+    400118: Psylocke_wHair:Neck_1
+    400120: Psylocke_wHair:Psylocke_hair
+    400122: Psylocke_wHair:Psylocke_New
+    400124: Psylocke_wHair:Psylocke_Shoes
+    400126: Psylocke_wHair:R_ankle
+    400128: Psylocke_wHair:R_ball
+    400130: Psylocke_wHair:R_collar
+    400132: Psylocke_wHair:R_elbow
+    400134: Psylocke_wHair:R_forearm
+    400136: Psylocke_wHair:R_heel
+    400138: Psylocke_wHair:R_hip
+    400140: Psylocke_wHair:R_index_1
+    400142: Psylocke_wHair:R_index_2
+    400144: Psylocke_wHair:R_index_end
+    400146: Psylocke_wHair:R_knee
+    400148: Psylocke_wHair:R_middle_1
+    400150: Psylocke_wHair:R_middle_2
+    400152: Psylocke_wHair:R_middle_end
+    400154: Psylocke_wHair:R_pinky_1
+    400156: Psylocke_wHair:R_pinky_2
+    400158: Psylocke_wHair:R_pinky_end
+    400160: Psylocke_wHair:R_ring_1
+    400162: Psylocke_wHair:R_ring_2
+    400164: Psylocke_wHair:R_ring_end
+    400166: Psylocke_wHair:R_shoulder
+    400168: Psylocke_wHair:R_thumb_1
+    400170: Psylocke_wHair:R_thumb_2
+    400172: Psylocke_wHair:R_thumb_end
+    400174: Psylocke_wHair:R_toe
+    400176: Psylocke_wHair:R_wrist
+    400178: Psylocke_wHair:Skeleton_Root
+    400180: Psylocke_wHair:Spine_1
+    400182: Psylocke_wHair:Spine_2
+    2300000: Psylocke_wHair:Psylocke_Shoes
+    3300000: Psylocke_wHair:Psylocke_Shoes
+    4300000: Psylocke_wHair:Psylocke_hair
+    4300002: Psylocke_wHair:Psylocke_New
+    4300004: Psylocke_wHair:Psylocke_Shoes
+    7400000: clip_Psy_Walk_hipUP
+    9500000: //RootNode
+    13700000: Psylocke_wHair:Psylocke_hair
+    13700002: Psylocke_wHair:Psylocke_New
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: clip_Psy_Walk_hipUP
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: locatorYrotate
+        weight: 1
+      - path: locatorYrotate/locatorAim
+        weight: 1
+      - path: Psylocke_wHair:Psylocke_hair
+        weight: 1
+      - path: Psylocke_wHair:Psylocke_New
+        weight: 1
+      - path: Psylocke_wHair:Psylocke_Shoes
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:L_hip
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:L_hip/Psylocke_wHair:L_knee
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:L_hip/Psylocke_wHair:L_knee/Psylocke_wHair:L_ankle
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:L_hip/Psylocke_wHair:L_knee/Psylocke_wHair:L_ankle/Psylocke_wHair:L_ball
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:L_hip/Psylocke_wHair:L_knee/Psylocke_wHair:L_ankle/Psylocke_wHair:L_ball/Psylocke_wHair:L_toe
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:L_hip/Psylocke_wHair:L_knee/Psylocke_wHair:L_ankle/Psylocke_wHair:L_ball/Psylocke_wHair:L_toe/Psylocke_wHair:L_heel
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:R_hip
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:R_hip/Psylocke_wHair:R_knee
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:R_hip/Psylocke_wHair:R_knee/Psylocke_wHair:R_ankle
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:R_hip/Psylocke_wHair:R_knee/Psylocke_wHair:R_ankle/Psylocke_wHair:R_ball
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:R_hip/Psylocke_wHair:R_knee/Psylocke_wHair:R_ankle/Psylocke_wHair:R_ball/Psylocke_wHair:R_toe
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:R_hip/Psylocke_wHair:R_knee/Psylocke_wHair:R_ankle/Psylocke_wHair:R_ball/Psylocke_wHair:R_toe/Psylocke_wHair:R_heel
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_forearm
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist/Psylocke_wHair:L_index_1
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist/Psylocke_wHair:L_index_1/Psylocke_wHair:L_index_2
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist/Psylocke_wHair:L_index_1/Psylocke_wHair:L_index_2/Psylocke_wHair:L_index_end
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist/Psylocke_wHair:L_middle_1
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist/Psylocke_wHair:L_middle_1/Psylocke_wHair:L_middle_2
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist/Psylocke_wHair:L_middle_1/Psylocke_wHair:L_middle_2/Psylocke_wHair:L_middle_end
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist/Psylocke_wHair:L_pinky_1
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist/Psylocke_wHair:L_pinky_1/Psylocke_wHair:L_pinky_2
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist/Psylocke_wHair:L_pinky_1/Psylocke_wHair:L_pinky_2/Psylocke_wHair:L_pinky_end
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist/Psylocke_wHair:L_ring_1
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist/Psylocke_wHair:L_ring_1/Psylocke_wHair:L_ring_2
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist/Psylocke_wHair:L_ring_1/Psylocke_wHair:L_ring_2/Psylocke_wHair:L_ring_end
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist/Psylocke_wHair:L_thumb_1
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist/Psylocke_wHair:L_thumb_1/Psylocke_wHair:L_thumb_2
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist/Psylocke_wHair:L_thumb_1/Psylocke_wHair:L_thumb_2/Psylocke_wHair:L_thumb_end
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint3_mainLine
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint3_mainLine/Psylocke_wHair:joint4
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint3_mainLine/Psylocke_wHair:joint4/Psylocke_wHair:joint5
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint3_mainLine/Psylocke_wHair:joint4/Psylocke_wHair:joint5/Psylocke_wHair:joint6
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint3_mainLine/Psylocke_wHair:joint4/Psylocke_wHair:joint5/Psylocke_wHair:joint6/Psylocke_wHair:joint7
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint3_mainLine/Psylocke_wHair:joint4/Psylocke_wHair:joint5/Psylocke_wHair:joint6/Psylocke_wHair:joint7/Psylocke_wHair:joint8
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint10_rightDetail
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint10_rightDetail/Psylocke_wHair:joint11
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint10_rightDetail/Psylocke_wHair:joint11/Psylocke_wHair:joint12
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint10_rightDetail/Psylocke_wHair:joint11/Psylocke_wHair:joint12/Psylocke_wHair:joint13
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint10_rightDetail/Psylocke_wHair:joint11/Psylocke_wHair:joint12/Psylocke_wHair:joint13/Psylocke_wHair:joint14
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint10_rightDetail/Psylocke_wHair:joint11/Psylocke_wHair:joint12/Psylocke_wHair:joint13/Psylocke_wHair:joint14/Psylocke_wHair:joint15
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint10_rightDetail/Psylocke_wHair:joint11/Psylocke_wHair:joint12/Psylocke_wHair:joint13/Psylocke_wHair:joint14/Psylocke_wHair:joint15/Psylocke_wHair:joint16
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint18_rightBang
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint18_rightBang/Psylocke_wHair:joint19
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint18_rightBang/Psylocke_wHair:joint19/Psylocke_wHair:joint20
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint18_rightBang/Psylocke_wHair:joint19/Psylocke_wHair:joint20/Psylocke_wHair:joint21
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint18_rightBang/Psylocke_wHair:joint19/Psylocke_wHair:joint20/Psylocke_wHair:joint21/Psylocke_wHair:joint22
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint18_rightBang/Psylocke_wHair:joint19/Psylocke_wHair:joint20/Psylocke_wHair:joint21/Psylocke_wHair:joint22/Psylocke_wHair:joint23
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint18_rightBang/Psylocke_wHair:joint19/Psylocke_wHair:joint20/Psylocke_wHair:joint21/Psylocke_wHair:joint22/Psylocke_wHair:joint23/Psylocke_wHair:joint24
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint26_leftBang
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint26_leftBang/Psylocke_wHair:joint27
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint26_leftBang/Psylocke_wHair:joint27/Psylocke_wHair:joint28
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint26_leftBang/Psylocke_wHair:joint27/Psylocke_wHair:joint28/Psylocke_wHair:joint29
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint26_leftBang/Psylocke_wHair:joint27/Psylocke_wHair:joint28/Psylocke_wHair:joint29/Psylocke_wHair:joint30
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint26_leftBang/Psylocke_wHair:joint27/Psylocke_wHair:joint28/Psylocke_wHair:joint29/Psylocke_wHair:joint30/Psylocke_wHair:joint31
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:Neck_1/Psylocke_wHair:Head_1/Psylocke_wHair:joint2_mainHair/Psylocke_wHair:joint26_leftBang/Psylocke_wHair:joint27/Psylocke_wHair:joint28/Psylocke_wHair:joint29/Psylocke_wHair:joint30/Psylocke_wHair:joint31/Psylocke_wHair:joint32
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_forearm
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist/Psylocke_wHair:R_index_1
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist/Psylocke_wHair:R_index_1/Psylocke_wHair:R_index_2
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist/Psylocke_wHair:R_index_1/Psylocke_wHair:R_index_2/Psylocke_wHair:R_index_end
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist/Psylocke_wHair:R_middle_1
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist/Psylocke_wHair:R_middle_1/Psylocke_wHair:R_middle_2
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist/Psylocke_wHair:R_middle_1/Psylocke_wHair:R_middle_2/Psylocke_wHair:R_middle_end
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist/Psylocke_wHair:R_pinky_1
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist/Psylocke_wHair:R_pinky_1/Psylocke_wHair:R_pinky_2
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist/Psylocke_wHair:R_pinky_1/Psylocke_wHair:R_pinky_2/Psylocke_wHair:R_pinky_end
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist/Psylocke_wHair:R_ring_1
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist/Psylocke_wHair:R_ring_1/Psylocke_wHair:R_ring_2
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist/Psylocke_wHair:R_ring_1/Psylocke_wHair:R_ring_2/Psylocke_wHair:R_ring_end
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist/Psylocke_wHair:R_thumb_1
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist/Psylocke_wHair:R_thumb_1/Psylocke_wHair:R_thumb_2
+        weight: 1
+      - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist/Psylocke_wHair:R_thumb_1/Psylocke_wHair:R_thumb_2/Psylocke_wHair:R_thumb_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: Psylocke_wHair:Skeleton_Root
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_hip
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_hip
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_knee
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_knee
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_ankle
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_ankle
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:Spine_2
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:Collar
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:Neck_1
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:Head_1
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_collar
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_collar
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_shoulder
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_shoulder
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_elbow
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_elbow
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_wrist
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_wrist
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_ball
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_ball
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:joint26_leftBang
+      humanName: LeftEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:joint10_rightDetail
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:joint18_rightBang
+      humanName: Jaw
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_thumb_1
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_thumb_2
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_thumb_end
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_index_1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_index_2
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_index_end
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_middle_1
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_middle_2
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_middle_end
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_ring_1
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_ring_2
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_ring_end
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_pinky_1
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_pinky_2
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:L_pinky_end
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_thumb_1
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_thumb_2
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_thumb_end
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_index_1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_index_2
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_index_end
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_middle_1
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_middle_2
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_middle_end
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_ring_1
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_ring_2
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_ring_end
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_pinky_1
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_pinky_2
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Psylocke_wHair:R_pinky_end
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: clip_Psy_Walk_hipUP(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: locatorYrotate
+      position: {x: .00158990943, y: .0916345492, z: -.00184927718}
+      rotation: {x: 0, y: .557382584, z: 0, w: .830255747}
+      scale: {x: .99999994, y: 1, z: .99999994}
+      transformModified: 1
+    - name: locatorAim
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -.0327854641, y: -4.01506107e-18, z: 1.22398842e-16, w: .999462426}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:Psylocke_hair
+      position: {x: 0, y: .0326500013, z: 8.3266725e-19}
+      rotation: {x: 4.51028104e-17, y: 1.62011854e-15, z: -5.54460157e-17, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:Psylocke_New
+      position: {x: 0, y: .0326500013, z: 0}
+      rotation: {x: 0, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:Psylocke_Shoes
+      position: {x: 0, y: .0326500013, z: 0}
+      rotation: {x: 0, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:Skeleton_Root
+      position: {x: 2.32830644e-10, y: .0855074823, z: -.00201493758}
+      rotation: {x: .0122890491, y: -6.6734998e-08, z: 2.64336428e-08, w: .999924541}
+      scale: {x: 1, y: 1, z: 1.00000012}
+      transformModified: 1
+    - name: Psylocke_wHair:Spine_1
+      position: {x: 2.54222809e-34, y: 1.110223e-18, z: 6.93889375e-20}
+      rotation: {x: .707085967, y: -.707085967, z: -.00543141877, w: -.00543141877}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:Spine_2
+      position: {x: -.01078384, y: 9.93274964e-19, z: -1.38777888e-19}
+      rotation: {x: -1.2239773e-16, y: .033066418, z: -9.53456615e-17, w: .999453187}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:Collar
+      position: {x: -.0211411808, y: 4.20036277e-18, z: -8.881784e-18}
+      rotation: {x: 6.37658025e-26, y: -.0488032103, z: -2.95719504e-16, w: .998808444}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:Neck_1
+      position: {x: -.00537017686, y: 3.17234684e-18, z: 0}
+      rotation: {x: -1.64032137e-25, y: .00944650732, z: -6.53897947e-16, w: .999955416}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:Head_1
+      position: {x: -.00581545942, y: 7.60509442e-18, z: 3.6082247e-17}
+      rotation: {x: .436666667, y: .0609317012, z: -.0365877524, w: .896811485}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint2_mainHair
+      position: {x: -.0121825188, y: -.000518596207, z: .00247899001}
+      rotation: {x: -.432076126, y: -.556754291, z: .560399055, w: -.435072213}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint3_mainLine
+      position: {x: -.00420907559, y: 1.51267892e-17, z: -1.47451497e-19}
+      rotation: {x: .749463916, y: -.661249042, z: -.0189967174, w: .0263213627}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint4
+      position: {x: -.00864566024, y: 8.3266725e-19, z: -3.24393291e-18}
+      rotation: {x: .938164294, y: -.143056035, z: -.0168668479, w: -.314798892}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint5
+      position: {x: -.00930466317, y: 8.0491167e-18, z: 1.66533491e-18}
+      rotation: {x: -.103248194, y: .0427683257, z: .185590714, w: .976251423}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint6
+      position: {x: -.0111907898, y: -1.77635697e-17, z: -1.110223e-18}
+      rotation: {x: .892959356, y: -.431207925, z: .016834097, w: -.128062353}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint7
+      position: {x: -.00795972813, y: -8.32667302e-18, z: 5.8286707e-18}
+      rotation: {x: -.0265208501, y: .00807335693, z: -.0236552209, w: .999335766}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint8
+      position: {x: -.00321178092, y: -1.38777888e-19, z: -1.04083402e-18}
+      rotation: {x: .384604335, y: .292062521, z: -.697373569, w: .529574573}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint10_rightDetail
+      position: {x: .00805909652, y: .00325949001, z: .00345359696}
+      rotation: {x: -.0563303828, y: .408243418, z: .0778760314, w: .907799244}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint11
+      position: {x: -.00223176181, y: -8.53483963e-18, z: 2.77555776e-19}
+      rotation: {x: .0492914915, y: -.164121404, z: -.234400958, w: .956917286}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint12
+      position: {x: -.00493158167, y: -2.24820196e-17, z: -2.77555776e-19}
+      rotation: {x: .185345247, y: -.236590415, z: -.126050875, w: .945401132}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint13
+      position: {x: -.0068155718, y: -4.440892e-18, z: -6.73072687e-18}
+      rotation: {x: .278495163, y: -.275718242, z: .00614350243, w: .919990361}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint14
+      position: {x: -.00711455382, y: -2.16493482e-17, z: 1.082467e-17}
+      rotation: {x: .0233583823, y: -.0171657261, z: -.152644202, w: .98785603}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint15
+      position: {x: -.0043274858, y: 3.46944675e-19, z: 3.19189084e-18}
+      rotation: {x: -.356368244, y: .244958714, z: .109509863, w: .894988596}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint16
+      position: {x: -.00242119702, y: 1.63757889e-17, z: 4.00721072e-18}
+      rotation: {x: .670252442, y: .302069962, z: .618011832, w: -.278526098}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint18_rightBang
+      position: {x: .00856190268, y: .00447714189, z: .00335186673}
+      rotation: {x: -.274434865, y: .660691023, z: -.11889375, w: .688503563}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint19
+      position: {x: -.00226330198, y: 1.61478394e-17, z: -8.67361635e-19}
+      rotation: {x: .191666424, y: -.173802912, z: -.257229239, w: .931069136}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint20
+      position: {x: -.00430447981, y: -2.61596299e-17, z: 9.43689581e-18}
+      rotation: {x: .944277346, y: -.313372672, z: .0147060342, w: -.0996074677}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint21
+      position: {x: -.00695429789, y: -2.72004597e-17, z: -3.60822511e-18}
+      rotation: {x: .836427689, y: -.445997924, z: -.0990010053, w: -.302776098}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint22
+      position: {x: -.0072172028, y: 2.220446e-18, z: 1.38777901e-18}
+      rotation: {x: .049649857, y: -.224500254, z: .506404757, w: .83107686}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint23
+      position: {x: -.0050031268, y: -2.49800211e-18, z: -8.3266725e-19}
+      rotation: {x: -.0020367289, y: .00957048405, z: -.513499916, w: .858033836}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint24
+      position: {x: -.00236899592, y: -1.110223e-18, z: 3.46944675e-19}
+      rotation: {x: .72932446, y: .286648899, z: .578169823, w: -.227240056}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint26_leftBang
+      position: {x: .0104645593, y: .00401875703, z: .000228467601}
+      rotation: {x: .120538369, y: -.835938036, z: .0425129756, w: .533732831}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint27
+      position: {x: -.00217570504, y: 1.68875291e-17, z: 1.66533491e-18}
+      rotation: {x: -.0493787527, y: .224491641, z: -.148117602, w: .961886883}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint28
+      position: {x: -.00495168194, y: 7.33957358e-18, z: -1.73472295e-20}
+      rotation: {x: -.416080147, y: .411475241, z: -.331887603, w: .739875734}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint29
+      position: {x: -.00722330576, y: -6.661338e-18, z: -8.0491167e-18}
+      rotation: {x: -.227740228, y: .0883471593, z: .0115292883, w: .969637215}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint30
+      position: {x: -.00629008003, y: 8.60422768e-18, z: 5.62050408e-18}
+      rotation: {x: .943066061, y: -.306325942, z: -.00878897123, w: .129281104}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint31
+      position: {x: -.00479768496, y: 0, z: -3.40005787e-18}
+      rotation: {x: .123292774, y: -.0451314934, z: .103617027, w: .985913575}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:joint32
+      position: {x: -.00207909197, y: 9.7144513e-18, z: 3.81639173e-18}
+      rotation: {x: .65310508, y: .407274991, z: -.541720748, w: .33781597}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_collar
+      position: {x: .000538863882, y: -.00737414183, z: -5.32554404e-05}
+      rotation: {x: .00792380422, y: .00731497351, z: .734728694, w: .678275406}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_shoulder
+      position: {x: -.00678056479, y: 1.77635697e-17, z: -2.77555776e-19}
+      rotation: {x: .014168988, y: .0380828939, z: -.0393997058, w: .998397052}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_elbow
+      position: {x: -.0173292104, y: 1.77635697e-17, z: -4.440892e-18}
+      rotation: {x: 8.38190051e-09, y: -.0755843669, z: -8.58853753e-08, w: .997139454}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_wrist
+      position: {x: -.0171505585, y: 1.7763568e-17, z: 0}
+      rotation: {x: .616881132, y: .0340537056, z: .00198106887, w: .786316931}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_thumb_1
+      position: {x: -.00438553002, y: -.00240910379, z: -.00326852105}
+      rotation: {x: -.631860673, y: -.377846986, z: .223803833, w: .638666987}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_thumb_2
+      position: {x: -.00388897094, y: -4.36711576e-18, z: -8.06113977e-19}
+      rotation: {x: .00939826854, y: -.00369944563, z: -.0366732627, w: .99927628}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_thumb_end
+      position: {x: -.0036287969, y: 5.13478156e-18, z: 3.5527136e-17}
+      rotation: {x: 0, y: 0, z: .258819073, w: .965925872}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_index_1
+      position: {x: -.0138785597, y: -.00428508082, z: -.0018973439}
+      rotation: {x: -.664821744, y: -.145983472, z: .144425467, w: .718221545}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_index_2
+      position: {x: -.00176188792, y: -5.551115e-19, z: 0}
+      rotation: {x: -.00446787057, y: .0212021582, z: .0343345143, w: .999175489}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_index_end
+      position: {x: -.0027417161, y: -1.110223e-18, z: 1.7763568e-17}
+      rotation: {x: 0, y: -.642787635, z: -0, w: .766044438}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_middle_1
+      position: {x: -.0138067305, y: -.0037783389, z: .000721661083}
+      rotation: {x: -.674849153, y: -.118650094, z: .180141896, w: .705726445}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_middle_2
+      position: {x: -.00337066501, y: 0, z: 0}
+      rotation: {x: .000431692286, y: -.0130109983, z: .00520554278, w: .999901712}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_middle_end
+      position: {x: -.00255856896, y: -3.05311289e-18, z: -3.55271393e-17}
+      rotation: {x: -.000431692286, y: .0130109992, z: -.00520554278, w: .999901712}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_ring_1
+      position: {x: -.0131259793, y: -.00384957786, z: .00320553686}
+      rotation: {x: -.679888666, y: -.100198165, z: .188633785, w: .701519012}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_ring_2
+      position: {x: -.00203838898, y: -2.77555776e-19, z: -1.77635697e-17}
+      rotation: {x: -.000197557078, y: -.00606781384, z: .00273405737, w: .999977827}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_ring_end
+      position: {x: -.00331560895, y: 1.3877787e-18, z: 1.7763568e-17}
+      rotation: {x: 0, y: -.642787635, z: -0, w: .766044438}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_pinky_1
+      position: {x: -.01115942, y: -.00387471984, z: .0052659479}
+      rotation: {x: -.689551234, y: -.0549828336, z: .190218255, w: .696644187}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_pinky_2
+      position: {x: -.00226654205, y: -1.110223e-18, z: -1.77635697e-17}
+      rotation: {x: -.00831159297, y: -.0337823629, z: -.018420428, w: .999224901}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_pinky_end
+      position: {x: -.00197129208, y: 2.220446e-18, z: 3.5527136e-17}
+      rotation: {x: 0, y: -.642787635, z: -0, w: .766044438}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_forearm
+      position: {x: -.00857527927, y: -3.5527136e-17, z: -1.110223e-18}
+      rotation: {x: .461002827, y: -0, z: -0, w: .88739872}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_collar
+      position: {x: .000539072906, y: .00737413997, z: -5.32655395e-05}
+      rotation: {x: .734728694, y: .678275406, z: -.00792377908, w: -.00731494697}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_shoulder
+      position: {x: .00678058947, y: 2.315373e-07, z: 5.15577403e-09}
+      rotation: {x: .0141689954, y: .0380831957, z: -.0393997021, w: .998396993}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_elbow
+      position: {x: .017329229, y: -1.77635697e-17, z: 7.98777933e-09}
+      rotation: {x: 1.02445457e-08, y: -.0755847916, z: -2.37516304e-07, w: .997139394}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_wrist
+      position: {x: .0171505734, y: -3.5527136e-17, z: -6.22561824e-09}
+      rotation: {x: -.145160109, y: -.210741416, z: -.0840876773, w: .963039875}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_pinky_1
+      position: {x: .0111593697, y: .00387399993, z: -.00526593952}
+      rotation: {x: -.68955487, y: -.0549635179, z: .190176204, w: .696653485}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_pinky_2
+      position: {x: .00226669898, y: -2.67018088e-08, z: 3.33956194e-07}
+      rotation: {x: -.00831111893, y: -.0339307114, z: -.0184563827, w: .999219179}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_pinky_end
+      position: {x: .00197103107, y: 1.15505809e-08, z: -3.13493615e-07}
+      rotation: {x: 0, y: -.642787635, z: -0, w: .766044438}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_thumb_1
+      position: {x: .0043854909, y: .00240899995, z: .003268525}
+      rotation: {x: -.600912154, y: -.243587241, z: -.155141473, w: .745319426}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_thumb_2
+      position: {x: .00388879073, y: -9.80811095e-08, z: -5.1694002e-07}
+      rotation: {x: .00940581597, y: -.00365674286, z: -.0366872326, w: .999275863}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_thumb_end
+      position: {x: .00362880016, y: 1.09662937e-08, z: -6.42962235e-08}
+      rotation: {x: 0, y: 0, z: .258819073, w: .965925872}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_index_1
+      position: {x: .0138785196, y: .0042849998, z: .00189734995}
+      rotation: {x: -.66480428, y: -.146052882, z: .144472882, w: .718214035}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_index_2
+      position: {x: .00176163891, y: -4.36818368e-08, z: -3.62712996e-07}
+      rotation: {x: -.00446900586, y: .0212863162, z: .0343691148, w: .999172568}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_index_end
+      position: {x: .00274185534, y: 9.46506429e-09, z: 2.88308797e-07}
+      rotation: {x: 0, y: -.642787635, z: -0, w: .766044438}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_middle_1
+      position: {x: .0138066802, y: .0037779999, z: -.000721653283}
+      rotation: {x: -.674856842, y: -.118620262, z: .180102438, w: .705734193}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_middle_2
+      position: {x: .0033708429, y: 7.18516224e-09, z: 2.56098701e-07}
+      rotation: {x: .000431692286, y: -.0130109983, z: .00520554278, w: .999901712}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_middle_end
+      position: {x: .00255809003, y: -1.39513201e-08, z: -7.52673998e-07}
+      rotation: {x: -.000431692286, y: .0130109992, z: -.00520554278, w: .999901712}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_ring_1
+      position: {x: .0131259598, y: .00384899997, z: -.00320553686}
+      rotation: {x: -.67989248, y: -.100185812, z: .188609943, w: .701523542}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_ring_2
+      position: {x: .00203841599, y: -1.44947698e-09, z: 6.82858854e-08}
+      rotation: {x: -.000197557078, y: -.00606781384, z: .00273405737, w: .999977827}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_ring_end
+      position: {x: .00331574352, y: -7.85652432e-09, z: 3.24026757e-07}
+      rotation: {x: 0, y: -.642787635, z: -0, w: .766044438}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_forearm
+      position: {x: .00857528578, y: -3.5527136e-17, z: -7.0733992e-09}
+      rotation: {x: .373981744, y: -0, z: -0, w: .927436054}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_hip
+      position: {x: .00912377983, y: -.00381479692, z: -4.18882191e-05}
+      rotation: {x: -.00766752707, y: .00117868627, z: .707372546, w: .706798375}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_knee
+      position: {x: -.0341642983, y: 2.10942389e-17, z: 0}
+      rotation: {x: -6.3421714e-05, y: -.0829667598, z: -.000761787524, w: .99655205}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_ankle
+      position: {x: -.0350524485, y: 0, z: -5.55111479e-18}
+      rotation: {x: 1.32971403e-08, y: .451332122, z: -6.72537048e-09, w: .892356098}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_ball
+      position: {x: -.0146781094, y: -2.99760195e-17, z: 6.661338e-18}
+      rotation: {x: 1.70867777e-22, y: .383836597, z: 6.08432872e-15, w: .923401058}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_toe
+      position: {x: -.00652110483, y: -7.43849379e-17, z: 2.57335413e-18}
+      rotation: {x: -.000186686608, y: .999998927, z: -2.59963286e-07, w: .00146055967}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:R_heel
+      position: {x: -.0214515105, y: -9.76996256e-17, z: -7.15304554e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_hip
+      position: {x: -.00912377983, y: -.00381477596, z: -4.1883497e-05}
+      rotation: {x: -.706798375, y: .707372546, z: -.00117874669, w: -.007667467}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_knee
+      position: {x: .0341643095, y: -1.95974481e-09, z: 4.67370498e-09}
+      rotation: {x: -6.3421714e-05, y: -.0829667598, z: -.000761787524, w: .99655205}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_ankle
+      position: {x: .0350524597, y: 1.22124499e-17, z: -3.78768172e-09}
+      rotation: {x: 8.07208295e-23, y: .451332122, z: -3.9854302e-15, w: .892356098}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_ball
+      position: {x: .0146781094, y: -7.66053884e-17, z: 3.36955508e-09}
+      rotation: {x: -2.88678316e-23, y: .383836597, z: -4.72529866e-15, w: .923401058}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_toe
+      position: {x: .00652112998, y: 0, z: 0}
+      rotation: {x: -.000186686608, y: .999998927, z: -2.59963286e-07, w: .00146055967}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Psylocke_wHair:L_heel
+      position: {x: .0214515422, y: -2.25169061e-09, z: -1.18503429e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  additionalBone: 0
+  userData: 

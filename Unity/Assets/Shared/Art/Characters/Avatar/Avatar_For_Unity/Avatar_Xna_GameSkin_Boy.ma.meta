@@ -234,6 +234,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     optimizeGameObjects: 0
+    motionNodeName: 
     animationCompression: 3
     animationRotationError: .5
     animationPositionError: .5
@@ -263,7 +264,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 1
   importAnimation: 1
-  copyAvatar: 1
+  copyAvatar: 0
   humanDescription:
     human:
     - boneName: BASE__Skeleton
