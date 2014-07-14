@@ -1,0 +1,1132 @@
+fileFormatVersion: 2
+guid: f56b182e2cedf45ffb2b607406e4db86
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: femaleTSMG_rig:head1_head
+    100004: femaleTSMG_rig:head1_neck
+    100006: femaleTSMG_rig:leftArm1_LoResClavical
+    100008: femaleTSMG_rig:leftArm1_LoResHand
+    100010: femaleTSMG_rig:leftArm1_LoResLowerArm
+    100012: femaleTSMG_rig:leftArm1_LoResUpperArm
+    100014: femaleTSMG_rig:leftFinger1_Joint1
+    100016: femaleTSMG_rig:leftFinger1_Joint2
+    100018: femaleTSMG_rig:leftFinger1_Joint3
+    100020: femaleTSMG_rig:leftFinger1_MetaCarpel
+    100022: femaleTSMG_rig:leftFinger2_Joint1
+    100024: femaleTSMG_rig:leftFinger2_Joint2
+    100026: femaleTSMG_rig:leftFinger2_Joint3
+    100028: femaleTSMG_rig:leftFinger2_MetaCarpel
+    100030: femaleTSMG_rig:leftFinger3_Joint1
+    100032: femaleTSMG_rig:leftFinger3_Joint2
+    100034: femaleTSMG_rig:leftFinger3_Joint3
+    100036: femaleTSMG_rig:leftFinger3_MetaCarpel
+    100038: femaleTSMG_rig:leftFinger4_Joint1
+    100040: femaleTSMG_rig:leftFinger4_Joint2
+    100042: femaleTSMG_rig:leftFinger4_Joint3
+    100044: femaleTSMG_rig:leftFinger4_MetaCarpel
+    100046: femaleTSMG_rig:leftLeg1_LoResFoot
+    100048: femaleTSMG_rig:leftLeg1_LoResLowerLeg
+    100050: femaleTSMG_rig:leftLeg1_LoResToe
+    100052: femaleTSMG_rig:leftLeg1_LoResUpperLeg
+    100054: femaleTSMG_rig:leftThumb1_Joint1
+    100056: femaleTSMG_rig:leftThumb1_Joint2
+    100058: femaleTSMG_rig:leftThumb1_Joint3
+    100060: femaleTSMG_rig:rightArm1_LoResClavical
+    100062: femaleTSMG_rig:rightArm1_LoResHand
+    100064: femaleTSMG_rig:rightArm1_LoResLowerArm
+    100066: femaleTSMG_rig:rightArm1_LoResUpperArm
+    100068: femaleTSMG_rig:rightFinger1_Joint1
+    100070: femaleTSMG_rig:rightFinger1_Joint2
+    100072: femaleTSMG_rig:rightFinger1_Joint3
+    100074: femaleTSMG_rig:rightFinger1_MetaCarpel
+    100076: femaleTSMG_rig:rightFinger2_Joint1
+    100078: femaleTSMG_rig:rightFinger2_Joint2
+    100080: femaleTSMG_rig:rightFinger2_Joint3
+    100082: femaleTSMG_rig:rightFinger2_MetaCarpel
+    100084: femaleTSMG_rig:rightFinger3_Joint1
+    100086: femaleTSMG_rig:rightFinger3_Joint2
+    100088: femaleTSMG_rig:rightFinger3_Joint3
+    100090: femaleTSMG_rig:rightFinger3_MetaCarpel
+    100092: femaleTSMG_rig:rightFinger4_Joint1
+    100094: femaleTSMG_rig:rightFinger4_Joint2
+    100096: femaleTSMG_rig:rightFinger4_Joint3
+    100098: femaleTSMG_rig:rightFinger4_MetaCarpel
+    100100: femaleTSMG_rig:rightLeg1_LoResFoot
+    100102: femaleTSMG_rig:rightLeg1_LoResLowerLeg
+    100104: femaleTSMG_rig:rightLeg1_LoResToe
+    100106: femaleTSMG_rig:rightLeg1_LoResUpperLeg
+    100108: femaleTSMG_rig:rightThumb1_Joint1
+    100110: femaleTSMG_rig:rightThumb1_Joint2
+    100112: femaleTSMG_rig:rightThumb1_Joint3
+    100114: femaleTSMG_rig:spine1_loResSpine1
+    100116: femaleTSMG_rig:spine1_loResSpine2
+    100118: femaleTSMG_rig:spine1_loResSpine3
+    100120: femaleTSMG_rig:TSMGWorldJoint
+    100122: femaleTSMG_rig:Character
+    100124: femaleTSMG_rig:Mesh_arms
+    100126: femaleTSMG_rig:Mesh_Beta_HighJointsGeo
+    100128: femaleTSMG_rig:Mesh_Beta_HighTorsoGeo
+    100130: femaleTSMG_rig:Mesh_Group
+    100132: femaleTSMG_rig:MeshLegs
+    100134: femaleTSMG_rig:Unity_Character_RefCube
+    100136: femaleTSMG_rig:directionalLight1
+    100138: femaleTSMG_rig:pPlane1
+    100140: TSMGSceneData
+    100142: locator1
+    100144: locator2
+    100146: locator3
+    400000: //RootNode
+    400002: femaleTSMG_rig:head1_head
+    400004: femaleTSMG_rig:head1_neck
+    400006: femaleTSMG_rig:leftArm1_LoResClavical
+    400008: femaleTSMG_rig:leftArm1_LoResHand
+    400010: femaleTSMG_rig:leftArm1_LoResLowerArm
+    400012: femaleTSMG_rig:leftArm1_LoResUpperArm
+    400014: femaleTSMG_rig:leftFinger1_Joint1
+    400016: femaleTSMG_rig:leftFinger1_Joint2
+    400018: femaleTSMG_rig:leftFinger1_Joint3
+    400020: femaleTSMG_rig:leftFinger1_MetaCarpel
+    400022: femaleTSMG_rig:leftFinger2_Joint1
+    400024: femaleTSMG_rig:leftFinger2_Joint2
+    400026: femaleTSMG_rig:leftFinger2_Joint3
+    400028: femaleTSMG_rig:leftFinger2_MetaCarpel
+    400030: femaleTSMG_rig:leftFinger3_Joint1
+    400032: femaleTSMG_rig:leftFinger3_Joint2
+    400034: femaleTSMG_rig:leftFinger3_Joint3
+    400036: femaleTSMG_rig:leftFinger3_MetaCarpel
+    400038: femaleTSMG_rig:leftFinger4_Joint1
+    400040: femaleTSMG_rig:leftFinger4_Joint2
+    400042: femaleTSMG_rig:leftFinger4_Joint3
+    400044: femaleTSMG_rig:leftFinger4_MetaCarpel
+    400046: femaleTSMG_rig:leftLeg1_LoResFoot
+    400048: femaleTSMG_rig:leftLeg1_LoResLowerLeg
+    400050: femaleTSMG_rig:leftLeg1_LoResToe
+    400052: femaleTSMG_rig:leftLeg1_LoResUpperLeg
+    400054: femaleTSMG_rig:leftThumb1_Joint1
+    400056: femaleTSMG_rig:leftThumb1_Joint2
+    400058: femaleTSMG_rig:leftThumb1_Joint3
+    400060: femaleTSMG_rig:rightArm1_LoResClavical
+    400062: femaleTSMG_rig:rightArm1_LoResHand
+    400064: femaleTSMG_rig:rightArm1_LoResLowerArm
+    400066: femaleTSMG_rig:rightArm1_LoResUpperArm
+    400068: femaleTSMG_rig:rightFinger1_Joint1
+    400070: femaleTSMG_rig:rightFinger1_Joint2
+    400072: femaleTSMG_rig:rightFinger1_Joint3
+    400074: femaleTSMG_rig:rightFinger1_MetaCarpel
+    400076: femaleTSMG_rig:rightFinger2_Joint1
+    400078: femaleTSMG_rig:rightFinger2_Joint2
+    400080: femaleTSMG_rig:rightFinger2_Joint3
+    400082: femaleTSMG_rig:rightFinger2_MetaCarpel
+    400084: femaleTSMG_rig:rightFinger3_Joint1
+    400086: femaleTSMG_rig:rightFinger3_Joint2
+    400088: femaleTSMG_rig:rightFinger3_Joint3
+    400090: femaleTSMG_rig:rightFinger3_MetaCarpel
+    400092: femaleTSMG_rig:rightFinger4_Joint1
+    400094: femaleTSMG_rig:rightFinger4_Joint2
+    400096: femaleTSMG_rig:rightFinger4_Joint3
+    400098: femaleTSMG_rig:rightFinger4_MetaCarpel
+    400100: femaleTSMG_rig:rightLeg1_LoResFoot
+    400102: femaleTSMG_rig:rightLeg1_LoResLowerLeg
+    400104: femaleTSMG_rig:rightLeg1_LoResToe
+    400106: femaleTSMG_rig:rightLeg1_LoResUpperLeg
+    400108: femaleTSMG_rig:rightThumb1_Joint1
+    400110: femaleTSMG_rig:rightThumb1_Joint2
+    400112: femaleTSMG_rig:rightThumb1_Joint3
+    400114: femaleTSMG_rig:spine1_loResSpine1
+    400116: femaleTSMG_rig:spine1_loResSpine2
+    400118: femaleTSMG_rig:spine1_loResSpine3
+    400120: femaleTSMG_rig:TSMGWorldJoint
+    400122: femaleTSMG_rig:Character
+    400124: femaleTSMG_rig:Mesh_arms
+    400126: femaleTSMG_rig:Mesh_Beta_HighJointsGeo
+    400128: femaleTSMG_rig:Mesh_Beta_HighTorsoGeo
+    400130: femaleTSMG_rig:Mesh_Group
+    400132: femaleTSMG_rig:MeshLegs
+    400134: femaleTSMG_rig:Unity_Character_RefCube
+    400136: femaleTSMG_rig:directionalLight1
+    400138: femaleTSMG_rig:pPlane1
+    400140: TSMGSceneData
+    400142: locator1
+    400144: locator2
+    400146: locator3
+    2300000: femaleTSMG_rig:Unity_Character_RefCube
+    2300002: femaleTSMG_rig:pPlane1
+    3300000: femaleTSMG_rig:Unity_Character_RefCube
+    3300002: femaleTSMG_rig:pPlane1
+    4300000: femaleTSMG_rig:Mesh_Beta_HighJointsGeo
+    4300002: femaleTSMG_rig:Mesh_Beta_HighTorsoGeo
+    4300004: femaleTSMG_rig:MeshLegs
+    4300006: femaleTSMG_rig:Mesh_arms
+    4300008: femaleTSMG_rig:Unity_Character_RefCube
+    4300010: femaleTSMG_rig:pPlane1
+    7400000: femaleTSMG_clip_Walk
+    9500000: //RootNode
+    13700000: femaleTSMG_rig:Mesh_arms
+    13700002: femaleTSMG_rig:Mesh_Beta_HighJointsGeo
+    13700004: femaleTSMG_rig:Mesh_Beta_HighTorsoGeo
+    13700006: femaleTSMG_rig:MeshLegs
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: femaleTSMG_clip_Walk
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: femaleTSMG_rig:Character
+        weight: 1
+      - path: femaleTSMG_rig:Character/femaleTSMG_rig:Mesh_Group
+        weight: 1
+      - path: femaleTSMG_rig:Character/femaleTSMG_rig:Mesh_Group/femaleTSMG_rig:Mesh_arms
+        weight: 1
+      - path: femaleTSMG_rig:Character/femaleTSMG_rig:Mesh_Group/femaleTSMG_rig:Mesh_Beta_HighJointsGeo
+        weight: 1
+      - path: femaleTSMG_rig:Character/femaleTSMG_rig:Mesh_Group/femaleTSMG_rig:Mesh_Beta_HighTorsoGeo
+        weight: 1
+      - path: femaleTSMG_rig:Character/femaleTSMG_rig:Mesh_Group/femaleTSMG_rig:MeshLegs
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:leftLeg1_LoResUpperLeg
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:leftLeg1_LoResUpperLeg/femaleTSMG_rig:leftLeg1_LoResLowerLeg
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:leftLeg1_LoResUpperLeg/femaleTSMG_rig:leftLeg1_LoResLowerLeg/femaleTSMG_rig:leftLeg1_LoResFoot
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:leftLeg1_LoResUpperLeg/femaleTSMG_rig:leftLeg1_LoResLowerLeg/femaleTSMG_rig:leftLeg1_LoResFoot/femaleTSMG_rig:leftLeg1_LoResToe
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:rightLeg1_LoResUpperLeg
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:rightLeg1_LoResUpperLeg/femaleTSMG_rig:rightLeg1_LoResLowerLeg
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:rightLeg1_LoResUpperLeg/femaleTSMG_rig:rightLeg1_LoResLowerLeg/femaleTSMG_rig:rightLeg1_LoResFoot
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:rightLeg1_LoResUpperLeg/femaleTSMG_rig:rightLeg1_LoResLowerLeg/femaleTSMG_rig:rightLeg1_LoResFoot/femaleTSMG_rig:rightLeg1_LoResToe
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:head1_neck
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:head1_neck/femaleTSMG_rig:head1_head
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftFinger1_MetaCarpel
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftFinger1_MetaCarpel/femaleTSMG_rig:leftFinger1_Joint1
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftFinger1_MetaCarpel/femaleTSMG_rig:leftFinger1_Joint1/femaleTSMG_rig:leftFinger1_Joint2
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftFinger1_MetaCarpel/femaleTSMG_rig:leftFinger1_Joint1/femaleTSMG_rig:leftFinger1_Joint2/femaleTSMG_rig:leftFinger1_Joint3
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftFinger2_MetaCarpel
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftFinger2_MetaCarpel/femaleTSMG_rig:leftFinger2_Joint1
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftFinger2_MetaCarpel/femaleTSMG_rig:leftFinger2_Joint1/femaleTSMG_rig:leftFinger2_Joint2
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftFinger2_MetaCarpel/femaleTSMG_rig:leftFinger2_Joint1/femaleTSMG_rig:leftFinger2_Joint2/femaleTSMG_rig:leftFinger2_Joint3
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftFinger3_MetaCarpel
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftFinger3_MetaCarpel/femaleTSMG_rig:leftFinger3_Joint1
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftFinger3_MetaCarpel/femaleTSMG_rig:leftFinger3_Joint1/femaleTSMG_rig:leftFinger3_Joint2
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftFinger3_MetaCarpel/femaleTSMG_rig:leftFinger3_Joint1/femaleTSMG_rig:leftFinger3_Joint2/femaleTSMG_rig:leftFinger3_Joint3
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftFinger4_MetaCarpel
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftFinger4_MetaCarpel/femaleTSMG_rig:leftFinger4_Joint1
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftFinger4_MetaCarpel/femaleTSMG_rig:leftFinger4_Joint1/femaleTSMG_rig:leftFinger4_Joint2
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftFinger4_MetaCarpel/femaleTSMG_rig:leftFinger4_Joint1/femaleTSMG_rig:leftFinger4_Joint2/femaleTSMG_rig:leftFinger4_Joint3
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftThumb1_Joint1
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftThumb1_Joint1/femaleTSMG_rig:leftThumb1_Joint2
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:leftArm1_LoResClavical/femaleTSMG_rig:leftArm1_LoResUpperArm/femaleTSMG_rig:leftArm1_LoResLowerArm/femaleTSMG_rig:leftArm1_LoResHand/femaleTSMG_rig:leftThumb1_Joint1/femaleTSMG_rig:leftThumb1_Joint2/femaleTSMG_rig:leftThumb1_Joint3
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightFinger1_MetaCarpel
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightFinger1_MetaCarpel/femaleTSMG_rig:rightFinger1_Joint1
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightFinger1_MetaCarpel/femaleTSMG_rig:rightFinger1_Joint1/femaleTSMG_rig:rightFinger1_Joint2
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightFinger1_MetaCarpel/femaleTSMG_rig:rightFinger1_Joint1/femaleTSMG_rig:rightFinger1_Joint2/femaleTSMG_rig:rightFinger1_Joint3
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightFinger2_MetaCarpel
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightFinger2_MetaCarpel/femaleTSMG_rig:rightFinger2_Joint1
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightFinger2_MetaCarpel/femaleTSMG_rig:rightFinger2_Joint1/femaleTSMG_rig:rightFinger2_Joint2
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightFinger2_MetaCarpel/femaleTSMG_rig:rightFinger2_Joint1/femaleTSMG_rig:rightFinger2_Joint2/femaleTSMG_rig:rightFinger2_Joint3
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightFinger3_MetaCarpel
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightFinger3_MetaCarpel/femaleTSMG_rig:rightFinger3_Joint1
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightFinger3_MetaCarpel/femaleTSMG_rig:rightFinger3_Joint1/femaleTSMG_rig:rightFinger3_Joint2
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightFinger3_MetaCarpel/femaleTSMG_rig:rightFinger3_Joint1/femaleTSMG_rig:rightFinger3_Joint2/femaleTSMG_rig:rightFinger3_Joint3
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightFinger4_MetaCarpel
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightFinger4_MetaCarpel/femaleTSMG_rig:rightFinger4_Joint1
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightFinger4_MetaCarpel/femaleTSMG_rig:rightFinger4_Joint1/femaleTSMG_rig:rightFinger4_Joint2
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightFinger4_MetaCarpel/femaleTSMG_rig:rightFinger4_Joint1/femaleTSMG_rig:rightFinger4_Joint2/femaleTSMG_rig:rightFinger4_Joint3
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightThumb1_Joint1
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightThumb1_Joint1/femaleTSMG_rig:rightThumb1_Joint2
+        weight: 1
+      - path: femaleTSMG_rig:TSMGWorldJoint/femaleTSMG_rig:spine1_loResSpine1/femaleTSMG_rig:spine1_loResSpine2/femaleTSMG_rig:spine1_loResSpine3/femaleTSMG_rig:rightArm1_LoResClavical/femaleTSMG_rig:rightArm1_LoResUpperArm/femaleTSMG_rig:rightArm1_LoResLowerArm/femaleTSMG_rig:rightArm1_LoResHand/femaleTSMG_rig:rightThumb1_Joint1/femaleTSMG_rig:rightThumb1_Joint2/femaleTSMG_rig:rightThumb1_Joint3
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: femaleTSMG_rig:spine1_loResSpine1
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftLeg1_LoResUpperLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightLeg1_LoResUpperLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftLeg1_LoResLowerLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightLeg1_LoResLowerLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftLeg1_LoResFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightLeg1_LoResFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:spine1_loResSpine2
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:head1_head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftArm1_LoResClavical
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightArm1_LoResClavical
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftArm1_LoResUpperArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightArm1_LoResUpperArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftArm1_LoResLowerArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightArm1_LoResLowerArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftArm1_LoResHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightArm1_LoResHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftThumb1_Joint1
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftThumb1_Joint2
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftThumb1_Joint3
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftFinger4_MetaCarpel
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftFinger4_Joint1
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftFinger4_Joint2
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftFinger3_MetaCarpel
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftFinger3_Joint1
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftFinger3_Joint2
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftFinger2_MetaCarpel
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftFinger2_Joint1
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftFinger2_Joint2
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftFinger1_MetaCarpel
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftFinger1_Joint1
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftFinger1_Joint2
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightThumb1_Joint1
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightThumb1_Joint2
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightThumb1_Joint3
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightFinger4_MetaCarpel
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightFinger4_Joint1
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightFinger4_Joint2
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightFinger3_MetaCarpel
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightFinger3_Joint1
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightFinger3_Joint2
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightFinger2_MetaCarpel
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightFinger2_Joint1
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightFinger2_Joint2
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightFinger1_MetaCarpel
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightFinger1_Joint1
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightFinger1_Joint2
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:head1_neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:leftLeg1_LoResToe
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:rightLeg1_LoResToe
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: femaleTSMG_rig:spine1_loResSpine3
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: femaleTSMG_clip_Walk(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:Character
+      position: {x: 9.07897902e-06, y: -.000963743892, z: .00405776966}
+      rotation: {x: 0, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:Mesh_Group
+      position: {x: -9.07897902e-06, y: .000963743892, z: -.00405776966}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:Mesh_arms
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:Mesh_Beta_HighJointsGeo
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:Mesh_Beta_HighTorsoGeo
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:MeshLegs
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:Unity_Character_RefCube
+      position: {x: -9.07897902e-06, y: .0110064624, z: -.00405776966}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:TSMGWorldJoint
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:spine1_loResSpine1
+      position: {x: 0, y: .0106532574, z: 0}
+      rotation: {x: .0195631906, y: .0195632223, z: -.706836164, w: .706836104}
+      scale: {x: .999999583, y: 1, z: .999999166}
+      transformModified: 1
+    - name: femaleTSMG_rig:spine1_loResSpine2
+      position: {x: -.00282032532, y: 1.3877787e-18, z: -7.63278325e-19}
+      rotation: {x: -2.23517418e-08, y: -.0748321787, z: 2.7474016e-08, w: .997196198}
+      scale: {x: .999999583, y: .999999642, z: 1.00000012}
+      transformModified: 1
+    - name: femaleTSMG_rig:spine1_loResSpine3
+      position: {x: -.00151416182, y: 6.93889349e-19, z: -6.93889349e-19}
+      rotation: {x: 6.51925802e-08, y: -1.86264515e-09, z: -6.27478585e-08, w: 1}
+      scale: {x: 1.00000048, y: 1.0000006, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:head1_neck
+      position: {x: -.00157224294, y: 3.43922906e-19, z: -.000334402081}
+      rotation: {x: -3.7252903e-09, y: .151846424, z: 2.65426934e-08, w: .988404155}
+      scale: {x: 1, y: .999999344, z: .999999821}
+      transformModified: 1
+    - name: femaleTSMG_rig:head1_head
+      position: {x: -.000490462873, y: 1.59594594e-18, z: 5.551115e-19}
+      rotation: {x: 1.11758709e-08, y: -.000170864165, z: -5.91389835e-08, w: 1}
+      scale: {x: 1.00000012, y: 1.00000072, z: 1.00000024}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftArm1_LoResClavical
+      position: {x: -.00105660106, y: -.000745508063, z: -.000520080677}
+      rotation: {x: .0333857164, y: .0333857462, z: .706318259, w: .7063182}
+      scale: {x: .999999523, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftArm1_LoResUpperArm
+      position: {x: -.00129499997, y: 0, z: 0}
+      rotation: {x: 5.4301676e-08, y: -.0414334387, z: -3.78100253e-08, w: .999141276}
+      scale: {x: 1.00000083, y: 1, z: .999999642}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftArm1_LoResLowerArm
+      position: {x: -.00306300097, y: 0, z: 0}
+      rotation: {x: -5.61432998e-08, y: .0826943666, z: -7.16911259e-08, w: .996574998}
+      scale: {x: 1, y: 1, z: 1.00000048}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftArm1_LoResHand
+      position: {x: -.00308362115, y: 0, z: 0}
+      rotation: {x: 6.39897524e-10, y: 1.49011612e-08, z: 2.32830644e-08, w: 1}
+      scale: {x: .999999881, y: 1, z: 1.00000048}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftFinger1_MetaCarpel
+      position: {x: -.000647576642, y: -1.31674096e-05, z: -.000495106331}
+      rotation: {x: -6.9415349e-09, y: -.0434727818, z: 2.1396751e-10, w: .999054611}
+      scale: {x: .999999762, y: 1.00000012, z: .999999762}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftFinger1_Joint1
+      position: {x: -.000431049906, y: -1.44328988e-17, z: 9.78384017e-18}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftFinger1_Joint2
+      position: {x: -.000403691345, y: 4.25173216e-13, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftFinger1_Joint3
+      position: {x: -.000307461567, y: -6.661338e-18, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftFinger2_MetaCarpel
+      position: {x: -.000721858873, y: 4.28663589e-05, z: -.00027774449}
+      rotation: {x: -6.9415349e-09, y: -.0434727818, z: 2.1396751e-10, w: .999054611}
+      scale: {x: .999999762, y: 1.00000012, z: .999999762}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftFinger2_Joint1
+      position: {x: -.000431049906, y: -1.11022296e-17, z: 1.00613957e-17}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftFinger2_Joint2
+      position: {x: -.000547182804, y: 4.440892e-18, z: -4.16333625e-19}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftFinger2_Joint3
+      position: {x: -.000424577855, y: 4.25173216e-13, z: 4.16333625e-19}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftFinger3_MetaCarpel
+      position: {x: -.000776415167, y: 5.41069057e-05, z: -2.02395513e-05}
+      rotation: {x: -6.9415349e-09, y: -.0434727818, z: 2.1396751e-10, w: .999054611}
+      scale: {x: .999999762, y: 1.00000012, z: .999999762}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftFinger3_Joint1
+      position: {x: -.000431049906, y: -1.11022296e-17, z: 1.00960901e-17}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftFinger3_Joint2
+      position: {x: -.000620747509, y: 4.25175438e-13, z: 1.38777875e-19}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftFinger3_Joint3
+      position: {x: -.000412930094, y: 2.220446e-18, z: -6.93889375e-20}
+      rotation: {x: -2.77986589e-09, y: .00566143449, z: .000671401445, w: .999983788}
+      scale: {x: 1.00000024, y: .999999702, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftFinger4_MetaCarpel
+      position: {x: -.000766073179, y: 5.41069203e-05, z: .000234058592}
+      rotation: {x: -6.9415349e-09, y: -.0434727818, z: 2.1396751e-10, w: .999054611}
+      scale: {x: .999999762, y: 1.00000012, z: .999999762}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftFinger4_Joint1
+      position: {x: -.000431049906, y: -1.11022296e-17, z: 1.00613957e-17}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftFinger4_Joint2
+      position: {x: -.000594223326, y: 4.25175438e-13, z: 6.93889375e-20}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftFinger4_Joint3
+      position: {x: -.000374151423, y: 0, z: -6.93889375e-20}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftThumb1_Joint1
+      position: {x: -.0003184409, y: -.000103517501, z: .000251090998}
+      rotation: {x: .656545103, y: .283438176, z: -.201704532, w: .669273257}
+      scale: {x: .999999762, y: .99999994, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftThumb1_Joint2
+      position: {x: -.000495147193, y: 0, z: 0}
+      rotation: {x: -1.78813849e-07, y: .0047933883, z: .0369632654, w: .999305189}
+      scale: {x: 1.00000048, y: .999999344, z: .999999285}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftThumb1_Joint3
+      position: {x: -.000574842503, y: 5.551115e-19, z: 0}
+      rotation: {x: 2.60770321e-08, y: -.000990387052, z: .037546441, w: .9992944}
+      scale: {x: 1.00000048, y: 1.00000036, z: 1.00000036}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightArm1_LoResClavical
+      position: {x: -.00105660106, y: .000745508063, z: -.000520080677}
+      rotation: {x: .7063182, y: .706318259, z: -.0333857313, w: -.0333857313}
+      scale: {x: .999999523, y: 1, z: .999999762}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightArm1_LoResUpperArm
+      position: {x: .00129499997, y: 0, z: 0}
+      rotation: {x: 5.28059152e-09, y: -.0414331332, z: -5.24350021e-08, w: .999141335}
+      scale: {x: 1.0000006, y: 1.00000083, z: 1.00000012}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightArm1_LoResLowerArm
+      position: {x: .00306300097, y: 0, z: 0}
+      rotation: {x: -1.00757456e-08, y: .0826937407, z: 7.02707936e-08, w: .996575058}
+      scale: {x: 1, y: 1.00000024, z: 1.00000119}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightArm1_LoResHand
+      position: {x: .00308362092, y: 0, z: 0}
+      rotation: {x: -2.52814158e-10, y: 7.45057989e-08, z: 8.73114825e-09, w: 1}
+      scale: {x: 1.00000012, y: .999999642, z: 1.00000012}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightFinger1_MetaCarpel
+      position: {x: .000647576584, y: 1.31674096e-05, z: .000495106622}
+      rotation: {x: .0434728637, y: -2.7185353e-16, z: -.99905467, w: -6.24750538e-15}
+      scale: {x: .999999642, y: .999999046, z: .999998927}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightFinger1_Joint1
+      position: {x: -.000431049906, y: -4.440892e-18, z: -5.55111479e-18}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightFinger1_Joint2
+      position: {x: -.000403691345, y: 4.25173216e-13, z: -1.38777875e-19}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightFinger1_Joint3
+      position: {x: -.000307461567, y: -6.661338e-18, z: 1.38777875e-19}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightFinger2_MetaCarpel
+      position: {x: .000721858814, y: -4.28663589e-05, z: .000277744897}
+      rotation: {x: .0434728637, y: -2.7185353e-16, z: -.99905467, w: -6.24750538e-15}
+      scale: {x: .999999642, y: .999999046, z: .999998927}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightFinger2_Joint1
+      position: {x: -.000431049906, y: -4.440892e-18, z: -4.9960034e-18}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightFinger2_Joint2
+      position: {x: -.000547182804, y: 4.440892e-18, z: 2.7755575e-19}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightFinger2_Joint3
+      position: {x: -.000424577855, y: 4.25173216e-13, z: -2.7755575e-19}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightFinger3_MetaCarpel
+      position: {x: .000776415167, y: -5.41069057e-05, z: 2.02398787e-05}
+      rotation: {x: .0434728637, y: -2.7185353e-16, z: -.99905467, w: -6.24750538e-15}
+      scale: {x: .999999642, y: .999999046, z: .999998927}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightFinger3_Joint1
+      position: {x: -.000431049906, y: -4.440892e-18, z: -6.1062266e-18}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightFinger3_Joint2
+      position: {x: -.000620747509, y: 4.25175438e-13, z: -2.08166812e-19}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightFinger3_Joint3
+      position: {x: -.000412930094, y: 2.220446e-18, z: 6.93889375e-20}
+      rotation: {x: -6.11728029e-11, y: -.00566139398, z: .000671420072, w: .999983788}
+      scale: {x: 1.00000107, y: .999999523, z: 1.00000107}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightFinger4_MetaCarpel
+      position: {x: .000766073179, y: -5.41069203e-05, z: -.000234058287}
+      rotation: {x: .0434728637, y: -2.7185353e-16, z: -.99905467, w: -6.24750538e-15}
+      scale: {x: .999999642, y: .999999046, z: .999998927}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightFinger4_Joint1
+      position: {x: -.000431049906, y: -4.440892e-18, z: -6.1062266e-18}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightFinger4_Joint2
+      position: {x: -.000594223326, y: 4.25175438e-13, z: -1.38777875e-19}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightFinger4_Joint3
+      position: {x: -.000374151423, y: 0, z: 3.46944687e-20}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightThumb1_Joint1
+      position: {x: .000318441016, y: .000103517501, z: -.000251090678}
+      rotation: {x: -.283437967, y: .656545043, z: -.669273257, w: -.201704755}
+      scale: {x: .999998689, y: .999999046, z: .999999404}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightThumb1_Joint2
+      position: {x: -.000495147193, y: -1.110223e-18, z: 4.440892e-18}
+      rotation: {x: 1.49011527e-07, y: -.00479398388, z: .0369625762, w: .999305129}
+      scale: {x: .999999762, y: .999999464, z: .999999404}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightThumb1_Joint3
+      position: {x: -.000574842503, y: 5.551115e-19, z: 0}
+      rotation: {x: 5.96046448e-08, y: .000990435481, z: .0375464447, w: .9992944}
+      scale: {x: 1, y: 1.00000036, z: .999999881}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftLeg1_LoResUpperLeg
+      position: {x: .000361195969, y: -.001064696, z: 2.00089999e-05}
+      rotation: {x: -.0395467579, y: -.00131298695, z: .999216914, w: -5.86509705e-05}
+      scale: {x: .999999523, y: .999999702, z: 1.00000036}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftLeg1_LoResLowerLeg
+      position: {x: -.00461244397, y: 0, z: 0}
+      rotation: {x: -2.04890966e-08, y: -.056806542, z: 8.60163709e-08, w: .998385191}
+      scale: {x: 1.00000012, y: .999999881, z: 1.00000024}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftLeg1_LoResFoot
+      position: {x: -.00427467097, y: 0, z: 0}
+      rotation: {x: -.00479598343, y: .397584498, z: -.00433787424, w: .917542815}
+      scale: {x: .999999821, y: 1.00000048, z: 1.0000006}
+      transformModified: 1
+    - name: femaleTSMG_rig:leftLeg1_LoResToe
+      position: {x: -.00150452787, y: 0, z: 0}
+      rotation: {x: .00054192543, y: .370486975, z: .00777083635, w: .928805053}
+      scale: {x: .999999881, y: 1, z: .999999166}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightLeg1_LoResUpperLeg
+      position: {x: .000361195969, y: .001064696, z: 2.00089999e-05}
+      rotation: {x: -.0395467356, y: .0013129171, z: .999216914, w: 5.87701797e-05}
+      scale: {x: .999999762, y: .999999821, z: 1.00000024}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightLeg1_LoResLowerLeg
+      position: {x: -.00461244397, y: 0, z: 0}
+      rotation: {x: -2.60770321e-08, y: -.0568064749, z: 1.50525011e-07, w: .998385251}
+      scale: {x: .99999994, y: 1, z: 1.00000036}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightLeg1_LoResFoot
+      position: {x: -.00427467097, y: 0, z: 0}
+      rotation: {x: .00479611754, y: .397584409, z: .00433798833, w: .917542815}
+      scale: {x: .999999762, y: 1.00000036, z: .999999821}
+      transformModified: 1
+    - name: femaleTSMG_rig:rightLeg1_LoResToe
+      position: {x: -.00150452787, y: 0, z: 0}
+      rotation: {x: -.000541865826, y: .370486915, z: -.00777090341, w: .928805053}
+      scale: {x: 1.00000143, y: 1.00000024, z: .99999994}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 5be978d3d24a34871b837da22dc4b05d,
+    type: 3}
+  animationType: 3
+  additionalBone: 0
+  userData: 

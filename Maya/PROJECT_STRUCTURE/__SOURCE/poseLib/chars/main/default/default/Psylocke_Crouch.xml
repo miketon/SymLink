@@ -1,0 +1,160 @@
+<?xml version="1.0" ?>
+<Main>
+	<Pose author="mton" date="2014-07-07 17:09:24" index="0" modifiedBy="mton" modifiedDate="2014-07-07 17:09:24" multipleNamespaces="False" name="Psylocke_Crouch">
+		<Controls>
+			<Control name="cnt_charRoot" namespace="Psylocke_wHair:">
+				<Attribute name="translateX" value="0.0"/>
+				<Attribute name="translateY" value="0.0"/>
+				<Attribute name="translateZ" value="0.0"/>
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="0.0"/>
+				<Attribute name="rotateZ" value="0.0"/>
+			</Control>
+			<Control name="cnt_COG" namespace="Psylocke_wHair:">
+				<Attribute name="translateX" value="1.44252224539"/>
+				<Attribute name="translateY" value="-6.08732716234"/>
+				<Attribute name="translateZ" value="-2.80786021317"/>
+				<Attribute name="rotateX" value="16.2250165692"/>
+				<Attribute name="rotateY" value="-61.082426461"/>
+				<Attribute name="rotateZ" value="8.24509767386"/>
+			</Control>
+			<Control name="cnt_MidBackLocator" namespace="Psylocke_wHair:">
+				<Attribute name="translateX" value="0.22237503113"/>
+				<Attribute name="translateY" value="0.49454917336"/>
+				<Attribute name="translateZ" value="-0.824113013206"/>
+			</Control>
+			<Control name="cnt_UpperBody" namespace="Psylocke_wHair:">
+				<Attribute name="shoulderFlex" value="0.0"/>
+				<Attribute name="translateX" value="0.0"/>
+				<Attribute name="translateY" value="0.0"/>
+				<Attribute name="translateZ" value="0.0"/>
+				<Attribute name="twistFlex" value="0.5"/>
+				<Attribute name="rotateX" value="10.5012518682"/>
+				<Attribute name="rotateY" value="32.918893133"/>
+				<Attribute name="rotateZ" value="-20.553844513"/>
+				<Attribute name="frontFlex" value="0.5"/>
+				<Attribute name="sideFlex" value="0.5"/>
+			</Control>
+			<Control name="cnt_L_shoulder_Loc" namespace="Psylocke_wHair:">
+				<Attribute name="rotateX" value="31.0794065994"/>
+				<Attribute name="rotateY" value="44.1399732391"/>
+				<Attribute name="rotateZ" value="-29.0799104948"/>
+			</Control>
+			<Control name="cnt_R_shoulder_Loc" namespace="Psylocke_wHair:">
+				<Attribute name="rotateX" value="54.2956088357"/>
+				<Attribute name="rotateY" value="36.7824847995"/>
+				<Attribute name="rotateZ" value="11.1293341587"/>
+			</Control>
+			<Control name="cnt_L_wristIK_Loc" namespace="Psylocke_wHair:">
+				<Attribute name="elbowTwist" value="-2.5"/>
+				<Attribute name="translateX" value="3.94054827668"/>
+				<Attribute name="translateY" value="0.968239601068"/>
+				<Attribute name="translateZ" value="3.95277489488"/>
+				<Attribute name="handToWorld" value="0.0"/>
+				<Attribute name="ikBlend" value="10.0"/>
+				<Attribute name="rotateX" value="8.29715746472"/>
+				<Attribute name="rotateY" value="141.04243292"/>
+				<Attribute name="rotateZ" value="67.9953041665"/>
+			</Control>
+			<Control name="cnt_R_wristIK_Loc" namespace="Psylocke_wHair:">
+				<Attribute name="elbowTwist" value="3.2"/>
+				<Attribute name="translateX" value="-1.61218180245"/>
+				<Attribute name="translateY" value="-2.09373906763"/>
+				<Attribute name="translateZ" value="-1.980100033"/>
+				<Attribute name="handToWorld" value="0.0"/>
+				<Attribute name="ikBlend" value="10.0"/>
+				<Attribute name="rotateX" value="-22.9530295578"/>
+				<Attribute name="rotateY" value="68.9031454996"/>
+				<Attribute name="rotateZ" value="-77.9111057411"/>
+			</Control>
+			<Control name="cnt_L_wristIK_poleConstraint" namespace="Psylocke_wHair:">
+				<Attribute name="translateX" value="-2.96400327687"/>
+				<Attribute name="translateY" value="9.85753744459"/>
+				<Attribute name="translateZ" value="7.58829143117"/>
+			</Control>
+			<Control name="cnt_R_wristIK_poleConstraint" namespace="Psylocke_wHair:">
+				<Attribute name="translateX" value="1.54038033839"/>
+				<Attribute name="translateY" value="0.160821987427"/>
+				<Attribute name="translateZ" value="2.38813301706"/>
+			</Control>
+			<Control name="cnt_HipLocator" namespace="Psylocke_wHair:">
+				<Attribute name="translateX" value="0.20991970061"/>
+				<Attribute name="translateY" value="0.045777211987"/>
+				<Attribute name="translateZ" value="0.261982515753"/>
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="0.0"/>
+				<Attribute name="rotateZ" value="0.0"/>
+			</Control>
+			<Control name="cnt_Neck_1_Loc" namespace="Psylocke_wHair:">
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="0.0"/>
+				<Attribute name="rotateZ" value="21.8556721125"/>
+			</Control>
+			<Control name="cnt_Head_1_Loc" namespace="Psylocke_wHair:">
+				<Attribute name="rotateX" value="55.0186118959"/>
+				<Attribute name="rotateY" value="-25.3048730295"/>
+				<Attribute name="rotateZ" value="-16.2426604402"/>
+			</Control>
+			<Control name="jStick_L_wrist" namespace="Psylocke_wHair:">
+				<Attribute name="translateX" value="0.529772744841"/>
+				<Attribute name="translateY" value="-0.0944570931149"/>
+				<Attribute name="translateZ" value="0.0"/>
+			</Control>
+			<Control name="jStick_R_wrist" namespace="Psylocke_wHair:">
+				<Attribute name="translateX" value="0.330632578423"/>
+				<Attribute name="translateY" value="0.371340023615"/>
+				<Attribute name="translateZ" value="0.0"/>
+			</Control>
+			<Control name="cnt_L_foot_Group" namespace="Psylocke_wHair:">
+				<Attribute name="KneeTwist" value="-4.6"/>
+				<Attribute name="translateX" value="4.33915326495"/>
+				<Attribute name="translateY" value="0.248004563007"/>
+				<Attribute name="translateZ" value="0.00261514144904"/>
+				<Attribute name="__rollHEEL_OFFSET" value="6.0"/>
+				<Attribute name="ikBlend" value="10.0"/>
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="0.0"/>
+				<Attribute name="rotateZ" value="-37.143528128"/>
+				<Attribute name="FootLean" value="5.5"/>
+				<Attribute name="__rollTOE_OFFSET" value="3.5"/>
+				<Attribute name="__rollANKLE_OFFSET" value="4.0"/>
+				<Attribute name="ToeTwist" value="4.5"/>
+				<Attribute name="__KneeTWIST_OFFSET" value="90.0"/>
+				<Attribute name="Roll" value="0.0"/>
+			</Control>
+			<Control name="cnt_R_foot_Group" namespace="Psylocke_wHair:">
+				<Attribute name="KneeTwist" value="2.0"/>
+				<Attribute name="translateX" value="2.54400766181"/>
+				<Attribute name="translateY" value="2.02240999459"/>
+				<Attribute name="translateZ" value="0.00412293537629"/>
+				<Attribute name="__rollHEEL_OFFSET" value="6.0"/>
+				<Attribute name="ikBlend" value="10.0"/>
+				<Attribute name="rotateX" value="0.0467839085852"/>
+				<Attribute name="rotateY" value="0.262654835612"/>
+				<Attribute name="rotateZ" value="97.5494236373"/>
+				<Attribute name="FootLean" value="1.2"/>
+				<Attribute name="__rollTOE_OFFSET" value="3.5"/>
+				<Attribute name="__rollANKLE_OFFSET" value="4.0"/>
+				<Attribute name="ToeTwist" value="-5.0"/>
+				<Attribute name="__KneeTWIST_OFFSET" value="90.0"/>
+				<Attribute name="Roll" value="0.0"/>
+			</Control>
+			<Control name="cnt_L_wrist_World" namespace="Psylocke_wHair:">
+				<Attribute name="translateX" value="3.5"/>
+				<Attribute name="translateY" value="2.0"/>
+				<Attribute name="translateZ" value="3.0"/>
+				<Attribute name="rotateX" value="163.76133578"/>
+				<Attribute name="rotateY" value="17.6875481539"/>
+				<Attribute name="rotateZ" value="86.426200129"/>
+			</Control>
+			<Control name="cnt_R_wrist_World" namespace="Psylocke_wHair:">
+				<Attribute name="translateX" value="-5.0"/>
+				<Attribute name="translateY" value="-5.09567927285"/>
+				<Attribute name="translateZ" value="1.61870869415"/>
+				<Attribute name="rotateX" value="169.436626755"/>
+				<Attribute name="rotateY" value="-18.4638693482"/>
+				<Attribute name="rotateZ" value="-21.2469011005"/>
+			</Control>
+		</Controls>
+	</Pose>
+</Main>
