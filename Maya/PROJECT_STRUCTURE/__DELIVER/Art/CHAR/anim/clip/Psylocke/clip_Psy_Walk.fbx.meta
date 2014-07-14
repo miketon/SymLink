@@ -234,10 +234,8 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Psylocke_wHair:Psylocke_New
-        weight: 0
       - path: Psylocke_wHair:Psylocke_Shoes
-        weight: 0
+        weight: 1
       - path: Psylocke_wHair:Skeleton_Root
         weight: 1
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:L_hip
@@ -249,9 +247,9 @@ ModelImporter:
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:L_hip/Psylocke_wHair:L_knee/Psylocke_wHair:L_ankle/Psylocke_wHair:L_ball
         weight: 1
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:L_hip/Psylocke_wHair:L_knee/Psylocke_wHair:L_ankle/Psylocke_wHair:L_ball/Psylocke_wHair:L_toe
-        weight: 0
+        weight: 1
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:L_hip/Psylocke_wHair:L_knee/Psylocke_wHair:L_ankle/Psylocke_wHair:L_ball/Psylocke_wHair:L_toe/Psylocke_wHair:L_heel
-        weight: 0
+        weight: 1
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:R_hip
         weight: 1
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:R_hip/Psylocke_wHair:R_knee
@@ -261,9 +259,9 @@ ModelImporter:
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:R_hip/Psylocke_wHair:R_knee/Psylocke_wHair:R_ankle/Psylocke_wHair:R_ball
         weight: 1
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:R_hip/Psylocke_wHair:R_knee/Psylocke_wHair:R_ankle/Psylocke_wHair:R_ball/Psylocke_wHair:R_toe
-        weight: 0
+        weight: 1
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:R_hip/Psylocke_wHair:R_knee/Psylocke_wHair:R_ankle/Psylocke_wHair:R_ball/Psylocke_wHair:R_toe/Psylocke_wHair:R_heel
-        weight: 0
+        weight: 1
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1
         weight: 1
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2
@@ -277,7 +275,7 @@ ModelImporter:
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow
         weight: 1
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_forearm
-        weight: 0
+        weight: 1
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist
         weight: 1
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:L_collar/Psylocke_wHair:L_shoulder/Psylocke_wHair:L_elbow/Psylocke_wHair:L_wrist/Psylocke_wHair:L_index_1
@@ -321,7 +319,7 @@ ModelImporter:
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow
         weight: 1
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_forearm
-        weight: 0
+        weight: 1
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist
         weight: 1
       - path: Psylocke_wHair:Skeleton_Root/Psylocke_wHair:Spine_1/Psylocke_wHair:Spine_2/Psylocke_wHair:Collar/Psylocke_wHair:R_collar/Psylocke_wHair:R_shoulder/Psylocke_wHair:R_elbow/Psylocke_wHair:R_wrist/Psylocke_wHair:R_index_1
@@ -445,7 +443,7 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Psylocke_wHair:Spine_2
+    - boneName: Psylocke_wHair:Collar
       humanName: Chest
       limit:
         min: {x: 0, y: 0, z: 0}
