@@ -14,7 +14,7 @@ autosave/
 *.sln
 
 # Ignore the following file extensions
-#*.exe
+*.exe
 *.vcproject
 *.sln
 *.exe
