@@ -1,0 +1,422 @@
+<?xml version="1.0" ?>
+<Main>
+	<Pose author="mton" date="2014-07-14 17:33:53" index="0" modifiedBy="mton" modifiedDate="2014-07-14 17:33:53" multipleNamespaces="False" name="TSMG_walk_03">
+		<Controls>
+			<Control name="TSMG_root" namespace="">
+				<Attribute name="translateX" value="0.0"/>
+				<Attribute name="translateY" value="0.0"/>
+				<Attribute name="translateZ" value="0.0"/>
+				<Attribute name="visibility" value="1"/>
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="0.0"/>
+				<Attribute name="rotateZ" value="0.0"/>
+			</Control>
+			<Control name="TSMG_upper_body" namespace="">
+				<Attribute name="leftArm1_controlSize" value="0.0627598911524"/>
+				<Attribute name="leftLeg1_FKIKSwitch" value="1.0"/>
+				<Attribute name="rightArm1_RotationIsolationSwitch" value="0.0"/>
+				<Attribute name="leftArm1_FKIKSwitch" value="1.0"/>
+				<Attribute name="spine1_ControlSize" value="0.125"/>
+				<Attribute name="head1_RotationIsolationSwitch" value="1.0"/>
+				<Attribute name="leftLeg1_RotationIsolationSwitch" value="0.0"/>
+				<Attribute name="rotateX" value="32.9968223042"/>
+				<Attribute name="rotateY" value="-71.6986585672"/>
+				<Attribute name="rotateZ" value="-29.1579553218"/>
+				<Attribute name="rightLeg1_FKIKSwitch" value="1.0"/>
+				<Attribute name="rightLeg1_RotationIsolationSwitch" value="0.0"/>
+				<Attribute name="translateX" value="-0.039095666138"/>
+				<Attribute name="translateY" value="0.0859407383183"/>
+				<Attribute name="translateZ" value="-0.00345350880382"/>
+				<Attribute name="rightArm1_FKIKSwitch" value="1.0"/>
+				<Attribute name="rightLeg1_ControlSize" value="0.0852040052414"/>
+				<Attribute name="spine1_FKIKSwitch" value="1.0"/>
+				<Attribute name="visibility" value="1"/>
+				<Attribute name="leftArm1_RotationIsolationSwitch" value="0.0"/>
+				<Attribute name="rightArm1_controlSize" value="0.0627598911524"/>
+				<Attribute name="leftLeg1_ControlSize" value="0.0852040052414"/>
+				<Attribute name="head1_controlSize" value="0.05"/>
+			</Control>
+			<Control name="leftArm1_ClavicalControl" namespace="">
+				<Attribute name="rotateX" value="6.36110936293e-15"/>
+				<Attribute name="rotateY" value="7.95138670366e-16"/>
+				<Attribute name="rotateZ" value="-6.35613974624e-14"/>
+				<Attribute name="stretch" value="0.0"/>
+			</Control>
+			<Control name="leftArm1_UpperArmControl" namespace="">
+				<Attribute name="rotateX" value="-77.5821764549"/>
+				<Attribute name="rotateY" value="-24.9809163705"/>
+				<Attribute name="rotateZ" value="-22.2666148977"/>
+				<Attribute name="stretch" value="1.0"/>
+			</Control>
+			<Control name="leftArm1_LowerArmControl" namespace="">
+				<Attribute name="stretch" value="1.0"/>
+				<Attribute name="rotateY" value="-44.527145107"/>
+			</Control>
+			<Control name="leftArm1_HandControl" namespace="">
+				<Attribute name="scaleX" value="1.0"/>
+				<Attribute name="scaleY" value="1.0"/>
+				<Attribute name="scaleZ" value="1.0"/>
+				<Attribute name="rotateX" value="2.86143880461"/>
+				<Attribute name="rotateY" value="-24.0521467589"/>
+				<Attribute name="rotateZ" value="-12.5536062819"/>
+			</Control>
+			<Control name="leftArm1_ArmIKElbowControl" namespace="">
+				<Attribute name="rotateX" value="-93.9522264789"/>
+				<Attribute name="rotateY" value="-24.980903253"/>
+				<Attribute name="rotateZ" value="-22.2666458641"/>
+			</Control>
+			<Control name="leftFinger1_Control" namespace="">
+				<Attribute name="translateX" value="3.92189458687e-09"/>
+				<Attribute name="translateY" value="-5.31492017064e-09"/>
+				<Attribute name="translateZ" value="-1.6231500588e-08"/>
+				<Attribute name="SideToSide" value="0.0"/>
+				<Attribute name="rotateX" value="-1.1977552725e-14"/>
+				<Attribute name="rotateY" value="-2.14239617819e-14"/>
+				<Attribute name="rotateZ" value="6.44158483915e-14"/>
+				<Attribute name="MiddleJoint" value="0.0"/>
+				<Attribute name="EndJoint" value="0.0"/>
+			</Control>
+			<Control name="leftFinger2_Control" namespace="">
+				<Attribute name="translateX" value="2.24261564874e-09"/>
+				<Attribute name="translateY" value="-5.20420695427e-09"/>
+				<Attribute name="translateZ" value="-1.63383356844e-08"/>
+				<Attribute name="SideToSide" value="0.0"/>
+				<Attribute name="rotateX" value="5.03173689841e-15"/>
+				<Attribute name="rotateY" value="-1.18263258907e-14"/>
+				<Attribute name="rotateZ" value="7.92059420383e-14"/>
+				<Attribute name="MiddleJoint" value="0.0"/>
+				<Attribute name="EndJoint" value="0.0"/>
+			</Control>
+			<Control name="leftFinger3_Control" namespace="">
+				<Attribute name="translateX" value="9.57975032634e-10"/>
+				<Attribute name="translateY" value="-5.35962529913e-09"/>
+				<Attribute name="translateZ" value="-1.60742186228e-08"/>
+				<Attribute name="SideToSide" value="0.0"/>
+				<Attribute name="rotateX" value="2.40358617212e-14"/>
+				<Attribute name="rotateY" value="-2.01930540478e-14"/>
+				<Attribute name="rotateZ" value="4.781293947e-14"/>
+				<Attribute name="MiddleJoint" value="0.0"/>
+				<Attribute name="EndJoint" value="0.0"/>
+			</Control>
+			<Control name="leftFinger4_Control" namespace="">
+				<Attribute name="translateX" value="-1.08156505974e-09"/>
+				<Attribute name="translateY" value="-5.63909186013e-09"/>
+				<Attribute name="translateZ" value="-1.56928489092e-08"/>
+				<Attribute name="SideToSide" value="0.0"/>
+				<Attribute name="rotateX" value="2.85255997994e-14"/>
+				<Attribute name="rotateY" value="-2.19425559117e-14"/>
+				<Attribute name="rotateZ" value="4.20118066892e-14"/>
+				<Attribute name="MiddleJoint" value="0.0"/>
+				<Attribute name="EndJoint" value="0.0"/>
+			</Control>
+			<Control name="leftLeg1_UpperLegControl" namespace="">
+				<Attribute name="rotateX" value="-54.7737087103"/>
+				<Attribute name="rotateY" value="-17.2739254425"/>
+				<Attribute name="rotateZ" value="35.1373966382"/>
+				<Attribute name="stretch" value="1.0"/>
+			</Control>
+			<Control name="leftLeg1_LowerLegControl" namespace="">
+				<Attribute name="stretch" value="1.0"/>
+				<Attribute name="rotateY" value="69.9472265547"/>
+			</Control>
+			<Control name="leftLeg1_FootControl" namespace="">
+				<Attribute name="rotateX" value="1.96794268121"/>
+				<Attribute name="rotateY" value="35.6170872973"/>
+				<Attribute name="rotateZ" value="6.85755999399"/>
+				<Attribute name="stretch" value="1.0"/>
+			</Control>
+			<Control name="leftLeg1_ToeControl" namespace="">
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="-1.40758984205e-06"/>
+				<Attribute name="rotateZ" value="0.0"/>
+			</Control>
+			<Control name="leftLeg1_LegIKKneeControl" namespace="">
+				<Attribute name="rotateX" value="2.70787900985"/>
+				<Attribute name="rotateY" value="1.53327088968"/>
+				<Attribute name="rotateZ" value="-3.03798319924"/>
+			</Control>
+			<Control name="leftThumb1_Control" namespace="">
+				<Attribute name="translateX" value="-4.27461888108e-09"/>
+				<Attribute name="translateY" value="-1.21345494208e-08"/>
+				<Attribute name="translateZ" value="1.01828288024e-08"/>
+				<Attribute name="SideToSide" value="0.0"/>
+				<Attribute name="rotateX" value="6.46050169672e-14"/>
+				<Attribute name="rotateY" value="5.16840135738e-14"/>
+				<Attribute name="rotateZ" value="3.49861014961e-14"/>
+				<Attribute name="MiddleJoint" value="0.0"/>
+				<Attribute name="EndJoint" value="0.0"/>
+			</Control>
+			<Control name="rightArm1_ClavicalControl" namespace="">
+				<Attribute name="rotateX" value="-1.5107634737e-14"/>
+				<Attribute name="rotateY" value="-6.36110936293e-15"/>
+				<Attribute name="rotateZ" value="1.90833280888e-14"/>
+				<Attribute name="stretch" value="0.0"/>
+			</Control>
+			<Control name="rightArm1_UpperArmControl" namespace="">
+				<Attribute name="rotateX" value="-32.7520690984"/>
+				<Attribute name="rotateY" value="49.1751566014"/>
+				<Attribute name="rotateZ" value="-104.486385368"/>
+				<Attribute name="stretch" value="1.0"/>
+			</Control>
+			<Control name="rightArm1_LowerArmControl" namespace="">
+				<Attribute name="stretch" value="1.0"/>
+				<Attribute name="rotateY" value="-79.4940412323"/>
+			</Control>
+			<Control name="rightArm1_HandControl" namespace="">
+				<Attribute name="scaleX" value="1.0"/>
+				<Attribute name="scaleY" value="1.0"/>
+				<Attribute name="scaleZ" value="1.0"/>
+				<Attribute name="rotateX" value="89.2404967861"/>
+				<Attribute name="rotateY" value="-181.412152292"/>
+				<Attribute name="rotateZ" value="-187.871182244"/>
+			</Control>
+			<Control name="rightArm1_ArmIKElbowControl" namespace="">
+				<Attribute name="rotateX" value="-52.0384624555"/>
+				<Attribute name="rotateY" value="49.1751724658"/>
+				<Attribute name="rotateZ" value="-104.48640768"/>
+			</Control>
+			<Control name="rightFinger1_Control" namespace="">
+				<Attribute name="translateX" value="-3.40371342222e-09"/>
+				<Attribute name="translateY" value="-1.83395076903e-10"/>
+				<Attribute name="translateZ" value="4.82794515477e-09"/>
+				<Attribute name="SideToSide" value="0.0"/>
+				<Attribute name="rotateX" value="-7.68555656089e-08"/>
+				<Attribute name="rotateY" value="9.82128954953e-08"/>
+				<Attribute name="rotateZ" value="-1.23809383814e-09"/>
+				<Attribute name="MiddleJoint" value="0.0"/>
+				<Attribute name="EndJoint" value="0.0"/>
+			</Control>
+			<Control name="rightFinger2_Control" namespace="">
+				<Attribute name="translateX" value="-4.18947902758e-09"/>
+				<Attribute name="translateY" value="-1.05503339398e-09"/>
+				<Attribute name="translateZ" value="5.92209459249e-09"/>
+				<Attribute name="SideToSide" value="0.0"/>
+				<Attribute name="rotateX" value="2.85226639606e-07"/>
+				<Attribute name="rotateY" value="1.20460141712e-07"/>
+				<Attribute name="rotateZ" value="-4.25321939032e-09"/>
+				<Attribute name="MiddleJoint" value="0.0"/>
+				<Attribute name="EndJoint" value="0.0"/>
+			</Control>
+			<Control name="rightFinger3_Control" namespace="">
+				<Attribute name="translateX" value="-4.98738002633e-09"/>
+				<Attribute name="translateY" value="-7.74717845431e-10"/>
+				<Attribute name="translateZ" value="7.74272534976e-09"/>
+				<Attribute name="SideToSide" value="0.0"/>
+				<Attribute name="rotateX" value="6.1353206373e-08"/>
+				<Attribute name="rotateY" value="1.19582801296e-07"/>
+				<Attribute name="rotateZ" value="1.17729185074e-09"/>
+				<Attribute name="MiddleJoint" value="0.0"/>
+				<Attribute name="EndJoint" value="0.0"/>
+			</Control>
+			<Control name="rightFinger4_Control" namespace="">
+				<Attribute name="translateX" value="-6.76567840641e-09"/>
+				<Attribute name="translateY" value="2.38032704658e-10"/>
+				<Attribute name="translateZ" value="8.69817873284e-09"/>
+				<Attribute name="SideToSide" value="0.0"/>
+				<Attribute name="rotateX" value="4.39084233665e-07"/>
+				<Attribute name="rotateY" value="1.25067228523e-07"/>
+				<Attribute name="rotateZ" value="8.55838763982e-09"/>
+				<Attribute name="MiddleJoint" value="0.0"/>
+				<Attribute name="EndJoint" value="0.0"/>
+			</Control>
+			<Control name="rightLeg1_UpperLegControl" namespace="">
+				<Attribute name="rotateX" value="-28.1155772675"/>
+				<Attribute name="rotateY" value="-18.8651779699"/>
+				<Attribute name="rotateZ" value="13.494791551"/>
+				<Attribute name="stretch" value="1.0"/>
+			</Control>
+			<Control name="rightLeg1_LowerLegControl" namespace="">
+				<Attribute name="stretch" value="1.0"/>
+				<Attribute name="rotateY" value="23.8257246678"/>
+			</Control>
+			<Control name="rightLeg1_FootControl" namespace="">
+				<Attribute name="rotateX" value="1.7307860252"/>
+				<Attribute name="rotateY" value="-9.60525612305"/>
+				<Attribute name="rotateZ" value="1.70595768059"/>
+				<Attribute name="stretch" value="1.0"/>
+			</Control>
+			<Control name="rightLeg1_ToeControl" namespace="">
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="-1.40758858891e-06"/>
+				<Attribute name="rotateZ" value="0.0"/>
+			</Control>
+			<Control name="rightLeg1_LegIKKneeControl" namespace="">
+				<Attribute name="rotateX" value="0.624176359095"/>
+				<Attribute name="rotateY" value="2.94346929632"/>
+				<Attribute name="rotateZ" value="-0.0748704349587"/>
+			</Control>
+			<Control name="rightThumb1_Control" namespace="">
+				<Attribute name="translateX" value="-5.83309945484e-09"/>
+				<Attribute name="translateY" value="-8.95151464064e-09"/>
+				<Attribute name="translateZ" value="-1.17286924617e-09"/>
+				<Attribute name="SideToSide" value="0.0"/>
+				<Attribute name="rotateX" value="-2.54444374517e-14"/>
+				<Attribute name="rotateY" value="2.54444374517e-14"/>
+				<Attribute name="rotateZ" value="6.36110936293e-15"/>
+				<Attribute name="MiddleJoint" value="0.0"/>
+				<Attribute name="EndJoint" value="0.0"/>
+			</Control>
+			<Control name="spine1_lowerSpineControl" namespace="">
+				<Attribute name="translateX" value="0.0"/>
+				<Attribute name="translateY" value="0.0"/>
+				<Attribute name="translateZ" value="0.0"/>
+				<Attribute name="rotateX" value="1.98784667591e-16"/>
+				<Attribute name="rotateY" value="0.0"/>
+				<Attribute name="rotateZ" value="0.0"/>
+			</Control>
+			<Control name="spine1_middleSpineControl" namespace="">
+				<Attribute name="translateX" value="-1.84889274661e-32"/>
+				<Attribute name="translateY" value="0.0"/>
+				<Attribute name="translateZ" value="0.0"/>
+				<Attribute name="rotateX" value="1.98784667591e-16"/>
+				<Attribute name="rotateY" value="0.0"/>
+				<Attribute name="rotateZ" value="0.0"/>
+			</Control>
+			<Control name="spine1_torsoControl" namespace="">
+				<Attribute name="translateX" value="0.0"/>
+				<Attribute name="translateY" value="-2.22044604925e-16"/>
+				<Attribute name="translateZ" value="0.0"/>
+				<Attribute name="rotateX" value="-3.97569335183e-16"/>
+				<Attribute name="rotateY" value="0.0"/>
+				<Attribute name="rotateZ" value="0.0"/>
+			</Control>
+			<Control name="spine1_hipsControl" namespace="">
+				<Attribute name="translateX" value="0.0"/>
+				<Attribute name="translateY" value="0.0"/>
+				<Attribute name="translateZ" value="0.0"/>
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="0.0"/>
+				<Attribute name="rotateZ" value="0.0"/>
+			</Control>
+			<Control name="spine1_hipsIKControl" namespace="">
+				<Attribute name="translateX" value="0.0"/>
+				<Attribute name="translateY" value="0.0"/>
+				<Attribute name="translateZ" value="0.0"/>
+				<Attribute name="scaleX" value="1.0"/>
+				<Attribute name="scaleY" value="1.0"/>
+				<Attribute name="scaleZ" value="1.0"/>
+				<Attribute name="rotateX" value="1.98784667591e-16"/>
+				<Attribute name="rotateY" value="0.0"/>
+				<Attribute name="rotateZ" value="0.0"/>
+			</Control>
+			<Control name="spine1_torsoIKControl" namespace="">
+				<Attribute name="translateX" value="-0.0179457788675"/>
+				<Attribute name="translateY" value="-0.000550242003847"/>
+				<Attribute name="translateZ" value="-0.00249795962812"/>
+				<Attribute name="scaleX" value="1.0"/>
+				<Attribute name="scaleY" value="1.0"/>
+				<Attribute name="scaleZ" value="1.0"/>
+				<Attribute name="rotateX" value="-1.72190189289"/>
+				<Attribute name="rotateY" value="-4.61141460189"/>
+				<Attribute name="rotateZ" value="10.4356614783"/>
+			</Control>
+			<Control name="spine1_middleSpineIKControl" namespace="">
+				<Attribute name="translateX" value="0.00608585586245"/>
+				<Attribute name="translateY" value="-3.00380137919e-05"/>
+				<Attribute name="translateZ" value="0.000842220815221"/>
+				<Attribute name="scaleX" value="1.0"/>
+				<Attribute name="scaleY" value="1.0"/>
+				<Attribute name="scaleZ" value="1.0"/>
+				<Attribute name="rotateX" value="-0.162070545122"/>
+				<Attribute name="rotateY" value="-1.50220920134"/>
+				<Attribute name="rotateZ" value="1.20802724685"/>
+			</Control>
+			<Control name="leftLeg1_IKHeelControl" namespace="">
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="0.0"/>
+				<Attribute name="rotateZ" value="0.0"/>
+			</Control>
+			<Control name="rightLeg1_IKHeelControl" namespace="">
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="0.0"/>
+				<Attribute name="rotateZ" value="0.0"/>
+			</Control>
+			<Control name="head1_neckControl" namespace="">
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="0.0"/>
+				<Attribute name="rotateZ" value="0.0"/>
+			</Control>
+			<Control name="head1_Control" namespace="">
+				<Attribute name="translateX" value="2.51481592439e-07"/>
+				<Attribute name="translateY" value="1.5851602253e-09"/>
+				<Attribute name="translateZ" value="5.7461226239e-08"/>
+				<Attribute name="scaleX" value="1.0"/>
+				<Attribute name="scaleY" value="1.0"/>
+				<Attribute name="scaleZ" value="1.0"/>
+				<Attribute name="rotateX" value="64.9523087606"/>
+				<Attribute name="rotateY" value="-0.159602276777"/>
+				<Attribute name="rotateZ" value="0.528954163384"/>
+			</Control>
+			<Control name="leftArm1_ArmIKControl" namespace="">
+				<Attribute name="LowerArmStretch" value="1.0"/>
+				<Attribute name="translateX" value="-0.770809817355"/>
+				<Attribute name="translateY" value="0.135607534999"/>
+				<Attribute name="translateZ" value="0.727488572368"/>
+				<Attribute name="AutoStretch" value="1.0"/>
+				<Attribute name="scaleX" value="1.0"/>
+				<Attribute name="scaleY" value="1.0"/>
+				<Attribute name="scaleZ" value="1.0"/>
+				<Attribute name="rotateX" value="-11.0771062847"/>
+				<Attribute name="rotateY" value="-125.319013895"/>
+				<Attribute name="rotateZ" value="-87.9329741885"/>
+				<Attribute name="AntiIKPop" value="0.0"/>
+				<Attribute name="UpperArmStretch" value="1.0"/>
+			</Control>
+			<Control name="leftLeg1_LegIKControl" namespace="">
+				<Attribute name="FootStretch" value="1.0"/>
+				<Attribute name="HeelSwivel" value="0.0"/>
+				<Attribute name="LowerLegStretch" value="1.0"/>
+				<Attribute name="translateX" value="0.0370585595326"/>
+				<Attribute name="translateY" value="0.508321625821"/>
+				<Attribute name="translateZ" value="-0.0305144268739"/>
+				<Attribute name="AutoStretch" value="0.0"/>
+				<Attribute name="scaleX" value="1.0"/>
+				<Attribute name="scaleY" value="1.0"/>
+				<Attribute name="scaleZ" value="1.0"/>
+				<Attribute name="rotateX" value="73.3557579626"/>
+				<Attribute name="rotateY" value="-24.4038304892"/>
+				<Attribute name="rotateZ" value="11.8791618425"/>
+				<Attribute name="AntiIKPop" value="0.0"/>
+				<Attribute name="ToeSwivel" value="7.36981364824e-09"/>
+				<Attribute name="UpperLegStretch" value="1.0"/>
+				<Attribute name="ToeRaise" value="1.4075898207e-06"/>
+				<Attribute name="HeelRaise" value="0.0"/>
+			</Control>
+			<Control name="rightLeg1_LegIKControl" namespace="">
+				<Attribute name="FootStretch" value="1.0"/>
+				<Attribute name="HeelSwivel" value="0.0"/>
+				<Attribute name="LowerLegStretch" value="1.0"/>
+				<Attribute name="translateX" value="0.0845740537536"/>
+				<Attribute name="translateY" value="0.142634437502"/>
+				<Attribute name="translateZ" value="-0.111355637911"/>
+				<Attribute name="AutoStretch" value="0.0"/>
+				<Attribute name="scaleX" value="1.0"/>
+				<Attribute name="scaleY" value="1.0"/>
+				<Attribute name="scaleZ" value="1.0"/>
+				<Attribute name="rotateX" value="0.123878309433"/>
+				<Attribute name="rotateY" value="-48.094003928"/>
+				<Attribute name="rotateZ" value="-0.205123277536"/>
+				<Attribute name="AntiIKPop" value="0.0"/>
+				<Attribute name="ToeSwivel" value="-7.3706547532e-09"/>
+				<Attribute name="UpperLegStretch" value="1.0"/>
+				<Attribute name="ToeRaise" value="1.40758857015e-06"/>
+				<Attribute name="HeelRaise" value="0.0"/>
+			</Control>
+			<Control name="rightArm1_ArmIKControl" namespace="">
+				<Attribute name="LowerArmStretch" value="1.0"/>
+				<Attribute name="translateX" value="0.569494418412"/>
+				<Attribute name="translateY" value="-0.258130744545"/>
+				<Attribute name="translateZ" value="-0.215787790226"/>
+				<Attribute name="AutoStretch" value="1.0"/>
+				<Attribute name="scaleX" value="1.0"/>
+				<Attribute name="scaleY" value="1.0"/>
+				<Attribute name="scaleZ" value="1.0"/>
+				<Attribute name="rotateX" value="192.327595295"/>
+				<Attribute name="rotateY" value="22.0773762785"/>
+				<Attribute name="rotateZ" value="-32.8292884955"/>
+				<Attribute name="AntiIKPop" value="0.0"/>
+				<Attribute name="UpperArmStretch" value="1.0"/>
+			</Control>
+		</Controls>
+	</Pose>
+</Main>

@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<Main>
+	<Pose author="mton" date="2014-07-14 10:55:53" index="0" modifiedBy="mton" modifiedDate="2014-07-14 10:55:53" multipleNamespaces="False" name="deletemeBox">
+		<Controls>
+			<Control name="pCube1" namespace="">
+				<Attribute name="translateX" value="-124.11417613"/>
+				<Attribute name="translateY" value="15.8944236444"/>
+				<Attribute name="translateZ" value="-42.7345680605"/>
+				<Attribute name="scaleX" value="1.0"/>
+				<Attribute name="scaleY" value="1.0"/>
+				<Attribute name="visibility" value="1"/>
+				<Attribute name="rotateX" value="50.5294547935"/>
+				<Attribute name="rotateY" value="-18.4140587065"/>
+				<Attribute name="rotateZ" value="21.3389901851"/>
+				<Attribute name="scaleZ" value="1.0"/>
+			</Control>
+		</Controls>
+	</Pose>
+</Main>
