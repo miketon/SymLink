@@ -16,7 +16,7 @@ using UnityEditor;
 #endif
 
 public class TouchStick_mton_Platformer : TouchStick_mton{
-/*
+
   public  PlayerMove_mton_IO mton  ;
 
   public override void doStick_RELEASED(){
@@ -62,5 +62,5 @@ public class TouchStick_mton_Platformer : TouchStick_mton{
   public override void doClearState(){
     mton.clearBoolState();
   }
-*/
+
 }

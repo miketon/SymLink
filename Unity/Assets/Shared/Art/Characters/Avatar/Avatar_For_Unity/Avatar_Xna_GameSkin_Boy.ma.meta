@@ -111,6 +111,30 @@ ModelImporter:
     100210: SC_NECK_END__Skeleton
     100212: xna_BOY
     100214: xna_BOY_cape
+    100216: joint10_cape_main
+    100218: joint11_cape_middle
+    100220: joint12
+    100222: joint13
+    100224: joint14
+    100226: joint15
+    100228: joint16
+    100230: joint18_cape_left
+    100232: joint19
+    100234: joint20
+    100236: joint21
+    100238: joint22
+    100240: joint23
+    100242: joint24
+    100244: joint2_cape_right
+    100246: joint3
+    100248: joint4
+    100250: joint5
+    100252: joint6
+    100254: joint7
+    100256: joint8
+    100258: polyToCurve1
+    100260: polyToCurve2
+    100262: polyToCurve3
     400000: Avatar_Mesh
     400002: //RootNode
     400004: BACKA__Skeleton
@@ -219,6 +243,30 @@ ModelImporter:
     400210: SC_NECK_END__Skeleton
     400212: xna_BOY
     400214: xna_BOY_cape
+    400216: joint10_cape_main
+    400218: joint11_cape_middle
+    400220: joint12
+    400222: joint13
+    400224: joint14
+    400226: joint15
+    400228: joint16
+    400230: joint18_cape_left
+    400232: joint19
+    400234: joint20
+    400236: joint21
+    400238: joint22
+    400240: joint23
+    400242: joint24
+    400244: joint2_cape_right
+    400246: joint3
+    400248: joint4
+    400250: joint5
+    400252: joint6
+    400254: joint7
+    400256: joint8
+    400258: polyToCurve1
+    400260: polyToCurve2
+    400262: polyToCurve3
     2300000: xna_BOY_cape
     3300000: xna_BOY_cape
     4300000: xna_BOY
@@ -226,6 +274,7 @@ ModelImporter:
     7400000: Take 001
     9500000: //RootNode
     13700000: xna_BOY
+    13700002: xna_BOY_cape
   materials:
     importMaterials: 1
     materialName: 0
