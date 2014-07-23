@@ -1,7 +1,57 @@
 <?xml version="1.0" ?>
 <Main>
-	<Pose author="mton" date="2014-07-06 20:25:19" index="0" modifiedBy="mton" modifiedDate="2014-07-06 20:25:19" multipleNamespaces="False" name="TSMG_WalkF">
+	<Pose author="mton" date="2014-07-06 23:05:07" index="0" modifiedBy="mton" modifiedDate="2014-07-06 23:05:07" multipleNamespaces="False" name="TSMG_WalkF">
 		<Controls>
+			<Control name="rightArm1_ArmIKControl" namespace="femaleTSMG_rig:">
+				<Attribute name="LowerArmStretch" value="1.0"/>
+				<Attribute name="translateX" value="0.625832153324"/>
+				<Attribute name="translateY" value="-0.189555437083"/>
+				<Attribute name="translateZ" value="-0.162042972864"/>
+				<Attribute name="AutoStretch" value="0.0"/>
+				<Attribute name="scaleX" value="1.0"/>
+				<Attribute name="scaleY" value="1.0"/>
+				<Attribute name="scaleZ" value="1.0"/>
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="-54.5241295494"/>
+				<Attribute name="rotateZ" value="0.0"/>
+				<Attribute name="AntiIKPop" value="0.0"/>
+				<Attribute name="UpperArmStretch" value="1.0"/>
+			</Control>
+			<Control name="rightLeg1_LegIKControl" namespace="femaleTSMG_rig:">
+				<Attribute name="FootStretch" value="1.0"/>
+				<Attribute name="HeelSwivel" value="0.0"/>
+				<Attribute name="LowerLegStretch" value="1.0"/>
+				<Attribute name="translateX" value="0.474700692171"/>
+				<Attribute name="translateY" value="0.0"/>
+				<Attribute name="translateZ" value="-0.510264028491"/>
+				<Attribute name="AutoStretch" value="0.0"/>
+				<Attribute name="scaleX" value="1.0"/>
+				<Attribute name="scaleY" value="1.0"/>
+				<Attribute name="scaleZ" value="1.0"/>
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="-111.914887516"/>
+				<Attribute name="rotateZ" value="0.0"/>
+				<Attribute name="AntiIKPop" value="0.0"/>
+				<Attribute name="ToeSwivel" value="0.0"/>
+				<Attribute name="UpperLegStretch" value="1.0"/>
+				<Attribute name="ToeRaise" value="0.0"/>
+				<Attribute name="HeelRaise" value="0.0"/>
+			</Control>
+			<Control name="leftArm1_ArmIKControl" namespace="femaleTSMG_rig:">
+				<Attribute name="LowerArmStretch" value="1.0"/>
+				<Attribute name="translateX" value="-1.10102893662"/>
+				<Attribute name="translateY" value="-0.107763192536"/>
+				<Attribute name="translateZ" value="0.684619474194"/>
+				<Attribute name="AutoStretch" value="0.0"/>
+				<Attribute name="scaleX" value="1.0"/>
+				<Attribute name="scaleY" value="1.0"/>
+				<Attribute name="scaleZ" value="1.0"/>
+				<Attribute name="rotateX" value="-96.6402247592"/>
+				<Attribute name="rotateY" value="-60.4153857025"/>
+				<Attribute name="rotateZ" value="-253.098790368"/>
+				<Attribute name="AntiIKPop" value="0.0"/>
+				<Attribute name="UpperArmStretch" value="1.0"/>
+			</Control>
 			<Control name="TSMG_root" namespace="femaleTSMG_rig:">
 				<Attribute name="translateX" value="0.0"/>
 				<Attribute name="translateY" value="0.0"/>
@@ -49,7 +99,7 @@
 				<Attribute name="scaleY" value="1.0"/>
 				<Attribute name="scaleZ" value="1.0"/>
 				<Attribute name="rotateX" value="0.0"/>
-				<Attribute name="rotateY" value="-40.0"/>
+				<Attribute name="rotateY" value="-20.0"/>
 				<Attribute name="rotateZ" value="0.0"/>
 			</Control>
 			<Control name="spine1_torsoIKControl" namespace="femaleTSMG_rig:">
@@ -89,6 +139,37 @@
 				<Attribute name="rotateZ" value="0.0"/>
 				<Attribute name="MiddleJoint" value="0.0"/>
 				<Attribute name="EndJoint" value="0.0"/>
+			</Control>
+			<Control name="leftLeg1_LegIKControl" namespace="femaleTSMG_rig:">
+				<Attribute name="FootStretch" value="1.0"/>
+				<Attribute name="HeelSwivel" value="0.0"/>
+				<Attribute name="LowerLegStretch" value="1.0"/>
+				<Attribute name="translateX" value="-0.327546909025"/>
+				<Attribute name="translateY" value="0.0"/>
+				<Attribute name="translateZ" value="0.43826295219"/>
+				<Attribute name="AutoStretch" value="0.0"/>
+				<Attribute name="scaleX" value="1.0"/>
+				<Attribute name="scaleY" value="1.0"/>
+				<Attribute name="scaleZ" value="1.0"/>
+				<Attribute name="rotateX" value="0.0"/>
+				<Attribute name="rotateY" value="-68.2571059502"/>
+				<Attribute name="rotateZ" value="0.0"/>
+				<Attribute name="AntiIKPop" value="0.0"/>
+				<Attribute name="ToeSwivel" value="0.0"/>
+				<Attribute name="UpperLegStretch" value="1.0"/>
+				<Attribute name="ToeRaise" value="0.0"/>
+				<Attribute name="HeelRaise" value="0.0"/>
+			</Control>
+			<Control name="head1_Control" namespace="femaleTSMG_rig:">
+				<Attribute name="translateX" value="0.0"/>
+				<Attribute name="translateY" value="0.0"/>
+				<Attribute name="translateZ" value="0.0"/>
+				<Attribute name="scaleX" value="1.0"/>
+				<Attribute name="scaleY" value="1.0"/>
+				<Attribute name="scaleZ" value="1.0"/>
+				<Attribute name="rotateX" value="74.9381776174"/>
+				<Attribute name="rotateY" value="-2.77996069729"/>
+				<Attribute name="rotateZ" value="-10.39540914"/>
 			</Control>
 			<Control name="rightArm1_ArmIKElbowControl" namespace="femaleTSMG_rig:">
 				<Attribute name="rotateX" value="0.0"/>
@@ -225,87 +306,6 @@
 				<Attribute name="rotateX" value="0.0"/>
 				<Attribute name="rotateY" value="0.0"/>
 				<Attribute name="rotateZ" value="0.0"/>
-			</Control>
-			<Control name="head1_Control" namespace="femaleTSMG_rig:">
-				<Attribute name="translateX" value="0.0"/>
-				<Attribute name="translateY" value="0.0"/>
-				<Attribute name="translateZ" value="0.0"/>
-				<Attribute name="scaleX" value="1.0"/>
-				<Attribute name="scaleY" value="1.0"/>
-				<Attribute name="scaleZ" value="1.0"/>
-				<Attribute name="rotateX" value="74.9381776174"/>
-				<Attribute name="rotateY" value="-2.77996069729"/>
-				<Attribute name="rotateZ" value="-10.39540914"/>
-			</Control>
-			<Control name="leftArm1_ArmIKControl" namespace="femaleTSMG_rig:">
-				<Attribute name="LowerArmStretch" value="1.0"/>
-				<Attribute name="translateX" value="-1.10102893662"/>
-				<Attribute name="translateY" value="-0.107763192536"/>
-				<Attribute name="translateZ" value="0.684619474194"/>
-				<Attribute name="AutoStretch" value="0.0"/>
-				<Attribute name="scaleX" value="1.0"/>
-				<Attribute name="scaleY" value="1.0"/>
-				<Attribute name="scaleZ" value="1.0"/>
-				<Attribute name="rotateX" value="-96.6402247592"/>
-				<Attribute name="rotateY" value="-60.4153857025"/>
-				<Attribute name="rotateZ" value="-253.098790368"/>
-				<Attribute name="AntiIKPop" value="0.0"/>
-				<Attribute name="UpperArmStretch" value="1.0"/>
-			</Control>
-			<Control name="rightArm1_ArmIKControl" namespace="femaleTSMG_rig:">
-				<Attribute name="LowerArmStretch" value="1.0"/>
-				<Attribute name="translateX" value="0.625832153324"/>
-				<Attribute name="translateY" value="-0.189555437083"/>
-				<Attribute name="translateZ" value="-0.162042972864"/>
-				<Attribute name="AutoStretch" value="0.0"/>
-				<Attribute name="scaleX" value="1.0"/>
-				<Attribute name="scaleY" value="1.0"/>
-				<Attribute name="scaleZ" value="1.0"/>
-				<Attribute name="rotateX" value="0.0"/>
-				<Attribute name="rotateY" value="-54.5241295494"/>
-				<Attribute name="rotateZ" value="0.0"/>
-				<Attribute name="AntiIKPop" value="0.0"/>
-				<Attribute name="UpperArmStretch" value="1.0"/>
-			</Control>
-			<Control name="rightLeg1_LegIKControl" namespace="femaleTSMG_rig:">
-				<Attribute name="FootStretch" value="1.0"/>
-				<Attribute name="HeelSwivel" value="0.0"/>
-				<Attribute name="LowerLegStretch" value="1.0"/>
-				<Attribute name="translateX" value="0.553529881065"/>
-				<Attribute name="translateY" value="0.0"/>
-				<Attribute name="translateZ" value="-0.429286855974"/>
-				<Attribute name="AutoStretch" value="0.0"/>
-				<Attribute name="scaleX" value="1.0"/>
-				<Attribute name="scaleY" value="1.0"/>
-				<Attribute name="scaleZ" value="1.0"/>
-				<Attribute name="rotateX" value="0.0"/>
-				<Attribute name="rotateY" value="-111.914887516"/>
-				<Attribute name="rotateZ" value="0.0"/>
-				<Attribute name="AntiIKPop" value="0.0"/>
-				<Attribute name="ToeSwivel" value="0.0"/>
-				<Attribute name="UpperLegStretch" value="1.0"/>
-				<Attribute name="ToeRaise" value="0.0"/>
-				<Attribute name="HeelRaise" value="0.0"/>
-			</Control>
-			<Control name="leftLeg1_LegIKControl" namespace="femaleTSMG_rig:">
-				<Attribute name="FootStretch" value="1.0"/>
-				<Attribute name="HeelSwivel" value="0.0"/>
-				<Attribute name="LowerLegStretch" value="1.0"/>
-				<Attribute name="translateX" value="-0.327546909025"/>
-				<Attribute name="translateY" value="0.0"/>
-				<Attribute name="translateZ" value="0.43826295219"/>
-				<Attribute name="AutoStretch" value="0.0"/>
-				<Attribute name="scaleX" value="1.0"/>
-				<Attribute name="scaleY" value="1.0"/>
-				<Attribute name="scaleZ" value="1.0"/>
-				<Attribute name="rotateX" value="0.0"/>
-				<Attribute name="rotateY" value="-68.2571059502"/>
-				<Attribute name="rotateZ" value="0.0"/>
-				<Attribute name="AntiIKPop" value="0.0"/>
-				<Attribute name="ToeSwivel" value="0.0"/>
-				<Attribute name="UpperLegStretch" value="1.0"/>
-				<Attribute name="ToeRaise" value="0.0"/>
-				<Attribute name="HeelRaise" value="0.0"/>
 			</Control>
 		</Controls>
 	</Pose>
