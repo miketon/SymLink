@@ -1,0 +1,56 @@
+newmtl beltSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd belt_color.jpg
+Ni 1.00
+newmtl bracerSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd bracer_color.jpg
+Ni 1.00
+newmtl doomSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd doom_color.jpg
+Ni 1.00
+newmtl helmetSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd helmet_color.jpg
+Ni 1.00
+newmtl shouldersSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd shoulders_color.jpg
+Ni 1.00
+newmtl tailSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd tail_color.jpg
+Ni 1.00
+newmtl weaponSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd weapon_color.jpg
+Ni 1.00
+newmtl wingsSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd wings_color.jpg
+Ni 1.00
