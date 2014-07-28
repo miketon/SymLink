@@ -25,6 +25,7 @@ evalDeferred("autoLoadPlugin(\"\", \"sceneAssembly\", \"sceneAssembly\")");
 evalDeferred("autoLoadPlugin(\"\", \"AnzovinBreakdownTool.py\", \"AnzovinBreakdownTool\")");
 evalDeferred("autoLoadPlugin(\"\", \"Substance\", \"Substance\")");
 evalDeferred("autoLoadPlugin(\"\", \"shaderFXPlugin\", \"shaderFXPlugin\")");
+evalDeferred("autoLoadPlugin(\"\", \"objExport\", \"objExport\")");
 evalDeferred("autoLoadPlugin(\"\", \"bifrostshellnode\", \"bifrostshellnode\")");
 evalDeferred("autoLoadPlugin(\"\", \"ArubaTessellator\", \"ArubaTessellator\")");
 evalDeferred("autoLoadPlugin(\"\", \"quatNodes\", \"quatNodes\")");
