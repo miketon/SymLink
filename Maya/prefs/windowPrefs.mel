@@ -2,7 +2,7 @@
 //
 //
 windowPref -topLeftCorner 225 150 -widthHeight 250 400 -maximized false outlinerPanel1Window;
-windowPref -topLeftCorner 854 -265 -widthHeight 700 400 -maximized false hyperGraphPanel1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 700 400 -maximized false hyperGraphPanel1Window;
 windowPref -topLeftCorner 250 200 -widthHeight 660 400 -maximized false graphEditor1Window;
 windowPref -topLeftCorner 250 200 -widthHeight 660 400 -maximized false dopeSheetPanel1Window;
 windowPref -topLeftCorner 250 200 -widthHeight 660 400 -maximized false clipEditorPanel1Window;
@@ -10,32 +10,11 @@ windowPref -topLeftCorner 250 200 -widthHeight 524 470 -maximized false devicePa
 windowPref -topLeftCorner 250 200 -widthHeight 700 400 -maximized false hyperShadePanel1Window;
 windowPref -topLeftCorner 250 200 -widthHeight 700 400 -maximized false dynPaintScriptedPanelWindow;
 windowPref -topLeftCorner 250 200 -widthHeight 550 562 -maximized false blindDataEditor1Window;
-windowPref -topLeftCorner 0 4 -widthHeight 1262 856 -maximized true MayaWindow;
-windowPref -topLeftCorner 110 593 -widthHeight 475 325 -maximized false referenceEditorPanel1Window;
-windowPref -topLeftCorner 186 706 -widthHeight 665 500 -maximized false PreferencesWindow;
-windowPref -topLeftCorner 173 999 -widthHeight 168 110 -maximized false bhGhost;
-windowPref -topLeftCorner 145 745 -widthHeight 546 350 -maximized false OptionBoxWindow;
-windowPref -topLeftCorner 196 162 -widthHeight 1094 414 -maximized false scriptEditorPanel1Window;
-windowPref -topLeftCorner 335 811 -widthHeight 475 325 -maximized false visorPanel1Window;
+windowPref -topLeftCorner 180 294 -widthHeight 1034 508 -maximized false FbxWarningWindow;
+windowPref -topLeftCorner 0 4 -widthHeight 1440 856 -maximized true MayaWindow;
+windowPref -topLeftCorner 212 179 -widthHeight 491 575 -maximized false polyTexturePlacementPanel1Window;
+windowPref -topLeftCorner 72 87 -widthHeight 546 350 -maximized false OptionBoxWindow;
+windowPref -topLeftCorner 181 821 -widthHeight 665 500 -maximized false PreferencesWindow;
 windowPref -topLeftCorner 314 482 -widthHeight 550 411 -maximized false pluginManagerWindow;
-windowPref -topLeftCorner 314 482 -widthHeight 268 31 -maximized false TSMGBakingReassuranceWindow;
-windowPref -topLeftCorner 314 482 -widthHeight 500 500 -maximized false FbxWarningWindow;
-windowPref -topLeftCorner 110 379 -widthHeight 475 325 -maximized false relationshipPanel1Window;
-windowPref -topLeftCorner 257 1044 -widthHeight 450 580 -maximized false poseLibWindow;
-windowPref -topLeftCorner 314 482 -widthHeight 470 555 -maximized false shelfEditor;
-windowPref -topLeftCorner 227 682 -widthHeight 410 104 -maximized false poseLibCreateNewPoseWindow;
-windowPref -topLeftCorner 314 482 -widthHeight 342 402 -maximized false poseLibOptionsWindow;
+windowPref -topLeftCorner 420 604 -widthHeight 450 320 -maximized false NewFeatureHighlightWnd;
 windowPref -topLeftCorner 283 482 -widthHeight 694 595 -maximized false learningMoviesLaunchWnd;
-windowPref -topLeftCorner 314 482 -widthHeight 450 320 -maximized false NewFeatureHighlightWnd;
-windowPref -topLeftCorner 314 482 -widthHeight 550 500 -maximized false projectWindow;
-windowPref -topLeftCorner 314 482 -widthHeight 429 224 -maximized false TSMGRigOptionsWindow;
-windowPref -topLeftCorner 314 482 -widthHeight 338 31 -maximized false TSMGRiggingReassuranceWindow;
-windowPref -topLeftCorner 247 14 -widthHeight 1426 580 -maximized false refEditsWin_femaleTSMG_rigRN;
-windowPref -topLeftCorner 547 1065 -widthHeight 475 325 -maximized false hyperGraphPanel3Window;
-windowPref -topLeftCorner 177 743 -widthHeight 407 438 -maximized false Viewport20OptionsWindow;
-windowPref -topLeftCorner 314 482 -widthHeight 358 150 -maximized false LayerEditorQuickEditWindow;
-windowPref -topLeftCorner 22 860 -widthHeight 815 387 -maximized false polyTexturePlacementPanel1Window;
-windowPref -topLeftCorner 314 482 -widthHeight 479 155 -maximized false TSMGResolutionOptionsWindow;
-windowPref -topLeftCorner 232 689 -widthHeight 410 339 -maximized false cameraBookmarkWindow;
-windowPref -topLeftCorner 267 697 -widthHeight 807 325 -maximized false componentEditorPanel1Window;
-windowPref -topLeftCorner 94 606 -widthHeight 632 580 -maximized false refEditsWin_doom_TSMGRN;
