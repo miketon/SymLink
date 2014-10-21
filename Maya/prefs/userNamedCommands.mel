@@ -2,3 +2,9 @@
 //
 //
 
+nameCommand
+	-annotation "Display Control HUD"
+	-sourceType "mel"
+	-command ("bt_displayControl")
+	bt_displayControlHUDNamedCommand;
+

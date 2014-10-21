@@ -1,6 +1,9 @@
-﻿using Holoville.HOTween  ;
-using UnityEngine        ;
+﻿using UnityEngine        ;
 using System.Collections ;
+
+///*HACK : Find a way to ifdef based on namepace
+
+using Holoville.HOTween  ;
 
 public class mtonTween : MonoBehaviour {
 
@@ -40,6 +43,8 @@ public class mtonTween : MonoBehaviour {
     Debug.Log("HOTween: mtonTween Completed ") ;
     label.text = "I am done"                   ;
   }
+
+//*/
 
   /*
      public string SampleString = "Bear Hands!" ;

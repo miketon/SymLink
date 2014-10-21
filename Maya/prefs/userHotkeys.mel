@@ -4,3 +4,4 @@
 
 hotkey -keyShortcut "0" -releaseName ("HfAttrSelect_Menu_revert");
 hotkey -keyShortcut "0" -name ("HfAttrSelect_Menu");
+hotkey -keyShortcut "1" -ctl -name ("bt_displayControlHUDNamedCommand");
