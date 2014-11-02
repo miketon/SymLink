@@ -35,7 +35,7 @@ public class mt_CameraFollow : MonoBehaviour
       rotateDamping = 0f; //don't smooth rotate if were using mouselook
     }
     if(waterFilter){
-      waterFilter.renderer.enabled = false;
+      waterFilter.GetComponent<Renderer>().enabled = false;
     }
   }
 
@@ -156,14 +156,14 @@ public class mt_CameraFollow : MonoBehaviour
   //toggle waterfilter, is camera clipping walls?
   void OnTriggerEnter(Collider other){
     if (other.tag == "Water" && waterFilter){
-      waterFilter.renderer.enabled = true;
+      waterFilter.GetComponent<Renderer>().enabled = true;
     }
   }
 
   //toggle waterfilter, is camera clipping walls?
   void OnTriggerExit(Collider other){
     if (other.tag == "Water" && waterFilter){
-      waterFilter.renderer.enabled = false;
+      waterFilter.GetComponent<Renderer>().enabled = false;
     }
   }
 

@@ -19,12 +19,12 @@ public class __goMotor : __go {
     base.Awake();
     print("Transform here : " + xform);
     //set up rigidbody constraints
-    rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+    GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
     if(sidescroller){
-      rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+      GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
     }
     else{
-      rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+      GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
     }
     //add frictionless physics material
     defaultPhysicMat();
@@ -41,7 +41,7 @@ public class __goMotor : __go {
       return true;
     }
     else{
-      rigidbody.AddForce(relativePos.normalized * acceleration * Time.deltaTime, ForceMode.VelocityChange);
+      GetComponent<Rigidbody>().AddForce(relativePos.normalized * acceleration * Time.deltaTime, ForceMode.VelocityChange);
     }
     return false;
   }
@@ -50,15 +50,15 @@ public class __goMotor : __go {
   public void RotateToVelocity(float turnSpeed, bool ignoreY){
     Vector3 dir;
     if(ignoreY){
-      dir = new Vector3(rigidbody.velocity.x, 0f, rigidbody.velocity.z);
+      dir = new Vector3(GetComponent<Rigidbody>().velocity.x, 0f, GetComponent<Rigidbody>().velocity.z);
     }
     else{
-      dir = rigidbody.velocity;
+      dir = GetComponent<Rigidbody>().velocity;
     }
     if (dir.magnitude > 0.1){
       Quaternion dirQ  = Quaternion.LookRotation (dir)                                                           ;
       Quaternion slerp = Quaternion.Slerp (transform.rotation, dirQ, dir.magnitude * turnSpeed * Time.deltaTime) ;
-      rigidbody.MoveRotation(slerp)                                                                              ;
+      GetComponent<Rigidbody>().MoveRotation(slerp)                                                                              ;
     }
   }
 
@@ -72,32 +72,32 @@ public class __goMotor : __go {
     Vector3 newDir   = lookDir - characterPos                                                  ;
     Quaternion dirQ  = Quaternion.LookRotation (newDir)                                        ;
     Quaternion slerp = Quaternion.Slerp (transform.rotation, dirQ, turnSpeed * Time.deltaTime) ;
-    rigidbody.MoveRotation (slerp)                                                             ;
+    GetComponent<Rigidbody>().MoveRotation (slerp)                                                             ;
   }
 
   // apply friction to rigidbody, and make sure it doesn't exceed its max speed
   public void ManageSpeed(float deceleration, float maxSpeed, bool ignoreY){	
-    currentSpeed = rigidbody.velocity;
+    currentSpeed = GetComponent<Rigidbody>().velocity;
     if (ignoreY){
       currentSpeed.y = 0;
     }
     if (currentSpeed.magnitude > 0){
-      rigidbody.AddForce ((currentSpeed * -1) * deceleration * Time.deltaTime, ForceMode.VelocityChange);
-      if (rigidbody.velocity.magnitude > maxSpeed){
-        rigidbody.AddForce ((currentSpeed * -1) * deceleration * Time.deltaTime, ForceMode.VelocityChange);
+      GetComponent<Rigidbody>().AddForce ((currentSpeed * -1) * deceleration * Time.deltaTime, ForceMode.VelocityChange);
+      if (GetComponent<Rigidbody>().velocity.magnitude > maxSpeed){
+        GetComponent<Rigidbody>().AddForce ((currentSpeed * -1) * deceleration * Time.deltaTime, ForceMode.VelocityChange);
       }
     }
   }
 
   private void defaultPhysicMat(){     //add frictionless physics material
-    if(collider.material.name == "Default (Instance)"){
+    if(GetComponent<Collider>().material.name == "Default (Instance)"){
       PhysicMaterial pMat  = new PhysicMaterial()           ;
       pMat.name            = "Frictionless"                 ;
       pMat.frictionCombine = PhysicMaterialCombine.Multiply ;
       pMat.bounceCombine   = PhysicMaterialCombine.Multiply ;
       pMat.dynamicFriction = 0f                             ;
       pMat.staticFriction  = 0f                             ;
-      collider.material    = pMat                           ;
+      GetComponent<Collider>().material    = pMat                           ;
       Debug.LogWarning("No physics material found for CharacterMotor, a frictionless one has been created and assigned", transform);
     }
   }

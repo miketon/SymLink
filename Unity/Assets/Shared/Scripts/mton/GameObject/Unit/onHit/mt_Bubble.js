@@ -42,7 +42,7 @@ class mt_Bubble extends mt_OnHit{
       else{
         vPos = vForce * vFallOff;
       }
-      constantForce.force = Vector3(0.0, vPos, 0.0);
+      GetComponent.<ConstantForce>().force = Vector3(0.0, vPos, 0.0);
 
       //rotation
       var	angleH = Mathf.Clamp(Input.GetAxis("Horizontal"), -1, 1);  
@@ -51,12 +51,12 @@ class mt_Bubble extends mt_OnHit{
       if(Input.GetButton("Fire1")){
         rbody.AddRelativeForce (Vector3.forward * 10) ;
         pSystem.emissionRate = 1.0                    ;
-        if(!audio.isPlaying){
+        if(!GetComponent.<AudioSource>().isPlaying){
           if(randomPitch){
-            audio.pitch  = Random.Range(1.0-randomRange, 1.0+randomRange) ;
+            GetComponent.<AudioSource>().pitch  = Random.Range(1.0-randomRange, 1.0+randomRange) ;
           }
-          audio.clip = soundTrack ;
-          audio.Play()            ;
+          GetComponent.<AudioSource>().clip = soundTrack ;
+          GetComponent.<AudioSource>().Play()            ;
         }
         Instantiate(bubbleFx, xform.position, xform.rotation) ;
       }

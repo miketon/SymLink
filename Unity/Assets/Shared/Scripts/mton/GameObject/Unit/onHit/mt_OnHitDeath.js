@@ -35,7 +35,7 @@ myNetworkView.stateSynchronization = NetworkStateSynchronization.Off;
   function doHit(){
     super.doHit();
     if(health<=0.0){	
-      networkView.RPC ("RPC_onHitDeath", RPCMode.All);
+      GetComponent.<NetworkView>().RPC ("RPC_onHitDeath", RPCMode.All);
     }
     else{
       applyDamage();
@@ -58,7 +58,7 @@ myNetworkView.stateSynchronization = NetworkStateSynchronization.Off;
   
   function doBirth(){ //init GameObject here
   	healthMax = health    ; //not in start, else will reset to 1.0???
-    renderMesh = renderer ;
+    renderMesh = GetComponent.<Renderer>() ;
     SetSpawnXform()       ;
   }
 
@@ -101,7 +101,7 @@ myNetworkView.stateSynchronization = NetworkStateSynchronization.Off;
   function ApplySpawnXform(){//xform:Transform){
     xform.position           = spawnPos     ;
     xform.rotation           = spawnRot     ;
-    xform.rigidbody.velocity = Vector3.zero ;
+    xform.GetComponent.<Rigidbody>().velocity = Vector3.zero ;
   }
   
 

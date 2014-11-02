@@ -17,7 +17,7 @@ class __onCollideMT extends __gameObjectMT{
 
   function Awake(){
     super.Awake()       ;
-    cbody = collider    ; //check for collider
+    cbody = GetComponent.<Collider>()    ; //check for collider
     if(!cbody){
       DefaultCollider() ;
     }    
@@ -51,7 +51,7 @@ class __onCollideMT extends __gameObjectMT{
 
   function delayColliderEnable(delaySeconds){
     yield WaitForSeconds(delaySeconds) ;
-    collider.enabled = true            ;
+    GetComponent.<Collider>().enabled = true            ;
   }
   
   function setHitWait(waitDuration:float){

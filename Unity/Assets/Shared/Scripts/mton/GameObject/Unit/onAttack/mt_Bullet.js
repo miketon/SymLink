@@ -11,7 +11,7 @@ class mt_Bullet extends mt_OnHit{
   function Awake(){
     super.Awake()            ;
     DefaultCollider()        ;
-    collider.enabled = false ;
+    GetComponent.<Collider>().enabled = false ;
   }
 
   function Start(){

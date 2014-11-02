@@ -17,5 +17,5 @@ var waterDragFactor = 8;
 
 function Start()
 {
-	collider.isTrigger = true;
+	GetComponent.<Collider>().isTrigger = true;
 }

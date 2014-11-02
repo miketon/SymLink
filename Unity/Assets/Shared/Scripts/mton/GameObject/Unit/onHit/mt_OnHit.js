@@ -9,7 +9,7 @@ class mt_OnHit extends __onCollideMT{
 
   function Awake(){
     super.Awake()       ;
-    rbody = rigidbody   ;
+    rbody = GetComponent.<Rigidbody>()   ;
     //DefaultCollider() ;
   }
 

@@ -23,12 +23,12 @@ public class __gameObjectMT extends MonoBehaviour{
   
   function playAudio_mt(soundTrack:AudioClip){
     if(soundTrack!=null){
-  	  if(!audio.isPlaying){
+  	  if(!GetComponent.<AudioSource>().isPlaying){
         if(randomPitch){
-          audio.pitch  = Random.Range(1.0-randomRange, 1.0+randomRange) ;
+          GetComponent.<AudioSource>().pitch  = Random.Range(1.0-randomRange, 1.0+randomRange) ;
     	}
-    	audio.clip = soundTrack ;
-    	audio.Play()            ;
+    	GetComponent.<AudioSource>().clip = soundTrack ;
+    	GetComponent.<AudioSource>().Play()            ;
   	  }
     }
   }
@@ -63,7 +63,7 @@ public class __gameObjectMT extends MonoBehaviour{
     var returnComponent    = null                                        ;
 
     if(doesComponentExist==null){
-      returnComponent = targetGObj.AddComponent(checkThisComponent);
+      returnComponent = UnityEngineInternal.APIUpdaterRuntimeServices.AddComponent(targetGObj, "Assets/Shared/Scripts/mton/__gameObjectMT.js(66,25)", checkThisComponent);
     }
     print("DefaultAddComponent: " + targetGObj + checkThisComponent + returnComponent);
     return returnComponent;

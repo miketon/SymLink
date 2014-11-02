@@ -29,11 +29,11 @@ class mt_EmitObject_Turret extends mt_EmitObject{
   function Start(){
     //super.Start()                                                         ;
     aimPoint             = GameObject.CreatePrimitive(PrimitiveType.Sphere) ;
-    aimPointColor        = aimPoint.renderer.material                       ;
+    aimPointColor        = aimPoint.GetComponent.<Renderer>().material                       ;
     aimPointColor.shader = Shader.Find("Self-Illumin/Diffuse")              ;
     aimPointColor.color  = Color.magenta                                    ;
     //remove collider from sphere, don't react to physics
-    Destroy(aimPoint.collider);
+    Destroy(aimPoint.GetComponent.<Collider>());
 
     aimPointXform          = aimPoint.transform          ;
     aimPointXform.position = xform.position              ;

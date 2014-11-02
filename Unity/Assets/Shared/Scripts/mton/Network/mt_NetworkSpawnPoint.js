@@ -49,7 +49,7 @@ class mt_NetworkSpawnPoint extends mt_OnHitDeath{
 
     instPlayer                    = SpawnPlayer()         ;
     instPlayer.position           = xform.position        ;
-    instPlayer.rigidbody.velocity = Vector3.zero          ;
+    instPlayer.GetComponent.<Rigidbody>().velocity = Vector3.zero          ;
     Instantiate(bubbleFx, xform.position, xform.rotation) ;
   }
 
@@ -59,7 +59,7 @@ class mt_NetworkSpawnPoint extends mt_OnHitDeath{
         instBubble = ObjectSwap(instPlayer, bubblePrefab)               ;
         //Camera.main.SendMessage("SetTarget", instBubble)              ;
         Instantiate(bubbleFx, instBubble.position, instBubble.rotation) ;
-        instBubble.rigidbody.AddForce(Vector3.up * bubbleVForce)        ;
+        instBubble.GetComponent.<Rigidbody>().AddForce(Vector3.up * bubbleVForce)        ;
         instActive = instBubble                                         ;
       }
       else{            //switch to tank
@@ -83,7 +83,7 @@ class mt_NetworkSpawnPoint extends mt_OnHitDeath{
     sourceRot.x               = 0.0                             ;
     sourceRot.z               = 0.0                             ;
     Network.Destroy(source.gameObject)                          ;
-    Network.RemoveRPCs(networkView.viewID)                      ;
+    Network.RemoveRPCs(GetComponent.<NetworkView>().viewID)                      ;
     return Network.Instantiate(target, sourcePos, sourceRot, 0) ;
   }
 

@@ -18,9 +18,9 @@ class mt_Debris_Dir extends mt_Debris{
 	function Start () {
 		super.Start();
 		forceDir = -(xform.position - forceXform.position).normalized;
-		rigidbody.AddForce (forceDir * forceMagnitude);
+		GetComponent.<Rigidbody>().AddForce (forceDir * forceMagnitude);
 		var randomVec = Vector3(Random.Range(-1.0, 1.0), Random.Range(-1.0, 1.0), Random.Range(-1.0, 1.0));
-		rigidbody.AddTorque (randomVec * forceMagnitude * Random.Range(-1.0, 1.0));
+		GetComponent.<Rigidbody>().AddTorque (randomVec * forceMagnitude * Random.Range(-1.0, 1.0));
 		//print("xformDir : " + forceDir);
 	}
 

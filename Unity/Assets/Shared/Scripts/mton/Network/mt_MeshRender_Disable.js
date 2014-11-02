@@ -12,7 +12,7 @@ function CountChildren(transform_IN:Transform):int{
     var child:Transform = obj as Transform;
     childCount ++;
     childCount += CountChildren(child);
-    var crender:Renderer = child.renderer;
+    var crender:Renderer = child.GetComponent.<Renderer>();
     if(crender){
       crender.enabled = false;
     }

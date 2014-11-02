@@ -29,8 +29,8 @@ function doUpdate () {
   }
   if(mton_GLOBAL.uiTimeBool===true){
     // A sphere that fully encloses the bounding box
-    var center = parentObj.renderer.bounds.center            ;
-    var radius = parentObj.renderer.bounds.extents.magnitude ;
+    var center = parentObj.GetComponent.<Renderer>().bounds.center            ;
+    var radius = parentObj.GetComponent.<Renderer>().bounds.extents.magnitude ;
 
     var UI_target = parentObj.position                                                           ;
     UI_target += iconOffSet                                                                      ;
@@ -62,7 +62,7 @@ function iconParent(transform:Transform, offSet:Vector3){
 
 function iconToggle(bool:boolean){
   //transform.gameObject.SetActive(bool);  //WTF : if setActive toggled off, gameObject no longer part of update loop?
-  transform.renderer.enabled                          = bool;
+  transform.GetComponent.<Renderer>().enabled                          = bool;
   lineRenderer.enabled                                = bool;
   transform.gameObject.GetComponent(Collider).enabled = bool; //turn on/off collision
 }

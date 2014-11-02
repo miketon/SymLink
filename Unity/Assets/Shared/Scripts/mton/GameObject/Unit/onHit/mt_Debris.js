@@ -9,7 +9,7 @@ class mt_Debris extends __gameObjectMT{
 
 	function Start () {
 		super.Start();
-		rbody = rigidbody;
+		rbody = GetComponent.<Rigidbody>();
 				
 		forceDir.x = Random.Range(-1.0, 1.0) * forceMagnitude   ;
         forceDir.y = Random.Range(-1.0, 1.0) * forceMagnitude   ;

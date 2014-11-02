@@ -71,7 +71,7 @@ class mt_Car_Tank extends mt_Car{
     super.applyDamage();
     if(onGround){
       rbody.AddForce (Vector3.up * forceRigid_Jump * 1.0)      ; // ForceMode.Impulse) ;
-      networkView.RPC ("RPC_onExplosion_CarTank", RPCMode.All) ;
+      GetComponent.<NetworkView>().RPC ("RPC_onExplosion_CarTank", RPCMode.All) ;
     }
     else{
       rbody.AddForce (Vector3.up * forceRigid_Jump)               ;
@@ -101,12 +101,12 @@ class mt_Car_Tank extends mt_Car{
   }
 
   function playSoundFx(soundClip:AudioClip, randomPitch:boolean, randomRange:float){
-    if(!audio.isPlaying){
+    if(!GetComponent.<AudioSource>().isPlaying){
       if(randomPitch){
-        audio.pitch  = Random.Range(1.0-randomRange, 1.0+randomRange) ;
+        GetComponent.<AudioSource>().pitch  = Random.Range(1.0-randomRange, 1.0+randomRange) ;
       }
-      audio.clip = soundClip ;
-      audio.Play()           ;
+      GetComponent.<AudioSource>().clip = soundClip ;
+      GetComponent.<AudioSource>().Play()           ;
     }
   }
 

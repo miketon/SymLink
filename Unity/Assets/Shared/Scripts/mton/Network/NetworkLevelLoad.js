@@ -8,7 +8,7 @@ function Awake ()
 {
 	// Network level loading is done in a seperate channel.
 	DontDestroyOnLoad(this);
-	networkView.group = 1;
+	GetComponent.<NetworkView>().group = 1;
 	Application.LoadLevel(disconnectedLevel);
 }
 
@@ -30,7 +30,7 @@ function OnGUI ()
 				Network.RemoveRPCsInGroup(0);
 				Network.RemoveRPCsInGroup(1);
 				// Load level with incremented level prefix (for view IDs)
-				networkView.RPC( "LoadLevel", RPCMode.AllBuffered, level, lastLevelPrefix + 1);
+				GetComponent.<NetworkView>().RPC( "LoadLevel", RPCMode.AllBuffered, level, lastLevelPrefix + 1);
 			}
 		}
 		GUILayout.FlexibleSpace();

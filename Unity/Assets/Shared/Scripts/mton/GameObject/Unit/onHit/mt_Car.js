@@ -356,8 +356,8 @@ class mt_Car extends mt_OnHitDeath{
     UpdateWheels();
 
     //engine sounds
-    audio.pitch  = 0.5+0.2*motor+0.8*engineRPM/maxRPM;
-    audio.volume = 0.5+0.8*motor+0.2*engineRPM/maxRPM;
+    GetComponent.<AudioSource>().pitch  = 0.5+0.2*motor+0.8*engineRPM/maxRPM;
+    GetComponent.<AudioSource>().volume = 0.5+0.8*motor+0.2*engineRPM/maxRPM;
     if(motor<0.001){ 
     	if(onGround){  //allow turning while sitting still
     		rbody.drag = idleRBodyDrag                                                            ;  //help prevent sliding

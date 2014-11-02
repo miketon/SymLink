@@ -9,7 +9,7 @@ class mt_Swing extends mt_Bullet{
   
   function doCollision(){
     //super.doCollision();
-    collider.enabled = false ;
+    GetComponent.<Collider>().enabled = false ;
   }
 
 }

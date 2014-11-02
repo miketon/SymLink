@@ -29,16 +29,16 @@ public class mt_AnimEvent : MonoBehaviour { //put me on same transform as animat
   /*** --- UTILITIES --- ***/
 
   void PlaySoundFx(int index_Audio){
-    audio.volume        = audio_Volume       ;
+    GetComponent<AudioSource>().volume        = audio_Volume       ;
     AudioClip audioClip = au_FX[index_Audio] ;
 
     if(audioClip!=null){
-      if(!audio.isPlaying){
+      if(!GetComponent<AudioSource>().isPlaying){
         if(randomPitch){
-          audio.pitch  = Random.Range(1.0f-randomRange, 1.0f+randomRange) ;
+          GetComponent<AudioSource>().pitch  = Random.Range(1.0f-randomRange, 1.0f+randomRange) ;
         }
-        audio.clip = audioClip ;
-        audio.Play()           ;
+        GetComponent<AudioSource>().clip = audioClip ;
+        GetComponent<AudioSource>().Play()           ;
       }
     }
 

@@ -17,7 +17,7 @@ class mt_EmitObject extends __gameObjectMT{
   public var emitDelay   : float = 0.0 ; //delay until emitter can fire
 
   function OnNetworkInstantiate (msg : NetworkMessageInfo) {
-    if (!networkView.isMine){    // This is our own player
+    if (!GetComponent.<NetworkView>().isMine){    // This is our own player
       SetEnableUserInput(false);
     }
   }
@@ -76,7 +76,7 @@ class mt_EmitObject extends __gameObjectMT{
   @RPC
   function RPC_PlayerFire () {
     var clone:GameObject     = Instantiate(bullet, xform.position, xform.rotation);
-    clone.rigidbody.velocity = xform.TransformDirection(eDirection)               ; //requires @RPC, else use Network.Instantiate
+    clone.GetComponent.<Rigidbody>().velocity = xform.TransformDirection(eDirection)               ; //requires @RPC, else use Network.Instantiate
   }
 
   function SetFireable(in_boolFire:boolean){

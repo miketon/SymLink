@@ -13,7 +13,7 @@ class mt_Network_InitPlayer extends __gameObjectMT{
 	
 	function initPlayer(controlScript){
 		// This is our own player
-		if (networkView.isMine){
+		if (GetComponent.<NetworkView>().isMine){
 			//Camera.main.SendMessage("SetTarget", xform)      ;
 			GetComponent("NetworkRigidbody").active  = false   ;
 		}

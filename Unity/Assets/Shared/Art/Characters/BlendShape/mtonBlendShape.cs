@@ -4,18 +4,22 @@ using DG.Tweening                ; //import tweens
 
 public class mtonBlendShape : MonoBehaviour {
 
-	public Renderer rendr;
 	public int blendShapeCount;
-	public SkinnedMeshRenderer skinnedMeshRenderer;
-	public Mesh skinnedMesh;
+
+	private SkinnedMeshRenderer skinnedMeshRenderer;
+	private Mesh skinnedMesh;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 	  skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer> ();
-	  skinnedMesh = GetComponent<SkinnedMeshRenderer> ().sharedMesh;  //???Shared mesh???
-      blendShapeCount = skinnedMesh.blendShapeCount; 
+	  if(skinnedMeshRenderer == null){ //MUST: skin mesh must exist to work
+	    Debug.LogError("SkinnedMeshRenderer must exist : " + this);
+	  }
+	  else{
+	    skinnedMesh = GetComponent<SkinnedMeshRenderer> ().sharedMesh;  //???Shared mesh???
+        blendShapeCount = skinnedMesh.blendShapeCount; 
+	  }
 	}
-
 
     //DOTween variables
     private Tween tw_Cache ; //tween cache -> to interrupt and end currently playing tween

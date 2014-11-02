@@ -25,9 +25,9 @@ public class PlayerMove_mton_IO_audio : PlayerMove_mton_IO{
     float vAxis          = Mathf.Clamp(this.__v, -1.0f, 0.5f) ;
     audioSource_H.volume = this.__h *  __h * hVolume          ;
     audioSource_V.volume = vAxis * vAxis                      ;
-    audioSource_H.pan    = this.__h * hPan                    ;
+    audioSource_H.panStereo    = this.__h * hPan                    ;
     audioSource_H.pitch  = Mathf.Abs(  this.__h) * hPitch     ; // (  this.__h * 0.5f) + 1.0f ;
-    audioSource_V.pan    = vAxis * 2.0f                       ;
+    audioSource_V.panStereo    = vAxis * 2.0f                       ;
     audioSource_V.pitch  = 2.0f + -vAxis                      ;
   }
 
