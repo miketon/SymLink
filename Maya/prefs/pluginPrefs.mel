@@ -1,24 +1,26 @@
 //Maya Preference 2015 (Release 1)
 //
 //
+evalDeferred("autoLoadPlugin(\"\", \"AnzovinOnionSkinner.py\", \"AnzovinOnionSkinner\")");
 evalDeferred("autoLoadPlugin(\"\", \"tiffFloatReader\", \"tiffFloatReader\")");
 evalDeferred("autoLoadPlugin(\"\", \"bifrostvisplugin\", \"bifrostvisplugin\")");
 evalDeferred("autoLoadPlugin(\"\", \"ikSpringSolver\", \"ikSpringSolver\")");
 evalDeferred("autoLoadPlugin(\"\", \"ik2Bsolver\", \"ik2Bsolver\")");
 evalDeferred("autoLoadPlugin(\"\", \"AbcExport\", \"AbcExport\")");
+evalDeferred("autoLoadPlugin(\"\", \"TSMG.py\", \"TSMG\")");
 evalDeferred("autoLoadPlugin(\"\", \"VectorRender\", \"VectorRender\")");
 evalDeferred("autoLoadPlugin(\"\", \"OpenEXRLoader\", \"OpenEXRLoader\")");
 evalDeferred("autoLoadPlugin(\"\", \"Unfold3D\", \"Unfold3D\")");
 evalDeferred("autoLoadPlugin(\"\", \"mayaCharacterization\", \"mayaCharacterization\")");
 evalDeferred("autoLoadPlugin(\"\", \"modelingToolkit\", \"modelingToolkit\")");
-evalDeferred("autoLoadPlugin(\"\", \"MayaMuscle\", \"MayaMuscle\")");
 evalDeferred("autoLoadPlugin(\"\", \"rotateHelper\", \"rotateHelper\")");
-evalDeferred("autoLoadPlugin(\"\", \"DirectConnect\", \"DirectConnect\")");
+evalDeferred("autoLoadPlugin(\"\", \"MayaMuscle\", \"MayaMuscle\")");
 evalDeferred("autoLoadPlugin(\"\", \"matrixNodes\", \"matrixNodes\")");
 evalDeferred("autoLoadPlugin(\"\", \"AbcImport\", \"AbcImport\")");
 evalDeferred("autoLoadPlugin(\"\", \"BifrostMain\", \"BifrostMain\")");
 evalDeferred("autoLoadPlugin(\"\", \"autoLoader\", \"autoLoader\")");
 evalDeferred("autoLoadPlugin(\"\", \"sceneAssembly\", \"sceneAssembly\")");
+evalDeferred("autoLoadPlugin(\"\", \"AnzovinBreakdownTool.py\", \"AnzovinBreakdownTool\")");
 evalDeferred("autoLoadPlugin(\"\", \"Substance\", \"Substance\")");
 evalDeferred("autoLoadPlugin(\"\", \"shaderFXPlugin\", \"shaderFXPlugin\")");
 evalDeferred("autoLoadPlugin(\"\", \"objExport\", \"objExport\")");

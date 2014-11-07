@@ -11,7 +11,7 @@ windowPref -topLeftCorner 319 740 -widthHeight 700 400 -maximized false hyperSha
 windowPref -topLeftCorner 250 200 -widthHeight 700 400 -maximized false dynPaintScriptedPanelWindow;
 windowPref -topLeftCorner 250 200 -widthHeight 550 562 -maximized false blindDataEditor1Window;
 windowPref -topLeftCorner 180 294 -widthHeight 1034 508 -maximized false FbxWarningWindow;
-windowPref -topLeftCorner 1 4 -widthHeight 1440 856 -maximized true MayaWindow;
+windowPref -topLeftCorner 23 0 -widthHeight 1436 855 -maximized false MayaWindow;
 windowPref -topLeftCorner 94 496 -widthHeight 944 534 -maximized false polyTexturePlacementPanel1Window;
 windowPref -topLeftCorner 344 313 -widthHeight 546 350 -maximized false OptionBoxWindow;
 windowPref -topLeftCorner 87 211 -widthHeight 962 689 -maximized false PreferencesWindow;

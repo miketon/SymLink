@@ -11,6 +11,7 @@ Material:
   m_ShaderKeywords:
   - _LIGHTMAPPING_DYNAMIC_LIGHTMAPS
   - _UVSEC_UV1
+  - _EMISSIONMAP
   m_CustomRenderQueue: -1
   m_SavedProperties:
     serializedVersion: 2
@@ -154,7 +155,7 @@ Material:
       data:
         first:
           name: _EmissionColor
-        second: {r: 0, g: 0, b: 0, a: .99999994}
+        second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
           name: _SpecularColor
