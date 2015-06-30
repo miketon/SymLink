@@ -1,0 +1,40 @@
+source wl_anim_ZERO.mel;
+
+
+
+//RELAX
+
+setAttr "r_upArm_FK_anim.rotateY" 10;
+setAttr "l_upArm_FK_anim.rotateY" 10;
+setAttr "r_upArm_FK_anim.rotateZ" -75;
+setAttr "l_upArm_FK_anim.rotateZ" -75;
+
+setAttr "r_loArm_FK_anim.rotateY" -20;
+setAttr "l_loArm_FK_anim.rotateY" -20;
+
+setAttr "r_hand_FK_anim.rotateX" 5;
+setAttr "l_hand_FK_anim.rotateX" 5;
+
+setAttr "l_fingers_anim.relax" 10;
+setAttr "r_fingers_anim.relax" 10;
+setAttr "r_fingers_anim.thumbCurl" 2;
+setAttr "l_fingers_anim.thumbCurl" 2;
+
+setAttr "l_foot_IK_anim.rotateY" 15;
+setAttr "r_foot_IK_anim.rotateY" -15;
+
+setAttr "r_foot_FK_anim.rotateX" -15;
+setAttr "l_foot_FK_anim.rotateX" -15;
+
+
+setAttr "jaw_anim.rotateX" -2;
+
+
+
+
+
+
+
+
+
+

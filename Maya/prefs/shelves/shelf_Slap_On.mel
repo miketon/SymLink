@@ -1,0 +1,191 @@
+global proc shelf_Slap_On () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 38
+        -height 38
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Displays the Slap On help. Double-click to hide." 
+        -enableBackground 0
+        -align "center" 
+        -label "help" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Users/LAB3_LEC/Documents/maya/2015-x64/prefs/icons/wl_help.png" 
+        -image1 "C:/Users/LAB3_LEC/Documents/maya/2015-x64/prefs/icons/wl_help.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "setAttr \"help.showhelp\" 1;" 
+        -sourceType "mel" 
+        -doubleClickCommand "setAttr \"help.showhelp\" 0;" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 38
+        -height 38
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Slap on the Slap On Autorigging System" 
+        -enableBackground 0
+        -align "center" 
+        -label "Slap On" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Users/LAB3_LEC/Documents/maya/2015-x64/prefs/icons/wl_slap_v2.png" 
+        -image1 "C:/Users/LAB3_LEC/Documents/maya/2015-x64/prefs/icons/wl_slap_v2.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "source wl_Slap_On_v2.mel;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 38
+        -height 38
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Zeroes out the Animation Controls on the Slap On rig" 
+        -enableBackground 0
+        -align "center" 
+        -label "zero" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Users/LAB3_LEC/Documents/maya/2015-x64/prefs/icons/wl_zero.png" 
+        -image1 "C:/Users/LAB3_LEC/Documents/maya/2015-x64/prefs/icons/wl_zero.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "source wl_anim_ZERO.mel;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 38
+        -height 38
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Relaxes the Animation Controls on the Slap On rig" 
+        -enableBackground 0
+        -align "center" 
+        -label "relax" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Users/LAB3_LEC/Documents/maya/2015-x64/prefs/icons/wl_relax.png" 
+        -image1 "C:/Users/LAB3_LEC/Documents/maya/2015-x64/prefs/icons/wl_relax.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "source wl_anim_RELAX.mel;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 38
+        -height 38
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Import your blendShapes" 
+        -enableBackground 0
+        -align "center" 
+        -label "blendShapes" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Users/LAB3_LEC/Documents/maya/2015-x64/prefs/icons/wl_bs.png" 
+        -image1 "C:/Users/LAB3_LEC/Documents/maya/2015-x64/prefs/icons/wl_bs.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "source wl_import_blendShapes.mel;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 38
+        -height 38
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Export your Animation to Unity" 
+        -enableBackground 0
+        -align "center" 
+        -label "unity" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Users/LAB3_LEC/Documents/maya/2015-x64/prefs/icons/wl_unity.png" 
+        -image1 "C:/Users/LAB3_LEC/Documents/maya/2015-x64/prefs/icons/wl_unity.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "source WL_export_UNITY.mel;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 38
+        -height 38
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Snaps Postition and Rotation of one object to another" 
+        -enableBackground 0
+        -align "center" 
+        -label "snap" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "C:/Users/LAB3_LEC/Documents/maya/2015-x64/prefs/icons/wl_snap.png" 
+        -image1 "C:/Users/LAB3_LEC/Documents/maya/2015-x64/prefs/icons/wl_snap.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "delete `pointConstraint -offset 0 0 0 -weight 1`;\ndelete `orientConstraint -offset 0 0 0 -weight 1`;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+
+} 

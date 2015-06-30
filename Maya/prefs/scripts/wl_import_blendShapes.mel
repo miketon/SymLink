@@ -1,0 +1,472 @@
+/*    Script:     wl_autoRig.mel
+    Version:    2.0
+    Author:     Wynand Lens
+    contact:    wynandlens@gmail.com
+*/
+
+//Create File Dialogue window and capture result in a variable
+
+string $fileName[] = `fileDialog2 -cap "Select blendShape file" -ff "Maya ASCII (*.ma);;Maya Binary (*.mb);;All Files (*.*)"
+-fm 1 -okc "Import"`  ;
+
+//Import file from $fileName and apply import requirements
+
+file -import -ignoreVersion -ra true -mergeNamespacesOnClash false -namespace "bs_" -options "v=0;"  -pr $fileName;
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:smile_bs ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r smile_bs ;
+select -add "bs_*:smile_bs ";
+performCreateWrap false;
+deformer -type wrap smile_bs;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r smile_bs ;
+select -add "bs_*:smile_bs ";
+DeleteHistory;
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:pucker_bs" ;
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r pucker_bs ;
+select -add "bs_*:pucker_bs ";
+performCreateWrap false;
+deformer -type wrap pucker_bs;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r pucker_bs ;
+select -add "bs_*:pucker_bs" ;
+DeleteHistory;
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:sad_bs ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r sad_bs ;
+select -add "bs_*:sad_bs ";
+performCreateWrap false;
+deformer -type wrap sad_bs;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r sad_bs ;
+select -add "bs_*:sad_bs ";
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:r_wink_bs ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r r_wink_bs ;
+select -add "bs_*:r_wink_bs ";
+performCreateWrap false;
+deformer -type wrap r_wink_bs;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r r_wink_bs ;
+select -add "bs_*:r_wink_bs" ;
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:blink_bs ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r blink_bs ;
+select -add "bs_*:blink_bs ";
+performCreateWrap false;
+deformer -type wrap blink_bs;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r blink_bs ;
+select -add "bs_*:blink_bs" ;
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:l_wink_bs ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r l_wink_bs ;
+select -add "bs_*:l_wink_bs ";
+performCreateWrap false;
+deformer -type wrap l_wink_bs;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r l_wink_bs ;
+select -add "bs_*:l_wink_bs" ;
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:angry_bs ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r angry_bs ;
+select -add "bs_*:angry_bs" ;
+performCreateWrap false;
+deformer -type wrap angry_bs;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r angry_bs ;
+select -add "bs_*:angry_bs" ;
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:surprised_bs ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r surprised_bs ;
+select -add "bs_*:surprised_bs ";
+performCreateWrap false;
+deformer -type wrap surprised_bs;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r surprised_bs ;
+select -add "bs_*:surprised_bs" ;
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:frown_bs ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r frown_bs ;
+select -add "bs_*:frown_bs ";
+performCreateWrap false;
+deformer -type wrap frown_bs;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r frown_bs ;
+select -add "bs_*:frown_bs" ;
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:bs18_bs ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r bs18_bs ;
+select -add "bs_*:bs18_bs ";
+performCreateWrap false;
+deformer -type wrap bs18_bs;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r bs18_bs ;
+select -add "bs_*:bs18_bs" ;
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:bs19_bs ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r bs19_bs ;
+select -add "bs_*:bs19_bs ";
+performCreateWrap false;
+deformer -type wrap bs19_bs;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r bs19_bs ;
+select -add "bs_*:bs19_bs" ;
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:bs20_bs ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r bs20_bs ;
+select -add "bs_*:bs20_bs ";
+performCreateWrap false;
+deformer -type wrap bs20_bs;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r bs20_bs ;
+select -add "bs_*:bs20_bs" ;
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:bs21_bs" ;
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r bs21_bs ;
+select -add "bs_*:bs21_bs ";
+performCreateWrap false;
+deformer -type wrap bs21_bs;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r bs21_bs ;
+select -add "bs_*:bs21_bs" ;
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:bs22_bs ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r bs22_bs ;
+select -add "bs_*:bs22_bs ";
+performCreateWrap false;
+deformer -type wrap bs22_bs;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r bs22_bs ;
+select -add "bs_*:bs22_bs" ;
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:bs23_bs ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r bs23_bs ;
+select -add "bs_*:bs23_bs ";
+performCreateWrap false;
+deformer -type wrap bs23_bs;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r bs23_bs ;
+select -add "bs_*:bs23_bs" ;
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:bs24_bs" ;
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r bs24_bs ;
+select -add "bs_*:bs24_bs ";
+performCreateWrap false;
+deformer -type wrap bs24_bs;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r bs24_bs ;
+select -add "bs_*:bs24_bs" ;
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs" ;
+select -add "bs_*:AA ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r AA ;
+select -add "bs_*:AA ";
+performCreateWrap false;
+deformer -type wrap AA;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r AA ;
+select -add "bs_*:AA ";
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs" ;
+select -add "bs_*:EE ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r EE ;
+select -add "bs_*:EE ";
+performCreateWrap false;
+deformer -type wrap EE;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r EE ;
+select -add "bs_*:EE ";
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs" ;
+select -add "bs_*:UU ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r UU ;
+select -add "bs_*:UU ";
+performCreateWrap false;
+deformer -type wrap UU;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r UU ;
+select -add "bs_*:UU ";
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs" ;
+select -add "bs_*:OO ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r OO ;
+select -add "bs_*:OO ";
+performCreateWrap false;
+deformer -type wrap OO;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r OO ;
+select -add "bs_*:OO ";
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs" ;
+select -add "bs_*:CK ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r CK ;
+select -add "bs_*:CK ";
+performCreateWrap false;
+deformer -type wrap CK;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r CK ;
+select -add "bs_*:CK ";
+DeleteHistory;
+
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:FF ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r FF ;
+select -add "bs_*:FF ";
+performCreateWrap false;
+deformer -type wrap FF;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r FF ;
+select -add "bs_*:FF ";
+DeleteHistory;
+
+
+
+select -r "bs_*:tongue_base_bs" ;
+select -add "bs_*:tongue_LL ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.tongue_base_bs" 1;
+
+select -r tongue_LL ;
+select -add "bs_*:tongue_LL ";
+performCreateWrap false;
+deformer -type wrap LL;
+
+setAttr "temp_blendShape.tongue_base_bs" 0;
+
+select -r tongue_LL ;
+select -add "bs_*:tongue_LL" ;
+DeleteHistory;
+
+
+select -r "bs_*:base_bs";
+select -add "bs_*:MM ";
+blendShape -n temp_blendShape -frontOfChain;
+
+setAttr "temp_blendShape.base_bs" 1;
+
+select -r MM ;
+select -add "bs_*:MM" ;
+performCreateWrap false;
+deformer -type wrap MM;
+
+setAttr "temp_blendShape.base_bs" 0;
+
+select -r MM ;
+select -add "bs_*:MM ";
+DeleteHistory;
+
+delete "bs_*:*";
+
+select -cl;
+
+print "Great! You have successfully imported your blendShapes";

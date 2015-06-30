@@ -1,0 +1,1222 @@
+
+//DESELECT ANY CHARACTER SET THAT IS SELECTED
+ClearCurrentCharacterList;
+
+currentTime 1 ;
+
+//DUPLICATE THE GEOMETRY AND RENAME THEM TO UGEO 
+
+
+select -r geo_grp ;
+duplicate -rr -renameChildren;
+parent -w;
+
+searchReplaceNames "geo1" "Ugeo" "all";
+
+searchReplaceNames "geo_grp1" "Ugeo_grp" "all";
+searchReplaceNames "geo_const1" "Ugeo_grp" "all";
+
+
+//DUPLICATE THE JOINTS AND RENAME THEM TO UJOINTS 
+
+select -r tongue_01_joint ;
+duplicate -rr -renameChildren;
+parent -w;
+
+delete "*Constraint2";
+
+select -r skin_joint_set ;
+//select -r  skinning_geo_grp;
+duplicate -rr -renameChildren;
+parent -w;
+
+searchReplaceNames "joint1" "Ujoint" "all";
+
+select -r
+ l_pinky_end_Ujoint 
+ l_ring_end_Ujoint 
+ l_middle_end_Ujoint 
+ l_index_end_Ujoint 
+ l_thumb_end_Ujoint 
+ l_toe_end_result_Ujoint 
+ r_pinky_end_Ujoint 
+ r_ring_end_Ujoint 
+ r_middle_end_Ujoint 
+ r_index_end_Ujoint 
+ r_thumb_end_Ujoint 
+ r_toe_end_result_Ujoint ;
+
+parent -w;
+
+//DELETE CHILDREN
+
+select -r "*Ujoint";
+select -d
+ tongue_end_Ujoint
+ tongue_06_Ujoint
+ tongue_05_Ujoint 
+ tongue_04_Ujoint 
+ tongue_03_Ujoint 
+ tongue_02_Ujoint 
+ tongue_01_Ujoint ;
+ 
+string $shapes[] = `listRelatives -ad`;
+delete $shapes;
+
+duplicate -po -n l_eye_Ujoint l_eye_joint;
+duplicate -po -n r_eye_Ujoint r_eye_joint;
+
+
+//PARENTING:
+
+//END JOINTS
+
+select -r l_pinky_end_Ujoint ;
+select -add l_pinky_04_Ujoint ;
+parent;
+select -r l_ring_end_Ujoint ;
+select -add l_ring_04_Ujoint ;
+parent;
+select -r l_middle_end_Ujoint ;
+select -add l_middle_04_Ujoint ;
+parent;
+select -r l_index_end_Ujoint ;
+select -add l_index_04_Ujoint ;
+parent;
+select -r l_thumb_end_Ujoint ;
+select -add l_thumb_03_Ujoint ;
+parent;
+
+select -r r_pinky_end_Ujoint ;
+select -add r_pinky_04_Ujoint ;
+parent;
+select -r r_ring_end_Ujoint ;
+select -add r_ring_04_Ujoint ;
+parent;
+select -r r_middle_end_Ujoint ;
+select -add r_middle_04_Ujoint ;
+parent;
+select -r r_index_end_Ujoint ;
+select -add r_index_04_Ujoint ;
+parent;
+select -r r_thumb_end_Ujoint ;
+select -add r_thumb_03_Ujoint ;
+parent;
+
+select -r l_toe_end_result_Ujoint ;
+select -add l_toe_result_Ujoint ;
+parent;
+
+select -r r_toe_end_result_Ujoint ;
+select -add r_toe_result_Ujoint ;
+parent;
+
+
+
+
+
+//MID BODY
+setAttr "head_Ujoint.radius" 0.01;
+
+select -r tongue_01_Ujoint ;
+select -add jaw_Ujoint ;
+parent;
+
+select -r face_nose_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_lip_top_mid_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_lip_bot_mid_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_chin_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r jaw_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r head_Ujoint ;
+select -add neck_02_Ujoint ;
+parent;
+select -cl  ;
+select -r neck_02_Ujoint ;
+select -add neck_01_Ujoint ;
+parent;
+select -r neck_01_Ujoint ;
+select -add chest_Ujoint ;
+parent;
+select -r chest_Ujoint ;
+select -add torso_06_result_Ujoint ;
+parent;
+select -r torso_06_result_Ujoint ;
+select -add torso_05_result_Ujoint ;
+parent;
+select -r torso_05_result_Ujoint ;
+select -add torso_04_result_Ujoint ;
+parent;
+select -r torso_04_result_Ujoint ;
+select -add torso_03_result_Ujoint ;
+parent;
+select -r torso_03_result_Ujoint ;
+select -add torso_02_result_Ujoint ;
+parent;
+select -r torso_02_result_Ujoint ;
+select -add hip_Ujoint ;
+parent;
+
+
+
+//L_ARMS
+
+select -r l_index_04_Ujoint ;
+select -add l_index_03_Ujoint ;
+parent;
+select -r l_index_03_Ujoint ;
+select -add l_index_02_Ujoint ;
+parent;
+select -r l_middle_04_Ujoint ;
+select -add l_middle_03_Ujoint ;
+parent;
+select -r l_middle_03_Ujoint ;
+select -add l_middle_02_Ujoint ;
+parent;
+select -r l_ring_04_Ujoint ;
+select -add l_ring_03_Ujoint ;
+parent;
+select -r l_ring_03_Ujoint ;
+select -add l_ring_02_Ujoint ;
+parent;
+select -r l_pinky_04_Ujoint ;
+select -add l_pinky_03_Ujoint ;
+parent;
+select -r l_pinky_03_Ujoint ;
+select -add l_pinky_02_Ujoint ;
+parent;
+
+select -r l_thumb_03_Ujoint ;
+select -add l_thumb_02_Ujoint ;
+parent;
+select -r l_thumb_02_Ujoint ;
+select -add l_thumb_01_Ujoint ;
+parent;
+
+select -r l_index_02_Ujoint ;
+select -add l_index_01_Ujoint ;
+parent;
+select -r l_middle_02_Ujoint ;
+select -add l_middle_01_Ujoint ;
+parent;
+select -r l_ring_02_Ujoint ;
+select -add l_ring_01_Ujoint ;
+parent;
+select -r l_pinky_02_Ujoint ;
+select -add l_pinky_01_Ujoint ;
+parent;
+
+select -r l_index_01_Ujoint ;
+select -add l_hand_Ujoint ;
+parent;
+select -r l_middle_01_Ujoint ;
+select -add l_hand_Ujoint ;
+parent;
+select -r l_ring_01_Ujoint ;
+select -add l_hand_Ujoint ;
+parent;
+select -r l_pinky_01_Ujoint ;
+select -add l_hand_Ujoint ;
+parent;
+select -r l_thumb_01_Ujoint ;
+select -add l_hand_Ujoint ;
+parent;
+
+select -r l_hand_Ujoint ;
+select -add l_loArm_twist_04_Ujoint ;
+parent;
+select -r l_loArm_twist_04_Ujoint ;
+select -add l_loArm_twist_03_Ujoint ;
+parent;
+select -r l_loArm_twist_03_Ujoint ;
+select -add l_loArm_twist_02_Ujoint ;
+parent;
+select -r l_loArm_twist_02_Ujoint ;
+select -add l_loArm_twist_01_Ujoint ;
+parent;
+select -r l_loArm_twist_01_Ujoint ;
+select -add l_upArm_twist_04_Ujoint ;
+parent;
+select -r l_upArm_twist_04_Ujoint ;
+select -add l_upArm_twist_03_Ujoint ;
+parent;
+select -r l_upArm_twist_03_Ujoint ;
+select -add l_upArm_twist_02_Ujoint ;
+parent;
+select -r l_upArm_twist_02_Ujoint ;
+select -add l_upArm_twist_01_Ujoint ;
+parent;
+select -r l_upArm_twist_01_Ujoint ;
+select -add l_shldr_Ujoint ;
+parent;
+select -r l_shldr_Ujoint ;
+select -add chest_Ujoint ;
+parent;
+
+//L_LEGS
+
+select -r l_toe_result_Ujoint ;
+select -add l_foot_result_Ujoint ;
+parent;
+select -r l_heel_Ujoint ;
+select -add l_foot_result_Ujoint ;
+parent;
+select -r l_foot_result_Ujoint ;
+select -add l_loLeg_result_Ujoint ;
+parent;
+select -r l_loLeg_result_Ujoint ;
+select -add l_upLeg_result_Ujoint ;
+parent;
+select -r l_upLeg_result_Ujoint ;
+select -add hip_Ujoint ;
+parent;
+
+
+//L_FACE
+
+select -r l_eye_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_l_brow_03_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_l_brow_02_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_l_brow_01_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_l_eye_top_03_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_l_eye_top_02_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_l_eye_top_01_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_l_eye_bot_03_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_l_eye_bot_02_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_l_eye_bot_01_Ujoint ;
+select -add head_Ujoint ;
+parent;
+
+
+select -r face_l_cheek_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_l_nostril_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_l_lip_top_corner_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_l_lip_top_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_l_lip_bot_corner_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_l_lip_bot_Ujoint ;
+select -add head_Ujoint ;
+parent;
+
+
+
+//r_ARMS
+
+select -r r_index_04_Ujoint ;
+select -add r_index_03_Ujoint ;
+parent;
+select -r r_index_03_Ujoint ;
+select -add r_index_02_Ujoint ;
+parent;
+select -r r_middle_04_Ujoint ;
+select -add r_middle_03_Ujoint ;
+parent;
+select -r r_middle_03_Ujoint ;
+select -add r_middle_02_Ujoint ;
+parent;
+select -r r_ring_04_Ujoint ;
+select -add r_ring_03_Ujoint ;
+parent;
+select -r r_ring_03_Ujoint ;
+select -add r_ring_02_Ujoint ;
+parent;
+select -r r_pinky_04_Ujoint ;
+select -add r_pinky_03_Ujoint ;
+parent;
+select -r r_pinky_03_Ujoint ;
+select -add r_pinky_02_Ujoint ;
+parent;
+
+select -r r_thumb_03_Ujoint ;
+select -add r_thumb_02_Ujoint ;
+parent;
+select -r r_thumb_02_Ujoint ;
+select -add r_thumb_01_Ujoint ;
+parent;
+
+select -r r_index_02_Ujoint ;
+select -add r_index_01_Ujoint ;
+parent;
+select -r r_middle_02_Ujoint ;
+select -add r_middle_01_Ujoint ;
+parent;
+select -r r_ring_02_Ujoint ;
+select -add r_ring_01_Ujoint ;
+parent;
+select -r r_pinky_02_Ujoint ;
+select -add r_pinky_01_Ujoint ;
+parent;
+
+select -r r_index_01_Ujoint ;
+select -add r_hand_Ujoint ;
+parent;
+select -r r_middle_01_Ujoint ;
+select -add r_hand_Ujoint ;
+parent;
+select -r r_ring_01_Ujoint ;
+select -add r_hand_Ujoint ;
+parent;
+select -r r_pinky_01_Ujoint ;
+select -add r_hand_Ujoint ;
+parent;
+select -r r_thumb_01_Ujoint ;
+select -add r_hand_Ujoint ;
+parent;
+
+select -r r_hand_Ujoint ;
+select -add r_loArm_twist_04_Ujoint ;
+parent;
+select -r r_loArm_twist_04_Ujoint ;
+select -add r_loArm_twist_03_Ujoint ;
+parent;
+select -r r_loArm_twist_03_Ujoint ;
+select -add r_loArm_twist_02_Ujoint ;
+parent;
+select -r r_loArm_twist_02_Ujoint ;
+select -add r_loArm_twist_01_Ujoint ;
+parent;
+select -r r_loArm_twist_01_Ujoint ;
+select -add r_upArm_twist_04_Ujoint ;
+parent;
+select -r r_upArm_twist_04_Ujoint ;
+select -add r_upArm_twist_03_Ujoint ;
+parent;
+select -r r_upArm_twist_03_Ujoint ;
+select -add r_upArm_twist_02_Ujoint ;
+parent;
+select -r r_upArm_twist_02_Ujoint ;
+select -add r_upArm_twist_01_Ujoint ;
+parent;
+select -r r_upArm_twist_01_Ujoint ;
+select -add r_shldr_Ujoint ;
+parent;
+select -r r_shldr_Ujoint ;
+select -add chest_Ujoint ;
+parent;
+
+//r_LEGS
+
+select -r r_toe_result_Ujoint ;
+select -add r_foot_result_Ujoint ;
+parent;
+select -r r_heel_Ujoint ;
+select -add r_foot_result_Ujoint ;
+parent;
+select -r r_foot_result_Ujoint ;
+select -add r_loLeg_result_Ujoint ;
+parent;
+select -r r_loLeg_result_Ujoint ;
+select -add r_upLeg_result_Ujoint ;
+parent;
+select -r r_upLeg_result_Ujoint ;
+select -add hip_Ujoint ;
+parent;
+
+
+//r_FACE
+
+select -r r_eye_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_r_brow_03_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_r_brow_02_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_r_brow_01_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_r_eye_top_03_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_r_eye_top_02_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_r_eye_top_01_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_r_eye_bot_03_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_r_eye_bot_02_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_r_eye_bot_01_Ujoint ;
+select -add head_Ujoint ;
+parent;
+
+select -r face_r_cheek_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_r_nostril_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_r_lip_top_corner_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_r_lip_top_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_r_lip_bot_corner_Ujoint ;
+select -add head_Ujoint ;
+parent;
+select -r face_r_lip_bot_Ujoint ;
+select -add head_Ujoint ;
+parent;
+
+
+//PARENT CONSTRAIN THE UJOINTS TO THE JOINTS
+
+
+//PARENT CONSTRAIN THE JOINTS: FACE
+
+select -r face_l_brow_03_joint ;
+select -add face_l_brow_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_l_brow_02_joint ;
+select -add face_l_brow_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_l_brow_01_joint ;
+select -add face_l_brow_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_l_eye_top_03_joint ;
+select -add face_l_eye_top_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_l_eye_top_02_joint ;
+select -add face_l_eye_top_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_l_eye_top_01_joint ;
+select -add face_l_eye_top_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_l_eye_bot_03_joint ;
+select -add face_l_eye_bot_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_l_eye_bot_02_joint ;
+select -add face_l_eye_bot_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_l_eye_bot_01_joint ;
+select -add face_l_eye_bot_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_l_cheek_joint ;
+select -add face_l_cheek_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_l_nostril_joint ;
+select -add face_l_nostril_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_l_lip_top_corner_joint ;
+select -add face_l_lip_top_corner_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_l_lip_top_corner_joint ;
+select -r face_l_lip_bot_corner_joint ;
+select -add face_l_lip_bot_corner_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_l_lip_top_joint ;
+select -add face_l_lip_top_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_l_lip_bot_joint ;
+select -add face_l_lip_bot_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+
+
+select -r face_r_brow_03_joint ;
+select -add face_r_brow_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_r_brow_02_joint ;
+select -add face_r_brow_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_r_brow_01_joint ;
+select -add face_r_brow_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_r_eye_top_03_joint ;
+select -add face_r_eye_top_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_r_eye_top_02_joint ;
+select -add face_r_eye_top_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_r_eye_top_01_joint ;
+select -add face_r_eye_top_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_r_eye_bot_03_joint ;
+select -add face_r_eye_bot_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_r_eye_bot_02_joint ;
+select -add face_r_eye_bot_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_r_eye_bot_01_joint ;
+select -add face_r_eye_bot_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_r_cheek_joint ;
+select -add face_r_cheek_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_r_nostril_joint ;
+select -add face_r_nostril_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_r_lip_top_corner_joint ;
+select -add face_r_lip_top_corner_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_r_lip_top_corner_joint ;
+select -r face_r_lip_bot_corner_joint ;
+select -add face_r_lip_bot_corner_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_r_lip_top_joint ;
+select -add face_r_lip_top_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_r_lip_bot_joint ;
+select -add face_r_lip_bot_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+
+
+select -r face_nose_joint ;
+select -add face_nose_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_lip_top_mid_joint ;
+select -add face_lip_top_mid_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_lip_bot_mid_joint ;
+select -add face_lip_bot_mid_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r face_chin_joint ;
+select -add face_chin_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+
+
+
+//PARENT CONSTRAIN THE JOINTS: MID
+
+
+select -r hip_joint ;
+select -add hip_Ujoint ;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r torso_02_result_joint ;
+select -add torso_02_result_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r torso_03_result_joint ;
+select -add torso_03_result_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r torso_04_result_joint ;
+select -add torso_04_result_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r torso_05_result_joint ;
+select -add torso_05_result_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r torso_06_result_joint ;
+select -add torso_06_result_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r chest_joint ;
+select -add chest_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+//PARENT CONSTRAIN THE JOINTS: HEAD
+
+select -r neck_01_joint ;
+select -add neck_01_Ujoint ;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r neck_02_joint ;
+select -add neck_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r head_joint ;
+select -add head_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r jaw_joint ;
+select -add jaw_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_eye_joint ;
+select -add l_eye_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_eye_joint ;
+select -add r_eye_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r tongue_01_joint ;
+select -add tongue_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r tongue_02_joint ;
+select -add tongue_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r tongue_03_joint ;
+select -add tongue_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r tongue_04_joint ;
+select -add tongue_04_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r tongue_05_joint ;
+select -add tongue_05_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r tongue_06_joint ;
+select -add tongue_06_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+//HAND
+
+select -r l_index_04_joint ;
+select -add l_index_04_Ujoint ;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_index_03_joint ;
+select -add l_index_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_index_02_joint ;
+select -add l_index_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_middle_04_joint ;
+select -add l_middle_04_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_middle_03_joint ;
+select -add l_middle_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_middle_02_joint ;
+select -add l_middle_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_ring_04_joint ;
+select -add l_ring_04_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_ring_03_joint ;
+select -add l_ring_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_ring_02_joint ;
+select -add l_ring_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_pinky_04_joint ;
+select -add l_pinky_04_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_pinky_03_joint ;
+select -add l_pinky_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_pinky_02_joint ;
+select -add l_pinky_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+select -r l_thumb_03_joint ;
+select -add l_thumb_03_Ujoint ;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_thumb_02_joint ;
+select -add l_thumb_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_thumb_01_joint ;
+select -add l_thumb_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+select -r l_index_01_joint ;
+select -add l_index_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_middle_01_joint ;
+select -add l_middle_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_ring_01_joint ;
+select -add l_ring_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_pinky_01_joint ;
+select -add l_pinky_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_hand_joint ;
+select -add l_hand_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_loArm_twist_04_joint ;
+select -add l_loArm_twist_04_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_loArm_twist_03_joint ;
+select -add l_loArm_twist_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_loArm_twist_02_joint ;
+select -add l_loArm_twist_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_loArm_twist_01_joint ;
+select -add l_loArm_twist_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_upArm_twist_04_joint ;
+select -add l_upArm_twist_04_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_upArm_twist_03_joint ;
+select -add l_upArm_twist_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_upArm_twist_02_joint ;
+select -add l_upArm_twist_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_upArm_twist_01_joint ;
+select -add l_upArm_twist_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_shldr_joint ;
+select -add l_shldr_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+select -r l_toe_result_joint ;
+select -add l_toe_result_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_foot_result_joint ;
+select -add l_foot_result_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_loLeg_result_joint ;
+select -add l_loLeg_result_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r l_upLeg_result_joint ;
+select -add l_upLeg_result_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+
+
+
+
+//R_SIDE
+
+
+
+select -r r_index_04_joint ;
+select -add r_index_04_Ujoint ;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_index_03_joint ;
+select -add r_index_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_index_02_joint ;
+select -add r_index_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_middle_04_joint ;
+select -add r_middle_04_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_middle_03_joint ;
+select -add r_middle_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_middle_02_joint ;
+select -add r_middle_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_ring_04_joint ;
+select -add r_ring_04_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_ring_03_joint ;
+select -add r_ring_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_ring_02_joint ;
+select -add r_ring_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_pinky_04_joint ;
+select -add r_pinky_04_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_pinky_03_joint ;
+select -add r_pinky_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_pinky_02_joint ;
+select -add r_pinky_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+select -r r_thumb_03_joint ;
+select -add r_thumb_03_Ujoint ;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_thumb_02_joint ;
+select -add r_thumb_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_thumb_01_joint ;
+select -add r_thumb_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+select -r r_index_01_joint ;
+select -add r_index_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_middle_01_joint ;
+select -add r_middle_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_ring_01_joint ;
+select -add r_ring_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_pinky_01_joint ;
+select -add r_pinky_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_hand_joint ;
+select -add r_hand_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_loArm_twist_04_joint ;
+select -add r_loArm_twist_04_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_loArm_twist_03_joint ;
+select -add r_loArm_twist_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_loArm_twist_02_joint ;
+select -add r_loArm_twist_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_loArm_twist_01_joint ;
+select -add r_loArm_twist_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_upArm_twist_04_joint ;
+select -add r_upArm_twist_04_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_upArm_twist_03_joint ;
+select -add r_upArm_twist_03_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_upArm_twist_02_joint ;
+select -add r_upArm_twist_02_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_upArm_twist_01_joint ;
+select -add r_upArm_twist_01_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_shldr_joint ;
+select -add r_shldr_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+select -r r_toe_result_joint ;
+select -add r_toe_result_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_foot_result_joint ;
+select -add r_foot_result_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_loLeg_result_joint ;
+select -add r_loLeg_result_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+select -r r_upLeg_result_joint ;
+select -add r_upLeg_result_Ujoint ;
+ParentConstraint;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+
+
+
+
+//SKINNING THE GEOMETRY TO THE JOINTS
+
+select -r "*Ujoint";
+select -add skinning_Ugeo_grp;
+newSkinCluster "-toSelectedBones -normalizeWeights 1 -maximumInfluences 3 -obeyMaxInfluences false -dropoffRate 4 -removeUnusedInfluence false,multipleBindPose,1";
+
+select -r l_eye_Ujoint ;
+select -add l_eye_Ugeo_grp ;
+newSkinCluster "-toSelectedBones -normalizeWeights 1 -maximumInfluences 3 -obeyMaxInfluences false -dropoffRate 4 -removeUnusedInfluence false,multipleBindPose,1";
+
+select -r r_eye_Ujoint ;
+select -add r_eye_Ugeo_grp ;
+newSkinCluster "-toSelectedBones -normalizeWeights 1 -maximumInfluences 3 -obeyMaxInfluences false -dropoffRate 4 -removeUnusedInfluence false,multipleBindPose,1";
+
+select -r head_Ujoint ;
+select -add skull_Ugeo_grp ;
+newSkinCluster "-toSelectedBones -normalizeWeights 1 -maximumInfluences 3 -obeyMaxInfluences false -dropoffRate 4 -removeUnusedInfluence false,multipleBindPose,1";
+
+select -r jaw_Ujoint ;
+select -add jaw_Ugeo_grp ;
+newSkinCluster "-toSelectedBones -normalizeWeights 1 -maximumInfluences 3 -obeyMaxInfluences false -dropoffRate 4 -removeUnusedInfluence false,multipleBindPose,1";
+
+select tongue_Ugeo;
+DeleteHistory;
+
+select -r tongue_01_Ujoint tongue_02_Ujoint tongue_03_Ujoint tongue_04_Ujoint tongue_05_Ujoint tongue_06_Ujoint ;
+select -add tongue_Ugeo ;
+newSkinCluster "-toSelectedBones -normalizeWeights 1 -maximumInfluences 3 -obeyMaxInfluences false -dropoffRate 4 -removeUnusedInfluence false,multipleBindPose,1";
+
+//INHERIT TRANSFORMS OFF
+
+setAttr "eye_Ugeo_grp.inheritsTransform" 0;
+setAttr "jaw_Ugeo_grp.inheritsTransform" 0;
+setAttr "skull_Ugeo_grp.inheritsTransform" 0;
+
+
+//CHANGE THE COLOUR OF THE UJOINTS AND UGEO
+
+group -n U_grp Ugeo_grp hip_Ujoint;
+xform -piv 0 0 0;
+setAttr "Ugeo_grp.overrideDisplayType" 0;
+setAttr Ugeo_grp.overrideColor 14;
+
+group -n Ujoint_grp hip_Ujoint;
+setAttr "Ujoint_grp.overrideEnabled" 1;
+setAttr Ujoint_grp.overrideColor 7;
+
+
+//SET UJOINT VISIBILITY
+
+hide all_anim;
+hide Ujoint_grp;
+
+//COPY SKIN WEIGHTS
+
+select -r skinning_geo_grp ;
+string $shapes[] = `listRelatives -ad -type transform`;
+
+select -r skinning_Ugeo_grp ;
+string $Ushapes[] = `listRelatives -ad -type transform`;
+
+select -r $shapes[0];
+select -add $Ushapes[0];
+
+copySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint;
+
+select -r head_geo ;
+select -add head_Ugeo ;
+copySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation closestJoint;
+
+//BAKE THE ANIMATION CURVES TO THE UJOINTS AND DELETE THE CONSTRAINTS
+
+select "*Ujoint";
+
+BakeSimulation;
+
+delete "*Ujoint_parentConstraint1";
+
+
+select -cl;
+
+print "Congratulations, You may now Export the U_grp to Unity!";
+

@@ -1,0 +1,52 @@
+ string $selected[] = `ls -sl`;
+ 
+ select "*anim";
+ 
+    string $sel[] = `ls -sl` ;
+    
+    // Loop
+    for($item in $sel) {
+    
+        // Get All Attributes
+        string $attrs[] = `listAttr -v -k -s $item` ;
+        
+        // Zero Out (Except for some attributes)
+        for ($attr in $attrs) {
+            if($attr != "visibility" && $attr != "scaleX" && $attr != "scaleY" && $attr != "scaleZ" && $attr != "worldScale" && $attr != "animVis" && $attr != "jointsVis" && $attr != "blendShapeVis" && $attr != "selectable_geo" && $attr != "toeLift"&& $attr != "toeStraight" && $attr != "world_foot" && $attr != "breathe_X" && $attr != "breathe_Y" && $attr != "breathe_Z" && $attr != "FK_IK" && $attr != "match" && $attr != "fingers_animVis" && $attr != "gimbal_animVis" && $attr != "fingers" && $attr != "length" && $attr != "world_hip_chest_head" && $attr != "stretch" && $attr != "world_chest" && $attr != "lookAt_eyeRotate" && $attr != "face_animVis" && $attr != "neck_animVis") {                                                                           
+                setAttr ($item+"."+$attr) 0 ;
+                }
+                }
+                }
+  
+//SET SCALE AND LENGTH TO 1
+ select "*anim";
+ 
+
+    string $sel[] = `ls -sl` ;
+    
+    // Loop
+    for($item in $sel) {
+    
+        // Get All Attributes
+        string $attrs[] = `listAttr -k -v -s -st "*cale*" -st "length"$item` ;
+        //Set to 1
+        for ($attr in $attrs) {
+            setAttr ($item+"."+$attr) 1 ;
+                }
+                }
+
+//EXTRA ATTRIBUTES
+setAttr face_rig_anim.tx 0;
+setAttr face_rig_anim.ty 0;
+setAttr face_rig_anim.tz 0;
+setAttr face_rig_anim.sx 1;
+setAttr face_rig_anim.sy 1;
+setAttr face_rig_anim.sz 1;
+
+setAttr "l_foot_IK_anim.toeLift" 45;
+setAttr "l_foot_IK_anim.toeStraight" 70;
+setAttr "r_foot_IK_anim.toeLift" 45;
+setAttr "r_foot_IK_anim.toeStraight" 70;
+
+select $selected;
+                

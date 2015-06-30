@@ -22,7 +22,7 @@ public class mtonBlendShape : MonoBehaviour {
 	}
 
     //DOTween variables
-    private Tween tw_Cache ; //tween cache -> to interrupt and end currently playing tween
+//    private Tween tw_Cache ; //tween cache -> to interrupt and end currently playing tween
 	
 	// Update is called once per frame
 	void Update () {
@@ -30,14 +30,16 @@ public class mtonBlendShape : MonoBehaviour {
 		if (blendShapeCount > 0) { //check to see if blendshape exist
 		  Debug.Log("Blending Down : " + this);
 //		  skinnedMeshRenderer.SetBlendShapeWeight (0, 100);	
-		  tw_Cache = DOTween.To(()=> skinnedMeshRenderer.GetBlendShapeWeight(0), x=>skinnedMeshRenderer.SetBlendShapeWeight(0, x), 100.0f, 0.1f) ;
+//		  tw_Cache = DOTween.To(()=> skinnedMeshRenderer.GetBlendShapeWeight(0), x=>skinnedMeshRenderer.SetBlendShapeWeight(0, x), 100.0f, 0.1f) ;
+		  DOTween.To(()=> skinnedMeshRenderer.GetBlendShapeWeight(0), x=>skinnedMeshRenderer.SetBlendShapeWeight(0, x), 100.0f, 0.1f) ;
 		}
 	  }
 	  else if(Input.GetKeyUp(KeyCode.B)){
 		if (blendShapeCount > 0) {
 		  Debug.Log("Blending Release : " + this);
 //		  skinnedMeshRenderer.SetBlendShapeWeight (0, 0);	
-		  tw_Cache = DOTween.To(()=> skinnedMeshRenderer.GetBlendShapeWeight(0), x=>skinnedMeshRenderer.SetBlendShapeWeight(0, x), 0.0f, 0.5f) ;
+//		  tw_Cache = DOTween.To(()=> skinnedMeshRenderer.GetBlendShapeWeight(0), x=>skinnedMeshRenderer.SetBlendShapeWeight(0, x), 0.0f, 0.5f) ;
+		  DOTween.To(()=> skinnedMeshRenderer.GetBlendShapeWeight(0), x=>skinnedMeshRenderer.SetBlendShapeWeight(0, x), 0.0f, 0.5f) ;
 		}
 	  }
 	}

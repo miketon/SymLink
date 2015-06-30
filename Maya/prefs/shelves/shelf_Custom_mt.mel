@@ -1,0 +1,996 @@
+global proc shelf_Custom_mt () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Edit various component values for the selected object(s)" 
+        -enableBackground 0
+        -align "center" 
+        -label "Component Editor" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "CpEd" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "menuIconWindow.png" 
+        -image1 "menuIconWindow.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "ComponentEditor" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Select an object(s)" 
+        -enableBackground 0
+        -align "center" 
+        -label "Freeze Transformations" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "FT" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "menuIconModify.png" 
+        -image1 "menuIconModify.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "FreezeTransformations" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Hide all objects that are not selected" 
+        -enableBackground 0
+        -align "center" 
+        -label "Hide Unselected Objects" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "HUO" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "menuIconDisplay.png" 
+        -image1 "menuIconDisplay.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "HideUnselectedObjects" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Show the last hidden item" 
+        -enableBackground 0
+        -align "center" 
+        -label "Show Last Hidden" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "SLH" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "menuIconDisplay.png" 
+        -image1 "menuIconDisplay.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "ShowLastHidden" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Show all objects" 
+        -enableBackground 0
+        -align "center" 
+        -label "All" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "All" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "menuIconDisplay.png" 
+        -image1 "menuIconDisplay.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "ShowAll" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Select the deformed object(s) to delete all the history except deformers" 
+        -enableBackground 0
+        -align "center" 
+        -label "Non-Deformer History" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "NH" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "menuIconEdit.png" 
+        -image1 "menuIconEdit.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "BakeNonDefHistory" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Display and edit connections in shading networks" 
+        -enableBackground 0
+        -align "center" 
+        -label "Hypershade" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Hshd" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "menuIconWindow.png" 
+        -image1 "menuIconWindow.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "HypershadeWindow" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Display and edit relationships among nodes in your scene graphically using the hierarchical view" 
+        -enableBackground 0
+        -align "center" 
+        -label "Hypergraph: Hierarchy" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Hgph" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "menuIconWindow.png" 
+        -image1 "menuIconWindow.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "HypergraphHierarchyWindow" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Edit animation curves" 
+        -enableBackground 0
+        -align "center" 
+        -label "Graph Editor" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "GE" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "menuIconWindow.png" 
+        -image1 "menuIconWindow.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "GraphEditor" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "List the objects in the scene" 
+        -enableBackground 0
+        -align "center" 
+        -label "Outliner" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Outl" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "menuIconWindow.png" 
+        -image1 "menuIconWindow.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "OutlinerWindow" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Create a skeleton, HIK skeleton definition, control rig or custom rig definition" 
+        -enableBackground 0
+        -align "center" 
+        -label "HumanIK" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "humanIK_CharCtrl.png" 
+        -image1 "humanIK_CharCtrl.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "HIKCharacterControlsTool" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Select object(s) to be ghosted." 
+        -enableBackground 0
+        -align "center" 
+        -label "Ghost Selected" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "ghost.png" 
+        -image1 "ghost.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "doGhost \"3\" { \"1\", \"1\", \"0\", \"3\", \"3\", \"1\", \" 3 1 10 20\", \"1\", \"24\", \"0\", \"1\", \"1\", \"1\", \"0\"}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Select object(s) to be unghosted." 
+        -enableBackground 0
+        -align "center" 
+        -label "Unghost Selected" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "ghostOff.png" 
+        -image1 "ghostOff.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "doGhost \"2\" { \"0\", \"0\", \"-1\", \"0\", \"0\", \"0\", \"\", \"0\", \"0\"}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "All object(s) to be unghosted." 
+        -enableBackground 0
+        -align "center" 
+        -label "Unghost All" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "ghostOff.png" 
+        -image1 "ghostOff.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "unGhostAll" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Select object(s) to generate a motion trail over time" 
+        -enableBackground 0
+        -align "center" 
+        -label "Create Editable Motion Trail" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "motionTrail.png" 
+        -image1 "motionTrail.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "doMotionTrail 2 { \"snapshot  -motionTrail 1  -increment 1 -startTime `playbackOptions -query -min` -endTime `playbackOptions -query -max`\", \"1\",\"0\",\"0\",\"1\",\"1\",\"1\"}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Toggle local rotation axis visibility" 
+        -enableBackground 0
+        -align "center" 
+        -label "Local Rotation Axes" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "LRA" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "menuIconDisplay.png" 
+        -image1 "menuIconDisplay.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "ToggleLocalRotationAxes" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Visual organizer that displays images of shading nodes" 
+        -enableBackground 0
+        -align "center" 
+        -label "Visor" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Viso" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "menuIconWindow.png" 
+        -image1 "menuIconWindow.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "VisorWindow" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Transfer surface detail from one set of surfaces to another" 
+        -enableBackground 0
+        -align "center" 
+        -label "Transfer Maps..." 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "TM" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "menuIconShading.png" 
+        -image1 "menuIconShading.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "performSurfaceSampling 1" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Create pose options" 
+        -enableBackground 0
+        -align "center" 
+        -label "createPoseOptionItem" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "createPose.png" 
+        -image1 "createPose.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "CreatePoseOptions" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "animView -startTime (`playbackOptions -query -minTime` - 1) -endTime (`playbackOptions -query -maxTime` + 1) graphEditor1GraphEd;\n" 
+        -enableBackground 0
+        -align "center" 
+        -label "animView -startTime (`playbackOptions -query -minTime` - 1) -end..." 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "frameCurrentRange" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "animView -startTime (`playbackOptions -query -minTime` - 1) -endTime (`playbackOptions -query -maxTime` + 1) graphEditor1GraphEd;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "CombinePolygons;\nCenterPivot;" 
+        -enableBackground 0
+        -align "center" 
+        -label "CombinePolygons;\nCenterPivot;" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "CombinePolygons;\nCenterPivot;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Non-linear character animation editor" 
+        -enableBackground 0
+        -align "center" 
+        -label "Trax Editor" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "TE" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "menuIconWindow.png" 
+        -image1 "menuIconWindow.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "CharacterAnimationEditor" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "import sys\nsys.path.append('/Users/Shared/Autodesk/maya/2014/scripts/')\n\nimport Red9\nRed9.start()" 
+        -enableBackground 0
+        -align "center" 
+        -label "Red9" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Red9" 
+        -overlayLabelColor 1 0 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import sys\nsys.path.append('/Users/Shared/Autodesk/maya/scripts/')\n\nimport Red9\nRed9.start()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "tweenMachine;\n" 
+        -enableBackground 0
+        -align "center" 
+        -label "tweenMachine;\n" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "TwM" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "/Users/Shared/Autodesk/maya/icons/tweenMachine.xpm" 
+        -image1 "/Users/Shared/Autodesk/maya/icons/tweenMachine.xpm" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "tweenMachine;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Toggle Display Colors attribute of the selected objects" 
+        -enableBackground 0
+        -align "center" 
+        -label "Toggle Display Colors Attribute" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "polyToggleDisplayColor.png" 
+        -image1 "polyToggleDisplayColor.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "toggleShadeMode" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Open the Color Set Editor." 
+        -enableBackground 0
+        -align "center" 
+        -label "Color Set Editor" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "polyColorSetEditor.png" 
+        -image1 "polyColorSetEditor.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "colorSetEditor" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Snap two objects together" 
+        -enableBackground 0
+        -align "center" 
+        -label "Snap Together Tool" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "snapTogetherTool.png" 
+        -image1 "snapTogetherTool.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "setToolTo snapTogetherToolCtx" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Transfer attributes from one surface to another" 
+        -enableBackground 0
+        -align "center" 
+        -label "Transfer Attributes" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "polyTransferAttributes.png" 
+        -image1 "polyTransferAttributes.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "performTransferAttributes 0" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Open the option box with all of the options for polygon display." 
+        -enableBackground 0
+        -align "center" 
+        -label "Custom Polygon Display..." 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "CPD" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "menuIconDisplay.png" 
+        -image1 "menuIconDisplay.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "CustomPolygonDisplayOptions" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "source \"dagMenuProc.mel\";\nshowSG (stringArrayToString(`ls -sl`,\"\"));" 
+        -enableBackground 0
+        -align "center" 
+        -label "source \"dagMenuProc.mel\";\nshowSG (stringArrayToString(`ls -sl`,\"..." 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "material" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "source \"dagMenuProc.mel\";\nshowSG (stringArrayToString(`ls -sl`,\"\"));" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Quickly and easily label and save selected pose or selection commands for characters and controls as re-usable shelf buttons." 
+        -enableBackground 0
+        -align "center" 
+        -label "p2s" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "p2s" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "vacantCell.png" 
+        -image1 "vacantCell.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "pose2shelf" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Adjust Blend Shape weights" 
+        -enableBackground 0
+        -align "center" 
+        -label "Blend Shape" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Blnd" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "menuIconWindow.png" 
+        -image1 "menuIconWindow.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "BlendShapeEditor" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "c2jnt" 
+        -enableBackground 0
+        -align "center" 
+        -label "////////////////////////////////////////////////////////////////..." 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "c2jnt" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "//////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n//srbJointChainFromCurve.mel - MEL Script\n//Copyright (C) Suchan Raj Bajracharya\n//Title: srbJointChainFromCurve.mel\n//AUTHOR:\tSuchan Raj Bajracharya\n//\t\t\t\tsuchan@incessantrain.com\t\n//VERSION: 0.2\t\n//DATE: January 2nd, 2009\n//DESCRIPTION: Use this Tool to create a joint chain from selected curves...\n//USAGE: Select the curve or curves and execute \"srbJointChainFromCurveProc\"... \n//////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n\n//CREATE THE GLOBAL PROCEDURE FOR srbJointChainFromCurve.mel---\nglobal proc srbJointChainFromCurveProc () \n{\n//STORE SOME VARIABLES--\nstring $selCurve[] = `ls -sl`;\nint $noSelCurve = `size($selCurve)`;\n\n//ERROR CHECKING---\nif ($noSelCurve == 0)\n{\nwarning \"Select atleast one curve to create the joint chain...\\n\";\n}\nelse\n{\n//THIS IS THE FOR LOOP FOR CREATING JOINT CHAIN ON SELECTED CURVES---\nfor ($i = 0; $i < ($noSelCurve); $i++)\n{\nselect -r ($selCurve[$i] + \".cv[*]\");\nstring $cvPos[] = `ls -sl -flatten`;\nint $Cs = `size($cvPos)`;\nstring $dummyJnt = `joint -p 0 0 0`; \n\n//THIS LOOP CREATES A JOINT FOR EACH CV IN THE CURVE---\nfor ($cv in $cvPos)\n{\nstring $jnt = `joint -p 0 0 0`; \nfloat $xyz[] = `xform -a -ws -q -t $cv`;\nxform -a -ws -t $xyz[0] $xyz[1] $xyz[2] $jnt;\n}\n\t\nselect -r $dummyJnt;\njoint -e -oj xyz -secondaryAxisOrient ydown -ch -zso;\npickWalk -d down;\nstring $rootJJ[] = `ls -sl`;\nparent -w $rootJJ[0];\ndelete $dummyJnt;\n\t\n//RENAME THE JOINTS---\t\n/*\nint $i;\nint $s;\n\nstring $allJnt[] = `ls -type joint -dag $rootJJ`;\nfor ($i = 0; $i < $Cs; $i++)\n{\n$s = $i + 1;\t\nrename $allJnt[$i] ($name + $s + \"_jj\");\n}\n*/\n}\nprint \"Created joint chain for selected curves...\\n\";\n}\n}\n//THE END---\n\nsrbJointChainFromCurveProc () " 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "source poseLib.mel;\n\nposeLib;" 
+        -enableBackground 0
+        -align "center" 
+        -label "source poseLib.mel;\n\nposeLib;" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "posLib" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "source poseLib.mel;\n\nposeLib;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "/*\n==================================================================================================================================\n==================================================================================================================================\n\n     bhGhost 1.09 260713- Added 'Replace' Mode - each time a ghost is created it deletes all the others (I find this very useful for polishing animation)\n                                The GUI will resize to working mode too, if no objects are selected then the mesh list is displayed \n\t\t\t\t\t\t\t\tThis makes it easy to script a button to ghost a specific character in the scene\n                               \n\t\t\t\t\t\t\t\tAdded 'create shelf button for current character' option\n==================================================================================================================================\n==================================================================================================================================\n \n     Concept and coding by Brian Horgan. Email - info@graphite9.com\n    \n     If you find this script useful please visit my site graphite9.com to see examples of my Animation and Rigging work.\n    \n     I work as a freelance animator/rigger and am available for hire.\n\n==================================================================================================================================\n\n     This script is provided 'as is' and no responsibility will be taken for any losses incurred while using it.\n     I don't have time to provide full support for this tool as it's provided for free but I do welcome comments and suggestions.\n\n==================================================================================================================================\n\n\n        To use : \n    \n      * Type \"bhGhost;\" (without quotes) into the command line or script editor, or use the supplied shelf button to launch the GUI\n    \n      *  Select some meshes and press the 'Add Meshes' button. - NB these MUST be poly objects ONLY\n      *  Now click on the arrow beside the 'Meshes' tab to close the list and switch to working mode\n      *  Press the Ghost button to create a ghost/onion skin on the current frame\n    \n        If you don't see the ghosts make sure 'Strokes' are enabled in the viewport filter and make sure you are in standard\n         or High Quality viewport as Viewport 2.0 doesn't support toon lines (as of Maya 2013)\n        \n      *  The Slider control adjusts the line thickness to suit your scene  \n      *  The Colour dropdown allows you to change the colour of the lines to suit your characters \n      *  The Vis button is for quickly showing/hiding the ghosts while working without deleting them\n      *  The Bust1 button will delete the ghost on the current frame (you can also overwrite a ghost by simply pressing the Ghost button again)\n      *  The BustAll button will delete all ghosts and clean up the scene file \n      NB Be sure to use the BustAll button when finishing up your animation as otherwise the scene will have a bunch of duplicate meshes in it (inside the bhGhosts group)\n           \n    \n       If you'd like to set up Hotkeys for the Ghost button and BustAll button the commands to add are \n       'bhGhostIt' and 'bhBustIt'. NB the GUI must still be used so that the tool knows which meshes to ghost.\n\n==============================================================================================================\n*/\n\n\nglobal proc bhGhost()\n{\n// build the UI\n    if (`window -exists bhGhost`)\n        deleteUI bhGhost;\n          global string $theLayout;\n        window -toolbox 1 -rtf true -menuBar 1 bhGhost ; \n          \n        menu -l \"Colour\" -to 1 optionsMenu;\t\t\n        menuItem -divider true;\n        $colorSel =`radioMenuItemCollection`;               \n        menuItem -label \"Black\"  -c bhBlackLine -radioButton off blk;\n        menuItem -label \"White\"  -c bhWhiteLine -radioButton off wht;\n        menuItem -label \"Grey\"  -c bhGreyLine -radioButton off gry;\n        menuItem -label \"Red\"  -c bhRedLine -radioButton off red;\n        menuItem -label \"Green\"  -c bhGreenLine -radioButton on grn;\n        menuItem -label \"Blue\"  -c bhBlueLine -radioButton off blu;\n        menuItem -label \"Yellow\"  -c bhYellowLine -radioButton off yel;\n      \n        menu -l \"Mode\" -to 1 aboutMenu;\n        menuItem -l \"Replace Mode\" -cb 0  repMode;\n\t\t\n    \tmenu -l \"Shelf\" -to 1 shelfMenu;\n        menuItem -l \"+Shelf Button\"   -c bhGhostShelf aboutlabel6;\n    \tmenu -l \"Help\" -to 1 helpMenu;\n        menuItem -l \"Show Help\"   -c bhHelpWin aboutlabel5;\n    \tmenuItem -l \"bhGhost 1.09\"   -c goToG9Site aboutlabel3;\n    \tmenuItem -l \"By Brian Horgan\" -c goToG9Site aboutlabel;\n    \tmenuItem -l \"www.graphite9.com \" -c goToG9Site aboutlabel2;\n\t\t    \n            \n        columnLayout -adj 1 mainCol;\n        string $theLayout =`frameLayout -borderStyle \"in\" -cc bhResizeWin -ec bhResizeWinTall -bv 1 -marginWidth 0 -collapsable 1 - collapse 1 -l \"Meshes\"`;\n        button -w 20 -label \"Add Meshes\" -command bhGetMeshes but; \n        button -w 50 -label \"Remove Highlighted\" -command bhRemoveMeshes but2;\n        button -w 50 -label \"Clear All\" -command bhClearTSL but9;\n        rowColumnLayout -numberOfColumns 1;\n   \n        textScrollList -h 120 -w 160 -allowMultiSelection 1 meshTSL;\n        iconTextStaticLabel -st \"textOnly\"  -l \" \";\n        setParent mainCol;\n        rowColumnLayout -numberOfColumns 3;\n        button -w 54 -label \"Vis\" -command bhToggleGhosts but6; \n        button -w 54 -label \"Bust1\" -command bhBust1 but12;    \n        button -w 54 -label \"BustAll\" -command bhBustIt but5;\n        setParent mainCol;\n        floatSliderGrp  -field false\n              -minValue 0.01 -maxValue 1.0\n            \t-fieldMinValue 0.001 -fieldMaxValue 1.0\n            \t-value .1\n        \t\t-step 0.001    \t\t\n            \t-dc \"bh_LineThickness\"\n            \t-cc \"bh_LineThickness\"\n            \t\"line\"\n            \t;\n\t\t\t\t setParent mainCol;\n\t\t\t\t \n\t\t\t\trowColumnLayout -numberOfColumns 2;\n\t\t\t\t//rowColumnLayout -numberOfColumns 1;\n\t\t\n\t\t\t\n        button -w 160\t-label \"Ghost\" -command bhGhostFrame but3;\n    \n    showWindow bhGhost;\n     window -edit -widthHeight 168 263 bhGhost;\n\t \n\t string $testSel[] =`ls -sl`;// if some objects are selected add them to the mesh list\n\t if (`size $testSel` >0)\n\t  {bhGetMeshes; bhResizeWin;window -edit -widthHeight 168 110 bhGhost;}\n\t  else {frameLayout -e -collapse 0 $theLayout;}\n}\t \n//--------------------------------------------\n// visit my website proc\n global proc goToG9Site ()\n\t    {\n\t        launch -web \"http://www.graphite9.com/\";\n\t    };\n\n\n//----------------------------------------------------\n\n\n\n\n// window resizing procs\n\nglobal proc bhResizeWin()\n{\n    \n   window -edit -widthHeight 168 110 bhGhost;\n}\nglobal proc bhResizeWinTall()\n{\n    window -edit -widthHeight 168 263 bhGhost;\n}\nglobal proc bhClearTSL ()\n    {// clear the list\n    textScrollList -e -removeAll meshTSL;\n    }\n\nglobal proc bhGetMeshes ()\n    {\n        \n    string $allMeshes[] =`ls -sl`;\n    for ($each in $allMeshes)\n    {\n     int $flag=0;\n     string $listMeshes[] =`textScrollList -q -ai meshTSL`;\n            for ($item in $listMeshes)\n            {\n              if ($each==$item)\n              $flag=1;\n            \n            }\n    \n    if ($flag==0){\n    textScrollList -e -a $each meshTSL;\n    }   \n    }\n    }\nglobal proc bhRemoveMeshes()\n     {\n     \n      string $highlighted[] =`textScrollList -q -selectItem meshTSL`;\n            for ($selMesh in $highlighted)\n            textScrollList -e -removeItem  $selMesh meshTSL;\n     }   \n \n \n \n global proc bhBustIt()\n    { string $origSelection[]=`ls -sl`; \n    // delete all toon lines from scene\n    if (`objExists (\"bhGhostNode\")`){\n    select -r \"bhGhostNode\";\n    select -add \"bhGhosts\";  \n    delete;\n    print \"All Ghosts Busted From Scene\";\n\tselect -r $origSelection;\n\t}\n    }\n    \n    global proc bhBust1()\n    { string $origSelection[]=`ls -sl`; \n    int $curTime = `currentTime -q`;\n    string $ghostName= (\"GGhost_\"+$curTime);\n    // delete all toon lines from scene\n    if (`objExists ($ghostName)`){\n    // little bit of a hack here to keep things simple -\n    // the ghost gets scaled to 0 instead of being deleted to avoid issues with other ghosts\n    // to be improved..\n    \n   \n    setAttr ($ghostName+\".scaleZ\") 0;\n    setAttr ($ghostName+\".scaleX\") 0;\n    setAttr ($ghostName+\".scaleY\") 0;\n    //select -r $ghostName;\n    \n    //delete;\n    print (\"Deleted Ghost on Frame \"+$curTime);\n\tselect -r $origSelection;\n\t}\n\telse {print \"No Ghost found on this frame\";}\n    }\n\n\n\n\n\nglobal proc bhGhostFrame()\n{\n\nint $replaceMode = `menuItem -query -cb  repMode`;// returns 0 or 1 for off/on\nif ($replaceMode==1)\n{bhBustIt;\n}\n\nglobal  string $gPlayBackSlider;\nfloat $selFrameRange[] =`timeControl -q -rangeArray $gPlayBackSlider`;\nfloat $selStartFrame= $selFrameRange[0];\nfloat $selEndFrame= $selFrameRange[1];\nfloat $selFrameCnt= $selEndFrame-$selStartFrame;\nfloat $curFrame = `currentTime -query`;\n\nif ($selFrameCnt>1)\n\t{\n\tstring $curSel[]=`ls -sl`;\n\n\tif (`size $curSel`==0) // nothing selected so ghost all selected frames\n\t\t\t{\n\t\t\tfor ($i=0; $i<$selFrameCnt; $i++)\n\t\t\t{\n\t\t\tcurrentTime -e ($selStartFrame+$i);\n\t\t\tbhGhostIt;\n\t\t\t}\n\t\t\t}\n\telse // some controllers are selected, so lets get their keys in the range and just ghost those\n\t{\n\tfloat $keyTimes[];\n\tstring $source =$curSel[0];\n    string $nodes[] = `keyframe -q -name $source`;\n    $keyTimes =  ` keyframe -time ($selStartFrame+\":\"+$selEndFrame) -q -tc $source`;//stores the selected key times within the range in an array \n   \n  // need to figure out how many unique times there are for the keys - \n   float $keyList[] = `floatArrayRemoveDuplicates($keyTimes)`; // remove any duplicates from the array of keyframes  \n \n\tfor ($each in $keyList)\n\t{\n\tcurrentTime -e $each;\n\tbhGhostIt;\n\t}\n\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t}\t\n\t\t\t\n\t   currentTime -e $curFrame; \n\t}\nelse {\n   bhGhostIt;\n}\n}\n\n\n\n// main ghosting proc\nglobal proc bhGhostIt()\n{    \n    int $existFlag=0; // keep track of existing ghosts\n    int $conValue=0;  // keep track of existing ghosts connection to pfx node \n    string $origSelection[]=`ls -sl`; // use this at end of the script to restore the selection to whatever controllers were selected before hitting the ghost button\n    int $curTime = `currentTime -q`; // what frame are we on?\n    \n    // is there a ghost on this frame already? Delete it if so, so that it can be updated by pressing ghost again\n    if (`objExists (\"GGhost_\"+$curTime)`)\n    { \n    $existFlag =1;   \n    // need to find out which port of the pfx node the mesh is hooked up to so we can reattach the new mesh to the same one later\n    string $outObject = (\"GGhost_\"+$curTime+\"Shape.outMesh\");\n    $destinations = `connectionInfo -destinationFromSource $outObject`;    \n    string $destPort = $destinations[0]; \n    $conValue =`match \"[0-9]+\" $destPort`;  \n    // remove the existing mesh\n    select -r (\"GGhost_\"+$curTime);\n        delete;\n        select -r $origSelection;\n    }\n     \n     string $sourceMeshes[] =`textScrollList -q -ai meshTSL`;\n     int $sourceSize =`size $sourceMeshes`;\n     if ($sourceSize ==0)\n     {\n         error \"Nothing to Ghost...Please Load Some Meshes First..\";\n     }\n        select -cl;\n        for ($each in $sourceMeshes)\n        {\n        // create a new name for the duplicate mesh\n        string $newName = ($each+\"TempMesh\");        \n        string $dupeMesh[] = `duplicate -rc -n $newName $each`;\n        // now unlock all transforms in case the mesh was constrained rather than skinned\n        setAttr -lock false ($dupeMesh[0]+\".tx\");\n        setAttr -lock false ($dupeMesh[0]+\".ty\");\n        setAttr -lock false ($dupeMesh[0]+\".tz\");\n        setAttr -lock false ($dupeMesh[0]+\".rx\");\n        setAttr -lock false ($dupeMesh[0]+\".ry\");\n        setAttr -lock false ($dupeMesh[0]+\".rz\");\n        setAttr -lock false ($dupeMesh[0]+\".sx\");\n        setAttr -lock false ($dupeMesh[0]+\".sy\");\n        setAttr -lock false ($dupeMesh[0]+\".sz\");\n      \n         select -add $dupeMesh[0] ;\n        }\n        // if there's only one mesh in the list we'll make an extra copy so that the poly unite function will still work\n        if ($sourceSize ==1)\n        {\n            \n        string $dupeMeshProx[] = `duplicate -rc -n \"proxTempMesh\" $sourceMeshes[0]`;\n        // now unlock all transforms in case the mesh was constrained rather than skinned\n        setAttr -lock false ($dupeMeshProx[0]+\".tx\");\n        setAttr -lock false ($dupeMeshProx[0]+\".ty\");\n        setAttr -lock false ($dupeMeshProx[0]+\".tz\");\n        setAttr -lock false ($dupeMeshProx[0]+\".rx\");\n        setAttr -lock false ($dupeMeshProx[0]+\".ry\");\n        setAttr -lock false ($dupeMeshProx[0]+\".rz\");\n        setAttr -lock false ($dupeMeshProx[0]+\".sx\");\n        setAttr -lock false ($dupeMeshProx[0]+\".sy\");\n        setAttr -lock false ($dupeMeshProx[0]+\".sz\");\n        select -add $dupeMeshProx;\n        }\n        \n        // make the combined mesh\n        string $ghostName= (\"GGhost_\"+$curTime);\n        string $comboMeshes[]=`polyUnite -n $ghostName`;\n        string $newMesh=$comboMeshes[0];\n             \n        // now need to delete the unneeded transform nodes created above     \n        select -r `ls -r 1 \"*TempMesh*\"`; // this will find the transform nodes even if they have namespaces\n        delete;\n                       \n        // delete history on new mesh\n        select -r $newMesh;\n        DeleteHistory;\n    \n    // create a group to store the ghost meshes under if it doesn't alread\n    if (!`objExists \"bhGhosts\"`){\n\t\tgroup -em -n \"bhGhosts\";\n\t\tsetAttr \"bhGhosts.visibility\" 0;\n\t\t}\n\t\t\n\tparent $newMesh \"bhGhosts\";\t  // keep the scene tidy\n\t\n\t// check if the toon node exists, create it if not \n\n    \n    if (!`objExists \"bhGhostNode\"`){\n    string $toonNode=`createNode(\"pfxToon\")`;\n    string $toonParent[]= `listRelatives -parent $toonNode`;\n    rename $toonParent[0] \"bhGhostNode\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.tx\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.ty\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.tz\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.rx\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.ry\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.rz\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.sx\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.sy\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.sz\";\n    setAttr \"bhGhostNodeShape.overrideEnabled\" 1;\n    setAttr \"bhGhostNodeShape.overrideDisplayType\" 2;\n    setAttr \"bhGhostNodeShape.creaseLines\" 0;\n    setAttr \"bhGhostNodeShape.borderLines\" 0;\n    setAttr \"bhGhostNodeShape.displayPercent\" 100;\n    float $lineVal = `floatSliderGrp -query -value \"line\"`;\n    setAttr \"bhGhostNodeShape.lineWidth\" $lineVal; \n     }\n    \n    // was there a ghost on this frame already?\n    // if no then :\n    if ($existFlag==0){ \n    // next we need to count how many ghosts already exist to figure out which ports of the toon node to connect to     \n    string $ghostsExists[] = `listRelatives \"bhGhosts\"`;\n    int $ghostCnt= `size $ghostsExists`;\n    $ghostCnt = $ghostCnt-1;\n   // connect the new ghost mesh to the existing pfxToon Node\n   string $ghostsShape[] = `listRelatives $newMesh`;\n   connectAttr -f ($ghostsShape[0]+\".outMesh\") bhGhostNodeShape.inputSurface[$ghostCnt].surface;\n   connectAttr -f ($ghostsShape[0]+\".worldMatrix[0]\") bhGhostNodeShape.inputSurface[$ghostCnt].inputWorldMatrix; \n   } \n   // if yes then connect the new one to the same pfx in port as the old one \n   if ($existFlag==1){ \n   string $ghostsShape[] = `listRelatives $newMesh`;\n   connectAttr -f ($ghostsShape[0]+\".outMesh\") bhGhostNodeShape.inputSurface[$conValue].surface;\n   connectAttr -f ($ghostsShape[0]+\".worldMatrix[0]\") bhGhostNodeShape.inputSurface[$conValue].inputWorldMatrix; \n   }\n   // check what colour option is selected and run the appropriate process\n   \n   int $checkMenu= `menuItem -q -radioButton blk`;\n   if ($checkMenu==1) bhBlackLine;\n   int $checkMenu= `menuItem -q -radioButton wht`;\n   if ($checkMenu==1) bhWhiteLine;\n   int $checkMenu= `menuItem -q -radioButton gry`;\n   if ($checkMenu==1) bhGreyLine;\n    int $checkMenu= `menuItem -q -radioButton red`;\n   if ($checkMenu==1) bhRedLine; \n   int $checkMenu= `menuItem -q -radioButton grn`;\n   if ($checkMenu==1) bhGreenLine;\n   int $checkMenu= `menuItem -q -radioButton blu`;\n   if ($checkMenu==1) bhBlueLine;\n   int $checkMenu= `menuItem -q -radioButton yel`;\n   if ($checkMenu==1) bhYellowLine;\n   \n    \n   \n   print (\"Boo!..Created Ghost on Frame \"+$curTime);\n   \n   select -r $origSelection; // select the controllers again\n}\n\nglobal proc bh_LineThickness()\n{\n    \nif (`objExists (\"bhGhostNode\")`){\n      float $lineVal = `floatSliderGrp -query -value \"line\"`;\n      string $toonNode = \"pfxToon1\";\n      setAttr \"bhGhostNodeShape.lineWidth\" $lineVal; \n      }\n}\n\n\nglobal proc bhToggleGhosts()\n{ \nif (`objExists (\"bhGhostNode\")`){\n$togVis= `getAttr \"bhGhostNodeShape.visibility\"`;\n      setAttr \"bhGhostNodeShape.visibility\" (1-$togVis); \n      }\n}\n\n// change line colour procs\nglobal proc bhBlackLine()\n{\n    if (`objExists (\"bhGhostNode\")`){\n    setAttr \"bhGhostNodeShape.profileColorB\" 0;\n    setAttr \"bhGhostNodeShape.profileColorR\" 0;\n    setAttr \"bhGhostNodeShape.profileColorG\" 0;\n    setAttr \"bhGhostNodeShape.drawAsMesh\" 0;\n    setAttr \"bhGhostNodeShape.drawAsMesh\" 1;\n    \n    }\n}\nglobal proc bhWhiteLine()\n{\n    \nif (`objExists (\"bhGhostNode\")`){\n    setAttr \"bhGhostNodeShape.profileColorB\" 1;\n    setAttr \"bhGhostNodeShape.profileColorR\" 1;\n    setAttr \"bhGhostNodeShape.profileColorG\" 1;\n    // These two lines are just in there to force a redraw of the pfxNode\n    setAttr \"bhGhostNodeShape.drawAsMesh\" 0; \n    setAttr \"bhGhostNodeShape.drawAsMesh\" 1;   \n    }\n}\nglobal proc bhGreyLine()\n{\n    \nif (`objExists (\"bhGhostNode\")`){\n    setAttr \"bhGhostNodeShape.profileColorB\" 0.5;\n    setAttr \"bhGhostNodeShape.profileColorR\" 0.5;\n    setAttr \"bhGhostNodeShape.profileColorG\" 0.5;\n    // These two lines are just in there to force a redraw of the pfxNode\n    setAttr \"bhGhostNodeShape.drawAsMesh\" 0; \n    setAttr \"bhGhostNodeShape.drawAsMesh\" 1;   \n    }\n}\n\n\n\nglobal proc bhRedLine()\n{\n    \nif (`objExists (\"bhGhostNode\")`){\n    setAttr \"bhGhostNodeShape.profileColorB\" 0;\n    setAttr \"bhGhostNodeShape.profileColorR\" 1;\n    setAttr \"bhGhostNodeShape.profileColorG\" 0;\n    // These two lines are just in there to force a redraw of the pfxNode\n    setAttr \"bhGhostNodeShape.drawAsMesh\" 0; \n    setAttr \"bhGhostNodeShape.drawAsMesh\" 1;   \n    }\n}\nglobal proc bhGreenLine()\n{\n    \nif (`objExists (\"bhGhostNode\")`){\n    setAttr \"bhGhostNodeShape.profileColorB\" 0;\n    setAttr \"bhGhostNodeShape.profileColorR\" 0;\n    setAttr \"bhGhostNodeShape.profileColorG\" 1;\n    // These two lines are just in there to force a redraw of the pfxNode\n    setAttr \"bhGhostNodeShape.drawAsMesh\" 0; \n    setAttr \"bhGhostNodeShape.drawAsMesh\" 1;   \n    }\n}\nglobal proc bhBlueLine()\n{\n    \nif (`objExists (\"bhGhostNode\")`){\n    setAttr \"bhGhostNodeShape.profileColorB\" 1;\n    setAttr \"bhGhostNodeShape.profileColorR\" 0;\n    setAttr \"bhGhostNodeShape.profileColorG\" 1;\n    // These two lines are just in there to force a redraw of the pfxNode\n    setAttr \"bhGhostNodeShape.drawAsMesh\" 0; \n    setAttr \"bhGhostNodeShape.drawAsMesh\" 1;   \n    }\n}\n\nglobal proc bhYellowLine()\n{\n    \nif (`objExists (\"bhGhostNode\")`){\n    setAttr \"bhGhostNodeShape.profileColorB\" 0;\n    setAttr \"bhGhostNodeShape.profileColorR\" 1;\n    setAttr \"bhGhostNodeShape.profileColorG\" 1;\n    // These two lines are just in there to force a redraw of the pfxNode\n    setAttr \"bhGhostNodeShape.drawAsMesh\" 0; \n    setAttr \"bhGhostNodeShape.drawAsMesh\" 1;   \n    }\n}\n\nglobal proc bhCloseHelpWin()\n{\n   deleteUI bhGhostHelp; \n}\n\nglobal proc bhHelpWin()\n{\n    if (`window -exists bhGhostHelp`)\n        deleteUI bhGhostHelp;\n          \n        window -toolbox 1 -rtf true -menuBar 1 bhGhostHelp ; \n        columnLayout -adj 1 mainHelpCol;\n         \n         \n//--------------------------------------------------------------------------\nstring $helpText =(\"===========================================================================================\"\n+\"\\n\"\n+\"bhGhost by Brian Horgan. Web - graphite9.com / Email - info@graphite9.com\"\n+\"\\n\"\n+\"===========================================================================================\"\n+\"\\n\"\n+\"*  Select some meshes and press the 'Add Meshes' button\"\n+\"\\n\"\n+\"*  NB these MUST be Poly objects ONLY\"\n+\"\\n\"\n+\"*  The 'Remove Highlighted' and 'Clear All' buttons allow you to remove meshes from the list if needed\"\n+\"\\n\"\n+\"*  Now click on the arrow beside the 'Meshes' tab to close the list and switch to working mode\"\n+\"\\n\"\n+\"*  Press the 'Ghost' button to create a ghost/onion-skin on the current frame\"\n+\"\\n\"\n+\"\\n\"\n+\"-  If you don't see the ghosts : \"\n+\"\\n\"\n+\"* Make sure 'Strokes' are enabled in the viewport Show menu \"\n+\"\\n\"\n+\"* Make sure you are using Default or High Quality viewport mode as Viewport 2.0 doesn't support toon lines (as of Maya 2013)\"\n\n+\"\\n\"\n+\"___________________________________________________________________________________________\"\n+\"\\n\"\n+\"\\n\"         \n+\"*  The Slider control adjusts the line thickness to suit your scene   \"       \n+\"\\n\"\n+\"*  The Colours dropdown menu allows you to change the line colour to suit your characters\"\n+\"\\n\"\n+\"*  The Vis button is for quickly showing/hiding the ghosts while working without deleting them\"\n+\"\\n\"\n+\"*  The Bust1 button will delete the ghost on the current frame\" \n+\"\\n\"\n+\"*  You can overwrite a ghost by simply pressing the Ghost button again\"\n+\"\\n\"\n+\"*  The BustAll button will delete all ghosts and related nodes from the file\"\n+\"\\n\"\n+\"*  NB Best to use the 'BustAll' button before saving your scene as otherwise the file will have duplicate meshes in it which will increase the file size (these are stored inside the bhGhosts group)\"\n+\"\\n\"\n\n+\"\\n\"\n+\"If you'd like to set up Hotkeys for the Ghost button and BustAll button the commands to add are \"\n+\"'bhGhostIt' and 'bhBustIt'. NB the GUI must still be used so that the tool knows which meshes to ghost.\"\n+\"\\n\"\n+\"___________________________________________________________________________________________\"\n+\"\\n\"\n+\"\\n\"\n+\"I work as a freelance animator and rigger and am available for hire. Please visit graphite9.com to see examples of my work.\"\n+\"\\n\"\n+\"\\n\"\n+\"This script is provided 'as is' and no responsibility will be taken for any losses incurred while using it. I don't have time to provide support for this tool as it's provided for free but I do welcome comments and suggestions.\"\n+\"\\n\"\n+\"\\n\"\n+\"I hope you find this useful. Happy Animating!\"\n\n);\n     \n //--------------------------------------------------------------------------\n         \n         \n        scrollField -wordWrap true -h 560 -text $helpText -ed false helpScroll;\n        separator -height 10 -style \"singleDash\";\n        button -w 54 -label \"Close Help\" -command bhCloseHelpWin b22; \n        separator -height 10 -style \"singleDash\";\n        showWindow bhGhostHelp;\n        window -edit -widthHeight 771 606 bhGhostHelp;\n\n    \n}\n\nglobal proc bhGhostShelf()// create a shelf button for current character\n{\n string $sourceMeshes[] =`textScrollList -q -ai meshTSL`;\n if (`size $sourceMeshes` ==0)\n {\n    error \"No Meshes in Mesh List - please set up the ghost manually before a shelf button can be created\";\n }\nstring $shelfCommand =\"select -cl;\\n\" ;\n \tfor ($node in $sourceMeshes)\n\t{\n\t\t$shelfCommand = $shelfCommand +(\"catch (`select -add \\\"\"+$node+\"\\\"`);\\n\");\n\t}\n\t\n\t$shelfCommand= $shelfCommand +\"bhGhost; select -cl;\";\n\t// create the shelf button\n\tstring $label =\"ghost\";\n\tglobal string $gShelfTopLevel;\nshelfButton\n\t\t\t-parent ($gShelfTopLevel + \"|\" + `tabLayout -q -st $gShelfTopLevel`)\n\t\t\t-enableCommandRepeat 1\n\t\t\t-enable 1\n\t\t\t-width 34\n\t\t\t-height 34\n\t\t\t-manage 1\n\t\t\t-visible 1\n\t\t\t-annotation $label\n\t\t\t-label $label \n\t\t\t-iol $label\n\t\t\t-image1 \"bhGhostIcon2.png\" \n\t\t\t-style \"iconOnly\" \n\t\t\t-command $shelfCommand;\n\t\t\t\n\n}\n\n\t\t\t// proc that removes keyframes that have the same times\t\nglobal proc float [] floatArrayRemoveDuplicates(float $list[])\n{\n    float $item, $results[];\n    int $index = 0, $found;\n\n    for ($item in $list)\n    {\n        $found = 0;\n        for ($result in $results)\n            if ($result == $item)\n                $found = 1;\n        if (!$found)\n            $results[$index++] = $item;\n    }\n    return $results;\n}\t\n\nbhGhost;\n" 
+        -enableBackground 0
+        -align "center" 
+        -label "/*\n=============================================================..." 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "bhGhost" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "/*\n==================================================================================================================================\n==================================================================================================================================\n\n     bhGhost 1.09 260713- Added 'Replace' Mode - each time a ghost is created it deletes all the others (I find this very useful for polishing animation)\n                                The GUI will resize to working mode too, if no objects are selected then the mesh list is displayed \n\t\t\t\t\t\t\t\tThis makes it easy to script a button to ghost a specific character in the scene\n                               \n\t\t\t\t\t\t\t\tAdded 'create shelf button for current character' option\n==================================================================================================================================\n==================================================================================================================================\n \n     Concept and coding by Brian Horgan. Email - info@graphite9.com\n    \n     If you find this script useful please visit my site graphite9.com to see examples of my Animation and Rigging work.\n    \n     I work as a freelance animator/rigger and am available for hire.\n\n==================================================================================================================================\n\n     This script is provided 'as is' and no responsibility will be taken for any losses incurred while using it.\n     I don't have time to provide full support for this tool as it's provided for free but I do welcome comments and suggestions.\n\n==================================================================================================================================\n\n\n        To use : \n    \n      * Type \"bhGhost;\" (without quotes) into the command line or script editor, or use the supplied shelf button to launch the GUI\n    \n      *  Select some meshes and press the 'Add Meshes' button. - NB these MUST be poly objects ONLY\n      *  Now click on the arrow beside the 'Meshes' tab to close the list and switch to working mode\n      *  Press the Ghost button to create a ghost/onion skin on the current frame\n    \n        If you don't see the ghosts make sure 'Strokes' are enabled in the viewport filter and make sure you are in standard\n         or High Quality viewport as Viewport 2.0 doesn't support toon lines (as of Maya 2013)\n        \n      *  The Slider control adjusts the line thickness to suit your scene  \n      *  The Colour dropdown allows you to change the colour of the lines to suit your characters \n      *  The Vis button is for quickly showing/hiding the ghosts while working without deleting them\n      *  The Bust1 button will delete the ghost on the current frame (you can also overwrite a ghost by simply pressing the Ghost button again)\n      *  The BustAll button will delete all ghosts and clean up the scene file \n      NB Be sure to use the BustAll button when finishing up your animation as otherwise the scene will have a bunch of duplicate meshes in it (inside the bhGhosts group)\n           \n    \n       If you'd like to set up Hotkeys for the Ghost button and BustAll button the commands to add are \n       'bhGhostIt' and 'bhBustIt'. NB the GUI must still be used so that the tool knows which meshes to ghost.\n\n==============================================================================================================\n*/\n\n\nglobal proc bhGhost()\n{\n// build the UI\n    if (`window -exists bhGhost`)\n        deleteUI bhGhost;\n          global string $theLayout;\n        window -toolbox 1 -rtf true -menuBar 1 bhGhost ; \n          \n        menu -l \"Colour\" -to 1 optionsMenu;\t\t\n        menuItem -divider true;\n        $colorSel =`radioMenuItemCollection`;               \n        menuItem -label \"Black\"  -c bhBlackLine -radioButton off blk;\n        menuItem -label \"White\"  -c bhWhiteLine -radioButton off wht;\n        menuItem -label \"Grey\"  -c bhGreyLine -radioButton off gry;\n        menuItem -label \"Red\"  -c bhRedLine -radioButton off red;\n        menuItem -label \"Green\"  -c bhGreenLine -radioButton on grn;\n        menuItem -label \"Blue\"  -c bhBlueLine -radioButton off blu;\n        menuItem -label \"Yellow\"  -c bhYellowLine -radioButton off yel;\n      \n        menu -l \"Mode\" -to 1 aboutMenu;\n        menuItem -l \"Replace Mode\" -cb 0  repMode;\n\t\t\n    \tmenu -l \"Shelf\" -to 1 shelfMenu;\n        menuItem -l \"+Shelf Button\"   -c bhGhostShelf aboutlabel6;\n    \tmenu -l \"Help\" -to 1 helpMenu;\n        menuItem -l \"Show Help\"   -c bhHelpWin aboutlabel5;\n    \tmenuItem -l \"bhGhost 1.09\"   -c goToG9Site aboutlabel3;\n    \tmenuItem -l \"By Brian Horgan\" -c goToG9Site aboutlabel;\n    \tmenuItem -l \"www.graphite9.com \" -c goToG9Site aboutlabel2;\n\t\t    \n            \n        columnLayout -adj 1 mainCol;\n        string $theLayout =`frameLayout -borderStyle \"in\" -cc bhResizeWin -ec bhResizeWinTall -bv 1 -marginWidth 0 -collapsable 1 - collapse 1 -l \"Meshes\"`;\n        button -w 20 -label \"Add Meshes\" -command bhGetMeshes but; \n        button -w 50 -label \"Remove Highlighted\" -command bhRemoveMeshes but2;\n        button -w 50 -label \"Clear All\" -command bhClearTSL but9;\n        rowColumnLayout -numberOfColumns 1;\n   \n        textScrollList -h 120 -w 160 -allowMultiSelection 1 meshTSL;\n        iconTextStaticLabel -st \"textOnly\"  -l \" \";\n        setParent mainCol;\n        rowColumnLayout -numberOfColumns 3;\n        button -w 54 -label \"Vis\" -command bhToggleGhosts but6; \n        button -w 54 -label \"Bust1\" -command bhBust1 but12;    \n        button -w 54 -label \"BustAll\" -command bhBustIt but5;\n        setParent mainCol;\n        floatSliderGrp  -field false\n              -minValue 0.01 -maxValue 1.0\n            \t-fieldMinValue 0.001 -fieldMaxValue 1.0\n            \t-value .1\n        \t\t-step 0.001    \t\t\n            \t-dc \"bh_LineThickness\"\n            \t-cc \"bh_LineThickness\"\n            \t\"line\"\n            \t;\n\t\t\t\t setParent mainCol;\n\t\t\t\t \n\t\t\t\trowColumnLayout -numberOfColumns 2;\n\t\t\t\t//rowColumnLayout -numberOfColumns 1;\n\t\t\n\t\t\t\n        button -w 160\t-label \"Ghost\" -command bhGhostFrame but3;\n    \n    showWindow bhGhost;\n     window -edit -widthHeight 168 263 bhGhost;\n\t \n\t string $testSel[] =`ls -sl`;// if some objects are selected add them to the mesh list\n\t if (`size $testSel` >0)\n\t  {bhGetMeshes; bhResizeWin;window -edit -widthHeight 168 110 bhGhost;}\n\t  else {frameLayout -e -collapse 0 $theLayout;}\n}\t \n//--------------------------------------------\n// visit my website proc\n global proc goToG9Site ()\n\t    {\n\t        launch -web \"http://www.graphite9.com/\";\n\t    };\n\n\n//----------------------------------------------------\n\n\n\n\n// window resizing procs\n\nglobal proc bhResizeWin()\n{\n    \n   window -edit -widthHeight 168 110 bhGhost;\n}\nglobal proc bhResizeWinTall()\n{\n    window -edit -widthHeight 168 263 bhGhost;\n}\nglobal proc bhClearTSL ()\n    {// clear the list\n    textScrollList -e -removeAll meshTSL;\n    }\n\nglobal proc bhGetMeshes ()\n    {\n        \n    string $allMeshes[] =`ls -sl`;\n    for ($each in $allMeshes)\n    {\n     int $flag=0;\n     string $listMeshes[] =`textScrollList -q -ai meshTSL`;\n            for ($item in $listMeshes)\n            {\n              if ($each==$item)\n              $flag=1;\n            \n            }\n    \n    if ($flag==0){\n    textScrollList -e -a $each meshTSL;\n    }   \n    }\n    }\nglobal proc bhRemoveMeshes()\n     {\n     \n      string $highlighted[] =`textScrollList -q -selectItem meshTSL`;\n            for ($selMesh in $highlighted)\n            textScrollList -e -removeItem  $selMesh meshTSL;\n     }   \n \n \n \n global proc bhBustIt()\n    { string $origSelection[]=`ls -sl`; \n    // delete all toon lines from scene\n    if (`objExists (\"bhGhostNode\")`){\n    select -r \"bhGhostNode\";\n    select -add \"bhGhosts\";  \n    delete;\n    print \"All Ghosts Busted From Scene\";\n\tselect -r $origSelection;\n\t}\n    }\n    \n    global proc bhBust1()\n    { string $origSelection[]=`ls -sl`; \n    int $curTime = `currentTime -q`;\n    string $ghostName= (\"GGhost_\"+$curTime);\n    // delete all toon lines from scene\n    if (`objExists ($ghostName)`){\n    // little bit of a hack here to keep things simple -\n    // the ghost gets scaled to 0 instead of being deleted to avoid issues with other ghosts\n    // to be improved..\n    \n   \n    setAttr ($ghostName+\".scaleZ\") 0;\n    setAttr ($ghostName+\".scaleX\") 0;\n    setAttr ($ghostName+\".scaleY\") 0;\n    //select -r $ghostName;\n    \n    //delete;\n    print (\"Deleted Ghost on Frame \"+$curTime);\n\tselect -r $origSelection;\n\t}\n\telse {print \"No Ghost found on this frame\";}\n    }\n\n\n\n\n\nglobal proc bhGhostFrame()\n{\n\nint $replaceMode = `menuItem -query -cb  repMode`;// returns 0 or 1 for off/on\nif ($replaceMode==1)\n{bhBustIt;\n}\n\nglobal  string $gPlayBackSlider;\nfloat $selFrameRange[] =`timeControl -q -rangeArray $gPlayBackSlider`;\nfloat $selStartFrame= $selFrameRange[0];\nfloat $selEndFrame= $selFrameRange[1];\nfloat $selFrameCnt= $selEndFrame-$selStartFrame;\nfloat $curFrame = `currentTime -query`;\n\nif ($selFrameCnt>1)\n\t{\n\tstring $curSel[]=`ls -sl`;\n\n\tif (`size $curSel`==0) // nothing selected so ghost all selected frames\n\t\t\t{\n\t\t\tfor ($i=0; $i<$selFrameCnt; $i++)\n\t\t\t{\n\t\t\tcurrentTime -e ($selStartFrame+$i);\n\t\t\tbhGhostIt;\n\t\t\t}\n\t\t\t}\n\telse // some controllers are selected, so lets get their keys in the range and just ghost those\n\t{\n\tfloat $keyTimes[];\n\tstring $source =$curSel[0];\n    string $nodes[] = `keyframe -q -name $source`;\n    $keyTimes =  ` keyframe -time ($selStartFrame+\":\"+$selEndFrame) -q -tc $source`;//stores the selected key times within the range in an array \n   \n  // need to figure out how many unique times there are for the keys - \n   float $keyList[] = `floatArrayRemoveDuplicates($keyTimes)`; // remove any duplicates from the array of keyframes  \n \n\tfor ($each in $keyList)\n\t{\n\tcurrentTime -e $each;\n\tbhGhostIt;\n\t}\n\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t}\t\n\t\t\t\n\t   currentTime -e $curFrame; \n\t}\nelse {\n   bhGhostIt;\n}\n}\n\n\n\n// main ghosting proc\nglobal proc bhGhostIt()\n{    \n    int $existFlag=0; // keep track of existing ghosts\n    int $conValue=0;  // keep track of existing ghosts connection to pfx node \n    string $origSelection[]=`ls -sl`; // use this at end of the script to restore the selection to whatever controllers were selected before hitting the ghost button\n    int $curTime = `currentTime -q`; // what frame are we on?\n    \n    // is there a ghost on this frame already? Delete it if so, so that it can be updated by pressing ghost again\n    if (`objExists (\"GGhost_\"+$curTime)`)\n    { \n    $existFlag =1;   \n    // need to find out which port of the pfx node the mesh is hooked up to so we can reattach the new mesh to the same one later\n    string $outObject = (\"GGhost_\"+$curTime+\"Shape.outMesh\");\n    $destinations = `connectionInfo -destinationFromSource $outObject`;    \n    string $destPort = $destinations[0]; \n    $conValue =`match \"[0-9]+\" $destPort`;  \n    // remove the existing mesh\n    select -r (\"GGhost_\"+$curTime);\n        delete;\n        select -r $origSelection;\n    }\n     \n     string $sourceMeshes[] =`textScrollList -q -ai meshTSL`;\n     int $sourceSize =`size $sourceMeshes`;\n     if ($sourceSize ==0)\n     {\n         error \"Nothing to Ghost...Please Load Some Meshes First..\";\n     }\n        select -cl;\n        for ($each in $sourceMeshes)\n        {\n        // create a new name for the duplicate mesh\n        string $newName = ($each+\"TempMesh\");        \n        string $dupeMesh[] = `duplicate -rc -n $newName $each`;\n        // now unlock all transforms in case the mesh was constrained rather than skinned\n        setAttr -lock false ($dupeMesh[0]+\".tx\");\n        setAttr -lock false ($dupeMesh[0]+\".ty\");\n        setAttr -lock false ($dupeMesh[0]+\".tz\");\n        setAttr -lock false ($dupeMesh[0]+\".rx\");\n        setAttr -lock false ($dupeMesh[0]+\".ry\");\n        setAttr -lock false ($dupeMesh[0]+\".rz\");\n        setAttr -lock false ($dupeMesh[0]+\".sx\");\n        setAttr -lock false ($dupeMesh[0]+\".sy\");\n        setAttr -lock false ($dupeMesh[0]+\".sz\");\n      \n         select -add $dupeMesh[0] ;\n        }\n        // if there's only one mesh in the list we'll make an extra copy so that the poly unite function will still work\n        if ($sourceSize ==1)\n        {\n            \n        string $dupeMeshProx[] = `duplicate -rc -n \"proxTempMesh\" $sourceMeshes[0]`;\n        // now unlock all transforms in case the mesh was constrained rather than skinned\n        setAttr -lock false ($dupeMeshProx[0]+\".tx\");\n        setAttr -lock false ($dupeMeshProx[0]+\".ty\");\n        setAttr -lock false ($dupeMeshProx[0]+\".tz\");\n        setAttr -lock false ($dupeMeshProx[0]+\".rx\");\n        setAttr -lock false ($dupeMeshProx[0]+\".ry\");\n        setAttr -lock false ($dupeMeshProx[0]+\".rz\");\n        setAttr -lock false ($dupeMeshProx[0]+\".sx\");\n        setAttr -lock false ($dupeMeshProx[0]+\".sy\");\n        setAttr -lock false ($dupeMeshProx[0]+\".sz\");\n        select -add $dupeMeshProx;\n        }\n        \n        // make the combined mesh\n        string $ghostName= (\"GGhost_\"+$curTime);\n        string $comboMeshes[]=`polyUnite -n $ghostName`;\n        string $newMesh=$comboMeshes[0];\n             \n        // now need to delete the unneeded transform nodes created above     \n        select -r `ls -r 1 \"*TempMesh*\"`; // this will find the transform nodes even if they have namespaces\n        delete;\n                       \n        // delete history on new mesh\n        select -r $newMesh;\n        DeleteHistory;\n    \n    // create a group to store the ghost meshes under if it doesn't alread\n    if (!`objExists \"bhGhosts\"`){\n\t\tgroup -em -n \"bhGhosts\";\n\t\tsetAttr \"bhGhosts.visibility\" 0;\n\t\t}\n\t\t\n\tparent $newMesh \"bhGhosts\";\t  // keep the scene tidy\n\t\n\t// check if the toon node exists, create it if not \n\n    \n    if (!`objExists \"bhGhostNode\"`){\n    string $toonNode=`createNode(\"pfxToon\")`;\n    string $toonParent[]= `listRelatives -parent $toonNode`;\n    rename $toonParent[0] \"bhGhostNode\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.tx\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.ty\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.tz\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.rx\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.ry\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.rz\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.sx\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.sy\";\n    setAttr -lock true -keyable false -channelBox false \"bhGhostNode.sz\";\n    setAttr \"bhGhostNodeShape.overrideEnabled\" 1;\n    setAttr \"bhGhostNodeShape.overrideDisplayType\" 2;\n    setAttr \"bhGhostNodeShape.creaseLines\" 0;\n    setAttr \"bhGhostNodeShape.borderLines\" 0;\n    setAttr \"bhGhostNodeShape.displayPercent\" 100;\n    float $lineVal = `floatSliderGrp -query -value \"line\"`;\n    setAttr \"bhGhostNodeShape.lineWidth\" $lineVal; \n     }\n    \n    // was there a ghost on this frame already?\n    // if no then :\n    if ($existFlag==0){ \n    // next we need to count how many ghosts already exist to figure out which ports of the toon node to connect to     \n    string $ghostsExists[] = `listRelatives \"bhGhosts\"`;\n    int $ghostCnt= `size $ghostsExists`;\n    $ghostCnt = $ghostCnt-1;\n   // connect the new ghost mesh to the existing pfxToon Node\n   string $ghostsShape[] = `listRelatives $newMesh`;\n   connectAttr -f ($ghostsShape[0]+\".outMesh\") bhGhostNodeShape.inputSurface[$ghostCnt].surface;\n   connectAttr -f ($ghostsShape[0]+\".worldMatrix[0]\") bhGhostNodeShape.inputSurface[$ghostCnt].inputWorldMatrix; \n   } \n   // if yes then connect the new one to the same pfx in port as the old one \n   if ($existFlag==1){ \n   string $ghostsShape[] = `listRelatives $newMesh`;\n   connectAttr -f ($ghostsShape[0]+\".outMesh\") bhGhostNodeShape.inputSurface[$conValue].surface;\n   connectAttr -f ($ghostsShape[0]+\".worldMatrix[0]\") bhGhostNodeShape.inputSurface[$conValue].inputWorldMatrix; \n   }\n   // check what colour option is selected and run the appropriate process\n   \n   int $checkMenu= `menuItem -q -radioButton blk`;\n   if ($checkMenu==1) bhBlackLine;\n   int $checkMenu= `menuItem -q -radioButton wht`;\n   if ($checkMenu==1) bhWhiteLine;\n   int $checkMenu= `menuItem -q -radioButton gry`;\n   if ($checkMenu==1) bhGreyLine;\n    int $checkMenu= `menuItem -q -radioButton red`;\n   if ($checkMenu==1) bhRedLine; \n   int $checkMenu= `menuItem -q -radioButton grn`;\n   if ($checkMenu==1) bhGreenLine;\n   int $checkMenu= `menuItem -q -radioButton blu`;\n   if ($checkMenu==1) bhBlueLine;\n   int $checkMenu= `menuItem -q -radioButton yel`;\n   if ($checkMenu==1) bhYellowLine;\n   \n    \n   \n   print (\"Boo!..Created Ghost on Frame \"+$curTime);\n   \n   select -r $origSelection; // select the controllers again\n}\n\nglobal proc bh_LineThickness()\n{\n    \nif (`objExists (\"bhGhostNode\")`){\n      float $lineVal = `floatSliderGrp -query -value \"line\"`;\n      string $toonNode = \"pfxToon1\";\n      setAttr \"bhGhostNodeShape.lineWidth\" $lineVal; \n      }\n}\n\n\nglobal proc bhToggleGhosts()\n{ \nif (`objExists (\"bhGhostNode\")`){\n$togVis= `getAttr \"bhGhostNodeShape.visibility\"`;\n      setAttr \"bhGhostNodeShape.visibility\" (1-$togVis); \n      }\n}\n\n// change line colour procs\nglobal proc bhBlackLine()\n{\n    if (`objExists (\"bhGhostNode\")`){\n    setAttr \"bhGhostNodeShape.profileColorB\" 0;\n    setAttr \"bhGhostNodeShape.profileColorR\" 0;\n    setAttr \"bhGhostNodeShape.profileColorG\" 0;\n    setAttr \"bhGhostNodeShape.drawAsMesh\" 0;\n    setAttr \"bhGhostNodeShape.drawAsMesh\" 1;\n    \n    }\n}\nglobal proc bhWhiteLine()\n{\n    \nif (`objExists (\"bhGhostNode\")`){\n    setAttr \"bhGhostNodeShape.profileColorB\" 1;\n    setAttr \"bhGhostNodeShape.profileColorR\" 1;\n    setAttr \"bhGhostNodeShape.profileColorG\" 1;\n    // These two lines are just in there to force a redraw of the pfxNode\n    setAttr \"bhGhostNodeShape.drawAsMesh\" 0; \n    setAttr \"bhGhostNodeShape.drawAsMesh\" 1;   \n    }\n}\nglobal proc bhGreyLine()\n{\n    \nif (`objExists (\"bhGhostNode\")`){\n    setAttr \"bhGhostNodeShape.profileColorB\" 0.5;\n    setAttr \"bhGhostNodeShape.profileColorR\" 0.5;\n    setAttr \"bhGhostNodeShape.profileColorG\" 0.5;\n    // These two lines are just in there to force a redraw of the pfxNode\n    setAttr \"bhGhostNodeShape.drawAsMesh\" 0; \n    setAttr \"bhGhostNodeShape.drawAsMesh\" 1;   \n    }\n}\n\n\n\nglobal proc bhRedLine()\n{\n    \nif (`objExists (\"bhGhostNode\")`){\n    setAttr \"bhGhostNodeShape.profileColorB\" 0;\n    setAttr \"bhGhostNodeShape.profileColorR\" 1;\n    setAttr \"bhGhostNodeShape.profileColorG\" 0;\n    // These two lines are just in there to force a redraw of the pfxNode\n    setAttr \"bhGhostNodeShape.drawAsMesh\" 0; \n    setAttr \"bhGhostNodeShape.drawAsMesh\" 1;   \n    }\n}\nglobal proc bhGreenLine()\n{\n    \nif (`objExists (\"bhGhostNode\")`){\n    setAttr \"bhGhostNodeShape.profileColorB\" 0;\n    setAttr \"bhGhostNodeShape.profileColorR\" 0;\n    setAttr \"bhGhostNodeShape.profileColorG\" 1;\n    // These two lines are just in there to force a redraw of the pfxNode\n    setAttr \"bhGhostNodeShape.drawAsMesh\" 0; \n    setAttr \"bhGhostNodeShape.drawAsMesh\" 1;   \n    }\n}\nglobal proc bhBlueLine()\n{\n    \nif (`objExists (\"bhGhostNode\")`){\n    setAttr \"bhGhostNodeShape.profileColorB\" 1;\n    setAttr \"bhGhostNodeShape.profileColorR\" 0;\n    setAttr \"bhGhostNodeShape.profileColorG\" 1;\n    // These two lines are just in there to force a redraw of the pfxNode\n    setAttr \"bhGhostNodeShape.drawAsMesh\" 0; \n    setAttr \"bhGhostNodeShape.drawAsMesh\" 1;   \n    }\n}\n\nglobal proc bhYellowLine()\n{\n    \nif (`objExists (\"bhGhostNode\")`){\n    setAttr \"bhGhostNodeShape.profileColorB\" 0;\n    setAttr \"bhGhostNodeShape.profileColorR\" 1;\n    setAttr \"bhGhostNodeShape.profileColorG\" 1;\n    // These two lines are just in there to force a redraw of the pfxNode\n    setAttr \"bhGhostNodeShape.drawAsMesh\" 0; \n    setAttr \"bhGhostNodeShape.drawAsMesh\" 1;   \n    }\n}\n\nglobal proc bhCloseHelpWin()\n{\n   deleteUI bhGhostHelp; \n}\n\nglobal proc bhHelpWin()\n{\n    if (`window -exists bhGhostHelp`)\n        deleteUI bhGhostHelp;\n          \n        window -toolbox 1 -rtf true -menuBar 1 bhGhostHelp ; \n        columnLayout -adj 1 mainHelpCol;\n         \n         \n//--------------------------------------------------------------------------\nstring $helpText =(\"===========================================================================================\"\n+\"\\n\"\n+\"bhGhost by Brian Horgan. Web - graphite9.com / Email - info@graphite9.com\"\n+\"\\n\"\n+\"===========================================================================================\"\n+\"\\n\"\n+\"*  Select some meshes and press the 'Add Meshes' button\"\n+\"\\n\"\n+\"*  NB these MUST be Poly objects ONLY\"\n+\"\\n\"\n+\"*  The 'Remove Highlighted' and 'Clear All' buttons allow you to remove meshes from the list if needed\"\n+\"\\n\"\n+\"*  Now click on the arrow beside the 'Meshes' tab to close the list and switch to working mode\"\n+\"\\n\"\n+\"*  Press the 'Ghost' button to create a ghost/onion-skin on the current frame\"\n+\"\\n\"\n+\"\\n\"\n+\"-  If you don't see the ghosts : \"\n+\"\\n\"\n+\"* Make sure 'Strokes' are enabled in the viewport Show menu \"\n+\"\\n\"\n+\"* Make sure you are using Default or High Quality viewport mode as Viewport 2.0 doesn't support toon lines (as of Maya 2013)\"\n\n+\"\\n\"\n+\"___________________________________________________________________________________________\"\n+\"\\n\"\n+\"\\n\"         \n+\"*  The Slider control adjusts the line thickness to suit your scene   \"       \n+\"\\n\"\n+\"*  The Colours dropdown menu allows you to change the line colour to suit your characters\"\n+\"\\n\"\n+\"*  The Vis button is for quickly showing/hiding the ghosts while working without deleting them\"\n+\"\\n\"\n+\"*  The Bust1 button will delete the ghost on the current frame\" \n+\"\\n\"\n+\"*  You can overwrite a ghost by simply pressing the Ghost button again\"\n+\"\\n\"\n+\"*  The BustAll button will delete all ghosts and related nodes from the file\"\n+\"\\n\"\n+\"*  NB Best to use the 'BustAll' button before saving your scene as otherwise the file will have duplicate meshes in it which will increase the file size (these are stored inside the bhGhosts group)\"\n+\"\\n\"\n\n+\"\\n\"\n+\"If you'd like to set up Hotkeys for the Ghost button and BustAll button the commands to add are \"\n+\"'bhGhostIt' and 'bhBustIt'. NB the GUI must still be used so that the tool knows which meshes to ghost.\"\n+\"\\n\"\n+\"___________________________________________________________________________________________\"\n+\"\\n\"\n+\"\\n\"\n+\"I work as a freelance animator and rigger and am available for hire. Please visit graphite9.com to see examples of my work.\"\n+\"\\n\"\n+\"\\n\"\n+\"This script is provided 'as is' and no responsibility will be taken for any losses incurred while using it. I don't have time to provide support for this tool as it's provided for free but I do welcome comments and suggestions.\"\n+\"\\n\"\n+\"\\n\"\n+\"I hope you find this useful. Happy Animating!\"\n\n);\n     \n //--------------------------------------------------------------------------\n         \n         \n        scrollField -wordWrap true -h 560 -text $helpText -ed false helpScroll;\n        separator -height 10 -style \"singleDash\";\n        button -w 54 -label \"Close Help\" -command bhCloseHelpWin b22; \n        separator -height 10 -style \"singleDash\";\n        showWindow bhGhostHelp;\n        window -edit -widthHeight 771 606 bhGhostHelp;\n\n    \n}\n\nglobal proc bhGhostShelf()// create a shelf button for current character\n{\n string $sourceMeshes[] =`textScrollList -q -ai meshTSL`;\n if (`size $sourceMeshes` ==0)\n {\n    error \"No Meshes in Mesh List - please set up the ghost manually before a shelf button can be created\";\n }\nstring $shelfCommand =\"select -cl;\\n\" ;\n \tfor ($node in $sourceMeshes)\n\t{\n\t\t$shelfCommand = $shelfCommand +(\"catch (`select -add \\\"\"+$node+\"\\\"`);\\n\");\n\t}\n\t\n\t$shelfCommand= $shelfCommand +\"bhGhost; select -cl;\";\n\t// create the shelf button\n\tstring $label =\"ghost\";\n\tglobal string $gShelfTopLevel;\nshelfButton\n\t\t\t-parent ($gShelfTopLevel + \"|\" + `tabLayout -q -st $gShelfTopLevel`)\n\t\t\t-enableCommandRepeat 1\n\t\t\t-enable 1\n\t\t\t-width 34\n\t\t\t-height 34\n\t\t\t-manage 1\n\t\t\t-visible 1\n\t\t\t-annotation $label\n\t\t\t-label $label \n\t\t\t-iol $label\n\t\t\t-image1 \"bhGhostIcon2.png\" \n\t\t\t-style \"iconOnly\" \n\t\t\t-command $shelfCommand;\n\t\t\t\n\n}\n\n\t\t\t// proc that removes keyframes that have the same times\t\nglobal proc float [] floatArrayRemoveDuplicates(float $list[])\n{\n    float $item, $results[];\n    int $index = 0, $found;\n\n    for ($item in $list)\n    {\n        $found = 0;\n        for ($result in $results)\n            if ($result == $item)\n                $found = 1;\n        if (!$found)\n            $results[$index++] = $item;\n    }\n    return $results;\n}\t\n\nbhGhost;\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "// Copyright 2015 Chris West. All Rights Reserved.\n// Export Maya Fluid Data to MegaFlow Format\n// Description: Writes out Fluid data to .flw text file\n\nglobal proc gridExport()\n{\n\tif ( `window -exists gridExport` )\n\t\tdeleteUI -window gridExport;\n\n\twindow -t \"MegaFlow Fluid Data Exporter\" -rtf 1 -widthHeight 100 100 gridExport;\n\tcolumnLayout rootLayout;\n\tframeLayout -labelVisible false -marginWidth 5 -marginHeight 5;\n\tcolumnLayout verticalSubframe;\n\n\tsetParent ..;\n\tcheckBoxGrp\n\t\t-numberOfCheckBoxes 3\n\t\t-label \"What to Export\"\n\t\t-labelArray3 \"Velocity\" \"Force\" \"Density\"\n\t\t-valueArray3 1 0 0\n\t\tmyChkBxGrp;\n\tradioButtonGrp -numberOfRadioButtons 2 -label \"Export Type\"\n\t-labelArray2 \"Single Frame\" \"Multiple Frames\"\n\t-select 1\n\t-onCommand1 \"intFieldGrp -edit -enable 0 endFrame;\"\n\t-onCommand2 \"intFieldGrp -edit -enable 1 endFrame;\"\n\tmyRadBtnGrp;\n\tcheckBoxGrp - l \"Use Cache Data?\" -v1 0 useCache;\n\tintFieldGrp -l \"Start Frame\" startFrame;\n\tintFieldGrp -l \"End Frame\"  -enable 0 -v1 3 endFrame;\n\ttextFieldGrp -l \"Save Dir\"  -text \"C:\\\\\" folderPath;\n\ttextFieldGrp -l \"Filename\" -text \"Fluid\" filename;\t\n\tcolumnLayout  -columnAttach \"both\" 0 -adjustableColumn true exportButton;\n\tbutton -l \"Export Data\" -w 50 -c \"iterateExport\";\n\n\tshowWindow gridExport;\n}\n\nglobal proc iterateExport()\n{\n\tint $startFrame = `intFieldGrp -q -v1 startFrame`;\n\tint $endFrame = `intFieldGrp -q -v1 endFrame`;\n\tstring $dataName[] =  {\"velocity\"};\n\tint $n = $startFrame;\n\n\tstring $sel[] = `ls -sl`;\n\n\tif ( size($sel) > 1 || size($sel) < 1 )\n\t\tprint(\"ERROR: Wrong number of Fluid Containers selected! Please select only one container.\");\n\telse\n\t{\n\t\tstring $fluidShape[] = `listRelatives -s $sel[0]`;\n\t\tstring $objectCheck = `objectType $fluidShape[0]`;\n\t   \n\t\tif ( $objectCheck == \"fluidShape\" )\n\t\t{\n\t\t\tint $doit = `checkBoxGrp -q -v1 useCache`;\n\n\t\t\tif ( $doit == 0 )\n\t\t\t{\n\t\t\t\tint $sceneCurTime = `currentTime -q`;\n\t\t\t\tint $sceneMinTime = `playbackOptions -q -minTime`;\n\t\t\t\tif ( $sceneCurTime > $startFrame )\n\t\t\t\t{\n\t\t\t\t\tcurrentTime $sceneMinTime;\n\t\t\t\t\tgotoFrame($sceneMinTime, $startFrame);             \n\t\t\t\t}\n\t\t\t\telse\n\t\t\t\t{\n\t\t\t\t\tif ( $sceneCurTime < $startFrame )\n\t\t\t\t\t\tgotoFrame($sceneCurTime, $startFrame);\n\t\t\t\t}\n\t\t\t}\n\t\t\n\t\t\tif ( `radioButtonGrp -q -select myRadBtnGrp` == 1 )\n\t\t\t{\n\t\t\t\tcurrentTime $n;\n\t\t\t\tstring $folder = `textFieldGrp -q -text folderPath`;\n\t\t\t\tstring $filename = `textFieldGrp -q -text filename`;\n\t\t\t\tstring $filePath = $folder +\"\\\\\"+ $filename + \"-\" + $n + \".flw\";\n\t\t\t\tfluidExport($dataName[0], $filePath, $fluidShape[0]);\n\t\t\t}\n\t\t\telse\n\t\t\t{\n\t\t\t\tfor ( $n = $startFrame; $n < ($endFrame + 1); $n++ )\n\t\t\t\t{\n\t\t\t\t\tcurrentTime $n;\n\t\t\t\t\tstring $folder = `textFieldGrp -q -text folderPath`;\n\t\t\t\t\tstring $filename = `textFieldGrp -q -text filename`;\n\t\t\t\t\tstring $filePath = $folder +\"\\\\\"+ $filename + \"-\" + $n + \".flw\";\n\t\t\t\t\tfluidExport($dataName[0], $filePath, $fluidShape[0]);\t\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\telse\n\t\t\tprint(\"ERROR: No Fluid Container selected!\");\n\t}\n}\n\nglobal proc fluidExport(string $dataName, string $filePath, string $myfluidShape)\n{\n\tint $voxCount = 0;\n\n\tfloat $res[] = `eval(\"getAttr \" + $myfluidShape + \".res\")`;\n\n\tstring $fluidShapeParent[] = `listRelatives -p $myfluidShape`;\n\n\tfloat $bb[] = `xform -q -ws -bb $fluidShapeParent[0]`;\n\n\tint $fileId=`fopen $filePath \"w\"`;\n\n\tfprint $fileId (\"<Fluid \");\n\tfprint $fileId (\"grid=\\\"\");\n\tfprint $fileId (\"\" + $res[0] + \",\");\n\tfprint $fileId (\"\" + $res[1] + \",\");\n\tfprint $fileId (\"\" + $res[2] + \"\\\"\");\n\n\tfprint $fileId (\" size=\\\"\");\n\tfprint $fileId (\"\" + $bb[0] + \",\");\n\tfprint $fileId (\"\" + $bb[1] + \",\");\n\tfprint $fileId (\"\" + $bb[2] + \",\");\n\tfprint $fileId (\"\" + $bb[3] + \",\");\n\tfprint $fileId (\"\" + $bb[4] + \",\");\n\tfprint $fileId (\"\" + $bb[5] + \"\\\">\\n\");\n\n\tint $x = 0;\n\tint $y = 0;\n\tint $z = 0;\n\tvector $myV = 0;\n\n\tint $expVel = `checkBoxGrp -q -v1 myChkBxGrp`;\n\tif ( $expVel == 1 )\n\t{\n\t\tfprint $fileId (\"\\t<Vel data=\\\"\");\n\t\tfor ( $z = 0; $z < $res[2]; $z++ )\n\t\t{\n\t\t\tfor ( $y = 0; $y < $res[1]; $y++ )\n\t\t\t{\n\t\t\t\tfor ( $x = 0; $x < $res[0]; $x++ )\n\t\t\t\t{\n\t\t\t\t\tfloat $v[] = `getFluidAttr -at \"velocity\" -xi $x -yi $y -zi $z`;\t\t\n\n\t\t\t\t\t//$myV = << $v[0], $v[1], $v[2] >>;\n\n\t\t\t\t\tfprint $fileId ($v[0] + \",\" + $v[1] + \",\" + $v[2] + \",\");\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfprint $fileId (\"\\\"/>\\n\");\n\t}\n\n\tint $expForce = `checkBoxGrp -q -v2 myChkBxGrp`;\n\tif ( $expForce == 1 )\n\t{\n\t\tfprint $fileId (\"\\t<Force data=\\\"\");\n\t\tfor ( $z = 0; $z < $res[2]; $z++ )\n\t\t{\n\t\t\tfor ( $y = 0; $y < $res[1]; $y++ )\n\t\t\t{\n\t\t\t\tfor ( $x = 0; $x < $res[0]; $x++ )\n\t\t\t\t{\n\t\t\t\t\tfloat $v[] = `getFluidAttr -at \"force\" -xi $x -yi $y -zi $z`;\t\t\n\n\t\t\t\t\t//$myV = << $v[0], $v[1], $v[2] >>;\n\n\t\t\t\t\tfprint $fileId ($v[0] + \",\" + $v[1] + \",\" + $v[2] + \",\");\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfprint $fileId (\"\\\"/>\\n\");\n\t}\n\n\tint $expDensity = `checkBoxGrp -q -v3 myChkBxGrp`;\n\tif ( $expDensity == 1 )\n\t{\n\t\tfprint $fileId (\"\\t<Density data=\\\"\");\n\t\tfor ( $z = 0; $z < $res[2]; $z++ )\n\t\t{\n\t\t\tfor ( $y = 0; $y < $res[1]; $y++ )\n\t\t\t{\n\t\t\t\tfor ( $x = 0; $x < $res[0]; $x++ )\n\t\t\t\t{\n\t\t\t\t\tfloat $v[] = `getFluidAttr -at \"density\" -xi $x -yi $y -zi $z`;\t\t\n\t\t\t\t\tfprint $fileId ($v[0] + \",\");\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfprint $fileId (\"\\\"/>\\n\");\n\t}\n\n\tfprint $fileId (\"</Fluid>\\n\");\n\tfclose $fileId;\n}\n\nglobal proc gotoFrame(int $baseframe, int $exportFirstFrame)\n{\n\tint\t$i;\n\tfor ( $i = $baseframe; $i < $exportFirstFrame; $i++ )\n\t\tcurrentTime $i;\n}\n\ngridExport();\n\n" 
+        -enableBackground 0
+        -align "center" 
+        -label "// Copyright 2015 Chris West. All Rights Reserved.\n// Export May..." 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "flw" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "// Copyright 2015 Chris West. All Rights Reserved.\n// Export Maya Fluid Data to MegaFlow Format\n// Description: Writes out Fluid data to .flw text file\n\nglobal proc gridExport()\n{\n\tif ( `window -exists gridExport` )\n\t\tdeleteUI -window gridExport;\n\n\twindow -t \"MegaFlow Fluid Data Exporter\" -rtf 1 -widthHeight 100 100 gridExport;\n\tcolumnLayout rootLayout;\n\tframeLayout -labelVisible false -marginWidth 5 -marginHeight 5;\n\tcolumnLayout verticalSubframe;\n\n\tsetParent ..;\n\tcheckBoxGrp\n\t\t-numberOfCheckBoxes 3\n\t\t-label \"What to Export\"\n\t\t-labelArray3 \"Velocity\" \"Force\" \"Density\"\n\t\t-valueArray3 1 0 0\n\t\tmyChkBxGrp;\n\tradioButtonGrp -numberOfRadioButtons 2 -label \"Export Type\"\n\t-labelArray2 \"Single Frame\" \"Multiple Frames\"\n\t-select 1\n\t-onCommand1 \"intFieldGrp -edit -enable 0 endFrame;\"\n\t-onCommand2 \"intFieldGrp -edit -enable 1 endFrame;\"\n\tmyRadBtnGrp;\n\tcheckBoxGrp - l \"Use Cache Data?\" -v1 0 useCache;\n\tintFieldGrp -l \"Start Frame\" startFrame;\n\tintFieldGrp -l \"End Frame\"  -enable 0 -v1 3 endFrame;\n\ttextFieldGrp -l \"Save Dir\"  -text \"C:\\\\\" folderPath;\n\ttextFieldGrp -l \"Filename\" -text \"Fluid\" filename;\t\n\tcolumnLayout  -columnAttach \"both\" 0 -adjustableColumn true exportButton;\n\tbutton -l \"Export Data\" -w 50 -c \"iterateExport\";\n\n\tshowWindow gridExport;\n}\n\nglobal proc iterateExport()\n{\n\tint $startFrame = `intFieldGrp -q -v1 startFrame`;\n\tint $endFrame = `intFieldGrp -q -v1 endFrame`;\n\tstring $dataName[] =  {\"velocity\"};\n\tint $n = $startFrame;\n\n\tstring $sel[] = `ls -sl`;\n\n\tif ( size($sel) > 1 || size($sel) < 1 )\n\t\tprint(\"ERROR: Wrong number of Fluid Containers selected! Please select only one container.\");\n\telse\n\t{\n\t\tstring $fluidShape[] = `listRelatives -s $sel[0]`;\n\t\tstring $objectCheck = `objectType $fluidShape[0]`;\n\t   \n\t\tif ( $objectCheck == \"fluidShape\" )\n\t\t{\n\t\t\tint $doit = `checkBoxGrp -q -v1 useCache`;\n\n\t\t\tif ( $doit == 0 )\n\t\t\t{\n\t\t\t\tint $sceneCurTime = `currentTime -q`;\n\t\t\t\tint $sceneMinTime = `playbackOptions -q -minTime`;\n\t\t\t\tif ( $sceneCurTime > $startFrame )\n\t\t\t\t{\n\t\t\t\t\tcurrentTime $sceneMinTime;\n\t\t\t\t\tgotoFrame($sceneMinTime, $startFrame);             \n\t\t\t\t}\n\t\t\t\telse\n\t\t\t\t{\n\t\t\t\t\tif ( $sceneCurTime < $startFrame )\n\t\t\t\t\t\tgotoFrame($sceneCurTime, $startFrame);\n\t\t\t\t}\n\t\t\t}\n\t\t\n\t\t\tif ( `radioButtonGrp -q -select myRadBtnGrp` == 1 )\n\t\t\t{\n\t\t\t\tcurrentTime $n;\n\t\t\t\tstring $folder = `textFieldGrp -q -text folderPath`;\n\t\t\t\tstring $filename = `textFieldGrp -q -text filename`;\n\t\t\t\tstring $filePath = $folder +\"\\\\\"+ $filename + \"-\" + $n + \".flw\";\n\t\t\t\tfluidExport($dataName[0], $filePath, $fluidShape[0]);\n\t\t\t}\n\t\t\telse\n\t\t\t{\n\t\t\t\tfor ( $n = $startFrame; $n < ($endFrame + 1); $n++ )\n\t\t\t\t{\n\t\t\t\t\tcurrentTime $n;\n\t\t\t\t\tstring $folder = `textFieldGrp -q -text folderPath`;\n\t\t\t\t\tstring $filename = `textFieldGrp -q -text filename`;\n\t\t\t\t\tstring $filePath = $folder +\"\\\\\"+ $filename + \"-\" + $n + \".flw\";\n\t\t\t\t\tfluidExport($dataName[0], $filePath, $fluidShape[0]);\t\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\telse\n\t\t\tprint(\"ERROR: No Fluid Container selected!\");\n\t}\n}\n\nglobal proc fluidExport(string $dataName, string $filePath, string $myfluidShape)\n{\n\tint $voxCount = 0;\n\n\tfloat $res[] = `eval(\"getAttr \" + $myfluidShape + \".res\")`;\n\n\tstring $fluidShapeParent[] = `listRelatives -p $myfluidShape`;\n\n\tfloat $bb[] = `xform -q -ws -bb $fluidShapeParent[0]`;\n\n\tint $fileId=`fopen $filePath \"w\"`;\n\n\tfprint $fileId (\"<Fluid \");\n\tfprint $fileId (\"grid=\\\"\");\n\tfprint $fileId (\"\" + $res[0] + \",\");\n\tfprint $fileId (\"\" + $res[1] + \",\");\n\tfprint $fileId (\"\" + $res[2] + \"\\\"\");\n\n\tfprint $fileId (\" size=\\\"\");\n\tfprint $fileId (\"\" + $bb[0] + \",\");\n\tfprint $fileId (\"\" + $bb[1] + \",\");\n\tfprint $fileId (\"\" + $bb[2] + \",\");\n\tfprint $fileId (\"\" + $bb[3] + \",\");\n\tfprint $fileId (\"\" + $bb[4] + \",\");\n\tfprint $fileId (\"\" + $bb[5] + \"\\\">\\n\");\n\n\tint $x = 0;\n\tint $y = 0;\n\tint $z = 0;\n\tvector $myV = 0;\n\n\tint $expVel = `checkBoxGrp -q -v1 myChkBxGrp`;\n\tif ( $expVel == 1 )\n\t{\n\t\tfprint $fileId (\"\\t<Vel data=\\\"\");\n\t\tfor ( $z = 0; $z < $res[2]; $z++ )\n\t\t{\n\t\t\tfor ( $y = 0; $y < $res[1]; $y++ )\n\t\t\t{\n\t\t\t\tfor ( $x = 0; $x < $res[0]; $x++ )\n\t\t\t\t{\n\t\t\t\t\tfloat $v[] = `getFluidAttr -at \"velocity\" -xi $x -yi $y -zi $z`;\t\t\n\n\t\t\t\t\t//$myV = << $v[0], $v[1], $v[2] >>;\n\n\t\t\t\t\tfprint $fileId ($v[0] + \",\" + $v[1] + \",\" + $v[2] + \",\");\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfprint $fileId (\"\\\"/>\\n\");\n\t}\n\n\tint $expForce = `checkBoxGrp -q -v2 myChkBxGrp`;\n\tif ( $expForce == 1 )\n\t{\n\t\tfprint $fileId (\"\\t<Force data=\\\"\");\n\t\tfor ( $z = 0; $z < $res[2]; $z++ )\n\t\t{\n\t\t\tfor ( $y = 0; $y < $res[1]; $y++ )\n\t\t\t{\n\t\t\t\tfor ( $x = 0; $x < $res[0]; $x++ )\n\t\t\t\t{\n\t\t\t\t\tfloat $v[] = `getFluidAttr -at \"force\" -xi $x -yi $y -zi $z`;\t\t\n\n\t\t\t\t\t//$myV = << $v[0], $v[1], $v[2] >>;\n\n\t\t\t\t\tfprint $fileId ($v[0] + \",\" + $v[1] + \",\" + $v[2] + \",\");\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfprint $fileId (\"\\\"/>\\n\");\n\t}\n\n\tint $expDensity = `checkBoxGrp -q -v3 myChkBxGrp`;\n\tif ( $expDensity == 1 )\n\t{\n\t\tfprint $fileId (\"\\t<Density data=\\\"\");\n\t\tfor ( $z = 0; $z < $res[2]; $z++ )\n\t\t{\n\t\t\tfor ( $y = 0; $y < $res[1]; $y++ )\n\t\t\t{\n\t\t\t\tfor ( $x = 0; $x < $res[0]; $x++ )\n\t\t\t\t{\n\t\t\t\t\tfloat $v[] = `getFluidAttr -at \"density\" -xi $x -yi $y -zi $z`;\t\t\n\t\t\t\t\tfprint $fileId ($v[0] + \",\");\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfprint $fileId (\"\\\"/>\\n\");\n\t}\n\n\tfprint $fileId (\"</Fluid>\\n\");\n\tfclose $fileId;\n}\n\nglobal proc gotoFrame(int $baseframe, int $exportFirstFrame)\n{\n\tint\t$i;\n\tfor ( $i = $baseframe; $i < $exportFirstFrame; $i++ )\n\t\tcurrentTime $i;\n}\n\ngridExport();\n\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "select -r -ne set_NormanFace ;\nupdateAnimLayerEditor(\"AnimLayerTab\");\nif (!`exists polyNormalSizeMenuUpdate`) {eval \"source buildDisplayMenu\";} polyNormalSizeMenuUpdate;\nautoUpdateAttrEd;\nstatusLineUpdateInputField;\nOutlinerEdMenuCommand outlinerPanel1;\nselectAllSetMembers outlinerPanel1;\nupdateAnimLayerEditor(\"AnimLayerTab\");\nif (!`exists polyNormalSizeMenuUpdate`) {eval \"source buildDisplayMenu\";} polyNormalSizeMenuUpdate;\nautoUpdateAttrEd;\nstatusLineUpdateInputField;" 
+        -enableBackground 0
+        -align "center" 
+        -label "select -r -ne set_NormanFace ;\nupdateAnimLayerEditor(\"AnimLayerT..." 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -imageOverlayLabel "faceSel" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "select -r -ne set_NormanFace ;\nupdateAnimLayerEditor(\"AnimLayerTab\");\nif (!`exists polyNormalSizeMenuUpdate`) {eval \"source buildDisplayMenu\";} polyNormalSizeMenuUpdate;\nautoUpdateAttrEd;\nstatusLineUpdateInputField;\nOutlinerEdMenuCommand outlinerPanel1;\nselectAllSetMembers outlinerPanel1;\nupdateAnimLayerEditor(\"AnimLayerTab\");\nif (!`exists polyNormalSizeMenuUpdate`) {eval \"source buildDisplayMenu\";} polyNormalSizeMenuUpdate;\nautoUpdateAttrEd;\nstatusLineUpdateInputField;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+
+} 
