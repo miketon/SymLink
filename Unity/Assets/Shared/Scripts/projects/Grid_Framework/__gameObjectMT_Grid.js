@@ -9,7 +9,7 @@ class __gameObjectMT_Grid extends MonoBehaviour{
   protected var GRID_TYPE_mt : System.Type                    ;
   protected var gOffSet      : float   = 0.0                  ; //position offset based on gridtype
   protected var gAngle       : Vector3 = Vector3(0.0,0.0,0.0) ; //rotation offset based on gridtype
-  protected var gPlane       : GFGrid.GridPlane               ;
+  protected var gPlane       : GridFramework.GridPlane               ;
   protected var gCellSize    : Vector3 = Vector3(0.0,0.0,0.0) ;
   //cell var
   protected var cellRng      : Vector3 = Vector3(0.0,0.0,0.0) ;
@@ -50,7 +50,7 @@ class __gameObjectMT_Grid extends MonoBehaviour{
     }
   }
 
-  function GetAngleFromPlane(gPlane_IN:GFGrid.GridPlane):Vector3{
+  function GetAngleFromPlane(gPlane_IN:GridFramework.GridPlane):Vector3{
     var gAngle:Vector3;
     if(gPlane_IN == GFGrid.GridPlane.XZ){
       gAngle = Vector3(00,180.0,0.0); //rotating for top down

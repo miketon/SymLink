@@ -1,4 +1,5 @@
-﻿#pragma strict
+﻿/*
+#pragma strict
 
 var rotateAmount : float;
 
@@ -12,3 +13,4 @@ function RandomRotateObj(range_IN:float){
 function ApplyForce(force_IN:float){
   rigidbody.AddForce(0.0, force_IN, 0.0);
 }
+*/

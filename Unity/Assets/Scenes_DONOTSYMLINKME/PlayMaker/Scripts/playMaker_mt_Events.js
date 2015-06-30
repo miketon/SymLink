@@ -1,5 +1,5 @@
-﻿#pragma strict
-
+﻿/*
+#pragma strict
 var randNumFSM : PlayMakerFSM;
 
 function Start () {
@@ -12,3 +12,4 @@ function Update () {
     randNumFSM.Fsm.Event("set_Number");
   }
 }
+*/

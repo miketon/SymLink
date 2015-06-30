@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scenes_DONOTSYMLINKME/PlayMaker/Scripts/playMaker_mt_Events.js">
+    <Files>
+      <File FileName="Assets/Standard Assets/Image Effects (Pro Only)/MotionBlur.cs" Line="4" Column="1" />
+      <File FileName="Assets/Shared/Scripts/projects/Physics_Platformer_Kit_Icarus/Throwing_mton.cs" Line="1" Column="1" />
+      <File FileName="Assets/Plugins/Physics Platformer Kit/Scripts/CharacterMotor.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scenes_DONOTSYMLINKME/PlayMaker/Scripts/playMaker_mt_Events.js" Line="15" Column="3" />
+      <File FileName="Assets/Scenes_DONOTSYMLINKME/PlayMaker/Scripts/playMaker_mt_Functions.js" Line="16" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
