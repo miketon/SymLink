@@ -9,15 +9,15 @@ namespace MTON.Class{
     public int currentEquip { get; set; } 
 
     // On Equip
-	public void OnEquip(){
+	public virtual void OnEquip(){
 	  Debug.Log(this + "MTON.Class : OnEquip ");
 	}
     // Use Equipment
-    public void UsEquip(){
+    public virtual void UsEquip(){
 
 	}
     // Un Equip
-	public void UnEquip(){
+	public virtual void UnEquip(){
 
 	}
 
