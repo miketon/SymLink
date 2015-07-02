@@ -5,15 +5,12 @@ namespace MTON.Interface{
 
   public interface IInput{
 
-    // current Equip
-    int bInput { get; set; } //is input enabled
+    // Is input enabled
+    int bInput { get; set; } 
 
     // Directional Pad
-    void OnDir_Mov() ;
-    void OnDir_Aim() ;
-    // GamePad Buttons
-    void Do_Jump() ;
-    void Do_Attk() ;
+    void OnDir_Mov(Vector3 vDir) ;
+    void OnDir_Aim(Vector3 vDir) ;
 
   }
 
