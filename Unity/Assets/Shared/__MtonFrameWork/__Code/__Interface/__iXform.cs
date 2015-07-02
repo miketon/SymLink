@@ -1,10 +1,9 @@
 using UnityEngine        ;
 using System.Collections ;
-using DG.Tweening        ; //import tweens
 
-namespace MTON{
+namespace MTON.Interface{
 
-#region Mton Interface
+#region Mton Interface - Character Container
   public interface IXform{
     //Properties
     Transform  xform   { get; set; }
@@ -42,31 +41,9 @@ namespace MTON{
     void ResetRotation()       ;
   }
 
-  public interface IShapeBlend{
-    int blendShapeCount { get; set; }
-  }
-
-  public interface IDoTween{ //DoTween
-    bool bParticle{ get; set; } //Particle == disappear on action
-    //DOTween variables
-    Tween    tw_Cache { get; set; }
-    Sequence sq_Cache { get; set; }
-  }
-
-  public interface IDisplay{ //handles vectrosity and other display states
-
-    void Draw();
-    void Kill();
-
-  }
-
-  public interface IAnimn_IO{ //Reacts to IO..doActive onPress and doRest onRelease.  Designed as Member object
-    //Properties
-    Renderer rendr{ get; set; }
-
-    void anActv();
-    void anRest();
-  }
+#endregion
+/*
+#region Mton Interface Animation
 
   public interface IAnimn_DO{ //Interface for base animation functions : handles view logic and calls IRbody implementation : mRbody/mCcntl
 
@@ -97,9 +74,11 @@ namespace MTON{
     int      _bForwrd_ID { get; set; } //2d true == right; 3d true == forward
 
   }
-
 #endregion
+*/
 
+}
+/*
   ///---------------------------------------DEFAULT IMPLEMENTATIONS----------------------------------------------------/// 
 
 
@@ -121,90 +100,6 @@ namespace MTON{
       //      }
     }
   }
-
-#region    IMPLEMENT INTERFACES : IXform
-  public class mXform : mNFace, IXform {
-
-    private float groundThreshold = 0.05f; //margin for ground check and object swap out.
-
-    private Vector3   prePos  ; //previous position
-    private Vector3   curPos  ;
-
-    public virtual void Awake(){
-      xform = GetComponent<Transform>() ;
-      rot   = xform.localRotation       ; //HACK : doing in AfterBind, rotation == parent's
-      pos   = xform.position            ;
-      scl   = xform.localScale          ;
-    }
-
-    public Transform xform   { get; set; }
-    //    public float     kFacing { get; set; } //1.0f == forward(or right in 2D); else -1.0f backwards
-    public bool      bGround { get; set; }
-    public float     dToGround =  0.55f;
-
-    public Vector3 pos{
-      get{ return xform.position  ; }
-      set{ xform.position = value ; } //??? HACK : Where is implicit "value" coming from???
-    }
-    public Quaternion rot{ 
-      get{ return xform.rotation  ; }
-      set{ xform.rotation = value ; }
-    }
-    public Vector3 scl{ get; set;} //??? HACK : Shortcuting scale else DOTWEEN doesn't completely reset size
-
-    public virtual bool OnGround(){
-      //      Debug.DrawLine(xform.position, xform.position + (-Vector3.up * dToGround), Color.yellow, 0.5f, false);
-      if (ToGround(dToGround) > -groundThreshold){ //return true if ToGround returns hit distance (-1.0f on miss)
-        bGround = true; //Always update bGround property
-        return bGround; //found ground
-      }
-      else{
-        bGround = false ;
-        return bGround  ; //ground not found 
-      }
-    }
-
-    public float ToGround(float distCheck){ //if > 0.0f == OnGround found
-      return dirRayCheck(-Vector3.up, distCheck, 0.0f);
-    }
-
-    public float dirRayCheck(Vector3 IN_dir, float IN_magnitude, float IN_offSetX){    //direction, magnitude and x offset
-      RaycastHit hit                                                                 ;
-      var pPos = xform.position + (Vector3.right * IN_offSetX)                       ; //calculate vertical and horizontal offset
-      Debug.DrawLine(pPos, pPos + (IN_dir * IN_magnitude), Color.red, 0.5f, false)   ;
-      if (Physics.Raycast(pPos, IN_dir, out hit, Mathf.Abs(IN_magnitude))){            //return hit distance to the ground
-        return hit.distance     ; //found ground, returning distance > 0.0f
-      }
-      else{
-        return -groundThreshold ; //not found ground returning < 0.0f
-      }
-    }
-
-    public virtual void Spawn(Vector3 vecPos){
-      xform.position = vecPos           ;
-      xform.gameObject.SetActive(true)  ; 
-    }
-
-    public virtual void Kill() { 
-      xform.gameObject.SetActive(false) ; 
-    }
-
-    public Vector2 On_kPos(){
-      var kPos = Vector2.zero;
-      curPos    = xform.position ;
-      if(!OnGround()){ //if not on ground : must be rising or falling
-        kPos.y = curPos.y - prePos.y;
-      }
-      else{
-        kPos.y = 0.0f;
-      }
-      kPos.x = curPos.x - prePos.x;
-      prePos = curPos ;
-      return kPos;
-    }
-
-  }
-#endregion
 
 
 #region    IMPLEMENT INTERFACES : mXformTween
@@ -590,3 +485,4 @@ namespace MTON{
 
 
 }
+*/

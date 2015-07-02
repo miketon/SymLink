@@ -4,7 +4,11 @@ using MTON.Interface     ;
 
 namespace MTON.Class{
 
-  public class cEquip : IEquip{
+  public class cEquip : MonoBehaviour, IEquip{
+
+		public virtual void Start(){
+			Debug.Log(this + " Start ! ");
+		}
     // current Equip
     public int currentEquip { get; set; } 
 

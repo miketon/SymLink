@@ -4,7 +4,11 @@ using MTON.Interface     ;
 
 namespace MTON.Class{
 
-	public class cInput : IInput{
+	public class cInput : MonoBehaviour, IInput{
+
+        public virtual void Start(){
+			Debug.Log(this + " Start ! ");
+		}
 
 		// Is input enabled
 		public int bInput { get; set; } 
