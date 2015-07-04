@@ -9,6 +9,17 @@ namespace MTON.Class{
 #region    IMPLEMENT INTERFACES : IXform
   public class cXform : MonoBehaviour, IXform{
 
+	public static LayerMask __layerGround;
+
+	public virtual void Awake(){
+	  __layerGround = LayerMask.GetMask (IGlobal_CONSTANT._FLOOR);
+
+	  xform = GetComponent<Transform>() ;
+      rot   = xform.localRotation       ; //HACK : doing in AfterBind, rotation == parent's
+      pos   = xform.position            ;
+      scl   = xform.localScale          ;
+	}
+
 	public virtual void Start(){
 	  Debug.Log(this + " Start ! ");
 	}
@@ -17,13 +28,6 @@ namespace MTON.Class{
 
     private Vector3   prePos  ; //previous position
     private Vector3   curPos  ;
-
-    public virtual void Awake(){
-      xform = GetComponent<Transform>() ;
-      rot   = xform.localRotation       ; //HACK : doing in AfterBind, rotation == parent's
-      pos   = xform.position            ;
-      scl   = xform.localScale          ;
-    }
 
     public Transform xform   { get; set; }
     //    public float     kFacing { get; set; } //1.0f == forward(or right in 2D); else -1.0f backwards
@@ -41,7 +45,7 @@ namespace MTON.Class{
     public Vector3 scl{ get; set;} //??? HACK : Shortcuting scale else DOTWEEN doesn't completely reset size
 
     public virtual bool OnGround(){
-      //      Debug.DrawLine(xform.position, xform.position + (-Vector3.up * dToGround), Color.yellow, 0.5f, false);
+      Debug.DrawLine(xform.position, xform.position + (-Vector3.up * dToGround), Color.yellow, 10.5f, false);
       if (ToGround(dToGround) > -groundThreshold){ //return true if ToGround returns hit distance (-1.0f on miss)
         bGround = true; //Always update bGround property
         return bGround; //found ground
@@ -60,7 +64,7 @@ namespace MTON.Class{
       RaycastHit hit                                                                 ;
       var pPos = xform.position + (Vector3.right * IN_offSetX)                       ; //calculate vertical and horizontal offset
       Debug.DrawLine(pPos, pPos + (IN_dir * IN_magnitude), Color.red, 0.5f, false)   ;
-      if (Physics.Raycast(pPos, IN_dir, out hit, Mathf.Abs(IN_magnitude))){            //return hit distance to the ground
+      if (Physics.Raycast(pPos, IN_dir, out hit, Mathf.Abs(IN_magnitude), __layerGround)){            //return hit distance to the ground
         return hit.distance     ; //found ground, returning distance > 0.0f
       }
       else{
@@ -127,7 +131,7 @@ namespace MTON.Class{
 //	private Vector3 _cntVel   = Vector3.zero ;
 	
 	// Use this for initialization
-	void Start () {
+	public virtual void Start () {
 		contrl    = this.GetComponent<CharacterController>() ;
 		if(contrl != null){
 			cRadius   = this.contrl.radius * this.transform.localScale.x         ;
@@ -140,7 +144,7 @@ namespace MTON.Class{
 		}
 	}
 
-	private void Update(){
+	private void FixedUpdate(){
 	  bGround = this.OnGround()                                 ; //calculate ground state
 	  Fall()                                                    ; //calculate vertical state
 	  doJump()                                                  ; //calculate jump state : NOTE : Can't replace with longform bJump prop handler???
@@ -228,6 +232,21 @@ namespace MTON.Class{
 
   }
 #endregion
+
+  public class mCcntl_mt :  mCcntl{
+
+	public Transform    GroundCheckGroup;
+	private Transform[] groundChecks;
+	
+	public override void Awake (){
+	  base.Awake ();
+	}
+
+	//Utilities -- Not extending xForm so reimplementing ground logic
+	public override bool OnGround(){                                          //completely overriding mXform.OnGround() function
+	  return Physics2D.OverlapCircle (GroundCheckGroup.position, 0.15f, __layerGround);
+	}
+  }
 
 #region    IMPLEMENT INTERFACES : mRbody
   public class mRbody : cXform, IRbody{
