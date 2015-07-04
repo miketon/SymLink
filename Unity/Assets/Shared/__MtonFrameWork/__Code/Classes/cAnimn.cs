@@ -4,7 +4,7 @@ using MTON.Interface     ;
 
 namespace MTON.Class{
 
-	public class cAnimn : MonoBehaviour, iAnimn{
+	public class cAnimn : MonoBehaviour, IAnimn{
 
         public virtual void Awake(){
 			Debug.Log(this + " Awake! ");

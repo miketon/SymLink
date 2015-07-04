@@ -9,9 +9,9 @@ namespace MTON.Class{
 #region    IMPLEMENT INTERFACES : IXform
   public class cXform : MonoBehaviour, IXform{
 
-		public virtual void Start(){
-			Debug.Log(this + " Start ! ");
-		}
+	public virtual void Start(){
+	  Debug.Log(this + " Start ! ");
+	}
 
     private float groundThreshold = 0.05f; //margin for ground check and object swap out.
 
@@ -90,6 +90,141 @@ namespace MTON.Class{
       prePos = curPos ;
       return kPos;
     }
+
+  }
+#endregion
+
+#region    IMPLEMENT INTERFACES : mCcntl
+  public class mCcntl : cXform, IRbody{
+
+    public CharacterController contrl ;// { get; set; }
+
+	public  float moveForce = 3.0f  ;
+	public  float jumpForce = 4.25f ;
+	public  float flapForce = 4.25f ;
+	public  float dashForce = 3.0f  ;
+	public  float massForce = 1.0f  ;
+
+	public  float accelY    = 0.055f       ;
+	public  float moveSpeed = 1.0f         ; //HACK:Must be set to one else fall through ground. IO will normalize to zero per frame.
+	private float vy        = 0.0f         ;
+	private float termVeloc = 54.0f        ; //Terminal velocity : 54 = a skydiver free-fall to earth according to wikipedia
+
+	public float cRadius   = 0.0f     ; //character controller property; NOTE: these are field values => not informed by
+	public float cHeight   = 0.0f     ; //runtime transform/scale
+//    public float dToGround = 0.0f     ; //distance to ground, pillbox offset to y center HACK: Using mXform.dToGround container...
+
+	public bool  bJump   = false ;// { get; set; }
+	public bool  dash    = false ;
+	public bool  bGround = false ;
+	public bool  bCeilng = false ;
+
+	public  Vector3 hMoveDirOffset = new Vector3(1.0f, 0.0f, -1.5f) ; //controls the facing offset of character on move left and right
+
+	public  Vector3 move      = Vector3.zero ;
+	public  Vector3 gravity   = Vector3.zero ;
+	public  Vector3 pGrav     = Vector3.zero ; //physic gravity : sampled from the scene
+//	private Vector3 _cntVel   = Vector3.zero ;
+	
+	// Use this for initialization
+	void Start () {
+		contrl    = this.GetComponent<CharacterController>() ;
+		if(contrl != null){
+			cRadius   = this.contrl.radius * this.transform.localScale.x         ;
+			cHeight   = this.contrl.height * this.transform.localScale.y * 0.5f  ; //character cylinder  y center
+			dToGround = this.cHeight + 0.10f                                     ; //HACK: Can't access skin width via code ???, close approximation ??? built in onGround fails ???
+			pGrav     = Physics.gravity                                          ;
+		}
+		else{
+			Debug.LogError("CHARACTER CONTROLLER MISSING : " + this);
+		}
+	}
+
+	private void Update(){
+	  bGround = this.OnGround()                                 ; //calculate ground state
+	  Fall()                                                    ; //calculate vertical state
+	  doJump()                                                  ; //calculate jump state : NOTE : Can't replace with longform bJump prop handler???
+
+	  gravity.x = move.x                                        ; //combine with move from Move()=>oMoveH() for final position
+	  gravity.z = 0.0f                                          ; //forces character to stay in 2D plane
+	  this.contrl.Move(gravity * Time.deltaTime)                ; //do gravity
+	}
+
+	//IMPLEMENT INTERFACES : ICharContrl
+	public virtual void Move(Vector3 moveDir){
+	  move = moveDir * this.moveForce ; //horizontal transform (move)	
+	}
+	
+	public virtual void Fall(){ //vertical transform (gravity)
+	  if(!bGround){ //in air
+	    gravity   += pGrav * Time.deltaTime * this.massForce  ;
+		gravity.y += -vy                                      ; //adding velocity
+		bCeilng    = this.OnCeiling()                         ;
+	    if((this.contrl.velocity.y) < 0.0f){        //apply velocity after apex
+		  vy += accelY;
+		}
+		else if(bCeilng){
+		  gravity.y = -accelY;
+		}
+	  }
+	  else{ //on ground
+	    if(Mathf.Abs(this.contrl.velocity.y) < 0.1f){ //and not on rise ; else get caught on ledges
+		  ResetVelocity()     ;  //reset velocity when on ground
+		}
+		if(dash){
+		  move *= this.dashForce ;
+		}
+	  }
+	  gravity.y = Mathf.Clamp(gravity.y, -termVeloc, termVeloc) ; //clamp to terminal velocity
+	}
+
+	public virtual void doJump(){
+	  if(bJump){ //handle jump
+	    gravity.y = this.jumpForce ;
+		vy        = 0.0f           ;
+		bJump     = false          ;
+	  }	
+	}
+
+	public void Jump(){
+	  bJump = true;
+	}
+		
+	public void Flap(){ //air jump
+
+	}
+
+	public void ResetVelocity(){
+      gravity = Vector3.zero ;
+      vy      = 0.0f         ; //also reset y velocity
+    }
+
+	public void ResetRotation(){
+
+	}
+
+	//Utilities -- Not extending xForm so reimplementing ground logic
+	public override bool OnGround(){                                          //completely overriding mXform.OnGround() function
+	  float bLeftCheck = this.dirRayCheck(-Vector3.up, dToGround, cRadius ) ; //check right edge
+	  float bRghtCheck = this.dirRayCheck(-Vector3.up, dToGround, -cRadius) ; //check left edge
+	  if (bLeftCheck>0.0f || bRghtCheck>0.0f){                                //either edge connects, then character is onGround
+	    return true;
+	  }
+	  else{
+	    return false;
+	  }
+	}
+
+	public bool OnCeiling(){
+	  float ceilingCheck = this.dirRayCheck(Vector3.up, dToGround, 0.0f); //check directly overhead
+	  if(ceilingCheck > 0.0f){
+	    return true;
+	  }
+	  else{
+	    return false;
+	  }
+	}
+
 
   }
 #endregion

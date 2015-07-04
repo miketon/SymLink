@@ -5,7 +5,7 @@ namespace MTON.Interface{
 
 #region Mton Interface Animation
 
-  public interface iAnimn{ //Interface for basic animation movies : handles input logic and calls IRbody implementation : mRbody/mCcntl
+  public interface IAnimn{ //Interface for basic animation movies : handles input logic and calls IRbody implementation : mRbody/mCcntl
 
     //transform functions
     void doMove(Vector3 moveDir) ; //walk/run
@@ -21,7 +21,7 @@ namespace MTON.Interface{
 
   }
 
-  public interface iAnimn_ID{ //Interface to base animation properties to hash to Mecanim ID
+  public interface IAnimn_ID{ //Interface to base animation properties to hash to Mecanim ID
 
     //Properties
     //	Not part of Interface, but will likely be implemented

@@ -1,9 +1,10 @@
 using UnityEngine        ;
 using System.Collections ;
+using MTON.Interface     ;
 
-namespace MTON.Interface{
+namespace MTON.Class{
 
-  public class mtonGlobal{ //Project Global object to hold systemwide paths, layers, tags ...etc
+  public class IGlobal_CONSTANT{ //Project Global object to hold systemwide paths, layers, tags ...etc
 
     //handles Layers - Entities can move
     public const string _PLAYER = "Player" ;
@@ -12,7 +13,7 @@ namespace MTON.Interface{
     public const string _ITEMS  = "Item"   ;
 
     //handles Layers - Environments 
-    public const string _FLOOR  = "Floor" ;
+    public const string _FLOOR  = "Ground";
     public const string _WALLS  = "Walls" ;
     public const string _DOORS  = "Doors" ; //could be spawn, save, restore, entry, exit points
 
@@ -23,13 +24,6 @@ namespace MTON.Interface{
     public static string _txtr = "_Textures/"   ;
     public static string _matl = "_Materials/"  ;
 
-  }
-
-  public interface IGlobal{
-    float timeElapsed { get; set; } 
-
-    void OnLoadGame() ; // init all states needed by game : start timeElapsed
-    void UnLoadGame() ; // de-initialize all settings on game/applicdation unload
   }
 
 }
