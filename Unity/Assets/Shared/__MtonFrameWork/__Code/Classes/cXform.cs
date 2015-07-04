@@ -134,6 +134,9 @@ namespace MTON.Class{
 	public  Vector3 move      = Vector3.zero ;
 	public  Vector3 gravity   = Vector3.zero ;
 	public  Vector3 pGrav     = Vector3.zero ; //physic gravity : sampled from the scene
+
+	// cache
+    private Quaternion initRot = Quaternion.identity ; //initial rotation of rbody => when crouching reset rotation and velocity
 	
 	// Use this for initialization
 	public virtual void Start () {
@@ -143,12 +146,14 @@ namespace MTON.Class{
 			cHeight   = this.contrl.height * this.transform.localScale.y  ; //character cylinder  y center
 			dToGround = (this.cHeight * 0.5f) + 0.10f                     ; //halfing==assumes dToGround measured from center 
 			                                                                //HACK: Can't access skin width via code ???, close approximation ??? built in onGround fails ???
-			pGrav     = Physics.gravity                                   ;
-			this.cen  = this.contrl.center                                ;
+			this.pGrav   = Physics.gravity                                ;
+			this.cen     = this.contrl.center                             ;
+            this.initRot = this.xform.rotation                            ;
 		}
 		else{
 			Debug.LogError("CHARACTER CONTROLLER MISSING : " + this);
 		}
+		// cache necessary states
 	}
 
 	private void FixedUpdate(){
@@ -165,7 +170,7 @@ namespace MTON.Class{
 	public virtual void Move(Vector3 moveDir){
 	  move = moveDir * this.moveForce ; //horizontal transform (move)	
 	}
-	
+
 	public virtual void Fall(){ //vertical transform (gravity)
 	  if(!bGround){ //in air
 	    gravity   += pGrav * Time.deltaTime * this.massForce  ;
