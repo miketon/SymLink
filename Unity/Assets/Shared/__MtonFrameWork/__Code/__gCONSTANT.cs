@@ -1,10 +1,9 @@
 using UnityEngine        ;
 using System.Collections ;
-using MTON.Interface     ;
 
-namespace MTON.Class{
+namespace MTON.Global{
 
-  public class IGlobal_CONSTANT{ //Project Global object to hold systemwide paths, layers, tags ...etc
+  public class __gCONSTANT{ //Project Global object to hold systemwide paths, layers, tags ...etc
 
     //handles Layers - Entities can move
     public const string _PLAYER = "Player" ;

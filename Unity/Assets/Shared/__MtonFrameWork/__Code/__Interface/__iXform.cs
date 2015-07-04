@@ -11,6 +11,7 @@ namespace MTON.Interface{
     //augments io axis reads.  xform rocking back and forth(rolling cube) can mess up facing logic
     bool       bGround { get; set; } 
     Vector3    pos     { get; set; } 
+    Vector3    cen     { get; set; } //Center point
     Vector3    scl     { get; set; } 
     Quaternion rot     { get; set; } 
 

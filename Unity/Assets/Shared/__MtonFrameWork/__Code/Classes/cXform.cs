@@ -1,6 +1,7 @@
 using UnityEngine        ;
 using System.Collections ;
 using MTON.Interface     ;
+using MTON.Global        ;
 using DG.Tweening        ; //import DemiGiant DoTween
 
 
@@ -12,7 +13,8 @@ namespace MTON.Class{
 	public static LayerMask __layerGround;
 
 	public virtual void Awake(){
-	  __layerGround = LayerMask.GetMask (IGlobal_CONSTANT._FLOOR);
+	  __layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
+	  //__layerGround = LayerMask.GetMask ("Default");
 
 	  xform = GetComponent<Transform>() ;
       rot   = xform.localRotation       ; //HACK : doing in AfterBind, rotation == parent's
@@ -26,8 +28,9 @@ namespace MTON.Class{
 
     private float groundThreshold = 0.05f; //margin for ground check and object swap out.
 
-    private Vector3   prePos  ; //previous position
-    private Vector3   curPos  ;
+    private Vector3   prePos  = Vector3.zero ; //previous position
+    private Vector3   curPos  = Vector3.zero ;
+	private Vector3   cntPos  = Vector3.zero ; //center position Offset
 
     public Transform xform   { get; set; }
     //    public float     kFacing { get; set; } //1.0f == forward(or right in 2D); else -1.0f backwards
@@ -37,6 +40,10 @@ namespace MTON.Class{
     public Vector3 pos{
       get{ return xform.position  ; }
       set{ xform.position = value ; } //??? HACK : Where is implicit "value" coming from???
+    }
+	public Vector3 cen{
+      get{ return cntPos  ; }
+      set{ cntPos = value ; } //??? HACK : Where is implicit "value" coming from???
     }
     public Quaternion rot{ 
       get{ return xform.rotation  ; }
@@ -62,9 +69,11 @@ namespace MTON.Class{
 
     public float dirRayCheck(Vector3 IN_dir, float IN_magnitude, float IN_offSetX){    //direction, magnitude and x offset
       RaycastHit hit                                                                 ;
-      var pPos = xform.position + (Vector3.right * IN_offSetX)                       ; //calculate vertical and horizontal offset
+      //var pPos = xform.position + (Vector3.right * IN_offSetX)                       ; //calculate vertical and horizontal offset
+	  var pPos = xform.position + (Vector3.right * IN_offSetX) + cen              ; //calculate vertical and horizontal offset
       Debug.DrawLine(pPos, pPos + (IN_dir * IN_magnitude), Color.red, 0.5f, false)   ;
-      if (Physics.Raycast(pPos, IN_dir, out hit, Mathf.Abs(IN_magnitude), __layerGround)){            //return hit distance to the ground
+      //if (Physics.Raycast(pPos, IN_dir, out hit, Mathf.Abs(IN_magnitude), __layerGround)){            //return hit distance to the ground
+      if (Physics.Raycast(pPos, IN_dir, out hit, Mathf.Abs(IN_magnitude))){            //return hit distance to the ground
         return hit.distance     ; //found ground, returning distance > 0.0f
       }
       else{
@@ -109,35 +118,33 @@ namespace MTON.Class{
 	public  float dashForce = 3.0f  ;
 	public  float massForce = 1.0f  ;
 
-	public  float accelY    = 0.055f       ;
+	public  float accelY    = 0.035f       ;
 	public  float moveSpeed = 1.0f         ; //HACK:Must be set to one else fall through ground. IO will normalize to zero per frame.
 	private float vy        = 0.0f         ;
 	private float termVeloc = 54.0f        ; //Terminal velocity : 54 = a skydiver free-fall to earth according to wikipedia
 
 	public float cRadius   = 0.0f     ; //character controller property; NOTE: these are field values => not informed by
 	public float cHeight   = 0.0f     ; //runtime transform/scale
-//    public float dToGround = 0.0f     ; //distance to ground, pillbox offset to y center HACK: Using mXform.dToGround container...
 
 	public bool  bJump   = false ;// { get; set; }
 	public bool  dash    = false ;
 	public bool  bGround = false ;
 	public bool  bCeilng = false ;
 
-	public  Vector3 hMoveDirOffset = new Vector3(1.0f, 0.0f, -1.5f) ; //controls the facing offset of character on move left and right
-
 	public  Vector3 move      = Vector3.zero ;
 	public  Vector3 gravity   = Vector3.zero ;
 	public  Vector3 pGrav     = Vector3.zero ; //physic gravity : sampled from the scene
-//	private Vector3 _cntVel   = Vector3.zero ;
 	
 	// Use this for initialization
 	public virtual void Start () {
 		contrl    = this.GetComponent<CharacterController>() ;
 		if(contrl != null){
-			cRadius   = this.contrl.radius * this.transform.localScale.x         ;
-			cHeight   = this.contrl.height * this.transform.localScale.y * 0.5f  ; //character cylinder  y center
-			dToGround = this.cHeight + 0.10f                                     ; //HACK: Can't access skin width via code ???, close approximation ??? built in onGround fails ???
-			pGrav     = Physics.gravity                                          ;
+			cRadius   = this.contrl.radius * this.transform.localScale.x  ;
+			cHeight   = this.contrl.height * this.transform.localScale.y  ; //character cylinder  y center
+			dToGround = (this.cHeight * 0.5f) + 0.10f                     ; //halfing==assumes dToGround measured from center 
+			                                                                //HACK: Can't access skin width via code ???, close approximation ??? built in onGround fails ???
+			pGrav     = Physics.gravity                                   ;
+			this.cen  = this.contrl.center                                ;
 		}
 		else{
 			Debug.LogError("CHARACTER CONTROLLER MISSING : " + this);
@@ -166,9 +173,11 @@ namespace MTON.Class{
 		bCeilng    = this.OnCeiling()                         ;
 	    if((this.contrl.velocity.y) < 0.0f){        //apply velocity after apex
 		  vy += accelY;
+		  //vy *= vy + accelY;
 		}
 		else if(bCeilng){
-		  gravity.y = -accelY;
+//		  gravity.y = -accelY;
+		  gravity.y = -(gravity.y * 0.33f); //magic numbering until it feels good
 		}
 	  }
 	  else{ //on ground
@@ -195,7 +204,7 @@ namespace MTON.Class{
 	}
 		
 	public void Flap(){ //air jump
-
+	  bJump = true;
 	}
 
 	public void ResetVelocity(){
@@ -209,8 +218,8 @@ namespace MTON.Class{
 
 	//Utilities -- Not extending xForm so reimplementing ground logic
 	public override bool OnGround(){                                          //completely overriding mXform.OnGround() function
-	  float bLeftCheck = this.dirRayCheck(-Vector3.up, dToGround, cRadius ) ; //check right edge
-	  float bRghtCheck = this.dirRayCheck(-Vector3.up, dToGround, -cRadius) ; //check left edge
+	  float bLeftCheck = this.dirRayCheck(-Vector3.up, dToGround, cRadius  * 0.8f) ; //check right edge
+	  float bRghtCheck = this.dirRayCheck(-Vector3.up, dToGround, -cRadius * 0.8f) ; //check left edge
 	  if (bLeftCheck>0.0f || bRghtCheck>0.0f){                                //either edge connects, then character is onGround
 	    return true;
 	  }
