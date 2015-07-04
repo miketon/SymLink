@@ -171,7 +171,8 @@ namespace MTON.Class{
 	    gravity   += pGrav * Time.deltaTime * this.massForce  ;
 		gravity.y += -vy                                      ; //adding velocity
 		bCeilng    = this.OnCeiling()                         ;
-	    if((this.contrl.velocity.y) < 0.0f){        //apply velocity after apex
+		
+	    if((this.contrl.velocity.y) < 0.1f){        //apply velocity after apex...changed from 0.0=>0.1 to blend apex transition
 		  vy += accelY;
 		  //vy *= vy + accelY;
 		}
