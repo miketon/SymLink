@@ -1,8 +1,10 @@
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
+Plugins/
 autosave/
 .autosave/
+*/autosave
 
 #Ignoring large files
 *.ztl

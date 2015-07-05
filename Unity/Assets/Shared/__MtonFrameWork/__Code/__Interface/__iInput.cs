@@ -1,11 +1,21 @@
 using UnityEngine        ;
 using System.Collections ;
 
-namespace MTON{
+namespace MTON.Interface{
 
-  //Init Level
-  
-  //Hold Level Data
-  //Shut Down Level
+  public interface IInput{
+
+    // Is input enabled
+    int bInput { get; set; } 
+
+	// Button states
+	bool bJump { get; set; }
+	bool bAttk { get; set; }
+
+    // Directional Pad
+    void OnDir_Mov(Vector3 vDir) ;
+    void OnDir_Aim(Vector3 vDir) ;
+
+  }
 
 }

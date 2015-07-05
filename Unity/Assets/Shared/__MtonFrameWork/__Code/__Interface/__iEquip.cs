@@ -1,7 +1,7 @@
 using UnityEngine        ;
 using System.Collections ;
 
-namespace MTON{
+namespace MTON.Interface{
 
   public interface IEquip{
 
