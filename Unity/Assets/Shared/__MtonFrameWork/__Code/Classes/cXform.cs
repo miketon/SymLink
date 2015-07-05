@@ -2,8 +2,6 @@ using UnityEngine        ;
 using System.Collections ;
 using MTON.Interface     ;
 using MTON.Global        ;
-using DG.Tweening        ; //import DemiGiant DoTween
-
 
 namespace MTON.Class{
 
