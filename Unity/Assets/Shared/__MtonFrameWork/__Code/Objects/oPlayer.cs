@@ -20,6 +20,7 @@ namespace MTON.codeObjects{
 		private CharacterController cControl;
 		private Transform xform ;
 		private mCcntl    rb    ;
+		private cAnimn    an    ;
 		private cEquip    eq    ;
 		private cInput    io    ;
 		private cTween    tw    ;
@@ -41,7 +42,8 @@ namespace MTON.codeObjects{
 		Debug.Log("I'm waking." + __gCONSTANT._FLOOR);
 		layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
 
-		rb = this.gameObject.AddComponent<mCcntl>()     ;
+		rb = this.gameObject.AddComponent<mCcntl>();
+		an = this.gameObject.AddComponent<cAnimn>();
 		eq = this.gameObject.AddComponent<cEquip>();
 		io = this.gameObject.AddComponent<cInput>();
 		tw = this.gameObject.AddComponent<cTween>();
