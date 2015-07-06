@@ -6,28 +6,32 @@ namespace MTON.Class{
 
 	public class cAnimn : MonoBehaviour, IAnimn{
 
-	    public enum eGO_ANIM{
+		public enum eStateV{
 			Idle,
 			Duck,
-			Walk,
-			Dash,
-			Jump,
+			Rise,
 			Apex,
-			Fall,
-			FcId, //face Idle
-			FcLt, //face Left
-			FcRt, //face Right
+			Fall
 		}
 
-		private eGO_ANIM enumclip = eGO_ANIM.Idle;
-		public  eGO_ANIM enumClip{
+		public enum eStateH{
+			Idle,
+			Walk,
+			Dash,
+			FcId, // face Idle
+			FcLt, // face Left
+			FcRt  // face Right
+		}
+
+		private eStateV vstate;
+		public  eStateV vState{
 			get{
-				return enumclip;
+				return vstate;
 			}
 			set{
-				if(value != enumclip){
-					enumclip = value ;
-					Debug.Log(this + " enumClip updated : " + value);
+				if(value != vstate){
+					vstate = value ;
+					Debug.Log(this + " vState updated : " + value);
 				}
 			}
 		}
