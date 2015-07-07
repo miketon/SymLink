@@ -9,6 +9,7 @@ namespace MTON.Interface{
 
     //transform functions
     void doMove(Vector3 moveDir) ; //walk/run
+	void doFace(Vector3 faceDir) ; //do facing
     void doJump()                ;
     void doFall()                ;
     void doIdle()                ; //standing state

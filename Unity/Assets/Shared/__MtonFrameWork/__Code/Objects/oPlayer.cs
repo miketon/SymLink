@@ -106,24 +106,18 @@ namespace MTON.codeObjects{
 
 	private void Update(){
 		if(Input.GetKeyDown(KeyCode.Space)){
-			//Debug.Log("Space");
-			//eq.OnEquip();
-			//io.bJump = true;
 			doJump();
-		}
-		else if(Input.GetKeyUp(KeyCode.Space)){
-			//io.bJump = false;
 		}
 		
 		float hAxis = Input.GetAxis("Horizontal");
 		if(Mathf.Abs (hAxis)> 0.01f){
-				Vector3 moveDir = new Vector3(hAxis, 0.0f, 0.0f);
-				doMove(moveDir);
-				faceDir = Mathf.Sign(hAxis);
+			Vector3 moveDir = new Vector3(hAxis, 0.0f, 0.0f);
+			doMove(moveDir);
+			faceDir = Mathf.Sign(hAxis);
 		}
 		else{
-				doMove(Vector3.zero);
-				faceDir = 0.0f;
+			doMove(Vector3.zero);
+			faceDir = 0.0f;
 		}
 	}
 
