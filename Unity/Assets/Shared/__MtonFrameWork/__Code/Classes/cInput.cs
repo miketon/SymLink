@@ -12,28 +12,30 @@ namespace MTON.Class{
 
 		// Is input enabled
 		public bool bInput { get; set; } 
+		
+		public delegate void OnJump(bool bJump) ; //set up delegate
+		public OnJump OnJumpDelegate            ; //delegate instance
 
 		// Button states
 		private bool bjump = false;
 		public bool bJump { 
 			get{
-			  Debug.Log("Getting bJump : " + bjump);
 			  return bjump;
 			}
 			set{
-			  Debug.Log("Setting bJump : " + value);
 			  bjump = value;
+			  if(OnJumpDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
+			    OnJumpDelegate(bjump);
+			  }
 			} 
 	    }
 
 		private bool battk = false;
 		public bool bAttk { 
 			get{
-			  Debug.Log("Getting bAttk : " + bjump);
 			  return battk;
 			}
 			set{
-			  Debug.Log("Setting bAttk : " + value);
 			  battk = value;
 			} 
 		}
@@ -46,19 +48,17 @@ namespace MTON.Class{
 			Debug.Log("OnDir Aim!" + vDir);
 		}
 
-		public virtual void DoJump(bool bJump){
-			Debug.Log(this + " DoJump " + bJump);
-		}
+
 	    public virtual void DoAttk(bool bAttk){
 
 		}
 
 		public virtual void Update(){
 			if(Input.GetKeyDown(KeyCode.Space)){
-				DoJump(true);
+				bJump = true;
 			}
 			else if(Input.GetKeyUp(KeyCode.Space)){
-				DoJump(false);
+				bJump = false;
 			}
 		}
 

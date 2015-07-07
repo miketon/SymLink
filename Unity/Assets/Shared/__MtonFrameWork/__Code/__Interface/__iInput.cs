@@ -16,7 +16,7 @@ namespace MTON.Interface{
     void OnDir_Mov(Vector3 vDir) ;
     void OnDir_Aim(Vector3 vDir) ;
 
-	void DoJump(bool bJump);
+	//void DoJump(bool bJump);
 	void DoAttk(bool bAttk);
 
   }
