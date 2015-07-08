@@ -46,6 +46,7 @@ namespace MTON.codeObjects{
 		an = this.gameObject.AddComponent<cAnimn>();
 		eq = this.gameObject.AddComponent<cEquip>();
 		io = this.gameObject.AddComponent<cInput>();
+		io.bInput = true;
 		tw = this.gameObject.AddComponent<cTween>();
 		init_mRbody()                                            ;
 //		xform         = this.GetComponent<Transform>()           ;
