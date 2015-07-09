@@ -50,7 +50,7 @@ namespace MTON.Class{
 		}
 
         public virtual void Awake(){
-			Debug.Log(this + " Awake! ");
+//			Debug.Log(this + " Awake! ");
 		}
 
 		//transform functions

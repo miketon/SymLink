@@ -8,11 +8,19 @@ namespace MTON.Class{
   public class cInput : MonoBehaviour, IInput{ //reads input and determines update
 
     public virtual void Start(){
-      Debug.Log(this + " Start ! ");
+//      Debug.Log(this + " Start ! ");
     }
 
     // Is input enabled
-    public bool bInput { get; set; } 
+	private bool binput = true ; //must set default here
+    public  bool bInput {        //cannot assign default via setter/getter 
+			  get{
+			    return binput;
+			  } 
+			  set{
+			    binput = value;
+			  } 
+		    } 
 
     public delegate void OnJump(bool bJump) ; //set up delegate
     public OnJump OnJumpDelegate            ; //delegate instance

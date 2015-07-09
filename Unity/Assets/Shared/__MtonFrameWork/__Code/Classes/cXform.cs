@@ -21,7 +21,7 @@ namespace MTON.Class{
 	}
 
 	public virtual void Start(){
-	  Debug.Log(this + " Start ! ");
+//	  Debug.Log(this + " Start ! ");
 	}
 
     private float groundThreshold = 0.05f; //margin for ground check and object swap out.

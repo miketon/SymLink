@@ -8,6 +8,16 @@ namespace MTON.codeObjects{
 
   public class oPlayer : MonoBehaviour{
 
+	private void OnEnable(){
+		io.OnJumpDelegate += doJump;
+//		io.OnAttkDelegate += doAttk;
+	}
+
+	private void OnDisable(){
+		io.OnJumpDelegate -= doJump; //NOTE: remember to remove delegate incase of wierd memory leaks
+//		io.OnAttkDelegate -= doAttk;
+	}
+
 		//init interface members
 		public  Transform dispObj ; //HACK : Coupling the character dispObj => object with an Animator and render mesh
 
@@ -39,15 +49,14 @@ namespace MTON.codeObjects{
 
 	public virtual void Awake(){
 
-		Debug.Log("I'm waking." + __gCONSTANT._FLOOR);
+//		Debug.Log("I'm waking." + __gCONSTANT._FLOOR);
 		layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
 
-		rb = this.gameObject.AddComponent<mCcntl>();
-		an = this.gameObject.AddComponent<cAnimn>();
-		eq = this.gameObject.AddComponent<cEquip>();
-		io = this.gameObject.AddComponent<cInput>();
-		io.bInput = true;
-		tw = this.gameObject.AddComponent<cTween>();
+		rb = __gUtility.AddComponent_mton<mCcntl>(this.gameObject); 
+		an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject);
+		eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject);
+		io = __gUtility.AddComponent_mton<cInput>(this.gameObject);
+		tw = __gUtility.AddComponent_mton<cTween>(this.gameObject);
 		init_mRbody()                                            ;
 //		xform         = this.GetComponent<Transform>()           ;
 		xform         = rb.xform;
@@ -67,7 +76,6 @@ namespace MTON.codeObjects{
 			}
 		}
 
-
 	}
 
 		#region IAnimn_DO interface implementation
@@ -77,13 +85,15 @@ namespace MTON.codeObjects{
 			rb.Move(moveDir) ;
 		}
 		
-		public virtual void doJump(){
+		public virtual void doJump(bool bJump){
+		  if(bJump){
 			if(rb.OnGround()){    
 				rb.Jump()                                ;
 			}
 			else{
 				rb.Flap()                                ; //flap when not on ground
 			}
+		  }
 		}
 		
 		public virtual void doCrouch(){}
@@ -106,9 +116,6 @@ namespace MTON.codeObjects{
     }
 
 	private void Update(){
-		if(Input.GetKeyDown(KeyCode.Space)){
-			doJump();
-		}
 		
 		float hAxis = Input.GetAxis("Horizontal");
 		if(Mathf.Abs (hAxis)> 0.01f){
