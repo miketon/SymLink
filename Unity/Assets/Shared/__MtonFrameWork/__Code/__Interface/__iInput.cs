@@ -13,8 +13,8 @@ namespace MTON.Interface{
     bool bAttk { get; set; }
 
     // Directional Pad
-    void OnDir_Mov(Vector3 vDir) ;
-    void OnDir_Aim(Vector3 vDir) ;
+	void doDPAD_Dir(Vector3 vDir) ; //movement pad
+	void doDPAD_Aim(Vector3 vDir) ; //aim pad
 
   }
 

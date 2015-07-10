@@ -22,6 +22,12 @@ namespace MTON.Class{
 			  } 
 		    } 
 
+	public delegate void OnDPAD_DIR(Vector3 vDir) ; //set up delegate
+    public OnDPAD_DIR OnDPAD_DIR_Delegate         ; //delegate instance
+
+	public delegate void OnDPAD_AIM(Vector3 vDir) ; //set up delegate
+	public OnDPAD_AIM OnDPAD_AIMDelegate          ; //delegate instance
+	
     public delegate void OnJump(bool bJump) ; //set up delegate
     public OnJump OnJumpDelegate            ; //delegate instance
 
@@ -56,16 +62,27 @@ namespace MTON.Class{
     }
 
     // Directional Pad
-    public virtual void OnDir_Mov(Vector3 vDir){
-      Debug.Log("OnDir Move!" + vDir);
+    public virtual void doDPAD_Dir(Vector3 vDir){
+//	  Debug.Log("doDPAD_Dir Move!" + vDir);
+	  if(OnDPAD_DIR_Delegate != null){
+	    OnDPAD_DIR_Delegate(vDir);
+	  }
     }
-    public virtual void OnDir_Aim(Vector3 vDir){
-      Debug.Log("OnDir Aim!" + vDir);
+	public virtual void doDPAD_Aim(Vector3 vDir){
+	  Debug.Log("doDPAD_Dir Aim!" + vDir);
     }
 
     public virtual void Update(){
 
       if(bInput == true){
+		float hAxis = Input.GetAxis(__gIO._hAxs_p1);
+		if(Mathf.Abs (hAxis)> 0.01f){
+			Vector3 moveDir = new Vector3(hAxis, 0.0f, 0.0f);
+			doDPAD_Dir(moveDir);
+		}
+		else{
+			doDPAD_Dir(Vector3.zero);
+		}
 
         //check jump
         if(Input.GetButtonDown(__gIO._JUMP_p1)){

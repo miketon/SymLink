@@ -49,8 +49,10 @@ namespace MTON.Global{
   public class __gIO{ //Project Global object to hold IO buttons
 
 	//handles player one IO
-    public const string _JUMP_p1 = "Jump"  ;
-    public const string _ATTK_p1 = "Fire1" ;
+	public const string _hAxs_p1 = "Horizontal" ;
+	public const string _vAxs_p1 = "Vertical"   ;
+    public const string _JUMP_p1 = "Jump"       ;
+    public const string _ATTK_p1 = "Fire1"      ;
 
   }
 
