@@ -8,6 +8,10 @@ namespace MTON.codeObjects{
 
   public class oPlayer : MonoBehaviour{
 
+    //init interface members
+    public  Transform dispObj ; //HACK : Coupling the character dispObj => object with an Animator and render mesh
+
+#region oPlayer Delegates
     private void OnEnable(){
       io.OnDPAD_DIR_Delegate += doMove;
       io.OnJumpDelegate      += doJump;
@@ -19,15 +23,9 @@ namespace MTON.codeObjects{
       io.OnJumpDelegate      -= doJump; //NOTE: remember to remove delegate in case of wierd memory leaks
       io.OnAttkDelegate      -= doAttk;
     }
+#endregion
 
-    //init interface members
-    public  Transform dispObj ; //HACK : Coupling the character dispObj => object with an Animator and render mesh
-
-    public  float moveForce = 3.0f  ;
-    public  float jumpForce = 4.25f ;
-    public  float flapForce = 4.25f ;
-    public  float dashForce = 3.0f  ;
-    public  float massForce = 1.0f  ;
+#region oPlayer Component Manager
 
     private CharacterController cControl;
     private Transform xform ;
@@ -39,17 +37,7 @@ namespace MTON.codeObjects{
 
     private LayerMask layerGround;
 
-    private void init_mRbody(){ //inits this mRbody settings
-      rb.moveForce   = moveForce                              ;
-      rb.jumpForce   = jumpForce                              ;
-      rb.flapForce   = flapForce                              ;
-      rb.dashForce   = dashForce                              ;
-      rb.massForce   = massForce                              ;
-      //tw_Cache = xform.DORotate(IN_rotate, durFX, RotateMode.Fast).SetEase(Ease.InOutElastic);
-      //xform.DORo
-    }
-
-    public virtual void Awake(){
+	public virtual void Awake(){
 
       //		Debug.Log("I'm waking." + __gCONSTANT._FLOOR);
       layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
@@ -80,7 +68,46 @@ namespace MTON.codeObjects{
 
     }
 
-#region IAnimn_DO interface implementation
+#endregion
+
+#region oPlayer Rbody
+
+	public  float moveForce = 3.0f  ;
+    public  float jumpForce = 4.25f ;
+    public  float flapForce = 4.25f ;
+    public  float dashForce = 3.0f  ;
+    public  float massForce = 1.0f  ;
+
+    private void init_mRbody(){ //inits this mRbody settings
+      rb.moveForce   = moveForce                              ;
+      rb.jumpForce   = jumpForce                              ;
+      rb.flapForce   = flapForce                              ;
+      rb.dashForce   = dashForce                              ;
+      rb.massForce   = massForce                              ;
+      //tw_Cache = xform.DORotate(IN_rotate, durFX, RotateMode.Fast).SetEase(Ease.InOutElastic);
+      //xform.DORo
+    }
+
+#endregion
+
+#region oPlayer display(Tween/animation) property
+
+    //Handles facing direction
+    private float facedir = 0.0f;
+    public float faceDir{
+      get{ return facedir  ; }
+      set{ 
+        if(value != facedir){
+//          Debug.Log ("FaceDir Changed : " + value);
+          facedir = value;
+          tw.doRotateTo(new Vector3(0.0f, value * -50.0f, 0.0f));
+        }
+      }
+    }
+
+#endregion
+
+#region oPlayer moveset Function
     ///---------------------------------------TRANSFORMING CHARACTER--------------------------------------------------------------/// 
 
     public virtual void doMove(Vector3 moveDir){ //Handles movement and facing
@@ -119,19 +146,6 @@ namespace MTON.codeObjects{
       //      doRest()                                       ;
     }
 #endregion
-
-    //Handles facing direction
-    private float facedir = 0.0f;
-    public float faceDir{
-      get{ return facedir  ; }
-      set{ 
-        if(value != facedir){
-//          Debug.Log ("FaceDir Changed : " + value);
-          facedir = value;
-          tw.doRotateTo(new Vector3(0.0f, value * -50.0f, 0.0f));
-        }
-      }
-    }
 
   }
 
