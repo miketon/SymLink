@@ -25,4 +25,35 @@ namespace MTON.Global{
 
   }
 
+  public class __gUtility{
+
+	//Prevents duplicate components, checks to see that one doesn't already exist
+	public static T AddComponent_mton<T>(GameObject IN_GO) where T:Component{ 
+	  T cExist = IN_GO.GetComponent<T>();
+	  if(cExist == null){
+//		Debug.Log(" Adding " + cExist); // (Component)T.ToString());
+		return IN_GO.AddComponent<T>();
+	  }
+	  else{
+//		Debug.Log(" Found " + cExist); //(Component)T.ToString());
+	    return cExist;
+	  }
+	}
+
+	public static void Debugmton(int IN_mton){
+	  Debug.Log("IN_mton");
+	}
+
+  }
+
+  public class __gIO{ //Project Global object to hold IO buttons
+
+	//handles player one IO
+	public const string _hAxs_p1 = "Horizontal" ;
+	public const string _vAxs_p1 = "Vertical"   ;
+    public const string _JUMP_p1 = "Jump"       ;
+    public const string _ATTK_p1 = "Fire1"      ;
+
+  }
+
 }
