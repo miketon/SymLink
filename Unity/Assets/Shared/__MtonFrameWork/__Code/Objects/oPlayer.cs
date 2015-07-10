@@ -105,6 +105,19 @@ namespace MTON.codeObjects{
       }
     }
 
+    //Handles crouching state 
+    private float fduck = 1.0f;
+    public float fDuck{
+      get{ return fduck  ; }
+      set{ 
+        if(value != fduck){
+//          Debug.Log ("FaceDir Changed : " + value);
+          fduck = value;
+		  tw.doCrouch(value);
+        }
+      }
+    }
+
 #endregion
 
 #region oPlayer moveset Function
@@ -125,11 +138,15 @@ namespace MTON.codeObjects{
 	  if(Mathf.Abs(moveDir.y) > 0.001f){
 		float vertDir = Mathf.Sign(moveDir.y); //y == vAxis  ; Sign return -1.0f or 1.0f
 		if(vertDir < 0.0f){
-		  an.vState = cAnimn.eStateV.Duck;
+		  if(rb.OnGround()){
+		    an.vState = cAnimn.eStateV.Duck;
+		    fDuck = 0.1f;
+		  }
 		}
       }
       else{
 		an.vState = cAnimn.eStateV.Idle;
+		fDuck = 1.0f;
       }
 	  
     }
