@@ -112,12 +112,26 @@ namespace MTON.codeObjects{
 
     public virtual void doMove(Vector3 moveDir){ //Handles movement and facing
       rb.Move(moveDir) ;
-      if(moveDir != Vector3.zero){
-        faceDir = Mathf.Sign(moveDir.x); //x == hAxis ; return -1.0f or 1.0f
+	  // horizontal state
+      if(Mathf.Abs(moveDir.x) > 0.001f){
+        faceDir = Mathf.Sign(moveDir.x); //x == hAxis ; Sign return -1.0f or 1.0f
+		an.hState = cAnimn.eStateH.Walk;
       }
       else{
         faceDir = 0.0f;
+		an.hState = cAnimn.eStateH.Idle;
       }
+	  //vertical state
+	  if(Mathf.Abs(moveDir.y) > 0.001f){
+		float vertDir = Mathf.Sign(moveDir.y); //y == vAxis  ; Sign return -1.0f or 1.0f
+		if(vertDir < 0.0f){
+		  an.vState = cAnimn.eStateV.Duck;
+		}
+      }
+      else{
+		an.vState = cAnimn.eStateV.Idle;
+      }
+	  
     }
 
     public virtual void doJump(bool bJump){
@@ -140,7 +154,9 @@ namespace MTON.codeObjects{
       }
     }
 
-    public virtual void doCrouch(){}
+    public virtual void doCrouch(){
+
+	}
     public virtual void doFall()  {}
     public void doIdle(){   //neutral state -> good for swapping/activating back main model
       //      doRest()                                       ;

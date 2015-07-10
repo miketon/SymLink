@@ -76,8 +76,9 @@ namespace MTON.Class{
 
       if(bInput == true){
 		float hAxis = Input.GetAxis(__gIO._hAxs_p1);
-		if(Mathf.Abs (hAxis)> 0.01f){
-			Vector3 moveDir = new Vector3(hAxis, 0.0f, 0.0f);
+		float vAxis = Input.GetAxis(__gIO._vAxs_p1);
+		if(new Vector2(hAxis, vAxis).magnitude > 0.01f){
+			Vector3 moveDir = new Vector3(hAxis, vAxis, 0.0f);
 			doDPAD_Dir(moveDir);
 		}
 		else{
