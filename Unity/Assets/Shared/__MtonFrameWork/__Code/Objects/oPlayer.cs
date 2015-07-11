@@ -38,14 +38,14 @@ namespace MTON.codeObjects{
 
 #region oPlayer Component Manager
 
-    private CharacterController cControl;
-    private Transform xform ;
-    private mCcntl    rb    ;
+    protected CharacterController cControl ;
+    protected Transform           xform    ;
+    protected cInput              io       ; //protected; can be replaced with ai; vs. input controller
+    protected mCcntl              rb       ; //protected; to access collider volume info
+
     private cAnimn    an    ;
     private cEquip    eq    ;
     private cTween    tw    ;
-
-    protected cInput  io    ; //protected; can be replaced with ai; vs. input controller
 
     private LayerMask layerGround;
 
