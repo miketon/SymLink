@@ -32,8 +32,8 @@ namespace MTON.Class{
 
     public Transform xform   { get; set; }
     //    public float     kFacing { get; set; } //1.0f == forward(or right in 2D); else -1.0f backwards
-    public bool      bGround { get; set; }
-    public float     dToGround =  0.55f;
+	public  bool      bGround { get; set; }
+    public  float     dToGround =  0.55f;
 
     public Vector3 pos{
       get{ return xform.position  ; }
@@ -60,6 +60,16 @@ namespace MTON.Class{
         return bGround  ; //ground not found 
       }
     }
+
+	public virtual bool OnCeilng(){
+	  float ceilingCheck = this.dirRayCheck(Vector3.up, dToGround, 0.0f); //check directly overhead
+	  if(ceilingCheck > 0.0f){
+	    return true;
+	  }
+	  else{
+	    return false;
+	  }
+	}
 
     public float ToGround(float distCheck){ //if > 0.0f == OnGround found
       return dirRayCheck(-Vector3.up, distCheck, 0.0f);
@@ -173,7 +183,7 @@ namespace MTON.Class{
 	  if(!bGround){ //in air
 	    gravity   += pGrav * Time.deltaTime * this.massForce  ;
 		gravity.y += -vy                                      ; //adding velocity
-		bCeilng    = this.OnCeiling()                         ;
+		bCeilng    = this.OnCeilng()                          ;
 		
 	    if((this.contrl.velocity.y) < 0.1f){        //apply velocity after apex...changed from 0.0=>0.1 to blend apex transition
 		  vy += accelY;
@@ -231,17 +241,6 @@ namespace MTON.Class{
 	    return false;
 	  }
 	}
-
-	public bool OnCeiling(){
-	  float ceilingCheck = this.dirRayCheck(Vector3.up, dToGround, 0.0f); //check directly overhead
-	  if(ceilingCheck > 0.0f){
-	    return true;
-	  }
-	  else{
-	    return false;
-	  }
-	}
-
 
   }
 #endregion

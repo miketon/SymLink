@@ -20,6 +20,7 @@ namespace MTON.codeObjects{
 	  
 	  //animation : input + character/env state
 	  an.OnDuckDelegate      += doCrouch;
+	  an.OnFaceDelegate      += doFace;
     }
 
     private void OnDisable(){
@@ -31,6 +32,7 @@ namespace MTON.codeObjects{
 	  //animation : input + character/env state
 	  an.OnDuckDelegate      -= doCrouch;
     }
+
 #endregion
 
 #region oPlayer Component Manager
@@ -97,59 +99,39 @@ namespace MTON.codeObjects{
 
 #endregion
 
-#region oPlayer display(Tween/animation) property
-
-    //Handles facing direction
-    private float facedir = 0.0f;
-    public float faceDir{
-      get{ return facedir  ; }
-      set{ 
-        if(value != facedir){
-//          Debug.Log ("FaceDir Changed : " + value);
-          facedir = value;
-          tw.doRotateTo(new Vector3(0.0f, value * -50.0f, 0.0f));
-		  if(value > 0.1f){
-		    an.fState = cAnimn.eStateF.Rght;
-		  }
-		  else if(value < -0.1f){
-		    an.fState = cAnimn.eStateF.Left;
-		  }
-		  else{
-		    an.fState = cAnimn.eStateF.Idle;
-		  }
-        }
-      }
-    }
-
-#endregion
-
 #region oPlayer moveset Function
     ///---------------------------------------TRANSFORMING CHARACTER--------------------------------------------------------------/// 
 
     public virtual void doMove(Vector3 moveDir){ //Handles movement and facing
       rb.Move(moveDir) ;
-	  // horizontal state
+	  // horizontal move state
       if(Mathf.Abs(moveDir.x) > 0.001f){
-        faceDir = Mathf.Sign(moveDir.x); //x == hAxis ; Sign return -1.0f or 1.0f
 		an.hState = cAnimn.eStateH.Walk;
+        float faceDir = Mathf.Sign(moveDir.x); //x == hAxis ; Sign return -1.0f or 1.0f
+		if(faceDir > 0.0f){
+		  an.fState = cAnimn.eStateF.Rght;
+		}
+		else{
+		  an.fState = cAnimn.eStateF.Left;
+		}
       }
       else{
-        faceDir = 0.0f;
 		an.hState = cAnimn.eStateH.Idle;
+		an.fState = cAnimn.eStateF.Idle;
       }
-	  //vertical state
+	  //duck/crouch state
 	  if(Mathf.Abs(moveDir.y) > 0.001f){
 		float vertDir = Mathf.Sign(moveDir.y); //y == vAxis  ; Sign return -1.0f or 1.0f
 		if(vertDir < 0.0f){
 		  if(rb.OnGround()){
-		    an.vState = cAnimn.eStateV.Duck;
+		    an.dState = cAnimn.eStateD.Duck;
 		  }
 		}
+
       }
-      else{
-		an.vState = cAnimn.eStateV.Idle;
-      }
-	  
+	  else{
+	    an.dState = cAnimn.eStateD.Idle;
+	  }
     }
 
     public virtual void doJump(bool bJump){
@@ -179,6 +161,10 @@ namespace MTON.codeObjects{
 	  else{
 	    tw.doCrouch(1.0f);
 	  }
+	}
+
+	public virtual void doFace(float fFace){
+      tw.doRotateTo(new Vector3(0.0f, fFace * -50.0f, 0.0f));
 	}
     public virtual void doFall()  {}
     public void doIdle(){   //neutral state -> good for swapping/activating back main model
