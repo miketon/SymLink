@@ -46,8 +46,8 @@ namespace MTON.codeObjects{
       an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject);
       eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject);
       io = __gUtility.AddComponent_mton<cInput>(this.gameObject);
-      tw = __gUtility.AddComponent_mton<cTween>(this.gameObject);
-      init_mRbody()                                            ;
+      tw = __gUtility.AddComponent_mton<cTween>(this.dispObj.gameObject)   ; //Tweening display obj vs. character controller
+      init_mRbody()                                             ;
       //		xform         = this.GetComponent<Transform>()           ;
       xform         = rb.xform;
       cControl      = this.GetComponent<CharacterController>() ;
@@ -85,7 +85,6 @@ namespace MTON.codeObjects{
       rb.dashForce   = dashForce                              ;
       rb.massForce   = massForce                              ;
       //tw_Cache = xform.DORotate(IN_rotate, durFX, RotateMode.Fast).SetEase(Ease.InOutElastic);
-      //xform.DORo
     }
 
 #endregion
@@ -114,6 +113,7 @@ namespace MTON.codeObjects{
 //          Debug.Log ("FaceDir Changed : " + value);
           fduck = value;
 		  tw.doCrouch(value);
+//		  dispObj.localScale = new Vector3(1.0f, value, 1.0f);
         }
       }
     }
