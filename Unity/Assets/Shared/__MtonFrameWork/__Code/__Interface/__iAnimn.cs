@@ -13,7 +13,7 @@ namespace MTON.Interface{
     void doJump()                ;
     void doFall()                ;
     void doIdle()                ; //standing state
-    void doCrouch()              ;
+    void doDuck(bool bDuck)      ;
 
     //	Not part of Interface, but will likely be implemented
     //  void doNeutral()             ; //neutral state -> good for swapping/activating back main model

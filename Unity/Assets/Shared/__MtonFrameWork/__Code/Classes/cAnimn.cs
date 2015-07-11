@@ -36,6 +36,12 @@ namespace MTON.Class{
 				if(value != vstate){
 					vstate = value ;
 					Debug.Log(this + " vState updated : " + value);
+					if(value == eStateV.Duck){
+						doDuck(true);
+					}
+					else{
+						doDuck(false);
+					}
 				}
 			}
 		}
@@ -48,7 +54,7 @@ namespace MTON.Class{
 			set{
 				if(value != hstate){
 					hstate = value ;
-					Debug.Log(this + " hState updated : " + value);
+//					Debug.Log(this + " hState updated : " + value);
 				}
 			}
 		}
@@ -61,7 +67,7 @@ namespace MTON.Class{
 			set{
 				if(value != fstate){
 					fstate = value ;
-					Debug.Log(this + " fState updated : " + value);
+//					Debug.Log(this + " fState updated : " + value);
 				}
 			}
 		}
@@ -71,8 +77,8 @@ namespace MTON.Class{
 //			Debug.Log(this + " Awake! ");
 		}
 
-		//public delegate void OnDuck(bool bDuck) ; //set up delegate
-        //public OnDuck OnDuckDelegate            ; //delegate instance
+		public delegate void OnDuck(bool bDuck) ; //set up delegate
+        public OnDuck OnDuckDelegate            ; //delegate instance
 
 		//transform functions
 		public virtual void doMove(Vector3 moveDir) {} //walk/run
@@ -82,8 +88,11 @@ namespace MTON.Class{
 		public virtual void doIdle()                {  //standing state
 
 		} 
-		public virtual void doCrouch()              {
-		  //OnDuckDelegate(true);
+		public virtual void doDuck(bool bDuck){
+		  if(OnDuckDelegate != null){
+		    OnDuckDelegate(bDuck);
+		    Debug.Log("doDUCK! : " + bDuck + " : " + this);
+		  }
 		}
 
 	}

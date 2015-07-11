@@ -13,15 +13,23 @@ namespace MTON.codeObjects{
 
 #region oPlayer Delegates
     private void OnEnable(){
+	  //direct input
       io.OnDPAD_DIR_Delegate += doMove;
       io.OnJumpDelegate      += doJump;
       io.OnAttkDelegate      += doAttk; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
+	  
+	  //animation : input + character/env state
+	  an.OnDuckDelegate      += doCrouch;
     }
 
     private void OnDisable(){
+	  //direct input
       io.OnDPAD_DIR_Delegate -= doMove;
       io.OnJumpDelegate      -= doJump; //NOTE: remember to remove delegate in case of wierd memory leaks
       io.OnAttkDelegate      -= doAttk;
+
+	  //animation : input + character/env state
+	  an.OnDuckDelegate      -= doCrouch;
     }
 #endregion
 
@@ -100,20 +108,15 @@ namespace MTON.codeObjects{
 //          Debug.Log ("FaceDir Changed : " + value);
           facedir = value;
           tw.doRotateTo(new Vector3(0.0f, value * -50.0f, 0.0f));
-        }
-      }
-    }
-
-    //Handles crouching state 
-    private float fduck = 1.0f;
-    public float fDuck{
-      get{ return fduck  ; }
-      set{ 
-        if(value != fduck){
-//          Debug.Log ("FaceDir Changed : " + value);
-          fduck = value;
-		  tw.doCrouch(value);
-//		  dispObj.localScale = new Vector3(1.0f, value, 1.0f);
+		  if(value > 0.1f){
+		    an.fState = cAnimn.eStateF.Rght;
+		  }
+		  else if(value < -0.1f){
+		    an.fState = cAnimn.eStateF.Left;
+		  }
+		  else{
+		    an.fState = cAnimn.eStateF.Idle;
+		  }
         }
       }
     }
@@ -140,13 +143,11 @@ namespace MTON.codeObjects{
 		if(vertDir < 0.0f){
 		  if(rb.OnGround()){
 		    an.vState = cAnimn.eStateV.Duck;
-		    fDuck = 0.1f;
 		  }
 		}
       }
       else{
 		an.vState = cAnimn.eStateV.Idle;
-		fDuck = 1.0f;
       }
 	  
     }
@@ -171,8 +172,13 @@ namespace MTON.codeObjects{
       }
     }
 
-    public virtual void doCrouch(){
-
+    public virtual void doCrouch(bool bDuck){
+	  if(bDuck){
+	    tw.doCrouch(0.33f, 0.5f);
+	  }
+	  else{
+	    tw.doCrouch(1.0f);
+	  }
 	}
     public virtual void doFall()  {}
     public void doIdle(){   //neutral state -> good for swapping/activating back main model
