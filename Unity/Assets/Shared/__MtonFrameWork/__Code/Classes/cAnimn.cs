@@ -28,7 +28,9 @@ namespace MTON.Class{
 
 		public enum eStateD{ //duck/crouch state
 			Idle,
-			Duck
+			Duck,
+			Jump, //jump
+			Flap  //air jump
 		}
 
 		private eStateV vstate;
@@ -66,13 +68,13 @@ namespace MTON.Class{
 				if(value != fstate){
 					fstate = value ;
 					if(value == eStateF.Rght){
-					  doFace(1.0f);
+					  doFace_2D(1.0f);
 					}
 					else if(value == eStateF.Left){
-					  doFace(-1.0f);
+					  doFace_2D(-1.0f);
 					}
 					else{
-					  doFace(0.0f);
+					  doFace_2D(0.0f);
 					}
 //					Debug.Log(this + " fState updated : " + value);
 				}
@@ -101,30 +103,13 @@ namespace MTON.Class{
 
         public virtual void Awake(){
 //			Debug.Log(this + " Awake! ");
-			xform = this.GetComponent<Transform>();
-			prvPos = xform.position;
-		}
-
-		private Transform xform;
-		private Vector3 prvPos;
-
-		public virtual void FixedUpdate(){
-		  Vector3 curPos = xform.position;
-		  float kY = curPos.y - prvPos.y;
-		  if(kY>0.001f){ //rising
-		    vState = eStateV.Rise;
-		  }
-		  else if(kY<-0.001f){ //falling
-		    vState = eStateV.Fall;
-		  }
-		  prvPos = curPos;
 		}
 
 		public delegate void DL_Duck(bool bDuck) ; //set up delegate
         public DL_Duck OnDuckDelegate            ; //delegate instance
 
-		public delegate void DL_Face(float fFace) ; //set up delegate
-        public DL_Face OnFaceDelegate             ; //delegate instance
+		public delegate void DL_Face_2D(float fFace) ; //set up delegate
+        public DL_Face_2D OnFaceDelegate_2D          ; //delegate instance
 
 		//transform functions
 		public virtual void doMove(Vector3 moveDir) {} //walk/run
@@ -142,10 +127,10 @@ namespace MTON.Class{
 		  }
 		}
 
-		public virtual void doFace(float fFace){
-		  if(OnFaceDelegate != null){
-			OnFaceDelegate(fFace);
-		    Debug.Log("doFace! : " + fFace + " : " + this);
+		public virtual void doFace_2D(float fFace){
+		  if(OnFaceDelegate_2D != null){
+			OnFaceDelegate_2D(fFace);
+//		    Debug.Log("doFace! : " + fFace + " : " + this);
 		  }
 		}
 

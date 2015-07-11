@@ -20,7 +20,7 @@ namespace MTON.codeObjects{
 	  
 	  //animation : input + character/env state
 	  an.OnDuckDelegate      += doCrouch;
-	  an.OnFaceDelegate      += doFace;
+	  an.OnFaceDelegate_2D   += doFace;
     }
 
     private void OnDisable(){
@@ -31,6 +31,7 @@ namespace MTON.codeObjects{
 
 	  //animation : input + character/env state
 	  an.OnDuckDelegate      -= doCrouch;
+	  an.OnFaceDelegate_2D   -= doFace;
     }
 
 #endregion
@@ -97,6 +98,31 @@ namespace MTON.codeObjects{
       //tw_Cache = xform.DORotate(IN_rotate, durFX, RotateMode.Fast).SetEase(Ease.InOutElastic);
     }
 
+	private Vector3 prvPos = Vector3.zero;
+	private bool bGround;
+
+	public virtual void FixedUpdate(){
+
+		bGround        = rb.OnGround();
+		Vector3 curPos = xform.position;
+		if(!bGround){                        //Not on Ground :check vertical state
+			float kY = curPos.y - prvPos.y;
+			if(kY>0.05f){                   //rising
+				an.vState = cAnimn.eStateV.Rise;
+			}
+			else if(kY<-0.05f){             //falling
+				an.vState = cAnimn.eStateV.Fall;
+			}
+			else{
+			    an.vState = cAnimn.eStateV.Apex;
+			}
+		}
+		else{                                //On Ground
+			an.vState = cAnimn.eStateV.Idle;
+		}
+		prvPos = curPos;
+	}
+
 #endregion
 
 #region oPlayer moveset Function
@@ -123,24 +149,28 @@ namespace MTON.codeObjects{
 	  if(Mathf.Abs(moveDir.y) > 0.001f){
 		float vertDir = Mathf.Sign(moveDir.y); //y == vAxis  ; Sign return -1.0f or 1.0f
 		if(vertDir < 0.0f){
-		  if(rb.OnGround()){
+		  if(bGround){
 		    an.dState = cAnimn.eStateD.Duck;
 		  }
 		}
 
       }
 	  else{
-	    an.dState = cAnimn.eStateD.Idle;
+		if(an.vState != cAnimn.eStateV.Rise){
+	      an.dState = cAnimn.eStateD.Idle;
+		}
 	  }
     }
 
     public virtual void doJump(bool bJump){
       if(bJump){
-        if(rb.OnGround()){    
-          rb.Jump()                                ;
+        if(bGround){    
+          rb.Jump()                       ;
+		  an.dState = cAnimn.eStateD.Jump ;
         }
         else{
-          rb.Flap()                                ; //flap when not on ground
+          rb.Flap()                       ; //flap when not on ground
+		  an.dState = cAnimn.eStateD.Flap ;
         }
       }
     }
