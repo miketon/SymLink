@@ -43,8 +43,9 @@ namespace MTON.codeObjects{
     private mCcntl    rb    ;
     private cAnimn    an    ;
     private cEquip    eq    ;
-    private cInput    io    ;
     private cTween    tw    ;
+
+    protected cInput  io    ; //protected; can be replaced with ai; vs. input controller
 
     private LayerMask layerGround;
 
@@ -52,12 +53,7 @@ namespace MTON.codeObjects{
 
       //		Debug.Log("I'm waking." + __gCONSTANT._FLOOR);
       layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
-
-      rb = __gUtility.AddComponent_mton<mCcntl>(this.gameObject); 
-      an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject);
-      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject);
-      io = __gUtility.AddComponent_mton<cInput>(this.gameObject);
-      tw = __gUtility.AddComponent_mton<cTween>(this.dispObj.gameObject)   ; //Tweening display obj vs. character controller
+	  init_Components()                                         ;
       init_mRbody()                                             ;
       //		xform         = this.GetComponent<Transform>()           ;
       xform         = rb.xform;
@@ -78,6 +74,7 @@ namespace MTON.codeObjects{
       }
 
     }
+
 
 #endregion
 
@@ -200,6 +197,21 @@ namespace MTON.codeObjects{
     public void doIdle(){   //neutral state -> good for swapping/activating back main model
       //      doRest()                                       ;
     }
+#endregion
+
+
+#region Class Utility
+
+	public virtual void init_Components(){
+			
+      rb = __gUtility.AddComponent_mton<mCcntl>(this.gameObject); 
+      an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject);
+      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject);
+      io = __gUtility.AddComponent_mton<cInput>(this.gameObject);
+      tw = __gUtility.AddComponent_mton<cTween>(this.dispObj.gameObject)   ; //Tweening display obj vs. character controller
+
+	}
+
 #endregion
 
   }
