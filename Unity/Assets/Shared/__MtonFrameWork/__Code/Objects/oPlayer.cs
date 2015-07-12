@@ -40,6 +40,7 @@ namespace MTON.codeObjects{
 
     protected CharacterController cControl ;
     protected Transform           xform    ;
+	protected Renderer            rendr    ;
     protected cInput              io       ; //protected; can be replaced with ai; vs. input controller
     protected mCcntl              rb       ; //protected; to access collider volume info
 
@@ -74,6 +75,8 @@ namespace MTON.codeObjects{
       }
 
     }
+
+	public virtual void Start(){}
 
 
 #endregion
@@ -209,6 +212,8 @@ namespace MTON.codeObjects{
       eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject);
       io = __gUtility.AddComponent_mton<cInput>(this.gameObject);
       tw = __gUtility.AddComponent_mton<cTween>(this.dispObj.gameObject)   ; //Tweening display obj vs. character controller
+
+      rendr = this.dispObj.gameObject.GetComponent<Renderer>()   ; //Get Renderer Component
 
 	}
 

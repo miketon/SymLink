@@ -8,19 +8,42 @@ namespace MTON.codeObjects{
 
   public class oEnemy : oPlayer{
 
-	public Transform player;
+	public Transform player          ;
+	public Color cActv = Color.red   ;
+	public Color cRest  = Color.green ;
 
 	public override void init_Components(){
 	  base.init_Components();
       io = __gUtility.AddComponent_mton<cInput_AI>(this.gameObject); //add AI component instead of input from controller
 	}
 
+	public override void Start(){
+	  base.Start();
+	  rendr.material.color = cRest;
+	}
+
+	public virtual void AI_Actv(bool bActive){
+	  if(bActive){
+	    rendr.material.color = cActv;
+	  }
+	  else{
+	    rendr.material.color = cRest;
+	  }
+	}
+	
 	public override void FixedUpdate(){
 	  base.FixedUpdate();
 	  float dist = Vector3.Distance(this.xform.position, this.player.position);
-	  if(dist < 3.0f){
+	  if(dist < 3.0f){ //Activate
 		Vector3 centerOffset = new Vector3(0.0f, rb.cHeight * 0.5f, 0.0f);
 		Debug.DrawLine(this.xform.position + centerOffset, this.player.position + centerOffset, Color.yellow);
+		AI_Actv(true);
+	    io.bInput = true;
+	  }
+	  else{ //Rest
+	    AI_Actv(false);
+	    io.bInput = false;
+		io.doDPAD_Dir(Vector3.zero);
 	  }
 	}
 
