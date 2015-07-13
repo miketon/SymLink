@@ -50,7 +50,7 @@ namespace MTON.Class{
     public Vector3 scl{ get; set;} //??? HACK : Shortcuting scale else DOTWEEN doesn't completely reset size
 
     public virtual bool OnGround(){
-      Debug.DrawLine(xform.position, xform.position + (-Vector3.up * dToGround), Color.yellow, 10.5f, false);
+//      Debug.DrawLine(xform.position, xform.position + (-Vector3.up * dToGround), Color.yellow, 10.5f, false);
       if (ToGround(dToGround) > -groundThreshold){ //return true if ToGround returns hit distance (-1.0f on miss)
         bGround = true; //Always update bGround property
         return bGround; //found ground
@@ -79,7 +79,7 @@ namespace MTON.Class{
       RaycastHit hit                                                                 ;
       //var pPos = xform.position + (Vector3.right * IN_offSetX)                       ; //calculate vertical and horizontal offset
 	  var pPos = xform.position + (Vector3.right * IN_offSetX) + cen              ; //calculate vertical and horizontal offset
-      Debug.DrawLine(pPos, pPos + (IN_dir * IN_magnitude), Color.red, 0.5f, false)   ;
+//      Debug.DrawLine(pPos, pPos + (IN_dir * IN_magnitude), Color.red, 0.5f, false)   ;
       //if (Physics.Raycast(pPos, IN_dir, out hit, Mathf.Abs(IN_magnitude), __layerGround)){            //return hit distance to the ground
       if (Physics.Raycast(pPos, IN_dir, out hit, Mathf.Abs(IN_magnitude))){            //return hit distance to the ground
         return hit.distance     ; //found ground, returning distance > 0.0f

@@ -14,6 +14,13 @@ namespace MTON.codeObjects{
 
 	public override void init_Components(){
 	  base.init_Components();
+
+	  // HACK : removing cInput ; Figure out how to check and do this with __gUtility.AddComponent_mton<T>()
+	  cInput removeIO = this.gameObject.GetComponent<cInput>();
+	  if(removeIO!=null){
+		Destroy(removeIO);
+	  }
+
       io = __gUtility.AddComponent_mton<cInput_AI>(this.gameObject); //add AI component instead of input from controller
 	}
 
