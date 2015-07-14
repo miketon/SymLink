@@ -67,9 +67,13 @@ namespace MTON.Class{
     }
 
     public void doCrouch(float scaleY){
-      checkTweenCache();
-      tw_Cache = xform.DOScaleY(scaleY, durFX*0.5f);
+	  doCrouch(scaleY, durFX*0.5f);
     }
+
+	public void doCrouch(float scaleY, float IN_dur){
+      checkTweenCache();
+	  tw_Cache = xform.DOScaleY(scaleY, IN_dur).SetEase(Ease.OutElastic);
+	}
 
     private void checkTweenCache(){
       if(tw_Cache!=null){

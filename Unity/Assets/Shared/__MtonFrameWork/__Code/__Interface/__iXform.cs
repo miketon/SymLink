@@ -18,6 +18,7 @@ namespace MTON.Interface{
     //	delegate bool OnGroundCallback() ; //setup delegate
     //  OnGroundCallback OnGround()      ; //define event
 
+	bool  OnCeilng()                 ;
     bool  OnGround()                 ; 
     float ToGround(float distCheck)  ;
 

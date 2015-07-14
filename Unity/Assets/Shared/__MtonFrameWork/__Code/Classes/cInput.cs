@@ -75,9 +75,10 @@ namespace MTON.Class{
     public virtual void Update(){
 
       if(bInput == true){
-		float hAxis = Input.GetAxis(__gIO._hAxs_p1);
-		if(Mathf.Abs (hAxis)> 0.01f){
-			Vector3 moveDir = new Vector3(hAxis, 0.0f, 0.0f);
+		float hAxis = Input.GetAxisRaw(__gIO._hAxs_p1);
+		float vAxis = Input.GetAxisRaw(__gIO._vAxs_p1); //get raw for vAxis == instant crouch/duck; else it will be interpolated
+		if(new Vector2(hAxis, vAxis).magnitude > 0.01f){
+			Vector3 moveDir = new Vector3(hAxis, vAxis, 0.0f);
 			doDPAD_Dir(moveDir);
 		}
 		else{
