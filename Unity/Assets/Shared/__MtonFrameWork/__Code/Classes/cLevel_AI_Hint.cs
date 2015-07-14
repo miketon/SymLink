@@ -36,6 +36,18 @@ namespace MTON.Class{
 	  }
     }
 
+	public override void Awake(){
+	  base.Awake();
+	  string curLayer = LayerMask.LayerToName(gameObject.layer);
+	  if(curLayer != __gCONSTANT._TRGGR){
+	    gameObject.layer = LayerMask.NameToLayer (__gCONSTANT._TRGGR); // HACK :level triggers/hint should ignore ground raycast/collision check!
+	    Debug.LogWarning("Trigger Layer/Level Hint Not Setup Correctly : Converting '" + curLayer + "' to : '" + __gCONSTANT._TRGGR + "' ");
+	  }
+	}
+	public override void Start(){
+	  base.Start();
+	}
+
   }
 
 }

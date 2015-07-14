@@ -15,6 +15,7 @@ namespace MTON.Global{
     public const string _FLOOR  = "Ground";
     public const string _WALLS  = "Walls" ;
     public const string _DOORS  = "Doors" ; //could be spawn, save, restore, entry, exit points
+    public const string _TRGGR  = "Ignore Raycast"; //HACK :level triggers/hint should ignore ground raycast/collision check!
 
     //handles Tags
     //handles Paths
