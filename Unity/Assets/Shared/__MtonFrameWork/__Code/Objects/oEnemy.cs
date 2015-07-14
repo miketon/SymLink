@@ -10,7 +10,7 @@ namespace MTON.codeObjects{
 
 	public Transform player          ;
 	public Color cActv = Color.red   ;
-	public Color cRest  = Color.green ;
+	public Color cRest = Color.green ;
 
 	public override void init_Components(){
 	  base.init_Components();
