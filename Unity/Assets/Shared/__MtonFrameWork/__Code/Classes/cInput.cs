@@ -97,7 +97,7 @@ namespace MTON.Class{
         if(Input.GetButtonDown(__gIO._ATTK_p1)){
           bAttk = true;
 //		  Debug.Log("Starting Jump Coroutine. ");
-//		  WaitUntilJump();	  
+//		  StartCoroutine(WaitUntilJump());	  
         }
         else if(Input.GetButtonUp(__gIO._ATTK_p1)){
           bAttk = false;
