@@ -11,6 +11,7 @@ namespace MTON.Class{
 	public  Color cEntr = Color.blue  ;
 	private Color cExit = Color.white ;
 	private Renderer rendr;
+	private cInput   cINPT;
 
 	public bool Jump_Up = false;
 	public bool Jump_Fw = false;
@@ -26,6 +27,10 @@ namespace MTON.Class{
 		cExit = rendr.material.color ;
 	    rendr.material.color = cEntr ;
 	  }
+	  cINPT = other.gameObject.GetComponent<cInput>();
+	  if(cINPT != null){
+	    cINPT.bJump = true;
+	  }
 	}
 
     void OnTriggerExit(Collider other) {
@@ -38,12 +43,9 @@ namespace MTON.Class{
 
 	public override void Awake(){
 	  base.Awake();
-	  string curLayer = LayerMask.LayerToName(gameObject.layer);
-	  if(curLayer != __gCONSTANT._TRGGR){
-	    gameObject.layer = LayerMask.NameToLayer (__gCONSTANT._TRGGR); // HACK :level triggers/hint should ignore ground raycast/collision check!
-	    Debug.LogWarning("Trigger Layer/Level Hint Not Setup Correctly : Converting '" + curLayer + "' to : '" + __gCONSTANT._TRGGR + "' ");
-	  }
+	  __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._TRGGR); // HACK :level triggers/hint should ignore ground raycast/collision check!
 	}
+
 	public override void Start(){
 	  base.Start();
 	}
