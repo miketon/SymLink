@@ -8,13 +8,47 @@ using DG.Tweening        ; //import DemiGiant DoTween
 
 namespace MTON.Class{
 
-  public class cLevel_AI_Hint : cLevel{
+  public class cHint : MonoBehaviour, IHint{
 
-	public  Color cEntr = Color.blue  ;
+#region iHint implementation
+
+  private bool bactivehint = true   ;
+  public  bool bActiveHint{
+			get{
+				return bactivehint;
+			}
+			set{
+				if(value != bactivehint){
+					bactivehint = value;
+				}
+			}
+		}
+
+  public virtual void OnHintStart(GameObject IN_GO){
+    Renderer rendr = IN_GO.GetComponent<Renderer>();
+    if(rendr != null){
+      cExit = rendr.material.color ;
+      rendr.material.color = cEntr ;
+    }
+  }
+
+  public virtual void OnHintCheck(GameObject IN_GO){ //the check logicfor
+    Debug.Log("On Hint Check: " + IN_GO);
+  }
+
+  public virtual void OnHintComplete(GameObject IN_GO) {
+    Renderer rendr = IN_GO.GetComponent<Renderer>();
+    if(rendr != null){
+      rendr.material.color = cExit ;
+    }
+  }
+
+#endregion
+
+  public  Color cEntr = Color.blue  ;
   private Color cExit = Color.white ;
   private cInput    cINPT           ;
   private Transform xform           ;
-  private bool bActiveHint = true   ;
 
   public float fActive = 0.0f ;
   public bool Jump_Up = false ;
@@ -36,11 +70,11 @@ namespace MTON.Class{
           GameObject dispObj = other.gameObject.GetComponent<oPlayer>().dispObj.gameObject;
           StartCoroutine(WaitUntilDistant(this.xform, dispObj.transform, (()=>{
                   Debug.Log("Lambda Rules!") ;
-                  onCompleteHint(dispObj)    ;
+                  OnHintComplete(dispObj)    ;
                   return true                ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
           })));
         }
-        onStartHint(other.gameObject.GetComponent<oPlayer>().dispObj.gameObject);
+        OnHintStart(other.gameObject.GetComponent<oPlayer>().dispObj.gameObject);
       }
     }
   }
@@ -50,38 +84,21 @@ namespace MTON.Class{
     float distToOther = 0.0f  ;
     while(distToOther  < 1.0f){
       cINPT.bJump = false                                                          ;
-      distToOther = Vector3.Distance(IN_xform_SRC.position, IN_xform_TGT.position) ;
+//      distToOther = Vector3.Distance(IN_xform_SRC.position, IN_xform_TGT.position) ;
+      distToOther = Mathf.Abs(IN_xform_SRC.position.x - IN_xform_TGT.position.x)   ; //vertical height too much delta change
       yield return null                                                            ;
     }
     bActiveHint = true                               ;
-    funcToRun()                                      ;
+	funcToRun()                                      ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
     Debug.Log(" DeActivating HINT : " + bActiveHint) ;
   }
 
-  void onStartHint(GameObject IN_GO){
-    Renderer rendr = IN_GO.GetComponent<Renderer>();
-    if(rendr != null){
-      cExit = rendr.material.color ;
-      rendr.material.color = cEntr ;
-    }
-  }
-
-  void onCompleteHint(GameObject IN_GO) {
-    Renderer rendr = IN_GO.GetComponent<Renderer>();
-    if(rendr != null){
-      rendr.material.color = cExit ;
-    }
-  }
-
-  public override void Awake(){
-    base.Awake()                                                      ;
+  public virtual void Awake(){
     xform = this.transform                                            ;
     __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._TRGGR) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
   }
 
-  public override void Start(){
-    base.Start();
-  }
+  public virtual void Start(){ }
 
   }
 

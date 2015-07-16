@@ -96,8 +96,6 @@ namespace MTON.Class{
         //check attack
         if(Input.GetButtonDown(__gIO._ATTK_p1)){
           bAttk = true;
-//		  Debug.Log("Starting Jump Coroutine. ");
-//		  StartCoroutine(WaitUntilJump());	  
         }
         else if(Input.GetButtonUp(__gIO._ATTK_p1)){
           bAttk = false;
@@ -105,19 +103,6 @@ namespace MTON.Class{
 
       }
     }
-
-	IEnumerator WaitUntilJump(){
-	  // suspend execution for 5 seconds
-	  Debug.Log("Waiting for Jump.");
-	  yield return new WaitForSeconds(2);
-	  //yield return bJump;
-	  Debug.Log("Finally Jumped " + bJump);
-    }
-	
-	IEnumerator StartCo(){
-	  Debug.Log("Starting Jump Coroutine. ");
-	  yield return StartCoroutine("WaitUntilJump");
-	}
 
   }
 
