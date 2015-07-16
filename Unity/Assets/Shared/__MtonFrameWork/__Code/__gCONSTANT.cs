@@ -15,6 +15,7 @@ namespace MTON.Global{
     public const string _FLOOR  = "Ground";
     public const string _WALLS  = "Walls" ;
     public const string _DOORS  = "Doors" ; //could be spawn, save, restore, entry, exit points
+    public const string _TRGGR  = "Ignore Raycast"; //HACK :level triggers/hint should ignore ground raycast/collision check!
 
     //handles Tags
     //handles Paths
@@ -22,6 +23,16 @@ namespace MTON.Global{
     public static string _sdFX = "_SoundFX/"    ;
     public static string _txtr = "_Textures/"   ;
     public static string _matl = "_Materials/"  ;
+
+  }
+
+  public class __gIO{ //Project Global object to hold IO buttons
+
+	//handles player one IO
+	public const string _hAxs_p1 = "Horizontal" ;
+	public const string _vAxs_p1 = "Vertical"   ;
+    public const string _JUMP_p1 = "Jump"       ;
+    public const string _ATTK_p1 = "Fire1"      ;
 
   }
 
@@ -39,6 +50,14 @@ namespace MTON.Global{
 	    return cExist;
 	  }
 	}
+	
+	public static void CheckAndInitLayer(GameObject IN_GO, string IN_LAYERNAME){
+	  string curLayer = LayerMask.LayerToName(IN_GO.layer);
+	  if(curLayer != IN_LAYERNAME){
+	    IN_GO.layer = LayerMask.NameToLayer (IN_LAYERNAME); 
+		Debug.LogWarning(IN_GO+" Layer/Level Hint Not Setup Correctly : Converting '" + curLayer + "' to : '" + IN_LAYERNAME + "' ");
+	  }
+	}
 
 	public static void Debugmton(int IN_mton){
 	  Debug.Log("IN_mton");
@@ -46,14 +65,5 @@ namespace MTON.Global{
 
   }
 
-  public class __gIO{ //Project Global object to hold IO buttons
-
-	//handles player one IO
-	public const string _hAxs_p1 = "Horizontal" ;
-	public const string _vAxs_p1 = "Vertical"   ;
-    public const string _JUMP_p1 = "Jump"       ;
-    public const string _ATTK_p1 = "Fire1"      ;
-
-  }
 
 }

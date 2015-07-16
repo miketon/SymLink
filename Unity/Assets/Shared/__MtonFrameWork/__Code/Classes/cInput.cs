@@ -7,7 +7,7 @@ namespace MTON.Class{
 
   public class cInput : MonoBehaviour, IInput{ //reads input and determines update
 
-    public virtual void Start(){
+	public virtual void Start(){
 //      Debug.Log(this + " Start ! ");
     }
 

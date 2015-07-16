@@ -41,7 +41,7 @@ namespace MTON.Class{
 			set{
 				if(value != vstate){
 					vstate = value ;
-					Debug.Log(this + " vState updated : " + value);
+//					Debug.Log(this + " vState updated : " + value);
 				}
 			}
 		}
@@ -89,7 +89,7 @@ namespace MTON.Class{
 			set{
 				if(value != dstate){
 					dstate = value ;
-					Debug.Log(this + " dState updated : " + value);
+//					Debug.Log(this + " dState updated : " + value);
 					if(value == eStateD.Duck){
 						doDuck(true);
 					}

@@ -14,6 +14,9 @@ namespace MTON.Class{
     //Shut Down Level
     public void UnLoadLevel(){}
 
+	public virtual void Awake(){}
+	public virtual void Start(){}
+
   }
 
 }
