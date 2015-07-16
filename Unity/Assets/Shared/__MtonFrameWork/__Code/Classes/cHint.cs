@@ -11,7 +11,6 @@ namespace MTON.Class{
   public class cHint : MonoBehaviour, IHint{
 
 #region iHint implementation
-
   private bool bactivehint = true   ;
   public  bool bActiveHint{
 			get{
@@ -34,6 +33,16 @@ namespace MTON.Class{
 
   public virtual void OnHintCheck(GameObject IN_GO){ //the check logicfor
     Debug.Log("On Hint Check: " + IN_GO);
+	cINPT = IN_GO.GetComponent<cInput>();
+    if(cINPT != null){
+      cINPT.bJump = true;
+	  GameObject dispObj = IN_GO.GetComponent<oPlayer>().dispObj.gameObject;
+	  OnHintStart(dispObj);
+      StartCoroutine(WaitUntilDistant(this.xform, dispObj.transform, (()=>{
+        OnHintComplete(dispObj)    ;
+        return true                ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
+      })));
+    }
   }
 
   public virtual void OnHintComplete(GameObject IN_GO) {
@@ -42,15 +51,14 @@ namespace MTON.Class{
       rendr.material.color = cExit ;
     }
   }
-
 #endregion
 
+  public  float fThreshold = 1.0f   ;
   public  Color cEntr = Color.blue  ;
   private Color cExit = Color.white ;
   private cInput    cINPT           ;
   private Transform xform           ;
 
-  public float fActive = 0.0f ;
   public bool Jump_Up = false ;
   public bool Jump_Fw = false ;
   public bool Move_Fw = false ;
@@ -59,30 +67,16 @@ namespace MTON.Class{
   // Notes: Trigger events are only sent if one of the colliders also has a rigidbody attached. 
   // Trigger events will be sent to disabled MonoBehaviours, to allow enabling Behaviours in response to collisions.
   void OnTriggerEnter(Collider other) {
-    Debug.Log("Triggering Enter : " + other.gameObject);
+//    Debug.Log("Triggering Enter : " + other.gameObject);
     if(bActiveHint){
-      cINPT = other.gameObject.GetComponent<cInput>();
-      if(cINPT != null){
-        float distToOther = Vector3.Distance(other.transform.position, xform.position);
-        Debug.Log("Distance : " + distToOther + " fActive : " + fActive);
-        if(distToOther > fActive){
-          cINPT.bJump = true;
-          GameObject dispObj = other.gameObject.GetComponent<oPlayer>().dispObj.gameObject;
-          StartCoroutine(WaitUntilDistant(this.xform, dispObj.transform, (()=>{
-                  Debug.Log("Lambda Rules!") ;
-                  OnHintComplete(dispObj)    ;
-                  return true                ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
-          })));
-        }
-        OnHintStart(other.gameObject.GetComponent<oPlayer>().dispObj.gameObject);
-      }
+	  OnHintCheck(other.gameObject);
     }
   }
 
   IEnumerator WaitUntilDistant<T>(Transform IN_xform_SRC, Transform IN_xform_TGT, Func<T> funcToRun){
     bActiveHint       = false ;
     float distToOther = 0.0f  ;
-    while(distToOther  < 1.0f){
+	while(distToOther  < fThreshold){
       cINPT.bJump = false                                                          ;
 //      distToOther = Vector3.Distance(IN_xform_SRC.position, IN_xform_TGT.position) ;
       distToOther = Mathf.Abs(IN_xform_SRC.position.x - IN_xform_TGT.position.x)   ; //vertical height too much delta change
@@ -90,7 +84,7 @@ namespace MTON.Class{
     }
     bActiveHint = true                               ;
 	funcToRun()                                      ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
-    Debug.Log(" DeActivating HINT : " + bActiveHint) ;
+//    Debug.Log(" DeActivating HINT : " + bActiveHint) ;
   }
 
   public virtual void Awake(){
@@ -100,6 +94,6 @@ namespace MTON.Class{
 
   public virtual void Start(){ }
 
-  }
+}
 
 }
