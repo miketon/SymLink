@@ -12,57 +12,33 @@ namespace MTON.Class{
   public class cHint : MonoBehaviour, IHint{
 
 #region iHint implementation
-  private bool bactivehint = true   ;
-  public  bool bActiveHint{
-			get{
-				return bactivehint;
-			}
-			set{
-				if(value != bactivehint){
-					bactivehint = value;
-				}
-			}
-		}
 
-//  public virtual void OnHintStart<T>(T IN_GO) where T:cInput{
-//  public virtual void OnHintStart<T>(T IN_GO) where T:ScriptableObject{
-//  public virtual void OnHintStart<cInput>(cInput IN_GO){
-//  public virtual void OnHintStart<GameObject>(GameObject IN_GO){
-  public virtual void OnHintStart(GameObject IN_GO){
-//    Renderer rendr = IN_GO.GetComponent<Renderer>();
-//			IN_GO.bAttk = true;
-			Debug.Log("ON HINT START : " + IN_GO.GetType());
-			Debug.Log("ON HINT START : " + IN_GO.tag);
-    Renderer rendr = IN_GO.gameObject.GetComponent<Renderer>();
-    if(rendr != null){
-      cExit = rendr.material.color ;
-      rendr.material.color = cEntr ;
-    }
-  }
+  public List<cInput> collidedList = new List<cInput>();      // declaration
+  //  gEntities.Add(theItem);                                  // add an item to the end of the List
+  //  gEntities[i] = newItem;                                  // change the value in the List at position i
+  //  cInput thisItem = List[i];                               // retrieve the item at position i
+  //  gEntities.RemoveAt(i);                                   // remove the item from position i
+  //  numList = nums.ToList(); // convert an array to list
 
-  public virtual void OnHintCheck(GameObject IN_GO){ //the check logicfor
-//    Debug.Log("On Hint Check: " + IN_GO);
-	cINPT = IN_GO.GetComponent<cInput>();
+  public virtual void OnHintEntr(cInput cINPT){ //the check logicfor
     if(cINPT != null){
 	  foreach(cInput cObject in collidedList){
-		Debug.Log("Checking against List : " + cObject);
 	    if(cINPT == cObject){
-		  Debug.LogError(cObject + " Already Collided; Not Eligible for further collision ");
+//		  Debug.LogError(cObject + " Already Collided; Not Eligible for further collision ");
 		  return;
 		}
 	  }
-	  Debug.Log("NEW! Adding to List : " + cINPT);
 	  collidedList.Add(cINPT);                                  // add an item to the end of the List
 
       cINPT.bJump = true;
-	  GameObject dispObj = IN_GO.GetComponent<oPlayer>().dispObj.gameObject;
-	  OnHintStart(dispObj);
-//	  OnHintStart(cINPT);
-      StartCoroutine(WaitUntilDistant(this.xform, dispObj.transform, (()=>{
-        OnHintComplete(dispObj)    ;
+	  cINPT.bActV = true;
+
+	  StartCoroutine(WaitUntilDistant(this.xform, cINPT.transform, (()=>{
+        cINPT.bJump = false                                                          ;
+		OnHintExit(cINPT)    ;
 		for(int i=0; i<collidedList.Count; i++){
 		  if(cINPT == collidedList[i]){
-		    Debug.LogError(" Removing : " + cINPT);
+//		    Debug.LogError(" Removing : " + cINPT);
 			collidedList.RemoveAt(i);
 		  }
 	    }
@@ -71,25 +47,12 @@ namespace MTON.Class{
     }
   }
 
-  public virtual void OnHintComplete(GameObject IN_GO) {
-    Renderer rendr = IN_GO.GetComponent<Renderer>();
-    if(rendr != null){
-      rendr.material.color = cExit ;
-    }
+  public virtual void OnHintExit(cInput cINPT) {
+	cINPT.bActV = false;
   }
 #endregion
 
-		private List<cInput> collidedList = new List<cInput>();             // declaration
-		//  gEntities.Add(theItem);                                  // add an item to the end of the List
-		//  gEntities[i] = newItem;                                  // change the value in the List at position i
-        //  cInput thisItem = List[i];                               // retrieve the item at position i
-		//  gEntities.RemoveAt(i);                                   // remove the item from position i
-        //  numList = nums.ToList(); // convert an array to list
-
-  
   public  float fThreshold = 1.0f   ;
-  public  Color cEntr = Color.blue  ;
-  private Color cExit = Color.white ;
   private cInput    cINPT           ;
   private Transform xform           ;
 
@@ -102,23 +65,20 @@ namespace MTON.Class{
   // Trigger events will be sent to disabled MonoBehaviours, to allow enabling Behaviours in response to collisions.
   void OnTriggerEnter(Collider other) {
 //    Debug.Log("Triggering Enter : " + other.gameObject);
-//    if(bActiveHint){
-	  OnHintCheck(other.gameObject);
-//    }
+	  cINPT = other.gameObject.GetComponent<cInput>();
+	  if(cINPT != null){
+	    OnHintEntr(cINPT);
+	  }
   }
 
   IEnumerator WaitUntilDistant<T>(Transform IN_xform_SRC, Transform IN_xform_TGT, Func<T> funcToRun){
-//    bActiveHint       = false ;
     float distToOther = 0.0f  ;
 	while(distToOther  < fThreshold){
-      cINPT.bJump = false                                                          ;
 //      distToOther = Vector3.Distance(IN_xform_SRC.position, IN_xform_TGT.position) ;
       distToOther = Mathf.Abs(IN_xform_SRC.position.x - IN_xform_TGT.position.x)   ; //vertical height too much delta change
       yield return null                                                            ;
     }
-//    bActiveHint = true                               ;
 	funcToRun()                                      ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
-//    Debug.Log(" DeActivating HINT : " + bActiveHint) ;
   }
 
   public virtual void Awake(){

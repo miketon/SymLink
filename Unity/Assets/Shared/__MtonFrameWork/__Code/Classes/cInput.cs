@@ -7,21 +7,6 @@ namespace MTON.Class{
 
   public class cInput : MonoBehaviour, IInput{ //reads input and determines update
 
-	public virtual void Start(){
-//      Debug.Log(this + " Start ! ");
-    }
-
-    // Is input enabled
-	private bool binput = true ; //must set default here
-    public  bool bInput {        //cannot assign default via setter/getter 
-			  get{
-			    return binput;
-			  } 
-			  set{
-			    binput = value;
-			  } 
-		    } 
-
 	public delegate void OnDPAD_DIR(Vector3 vDir) ; //set up delegate
     public OnDPAD_DIR OnDPAD_DIR_Delegate         ; //delegate instance
 
@@ -33,6 +18,35 @@ namespace MTON.Class{
 
     public delegate void OnAttk(bool bAttk) ; //set up delegate
     public OnAttk OnAttkDelegate            ; //delegate instance
+
+	public delegate void OnActV(bool bActV) ; //set up delegate
+	public OnActV OnActVDelegate            ; //delegate instance
+
+	private bool bactv = true; //use to control when entity VISUALLY activates/deactivates 
+	public  bool bActV{
+	  get{
+	    return bactv;
+	  }
+	  set{
+	    bactv = value;
+		if(OnActVDelegate!=null){
+		  OnActVDelegate(bactv);
+		}
+	  }
+	}
+
+#region iInput implementation
+
+    // Is input enabled
+	private bool binput = true ; //false == ignore input(use AI); true == accept input
+    public  bool bInput {        //cannot assign default via setter/getter 
+			  get{
+			    return binput;
+			  } 
+			  set{
+			    binput = value;
+			  } 
+		    } 
 
     // Button states
     private bool bjump = false;
@@ -70,6 +84,12 @@ namespace MTON.Class{
     }
 	public virtual void doDPAD_Aim(Vector3 vDir){
 	  Debug.Log("doDPAD_Dir Aim!" + vDir);
+    }
+
+#endregion
+
+	public virtual void Start(){
+//      Debug.Log(this + " Start ! ");
     }
 
     public virtual void Update(){
