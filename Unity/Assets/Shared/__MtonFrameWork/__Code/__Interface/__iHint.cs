@@ -1,15 +1,13 @@
 using UnityEngine        ;
 using System.Collections ;
+using MTON.Class         ;
 
 namespace MTON.Interface{
 
   public interface IHint{
-
-	bool bActiveHint { get; set; } 
     
-	void OnHintStart(GameObject IN_GO);
-	void OnHintCheck(GameObject IN_GO);
-	void OnHintComplete(GameObject IN_GO);
+	void OnHintEntr(cInput TArg);
+    void OnHintExit(cInput TArg);
 
   }
 

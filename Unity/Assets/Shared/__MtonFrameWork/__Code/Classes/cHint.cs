@@ -1,6 +1,7 @@
 using UnityEngine        ;
 using System.Collections ;
-using System             ; //NOTE : ??? must import to use anonymous function
+using System.Collections.Generic ; // Dictioinary
+using System             ; //NOTE : ??? must import to use anonymous function ; And the IComparable Interface for Dictionary
 using MTON.Interface     ;
 using MTON.Global        ;
 using MTON.codeObjects   ;
@@ -12,45 +13,54 @@ namespace MTON.Class{
 
 #region iHint implementation
 
-  private bool bactivehint = true   ;
-  public  bool bActiveHint{
-			get{
-				return bactivehint;
-			}
-			set{
-				if(value != bactivehint){
-					bactivehint = value;
-				}
-			}
+  public List<cInput> collidedList = new List<cInput>();      // declaration
+  //  gEntities.Add(theItem);                                  // add an item to the end of the List
+  //  gEntities[i] = newItem;                                  // change the value in the List at position i
+  //  cInput thisItem = List[i];                               // retrieve the item at position i
+  //  gEntities.RemoveAt(i);                                   // remove the item from position i
+  //  numList = nums.ToList(); // convert an array to list
+
+  public virtual void OnHintEntr(cInput cINPT){ //the check logicfor
+    if(cINPT != null){
+//	  foreach(cInput cObject in collidedList){
+	  for(int i=0; i<collidedList.Count; i++){
+		if(cINPT == collidedList[i]){ // true == already collided, not eligible for collision until OnHintExit
+		  return;
 		}
+	  }
+	  collidedList.Add(cINPT);                                  // add an item to the end of the List
 
-  public virtual void OnHintStart(GameObject IN_GO){
-    Renderer rendr = IN_GO.GetComponent<Renderer>();
-    if(rendr != null){
-      cExit = rendr.material.color ;
-      rendr.material.color = cEntr ;
+      cINPT.bJump = true;
+	  cINPT.bActV = true;
+	  tw.doCrouch(0.33f, 0.5f);
+
+	  StartCoroutine(WaitUntilDistant(this.xform, cINPT.transform, (()=>{
+        cINPT.bJump = false                                                          ;
+		OnHintExit(cINPT)    ;
+		for(int i=0; i<collidedList.Count; i++){
+		  if(cINPT == collidedList[i]){
+//		    Debug.LogError(" Removing : " + cINPT);
+			collidedList.RemoveAt(i);
+		  }
+	    }
+        return true                ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
+      })));
     }
   }
 
-  public virtual void OnHintCheck(GameObject IN_GO){ //the check logicfor
-    Debug.Log("On Hint Check: " + IN_GO);
-  }
-
-  public virtual void OnHintComplete(GameObject IN_GO) {
-    Renderer rendr = IN_GO.GetComponent<Renderer>();
-    if(rendr != null){
-      rendr.material.color = cExit ;
-    }
+  public virtual void OnHintExit(cInput cINPT) {
+	cINPT.bActV = false;
+	tw.doCrouch(1.0f);
   }
 
 #endregion
 
-  public  Color cEntr = Color.blue  ;
-  private Color cExit = Color.white ;
+  public  float fThreshold = 1.0f   ;
   private cInput    cINPT           ;
   private Transform xform           ;
 
-  public float fActive = 0.0f ;
+  private cTween    tw    ;
+
   public bool Jump_Up = false ;
   public bool Jump_Fw = false ;
   public bool Move_Fw = false ;
@@ -59,47 +69,67 @@ namespace MTON.Class{
   // Notes: Trigger events are only sent if one of the colliders also has a rigidbody attached. 
   // Trigger events will be sent to disabled MonoBehaviours, to allow enabling Behaviours in response to collisions.
   void OnTriggerEnter(Collider other) {
-    Debug.Log("Triggering Enter : " + other.gameObject);
-    if(bActiveHint){
-      cINPT = other.gameObject.GetComponent<cInput>();
-      if(cINPT != null){
-        float distToOther = Vector3.Distance(other.transform.position, xform.position);
-        Debug.Log("Distance : " + distToOther + " fActive : " + fActive);
-        if(distToOther > fActive){
-          cINPT.bJump = true;
-          GameObject dispObj = other.gameObject.GetComponent<oPlayer>().dispObj.gameObject;
-          StartCoroutine(WaitUntilDistant(this.xform, dispObj.transform, (()=>{
-                  Debug.Log("Lambda Rules!") ;
-                  OnHintComplete(dispObj)    ;
-                  return true                ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
-          })));
-        }
-        OnHintStart(other.gameObject.GetComponent<oPlayer>().dispObj.gameObject);
-      }
-    }
+//    Debug.Log("Triggering Enter : " + other.gameObject);
+	  cINPT = other.gameObject.GetComponent<cInput>();
+	  if(cINPT != null){
+	    OnHintEntr(cINPT);
+	  }
   }
 
   IEnumerator WaitUntilDistant<T>(Transform IN_xform_SRC, Transform IN_xform_TGT, Func<T> funcToRun){
-    bActiveHint       = false ;
     float distToOther = 0.0f  ;
-    while(distToOther  < 1.0f){
-      cINPT.bJump = false                                                          ;
+	while(distToOther  < fThreshold){
 //      distToOther = Vector3.Distance(IN_xform_SRC.position, IN_xform_TGT.position) ;
-      distToOther = Mathf.Abs(IN_xform_SRC.position.x - IN_xform_TGT.position.x)   ; //vertical height too much delta change
+      distToOther = Mathf.Abs(IN_xform_SRC.position.x - IN_xform_TGT.position.x)   ; //vertical height too much delta change, so only check x
       yield return null                                                            ;
     }
-    bActiveHint = true                               ;
-	funcToRun()                                      ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
-    Debug.Log(" DeActivating HINT : " + bActiveHint) ;
+	funcToRun()                                                                    ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
   }
 
   public virtual void Awake(){
     xform = this.transform                                            ;
     __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._TRGGR) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
+    tw = __gUtility.AddComponent_mton<cTween>(this.gameObject)        ; //Tweening 
   }
 
   public virtual void Start(){ }
-
+  private void OnEnable(){
+	//collidedList.RemoveAll(cInput); //The Predicate<T> is a delegate to a method that returns true if the object passed to it matches the conditions defined in the delegate
+	collidedList.Clear(); 
   }
+  private void OnDisable(){ }
+
+}
+
+/* Dictionary Implementation
+
+  //This is how you create a Dictionary. Notice how this takes
+  //two generic terms. In this case you are using a string and a
+  //gEntity as your two values.
+  Dictionary<string, gEntity> gEntities = new Dictionary<string, gEntity>();
+
+//This is the class you will be storing in the different collections. In order to use
+//a collection's Sort() method, this class needs to implement the IComparable interface.
+public class gEntity : IComparable<gEntity>
+{
+    public string name   ;
+	public int    power  ;
+    
+	public gEntity(string IN_Name, int IN_Power){  // init
+		name  = IN_Name  ;
+		power = IN_Power ;
+    }
+    
+    //This method is required by the IComparable interface. 
+	public int CompareTo(gEntity other){
+
+        if(other == null){
+            return 1; // ??? 1 does not identify that other doesn't exist
+        }
+        
+		return power - other.power; //Return the difference in power.
+    }
+}
+*/
 
 }

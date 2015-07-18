@@ -10,6 +10,18 @@ namespace MTON.codeObjects{
 
     //init interface members
     public  Transform dispObj ; //HACK : Coupling the character dispObj => object with an Animator and render mesh
+	public void doActV(bool bActvV){
+	  if(bActvV == true){
+        if(rendr != null){
+          rendr.material.color = Color.blue;
+        }
+	  }
+	  else{
+        if(rendr != null){
+          rendr.material.color = cColr;
+	    }
+	  }
+	}
 
 #region oPlayer Delegates
     private void OnEnable(){
@@ -17,6 +29,7 @@ namespace MTON.codeObjects{
       io.OnDPAD_DIR_Delegate += doMove;
       io.OnJumpDelegate      += doJump;
       io.OnAttkDelegate      += doAttk; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
+	  io.OnActVDelegate      += doActV; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
 	  
 	  //animation : input + character/env state
 	  an.OnDuckDelegate      += doCrouch;
@@ -28,6 +41,7 @@ namespace MTON.codeObjects{
       io.OnDPAD_DIR_Delegate -= doMove;
       io.OnJumpDelegate      -= doJump; //NOTE: remember to remove delegate in case of wierd memory leaks
       io.OnAttkDelegate      -= doAttk;
+	  io.OnActVDelegate      -= doActV; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
 
 	  //animation : input + character/env state
 	  an.OnDuckDelegate      -= doCrouch;
@@ -41,6 +55,7 @@ namespace MTON.codeObjects{
     protected CharacterController cControl ;
     protected Transform           xform    ;
 	protected Renderer            rendr    ;
+	protected Color               cColr    ;
     protected cInput              io       ; //protected; can be replaced with ai; vs. input controller
     protected mCcntl              rb       ; //protected; to access collider volume info
 
@@ -50,8 +65,11 @@ namespace MTON.codeObjects{
 
     private LayerMask layerGround;
 
+
 	public virtual void Awake(){
 
+	  rendr = dispObj.GetComponent<Renderer>();
+      cColr = rendr.material.color;
       //		Debug.Log("I'm waking." + __gCONSTANT._FLOOR);
       layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
 	  init_Components()                                         ;
