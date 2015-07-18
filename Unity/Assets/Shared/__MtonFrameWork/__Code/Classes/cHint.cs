@@ -22,9 +22,9 @@ namespace MTON.Class{
 
   public virtual void OnHintEntr(cInput cINPT){ //the check logicfor
     if(cINPT != null){
-	  foreach(cInput cObject in collidedList){
-	    if(cINPT == cObject){
-//		  Debug.LogError(cObject + " Already Collided; Not Eligible for further collision ");
+//	  foreach(cInput cObject in collidedList){
+	  for(int i=0; i<collidedList.Count; i++){
+		if(cINPT == collidedList[i]){ // true == already collided, not eligible for collision until OnHintExit
 		  return;
 		}
 	  }
@@ -32,6 +32,7 @@ namespace MTON.Class{
 
       cINPT.bJump = true;
 	  cINPT.bActV = true;
+	  tw.doCrouch(0.33f, 0.5f);
 
 	  StartCoroutine(WaitUntilDistant(this.xform, cINPT.transform, (()=>{
         cINPT.bJump = false                                                          ;
@@ -49,12 +50,16 @@ namespace MTON.Class{
 
   public virtual void OnHintExit(cInput cINPT) {
 	cINPT.bActV = false;
+	tw.doCrouch(1.0f);
   }
+
 #endregion
 
   public  float fThreshold = 1.0f   ;
   private cInput    cINPT           ;
   private Transform xform           ;
+
+  private cTween    tw    ;
 
   public bool Jump_Up = false ;
   public bool Jump_Fw = false ;
@@ -75,19 +80,24 @@ namespace MTON.Class{
     float distToOther = 0.0f  ;
 	while(distToOther  < fThreshold){
 //      distToOther = Vector3.Distance(IN_xform_SRC.position, IN_xform_TGT.position) ;
-      distToOther = Mathf.Abs(IN_xform_SRC.position.x - IN_xform_TGT.position.x)   ; //vertical height too much delta change
+      distToOther = Mathf.Abs(IN_xform_SRC.position.x - IN_xform_TGT.position.x)   ; //vertical height too much delta change, so only check x
       yield return null                                                            ;
     }
-	funcToRun()                                      ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
+	funcToRun()                                                                    ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
   }
 
   public virtual void Awake(){
     xform = this.transform                                            ;
     __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._TRGGR) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
-//	collidedList.RemoveAll(cInput);
+    tw = __gUtility.AddComponent_mton<cTween>(this.gameObject)        ; //Tweening 
   }
 
   public virtual void Start(){ }
+  private void OnEnable(){
+	//collidedList.RemoveAll(cInput); //The Predicate<T> is a delegate to a method that returns true if the object passed to it matches the conditions defined in the delegate
+	collidedList.Clear(); 
+  }
+  private void OnDisable(){ }
 
 }
 
