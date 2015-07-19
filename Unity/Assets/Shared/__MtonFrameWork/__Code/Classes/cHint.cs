@@ -9,7 +9,7 @@ using DG.Tweening        ; //import DemiGiant DoTween
 
 namespace MTON.Class{
 
-  public class cHint : MonoBehaviour, IHint{
+  public class cHint : MonoBehaviour, IHint<cInput>{ //IHint<T> providing cInput for T placeholder
 
 #region iHint implementation
 
@@ -20,7 +20,7 @@ namespace MTON.Class{
   //  gEntities.RemoveAt(i);                                   // remove the item from position i
   //  numList = nums.ToList(); // convert an array to list
 
-  public virtual void OnHintEntr(cInput cINPT){ //the check logicfor
+  public virtual void OnHintEntr(cInput cINPT){ // Using IHint<cInput> to specify incoming data type
     if(cINPT != null){
 //	  foreach(cInput cObject in collidedList){
 	  for(int i=0; i<collidedList.Count; i++){
@@ -48,7 +48,7 @@ namespace MTON.Class{
     }
   }
 
-  public virtual void OnHintExit(cInput cINPT) {
+  public virtual void OnHintExit(cInput cINPT) { // Using IHint<cInput> to specify incoming data type
 	cINPT.bActV = false;
 	tw.doCrouch(1.0f);
   }
