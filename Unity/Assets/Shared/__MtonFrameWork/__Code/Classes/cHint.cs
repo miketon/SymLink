@@ -14,15 +14,9 @@ namespace MTON.Class{
 #region iHint implementation
 
   public List<cInput> collidedList = new List<cInput>();      // declaration
-  //  gEntities.Add(theItem);                                  // add an item to the end of the List
-  //  gEntities[i] = newItem;                                  // change the value in the List at position i
-  //  cInput thisItem = List[i];                               // retrieve the item at position i
-  //  gEntities.RemoveAt(i);                                   // remove the item from position i
-  //  numList = nums.ToList(); // convert an array to list
 
   public virtual void OnHintEntr(cInput cINPT){ // Using IHint<cInput> to specify incoming data type
     if(cINPT != null){
-//	  foreach(cInput cObject in collidedList){
 	  for(int i=0; i<collidedList.Count; i++){
 		if(cINPT == collidedList[i]){ // true == already collided, not eligible for collision until OnHintExit
 		  return;
@@ -49,16 +43,15 @@ namespace MTON.Class{
   }
 
   public virtual void OnHintExit(cInput cINPT) { // Using IHint<cInput> to specify incoming data type
-	cINPT.bActV = false;
-	tw.doCrouch(1.0f);
+	cINPT.bActV = false ;
+	tw.doCrouch(1.0f)   ;
   }
 
 #endregion
 
-  public  float fThreshold = 1.0f   ;
-  private Transform xform           ;
-
-  private cTween    tw    ;
+  public  float fThreshold = 1.0f  ;
+  private Transform xform          ;
+  private cTween    tw             ;
 
   public bool Jump_Up = false ;
   public bool Jump_Fw = false ;
@@ -96,36 +89,5 @@ namespace MTON.Class{
   private void OnDisable(){ }
 
 }
-
-/* Dictionary Implementation
-
-  //This is how you create a Dictionary. Notice how this takes
-  //two generic terms. In this case you are using a string and a
-  //gEntity as your two values.
-  Dictionary<string, gEntity> gEntities = new Dictionary<string, gEntity>();
-
-//This is the class you will be storing in the different collections. In order to use
-//a collection's Sort() method, this class needs to implement the IComparable interface.
-public class gEntity : IComparable<gEntity>
-{
-    public string name   ;
-	public int    power  ;
-    
-	public gEntity(string IN_Name, int IN_Power){  // init
-		name  = IN_Name  ;
-		power = IN_Power ;
-    }
-    
-    //This method is required by the IComparable interface. 
-	public int CompareTo(gEntity other){
-
-        if(other == null){
-            return 1; // ??? 1 does not identify that other doesn't exist
-        }
-        
-		return power - other.power; //Return the difference in power.
-    }
-}
-*/
 
 }
