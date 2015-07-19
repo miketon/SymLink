@@ -56,7 +56,6 @@ namespace MTON.Class{
 #endregion
 
   public  float fThreshold = 1.0f   ;
-  private cInput    cINPT           ;
   private Transform xform           ;
 
   private cTween    tw    ;
@@ -70,10 +69,7 @@ namespace MTON.Class{
   // Trigger events will be sent to disabled MonoBehaviours, to allow enabling Behaviours in response to collisions.
   void OnTriggerEnter(Collider other) {
 //    Debug.Log("Triggering Enter : " + other.gameObject);
-	  cINPT = other.gameObject.GetComponent<cInput>();
-	  if(cINPT != null){
-	    OnHintEntr(cINPT);
-	  }
+	  OnHintEntr(other.GetComponentEX<cInput>());
   }
 
   IEnumerator WaitUntilDistant<T>(Transform IN_xform_SRC, Transform IN_xform_TGT, Func<T> funcToRun){
