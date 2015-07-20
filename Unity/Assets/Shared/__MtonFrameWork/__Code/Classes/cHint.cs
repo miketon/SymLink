@@ -1,19 +1,18 @@
 using UnityEngine        ;
 using System.Collections ;
-using System.Collections.Generic ; // Dictioinary
+using System.Collections.Generic ; // Dictionary, List
 using System             ; //NOTE : ??? must import to use anonymous function ; And the IComparable Interface for Dictionary
 using MTON.Interface     ;
 using MTON.Global        ;
-using MTON.codeObjects   ;
 using DG.Tweening        ; //import DemiGiant DoTween
 
 namespace MTON.Class{
 
   public class cHint : MonoBehaviour, IHint<cInput>{ //IHint<T> providing cInput for T placeholder
 
-#region iHint implementation
+  public List<cInput> collidedList = new List<cInput>();      // HACK : Don't know how to add list to interface...
 
-  public List<cInput> collidedList = new List<cInput>();      // declaration
+#region iHint implementation
 
   public virtual void OnHintEntr(cInput cINPT){ // Using IHint<cInput> to specify incoming data type
     if(cINPT != null){
