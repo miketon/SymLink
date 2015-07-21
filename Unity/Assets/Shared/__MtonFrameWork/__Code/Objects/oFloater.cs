@@ -10,12 +10,13 @@ namespace MTON.codeObjects{
 	
     public Transform dispObj         ; //HACK : Coupling the character dispObj => object with an Animator and render mesh
 	public Transform player          ;
+	public bool  bFollow = false     ; //true = follow; false = wave
 	public Color cActv = Color.red   ;
 	public Color cRest = Color.green ;
 
 	private Transform xform;
-	private Renderer rendr;
-    private cTween    tw    ;
+	private Renderer rendr ;
+    private cTween    tw   ;
 
 	public float distThreshold = 3.0f;
 	public float durTime = 1.0f;
@@ -31,12 +32,9 @@ namespace MTON.codeObjects{
 //	  Debug.Log("Dist : " + dist);
 	  if(dist > distThreshold){ //Activate
 		AI_Actv(true);
-//		Vector3 vDistn = this.xform.position - this.player.position ;
-		this.transform.DOMove(this.player.position, durTime, false); //.SetEase(Ease.OutElastic);
-//		this.transform.DOMove(this.player.position, 1.0f, false).SetEase(Ease.OutElastic);
-//		Vector3 vOrtho = this.transform.MoveOrtho(-vDistn);
-//		Debug.Log("vORtho " + vOrtho);
-//		this.transform.DOBlendableMoveBy(vOrtho, 1.0f, true);
+		if(bFollow){
+			DoFollow();
+		}
 	  }
 	  else{ //Rest
 	    AI_Actv(false);
@@ -50,6 +48,15 @@ namespace MTON.codeObjects{
 	  else{
 	    rendr.material.color = cRest;
 	  }
+	}
+
+	void DoFollow(){
+//		Vector3 vDistn = this.xform.position - this.player.position ;
+		this.transform.DOMove(this.player.position, durTime, false); //.SetEase(Ease.OutElastic);
+//		this.transform.DOMove(this.player.position, 1.0f, false).SetEase(Ease.OutElastic);
+//		Vector3 vOrtho = this.transform.MoveOrtho(-vDistn);
+//		Debug.Log("vORtho " + vOrtho);
+//		this.transform.DOBlendableMoveBy(vOrtho, 1.0f, true);
 	}
 
     void OnTriggerEnter(Collider other) {

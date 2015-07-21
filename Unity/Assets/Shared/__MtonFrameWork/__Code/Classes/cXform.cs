@@ -8,11 +8,15 @@ namespace MTON.Class{
 #region    IMPLEMENT INTERFACES : IXform
   public class cXform : MonoBehaviour, IXform{
 
-	public static LayerMask __layerGround;
+	public static LayerMask __layerGround ;
+	public static LayerMask __layerEnemy  ;
+	public static LayerMask __layerCheck  ;
 
 	public virtual void Awake(){
 	  __layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
-	  //__layerGround = LayerMask.GetMask ("Default");
+	  __layerEnemy  = LayerMask.GetMask (__gCONSTANT._ENEMY);
+//	  __layerCheck  = ~((1<<__layerGround)|(1<<__layerEnemy)); //not layerGround or layerEnemy
+	  __layerCheck  = (1<<__layerGround); //only layerGroudn
 
 	  xform = GetComponent<Transform>() ;
       rot   = xform.localRotation       ; //HACK : doing in AfterBind, rotation == parent's
@@ -72,16 +76,20 @@ namespace MTON.Class{
 	}
 
     public float ToGround(float distCheck){ //if > 0.0f == OnGround found
-      return dirRayCheck(-Vector3.up, distCheck, 0.0f);
+	  return dirRayCheck(-Vector3.up, distCheck, 0.0f);
     }
 
-    public float dirRayCheck(Vector3 IN_dir, float IN_magnitude, float IN_offSetX){    //direction, magnitude and x offset
+	public float dirRayCheck(Vector3 IN_dir, float IN_magnitude, float IN_offSetX){
+	  return dirRayCheck(-Vector3.up, IN_magnitude, 0.0f, cXform.__layerCheck);
+	}
+
+    public float dirRayCheck(Vector3 IN_dir, float IN_magnitude, float IN_offSetX, int IN_layerMask){    //direction, magnitude and x offset
       RaycastHit hit                                                                 ;
       //var pPos = xform.position + (Vector3.right * IN_offSetX)                       ; //calculate vertical and horizontal offset
 	  var pPos = xform.position + (Vector3.right * IN_offSetX) + cen              ; //calculate vertical and horizontal offset
 //      Debug.DrawLine(pPos, pPos + (IN_dir * IN_magnitude), Color.red, 0.5f, false)   ;
       //if (Physics.Raycast(pPos, IN_dir, out hit, Mathf.Abs(IN_magnitude), __layerGround)){            //return hit distance to the ground
-      if (Physics.Raycast(pPos, IN_dir, out hit, Mathf.Abs(IN_magnitude))){            //return hit distance to the ground
+      if (Physics.Raycast(pPos, IN_dir, out hit, Mathf.Abs(IN_magnitude), IN_layerMask)){            //return hit distance to the ground
         return hit.distance     ; //found ground, returning distance > 0.0f
       }
       else{
