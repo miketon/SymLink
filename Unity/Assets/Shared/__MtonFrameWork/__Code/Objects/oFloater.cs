@@ -28,7 +28,7 @@ namespace MTON.codeObjects{
 
 	public virtual void FixedUpdate(){
 	  float dist = Vector3.Distance(this.xform.position, this.player.position);
-	  Debug.Log("Dist : " + dist);
+//	  Debug.Log("Dist : " + dist);
 	  if(dist > distThreshold){ //Activate
 		AI_Actv(true);
 //		Vector3 vDistn = this.xform.position - this.player.position ;
@@ -51,6 +51,10 @@ namespace MTON.codeObjects{
 	    rendr.material.color = cRest;
 	  }
 	}
+
+    void OnTriggerEnter(Collider other) {
+      Debug.Log("Triggering Enter : " + other.gameObject);
+    }
 
   }
 

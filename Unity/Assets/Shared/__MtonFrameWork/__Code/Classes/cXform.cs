@@ -247,7 +247,7 @@ namespace MTON.Class{
 
   public class mCcntl_mt :  mCcntl{
 
-	public Transform    GroundCheckGroup;
+	public  Transform   GroundCheckGroup;
 	private Transform[] groundChecks;
 	
 	public override void Awake (){
