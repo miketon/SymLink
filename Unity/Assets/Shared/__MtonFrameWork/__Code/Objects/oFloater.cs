@@ -19,7 +19,8 @@ namespace MTON.codeObjects{
 	public float fFreqn = 1.0f; //frequency
 
 	private static LayerMask __layerPlayer  ;
-	private bool bPlayerLeft = true ; //is the player to the left; move right if oFloater is in wave pattern mode
+	public Vector3 playerDir;
+	private Vector3 spawnPos;
 	private Transform xform;
 	private Renderer rendr ;
     private cTween    tw   ;
@@ -47,6 +48,8 @@ namespace MTON.codeObjects{
 		  Debug.Log(this + " FOUND PLAYER : " + this.player);
 	    }
 	  }
+	  this.playerDir = this.player.position - this.xform.position;
+	  this.spawnPos  = this.xform.position;
 	}
 
 	public virtual void OnDisable(){}
@@ -59,6 +62,9 @@ namespace MTON.codeObjects{
 		  AI_Actv(true);
 		  if(bFollow){
 			DoFollow();
+		  }
+		  else{
+		    DoWave(Mathf.Sign(this.playerDir.x), this.fSpeed);
 		  }
 	    }
 	    else{ //Rest
@@ -74,6 +80,15 @@ namespace MTON.codeObjects{
 	  else{
 	    rendr.material.color = cRest;
 	  }
+	}
+
+	public float yCos;
+	
+	void DoWave(float IN_xDir, float IN_speed){
+	  float xVel = IN_xDir;
+	  float yVel = Mathf.Cos(xform.position.x); // + this.spawnPos.y;
+	  this.xform.position = this.xform.position + (new Vector3(xVel, yVel, 0.0f) * IN_speed * Time.deltaTime);
+	  this.xform.SetPosX(this.xform.position.x%9.0f);
 	}
 
 	void DoFollow(){
