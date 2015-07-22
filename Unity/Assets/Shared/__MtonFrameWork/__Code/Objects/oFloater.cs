@@ -10,7 +10,6 @@ namespace MTON.codeObjects{
 	
     public Transform dispObj         ; //HACK : Coupling the character dispObj => object with an Animator and render mesh
 	public Transform player          ;
-	public bool  bFollow = false     ; //true = follow; false = wave
 	public Color cActv = Color.red   ;
 	public Color cRest = Color.green ;
 
@@ -28,6 +27,13 @@ namespace MTON.codeObjects{
 	public float distThreshold = 3.0f;
 	public float durTime = 1.0f;
 
+    public moveTypeMTON moveType = moveTypeMTON.Wave ;						// Should this GameObject inactivate or destroy when emission is done?
+	public enum moveTypeMTON {
+		Follow,
+		Wave,
+		None,
+	}
+
 	public virtual void Awake(){
 	    __layerPlayer = LayerMask.GetMask (__gCONSTANT._PLAYER);
 		xform = this.GetComponent<Transform>();
@@ -37,39 +43,38 @@ namespace MTON.codeObjects{
 
 	public virtual void Start(){
       __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._ENEMY) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
-
+	  this.playerDir = this.player.position - this.xform.position;
+	  this.spawnPos  = this.xform.position; 
 	}
 
 	public virtual void OnEnable(){
 	  if(this.player == null){
-	    Collider[] hitColliders = Physics.OverlapSphere(this.xform.position, 5.0f, __layerPlayer) ;
+	    Collider[] hitColliders = Physics.OverlapSphere(this.xform.position, 8.0f, __layerPlayer) ;
 	    for(int i=0 ; i<hitColliders.Length; i++) {
 		  this.player = hitColliders[i].transform;
 		  Debug.Log(this + " FOUND PLAYER : " + this.player);
 	    }
 	  }
-	  this.playerDir = this.player.position - this.xform.position;
-	  this.spawnPos  = this.xform.position;
 	}
 
 	public virtual void OnDisable(){}
 
 	public virtual void FixedUpdate(){
 	  if(this.player != null){
-	    float dist = Vector3.Distance(this.xform.position, this.player.position);
-//	    Debug.Log("Dist : " + dist);
-	    if(dist > distThreshold){ //Activate
-		  AI_Actv(true);
-		  if(bFollow){
-			DoFollow();
+		if(this.moveType == moveTypeMTON.Wave){
+		  DoWave(Mathf.Sign(this.playerDir.x), this.fSpeed);
+		}
+		else if (this.moveType == moveTypeMTON.Follow){
+		  float dist = Vector3.Distance(this.xform.position, this.player.position);
+//	      Debug.Log("Dist : " + dist);
+	      if(dist > distThreshold){ //Activate
+		    AI_Actv(true);
+		    DoFollow();
 		  }
-		  else{
-		    DoWave(Mathf.Sign(this.playerDir.x), this.fSpeed);
-		  }
-	    }
-	    else{ //Rest
-	      AI_Actv(false);
-	    }
+	      else{ //Rest
+	        AI_Actv(false);
+	      }
+		}
 	  }
 	}
 
@@ -86,9 +91,14 @@ namespace MTON.codeObjects{
 	
 	void DoWave(float IN_xDir, float IN_speed){
 	  float xVel = IN_xDir;
-	  float yVel = Mathf.Cos(xform.position.x); // + this.spawnPos.y;
+	  float yVel = Mathf.Cos(xform.position.x * this.fFreqn) * this.fAmplt; // + this.spawnPos.y;
 	  this.xform.position = this.xform.position + (new Vector3(xVel, yVel, 0.0f) * IN_speed * Time.deltaTime);
-	  this.xform.SetPosX(this.xform.position.x%9.0f);
+	  float mXPos = this.xform.position.x%(9.0f+Mathf.Abs(this.spawnPos.x));
+	  this.xform.SetPosX(mXPos);
+	  float sXPos = 0.25f; // Mathf.Abs(this.spawnPos.x) + 0.25f;
+	  if(mXPos < sXPos && mXPos > -sXPos){
+		this.xform.position = this.spawnPos;
+	  }
 	}
 
 	void DoFollow(){
