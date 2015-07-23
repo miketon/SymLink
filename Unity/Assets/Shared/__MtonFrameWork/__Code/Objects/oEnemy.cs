@@ -27,6 +27,7 @@ namespace MTON.codeObjects{
 	public override void Start(){
 	  base.Start();
 	  rendr.material.color = cRest;
+      __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._ENEMY) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
 	}
 
 	public virtual void AI_Actv(bool bActive){

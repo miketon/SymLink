@@ -94,7 +94,9 @@ namespace MTON.codeObjects{
 
     }
 
-	public virtual void Start(){}
+	public virtual void Start(){
+      __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._PLAYER) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
+	}
 
 
 #endregion
