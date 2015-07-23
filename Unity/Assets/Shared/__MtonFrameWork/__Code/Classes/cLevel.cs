@@ -20,6 +20,8 @@ namespace MTON.Class{
 		return Targ;
 	}
 
+	
+
 	public virtual void Awake(){
 		if(__gCONSTANT._LEVEL == null){
 			Debug.LogError("CONSTANT LEVEL == null : populating with " + this);
