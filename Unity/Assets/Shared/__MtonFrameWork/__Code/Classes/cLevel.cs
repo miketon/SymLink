@@ -14,6 +14,12 @@ namespace MTON.Class{
     //Shut Down Level
     public void UnLoadLevel(){}
 
+	public T levelSpawn<T>(T Targ){
+		Debug.Log("Spawning : " + Targ);
+//		Transform xform = null;
+		return Targ;
+	}
+
 	public virtual void Awake(){
 		if(__gCONSTANT._LEVEL == null){
 			Debug.LogError("CONSTANT LEVEL == null : populating with " + this);
@@ -21,6 +27,7 @@ namespace MTON.Class{
 		}
 		else{
 			Debug.Log("CONSTANT LEVEL == exists : " + __gCONSTANT._LEVEL);
+			__gCONSTANT._LEVEL.levelSpawn<GameObject>(this.gameObject);
 		}
 	}
 	public virtual void Start(){
