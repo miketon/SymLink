@@ -27,7 +27,7 @@ namespace MTON.Class{
 	  cINPT.bActV = true;
 	  tw.doCrouch(0.33f, 0.5f);
 
-	  StartCoroutine(WaitUntilDistant(this.xform, cINPT.transform, (()=>{
+	  StartCoroutine(__gUtility.WaitUntilDistant(this.xform, cINPT.transform, this.fThreshold, (()=>{
         cINPT.bJump = false                                                          ;
 		OnHintExit(cINPT)    ;
 		for(int i=0; i<collidedList.Count; i++){
@@ -62,16 +62,6 @@ namespace MTON.Class{
   void OnTriggerEnter(Collider other) {
 //    Debug.Log("Triggering Enter : " + other.gameObject);
 	  OnHintEntr(other.GetComponentEX<cInput>());
-  }
-
-  IEnumerator WaitUntilDistant<T>(Transform IN_xform_SRC, Transform IN_xform_TGT, Func<T> funcToRun){
-    float distToOther = 0.0f  ;
-	while(distToOther  < fThreshold){
-//      distToOther = Vector3.Distance(IN_xform_SRC.position, IN_xform_TGT.position) ;
-      distToOther = Mathf.Abs(IN_xform_SRC.position.x - IN_xform_TGT.position.x)   ; //vertical height too much delta change, so only check x
-      yield return null                                                            ;
-    }
-	funcToRun()                                                                    ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
   }
 
   public virtual void Awake(){

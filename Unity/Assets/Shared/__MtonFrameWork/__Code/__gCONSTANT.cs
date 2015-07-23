@@ -1,5 +1,7 @@
 using UnityEngine        ;
+using System             ; //NOTE : ??? must import to use anonymous function ; And the IComparable Interface for Dictionary
 using System.Collections ;
+using System.Collections.Generic ; // Dictionary, List
 
 namespace MTON.Global{
 
@@ -59,6 +61,16 @@ namespace MTON.Global{
 	    return cExist;
 	  }
 	}
+
+  public static IEnumerator WaitUntilDistant<T>(Transform IN_xform_SRC, Transform IN_xform_TGT, float In_threshold, Func<T> funcToRun){
+    float distToOther = 0.0f  ;
+	while(distToOther  < In_threshold){
+//      distToOther = Vector3.Distance(IN_xform_SRC.position, IN_xform_TGT.position) ;
+      distToOther = Mathf.Abs(IN_xform_SRC.position.x - IN_xform_TGT.position.x)   ; //vertical height too much delta change, so only check x
+      yield return null                                                            ;
+    }
+	funcToRun()                                                                    ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
+  }
 	
 	public static void CheckAndInitLayer(GameObject IN_GO, string IN_LAYERNAME){
 	  string curLayer = LayerMask.LayerToName(IN_GO.layer);
