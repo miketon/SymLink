@@ -14,8 +14,18 @@ namespace MTON.Class{
     //Shut Down Level
     public void UnLoadLevel(){}
 
-	public virtual void Awake(){}
-	public virtual void Start(){}
+	public virtual void Awake(){
+		if(__gCONSTANT._LEVEL == null){
+			Debug.LogError("CONSTANT LEVEL == null : populating with " + this);
+			new __gCONSTANT(this);
+		}
+		else{
+			Debug.Log("CONSTANT LEVEL == exists : " + __gCONSTANT._LEVEL);
+		}
+	}
+	public virtual void Start(){
+		Debug.Log("GLOBAL LEVEL : " + __gCONSTANT._LEVEL);
+	}
 
   }
 

@@ -5,6 +5,12 @@ namespace MTON.Global{
 
   public class __gCONSTANT{ //Project Global object to hold systemwide paths, layers, tags ...etc
 
+	public static MTON.Class.cLevel _LEVEL = null;
+
+	public __gCONSTANT(MTON.Class.cLevel IN_LEVEL){
+		_LEVEL = IN_LEVEL;
+	}
+
     //handles Layers - Entities can move
     public const string _PLAYER = "Player" ;
     public const string _ENEMY  = "Enemy"  ;

@@ -111,7 +111,8 @@ namespace MTON.codeObjects{
 	}
 
     void OnTriggerEnter(Collider other) {
-      Debug.Log("Triggering Enter : " + other.gameObject);
+//      Debug.Log("Triggering Enter : " + other.gameObject);
+//		this.xform.lpSpawn(Vector3.up * 3.0f, Quaternion.identity);
     }
 
   }
