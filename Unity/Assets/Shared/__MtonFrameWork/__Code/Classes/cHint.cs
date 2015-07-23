@@ -10,7 +10,8 @@ namespace MTON.Class{
 
   public class cHint : MonoBehaviour, IHint<cInput>{ //IHint<T> providing cInput for T placeholder
 
-  public List<cInput> collidedList = new List<cInput>();      // HACK : Don't know how to add list to interface...
+  public List<cInput>   collidedList = new List<cInput>() ; // HACK : Don't know how to add list to interface...
+  public ParticleSystem cEmit                             ; // particle system to emit
 
 #region iHint implementation
 
@@ -26,6 +27,13 @@ namespace MTON.Class{
       cINPT.bJump = true;
 	  cINPT.bActV = true;
 	  tw.doCrouch(0.33f, 0.5f);
+
+	  if(cEmit != null){ //emit impact
+	    __gCONSTANT._LEVEL.Emit(cEmit, this.xform.position, Quaternion.identity, ()=>{
+		  Debug.Log("ONHINT PARTICLE : " + cEmit);
+		  return true;
+		});
+	  }
 
 	  StartCoroutine(__gUtility.WaitUntilDistant(this.xform, cINPT.transform, this.fThreshold, (()=>{
         cINPT.bJump = false                                                          ;

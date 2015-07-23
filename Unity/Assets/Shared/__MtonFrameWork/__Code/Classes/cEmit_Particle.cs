@@ -9,6 +9,9 @@ namespace MTON.Class{
 
 public class cEmit_Particle : MonoBehaviour, IEmit<ParticleSystem>{ //IHint<T> providing cInput for T placeholder
 
+  public delegate void EMIT_ONCOMPLETE()     ; //set up delegate
+  public EMIT_ONCOMPLETE OnComplete_Delegate ; //delegate instance
+
   private ParticleSystem pSystem ;
   public  bool bChildren = true  ; //will play and stop children
 
@@ -27,7 +30,7 @@ public class cEmit_Particle : MonoBehaviour, IEmit<ParticleSystem>{ //IHint<T> p
 	}
   }
   public void Stop(){
-	Debug.Log(this + "Particle FX Stopping");
+//	Debug.Log(this + "Particle FX Stopping");
 	if(this.pSystem != null){
 	  this.pSystem.Stop(bChildren)  ; //Clearing visually gets rid of system...do I need Stop???
 	  this.OnComplete();
@@ -35,7 +38,10 @@ public class cEmit_Particle : MonoBehaviour, IEmit<ParticleSystem>{ //IHint<T> p
   }
 
   public void OnComplete(){
-    Debug.Log(this + "Particle FX Complete");
+//    Debug.Log(this + "Particle FX Complete");
+	if(OnComplete_Delegate != null){
+	  OnComplete_Delegate();
+	}
   }
 
 #endregion
@@ -56,10 +62,10 @@ public class cEmit_Particle : MonoBehaviour, IEmit<ParticleSystem>{ //IHint<T> p
   private void OnDisable(){ this.Stop(); }
 
   public void Update(){
-	if(Input.GetKeyDown(KeyCode.P)){
-	  Debug.Log("Pressing P");
-	  this.Play();
-	}
+//	if(Input.GetKeyDown(KeyCode.P)){
+//	  Debug.Log("Pressing P");
+//	  this.Play();
+//	}
   }
 
 }
