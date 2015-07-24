@@ -9,6 +9,7 @@ namespace MTON.Class{
   public class cLevel : MonoBehaviour, ILevel{
 
 	public int levelCurrent { get; set; } //NOTE : interface variable implementation can't be static
+	public ParticleSystem[] hitMarks;
 
     //Init Level
     public void OnLoadLevel(){}           //NOTE : interface function implementation must be public
@@ -19,6 +20,16 @@ namespace MTON.Class{
 		Debug.Log("Spawning : " + Targ);
 //		Transform xform = null;
 		return Targ;
+	}
+
+	public void Emit_Hit<T>(int index, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	  ParticleSystem ePS = hitMarks[index];
+	  if(ePS != null){
+	    Emit(ePS, IN_POS, IN_ROT, funcToRun);
+	  }
+	  else{
+	    Debug.LogWarning(this + " ACCESSING cLevel.cs hitMarks[] our of index! ");
+	  }
 	}
 
 	public void Emit<T>(ParticleSystem IN_PS, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
