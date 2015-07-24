@@ -11,6 +11,13 @@ namespace MTON.Class{
 	public int levelCurrent { get; set; } //NOTE : interface variable implementation can't be static
 	public ParticleSystem[] hitMarks;
 
+	public enum fx_Hit{
+	  HitMark_00, //moon
+	  GunFlar_00,
+	  ScoreCn_00,
+	  None,
+	}
+
     //Init Level
     public void OnLoadLevel(){}           //NOTE : interface function implementation must be public
     //Shut Down Level
@@ -22,10 +29,10 @@ namespace MTON.Class{
 		return Targ;
 	}
 
-	public void Emit_Hit<T>(int index, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
-	  ParticleSystem ePS = hitMarks[index];
-	  if(ePS != null){
-	    Emit(ePS, IN_POS, IN_ROT, funcToRun);
+	public void Emit_Hit<T>(fx_Hit eHit, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+//	  ParticleSystem ePS = hitMarks[index];
+	  if(eHit == fx_Hit.HitMark_00){
+	    Emit(hitMarks[0], IN_POS, IN_ROT, funcToRun);
 	  }
 	  else{
 	    Debug.LogWarning(this + " ACCESSING cLevel.cs hitMarks[] our of index! ");
