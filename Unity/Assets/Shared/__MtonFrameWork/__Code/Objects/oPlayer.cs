@@ -9,7 +9,10 @@ namespace MTON.codeObjects{
   public class oPlayer : MonoBehaviour{
 
     //init interface members
-    public  Transform dispObj ; //HACK : Coupling the character dispObj => object with an Animator and render mesh
+    public Transform dispObj ; //HACK : Coupling the character dispObj => object with an Animator and render mesh
+	public Transform mBullet ; // bulletObject
+	public Transform firePnt ; // firing point
+    public cLevel.fx_Hit  eHit ; // enum for particle system to emit
 	public void doActV(bool bActvV){
 	  if(bActvV == true){
         if(rendr != null){
@@ -29,7 +32,7 @@ namespace MTON.codeObjects{
       io.OnDPAD_DIR_Delegate += doMove;
       io.OnJumpDelegate      += doJump;
       io.OnAttkDelegate      += doAttk; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
-	  io.OnActVDelegate      += doActV; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
+	  io.OnActVDelegate      += doActV; //Attack Visual = hitFlash
 	  
 	  //animation : input + character/env state
 	  an.OnDuckDelegate      += doCrouch;
@@ -41,7 +44,7 @@ namespace MTON.codeObjects{
       io.OnDPAD_DIR_Delegate -= doMove;
       io.OnJumpDelegate      -= doJump; //NOTE: remember to remove delegate in case of wierd memory leaks
       io.OnAttkDelegate      -= doAttk;
-	  io.OnActVDelegate      -= doActV; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
+	  io.OnActVDelegate      -= doActV; //Attack Visual = hitFlash
 
 	  //animation : input + character/env state
 	  an.OnDuckDelegate      -= doCrouch;
@@ -198,6 +201,20 @@ namespace MTON.codeObjects{
 	public virtual void doAttk(bool bAttk){
       if(bAttk){
 	    Debug.Log("doAttk : " + bAttk + " : "  + this);
+		if(firePnt != null){
+		  firePnt.gameObject.SetActive(true);
+		  if(this.mBullet != null){
+		    __gCONSTANT._LEVEL.Spawn(this.mBullet, this.firePnt.position, this.firePnt.rotation, ()=>{
+		      return true;
+		    });
+		  }
+		  if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+		    __gCONSTANT._LEVEL.Emit_Hit(eHit, this.firePnt.position, Quaternion.identity, ()=>{
+		      firePnt.gameObject.SetActive(false);
+		      return true;
+		    });
+	      }
+		}
 	  }
       else{
 	    Debug.Log("doAttk : " + bAttk + " : "  + this);

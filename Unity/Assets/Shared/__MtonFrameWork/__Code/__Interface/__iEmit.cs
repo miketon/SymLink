@@ -7,7 +7,7 @@ namespace MTON.Interface{
   public interface IEmit<T>{ 
 	
 	void Init();
-    void Play();
+	void Play();
 	void Stop();
 	void OnComplete();
 

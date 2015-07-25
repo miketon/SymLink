@@ -80,6 +80,13 @@ namespace MTON.Global{
 	  }
 	}
 
+//	public static string[] LoopThroughEnum<T>(T Tenum){
+//	  string[] retString = Tenum.GetNames(typeof(Tenum));
+//	  foreach(string s in retString){
+//	    Debug.Log("Looping Through Enum : " + s);
+//	  }
+//	}
+
 	public static void Debugmton(int IN_mton){
 	  Debug.Log("IN_mton");
 	}

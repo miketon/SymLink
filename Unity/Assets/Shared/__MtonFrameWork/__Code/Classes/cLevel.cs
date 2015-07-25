@@ -9,6 +9,28 @@ namespace MTON.Class{
   public class cLevel : MonoBehaviour, ILevel{
 
 	public int levelCurrent { get; set; } //NOTE : interface variable implementation can't be static
+	public Transform[]      e_Walks;
+	public Transform[]      e_Flyrs;
+	public ParticleSystem[] fx_Hits;
+
+	public enum e_Walk{
+	  Melee_00, //moon
+	  Range_00,
+	  None,
+	}
+
+	public enum e_Flyr{
+	  Melee_00, //moon
+	  Range_00,
+	  None,
+	}
+
+	public enum fx_Hit{
+	  HitMark_00, //moon
+	  GunFlar_00,
+	  ScoreCn_00,
+	  None,
+	}
 
     //Init Level
     public void OnLoadLevel(){}           //NOTE : interface function implementation must be public
@@ -19,6 +41,46 @@ namespace MTON.Class{
 		Debug.Log("Spawning : " + Targ);
 //		Transform xform = null;
 		return Targ;
+	}
+
+	public Transform Spawn<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	  funcToRun();
+	  return IN_XFORM.lpSpawn(IN_POS, IN_ROT);
+	}
+
+	//Walking Enemy
+	public Transform SpawnObj<T>(e_Walk eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	  if(eObj == e_Walk.Melee_00){
+		funcToRun();
+	    return this.e_Walks[0].lpSpawn(IN_POS, IN_ROT);
+	  }
+	  else{
+	    return null;
+	  }
+	}
+
+	//Flying Enemy
+	public Transform SpawnObj<T>(e_Flyr eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	  if(eObj == e_Flyr.Melee_00){
+		funcToRun();
+	    return this.e_Flyrs[0].lpSpawn(IN_POS, IN_ROT);
+	  }
+	  else{
+	    return null;
+	  }
+	}
+	
+	//fx
+	public void Emit_Hit<T>(fx_Hit eHit, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	  if(eHit == fx_Hit.HitMark_00){
+	    Emit(this.fx_Hits[0], IN_POS, IN_ROT, funcToRun);
+	  }
+	  else if(eHit == fx_Hit.GunFlar_00){
+	    Emit(this.fx_Hits[1], IN_POS, IN_ROT, funcToRun);
+	  }
+	  else{
+	    Debug.LogWarning(this + " ACCESSING cLevel.cs fx_Hits[] our of index! ");
+	  }
 	}
 
 	public void Emit<T>(ParticleSystem IN_PS, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
