@@ -43,6 +43,11 @@ namespace MTON.Class{
 		return Targ;
 	}
 
+	public Transform Spawn<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	  funcToRun();
+	  return IN_XFORM.lpSpawn(IN_POS, IN_ROT);
+	}
+
 	//Walking Enemy
 	public Transform SpawnObj<T>(e_Walk eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
 	  if(eObj == e_Walk.Melee_00){

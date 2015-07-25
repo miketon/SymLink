@@ -7,6 +7,7 @@ using MTON.Global        ;
 
 namespace MTON.Class{
 
+[RequireComponent (typeof (ParticleSystem))]
 public class cEmit_Particle : MonoBehaviour, IEmit<ParticleSystem>{ //IHint<T> providing cInput for T placeholder
 
   public delegate void EMIT_ONCOMPLETE()     ; //set up delegate
