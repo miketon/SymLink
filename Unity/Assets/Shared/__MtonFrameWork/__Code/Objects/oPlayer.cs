@@ -200,24 +200,24 @@ namespace MTON.codeObjects{
 
 	public virtual void doAttk(bool bAttk){
       if(bAttk){
-	    Debug.Log("doAttk : " + bAttk + " : "  + this);
+//	    Debug.Log("doAttk : " + bAttk + " : "  + this);
 		if(firePnt != null){
 		  firePnt.gameObject.SetActive(true);
 		  if(this.mBullet != null){
-		    __gCONSTANT._LEVEL.Spawn(this.mBullet, this.firePnt.position, this.firePnt.rotation, ()=>{
+			__gCONSTANT._LEVEL.Emit_Bullet(this.mBullet, this.firePnt.position, this.firePnt.rotation, ()=>{
 		      return true;
 		    });
 		  }
 		  if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
 		    __gCONSTANT._LEVEL.Emit_Hit(eHit, this.firePnt.position, Quaternion.identity, ()=>{
-		      firePnt.gameObject.SetActive(false);
 		      return true;
 		    });
 	      }
+		  firePnt.gameObject.SetActive(false);
 		}
 	  }
       else{
-	    Debug.Log("doAttk : " + bAttk + " : "  + this);
+//	    Debug.Log("doAttk : " + bAttk + " : "  + this);
       }
     }
 

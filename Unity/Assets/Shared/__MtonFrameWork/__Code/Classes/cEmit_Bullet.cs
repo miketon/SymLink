@@ -15,6 +15,7 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
 
   private Rigidbody rBody ;
   public  float     force = 10.0f;
+  public cLevel.fx_Hit  eHit ; // enum for particle system to emit
 
 #region iEmit implementation
 
@@ -23,9 +24,10 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   }
   public void Play(){
 	Debug.Log(this + " Shots Fired! ");
-	this.rBody.AddForce(this.transform.right * this.force) ;
+	this.rBody.AddForce(this.transform.forward * this.force) ;
   }
   public void Stop(){
+	Debug.Log(this + " Shots Stopped. ");
 	this.rBody.velocity = Vector3.zero ; //reset Velocity
   }
 
@@ -47,11 +49,15 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   private void OnEnable() { this.Play(); }
   private void OnDisable(){ this.Stop(); }
 
-  public void Update(){
-//	if(Input.GetKeyDown(KeyCode.P)){
-//	  Debug.Log("Pressing P");
-//	  this.Play();
-//	}
+  public void Update(){}
+
+  void OnCollisionEnter(Collision collision) {
+	if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+	  __gCONSTANT._LEVEL.Emit_Hit(eHit, this.transform.position, Quaternion.identity, ()=>{
+        return true;
+	  });
+	}
+	this.Stop();
   }
 
 }

@@ -9,6 +9,14 @@ namespace MTON.Class{
   public class cLevel : MonoBehaviour, ILevel{
 
 	public int levelCurrent { get; set; } //NOTE : interface variable implementation can't be static
+		
+    //Init Level
+    public void OnLoadLevel(){}           //NOTE : interface function implementation must be public
+    //Shut Down Level
+    public void UnLoadLevel(){}
+
+#region Level Spawning logic
+
 	public Transform[]      e_Walks;
 	public Transform[]      e_Flyrs;
 	public ParticleSystem[] fx_Hits;
@@ -32,10 +40,6 @@ namespace MTON.Class{
 	  None,
 	}
 
-    //Init Level
-    public void OnLoadLevel(){}           //NOTE : interface function implementation must be public
-    //Shut Down Level
-    public void UnLoadLevel(){}
 
 	public T levelSpawn<T>(T Targ){
 		Debug.Log("Spawning : " + Targ);
@@ -43,7 +47,9 @@ namespace MTON.Class{
 		return Targ;
 	}
 
+	//Spawning Standard Object
 	public Transform Spawn<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	  IN_XFORM.gameObject.SetActive(true);
 	  funcToRun();
 	  return IN_XFORM.lpSpawn(IN_POS, IN_ROT);
 	}
@@ -59,7 +65,7 @@ namespace MTON.Class{
 	  }
 	}
 
-	//Flying Enemy
+	//Enemy
 	public Transform SpawnObj<T>(e_Flyr eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
 	  if(eObj == e_Flyr.Melee_00){
 		funcToRun();
@@ -94,6 +100,27 @@ namespace MTON.Class{
 			funcToRun();
 		}); //using TeaTime.cs
 	}
+
+	public void Emit_Bullet<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+		Transform pXform = IN_XFORM.lpSpawn(IN_POS, IN_ROT); //Get Transform from pool using Liteprint
+		GameObject gXform = pXform.gameObject;
+	    gXform.SetActive(true);
+		this.tt().ttAdd(2.0f, ()=>{
+			pXform.lpRecycle(); //Return to pool
+			funcToRun();
+			gXform.SetActive(false);
+		}); //using TeaTime.cs
+	}
+
+#endregion
+
+#region Level Collision Handler
+
+	public void doCollide<T>(Transform srcXFORM, Transform dstXFORM){
+		Debug.Log(this + "LEVEL collidision between : source : " + srcXFORM + " destination : " + dstXFORM);
+	}
+
+#endregion
 	
 	public virtual void Awake(){
 		if(__gCONSTANT._LEVEL == null){
