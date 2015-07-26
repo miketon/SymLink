@@ -4,6 +4,7 @@ using System.Collections.Generic ; // Dictionary, List
 using System             ; //NOTE : ??? must import to use anonymous function ; And the IComparable Interface for Dictionary
 using MTON.Interface     ;
 using MTON.Global        ;
+using DG.Tweening        ; //import DemiGiant DoTween
 
 namespace MTON.Class{
 
@@ -14,16 +15,19 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   public EMIT_ONCOMPLETE OnComplete_Delegate ; //delegate instance
 
   private Rigidbody rBody ;
+  private Vector3   inScl ;
   public  float     force = 10.0f;
   public cLevel.fx_Hit  eHit ; // enum for particle system to emit
 
 #region iEmit implementation
 
   public void Init(){  
+	  this.inScl = this.transform.localScale;
 //    Debug.Log(this + " Particle INIT ");
   }
   public void Play(){
 	Debug.Log(this + " Shots Fired! ");
+	this.transform.localScale = this.inScl;
 	this.rBody.AddForce(this.transform.forward * this.force) ;
   }
   public void Stop(){
@@ -57,6 +61,11 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
         return true;
 	  });
 	}
+	this.rBody.AddForce(Vector3.up * 200.0f);
+	this.transform.DOScale(Vector3.zero, 1.0f).SetEase(Ease.InBounce);
+	this.tt().ttAdd(0.75f, ()=>{
+	  this.gameObject.SetActive(false);
+	}); //using TeaTime.cs
 	this.Stop();
   }
 

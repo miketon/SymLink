@@ -105,7 +105,7 @@ namespace MTON.Class{
 		Transform pXform = IN_XFORM.lpSpawn(IN_POS, IN_ROT); //Get Transform from pool using Liteprint
 		GameObject gXform = pXform.gameObject;
 	    gXform.SetActive(true);
-		this.tt().ttAdd(2.0f, ()=>{
+		this.tt().ttAdd(3.0f, ()=>{
 			pXform.lpRecycle(); //Return to pool
 			funcToRun();
 			gXform.SetActive(false);

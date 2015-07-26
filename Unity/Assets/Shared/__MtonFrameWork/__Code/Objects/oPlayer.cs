@@ -10,6 +10,7 @@ namespace MTON.codeObjects{
 
     //init interface members
     public Transform dispObj ; //HACK : Coupling the character dispObj => object with an Animator and render mesh
+    public Transform riseObj ; 
 	public Transform mBullet ; // bulletObject
 	public Transform firePnt ; // firing point
     public cLevel.fx_Hit  eHit ; // enum for particle system to emit
@@ -37,6 +38,8 @@ namespace MTON.codeObjects{
 	  //animation : input + character/env state
 	  an.OnDuckDelegate      += doCrouch;
 	  an.OnFaceDelegate_2D   += doFace;
+	  an.OnRiseDelegate      += doRise;
+	  an.OnIdleDelegate      += doIdle;
     }
 
     private void OnDisable(){
@@ -49,6 +52,8 @@ namespace MTON.codeObjects{
 	  //animation : input + character/env state
 	  an.OnDuckDelegate      -= doCrouch;
 	  an.OnFaceDelegate_2D   -= doFace;
+	  an.OnRiseDelegate      -= doRise;
+	  an.OnIdleDelegate      -= doIdle;
     }
 
 #endregion
@@ -210,10 +215,10 @@ namespace MTON.codeObjects{
 		  }
 		  if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
 		    __gCONSTANT._LEVEL.Emit_Hit(eHit, this.firePnt.position, Quaternion.identity, ()=>{
+		      firePnt.gameObject.SetActive(false);
 		      return true;
 		    });
 	      }
-		  firePnt.gameObject.SetActive(false);
 		}
 	  }
       else{
@@ -237,6 +242,28 @@ namespace MTON.codeObjects{
     public void doIdle(){   //neutral state -> good for swapping/activating back main model
       //      doRest()                                       ;
     }
+
+	public virtual void doIdle(bool bIdle){
+	  if(bIdle == true){
+        this.dispObj.gameObject.SetActive(true);
+		if(this.riseObj != null){
+		  this.riseObj.gameObject.SetActive(false);
+		}
+	  }
+	}
+
+	public virtual void doRise(bool bRise){
+	  if(this.riseObj != null){
+	    if(bRise == true){
+		  this.riseObj.gameObject.SetActive(true );
+		  this.dispObj.gameObject.SetActive(false);
+		}
+		else{
+		  this.riseObj.gameObject.SetActive(false);
+		  this.dispObj.gameObject.SetActive(true );
+		}
+	  }
+	}
 #endregion
 
 
