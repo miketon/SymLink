@@ -44,6 +44,9 @@ namespace MTON.codeObjects{
 	  an.OnFaceDelegate_2D   += doFace;
 	  an.OnRiseDelegate      += doRise;
 	  an.OnIdleDelegate      += doIdle;
+
+	  //health logic
+	  ht.OnHurtDelegate      += this.doHurt;
     }
 
     private void OnDisable(){
@@ -58,6 +61,9 @@ namespace MTON.codeObjects{
 	  an.OnFaceDelegate_2D   -= doFace;
 	  an.OnRiseDelegate      -= doRise;
 	  an.OnIdleDelegate      -= doIdle;
+
+	  //health logic
+	  ht.OnHurtDelegate      -= this.doHurt;
     }
 
 #endregion
@@ -73,6 +79,7 @@ namespace MTON.codeObjects{
 
     private cAnimn    an    ;
     private cEquip    eq    ;
+    private cHealth   ht    ;
     private cTween    tw    ;
 
     private LayerMask layerGround;
@@ -284,6 +291,12 @@ namespace MTON.codeObjects{
 		}
 	  }
 	}
+
+	public virtual void doHurt(int iHurt){
+      rb.Jump()                       ;
+	  Debug.Log(this + " OOOCH!!! ");
+	}
+
 #endregion
 
 
@@ -295,6 +308,7 @@ namespace MTON.codeObjects{
       an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject);
       eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject);
       io = __gUtility.AddComponent_mton<cInput>(this.gameObject);
+      ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject);
       tw = __gUtility.AddComponent_mton<cTween>(this.dispObj.gameObject)   ; //Tweening display obj vs. character controller
 
       rendr = this.dispObj.gameObject.GetComponent<Renderer>()   ; //Get Renderer Component

@@ -26,12 +26,12 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
 //    Debug.Log(this + " Particle INIT ");
   }
   public void Play(){
-	Debug.Log(this + " Shots Fired! ");
+//	Debug.Log(this + " Shots Fired! ");
 	this.transform.localScale = this.inScl;
 	this.rBody.AddForce(this.transform.forward * this.force) ;
   }
   public void Stop(){
-	Debug.Log(this + " Shots Stopped. ");
+//	Debug.Log(this + " Shots Stopped. ");
 	this.rBody.velocity = Vector3.zero ; //reset Velocity
   }
 
@@ -56,6 +56,10 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   public void Update(){}
 
   void OnCollisionEnter(Collision collision) {
+	cHealth oDamage = collision.gameObject.GetComponent<cHealth>();
+	if(oDamage != null){
+	  oDamage.onHurt(2);
+	}
 	if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
 	  __gCONSTANT._LEVEL.Emit_Hit(eHit, this.transform.position, Quaternion.identity, ()=>{
         return true;
