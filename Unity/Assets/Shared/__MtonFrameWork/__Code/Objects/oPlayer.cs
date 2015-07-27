@@ -293,7 +293,7 @@ namespace MTON.codeObjects{
 	}
 
 	public virtual void doHurt(int iHurt){
-      rb.Jump()                       ;
+      rb.Jump()                     ;
 	  Debug.Log(this + " OOOCH!!! ");
 	}
 

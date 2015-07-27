@@ -3,47 +3,26 @@ using System.Collections ;
 
 namespace MTON.Interface{
 
-#region Mton Interface - Character Container
+#region Mton Interface - IXform
+
   public interface IXform{
+
     //Properties
     Transform  xform   { get; set; }
     //	float      kFacing { get; set; } //1.0f == forward(or right in 2D); else -1.0f backwards; based on deltaposition
     //augments io axis reads.  xform rocking back and forth(rolling cube) can mess up facing logic
-    bool       bGround { get; set; } 
     Vector3    pos     { get; set; } 
     Vector3    cen     { get; set; } //Center point
     Vector3    scl     { get; set; } 
     Quaternion rot     { get; set; } 
-
-    //	delegate bool OnGroundCallback() ; //setup delegate
-    //  OnGroundCallback OnGround()      ; //define event
-
-	bool  OnCeilng()                 ;
-    bool  OnGround()                 ; 
-    float ToGround(float distCheck)  ;
 
     void Spawn(Vector3 vecPos) ; 
     void Kill()                ;
 
   }
 
-  public interface IRbody{
-    //Properties
-    //	  Not part of Interface, but will likely be implemented
-    //	  CharacterController contrl { get; set; }
-    //    Rigidbody           rbody  { get; set; }
-    //    Collider            colld  { get; set; }
-
-    //Functions
-    void Move(Vector3 moveDir) ;
-    void Fall()                ; //gravity
-    void Jump()                ;
-    void Flap()                ; //airjump
-    void ResetVelocity()       ;
-    void ResetRotation()       ;
-  }
-
 #endregion
+
 /*
 #region Mton Interface Animation
 

@@ -16,7 +16,8 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
 
   private Rigidbody rBody ;
   private Vector3   inScl ;
-  public  float     force = 10.0f;
+  public  int       damag = 1     ;
+  public  float     force = 10.0f ;
   public cLevel.fx_Hit  eHit ; // enum for particle system to emit
 
 #region iEmit implementation
@@ -58,7 +59,7 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   void OnCollisionEnter(Collision collision) {
 	cHealth oDamage = collision.gameObject.GetComponent<cHealth>();
 	if(oDamage != null){
-	  oDamage.onHurt(2);
+	  oDamage.onHurt(this.damag);
 	}
 	if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
 	  __gCONSTANT._LEVEL.Emit_Hit(eHit, this.transform.position, Quaternion.identity, ()=>{
