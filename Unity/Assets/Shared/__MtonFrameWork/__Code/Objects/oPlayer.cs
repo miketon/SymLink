@@ -6,13 +6,18 @@ using DG.Tweening        ; //import DemiGiant DoTween
 
 namespace MTON.codeObjects{
 
+  [RequireComponent (typeof (CharacterController))]
   public class oPlayer : MonoBehaviour{
 
     //init interface members
     public Transform dispObj ; //HACK : Coupling the character dispObj => object with an Animator and render mesh
-	public Transform mBullet ; // bulletObject
-	public Transform firePnt ; // firing point
+    public Transform riseObj ; 
+	public Transform[] firePnts ; // firing point
+	private bool     bFaceRt = true ; // facing Right
+	private float    initHgt = 1.0f;
+    public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
     public cLevel.fx_Hit  eHit ; // enum for particle system to emit
+
 	public void doActV(bool bActvV){
 	  if(bActvV == true){
         if(rendr != null){
@@ -37,6 +42,11 @@ namespace MTON.codeObjects{
 	  //animation : input + character/env state
 	  an.OnDuckDelegate      += doCrouch;
 	  an.OnFaceDelegate_2D   += doFace;
+	  an.OnRiseDelegate      += doRise;
+	  an.OnIdleDelegate      += doIdle;
+
+	  //health logic
+	  ht.OnHurtDelegate      += this.doHurt;
     }
 
     private void OnDisable(){
@@ -49,6 +59,11 @@ namespace MTON.codeObjects{
 	  //animation : input + character/env state
 	  an.OnDuckDelegate      -= doCrouch;
 	  an.OnFaceDelegate_2D   -= doFace;
+	  an.OnRiseDelegate      -= doRise;
+	  an.OnIdleDelegate      -= doIdle;
+
+	  //health logic
+	  ht.OnHurtDelegate      -= this.doHurt;
     }
 
 #endregion
@@ -64,6 +79,7 @@ namespace MTON.codeObjects{
 
     private cAnimn    an    ;
     private cEquip    eq    ;
+    private cHealth   ht    ;
     private cTween    tw    ;
 
     private LayerMask layerGround;
@@ -80,10 +96,8 @@ namespace MTON.codeObjects{
       //		xform         = this.GetComponent<Transform>()           ;
       xform         = rb.xform;
       cControl      = this.GetComponent<CharacterController>() ;
-
-      if(cControl == null){
-        Debug.LogError(this + " AWAKE: CHARACTER CONTROLLER MISSING ");
-      }
+	  this.initHgt = cControl.height;
+ 
       if(this.dispObj == null){
         Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) NOT ASSIGNED MANUALLY.");
         this.dispObj = this.xform;
@@ -200,24 +214,33 @@ namespace MTON.codeObjects{
 
 	public virtual void doAttk(bool bAttk){
       if(bAttk){
-	    Debug.Log("doAttk : " + bAttk + " : "  + this);
-		if(firePnt != null){
-		  firePnt.gameObject.SetActive(true);
-		  if(this.mBullet != null){
-		    __gCONSTANT._LEVEL.Spawn(this.mBullet, this.firePnt.position, this.firePnt.rotation, ()=>{
-		      return true;
-		    });
+		if(this.firePnts.Length > 0){
+		  Transform firePnt;
+		  if(this.bFaceRt == true){
+		    firePnt = this.firePnts[0];
 		  }
-		  if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-		    __gCONSTANT._LEVEL.Emit_Hit(eHit, this.firePnt.position, Quaternion.identity, ()=>{
-		      firePnt.gameObject.SetActive(false);
-		      return true;
-		    });
-	      }
+		  else{
+		    firePnt = this.firePnts[1];
+		  }
+//	    Debug.Log("doAttk : " + bAttk + " : "  + this);
+		  if(firePnt != null){
+		    firePnt.gameObject.SetActive(true);
+			if(this.eBlt != cLevel.e_Bllt.None){
+			  __gCONSTANT._LEVEL.Emit_Bullet(this.eBlt, firePnt.position, firePnt.rotation, ()=>{
+		        return true;
+		      });
+		    }
+		    if(this.eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+		      __gCONSTANT._LEVEL.Emit_Hit(eHit, firePnt.position, Quaternion.identity, ()=>{
+		        firePnt.gameObject.SetActive(false);
+		        return true;
+		      });
+	        }
+		  }
 		}
 	  }
       else{
-	    Debug.Log("doAttk : " + bAttk + " : "  + this);
+//	    Debug.Log("doAttk : " + bAttk + " : "  + this);
       }
     }
 
@@ -232,11 +255,48 @@ namespace MTON.codeObjects{
 
 	public virtual void doFace(float fFace){
       tw.doRotateTo(new Vector3(0.0f, fFace * -50.0f, 0.0f));
+	  if(fFace > Mathf.Epsilon){
+	    this.bFaceRt = true;
+	  }
+	  else if(fFace < -Mathf.Epsilon){
+		this.bFaceRt = false;
+	  }
 	}
     public virtual void doFall()  {}
     public void doIdle(){   //neutral state -> good for swapping/activating back main model
       //      doRest()                                       ;
     }
+
+	public virtual void doIdle(bool bIdle){
+	  if(bIdle == true){
+//		this.cControl.height = this.initHgt;
+        this.dispObj.gameObject.SetActive(true);
+		if(this.riseObj != null){
+		  this.riseObj.gameObject.SetActive(false);
+		}
+	  }
+	}
+
+	public virtual void doRise(bool bRise){
+	  if(this.riseObj != null){
+	    if(bRise == true){
+		  this.cControl.height = this.initHgt * 0.5f; //on rise tuck collision
+		  this.riseObj.gameObject.SetActive(true );
+		  this.dispObj.gameObject.SetActive(false);
+		}
+		else{
+		  this.cControl.height = this.initHgt; //on fall expand collision...else bouncy on ground
+		  this.riseObj.gameObject.SetActive(false);
+		  this.dispObj.gameObject.SetActive(true );
+		}
+	  }
+	}
+
+	public virtual void doHurt(int iHurt){
+      rb.Jump()                     ;
+	  Debug.Log(this + " OOOCH!!! ");
+	}
+
 #endregion
 
 
@@ -248,6 +308,7 @@ namespace MTON.codeObjects{
       an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject);
       eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject);
       io = __gUtility.AddComponent_mton<cInput>(this.gameObject);
+      ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject);
       tw = __gUtility.AddComponent_mton<cTween>(this.dispObj.gameObject)   ; //Tweening display obj vs. character controller
 
       rendr = this.dispObj.gameObject.GetComponent<Renderer>()   ; //Get Renderer Component

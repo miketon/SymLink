@@ -6,6 +6,15 @@ namespace MTON.Class{
 
 	public class cAnimn : MonoBehaviour, IAnimn{
 
+		public delegate void DL_Idle(bool bIdle) ; //set up delegate
+        public DL_Idle OnIdleDelegate            ; //delegate instance
+
+		public delegate void DL_Rise(bool bRise) ; //set up delegate
+        public DL_Rise OnRiseDelegate            ; //delegate instance
+
+		public delegate void DL_Fall(bool bFall) ; //set up delegate
+        public DL_Fall OnFallDelegate            ; //delegate instanc
+
 #region cAnimn enum
 		public enum eStateV{ //vertical state
 			Idle,
@@ -33,7 +42,7 @@ namespace MTON.Class{
 			Flap  //air jump
 		}
 
-		private eStateV vstate;
+		public  eStateV vstate;
 		public  eStateV vState{
 			get{
 				return vstate;
@@ -41,12 +50,33 @@ namespace MTON.Class{
 			set{
 				if(value != vstate){
 					vstate = value ;
+					if(value == eStateV.Idle){
+					    if(this.OnIdleDelegate != null){
+						  this.OnIdleDelegate(true);
+						}
+					}
+					else if(value == eStateV.Fall){
+					    if(this.OnRiseDelegate != null){
+						  this.OnRiseDelegate(false);
+						}
+						if(this.OnFallDelegate != null){
+						  this.OnFallDelegate(true );
+						}
+					}
+					else if(value == eStateV.Rise){
+					    if(this.OnRiseDelegate != null){
+						  this.OnRiseDelegate(true );
+						}
+						if(this.OnFallDelegate != null){
+						  this.OnFallDelegate(false );
+						}
+					}
 //					Debug.Log(this + " vState updated : " + value);
 				}
 			}
 		}
 
-		private eStateH hstate;
+		public  eStateH hstate;
 		public  eStateH hState{
 			get{
 				return hstate;
@@ -59,7 +89,7 @@ namespace MTON.Class{
 			}
 		}
 
-		private eStateF fstate;
+		public  eStateF fstate;
 		public  eStateF fState{
 			get{
 				return fstate;
@@ -81,7 +111,7 @@ namespace MTON.Class{
 			}
 		}
 
-		private eStateD dstate;
+		public  eStateD dstate;
 		public  eStateD dState{
 			get{
 				return dstate;

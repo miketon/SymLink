@@ -63,7 +63,7 @@ public class __gameObjectMT extends MonoBehaviour{
     var returnComponent    = null                                        ;
 
     if(doesComponentExist==null){
-      returnComponent = UnityEngineInternal.APIUpdaterRuntimeServices.AddComponent(targetGObj, "Assets/Shared/Scripts/mton/__gameObjectMT.js(66,25)", checkThisComponent);
+//      returnComponent = UnityEngineInternal.APIUpdaterRuntimeServices.AddComponent(targetGObj, "Assets/Shared/Scripts/mton/__gameObjectMT.js(66,25)", checkThisComponent);
     }
     print("DefaultAddComponent: " + targetGObj + checkThisComponent + returnComponent);
     return returnComponent;

@@ -9,18 +9,28 @@ namespace MTON.Class{
   public class cLevel : MonoBehaviour, ILevel{
 
 	public int levelCurrent { get; set; } //NOTE : interface variable implementation can't be static
+		
+    //Init Level
+    public void OnLoadLevel(){}           //NOTE : interface function implementation must be public
+    //Shut Down Level
+    public void UnLoadLevel(){}
+
+#region Level Spawning logic
+
 	public Transform[]      e_Walks;
 	public Transform[]      e_Flyrs;
+	public Transform[]      e_Bllts;
+	public int numPrefill = 25;
 	public ParticleSystem[] fx_Hits;
 
-	public enum e_Walk{
-	  Melee_00, //moon
+	public enum e_Enmy{
+	  Melee_00, 
 	  Range_00,
 	  None,
 	}
 
 	public enum e_Flyr{
-	  Melee_00, //moon
+	  Melee_00, 
 	  Range_00,
 	  None,
 	}
@@ -32,10 +42,13 @@ namespace MTON.Class{
 	  None,
 	}
 
-    //Init Level
-    public void OnLoadLevel(){}           //NOTE : interface function implementation must be public
-    //Shut Down Level
-    public void UnLoadLevel(){}
+	public enum e_Bllt{
+	  Projctl_00, //projectile
+	  LasrRay_00, 
+	  Grenade_00,
+	  None,
+	}
+
 
 	public T levelSpawn<T>(T Targ){
 		Debug.Log("Spawning : " + Targ);
@@ -43,14 +56,16 @@ namespace MTON.Class{
 		return Targ;
 	}
 
+	//Spawning Standard Object
 	public Transform Spawn<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	  IN_XFORM.gameObject.SetActive(true);
 	  funcToRun();
 	  return IN_XFORM.lpSpawn(IN_POS, IN_ROT);
 	}
 
 	//Walking Enemy
-	public Transform SpawnObj<T>(e_Walk eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
-	  if(eObj == e_Walk.Melee_00){
+	public Transform SpawnObj<T>(e_Enmy eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	  if(eObj == e_Enmy.Melee_00){
 		funcToRun();
 	    return this.e_Walks[0].lpSpawn(IN_POS, IN_ROT);
 	  }
@@ -79,7 +94,7 @@ namespace MTON.Class{
 	    Emit(this.fx_Hits[1], IN_POS, IN_ROT, funcToRun);
 	  }
 	  else{
-	    Debug.LogWarning(this + " ACCESSING cLevel.cs fx_Hits[] our of index! ");
+	    Debug.LogWarning(this + " ACCESSING cLevel.cs fx_Hits[] out of index! ");
 	  }
 	}
 
@@ -94,17 +109,49 @@ namespace MTON.Class{
 			funcToRun();
 		}); //using TeaTime.cs
 	}
+
+	public void Emit_Bullet<T>(e_Bllt eBullet, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	  if(eBullet == e_Bllt.Projctl_00){
+	    Emit_Bullet(this.e_Bllts[0], IN_POS, IN_ROT, funcToRun);
+	  }
+	}
+
+	public void Emit_Bullet<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+		Transform pXform = IN_XFORM.lpSpawn(IN_POS, IN_ROT); //Get Transform from pool using Liteprint
+		GameObject gXform = pXform.gameObject;
+	    gXform.SetActive(true);
+		this.tt().ttAdd(3.0f, ()=>{
+			pXform.lpRecycle(); //Return to pool
+			funcToRun();
+			gXform.SetActive(false);
+		}); //using TeaTime.cs
+	}
+
+#endregion
+
+#region Level Collision Handler
+
+	public void doCollide<T>(Transform srcXFORM, Transform dstXFORM){
+		Debug.Log(this + "LEVEL collidision between : source : " + srcXFORM + " destination : " + dstXFORM);
+	}
+
+#endregion
 	
 	public virtual void Awake(){
 		if(__gCONSTANT._LEVEL == null){
 			Debug.LogError("CONSTANT LEVEL == null : populating with " + this);
 			new __gCONSTANT(this);
+		    for(int i=0; i<this.e_Bllts.Length; i++){
+			  this.e_Bllts[i].gameObject.SetActive(false) ; //WTF: HACK: MUST be set to inactive, else collider causes bullets to vector incorrect direction
+			  this.e_Bllts[i].lpRefill(this.numPrefill)   ;
+			}
 		}
 		else{
 			Debug.Log("CONSTANT LEVEL == exists : " + __gCONSTANT._LEVEL);
 			__gCONSTANT._LEVEL.levelSpawn<GameObject>(this.gameObject);
 		}
 	}
+
 	public virtual void Start(){
 		Debug.Log("GLOBAL LEVEL : " + __gCONSTANT._LEVEL);
 	}
