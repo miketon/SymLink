@@ -278,7 +278,7 @@ namespace MTON.codeObjects{
 		  this.dispObj.gameObject.SetActive(false);
 		}
 		else{
-		  this.cControl.height = this.initHgt; //on fall expand collision
+		  this.cControl.height = this.initHgt; //on fall expand collision...else bouncy on ground
 		  this.riseObj.gameObject.SetActive(false);
 		  this.dispObj.gameObject.SetActive(true );
 		}
