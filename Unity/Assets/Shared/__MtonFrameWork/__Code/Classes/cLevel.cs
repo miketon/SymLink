@@ -19,16 +19,18 @@ namespace MTON.Class{
 
 	public Transform[]      e_Walks;
 	public Transform[]      e_Flyrs;
+	public Transform[]      e_Bllts;
+	public int numPrefill = 25;
 	public ParticleSystem[] fx_Hits;
 
-	public enum e_Walk{
-	  Melee_00, //moon
+	public enum e_Enmy{
+	  Melee_00, 
 	  Range_00,
 	  None,
 	}
 
 	public enum e_Flyr{
-	  Melee_00, //moon
+	  Melee_00, 
 	  Range_00,
 	  None,
 	}
@@ -37,6 +39,13 @@ namespace MTON.Class{
 	  HitMark_00, //moon
 	  GunFlar_00,
 	  ScoreCn_00,
+	  None,
+	}
+
+	public enum e_Bllt{
+	  Projctl_00, //projectile
+	  LasrRay_00, 
+	  Grenade_00,
 	  None,
 	}
 
@@ -55,8 +64,8 @@ namespace MTON.Class{
 	}
 
 	//Walking Enemy
-	public Transform SpawnObj<T>(e_Walk eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
-	  if(eObj == e_Walk.Melee_00){
+	public Transform SpawnObj<T>(e_Enmy eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	  if(eObj == e_Enmy.Melee_00){
 		funcToRun();
 	    return this.e_Walks[0].lpSpawn(IN_POS, IN_ROT);
 	  }
@@ -65,7 +74,7 @@ namespace MTON.Class{
 	  }
 	}
 
-	//Enemy
+	//Flying Enemy
 	public Transform SpawnObj<T>(e_Flyr eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
 	  if(eObj == e_Flyr.Melee_00){
 		funcToRun();
@@ -85,7 +94,7 @@ namespace MTON.Class{
 	    Emit(this.fx_Hits[1], IN_POS, IN_ROT, funcToRun);
 	  }
 	  else{
-	    Debug.LogWarning(this + " ACCESSING cLevel.cs fx_Hits[] our of index! ");
+	    Debug.LogWarning(this + " ACCESSING cLevel.cs fx_Hits[] out of index! ");
 	  }
 	}
 
@@ -99,6 +108,12 @@ namespace MTON.Class{
 			pXform.lpRecycle(); //Return to pool
 			funcToRun();
 		}); //using TeaTime.cs
+	}
+
+	public void Emit_Bullet<T>(e_Bllt eBullet, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	  if(eBullet == e_Bllt.Projctl_00){
+	    Emit_Bullet(this.e_Bllts[0], IN_POS, IN_ROT, funcToRun);
+	  }
 	}
 
 	public void Emit_Bullet<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
@@ -126,12 +141,17 @@ namespace MTON.Class{
 		if(__gCONSTANT._LEVEL == null){
 			Debug.LogError("CONSTANT LEVEL == null : populating with " + this);
 			new __gCONSTANT(this);
+		    for(int i=0; i<this.e_Bllts.Length; i++){
+			  this.e_Bllts[i].gameObject.SetActive(false) ; //WTF: HACK: MUST be set to inactive, else collider causes bullets to vector incorrect direction
+			  this.e_Bllts[i].lpRefill(this.numPrefill)   ;
+			}
 		}
 		else{
 			Debug.Log("CONSTANT LEVEL == exists : " + __gCONSTANT._LEVEL);
 			__gCONSTANT._LEVEL.levelSpawn<GameObject>(this.gameObject);
 		}
 	}
+
 	public virtual void Start(){
 		Debug.Log("GLOBAL LEVEL : " + __gCONSTANT._LEVEL);
 	}

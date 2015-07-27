@@ -12,10 +12,10 @@ namespace MTON.codeObjects{
     //init interface members
     public Transform dispObj ; //HACK : Coupling the character dispObj => object with an Animator and render mesh
     public Transform riseObj ; 
-	public Transform mBullet ; // bulletObject
 	public Transform[] firePnts ; // firing point
 	private bool     bFaceRt = true ; // facing Right
 	private float    initHgt = 1.0f;
+    public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
     public cLevel.fx_Hit  eHit ; // enum for particle system to emit
 
 	public void doActV(bool bActvV){
@@ -225,12 +225,12 @@ namespace MTON.codeObjects{
 //	    Debug.Log("doAttk : " + bAttk + " : "  + this);
 		  if(firePnt != null){
 		    firePnt.gameObject.SetActive(true);
-		    if(this.mBullet != null){
-			  __gCONSTANT._LEVEL.Emit_Bullet(this.mBullet, firePnt.position, firePnt.rotation, ()=>{
+			if(this.eBlt != cLevel.e_Bllt.None){
+			  __gCONSTANT._LEVEL.Emit_Bullet(this.eBlt, firePnt.position, firePnt.rotation, ()=>{
 		        return true;
 		      });
 		    }
-		    if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+		    if(this.eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
 		      __gCONSTANT._LEVEL.Emit_Hit(eHit, firePnt.position, Quaternion.identity, ()=>{
 		        firePnt.gameObject.SetActive(false);
 		        return true;
