@@ -68,7 +68,7 @@ namespace MTON.Class{
 		} 
 
 	public virtual void onDeth (){ // on death
-			Debug.Log( this + " I AM DEAD !!!!! ");
+//			Debug.Log( this + " I AM DEAD !!!!! ");
 			if(this.OnDethDelegate != null){
 			  OnDethDelegate();
 			}

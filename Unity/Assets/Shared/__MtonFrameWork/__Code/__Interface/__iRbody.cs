@@ -11,11 +11,12 @@ namespace MTON.Interface{
     //  OnGroundCallback OnGround()      ; //define event
 
     bool  bGround { get; set; } 
+    bool  bCeilng { get; set; } 
+    Vector3   cen { get; set; } //Center point
 
 	//VState functions
 	bool  OnCeilng()                 ;
     bool  OnGround()                 ; 
-    float ToGround(float distCheck)  ;
 
     //Move Functions
     void Move(Vector3 moveDir) ;
@@ -24,8 +25,8 @@ namespace MTON.Interface{
     void Flap()                ; //airjump
 
 	//Utility Functions
-    void ResetVelocity()       ;
-    void ResetRotation()       ;
+//    void ResetVelocity()       ;
+//    void ResetRotation()       ;
 
 	//    Class Properties
     //	  Not part of Interface, but will likely be implemented

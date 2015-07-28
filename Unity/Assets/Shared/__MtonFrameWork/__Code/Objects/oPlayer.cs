@@ -13,23 +13,15 @@ namespace MTON.codeObjects{
     public Transform dispObj ; //HACK : Coupling the character dispObj => object with an Animator and render mesh
     public Transform riseObj ; 
 	public Transform[] firePnts ; // firing point
-	private bool     bFaceRt = true ; // facing Right
-	private float    initHgt = 1.0f;
+
     public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
     public cLevel.fx_Hit  eHit ; // enum for particle system to emit
 
-	public void doActV(bool bActvV){
-	  if(bActvV == true){
-        if(rendr != null){
-          rendr.material.color = Color.blue;
-        }
-	  }
-	  else{
-        if(rendr != null){
-          rendr.material.color = cColr;
-	    }
-	  }
-	}
+	public  bool    bGround = false        ;
+	public  bool    bCeilng = true         ;
+	public  bool    bFaceRt = true         ; // facing Right
+	private float   initHgt = 1.0f         ;
+	private Vector3 prvPos  = Vector3.zero ;
 
 #region oPlayer Delegates
     private void OnEnable(){
@@ -44,6 +36,10 @@ namespace MTON.codeObjects{
 	  an.OnFaceDelegate_2D   += doFace;
 	  an.OnRiseDelegate      += doRise;
 	  an.OnIdleDelegate      += doIdle;
+
+	  //rigidbody events
+	  rb.OnGround_Delegate   += doGround;
+	  rb.OnCeilng_Delegate   += doCeilng;
 
 	  //health logic
 	  ht.OnHurtDelegate      += this.doHurt;
@@ -62,6 +58,10 @@ namespace MTON.codeObjects{
 	  an.OnRiseDelegate      -= doRise;
 	  an.OnIdleDelegate      -= doIdle;
 
+	  //rigidbody events
+	  rb.OnGround_Delegate   -= doGround;
+	  rb.OnCeilng_Delegate   -= doCeilng;
+
 	  //health logic
 	  ht.OnHurtDelegate      -= this.doHurt;
     }
@@ -75,7 +75,7 @@ namespace MTON.codeObjects{
 	protected Renderer            rendr    ;
 	protected Color               cColr    ;
     protected cInput              io       ; //protected; can be replaced with ai; vs. input controller
-    protected mCcntl              rb       ; //protected; to access collider volume info
+	protected cRbody              rb       ; //protected; to access collider volume info
 
     private cAnimn    an    ;
     private cEquip    eq    ;
@@ -84,19 +84,16 @@ namespace MTON.codeObjects{
 
     private LayerMask layerGround;
 
-
 	public virtual void Awake(){
 
 	  rendr = dispObj.GetComponent<Renderer>();
       cColr = rendr.material.color;
-      //		Debug.Log("I'm waking." + __gCONSTANT._FLOOR);
       layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
-	  init_Components()                                         ;
-      init_mRbody()                                             ;
-      //		xform         = this.GetComponent<Transform>()           ;
-      xform         = rb.xform;
+	  init_Components()                                        ;
+      init_cRbody()                                            ;
+      xform         = this.GetComponent<Transform>()           ;
       cControl      = this.GetComponent<CharacterController>() ;
-	  this.initHgt = cControl.height;
+	  this.initHgt  = cControl.height;
  
       if(this.dispObj == null){
         Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) NOT ASSIGNED MANUALLY.");
@@ -126,7 +123,7 @@ namespace MTON.codeObjects{
     public  float dashForce = 3.0f  ;
     public  float massForce = 1.0f  ;
 
-    private void init_mRbody(){ //inits this mRbody settings
+    private void init_cRbody(){ //inits this cRbody settings
       rb.moveForce   = moveForce                              ;
       rb.jumpForce   = jumpForce                              ;
       rb.flapForce   = flapForce                              ;
@@ -135,12 +132,9 @@ namespace MTON.codeObjects{
       //tw_Cache = xform.DORotate(IN_rotate, durFX, RotateMode.Fast).SetEase(Ease.InOutElastic);
     }
 
-	private Vector3 prvPos = Vector3.zero;
-	private bool bGround;
 
 	public virtual void FixedUpdate(){
 
-		bGround        = rb.OnGround();
 		Vector3 curPos = xform.position;
 		if(!bGround){                        //Not on Ground :check vertical state
 			float kY = curPos.y - prvPos.y;
@@ -262,10 +256,8 @@ namespace MTON.codeObjects{
 		this.bFaceRt = false;
 	  }
 	}
+
     public virtual void doFall()  {}
-    public void doIdle(){   //neutral state -> good for swapping/activating back main model
-      //      doRest()                                       ;
-    }
 
 	public virtual void doIdle(bool bIdle){
 	  if(bIdle == true){
@@ -294,17 +286,37 @@ namespace MTON.codeObjects{
 
 	public virtual void doHurt(int iHurt){
       rb.Jump()                     ;
-	  Debug.Log(this + " OOOCH!!! ");
+//	  Debug.Log(this + " OOOCH!!! ");
+	}
+
+	public virtual void doGround(bool bGround){
+      this.bGround = bGround;
+	}
+
+	public virtual void doCeilng(bool bCeilng){
+	  this.bCeilng = bCeilng;
 	}
 
 #endregion
 
+	public void doActV(bool bActvV){
+	  if(bActvV == true){
+        if(rendr != null){
+          rendr.material.color = Color.blue;
+        }
+	  }
+	  else{
+        if(rendr != null){
+          rendr.material.color = cColr;
+	    }
+	  }
+	}
 
 #region Class Utility
 
 	public virtual void init_Components(){
 			
-      rb = __gUtility.AddComponent_mton<mCcntl>(this.gameObject); 
+	  rb = __gUtility.AddComponent_mton<cRbody>(this.gameObject); 
       an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject);
       eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject);
       io = __gUtility.AddComponent_mton<cInput>(this.gameObject);
