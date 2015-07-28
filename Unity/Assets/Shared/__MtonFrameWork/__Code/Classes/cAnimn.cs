@@ -6,14 +6,14 @@ namespace MTON.Class{
 
 	public class cAnimn : MonoBehaviour, IAnimn{
 
-		public delegate void DL_Idle(bool bIdle) ; //set up delegate
-        public DL_Idle OnIdleDelegate            ; //delegate instance
+		public delegate void DL_Anim(bool bEvnt) ; //set up delegate
+        public DL_Anim OnIdleDelegate            ; //delegate instance
+        public DL_Anim OnRiseDelegate            ; //delegate instance
+        public DL_Anim OnFallDelegate            ; //delegate instance
+        public DL_Anim OnDuckDelegate            ; //delegate instance
 
-		public delegate void DL_Rise(bool bRise) ; //set up delegate
-        public DL_Rise OnRiseDelegate            ; //delegate instance
-
-		public delegate void DL_Fall(bool bFall) ; //set up delegate
-        public DL_Fall OnFallDelegate            ; //delegate instanc
+		public delegate void DL_Face(float fFce) ; //set up delegate
+        public DL_Face OnFaceDelegate_2D         ; //delegate instance
 
 #region cAnimn enum
 		public enum eStateV{ //vertical state
@@ -55,7 +55,7 @@ namespace MTON.Class{
 						  this.OnIdleDelegate(true);
 						}
 					}
-					else if(value == eStateV.Fall){
+					else if(value == eStateV.Fall || value == eStateV.Apex){
 					    if(this.OnRiseDelegate != null){
 						  this.OnRiseDelegate(false);
 						}
@@ -135,20 +135,12 @@ namespace MTON.Class{
 //			Debug.Log(this + " Awake! ");
 		}
 
-		public delegate void DL_Duck(bool bDuck) ; //set up delegate
-        public DL_Duck OnDuckDelegate            ; //delegate instance
-
-		public delegate void DL_Face_2D(float fFace) ; //set up delegate
-        public DL_Face_2D OnFaceDelegate_2D          ; //delegate instance
-
 		//transform functions
 		public virtual void doMove(Vector3 moveDir) {} //walk/run
 		public virtual void doFace(Vector3 faceDir) {} //do facing
 		public virtual void doJump()                {}
 		public virtual void doFall()                {}
-		public virtual void doIdle()                {  //standing state
-
-		} 
+		public virtual void doIdle()                {} 
 
 		public virtual void doDuck(bool bDuck){
 		  if(OnDuckDelegate != null){

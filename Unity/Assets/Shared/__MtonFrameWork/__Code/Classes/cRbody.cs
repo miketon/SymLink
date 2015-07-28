@@ -129,7 +129,7 @@ namespace MTON.Class{
     }
 
     public virtual bool OnCeilng(){
-      float ceilingCheck = this.dirRayCheck(Vector3.up, this.cHeight, 0.0f); //check directly overhead
+      float ceilingCheck = this.dirRayCheck(Vector3.up, this.cHeight * 1.25f, 0.0f); //check directly overhead
       if(ceilingCheck > 0.0f){
         return true;
       }

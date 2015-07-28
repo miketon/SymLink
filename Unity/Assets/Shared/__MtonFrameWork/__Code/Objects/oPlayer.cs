@@ -272,7 +272,7 @@ namespace MTON.codeObjects{
 	public virtual void doRise(bool bRise){
 	  if(this.riseObj != null){
 	    if(bRise == true){
-		  this.cControl.height = this.initHgt * 0.5f; //on rise tuck collision
+		  this.cControl.height = this.initHgt * 0.65f; //on rise tuck collision
 		  this.riseObj.gameObject.SetActive(true );
 		  this.dispObj.gameObject.SetActive(false);
 		}
