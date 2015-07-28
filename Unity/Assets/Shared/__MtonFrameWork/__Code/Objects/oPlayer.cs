@@ -33,7 +33,7 @@ namespace MTON.codeObjects{
 	  
 	  //animation : input + character/env state
 	  an.OnDuckDelegate      += doCrouch;
-	  an.OnFaceDelegate_2D   += doFace;
+	  an.OnFaceDelegate      += doFace;
 	  an.OnRiseDelegate      += doRise;
 	  an.OnIdleDelegate      += doIdle;
 
@@ -54,7 +54,7 @@ namespace MTON.codeObjects{
 
 	  //animation : input + character/env state
 	  an.OnDuckDelegate      -= doCrouch;
-	  an.OnFaceDelegate_2D   -= doFace;
+	  an.OnFaceDelegate      -= doFace;
 	  an.OnRiseDelegate      -= doRise;
 	  an.OnIdleDelegate      -= doIdle;
 
@@ -247,12 +247,12 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	public virtual void doFace(float fFace){
-      tw.doRotateTo(new Vector3(0.0f, fFace * -50.0f, 0.0f));
-	  if(fFace > Mathf.Epsilon){
+	public virtual void doFace(Vector3 vFace){ //for 2D facing, use x
+      tw.doRotateTo(new Vector3(0.0f, vFace.x * -50.0f, 0.0f));
+	  if(vFace.x > Mathf.Epsilon){
 	    this.bFaceRt = true;
 	  }
-	  else if(fFace < -Mathf.Epsilon){
+	  else if(vFace.x < -Mathf.Epsilon){
 		this.bFaceRt = false;
 	  }
 	}
