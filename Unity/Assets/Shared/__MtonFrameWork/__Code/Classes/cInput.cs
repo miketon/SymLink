@@ -7,20 +7,14 @@ namespace MTON.Class{
 
   public class cInput : MonoBehaviour, IInput{ //reads input and determines update
 
-	public delegate void OnDPAD_DIR(Vector3 vDir) ; //set up delegate
-    public OnDPAD_DIR OnDPAD_DIR_Delegate         ; //delegate instance
-
-	public delegate void OnDPAD_AIM(Vector3 vDir) ; //set up delegate
-	public OnDPAD_AIM OnDPAD_AIMDelegate          ; //delegate instance
+	public delegate void OnDPAD(Vector3 vDir) ; //set up delegate
+    public OnDPAD OnDPAD_DIR_Delegate         ; //delegate instance
+	public OnDPAD OnDPAD_AIMDelegate          ; //delegate instance
 	
-    public delegate void OnJump(bool bJump) ; //set up delegate
-    public OnJump OnJumpDelegate            ; //delegate instance
-
-    public delegate void OnAttk(bool bAttk) ; //set up delegate
-    public OnAttk OnAttkDelegate            ; //delegate instance
-
-	public delegate void OnActV(bool bActV) ; //set up delegate
-	public OnActV OnActVDelegate            ; //delegate instance
+    public delegate void OnBTTN(bool bPrss) ; //set up delegate
+    public OnBTTN OnJumpDelegate            ; //delegate instance
+    public OnBTTN OnAttkDelegate            ; //delegate instance
+	public OnBTTN OnActVDelegate            ; //delegate instance
 
 	private bool bactv = true; //use to control when entity VISUALLY activates/deactivates 
 	public  bool bActV{

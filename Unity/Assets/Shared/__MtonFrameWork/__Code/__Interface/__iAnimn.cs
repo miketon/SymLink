@@ -5,14 +5,14 @@ namespace MTON.Interface{
 
 #region Mton Interface Animation
 
-  public interface IAnimn{ //Interface for basic animation movies : handles input logic and calls IRbody implementation : mRbody/mCcntl
+  public interface IAnimn{ //Interface for basic animation movies : handles input logic and calls IRbody implementation : cRbody/mCcntl
 
     //transform functions
     void doMove(Vector3 moveDir) ; //walk/run
 	void doFace(Vector3 faceDir) ; //do facing
-    void doJump()                ;
-    void doFall()                ;
-    void doIdle()                ; //standing state
+    void doRise(bool bRise)      ;
+    void doFall(bool bFall)      ;
+    void doIdle(bool bIdle)      ; //standing state
     void doDuck(bool bDuck)      ;
 
     //	Not part of Interface, but will likely be implemented

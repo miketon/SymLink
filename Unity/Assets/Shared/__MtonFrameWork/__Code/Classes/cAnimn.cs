@@ -6,14 +6,15 @@ namespace MTON.Class{
 
 	public class cAnimn : MonoBehaviour, IAnimn{
 
-		public delegate void DL_Idle(bool bIdle) ; //set up delegate
-        public DL_Idle OnIdleDelegate            ; //delegate instance
+		public delegate void DL_Anim(bool bEvnt) ; //set up delegate
+        public DL_Anim OnIdleDelegate            ; //delegate instance
+        public DL_Anim OnRiseDelegate            ; //delegate instance
+        public DL_Anim OnFallDelegate            ; //delegate instance
+        public DL_Anim OnDuckDelegate            ; //delegate instance
 
-		public delegate void DL_Rise(bool bRise) ; //set up delegate
-        public DL_Rise OnRiseDelegate            ; //delegate instance
-
-		public delegate void DL_Fall(bool bFall) ; //set up delegate
-        public DL_Fall OnFallDelegate            ; //delegate instanc
+		public delegate void DL_VDIR(Vector3 vDir) ; //set up delegate
+        public DL_VDIR OnMoveDelegate              ; //delegate instance
+        public DL_VDIR OnFaceDelegate              ; //delegate instance
 
 #region cAnimn enum
 		public enum eStateV{ //vertical state
@@ -51,25 +52,15 @@ namespace MTON.Class{
 				if(value != vstate){
 					vstate = value ;
 					if(value == eStateV.Idle){
-					    if(this.OnIdleDelegate != null){
-						  this.OnIdleDelegate(true);
-						}
+						this.doIdle(true);
 					}
-					else if(value == eStateV.Fall){
-					    if(this.OnRiseDelegate != null){
-						  this.OnRiseDelegate(false);
-						}
-						if(this.OnFallDelegate != null){
-						  this.OnFallDelegate(true );
-						}
+					else if(value == eStateV.Fall || value == eStateV.Apex){
+						this.doRise(false);
+						this.doFall(true );
 					}
 					else if(value == eStateV.Rise){
-					    if(this.OnRiseDelegate != null){
-						  this.OnRiseDelegate(true );
-						}
-						if(this.OnFallDelegate != null){
-						  this.OnFallDelegate(false );
-						}
+						this.doRise(true );
+						this.doFall(false);
 					}
 //					Debug.Log(this + " vState updated : " + value);
 				}
@@ -98,13 +89,13 @@ namespace MTON.Class{
 				if(value != fstate){
 					fstate = value ;
 					if(value == eStateF.Rght){
-					  doFace_2D(1.0f);
+					  doFace(Vector3.right);
 					}
 					else if(value == eStateF.Left){
-					  doFace_2D(-1.0f);
+					  doFace(Vector3.left);
 					}
 					else{
-					  doFace_2D(0.0f);
+					  doFace(Vector3.zero);
 					}
 //					Debug.Log(this + " fState updated : " + value);
 				}
@@ -135,32 +126,34 @@ namespace MTON.Class{
 //			Debug.Log(this + " Awake! ");
 		}
 
-		public delegate void DL_Duck(bool bDuck) ; //set up delegate
-        public DL_Duck OnDuckDelegate            ; //delegate instance
-
-		public delegate void DL_Face_2D(float fFace) ; //set up delegate
-        public DL_Face_2D OnFaceDelegate_2D          ; //delegate instance
-
 		//transform functions
-		public virtual void doMove(Vector3 moveDir) {} //walk/run
-		public virtual void doFace(Vector3 faceDir) {} //do facing
-		public virtual void doJump()                {}
-		public virtual void doFall()                {}
-		public virtual void doIdle()                {  //standing state
-
-		} 
-
-		public virtual void doDuck(bool bDuck){
-		  if(OnDuckDelegate != null){
-		    OnDuckDelegate(bDuck);
-//		    Debug.Log("doDUCK! : " + bDuck + " : " + this);
+		public virtual void doMove(Vector3 vMove){  //walk/run
+		
+		}
+		public virtual void doFace(Vector3 vFace){
+		  if(this.OnFaceDelegate != null){
+			this.OnFaceDelegate(vFace);
 		  }
 		}
 
-		public virtual void doFace_2D(float fFace){
-		  if(OnFaceDelegate_2D != null){
-			OnFaceDelegate_2D(fFace);
-//		    Debug.Log("doFace! : " + fFace + " : " + this);
+		public virtual void doRise(bool bRise){
+		  if(this.OnRiseDelegate != null){
+		    this.OnRiseDelegate(bRise);
+		  }
+		}
+		public virtual void doFall(bool bFall){
+		  if(this.OnFallDelegate != null){
+		    this.OnFallDelegate(bFall);
+		  }
+		}
+		public virtual void doIdle(bool bIdle){
+		  if(this.OnIdleDelegate != null){
+		    this.OnIdleDelegate(bIdle);
+		  }
+		} 
+		public virtual void doDuck(bool bDuck){
+		  if(this.OnDuckDelegate != null){
+		    this.OnDuckDelegate(bDuck);
 		  }
 		}
 
