@@ -24,8 +24,8 @@ namespace MTON.Class{
 	  }
 	  collidedList.Add(cINPT);                                  // add an item to the end of the List
 
-      cINPT.bJump = true;
-	  cINPT.bActV = true;
+      cINPT.doJump(true);
+	  cINPT.doActV(true);
 	  tw.doCrouch(0.33f, 0.5f);
 
 	  if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
@@ -35,8 +35,8 @@ namespace MTON.Class{
 	  }
 
 	  StartCoroutine(__gUtility.WaitUntilDistant(this.xform, cINPT.transform, this.fThreshold, (()=>{
-        cINPT.bJump = false                                                          ;
-		OnHintExit(cINPT)    ;
+        cINPT.doJump(false) ;
+		OnHintExit(cINPT)   ;
 		for(int i=0; i<collidedList.Count; i++){
 		  if(cINPT == collidedList[i]){
 //		    Debug.LogError(" Removing : " + cINPT);
@@ -49,7 +49,7 @@ namespace MTON.Class{
   }
 
   public virtual void OnHintExit(cInput cINPT) { // Using IHint<cInput> to specify incoming data type
-	cINPT.bActV = false ;
+	cINPT.doActV(false) ;
 	tw.doCrouch(1.0f)   ;
   }
 
