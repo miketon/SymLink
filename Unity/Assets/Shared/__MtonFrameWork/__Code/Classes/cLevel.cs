@@ -1,12 +1,17 @@
 using UnityEngine        ;
 using System             ; //NOTE : ??? must import to use anonymous function ; And the IComparable Interface for Dictionary
 using System.Collections ;
+using System.Collections.Generic ; // Dictionary, List
 using MTON.Interface     ;
 using MTON.Global        ;
 
 namespace MTON.Class{
 
   public class cLevel : MonoBehaviour, ILevel{
+
+	public delegate void ADD_TRANSFORM(Transform IN_XFORM) ; //set up delegate
+    public ADD_TRANSFORM camADD_Delegate                   ; //delegate instance
+    public ADD_TRANSFORM camREM_Delegate                   ; //delegate instance
 
 	public int levelCurrent { get; set; } //NOTE : interface variable implementation can't be static
 		
@@ -15,13 +20,42 @@ namespace MTON.Class{
     //Shut Down Level
     public void UnLoadLevel(){}
 
-#region Level Spawning logic
+	public Transform        mPlayer; // main player
+	public Transform        mCamera; // main camera
+    public List<Transform>  camTgts = new List<Transform>() ; //need System.Collections.Generic
+
+	public Transform doCamADD(Transform IN_XFORM){
+	  foreach(Transform cam in this.camTgts){  //check current camTgts
+	    if(IN_XFORM == cam){                   //if already part of camera list return null
+		  return null;
+		}
+	  }
+	  Debug.Log ("Adding : " + IN_XFORM);
+	  this.camTgts.Add(IN_XFORM)     ; //else add to camTgts
+	  this.camADD_Delegate(IN_XFORM) ;
+	  return IN_XFORM                ; //return transform
+	}
+
+	public Transform doCamREM(Transform IN_XFORM){
+	  foreach(Transform cam in this.camTgts){  //check current camTgts
+	    if(IN_XFORM == cam){                   //if match camera list entry
+	      Debug.Log ("Removing : " + IN_XFORM);
+		  this.camTgts.Remove(IN_XFORM)  ; //remove xform
+		  this.camREM_Delegate(IN_XFORM) ;
+		  return IN_XFORM                ; //return xform
+		}
+	  }
+	  return null ; //return null if no transform removed
+	}
 
 	public Transform[]      e_Walks;
 	public Transform[]      e_Flyrs;
 	public Transform[]      e_Bllts;
 	public int numPrefill = 25;
 	public ParticleSystem[] fx_Hits;
+
+
+#region enums
 
 	public enum e_Enmy{
 	  Melee_00, 
@@ -49,6 +83,9 @@ namespace MTON.Class{
 	  None,
 	}
 
+#endregion
+
+#region Level Spawning logic
 
 	public T levelSpawn<T>(T Targ){
 		Debug.Log("Spawning : " + Targ);
