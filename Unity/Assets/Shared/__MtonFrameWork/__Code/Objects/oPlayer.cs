@@ -82,13 +82,16 @@ namespace MTON.codeObjects{
     private cEquip    eq    ;
     private cHealth   ht    ;
     private cTween    tw    ;
+    private cMcanm    mc    ; //mecanim handler
+
+	private float yScale = 1.0f ;   
 
     private LayerMask layerGround;
 
 	public virtual void Awake(){
 
 	  rendr = this.dispXFORM.GetComponent<Renderer>();
-      cColr = rendr.material.color;
+//      cColr = rendr.material.color;
       layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
 	  init_Components()                                        ;
       init_cRbody()                                            ;
@@ -106,6 +109,7 @@ namespace MTON.codeObjects{
           Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) attempting to auto assign this.transform : FAILED     ");
         }
       }
+	  this.yScale = this.dispXFORM.localScale.y;
 
     }
 
@@ -241,10 +245,10 @@ namespace MTON.codeObjects{
 
     public virtual void doCrouch(bool bDuck){
 	  if(bDuck){
-	    tw.doCrouch(0.33f, 0.5f);
+		tw.doCrouch(0.33f, 0.5f * yScale);
 	  }
 	  else{
-	    tw.doCrouch(1.0f);
+		tw.doCrouch(yScale);
 	  }
 	}
 
@@ -308,7 +312,7 @@ namespace MTON.codeObjects{
 	  }
 	  else{
         if(rendr != null){
-          rendr.material.color = cColr;
+//          rendr.material.color = cColr;
 	    }
 	  }
 	}
@@ -317,12 +321,17 @@ namespace MTON.codeObjects{
 
 	public virtual void init_Components(){
 			
-	  rb = __gUtility.AddComponent_mton<cRbody>(this.gameObject); 
-      an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject);
-      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject);
-      io = __gUtility.AddComponent_mton<cInput>(this.gameObject);
-      ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject);
+	  rb = __gUtility.AddComponent_mton<cRbody>(this.gameObject)  ; 
+      an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject)  ;
+      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject)  ;
+      io = __gUtility.AddComponent_mton<cInput>(this.gameObject)  ;
+      ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject) ;
       tw = __gUtility.AddComponent_mton<cTween>(this.dispXFORM.gameObject)   ; //Tweening display obj vs. character controller
+      mc = __gUtility.AddComponent_mton<cMcanm>(this.gameObject)  ;
+
+	  if(mc.anST == null){
+	    mc.anST = an;
+	  }
 
       rendr = this.dispXFORM.gameObject.GetComponent<Renderer>()   ; //Get Renderer Component
 

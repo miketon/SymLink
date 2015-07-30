@@ -191,6 +191,9 @@ namespace MTON.Class{
 
 #endregion
 	
+
+#region Class Utility
+
 	public virtual void Awake(){
 		if(__gCONSTANT._LEVEL == null){
 			Debug.LogError("CONSTANT LEVEL == null : populating with " + this);
@@ -213,6 +216,8 @@ namespace MTON.Class{
 	public virtual void Start(){
 		Debug.Log("GLOBAL LEVEL : " + __gCONSTANT._LEVEL);
 	}
+
+#endregion
 
   }
 

@@ -128,7 +128,9 @@ namespace MTON.Class{
 
 		//transform functions
 		public virtual void doMove(Vector3 vMove){  //walk/run
-		
+		  if(this.OnMoveDelegate != null){
+			this.OnMoveDelegate(vMove);
+		  }
 		}
 		public virtual void doFace(Vector3 vFace){
 		  if(this.OnFaceDelegate != null){

@@ -4,7 +4,7 @@ using DG.Tweening        ; //import DemiGiant DoTween
 
 namespace MTON.Interface{
 
-  public interface iTween{
+  public interface iTweenMTON{ // Had to change from iTween to not conflict with iTween plug-in
 
     bool bOnCompleteHide{ get; set; } // Hide on complete
 
