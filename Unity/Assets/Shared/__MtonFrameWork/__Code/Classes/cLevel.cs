@@ -10,8 +10,11 @@ namespace MTON.Class{
   public class cLevel : MonoBehaviour, ILevel{
 
 	public delegate void ADD_TRANSFORM(Transform IN_XFORM) ; //set up delegate
-    public ADD_TRANSFORM camADD_Delegate                   ; //delegate instance
-    public ADD_TRANSFORM camREM_Delegate                   ; //delegate instance
+    public ADD_TRANSFORM camrADD_Delegate                   ; //delegate instance
+    public ADD_TRANSFORM camrREM_Delegate                   ; //delegate instance
+
+    public ADD_TRANSFORM boidADD_Delegate                   ; //delegate instance
+    public ADD_TRANSFORM boidREM_Delegate                   ; //delegate instance
 
 	public int levelCurrent { get; set; } //NOTE : interface variable implementation can't be static
 		
@@ -21,11 +24,13 @@ namespace MTON.Class{
     public void UnLoadLevel(){}
 
 	public Transform        mPlayer; // main player
+	public Transform        mCamAim; // main player
 	public Camera2D         mCamera; // main camera
     public List<Transform>  camTgts = new List<Transform>() ; //need System.Collections.Generic
     public List<Transform>  iconsDb = new List<Transform>() ; //need System.Collections.Generic
+    public List<Transform>  boidsGp = new List<Transform>() ; //need System.Collections.Generic
 
-	public Transform doCamADD(Transform IN_XFORM){
+	public Transform doCamrADD(Transform IN_XFORM){
 	  foreach(Transform cam in this.camTgts){  //check current camTgts
 	    if(IN_XFORM == cam){                   //if already part of camera list return null
 		  return null;
@@ -33,16 +38,16 @@ namespace MTON.Class{
 	  }
 	  Debug.Log ("Adding : " + IN_XFORM);
 	  this.camTgts.Add(IN_XFORM)     ; //else add to camTgts
-	  this.camADD_Delegate(IN_XFORM) ;
+	  this.camrADD_Delegate(IN_XFORM) ;
 	  return IN_XFORM                ; //return transform
 	}
 
-	public Transform doCamREM(Transform IN_XFORM){
+	public Transform doCamrREM(Transform IN_XFORM){
 	  foreach(Transform cam in this.camTgts){  //check current camTgts
 	    if(IN_XFORM == cam){                   //if match camera list entry
 	      Debug.Log ("Removing : " + IN_XFORM);
 		  this.camTgts.Remove(IN_XFORM)  ; //remove xform
-		  this.camREM_Delegate(IN_XFORM) ;
+		  this.camrREM_Delegate(IN_XFORM) ;
 		  return IN_XFORM                ; //return xform
 		}
 	  }
@@ -196,7 +201,7 @@ namespace MTON.Class{
 			}
 			for(int i=0; i<this.fx_Hits.Length; i++){
 			  this.fx_Hits[i].gameObject.SetActive(false);
-//			  this.fx_Hits[i].transform.lpRefill(this.numPrefill);
+			  this.fx_Hits[i].transform.lpRefill(this.numPrefill);
 			}
 		}
 		else{

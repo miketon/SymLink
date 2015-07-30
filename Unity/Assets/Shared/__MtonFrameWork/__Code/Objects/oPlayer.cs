@@ -10,8 +10,9 @@ namespace MTON.codeObjects{
   public class oPlayer : MonoBehaviour{
 
     //init interface members
-    public Transform dispObj ; //HACK : Coupling the character dispObj => object with an Animator and render mesh
-    public Transform riseObj ; 
+    public Transform dispXFORM ; //HACK : Coupling the character dispXFORM => object with an Animator and render mesh
+    public Transform camrXFORM ; 
+    public Transform riseXFORM ; 
 	public Transform[] firePnts ; // firing point
 
     public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
@@ -86,7 +87,7 @@ namespace MTON.codeObjects{
 
 	public virtual void Awake(){
 
-	  rendr = dispObj.GetComponent<Renderer>();
+	  rendr = this.dispXFORM.GetComponent<Renderer>();
       cColr = rendr.material.color;
       layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
 	  init_Components()                                        ;
@@ -95,10 +96,10 @@ namespace MTON.codeObjects{
       cControl      = this.GetComponent<CharacterController>() ;
 	  this.initHgt  = cControl.height;
  
-      if(this.dispObj == null){
+      if(this.dispXFORM == null){
         Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) NOT ASSIGNED MANUALLY.");
-        this.dispObj = this.xform;
-        if(this.dispObj == null){
+        this.dispXFORM = this.xform;
+        if(this.dispXFORM == null){
           Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) attempting to auto assign this.transform : SUCCESSFUL ");
         }
         else{
@@ -262,24 +263,24 @@ namespace MTON.codeObjects{
 	public virtual void doIdle(bool bIdle){
 	  if(bIdle == true){
 //		this.cControl.height = this.initHgt;
-        this.dispObj.gameObject.SetActive(true);
-		if(this.riseObj != null){
-		  this.riseObj.gameObject.SetActive(false);
+        this.dispXFORM.gameObject.SetActive(true);
+		if(this.riseXFORM != null){
+		  this.riseXFORM.gameObject.SetActive(false);
 		}
 	  }
 	}
 
 	public virtual void doRise(bool bRise){
-	  if(this.riseObj != null){
+	  if(this.riseXFORM != null){
 	    if(bRise == true){
 		  this.cControl.height = this.initHgt * 0.65f; //on rise tuck collision
-		  this.riseObj.gameObject.SetActive(true );
-		  this.dispObj.gameObject.SetActive(false);
+		  this.riseXFORM.gameObject.SetActive(true );
+		  this.dispXFORM.gameObject.SetActive(false);
 		}
 		else{
 		  this.cControl.height = this.initHgt; //on fall expand collision...else bouncy on ground
-		  this.riseObj.gameObject.SetActive(false);
-		  this.dispObj.gameObject.SetActive(true );
+		  this.riseXFORM.gameObject.SetActive(false);
+		  this.dispXFORM.gameObject.SetActive(true );
 		}
 	  }
 	}
@@ -321,11 +322,15 @@ namespace MTON.codeObjects{
       eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject);
       io = __gUtility.AddComponent_mton<cInput>(this.gameObject);
       ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject);
-      tw = __gUtility.AddComponent_mton<cTween>(this.dispObj.gameObject)   ; //Tweening display obj vs. character controller
+      tw = __gUtility.AddComponent_mton<cTween>(this.dispXFORM.gameObject)   ; //Tweening display obj vs. character controller
 
-      rendr = this.dispObj.gameObject.GetComponent<Renderer>()   ; //Get Renderer Component
+      rendr = this.dispXFORM.gameObject.GetComponent<Renderer>()   ; //Get Renderer Component
 
 	}
+
+	public Transform GetDispXFORM(){ return this.dispXFORM; }
+	public Transform GetCamrXFORM(){ return this.camrXFORM; }
+	public Transform GetRiseXFORM(){ return this.riseXFORM; }
 
 #endregion
 
