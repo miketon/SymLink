@@ -32,6 +32,7 @@ namespace MTON.Class{
   public virtual void OnHintEntr(cInput cINPT){ // Using IHint<cInput> to specify incoming data type
     if(cINPT != null){
 	  if(this.hintBoxType == e_HintBoxType.Distance){
+	    this.tw.doCrouch(0.33f, 0.5f) ;
 	    for(int i=0; i<collidedList.Count; i++){
 		  if(cINPT == collidedList[i]){ // true == already collided, not eligible for collision until OnHintExit
 		    return;
@@ -69,12 +70,15 @@ namespace MTON.Class{
       return true               ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
     })));
 
+	if(this.hintBoxType == e_HintBoxType.Distance){
+	  this.tw.doCrouch(1.0f) ;
+	}
+
   }
 
 #endregion
 
   public virtual void doHint(bool bHint, cInput cINPT){
-
 	if(this.DoHint_Delegate !=null){
 	  this.DoHint_Delegate(bHint);
 	}
