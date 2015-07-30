@@ -23,6 +23,7 @@ namespace MTON.Class{
 	public Transform        mPlayer; // main player
 	public Camera2D         mCamera; // main camera
     public List<Transform>  camTgts = new List<Transform>() ; //need System.Collections.Generic
+    public List<Transform>  iconsDb = new List<Transform>() ; //need System.Collections.Generic
 
 	public Transform doCamADD(Transform IN_XFORM){
 	  foreach(Transform cam in this.camTgts){  //check current camTgts
@@ -52,10 +53,17 @@ namespace MTON.Class{
 	public Transform[]      e_Flyrs;
 	public Transform[]      e_Bllts;
 	public int numPrefill = 25;
-	public ParticleSystem[] fx_Hits;
+//	public ParticleSystem[] fx_Hits;
+	public Transform[] fx_Hits;
 
 
 #region enums
+
+	public enum e_Icon{
+	  Warning, 
+	  Death  ,
+	  None,
+	}
 
 	public enum e_Enmy{
 	  Melee_00, 
@@ -70,10 +78,10 @@ namespace MTON.Class{
 	}
 
 	public enum fx_Hit{
-	  HitMark_00, //moon
-	  GunFlar_00,
-	  ScoreCn_00,
-	  None,
+	  HitMark_00 = 0, //moon
+	  GunFlar_00 = 1,
+	  ScoreCn_00 = 2,
+	  None = 3,
 	}
 
 	public enum e_Bllt{
@@ -124,26 +132,30 @@ namespace MTON.Class{
 	
 	//fx
 	public void Emit_Hit<T>(fx_Hit eHit, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
-	  if(eHit == fx_Hit.HitMark_00){
-	    Emit(this.fx_Hits[0], IN_POS, IN_ROT, funcToRun);
+//	  int enumInt = (int)eHit;
+//	  if(enumInt < this.fx_Hits.Length-1){ //Length - 1 : None needs to always be the last entry
+//        Emit(this.fx_Hits[enumInt], IN_POS, IN_ROT, funcToRun);
+//	  }
+	  if(eHit == fx_Hit.HitMark_00){ 
+        Emit(this.fx_Hits[0], IN_POS, IN_ROT, funcToRun);
 	  }
 	  else if(eHit == fx_Hit.GunFlar_00){
-	    Emit(this.fx_Hits[1], IN_POS, IN_ROT, funcToRun);
-	  }
-	  else{
-	    Debug.LogWarning(this + " ACCESSING cLevel.cs fx_Hits[] out of index! ");
+        Emit(this.fx_Hits[1], IN_POS, IN_ROT, funcToRun);
 	  }
 	}
 
-	public void Emit<T>(ParticleSystem IN_PS, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
-		Transform pXform = IN_PS.transform.lpSpawn(IN_POS, IN_ROT); //Get Transform from pool using Liteprint
-		ParticleSystem pSystem = pXform.gameObject.GetComponent<ParticleSystem>();
-//		pSystem.Clear() ; //true == include children
-		pSystem.Play();
+	public void Emit<T>(Transform IN_PS, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+		Transform pXform = IN_PS.lpSpawn(IN_POS, IN_ROT); //Get Transform from pool using Liteprint
+		GameObject gXform = pXform.gameObject;
+		gXform.SetActive(true);
+		ParticleSystem pSystem = pXform.GetComponent<ParticleSystem>();
+		pSystem.Clear() ; //true == include children
+	    pSystem.Play();
 		this.tt().ttAdd(pSystem.duration, ()=>{
 			pSystem.Stop();
 			pXform.lpRecycle(); //Return to pool
 			funcToRun();
+		    gXform.SetActive(false);
 		}); //using TeaTime.cs
 	}
 
@@ -181,6 +193,10 @@ namespace MTON.Class{
 		    for(int i=0; i<this.e_Bllts.Length; i++){
 			  this.e_Bllts[i].gameObject.SetActive(false) ; //WTF: HACK: MUST be set to inactive, else collider causes bullets to vector incorrect direction
 			  this.e_Bllts[i].lpRefill(this.numPrefill)   ;
+			}
+			for(int i=0; i<this.fx_Hits.Length; i++){
+			  this.fx_Hits[i].gameObject.SetActive(false);
+//			  this.fx_Hits[i].transform.lpRefill(this.numPrefill);
 			}
 		}
 		else{

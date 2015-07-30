@@ -26,13 +26,13 @@ namespace MTON.Class{
   public  float fThreshold = 1.0f  ;
   public  cTween    tw             ;
   private Transform xform          ;
+  private Vector3   initScl        ;
 
 #region iHint implementation
 
   public virtual void OnHintEntr(cInput cINPT){ // Using IHint<cInput> to specify incoming data type
     if(cINPT != null){
 	  if(this.hintBoxType == e_HintBoxType.Distance){
-	    this.tw.doCrouch(0.33f, 0.5f) ;
 	    for(int i=0; i<collidedList.Count; i++){
 		  if(cINPT == collidedList[i]){ // true == already collided, not eligible for collision until OnHintExit
 		    return;
@@ -69,11 +69,6 @@ namespace MTON.Class{
 	  this.doHint(false, cINPT) ;
       return true               ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
     })));
-
-	if(this.hintBoxType == e_HintBoxType.Distance){
-	  this.tw.doCrouch(1.0f) ;
-	}
-
   }
 
 #endregion
