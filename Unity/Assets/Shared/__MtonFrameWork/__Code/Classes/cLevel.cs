@@ -21,7 +21,7 @@ namespace MTON.Class{
     public void UnLoadLevel(){}
 
 	public Transform        mPlayer; // main player
-	public Transform        mCamera; // main camera
+	public Camera2D         mCamera; // main camera
     public List<Transform>  camTgts = new List<Transform>() ; //need System.Collections.Generic
 
 	public Transform doCamADD(Transform IN_XFORM){

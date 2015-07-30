@@ -37,14 +37,7 @@ namespace MTON.Class{
 		    return;
 		  }
 	    }
-
 	    collidedList.Add(cINPT) ; // add an item to the end of the List
-
-	    if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-		  __gCONSTANT._LEVEL.Emit_Hit(eHit, this.xform.position, Quaternion.identity, ()=>{
-		    return true;
-		  });
-	    }
 
 	    if(this.hintBoxType == e_HintBoxType.Distance){
 	      OnHintExit(cINPT); //continue to check for exit on Distance
@@ -54,6 +47,12 @@ namespace MTON.Class{
 	  }
 	  else{
 	    this.doHint(true, cINPT);
+	  }
+	  // collision fx
+	  if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+	    __gCONSTANT._LEVEL.Emit_Hit(eHit, this.xform.position, Quaternion.identity, ()=>{
+		  return true;
+		});
 	  }
     }
   }
