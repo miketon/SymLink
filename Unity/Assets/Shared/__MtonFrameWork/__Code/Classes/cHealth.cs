@@ -1,6 +1,7 @@
 using UnityEngine        ;
 using System.Collections ;
 using MTON.Interface     ;
+using MTON.Global        ;
 
 namespace MTON.Class{
 
@@ -12,6 +13,23 @@ namespace MTON.Class{
 
 	public delegate void DL_Deth()            ; //set up delegate
 	public DL_Deth OnDethDelegate             ; //delegate instance
+
+	public GameObject OnDeathPrefab;
+
+	public void Start(){
+	  if(OnDeathPrefab == null){
+		Debug.Log ("OnEnable DeathPrefab : " + (int)cLevel.e_Icon.Death + OnDeathPrefab);
+	    OnDeathPrefab = __gCONSTANT._LEVEL.e_Icons[(int)cLevel.e_Icon.Death].gameObject;
+	  }
+	}
+
+	public void OnEnable(){
+
+	}
+
+	public void OnDisable(){
+
+	}
 
 #region iHealth implementation
 
@@ -58,7 +76,7 @@ namespace MTON.Class{
 	public virtual void onHurt (int IN_HURT){ 
 			this.oHealth = this.oHealth - IN_HURT;
 //			Debug.Log( this + " I AM HURT " + IN_HURT + " of Total: " + this.oHealth);
-			if(this.oHealth < 0){
+			if(this.oHealth <= 0){
 //				Debug.Log( this + " I AM DEAD " + this.oHealth);
 				this.onDeth();
 			}
@@ -69,9 +87,13 @@ namespace MTON.Class{
 
 	public virtual void onDeth (){ // on death
 //			Debug.Log( this + " I AM DEAD !!!!! ");
+		    this.gameObject.SetActive(false);
 			if(this.OnDethDelegate != null){
 			  OnDethDelegate();
 			}
+		    __gCONSTANT._LEVEL.SpawnObj(cLevel.e_Icon.Death, this.transform.position, this.transform.rotation, ()=>{
+	          return true;
+	        });
 		}
 
 #endregion

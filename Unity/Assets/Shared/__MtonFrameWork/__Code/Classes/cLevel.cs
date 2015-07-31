@@ -27,7 +27,6 @@ namespace MTON.Class{
 	public Transform        mCamAim; // main player
 	public Camera2D         mCamera; // main camera
     public List<Transform>  camTgts = new List<Transform>() ; //need System.Collections.Generic
-    public List<Transform>  iconsDb = new List<Transform>() ; //need System.Collections.Generic
     public List<Transform>  boidsGp = new List<Transform>() ; //need System.Collections.Generic
 
 	public Transform doCamrADD(Transform IN_XFORM){
@@ -57,7 +56,8 @@ namespace MTON.Class{
 	public Transform[]      e_Walks;
 	public Transform[]      e_Flyrs;
 	public Transform[]      e_Bllts;
-	public int numPrefill = 25;
+	public Transform[]      e_Icons;
+	public int numPrefill = 15;
 //	public ParticleSystem[] fx_Hits;
 	public Transform[] fx_Hits;
 
@@ -65,9 +65,9 @@ namespace MTON.Class{
 #region enums
 
 	public enum e_Icon{
-	  Warning, 
-	  Death  ,
-	  None,
+	  Death   = 0,
+	  Warning = 1, 
+	  None    = 2,
 	}
 
 	public enum e_Enmy{
@@ -106,6 +106,7 @@ namespace MTON.Class{
 		return Targ;
 	}
 
+
 	//Spawning Standard Object
 	public Transform Spawn<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
 	  IN_XFORM.gameObject.SetActive(true);
@@ -113,7 +114,18 @@ namespace MTON.Class{
 	  return IN_XFORM.lpSpawn(IN_POS, IN_ROT);
 	}
 
-	//Walking Enemy
+	// Spawning Icon
+	public Transform SpawnObj<T>(e_Icon eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	  if(eObj == e_Icon.Death){
+		funcToRun();
+	    return this.e_Icons[0].lpSpawn(IN_POS, IN_ROT);
+	  }
+	  else{
+	    return null;
+	  }
+	}
+
+	// Walking Enemy
 	public Transform SpawnObj<T>(e_Enmy eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
 	  if(eObj == e_Enmy.Melee_00){
 		funcToRun();
@@ -124,7 +136,7 @@ namespace MTON.Class{
 	  }
 	}
 
-	//Flying Enemy
+	// Flying Enemy
 	public Transform SpawnObj<T>(e_Flyr eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
 	  if(eObj == e_Flyr.Melee_00){
 		funcToRun();
