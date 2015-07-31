@@ -51,7 +51,7 @@ namespace MTON.Class{
       __layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
       __layerEnemy  = LayerMask.GetMask (__gCONSTANT._ENEMY);
       //	  __layerCheck  = ~((1<<__layerGround)|(1<<__layerEnemy)); //not layerGround or layerEnemy
-      __layerCheck  = (1<<__layerGround); //only layerGroudn
+      __layerCheck  = (1<<__layerGround); //only layerGround
 
       cRadius   = this.contrl.radius * this.transform.localScale.x  ;
       cHeight   = ccHeight(this.contrl)                             ; //halfing==assumes dToGround measured from center 

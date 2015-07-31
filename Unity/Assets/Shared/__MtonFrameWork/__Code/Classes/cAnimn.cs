@@ -7,6 +7,7 @@ namespace MTON.Class{
 	public class cAnimn : MonoBehaviour, IAnimn{
 
 		public delegate void DL_Anim(bool bEvnt) ; //set up delegate
+        public DL_Anim OnGrndDelegate            ; //delegate instance
         public DL_Anim OnIdleDelegate            ; //delegate instance
         public DL_Anim OnRiseDelegate            ; //delegate instance
         public DL_Anim OnFallDelegate            ; //delegate instance
@@ -127,14 +128,25 @@ namespace MTON.Class{
 		}
 
 		//transform functions
+		private Vector3 prevMove = Vector3.zero   ; //caching move
 		public virtual void doMove(Vector3 vMove){  //walk/run
-		  if(this.OnMoveDelegate != null){
-			this.OnMoveDelegate(vMove);
+		  if(vMove != prevMove){
+		    if(this.OnMoveDelegate != null){
+			  this.OnMoveDelegate(vMove);
+		    }
 		  }
+		  prevMove = vMove;
 		}
 		public virtual void doFace(Vector3 vFace){
 		  if(this.OnFaceDelegate != null){
 			this.OnFaceDelegate(vFace);
+		  }
+		}
+
+		public virtual void doGrnd(bool bGrnd){
+		  if(this.OnGrndDelegate != null){
+			Debug.Log ("cAnimn : doGrnd : " + bGrnd + " : " + this);
+		    this.OnGrndDelegate(bGrnd);
 		  }
 		}
 

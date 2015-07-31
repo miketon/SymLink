@@ -85,6 +85,7 @@ namespace MTON.codeObjects{
     private cMcanm    mc    ; //mecanim handler
 
 	private float yScale = 1.0f ;   
+	public  float duckSc = 1.0f ;   
 
     private LayerMask layerGround;
 
@@ -166,6 +167,7 @@ namespace MTON.codeObjects{
 
     public virtual void doMove(Vector3 moveDir){ //Handles movement and facing
       rb.Move(moveDir) ;
+	  an.doMove(moveDir);
 	  // horizontal move state
       if(Mathf.Abs(moveDir.x) > 0.001f){
 		an.hState = cAnimn.eStateH.Walk;
@@ -244,11 +246,12 @@ namespace MTON.codeObjects{
     }
 
     public virtual void doCrouch(bool bDuck){
+//	  an.doDuck(bDuck); //HACK : CAUSES CRASH !!!
 	  if(bDuck){
-		tw.doCrouch(0.33f, 0.5f * yScale);
+		tw.doCrouch(this.yScale * this.duckSc, 0.5f);
 	  }
 	  else{
-		tw.doCrouch(yScale);
+		tw.doCrouch(this.yScale);
 	  }
 	}
 
@@ -294,12 +297,13 @@ namespace MTON.codeObjects{
 //	  Debug.Log(this + " OOOCH!!! ");
 	}
 
-	public virtual void doGround(bool bGround){
-      this.bGround = bGround;
+	public virtual void doGround(bool IN_GROUND){
+      this.bGround = IN_GROUND;
+	  an.doGrnd(bGround);
 	}
 
-	public virtual void doCeilng(bool bCeilng){
-	  this.bCeilng = bCeilng;
+	public virtual void doCeilng(bool IN_CEILING){
+	  this.bCeilng = IN_CEILING;
 	}
 
 #endregion
@@ -327,11 +331,12 @@ namespace MTON.codeObjects{
       io = __gUtility.AddComponent_mton<cInput>(this.gameObject)  ;
       ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject) ;
       tw = __gUtility.AddComponent_mton<cTween>(this.dispXFORM.gameObject)   ; //Tweening display obj vs. character controller
-      mc = __gUtility.AddComponent_mton<cMcanm>(this.gameObject)  ;
-
-	  if(mc.anST == null){
-	    mc.anST = an;
-	  }
+//      mc = __gUtility.AddComponent_mton<cMcanm>(this.gameObject)  ;
+//
+//	  if(mc.anST == null){
+//	    mc.anST = an;
+//		Debug.Log ("mc.anST not Found. Assigning one. ");
+//	  }
 
       rendr = this.dispXFORM.gameObject.GetComponent<Renderer>()   ; //Get Renderer Component
 
