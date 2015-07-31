@@ -73,10 +73,22 @@ namespace MTON.Class{
 			get{
 				return hstate;
 			}
-			set{
-				if(value != hstate){
+			set{ // NOTE: INTERESTING !!!
+				if(value == eStateH.Walk){ //continously check for walk
+				  hstate = value ;
+				  if(fState == eStateF.Rght){
+				    doMove(Vector3.right);
+				  }
+				  else if(fState == eStateF.Left){
+				    doMove(Vector3.left);
+				  }
+				}
+				else{
+				  if(value != hstate){ //check for others only on change
 					hstate = value ;
 //					Debug.Log(this + " hState updated : " + value);
+				    doMove(Vector3.zero);
+				  }
 				}
 			}
 		}
@@ -128,14 +140,10 @@ namespace MTON.Class{
 		}
 
 		//transform functions
-		private Vector3 prevMove = Vector3.zero   ; //caching move
 		public virtual void doMove(Vector3 vMove){  //walk/run
-		  if(vMove != prevMove){
-		    if(this.OnMoveDelegate != null){
-			  this.OnMoveDelegate(vMove);
-		    }
+		  if(this.OnMoveDelegate != null){
+		    this.OnMoveDelegate(vMove);
 		  }
-		  prevMove = vMove;
 		}
 		public virtual void doFace(Vector3 vFace){
 		  if(this.OnFaceDelegate != null){

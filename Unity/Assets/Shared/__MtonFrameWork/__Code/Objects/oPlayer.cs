@@ -166,8 +166,8 @@ namespace MTON.codeObjects{
     ///---------------------------------------TRANSFORMING CHARACTER--------------------------------------------------------------/// 
 
     public virtual void doMove(Vector3 moveDir){ //Handles movement and facing
+	  this.xform.SetPosZ(0.0f); // force into 0.0f zPlane so character doesn't slip
       rb.Move(moveDir) ;
-	  an.doMove(moveDir);
 	  // horizontal move state
       if(Mathf.Abs(moveDir.x) > 0.001f){
 		an.hState = cAnimn.eStateH.Walk;
@@ -246,7 +246,6 @@ namespace MTON.codeObjects{
     }
 
     public virtual void doCrouch(bool bDuck){
-//	  an.doDuck(bDuck); //HACK : CAUSES CRASH !!!
 	  if(bDuck){
 		tw.doCrouch(this.yScale * this.duckSc, 0.5f);
 	  }
@@ -255,13 +254,24 @@ namespace MTON.codeObjects{
 	  }
 	}
 
+	public float rotYoffset = -50.0f;
+
 	public virtual void doFace(Vector3 vFace){ //for 2D facing, use x
-      tw.doRotateTo(new Vector3(0.0f, vFace.x * -50.0f, 0.0f));
 	  if(vFace.x > Mathf.Epsilon){
 	    this.bFaceRt = true;
+	    tw.doRotateTo(new Vector3(0.0f, vFace.x * rotYoffset, 0.0f));
 	  }
 	  else if(vFace.x < -Mathf.Epsilon){
 		this.bFaceRt = false;
+		tw.doRotateTo(new Vector3(0.0f, vFace.x * rotYoffset, 0.0f));
+	  }
+	  else{
+	    if(this.bFaceRt == true){
+		  tw.doRotateTo(new Vector3(0.0f, rotYoffset * 0.65f, 0.0f));
+		}
+		else{
+		  tw.doRotateTo(new Vector3(0.0f, rotYoffset * -0.65f, 0.0f));
+		}
 	  }
 	}
 
