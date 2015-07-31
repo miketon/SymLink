@@ -85,16 +85,26 @@ namespace MTON.Class{
 			}
 		} 
 
+	public float debrisMag =  250.0f;
+	public float debrisRot = 1500.0f;
+
 	public virtual void onDeth (){ // on death
 //			Debug.Log( this + " I AM DEAD !!!!! ");
 		    this.gameObject.SetActive(false);
 			if(this.OnDethDelegate != null){
 			  OnDethDelegate();
 			}
-		    __gCONSTANT._LEVEL.SpawnObj(cLevel.e_Icon.Death, this.transform.position, this.transform.rotation, ()=>{
+		    __gCONSTANT._LEVEL.SpawnObj(cLevel.e_Icon.Death, this.transform.position, this.transform.rotation, (Transform SpawnedObj)=>{
+			  Rigidbody rbody = SpawnedObj.gameObject.GetComponent<Rigidbody>();
+			  if(rbody != null){
+				float randomF = Random.Range(1.0f, 3.0f)                    ;
+				SpawnedObj.position += Vector3.up * 0.5f * randomF          ; // lift slightly off ground to allow for spin and pop
+			    rbody.AddForce(Vector3.up * this.debrisMag)                 ; // pop
+				rbody.AddTorque(Vector3.forward * this.debrisRot * randomF) ; // spin
+			  }
 	          return true;
 	        });
-		}
+	}
 
 #endregion
 	

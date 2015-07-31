@@ -115,10 +115,11 @@ namespace MTON.Class{
 	}
 
 	// Spawning Icon
-	public Transform SpawnObj<T>(e_Icon eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	public Transform SpawnObj<T>(e_Icon eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<Transform, T> funcToRun){
 	  if(eObj == e_Icon.Death){
-		funcToRun();
-	    return this.e_Icons[0].lpSpawn(IN_POS, IN_ROT);
+		Transform spawnedObj = this.e_Icons[0].lpSpawn(IN_POS, IN_ROT);
+		funcToRun(spawnedObj);
+	    return spawnedObj;
 	  }
 	  else{
 	    return null;
