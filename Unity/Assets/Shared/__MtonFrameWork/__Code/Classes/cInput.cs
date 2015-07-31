@@ -16,58 +16,18 @@ namespace MTON.Class{
     public OnBTTN OnAttkDelegate            ; //delegate instance
 	public OnBTTN OnActVDelegate            ; //delegate instance
 
-	private bool bactv = true; //use to control when entity VISUALLY activates/deactivates 
-	public  bool bActV{
-	  get{
-	    return bactv;
-	  }
-	  set{
-	    bactv = value;
-		if(OnActVDelegate!=null){
-		  OnActVDelegate(bactv);
-		}
-	  }
-	}
-
 #region iInput implementation
 
     // Is input enabled
 	private bool binput = true ; //false == ignore input(use AI); true == accept input
     public  bool bInput {        //cannot assign default via setter/getter 
-			  get{
-			    return binput;
-			  } 
-			  set{
-			    binput = value;
-			  } 
-		    } 
-
-    // Button states
-    private bool bjump = false;
-    public bool bJump { 
-      get{
-        return bjump;
-      }
-      set{
-        bjump = value;
-        if(OnJumpDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
-          OnJumpDelegate(bjump);
-        }
-      } 
-    }
-
-    private bool battk = false;
-    public bool bAttk { 
-      get{
-        return battk;
-      }
-      set{
-        battk = value;
-        if(OnAttkDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
-          OnAttkDelegate(battk);
-        }
-      } 
-    }
+	  get{
+	    return binput;
+	  } 
+	  set{
+		if(value != binput){  binput = value;  }
+	  } 
+	} 
 
     // Directional Pad
     public virtual void doDPAD_Dir(Vector3 vDir){
@@ -79,6 +39,62 @@ namespace MTON.Class{
 	public virtual void doDPAD_Aim(Vector3 vDir){
 	  Debug.Log("doDPAD_Dir Aim!" + vDir);
     }
+
+	public virtual void doJump(bool bJump){
+		this.bJump = bJump;
+	    if(OnJumpDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
+          OnJumpDelegate(bJump);
+        }
+	}
+
+	public virtual void doAttk(bool bAttk){
+		this.bAttk = bAttk;
+	    if(OnAttkDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
+          OnAttkDelegate(bAttk);
+        }
+	}
+
+	public virtual void doActV(bool bActV){
+		this.bActV = bActV;
+	    if(OnActVDelegate!=null){
+		  OnActVDelegate(bActV);
+		}
+	}
+
+#endregion
+
+#region Property Setters and Getters 
+
+    // Button states
+    private bool bjump = false;
+    public bool bJump { 
+      get{
+        return bjump;
+      }
+      set{
+		if(value != bjump){  bjump = value;  }
+      } 
+    }
+
+    private bool battk = false;
+    public bool bAttk { 
+      get{
+        return battk;
+      }
+      set{
+		if(value != battk){  battk = value;  }
+      } 
+    }
+
+	private bool bactv = true; //use to control when entity VISUALLY activates/deactivates 
+	public  bool bActV{
+	  get{
+	    return bactv;
+	  }
+	  set{
+		if(value != bactv){  bactv = value;  }
+	  }
+	}
 
 #endregion
 
@@ -101,18 +117,18 @@ namespace MTON.Class{
 
         //check jump
         if(Input.GetButtonDown(__gIO._JUMP_p1)){
-          bJump = true;
+          this.doJump(true);
         }
         else if(Input.GetButtonUp(__gIO._JUMP_p1)){
-          bJump = false;
+          this.doJump(false);
         }
 
         //check attack
         if(Input.GetButtonDown(__gIO._ATTK_p1)){
-          bAttk = true;
+		  this.doAttk(true);
         }
         else if(Input.GetButtonUp(__gIO._ATTK_p1)){
-          bAttk = false;
+		  this.doAttk(false);
         }
 
       }

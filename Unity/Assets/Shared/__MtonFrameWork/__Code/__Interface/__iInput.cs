@@ -8,13 +8,16 @@ namespace MTON.Interface{
     // Is input enabled
     bool bInput { get; set; } 
 
-	// Button states
-    bool bJump { get; set; }
-    bool bAttk { get; set; }
-
     // Directional Pad
 	void doDPAD_Dir(Vector3 vDir) ; //movement pad
 	void doDPAD_Aim(Vector3 vDir) ; //aim pad
+
+	// Button States
+	void doJump(bool bJump);
+	void doAttk(bool bAttk);
+	
+	// Visual State
+	void doActV(bool bActV);
 
   }
 

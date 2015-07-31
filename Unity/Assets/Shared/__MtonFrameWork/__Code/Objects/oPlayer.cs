@@ -10,8 +10,9 @@ namespace MTON.codeObjects{
   public class oPlayer : MonoBehaviour{
 
     //init interface members
-    public Transform dispObj ; //HACK : Coupling the character dispObj => object with an Animator and render mesh
-    public Transform riseObj ; 
+    public Transform dispXFORM ; //HACK : Coupling the character dispXFORM => object with an Animator and render mesh
+    public Transform camrXFORM ; 
+    public Transform riseXFORM ; 
 	public Transform[] firePnts ; // firing point
 
     public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
@@ -81,13 +82,17 @@ namespace MTON.codeObjects{
     private cEquip    eq    ;
     private cHealth   ht    ;
     private cTween    tw    ;
+    private cMcanm    mc    ; //mecanim handler
+
+	private float yScale = 1.0f ;   
+	public  float duckSc = 1.0f ;   
 
     private LayerMask layerGround;
 
 	public virtual void Awake(){
 
-	  rendr = dispObj.GetComponent<Renderer>();
-      cColr = rendr.material.color;
+	  rendr = this.dispXFORM.GetComponent<Renderer>();
+//      cColr = rendr.material.color;
       layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
 	  init_Components()                                        ;
       init_cRbody()                                            ;
@@ -95,16 +100,17 @@ namespace MTON.codeObjects{
       cControl      = this.GetComponent<CharacterController>() ;
 	  this.initHgt  = cControl.height;
  
-      if(this.dispObj == null){
+      if(this.dispXFORM == null){
         Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) NOT ASSIGNED MANUALLY.");
-        this.dispObj = this.xform;
-        if(this.dispObj == null){
+        this.dispXFORM = this.xform;
+        if(this.dispXFORM == null){
           Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) attempting to auto assign this.transform : SUCCESSFUL ");
         }
         else{
           Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) attempting to auto assign this.transform : FAILED     ");
         }
       }
+	  this.yScale = this.dispXFORM.localScale.y;
 
     }
 
@@ -161,6 +167,7 @@ namespace MTON.codeObjects{
 
     public virtual void doMove(Vector3 moveDir){ //Handles movement and facing
       rb.Move(moveDir) ;
+	  an.doMove(moveDir);
 	  // horizontal move state
       if(Mathf.Abs(moveDir.x) > 0.001f){
 		an.hState = cAnimn.eStateH.Walk;
@@ -239,11 +246,12 @@ namespace MTON.codeObjects{
     }
 
     public virtual void doCrouch(bool bDuck){
+//	  an.doDuck(bDuck); //HACK : CAUSES CRASH !!!
 	  if(bDuck){
-	    tw.doCrouch(0.33f, 0.5f);
+		tw.doCrouch(this.yScale * this.duckSc, 0.5f);
 	  }
 	  else{
-	    tw.doCrouch(1.0f);
+		tw.doCrouch(this.yScale);
 	  }
 	}
 
@@ -262,24 +270,24 @@ namespace MTON.codeObjects{
 	public virtual void doIdle(bool bIdle){
 	  if(bIdle == true){
 //		this.cControl.height = this.initHgt;
-        this.dispObj.gameObject.SetActive(true);
-		if(this.riseObj != null){
-		  this.riseObj.gameObject.SetActive(false);
+        this.dispXFORM.gameObject.SetActive(true);
+		if(this.riseXFORM != null){
+		  this.riseXFORM.gameObject.SetActive(false);
 		}
 	  }
 	}
 
 	public virtual void doRise(bool bRise){
-	  if(this.riseObj != null){
+	  if(this.riseXFORM != null){
 	    if(bRise == true){
 		  this.cControl.height = this.initHgt * 0.65f; //on rise tuck collision
-		  this.riseObj.gameObject.SetActive(true );
-		  this.dispObj.gameObject.SetActive(false);
+		  this.riseXFORM.gameObject.SetActive(true );
+		  this.dispXFORM.gameObject.SetActive(false);
 		}
 		else{
 		  this.cControl.height = this.initHgt; //on fall expand collision...else bouncy on ground
-		  this.riseObj.gameObject.SetActive(false);
-		  this.dispObj.gameObject.SetActive(true );
+		  this.riseXFORM.gameObject.SetActive(false);
+		  this.dispXFORM.gameObject.SetActive(true );
 		}
 	  }
 	}
@@ -289,12 +297,13 @@ namespace MTON.codeObjects{
 //	  Debug.Log(this + " OOOCH!!! ");
 	}
 
-	public virtual void doGround(bool bGround){
-      this.bGround = bGround;
+	public virtual void doGround(bool IN_GROUND){
+      this.bGround = IN_GROUND;
+	  an.doGrnd(bGround);
 	}
 
-	public virtual void doCeilng(bool bCeilng){
-	  this.bCeilng = bCeilng;
+	public virtual void doCeilng(bool IN_CEILING){
+	  this.bCeilng = IN_CEILING;
 	}
 
 #endregion
@@ -307,7 +316,7 @@ namespace MTON.codeObjects{
 	  }
 	  else{
         if(rendr != null){
-          rendr.material.color = cColr;
+//          rendr.material.color = cColr;
 	    }
 	  }
 	}
@@ -316,16 +325,26 @@ namespace MTON.codeObjects{
 
 	public virtual void init_Components(){
 			
-	  rb = __gUtility.AddComponent_mton<cRbody>(this.gameObject); 
-      an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject);
-      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject);
-      io = __gUtility.AddComponent_mton<cInput>(this.gameObject);
-      ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject);
-      tw = __gUtility.AddComponent_mton<cTween>(this.dispObj.gameObject)   ; //Tweening display obj vs. character controller
+	  rb = __gUtility.AddComponent_mton<cRbody>(this.gameObject)  ; 
+      an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject)  ;
+      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject)  ;
+      io = __gUtility.AddComponent_mton<cInput>(this.gameObject)  ;
+      ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject) ;
+      tw = __gUtility.AddComponent_mton<cTween>(this.dispXFORM.gameObject)   ; //Tweening display obj vs. character controller
+//      mc = __gUtility.AddComponent_mton<cMcanm>(this.gameObject)  ;
+//
+//	  if(mc.anST == null){
+//	    mc.anST = an;
+//		Debug.Log ("mc.anST not Found. Assigning one. ");
+//	  }
 
-      rendr = this.dispObj.gameObject.GetComponent<Renderer>()   ; //Get Renderer Component
+      rendr = this.dispXFORM.gameObject.GetComponent<Renderer>()   ; //Get Renderer Component
 
 	}
+
+	public Transform GetDispXFORM(){ return this.dispXFORM; }
+	public Transform GetCamrXFORM(){ return this.camrXFORM; }
+	public Transform GetRiseXFORM(){ return this.riseXFORM; }
 
 #endregion
 

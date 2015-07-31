@@ -5,7 +5,7 @@ using DG.Tweening        ; //import DemiGiant DoTween
 
 namespace MTON.Class{
 
-  public class cTween : cXform, iTween{
+  public class cTween : cXform, iTweenMTON{
 
     public bool bOnCompleteHide{ get; set; } // Hide on complete
 

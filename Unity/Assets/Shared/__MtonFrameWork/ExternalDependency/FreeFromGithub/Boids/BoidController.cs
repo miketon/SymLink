@@ -70,6 +70,7 @@ public class BoidController : MonoBehaviour
 		BoidBehaviour bHave = boid.GetComponent<BoidBehaviour>();
 		if(bHave != null){
           boid.GetComponent<BoidBehaviour>().controller = this;
+		  __gCONSTANT._LEVEL.boidsGp.Add(boid.transform);
 		}
         return boid;
     }
