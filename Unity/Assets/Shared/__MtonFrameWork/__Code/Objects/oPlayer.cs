@@ -195,7 +195,6 @@ namespace MTON.codeObjects{
 		    an.dState = cAnimn.eStateD.Duck;
 		  }
 		}
-
       }
 	  else{
 		if(an.vState != cAnimn.eStateV.Rise){
@@ -207,12 +206,12 @@ namespace MTON.codeObjects{
     public virtual void doJump(bool bJump){
       if(bJump){
         if(bGround){    
-          rb.Jump()                       ;
-		  an.dState = cAnimn.eStateD.Jump ;
+          rb.Jump()       ;
+		  an.doJump(bJump) ;
         }
         else{
           rb.Flap()                       ; //flap when not on ground
-		  an.dState = cAnimn.eStateD.Flap ;
+//		  an.dState = cAnimn.eStateD.Flap ;
         }
       }
     }

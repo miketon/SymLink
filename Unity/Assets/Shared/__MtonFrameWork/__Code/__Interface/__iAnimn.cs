@@ -33,6 +33,7 @@ namespace MTON.Interface{
     int      _kHorizn_ID { get; set; } //horizontal delta
     int      _bGround_ID { get; set; }
     int      _bCrouch_ID { get; set; }
+    int      _bJump_ID   { get; set; }
     int      _bForwrd_ID { get; set; } //2d true == right; 3d true == forward
 
   }

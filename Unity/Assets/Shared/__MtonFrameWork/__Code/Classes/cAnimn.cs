@@ -95,8 +95,6 @@ namespace MTON.Class{
 		public enum eStateD{ // duck/crouch state
 			Idle,
 			Duck,
-			Jump, //jump
-			Flap  //air jump
 		}
 
 		public  eStateL lstate;
@@ -191,7 +189,7 @@ namespace MTON.Class{
 				if(value != dstate){
 					dstate = value ;
 //					Debug.Log(this + " dState updated : " + value);
-					if(value == eStateD.Duck){
+                    if(value == eStateD.Duck){
 						doDuck(true);
 					}
 					else{
@@ -229,12 +227,6 @@ namespace MTON.Class{
 		  }
 		} 
 
-		public virtual void doJump(bool bJump){
-		  if(this.OnJumpDelegate != null){
-		    this.OnJumpDelegate(bJump);
-		  }
-		} 
-
 		public virtual void doRise(bool bRise){
 		  if(this.OnRiseDelegate != null){
 		    this.OnRiseDelegate(bRise);
@@ -249,6 +241,12 @@ namespace MTON.Class{
 		public virtual void doDuck(bool bDuck){
 		  if(this.OnDuckDelegate != null){
 		    this.OnDuckDelegate(bDuck);
+		  }
+		}
+
+		public virtual void doJump(bool bJump){
+		  if(this.OnJumpDelegate != null){
+		    this.OnJumpDelegate(bJump);
 		  }
 		}
 
