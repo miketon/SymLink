@@ -9,6 +9,9 @@ namespace MTON.Class{
 
   public class cLevel : MonoBehaviour, ILevel{
 
+	public delegate void  INIT_LEVEL ();
+	public static   event INIT_LEVEL OnInit_Delegate;
+
 	public delegate void ADD_TRANSFORM(Transform IN_XFORM) ; //set up delegate
     public ADD_TRANSFORM camrADD_Delegate                   ; //delegate instance
     public ADD_TRANSFORM camrREM_Delegate                   ; //delegate instance
@@ -24,7 +27,8 @@ namespace MTON.Class{
     public void UnLoadLevel(){}
 
 	public Transform        mPlayer; // main player
-	public Transform        mCamAim; // main player
+	public Sound            sndPlyr; // sound player
+	public Transform        mCamAim; // msin aim
 	public Camera2D         mCamera; // main camera
     public List<Transform>  camTgts = new List<Transform>() ; //need System.Collections.Generic
     public List<Transform>  boidsGp = new List<Transform>() ; //need System.Collections.Generic
@@ -219,15 +223,31 @@ namespace MTON.Class{
 			  this.fx_Hits[i].gameObject.SetActive(false);
 			  this.fx_Hits[i].transform.lpRefill(this.numPrefill);
 			}
+			if(this.sndPlyr == null){
+			  this.sndPlyr = this.gameObject.GetComponent<Sound>();
+			}
+
 		}
 		else{
 			Debug.Log("CONSTANT LEVEL == exists : " + __gCONSTANT._LEVEL);
-			__gCONSTANT._LEVEL.levelSpawn<GameObject>(this.gameObject);
+		    __gCONSTANT._LEVEL.levelSpawn<GameObject>(this.gameObject); //Stubbed out logging function
 		}
 	}
 
 	public virtual void Start(){
-		Debug.Log("GLOBAL LEVEL : " + __gCONSTANT._LEVEL);
+//		Debug.Log("GLOBAL LEVEL : " + __gCONSTANT._LEVEL);
+	  if(OnInit_Delegate != null){
+	    OnInit_Delegate();
+	  }
+	}
+
+	public Sound getSoundManager(){
+	  if(this.sndPlyr != null){
+	    return this.sndPlyr;
+	  }
+	  else{
+		return null;
+	  }
 	}
 
 #endregion

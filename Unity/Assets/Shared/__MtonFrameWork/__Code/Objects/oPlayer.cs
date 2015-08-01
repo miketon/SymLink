@@ -7,10 +7,12 @@ using DG.Tweening        ; //import DemiGiant DoTween
 namespace MTON.codeObjects{
 
   [RequireComponent (typeof (CharacterController))]
+  [RequireComponent (typeof (cMcanm))] //must have to call mecanim...need fields so can not populate later
   public class oPlayer : MonoBehaviour{
 
     //init interface members
     public Transform dispXFORM ; //HACK : Coupling the character dispXFORM => object with an Animator and render mesh
+	public Animator  dispAnmtr ;
     public Transform camrXFORM ; 
     public Transform riseXFORM ; 
 	public Transform[] firePnts ; // firing point
@@ -26,6 +28,7 @@ namespace MTON.codeObjects{
 
 #region oPlayer Delegates
     private void OnEnable(){
+
 	  //direct input
       io.OnDPAD_DIR_Delegate += doMove;
       io.OnJumpDelegate      += doJump;
@@ -47,6 +50,7 @@ namespace MTON.codeObjects{
     }
 
     private void OnDisable(){
+
 	  //direct input
       io.OnDPAD_DIR_Delegate -= doMove;
       io.OnJumpDelegate      -= doJump; //NOTE: remember to remove delegate in case of wierd memory leaks
@@ -83,6 +87,8 @@ namespace MTON.codeObjects{
     private cHealth   ht    ;
     private cTween    tw    ;
     private cMcanm    mc    ; //mecanim handler
+
+	private cEmit_Audio     au ;
 
 	private float yScale = 1.0f ;   
 	public  float duckSc = 1.0f ;   
@@ -191,7 +197,6 @@ namespace MTON.codeObjects{
 		    an.dState = cAnimn.eStateD.Duck;
 		  }
 		}
-
       }
 	  else{
 		if(an.vState != cAnimn.eStateV.Rise){
@@ -203,12 +208,12 @@ namespace MTON.codeObjects{
     public virtual void doJump(bool bJump){
       if(bJump){
         if(bGround){    
-          rb.Jump()                       ;
-		  an.dState = cAnimn.eStateD.Jump ;
+          rb.Jump()       ;
+		  an.doJump(bJump) ;
         }
         else{
           rb.Flap()                       ; //flap when not on ground
-		  an.dState = cAnimn.eStateD.Flap ;
+		  an.doJump(bJump) ;
         }
       }
     }
@@ -216,6 +221,7 @@ namespace MTON.codeObjects{
 	public virtual void doAttk(bool bAttk){
       if(bAttk){
 		if(this.firePnts.Length > 0){
+		  an.doAttk(true);
 		  Transform firePnt;
 		  if(this.bFaceRt == true){
 		    firePnt = this.firePnts[0];
@@ -334,19 +340,19 @@ namespace MTON.codeObjects{
 #region Class Utility
 
 	public virtual void init_Components(){
-			
+
 	  rb = __gUtility.AddComponent_mton<cRbody>(this.gameObject)  ; 
+      ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject) ; //HACK : Order matters, must be before an because of delegates
       an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject)  ;
-      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject)  ;
+//      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject)  ;
       io = __gUtility.AddComponent_mton<cInput>(this.gameObject)  ;
-      ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject) ;
       tw = __gUtility.AddComponent_mton<cTween>(this.dispXFORM.gameObject)   ; //Tweening display obj vs. character controller
-//      mc = __gUtility.AddComponent_mton<cMcanm>(this.gameObject)  ;
-//
-//	  if(mc.anST == null){
-//	    mc.anST = an;
-//		Debug.Log ("mc.anST not Found. Assigning one. ");
-//	  }
+      mc = __gUtility.AddComponent_mton<cMcanm>(this.gameObject)  ;
+	  
+	  mc.anST = an;
+	  mc.anim = this.dispAnmtr;
+	 
+	  au = __gUtility.AddComponent_mton<cEmit_Audio>(this.gameObject)  ;
 
       rendr = this.dispXFORM.gameObject.GetComponent<Renderer>()   ; //Get Renderer Component
 

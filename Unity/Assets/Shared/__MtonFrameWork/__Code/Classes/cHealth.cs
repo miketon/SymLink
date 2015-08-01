@@ -1,6 +1,7 @@
 using UnityEngine        ;
 using System.Collections ;
 using MTON.Interface     ;
+using MTON.Class         ;
 using MTON.Global        ;
 
 namespace MTON.Class{
@@ -16,19 +17,18 @@ namespace MTON.Class{
 
 	public GameObject OnDeathPrefab;
 
-	public void Start(){
+	public virtual void Start(){
 	  if(OnDeathPrefab == null){
-		Debug.Log ("OnEnable DeathPrefab : " + (int)cLevel.e_Icon.Death + OnDeathPrefab);
+//		Debug.Log ("OnEnable DeathPrefab : " + (int)cLevel.e_Icon.Death + OnDeathPrefab);
 	    OnDeathPrefab = __gCONSTANT._LEVEL.e_Icons[(int)cLevel.e_Icon.Death].gameObject;
 	  }
 	}
 
-	public void OnEnable(){
-
-	}
-
-	public void OnDisable(){
-
+	private void Update(){
+		if(Input.GetKeyUp(KeyCode.Minus)){
+//				this.onHurt(2);
+				Debug.Log (" I am hurting : " + this.oHealth);
+			}
 	}
 
 #region iHealth implementation
