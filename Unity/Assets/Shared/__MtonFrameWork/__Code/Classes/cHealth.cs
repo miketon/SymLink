@@ -12,7 +12,7 @@ namespace MTON.Class{
 	public DL_Hurt OnHurtDelegate             ; //delegate instance
 	public DL_Hurt OnHealDelegate             ; //delegate instance
 
-	public delegate void DL_Deth()            ; //set up delegate
+	public delegate void DL_Deth(bool bDead)  ; //set up delegate
 	public DL_Deth OnDethDelegate             ; //delegate instance
 
 	public GameObject OnDeathPrefab;
@@ -26,7 +26,7 @@ namespace MTON.Class{
 
 	private void Update(){
 		if(Input.GetKeyUp(KeyCode.Minus)){
-//				this.onHurt(2);
+//				this.onHurt(-2);
 				Debug.Log (" I am hurting : " + this.oHealth);
 			}
 	}
@@ -74,11 +74,11 @@ namespace MTON.Class{
 		}
 
 	public virtual void onHurt (int IN_HURT){ 
-			this.oHealth = this.oHealth - IN_HURT;
+			this.oHealth = this.oHealth + IN_HURT;
 //			Debug.Log( this + " I AM HURT " + IN_HURT + " of Total: " + this.oHealth);
 			if(this.oHealth <= 0){
 //				Debug.Log( this + " I AM DEAD " + this.oHealth);
-				this.onDeth();
+				this.onDeth(true);
 			}
 			if(this.OnHurtDelegate != null){
 			  OnHurtDelegate(IN_HURT);
@@ -88,11 +88,11 @@ namespace MTON.Class{
 	public float debrisMag =  250.0f;
 	public float debrisRot = 1500.0f;
 
-	public virtual void onDeth (){ // on death
+	public virtual void onDeth (bool bDead){ // on death
 //			Debug.Log( this + " I AM DEAD !!!!! ");
 		    this.gameObject.SetActive(false);
 			if(this.OnDethDelegate != null){
-			  OnDethDelegate();
+			  OnDethDelegate(bDead);
 			}
 		    __gCONSTANT._LEVEL.SpawnObj(cLevel.e_Icon.Death, this.transform.position, this.transform.rotation, (Transform SpawnedObj)=>{
 			  Rigidbody rbody = SpawnedObj.gameObject.GetComponent<Rigidbody>();

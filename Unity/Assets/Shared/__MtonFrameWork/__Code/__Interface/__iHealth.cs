@@ -12,7 +12,7 @@ namespace MTON.Interface{
 	// health methods
 	void onHeal (int IN_HEAL) ;// on power up
 	void onHurt (int IN_HURT) ;// on hit
-	void onDeth ()            ;// on death
+	void onDeth (bool bDead)  ;// on death
 
   }
 

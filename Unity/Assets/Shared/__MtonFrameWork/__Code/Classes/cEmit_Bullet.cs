@@ -60,7 +60,7 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   void OnCollisionEnter(Collision collision) {
 	cHealth oDamage = collision.gameObject.GetComponent<cHealth>();
 	if(oDamage != null){
-	  oDamage.onHurt(this.damag);
+	  oDamage.onHurt(-this.damag);
 	}
 	if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
 	  __gCONSTANT._LEVEL.Emit_Hit(eHit, this.transform.position, Quaternion.identity, ()=>{

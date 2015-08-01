@@ -122,6 +122,7 @@ namespace MTON.Class{
 	public Transform SpawnObj<T>(e_Icon eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<Transform, T> funcToRun){
 	  if(eObj == e_Icon.Death){
 		Transform spawnedObj = this.e_Icons[0].lpSpawn(IN_POS, IN_ROT);
+		spawnedObj.gameObject.SetActive(true);
 		funcToRun(spawnedObj);
 	    return spawnedObj;
 	  }
