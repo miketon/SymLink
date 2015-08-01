@@ -7,10 +7,33 @@ using MTON.Global        ;
 public class cEmit_Audio : MonoBehaviour, IEmit<Rigidbody>{ 
 
 	public  Sound snd           ;
-	public  bool  bAnim = false ; // Should I subscribe to cAnimn delegates
+	public  bool  bAnim = true  ; // Should I subscribe to cAnimn delegates
 	private cAnimn an           ;
 
 	private void Start(){
+//	  Debug.Log ("AUDIO ON START");
+	}
+
+	private void OnEnable(){  // NOTE : OnEnable fires befor Start.
+		cLevel.OnInit_Delegate += Init;
+		this.Play();
+	}
+
+	private void OnDisable(){
+		cLevel.OnInit_Delegate -= Init;
+		if(bAnim == true){
+			an.OnDuckDelegate -= doPlayDuck;
+		}
+		this.Stop();
+	}
+
+#region iEmit implementation
+
+  public void Init(){  
+	  if(snd == null){
+		this.snd = __gCONSTANT._LEVEL.getSoundManager()  ;
+		Debug.Log ("Getting SoundManager : " + this.snd) ;
+	  }
 	  an = this.GetComponent<cAnimn>();
 	  if(an == true){
 	    bAnim = true ;
@@ -18,15 +41,9 @@ public class cEmit_Audio : MonoBehaviour, IEmit<Rigidbody>{
 	  else{
 	    bAnim = false ;
 	  }
-	}
-
-	private void OnEnable(){}
-	private void OnDisable(){}
-
-#region iEmit implementation
-
-  public void Init(){  
-
+	  if(bAnim == true){
+		an.OnDuckDelegate += doPlayDuck;
+	  }
   }
   public void Play(){
 
@@ -40,4 +57,12 @@ public class cEmit_Audio : MonoBehaviour, IEmit<Rigidbody>{
   }
 
 #endregion
+
+  private void doPlayDuck(bool bPlay){
+	Debug.Log ("PlayDuck");
+    if(bPlay == true){
+	  snd.PlayJump();
+	}
+  }
+
 }

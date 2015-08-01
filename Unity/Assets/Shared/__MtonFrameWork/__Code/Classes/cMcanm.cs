@@ -57,11 +57,11 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 
 	public void OnMove(Vector3 moveDir){
 		anim.SetFloat(_kHorizn_ID, Mathf.Abs (moveDir.x));
-		Debug.Log ("I am moving: " + moveDir.x);
+//		Debug.Log ("I am moving: " + moveDir.x);
 	}
 	public void OnDuck(bool bCrouch){
 		anim.SetBool(_bCrouch_ID, bCrouch);
-		Debug.Log ("I am crouching : " + bCrouch);
+//		Debug.Log ("I am crouching : " + bCrouch);
 	}
 
 
