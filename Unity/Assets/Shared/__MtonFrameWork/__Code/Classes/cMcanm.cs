@@ -70,22 +70,21 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	#endregion
 
 	public void OnGrnd(bool bGround){
-		anim.SetBool(_bGround_ID, bGround);
+	  anim.SetBool(_bGround_ID, bGround);
 	}
 
 	public void OnMove(Vector3 moveDir){
-		anim.SetFloat(_kHorizn_ID, Mathf.Abs (moveDir.x));
-//		Debug.Log ("I am moving: " + moveDir.x);
+      anim.SetFloat(_kHorizn_ID, Mathf.Abs (moveDir.x));
 	}
 	public void OnDuck(bool bCrouch){
-		anim.SetBool(_bCrouch_ID, bCrouch);
-//		Debug.Log ("I am crouching : " + bCrouch);
+	  anim.SetBool(_bCrouch_ID, bCrouch);
+//	  Debug.Log ("I am crouching : " + bCrouch);
 	}
 
 	public void OnJump(bool bJump){
-		Debug.Log ("I am Jumping : " + bJump);
-//		anim.SetBool(_bJump_ID, bJump);
-		anim.SetTrigger(_bJump_ID);
+//	  Debug.Log ("I am Jumping : " + bJump);
+//	  anim.SetBool(_bJump_ID, bJump);
+	  anim.SetTrigger(_bJump_ID);
 	}
 
 

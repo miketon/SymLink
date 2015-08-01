@@ -88,6 +88,8 @@ namespace MTON.codeObjects{
     private cTween    tw    ;
     private cMcanm    mc    ; //mecanim handler
 
+	private cEmit_Audio     au ;
+
 	private float yScale = 1.0f ;   
 	public  float duckSc = 1.0f ;   
 
@@ -211,7 +213,7 @@ namespace MTON.codeObjects{
         }
         else{
           rb.Flap()                       ; //flap when not on ground
-//		  an.dState = cAnimn.eStateD.Flap ;
+		  an.doJump(bJump) ;
         }
       }
     }
@@ -219,6 +221,7 @@ namespace MTON.codeObjects{
 	public virtual void doAttk(bool bAttk){
       if(bAttk){
 		if(this.firePnts.Length > 0){
+		  an.doAttk(true);
 		  Transform firePnt;
 		  if(this.bFaceRt == true){
 		    firePnt = this.firePnts[0];
@@ -348,6 +351,8 @@ namespace MTON.codeObjects{
 	  
 	  mc.anST = an;
 	  mc.anim = this.dispAnmtr;
+	 
+	  au = __gUtility.AddComponent_mton<cEmit_Audio>(this.gameObject)  ;
 
       rendr = this.dispXFORM.gameObject.GetComponent<Renderer>()   ; //Get Renderer Component
 

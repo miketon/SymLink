@@ -11,39 +11,46 @@ public class cEmit_Audio : MonoBehaviour, IEmit<Rigidbody>{
 	private cAnimn an           ;
 
 	private void Start(){
-//	  Debug.Log ("AUDIO ON START");
+	  cLevel.OnInit_Delegate += Init;
 	}
 
 	private void OnEnable(){  // NOTE : OnEnable fires befor Start.
-		cLevel.OnInit_Delegate += Init;
-		this.Play();
+	  if(__gCONSTANT._LEVEL != null){
+	    this.Init();
+	  }
+//	  Debug.Log ("ONENABLE");
+	  this.Play();
 	}
 
 	private void OnDisable(){
-		cLevel.OnInit_Delegate -= Init;
-		if(bAnim == true){
-			an.OnDuckDelegate -= doPlayDuck;
-		}
-		this.Stop();
+	  cLevel.OnInit_Delegate -= Init;
+	  if(bAnim == true){
+	    an.OnDuckDelegate -= doPlayDuck;
+		an.OnJumpDelegate -= doPlayJump;
+		an.OnAttkDelegate -= doPlayAttk;
+	  }
+	  this.Stop();
 	}
 
 #region iEmit implementation
 
   public void Init(){  
+	if(__gCONSTANT._LEVEL.getSoundManager() != null){
 	  if(snd == null){
 		this.snd = __gCONSTANT._LEVEL.getSoundManager()  ;
-		Debug.Log ("Getting SoundManager : " + this.snd) ;
+//		Debug.Log ("Getting SoundManager : " + this.snd) ;
 	  }
 	  an = this.GetComponent<cAnimn>();
 	  if(an == true){
 	    bAnim = true ;
+		an.OnDuckDelegate += doPlayDuck;
+		an.OnJumpDelegate += doPlayJump;
+		an.OnAttkDelegate += doPlayAttk;
 	  }
 	  else{
 	    bAnim = false ;
 	  }
-	  if(bAnim == true){
-		an.OnDuckDelegate += doPlayDuck;
-	  }
+	}
   }
   public void Play(){
 
@@ -59,9 +66,20 @@ public class cEmit_Audio : MonoBehaviour, IEmit<Rigidbody>{
 #endregion
 
   private void doPlayDuck(bool bPlay){
-	Debug.Log ("PlayDuck");
     if(bPlay == true){
 	  snd.PlayJump();
+	}
+  }
+
+  private void doPlayJump(bool bPlay){
+    if(bPlay == true){
+	  snd.PlayJump();
+	}
+  }
+
+  private void doPlayAttk(bool bPlay){
+    if(bPlay == true){
+	  snd.PlayClaw();
 	}
   }
 

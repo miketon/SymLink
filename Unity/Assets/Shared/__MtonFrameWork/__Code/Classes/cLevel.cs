@@ -226,18 +226,19 @@ namespace MTON.Class{
 			if(this.sndPlyr == null){
 			  this.sndPlyr = this.gameObject.GetComponent<Sound>();
 			}
-			if(OnInit_Delegate != null){
-			  OnInit_Delegate();
-			}
+
 		}
 		else{
 			Debug.Log("CONSTANT LEVEL == exists : " + __gCONSTANT._LEVEL);
-			__gCONSTANT._LEVEL.levelSpawn<GameObject>(this.gameObject);
+		    __gCONSTANT._LEVEL.levelSpawn<GameObject>(this.gameObject); //Stubbed out logging function
 		}
 	}
 
 	public virtual void Start(){
 //		Debug.Log("GLOBAL LEVEL : " + __gCONSTANT._LEVEL);
+	  if(OnInit_Delegate != null){
+	    OnInit_Delegate();
+	  }
 	}
 
 	public Sound getSoundManager(){
