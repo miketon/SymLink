@@ -24,6 +24,13 @@ namespace MTON.Class{
 	  }
 	}
 
+	private void Update(){
+		if(Input.GetKeyUp(KeyCode.Minus)){
+//				this.onHurt(2);
+				Debug.Log (" I am hurting : " + this.oHealth);
+			}
+	}
+
 #region iHealth implementation
 
 	public  int  mhealth = 5;

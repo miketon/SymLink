@@ -21,7 +21,6 @@ namespace MTON.Class{
 	}
 
 	public void OnEnable(){
-
 	}
 
 	public void OnDisable(){

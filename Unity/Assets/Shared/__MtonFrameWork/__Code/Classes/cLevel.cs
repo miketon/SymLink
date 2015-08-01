@@ -237,7 +237,7 @@ namespace MTON.Class{
 	}
 
 	public virtual void Start(){
-		Debug.Log("GLOBAL LEVEL : " + __gCONSTANT._LEVEL);
+//		Debug.Log("GLOBAL LEVEL : " + __gCONSTANT._LEVEL);
 	}
 
 	public Sound getSoundManager(){

@@ -340,7 +340,7 @@ namespace MTON.codeObjects{
 	public virtual void init_Components(){
 
 	  rb = __gUtility.AddComponent_mton<cRbody>(this.gameObject)  ; 
-      ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject) ; //order matters, must be befor an because of delegates
+      ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject) ; //HACK : Order matters, must be before an because of delegates
       an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject)  ;
 //      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject)  ;
       io = __gUtility.AddComponent_mton<cInput>(this.gameObject)  ;

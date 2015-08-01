@@ -262,6 +262,7 @@ namespace MTON.Class{
 
 		public virtual void doDeath(){
 			this.lState = eStateL.Dead;
+			Debug.Log ("I am DEAD.");
 		}
 
 		public virtual void doHurt(int fHurt){

@@ -9,13 +9,12 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	public Animator anim ; // mecanim animator
 	public cAnimn   anST ; // animation state
 
-	private void OnEnable(){
-	  //animation state delegates
-	  if(anST != null){
-        anST.OnMoveDelegate += OnMove;
-	    anST.OnGrndDelegate += OnGrnd;
-        anST.OnDuckDelegate += OnDuck;
-	  }
+	private void OnEnable(){ // NOTE : Fires before start
+	  this.Init();           // Will miss delegates on 1st pass...but will get on re Enables???
+	}
+
+	private void Start(){    // NOTE : Fires after OnEnable
+	  this.Init();           // Will catch what OnEnable will miss
 	}
 
     private void OnDisable(){
@@ -23,6 +22,18 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
       anST.OnMoveDelegate -= OnMove;
 	  anST.OnGrndDelegate -= OnGrnd;
       anST.OnDuckDelegate -= OnDuck;
+	}
+
+	private void Init(){
+	  //animation state delegates
+	  if(anST == null){
+	    anST = this.GetComponent<cAnimn>();
+	  }
+	  if(anST != null){
+        anST.OnMoveDelegate += OnMove;
+	    anST.OnGrndDelegate += OnGrnd;
+        anST.OnDuckDelegate += OnDuck;
+	  }
 	}
 
 	#region implement IAnimn_ID
@@ -44,7 +55,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	}
 
 	public void animator_Hash_ID(){
-		Debug.Log ("Hashing : " + this);
+//		Debug.Log ("Hashing : " + this);
 		_kVertcl_ID = Animator.StringToHash(this._kVertcl);
 		_kHorizn_ID = Animator.StringToHash(this._kHorizn);
 		_bGround_ID = Animator.StringToHash(this._bGround);
