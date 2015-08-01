@@ -1,10 +1,30 @@
 using UnityEngine        ;
 using System.Collections ;
 using MTON.Interface     ;
+using MTON.Class         ;
 
 namespace MTON.Class{
 
 	public class cAnimn : MonoBehaviour, IAnimn{
+
+		public cHealth ht;
+
+		private void Awake(){
+
+		}
+
+		private void OnEnable(){
+			if(ht==null){
+				ht = this.GetComponent<cHealth>();
+			}
+			ht.OnDethDelegate += doDeath ;
+			ht.OnHurtDelegate += doHurt  ;
+		}
+
+		private void OnDisable(){
+			ht.OnDethDelegate -= doDeath ;
+			ht.OnHurtDelegate -= doHurt  ;
+		}
 
 #region cAnimn Delegates
 
@@ -239,6 +259,14 @@ namespace MTON.Class{
 		}
 
 #endregion
+
+		public virtual void doDeath(){
+			this.lState = eStateL.Dead;
+		}
+
+		public virtual void doHurt(int fHurt){
+			this.lState = eStateL.Dact;
+		}
 
 	}
 

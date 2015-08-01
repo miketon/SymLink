@@ -11,9 +11,11 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 
 	private void OnEnable(){
 	  //animation state delegates
-      anST.OnMoveDelegate += OnMove;
-	  anST.OnGrndDelegate += OnGrnd;
-      anST.OnDuckDelegate += OnDuck;
+	  if(anST != null){
+        anST.OnMoveDelegate += OnMove;
+	    anST.OnGrndDelegate += OnGrnd;
+        anST.OnDuckDelegate += OnDuck;
+	  }
 	}
 
     private void OnDisable(){
