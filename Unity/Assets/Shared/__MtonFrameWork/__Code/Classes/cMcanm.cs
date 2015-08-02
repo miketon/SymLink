@@ -46,6 +46,8 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
     public string _bCrouch	;
     public string _bJump    ;
     public string _bForwrd	;
+    public string _bSpawnd  ;
+    public string _bDeathd  ;
 
 	public int _kVertcl_ID { get; set; } //vertical   delta
     public int _kHorizn_ID { get; set; } //horizontal delta
@@ -53,6 +55,8 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
     public int _bCrouch_ID { get; set; }
     public int _bJump_ID   { get; set; }
     public int _bForwrd_ID { get; set; } //2d true == right; 3d true == forward
+	public int _bSpawnd_ID { get; set; } 
+    public int _bDeathd_ID { get; set; } 
 
 	public void Awake(){
 		this.animator_Hash_ID();
@@ -65,6 +69,9 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 		_bGround_ID = Animator.StringToHash(this._bGround);
 		_bJump_ID   = Animator.StringToHash(this._bJump  );
 		_bCrouch_ID = Animator.StringToHash(this._bCrouch);
+		_bForwrd_ID = Animator.StringToHash(this._bForwrd);
+		_bSpawnd_ID = Animator.StringToHash(this._bSpawnd);
+		_bDeathd_ID = Animator.StringToHash(this._bDeathd);
 	}
 
 	#endregion
@@ -78,14 +85,18 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	}
 	public void OnDuck(bool bCrouch){
 	  anim.SetBool(_bCrouch_ID, bCrouch);
-//	  Debug.Log ("I am crouching : " + bCrouch);
 	}
 
 	public void OnJump(bool bJump){
-//	  Debug.Log ("I am Jumping : " + bJump);
-//	  anim.SetBool(_bJump_ID, bJump);
 	  anim.SetTrigger(_bJump_ID);
 	}
 
+    public void OnSpawn(bool bSpawn){
+	  anim.SetBool(_bSpawnd_ID, bSpawn);
+	}
+
+	public void OnDead(bool bDead){
+	  anim.SetBool(_bDeathd_ID, bDead);
+	}
 
 }

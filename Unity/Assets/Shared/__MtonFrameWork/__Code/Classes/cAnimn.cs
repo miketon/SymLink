@@ -97,9 +97,10 @@ namespace MTON.Class{
 			Rght  // face Right
 		}
 
-		public enum eStateD{ // duck/crouch state
-			Idle,
-			Duck,
+		public enum eStateB{ // useful for onGround/Crouch/Footstep
+			Idle, //neutral 
+			UP  , //down
+			DN  , //up
 		}
 
 		public  eStateL lstate;
@@ -188,16 +189,16 @@ namespace MTON.Class{
 			}
 		}
 
-		public  eStateD dstate;
-		public  eStateD dState{
+		public  eStateB duckst;
+		public  eStateB duckST{
 			get{
-				return dstate;
+				return duckst;
 			}
 			set{
-				if(value != dstate){
-					dstate = value ;
+				if(value != duckst){
+					duckst = value ;
 //					Debug.Log(this + " dState updated : " + value);
-                    if(value == eStateD.Duck){
+                    if(value == eStateB.DN){
 						doDuck(true);
 					}
 					else{

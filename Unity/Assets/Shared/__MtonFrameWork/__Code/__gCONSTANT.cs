@@ -7,13 +7,16 @@ namespace MTON.Global{
 
   public class __gCONSTANT{ //Project Global object to hold systemwide paths, layers, tags ...etc
 
-	public delegate void  INIT_LEVEL ();
-	public static   event INIT_LEVEL OnInit_Delegate;
+	public delegate void  INIT_CONST ();
+	public static   event INIT_CONST OnCONST_Delegate;
 
 	public static MTON.Class.cLevel _LEVEL = null;
 
 	public __gCONSTANT(MTON.Class.cLevel IN_LEVEL){
 		_LEVEL = IN_LEVEL;
+		if(OnCONST_Delegate != null){
+		  OnCONST_Delegate();
+		}
 	}
 
     //handles Layers - Entities can move

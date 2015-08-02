@@ -194,13 +194,13 @@ namespace MTON.codeObjects{
 		float vertDir = Mathf.Sign(moveDir.y); //y == vAxis  ; Sign return -1.0f or 1.0f
 		if(vertDir < 0.0f){
 		  if(bGround){
-		    an.dState = cAnimn.eStateD.Duck;
+		    an.duckST = cAnimn.eStateB.DN;
 		  }
 		}
       }
 	  else{
 		if(an.vState != cAnimn.eStateV.Rise){
-	      an.dState = cAnimn.eStateD.Idle;
+	      an.duckST = cAnimn.eStateB.UP;
 		}
 	  }
     }
