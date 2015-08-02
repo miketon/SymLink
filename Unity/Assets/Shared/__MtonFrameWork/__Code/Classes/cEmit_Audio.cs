@@ -31,6 +31,8 @@ public class cEmit_Audio : MonoBehaviour, IEmit<Rigidbody>{
 
 		an.OnHurtDelegate -= doPlayHurt;
 		an.OnDeadDelegate -= doPlayDead;
+
+		an.OnFootDelegate -= doPlayFoot;
 	  }
 	  this.Stop();
 	}
@@ -52,6 +54,8 @@ public class cEmit_Audio : MonoBehaviour, IEmit<Rigidbody>{
 
 		an.OnHurtDelegate += doPlayHurt;
 		an.OnDeadDelegate += doPlayDead;
+
+		an.OnFootDelegate += doPlayFoot;
 	  }
 	  else{
 	    bAnim = false ;
@@ -98,6 +102,12 @@ public class cEmit_Audio : MonoBehaviour, IEmit<Rigidbody>{
   private void doPlayDead(bool bPlay){
     if(bPlay == true){
       snd.PlayBreath();
+	}
+  }
+
+  private void doPlayFoot(bool bPlay){
+    if(bPlay == true){
+	  snd.PlayStep();
 	}
   }
 

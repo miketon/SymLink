@@ -177,6 +177,15 @@ namespace MTON.codeObjects{
 	  // horizontal move state
       if(Mathf.Abs(moveDir.x) > 0.001f){
 		an.hState = cAnimn.eStateH.Walk;
+		if(bGround == true){ // check for footsteps
+		  bool bFoot = mc.GetFootStep();
+		  if(bFoot == true){
+		    an.footST = cAnimn.eStateB.DN;
+		  }
+		  else{
+		    an.footST = cAnimn.eStateB.UP;
+		  }
+		}
         float faceDir = Mathf.Sign(moveDir.x); //x == hAxis ; Sign return -1.0f or 1.0f
 		if(faceDir > 0.0f){
 		  an.fState = cAnimn.eStateF.Rght;
@@ -193,7 +202,7 @@ namespace MTON.codeObjects{
 	  if(Mathf.Abs(moveDir.y) > 0.001f){
 		float vertDir = Mathf.Sign(moveDir.y); //y == vAxis  ; Sign return -1.0f or 1.0f
 		if(vertDir < 0.0f){
-		  if(bGround){
+		  if(bGround == true){
 		    an.duckST = cAnimn.eStateB.DN;
 		  }
 		}
@@ -315,7 +324,12 @@ namespace MTON.codeObjects{
 
 	public virtual void doGround(bool IN_GROUND){
       this.bGround = IN_GROUND;
-	  an.doGrnd(bGround);
+	  if(IN_GROUND == true){
+	    an.grndST = cAnimn.eStateB.DN;
+	  }
+	  if(IN_GROUND == false){
+	    an.grndST = cAnimn.eStateB.UP;
+	  }
 	}
 
 	public virtual void doCeilng(bool IN_CEILING){

@@ -29,10 +29,11 @@ namespace MTON.Class{
 #region cAnimn Delegates
 
 		// hState
-		public delegate void DL_VDIR(Vector3 vDir) ; //set up delegate
-		public delegate void DL_Anim(bool bEvnt)   ; //set up delegate
-		public delegate void DL_Valu(int iValue)   ; //set up delegate
-		public delegate void DL_Func()             ; //set up delegate
+		public delegate void  DL_VDIR(Vector3 vDir) ; //set up delegate
+		public delegate void  DL_Anim(bool bEvnt)   ; //set up delegate
+		public delegate void  DL_Valu(int iValue)   ; //set up delegate
+		public delegate void  DL_Func()             ; //set up delegate
+
         public DL_VDIR OnMoveDelegate              ; //delegate instance
         public DL_VDIR OnFaceDelegate              ; //delegate instance
 
@@ -101,6 +102,7 @@ namespace MTON.Class{
 			Idle, //neutral 
 			UP  , //down
 			DN  , //up
+			BT    //both : for step where both feet can be down
 		}
 
 		public  eStateL lstate;
@@ -189,11 +191,25 @@ namespace MTON.Class{
 			}
 		}
 
-		public  eStateB duckst;
-		public  eStateB duckST{
-			get{
-				return duckst;
+		public  eStateB grndst ;
+		public  eStateB grndST {
+			get{ return grndst; }
+			set{
+				if(value != grndst){
+					grndst = value;
+					if(value == eStateB.DN){
+						this.doGrnd(true);
+					}
+					else{
+						this.doGrnd(false);
+					}
+				}
 			}
+		}
+
+		public  eStateB duckst ;
+		public  eStateB duckST{
+			get{ return duckst; }
 			set{
 				if(value != duckst){
 					duckst = value ;
@@ -207,6 +223,24 @@ namespace MTON.Class{
 				}
 			}
 		}
+
+		public  eStateB footst ;
+		public  eStateB footST{
+			get{ return footst; }
+			set{
+				if(value != footst){
+					footst = value ;
+//					Debug.Log(this + " dState updated : " + value);
+                    if(value == eStateB.DN){
+						doFoot(true);
+					}
+					else{
+						doFoot(false);
+					}
+				}
+			}
+		}
+
 #endregion
 
 #region Delegate Functions
@@ -265,6 +299,12 @@ namespace MTON.Class{
 		  }
 		}
 
+		public virtual void doFoot(bool bFoot){
+			if(this.OnFootDelegate != null){
+			  this.OnFootDelegate(bFoot);
+			}
+		}
+
 #endregion
 
 		public virtual void doHurt(int iHurt){
@@ -284,7 +324,6 @@ namespace MTON.Class{
 			  this.OnDeadDelegate(bDead);
 			}
 		}
-
 
 	}
 
