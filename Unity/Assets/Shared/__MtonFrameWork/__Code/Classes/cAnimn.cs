@@ -5,26 +5,10 @@ using MTON.Class         ;
 
 namespace MTON.Class{
 
-	public class cAnimn : MonoBehaviour, IAnimn{
+	// Animation Listener; Keep stateless
+	public class cAnimn : MonoBehaviour, IAnimn{ 
 
 		public cHealth ht;
-
-		private void Awake(){
-
-		}
-
-		private void OnEnable(){
-			if(ht==null){
-				ht = this.GetComponent<cHealth>();
-			}
-			ht.OnDethDelegate += doDead ;
-			ht.OnHitdDelegate += doHitd ;
-		}
-
-		private void OnDisable(){
-			ht.OnDethDelegate -= doDead ;
-			ht.OnHitdDelegate -= doHitd ;
-		}
 
 #region cAnimn Delegates
 
@@ -32,7 +16,6 @@ namespace MTON.Class{
 		public delegate void  DL_VDIR(Vector3 vDir) ; //set up delegate
 		public delegate void  DL_Anim(bool bEvnt)   ; //set up delegate
 		public delegate void  DL_Valu(int iValue)   ; //set up delegate
-		public delegate void  DL_Func()             ; //set up delegate
 
         public DL_VDIR OnMoveDelegate              ; //delegate instance
         public DL_VDIR OnFaceDelegate              ; //delegate instance
@@ -63,7 +46,7 @@ namespace MTON.Class{
         public DL_Anim OnAttkDelegate            ; // Attack
         public DL_Anim OnGardDelegate            ; // Guard
 
-        public DL_Valu OnHitdDelegate            ; // Hitd
+        public DL_Anim OnHitdDelegate            ; // Hitd
 
 #endregion
 
@@ -114,7 +97,13 @@ namespace MTON.Class{
 				if(value != lstate){
 				  lstate = value;
 				  if(value == eStateL.Hitd){
-				  
+				    this.doHitd(true);
+					this.tt ("toggleHitFalse").ttAdd(0.5f, ()=>{
+					  lState = eStateL.Idle ; //toggle back to idle after hit
+					});
+				  }
+				  else if(value == eStateL.Dead){
+					this.doDead(true);
 				  }
 				}
 			}
@@ -305,21 +294,15 @@ namespace MTON.Class{
 			}
 		}
 
-#endregion
-
-		public virtual void doHitd(int iHit){ //iHit <= 0 hurts; iHit >= 0 heals
-			this.lState = eStateL.Hitd;
+		public virtual void doHitd(bool bHit){ 
 			if(this.OnHitdDelegate != null){
-			  this.OnHitdDelegate(iHit);
+			  this.OnHitdDelegate(bHit);
 			}
 		}
 
-		public virtual void doAliv(){
-			this.lState = eStateL.Aliv;
-		}
+#endregion
 
 		public virtual void doDead(bool bDead){
-			this.lState = eStateL.Dead;
 			if(this.OnDeadDelegate != null){
 			  this.OnDeadDelegate(bDead);
 			}

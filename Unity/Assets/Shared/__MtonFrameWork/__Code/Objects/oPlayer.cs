@@ -17,6 +17,8 @@ namespace MTON.codeObjects{
     public Transform riseXFORM ; 
 	public Transform[] firePnts ; // firing point
 
+    public GameObject OnDeathPrefab;
+
     public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
     public cLevel.fx_Hit  eHit ; // enum for particle system to emit
 
@@ -28,6 +30,8 @@ namespace MTON.codeObjects{
 
 #region oPlayer Delegates
     private void OnEnable(){
+
+      this.gameObject.SetActive(true);
 
 	  //direct input
       io.OnDPAD_DIR_Delegate += doMove;
@@ -47,6 +51,7 @@ namespace MTON.codeObjects{
 
 	  //health logic
 	  ht.OnHitdDelegate      += this.doHitd;
+	  ht.OnDethDelegate      += this.doDead;
     }
 
     private void OnDisable(){
@@ -69,6 +74,7 @@ namespace MTON.codeObjects{
 
 	  //health logic
 	  ht.OnHitdDelegate      -= this.doHitd;
+	  ht.OnDethDelegate      -= this.doDead;
     }
 
 #endregion
@@ -122,6 +128,10 @@ namespace MTON.codeObjects{
 
 	public virtual void Start(){
       __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._PLAYER) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
+	  if(OnDeathPrefab == null){
+        //		Debug.Log ("OnEnable DeathPrefab : " + (int)cLevel.e_Icon.Death + OnDeathPrefab);
+        OnDeathPrefab = __gCONSTANT._LEVEL.e_Icons[(int)cLevel.e_Icon.Death].gameObject;
+      }
 	}
 
 
@@ -318,8 +328,19 @@ namespace MTON.codeObjects{
 	}
 
 	public virtual void doHitd(int iHurt){
-      rb.Jump()                     ;
+      rb.Jump()                       ;
+	  an.lState = cAnimn.eStateL.Hitd ;
 //	  Debug.Log(this + " OOOCH!!! ");
+	}
+
+	public virtual void doDead(bool bDead){
+	  an.lState = cAnimn.eStateL.Dead  ;
+      this.gameObject.SetActive(false) ;
+	  __gCONSTANT._LEVEL.SpawnObj(cLevel.e_Icon.Death, this.transform.position, this.transform.rotation, (Transform SpawnedObj)=>{
+        float randomF = Random.Range(1.0f, 3.0f)                    ;
+        SpawnedObj.position += Vector3.up * 0.5f * randomF          ; // lift slightly off ground to allow for spin and pop
+        return true;
+      });
 	}
 
 	public virtual void doGround(bool IN_GROUND){

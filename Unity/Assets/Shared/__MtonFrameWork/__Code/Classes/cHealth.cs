@@ -15,22 +15,6 @@ namespace MTON.Class{
     public delegate void DL_Deth(bool bDead)  ; //set up delegate
     public DL_Deth OnDethDelegate             ; //delegate instance
 
-    public GameObject OnDeathPrefab;
-
-    public virtual void Start(){
-      if(OnDeathPrefab == null){
-        //		Debug.Log ("OnEnable DeathPrefab : " + (int)cLevel.e_Icon.Death + OnDeathPrefab);
-        OnDeathPrefab = __gCONSTANT._LEVEL.e_Icons[(int)cLevel.e_Icon.Death].gameObject;
-      }
-    }
-
-    private void Update(){
-      if(Input.GetKeyUp(KeyCode.Minus)){
-        //				this.onHitd(-2);
-        Debug.Log (" I am hurting : " + this.oHealth);
-      }
-    }
-
 #region iHealth implementation
 
     public  int  mhealth = 5;
@@ -85,15 +69,10 @@ namespace MTON.Class{
     } 
 
     public virtual void onDeth (bool bDead){ // on death
-      this.gameObject.SetActive(false);
       if(this.OnDethDelegate != null){
         OnDethDelegate(bDead);
       }
-      __gCONSTANT._LEVEL.SpawnObj(cLevel.e_Icon.Death, this.transform.position, this.transform.rotation, (Transform SpawnedObj)=>{
-          float randomF = Random.Range(1.0f, 3.0f)                    ;
-          SpawnedObj.position += Vector3.up * 0.5f * randomF          ; // lift slightly off ground to allow for spin and pop
-          return true;
-          });
+
     }
 
 #endregion
