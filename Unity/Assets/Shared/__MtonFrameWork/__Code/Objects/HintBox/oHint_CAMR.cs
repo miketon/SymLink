@@ -14,7 +14,13 @@ namespace MTON.codeObjects{
 	public override void doHint (bool bHint, cInput cINPT){
 	  base.doHint (bHint, cINPT);
 	  if(bHint == true){
-	    this.cameraADDTO(this.camrTargets[0]);
+		if(this.camrTargets.Count > 0){
+		  for(int i=0; i<this.camrTargets.Count; i++){
+		    if(this.camrTargets[i].gameObject.activeSelf == true){ //don't add target that is no longer valid
+	          this.cameraADDTO(this.camrTargets[i]);
+		    }
+		  }
+		}
 	  }
 	  else if(bHint == false){
 		this.cameraCLEAR();
