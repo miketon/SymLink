@@ -188,7 +188,7 @@ namespace MTON.codeObjects{
       if(Mathf.Abs(moveDir.x) > 0.001f){
 		an.hState = cAnimn.eStateH.Walk;
 		if(bGround == true){ // check for footsteps
-		  bool bFoot = mc.GetFootStep();
+		  bool bFoot = mc.GetCurvefBool(mc._fCurve1_ID); //IMPORTANT : Implicit that run animation has fCurve where 0==off, 1==on
 		  if(bFoot == true){
 		    an.footST = cAnimn.eStateB.DN;
 		  }
@@ -227,20 +227,23 @@ namespace MTON.codeObjects{
     public virtual void doJump(bool bJump){
       if(bJump){
         if(bGround){    
-          rb.Jump()       ;
-		  an.doJump(bJump) ;
+          rb.Jump()                     ;
+		  an.jumpST = cAnimn.eStateB.DN ;
         }
         else{
-          rb.Flap()                       ; //flap when not on ground
-		  an.doJump(bJump) ;
+          rb.Flap()                     ; //flap when not on ground
+		  an.jumpST = cAnimn.eStateB.DN ;
         }
       }
+	  else{
+		  an.jumpST = cAnimn.eStateB.UP ;
+	  }
     }
 
 	public virtual void doAttk(bool bAttk){
       if(bAttk){
 		if(this.firePnts.Length > 0){
-		  an.doAttk(true);
+		  an.attkST = cAnimn.eStateB.DN;
 		  Transform firePnt;
 		  if(this.bFaceRt == true){
 		    firePnt = this.firePnts[0];
@@ -267,6 +270,7 @@ namespace MTON.codeObjects{
 	  }
       else{
 //	    Debug.Log("doAttk : " + bAttk + " : "  + this);
+		an.attkST = cAnimn.eStateB.UP;
       }
     }
 
