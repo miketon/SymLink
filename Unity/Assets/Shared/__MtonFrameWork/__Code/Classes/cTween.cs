@@ -25,7 +25,8 @@ namespace MTON.Class{
 
 	public void doRotateTo(Vector3 IN_rotate){
       checkTweenCache();
-	  tw_Cache = xform.DORotate(IN_rotate, 0.80f).SetEase(Ease.OutElastic);
+//	  tw_Cache = xform.DORotate(IN_rotate, 0.80f).SetEase(Ease.OutElastic);
+	  tw_Cache = xform.DORotate(IN_rotate, 0.20f).SetEase(Ease.OutExpo);
 	}
 
     public void doBlink(){

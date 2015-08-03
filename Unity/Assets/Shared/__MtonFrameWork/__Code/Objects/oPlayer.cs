@@ -17,6 +17,8 @@ namespace MTON.codeObjects{
     public Transform riseXFORM ; 
 	public Transform[] firePnts ; // firing point
 
+    public GameObject OnDeathPrefab;
+
     public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
     public cLevel.fx_Hit  eHit ; // enum for particle system to emit
 
@@ -28,6 +30,8 @@ namespace MTON.codeObjects{
 
 #region oPlayer Delegates
     private void OnEnable(){
+
+      this.gameObject.SetActive(true);
 
 	  //direct input
       io.OnDPAD_DIR_Delegate += doMove;
@@ -46,7 +50,8 @@ namespace MTON.codeObjects{
 	  rb.OnCeilng_Delegate   += doCeilng;
 
 	  //health logic
-	  ht.OnHurtDelegate      += this.doHurt;
+	  ht.OnHitdDelegate      += this.doHitd;
+	  ht.OnDethDelegate      += this.doDead;
     }
 
     private void OnDisable(){
@@ -68,7 +73,8 @@ namespace MTON.codeObjects{
 	  rb.OnCeilng_Delegate   -= doCeilng;
 
 	  //health logic
-	  ht.OnHurtDelegate      -= this.doHurt;
+	  ht.OnHitdDelegate      -= this.doHitd;
+	  ht.OnDethDelegate      -= this.doDead;
     }
 
 #endregion
@@ -122,6 +128,10 @@ namespace MTON.codeObjects{
 
 	public virtual void Start(){
       __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._PLAYER) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
+	  if(OnDeathPrefab == null){
+        //		Debug.Log ("OnEnable DeathPrefab : " + (int)cLevel.e_Icon.Death + OnDeathPrefab);
+        OnDeathPrefab = __gCONSTANT._LEVEL.e_Icons[(int)cLevel.e_Icon.Death].gameObject;
+      }
 	}
 
 
@@ -177,6 +187,15 @@ namespace MTON.codeObjects{
 	  // horizontal move state
       if(Mathf.Abs(moveDir.x) > 0.001f){
 		an.hState = cAnimn.eStateH.Walk;
+		if(bGround == true){ // check for footsteps
+		  bool bFoot = mc.GetFootStep();
+		  if(bFoot == true){
+		    an.footST = cAnimn.eStateB.DN;
+		  }
+		  else{
+		    an.footST = cAnimn.eStateB.UP;
+		  }
+		}
         float faceDir = Mathf.Sign(moveDir.x); //x == hAxis ; Sign return -1.0f or 1.0f
 		if(faceDir > 0.0f){
 		  an.fState = cAnimn.eStateF.Rght;
@@ -193,14 +212,14 @@ namespace MTON.codeObjects{
 	  if(Mathf.Abs(moveDir.y) > 0.001f){
 		float vertDir = Mathf.Sign(moveDir.y); //y == vAxis  ; Sign return -1.0f or 1.0f
 		if(vertDir < 0.0f){
-		  if(bGround){
-		    an.dState = cAnimn.eStateD.Duck;
+		  if(bGround == true){
+		    an.duckST = cAnimn.eStateB.DN;
 		  }
 		}
       }
 	  else{
 		if(an.vState != cAnimn.eStateV.Rise){
-	      an.dState = cAnimn.eStateD.Idle;
+	      an.duckST = cAnimn.eStateB.UP;
 		}
 	  }
     }
@@ -308,14 +327,30 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	public virtual void doHurt(int iHurt){
-      rb.Jump()                     ;
+	public virtual void doHitd(int iHurt){
+      rb.Jump()                       ;
+	  an.lState = cAnimn.eStateL.Hitd ;
 //	  Debug.Log(this + " OOOCH!!! ");
+	}
+
+	public virtual void doDead(bool bDead){
+	  an.lState = cAnimn.eStateL.Dead  ;
+      this.gameObject.SetActive(false) ;
+	  __gCONSTANT._LEVEL.SpawnObj(cLevel.e_Icon.Death, this.transform.position, this.transform.rotation, (Transform SpawnedObj)=>{
+        float randomF = Random.Range(1.0f, 3.0f)                    ;
+        SpawnedObj.position += Vector3.up * 0.5f * randomF          ; // lift slightly off ground to allow for spin and pop
+        return true;
+      });
 	}
 
 	public virtual void doGround(bool IN_GROUND){
       this.bGround = IN_GROUND;
-	  an.doGrnd(bGround);
+	  if(IN_GROUND == true){
+	    an.grndST = cAnimn.eStateB.DN;
+	  }
+	  if(IN_GROUND == false){
+	    an.grndST = cAnimn.eStateB.UP;
+	  }
 	}
 
 	public virtual void doCeilng(bool IN_CEILING){

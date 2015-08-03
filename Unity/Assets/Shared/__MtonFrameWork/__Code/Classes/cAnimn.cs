@@ -5,35 +5,21 @@ using MTON.Class         ;
 
 namespace MTON.Class{
 
-	public class cAnimn : MonoBehaviour, IAnimn{
+	// Animation Listener; Keep stateless
+	public class cAnimn : MonoBehaviour, IAnimn{ 
 
 		public cHealth ht;
-
-		private void Awake(){
-
-		}
-
-		private void OnEnable(){
-			if(ht==null){
-				ht = this.GetComponent<cHealth>();
-			}
-			ht.OnDethDelegate += doDeath ;
-			ht.OnHurtDelegate += doHurt  ;
-		}
-
-		private void OnDisable(){
-			ht.OnDethDelegate -= doDeath ;
-			ht.OnHurtDelegate -= doHurt  ;
-		}
 
 #region cAnimn Delegates
 
 		// hState
-		public delegate void DL_VDIR(Vector3 vDir) ; //set up delegate
+		public delegate void  DL_VDIR(Vector3 vDir) ; //set up delegate
+		public delegate void  DL_Anim(bool bEvnt)   ; //set up delegate
+		public delegate void  DL_Valu(int iValue)   ; //set up delegate
+
         public DL_VDIR OnMoveDelegate              ; //delegate instance
         public DL_VDIR OnFaceDelegate              ; //delegate instance
 
-		public delegate void DL_Anim(bool bEvnt) ; //set up delegate
 		public DL_Anim OnWalkDelegate            ; // Dash
 		public DL_Anim OnFootDelegate            ; // Foot Step
 		public DL_Anim OnDashDelegate            ; // Dash
@@ -60,6 +46,8 @@ namespace MTON.Class{
         public DL_Anim OnAttkDelegate            ; // Attack
         public DL_Anim OnGardDelegate            ; // Guard
 
+        public DL_Anim OnHitdDelegate            ; // Hitd
+
 #endregion
 
 #region cAnimn enum
@@ -68,8 +56,9 @@ namespace MTON.Class{
 			Idle,
 			Spwn,
 			Actv,
-			Aliv,
 			Dact,
+		    Hitd,
+			Aliv,
 			Dead
 		}
 
@@ -92,9 +81,11 @@ namespace MTON.Class{
 			Rght  // face Right
 		}
 
-		public enum eStateD{ // duck/crouch state
-			Idle,
-			Duck,
+		public enum eStateB{ // useful for onGround/Crouch/Footstep
+			Idle, //neutral 
+			UP  , //down
+			DN  , //up
+			BT    //both : for step where both feet can be down
 		}
 
 		public  eStateL lstate;
@@ -104,7 +95,16 @@ namespace MTON.Class{
 			}
 			set{
 				if(value != lstate){
-				  lState = value;
+				  lstate = value;
+				  if(value == eStateL.Hitd){
+				    this.doHitd(true);
+					this.tt ("toggleHitFalse").ttAdd(0.5f, ()=>{
+					  lState = eStateL.Idle ; //toggle back to idle after hit
+					});
+				  }
+				  else if(value == eStateL.Dead){
+					this.doDead(true);
+				  }
 				}
 			}
 		}
@@ -180,16 +180,30 @@ namespace MTON.Class{
 			}
 		}
 
-		public  eStateD dstate;
-		public  eStateD dState{
-			get{
-				return dstate;
-			}
+		public  eStateB grndst ;
+		public  eStateB grndST {
+			get{ return grndst; }
 			set{
-				if(value != dstate){
-					dstate = value ;
+				if(value != grndst){
+					grndst = value;
+					if(value == eStateB.DN){
+						this.doGrnd(true);
+					}
+					else{
+						this.doGrnd(false);
+					}
+				}
+			}
+		}
+
+		public  eStateB duckst ;
+		public  eStateB duckST{
+			get{ return duckst; }
+			set{
+				if(value != duckst){
+					duckst = value ;
 //					Debug.Log(this + " dState updated : " + value);
-                    if(value == eStateD.Duck){
+                    if(value == eStateB.DN){
 						doDuck(true);
 					}
 					else{
@@ -198,6 +212,24 @@ namespace MTON.Class{
 				}
 			}
 		}
+
+		public  eStateB footst ;
+		public  eStateB footST{
+			get{ return footst; }
+			set{
+				if(value != footst){
+					footst = value ;
+//					Debug.Log(this + " dState updated : " + value);
+                    if(value == eStateB.DN){
+						doFoot(true);
+					}
+					else{
+						doFoot(false);
+					}
+				}
+			}
+		}
+
 #endregion
 
 #region Delegate Functions
@@ -256,15 +288,24 @@ namespace MTON.Class{
 		  }
 		}
 
-#endregion
-
-		public virtual void doDeath(){
-			this.lState = eStateL.Dead;
-			Debug.Log ("I am DEAD.");
+		public virtual void doFoot(bool bFoot){
+			if(this.OnFootDelegate != null){
+			  this.OnFootDelegate(bFoot);
+			}
 		}
 
-		public virtual void doHurt(int fHurt){
-			this.lState = eStateL.Dact;
+		public virtual void doHitd(bool bHit){ 
+			if(this.OnHitdDelegate != null){
+			  this.OnHitdDelegate(bHit);
+			}
+		}
+
+#endregion
+
+		public virtual void doDead(bool bDead){
+			if(this.OnDeadDelegate != null){
+			  this.OnDeadDelegate(bDead);
+			}
 		}
 
 	}

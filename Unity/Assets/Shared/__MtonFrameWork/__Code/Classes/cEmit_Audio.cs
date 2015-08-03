@@ -25,9 +25,13 @@ public class cEmit_Audio : MonoBehaviour, IEmit<Rigidbody>{
 	private void OnDisable(){
 	  cLevel.OnInit_Delegate -= Init;
 	  if(bAnim == true){
+		an.OnHitdDelegate -= doPlayHurt;
+		an.OnDeadDelegate -= doPlayDead;
+
 	    an.OnDuckDelegate -= doPlayDuck;
 		an.OnJumpDelegate -= doPlayJump;
 		an.OnAttkDelegate -= doPlayAttk;
+		an.OnFootDelegate -= doPlayFoot;
 	  }
 	  this.Stop();
 	}
@@ -43,9 +47,13 @@ public class cEmit_Audio : MonoBehaviour, IEmit<Rigidbody>{
 	  an = this.GetComponent<cAnimn>();
 	  if(an == true){
 	    bAnim = true ;
+		an.OnHitdDelegate += doPlayHurt;
+		an.OnDeadDelegate += doPlayDead;
+
 		an.OnDuckDelegate += doPlayDuck;
 		an.OnJumpDelegate += doPlayJump;
 		an.OnAttkDelegate += doPlayAttk;
+		an.OnFootDelegate += doPlayFoot;
 	  }
 	  else{
 	    bAnim = false ;
@@ -80,6 +88,24 @@ public class cEmit_Audio : MonoBehaviour, IEmit<Rigidbody>{
   private void doPlayAttk(bool bPlay){
     if(bPlay == true){
 	  snd.PlayClaw();
+	}
+  }
+
+  private void doPlayHurt(bool bPlay){
+    if(bPlay == true){ //hurt
+	  snd.PlayHurt();
+	}
+  }
+
+  private void doPlayDead(bool bPlay){
+    if(bPlay == true){
+      snd.PlayBreath();
+	}
+  }
+
+  private void doPlayFoot(bool bPlay){
+    if(bPlay == true){
+	  snd.PlayStep();
 	}
   }
 
