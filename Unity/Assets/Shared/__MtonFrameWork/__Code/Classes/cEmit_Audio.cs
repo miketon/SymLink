@@ -29,7 +29,7 @@ public class cEmit_Audio : MonoBehaviour, IEmit<Rigidbody>{
 		an.OnJumpDelegate -= doPlayJump;
 		an.OnAttkDelegate -= doPlayAttk;
 
-		an.OnHurtDelegate -= doPlayHurt;
+		an.OnHitdDelegate -= doPlayHurt;
 		an.OnDeadDelegate -= doPlayDead;
 
 		an.OnFootDelegate -= doPlayFoot;
@@ -52,7 +52,7 @@ public class cEmit_Audio : MonoBehaviour, IEmit<Rigidbody>{
 		an.OnJumpDelegate += doPlayJump;
 		an.OnAttkDelegate += doPlayAttk;
 
-		an.OnHurtDelegate += doPlayHurt;
+		an.OnHitdDelegate += doPlayHurt;
 		an.OnDeadDelegate += doPlayDead;
 
 		an.OnFootDelegate += doPlayFoot;

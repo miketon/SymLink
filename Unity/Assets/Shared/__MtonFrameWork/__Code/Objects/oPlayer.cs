@@ -46,7 +46,7 @@ namespace MTON.codeObjects{
 	  rb.OnCeilng_Delegate   += doCeilng;
 
 	  //health logic
-	  ht.OnHurtDelegate      += this.doHurt;
+	  ht.OnHitdDelegate      += this.doHitd;
     }
 
     private void OnDisable(){
@@ -68,7 +68,7 @@ namespace MTON.codeObjects{
 	  rb.OnCeilng_Delegate   -= doCeilng;
 
 	  //health logic
-	  ht.OnHurtDelegate      -= this.doHurt;
+	  ht.OnHitdDelegate      -= this.doHitd;
     }
 
 #endregion
@@ -317,7 +317,7 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	public virtual void doHurt(int iHurt){
+	public virtual void doHitd(int iHurt){
       rb.Jump()                     ;
 //	  Debug.Log(this + " OOOCH!!! ");
 	}

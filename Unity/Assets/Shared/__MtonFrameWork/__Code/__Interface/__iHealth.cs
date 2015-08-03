@@ -10,8 +10,7 @@ namespace MTON.Interface{
 	bool bDamage { get; set; } //true == can be damaged; else invincible
 
 	// health methods
-	void onHeal (int IN_HEAL) ;// on power up
-	void onHurt (int IN_HURT) ;// on hit
+	void onHitd (int IN_HLTH) ;// on hit; negative == hurt, positive == heal
 	void onDeth (bool bDead)  ;// on death
 
   }

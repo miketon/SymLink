@@ -18,12 +18,12 @@ namespace MTON.Class{
 				ht = this.GetComponent<cHealth>();
 			}
 			ht.OnDethDelegate += doDead ;
-			ht.OnHurtDelegate += doHurt ;
+			ht.OnHitdDelegate += doHitd ;
 		}
 
 		private void OnDisable(){
 			ht.OnDethDelegate -= doDead ;
-			ht.OnHurtDelegate -= doHurt ;
+			ht.OnHitdDelegate -= doHitd ;
 		}
 
 #region cAnimn Delegates
@@ -63,7 +63,7 @@ namespace MTON.Class{
         public DL_Anim OnAttkDelegate            ; // Attack
         public DL_Anim OnGardDelegate            ; // Guard
 
-        public DL_Valu OnHurtDelegate            ; // Hurt
+        public DL_Valu OnHitdDelegate            ; // Hitd
 
 #endregion
 
@@ -74,7 +74,7 @@ namespace MTON.Class{
 			Spwn,
 			Actv,
 			Dact,
-		    Hurt,
+		    Hitd,
 			Aliv,
 			Dead
 		}
@@ -113,7 +113,7 @@ namespace MTON.Class{
 			set{
 				if(value != lstate){
 				  lstate = value;
-				  if(value == eStateL.Hurt){
+				  if(value == eStateL.Hitd){
 				  
 				  }
 				}
@@ -307,10 +307,10 @@ namespace MTON.Class{
 
 #endregion
 
-		public virtual void doHurt(int iHurt){
-			this.lState = eStateL.Hurt;
-			if(this.OnHurtDelegate != null){
-			  this.OnHurtDelegate(iHurt);
+		public virtual void doHitd(int iHit){ //iHit <= 0 hurts; iHit >= 0 heals
+			this.lState = eStateL.Hitd;
+			if(this.OnHitdDelegate != null){
+			  this.OnHitdDelegate(iHit);
 			}
 		}
 
