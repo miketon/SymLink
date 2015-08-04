@@ -15,6 +15,7 @@ namespace MTON.Class{
     public OnBTTN OnJumpDelegate            ; //delegate instance
     public OnBTTN OnAttkDelegate            ; //delegate instance
 	public OnBTTN OnActVDelegate            ; //delegate instance
+    public OnBTTN OnPowrDelegate            ; //delegate instance
 
 #region iInput implementation
 
@@ -63,6 +64,29 @@ namespace MTON.Class{
 
 #endregion
 
+	private bool bpowr = false;
+	private bool bPowr{
+	  get{ return bpowr; }
+	  set{
+	    if(value != bpowr){
+		  bpowr = value;
+		  this.doPowr(value);
+	    }
+	  }
+	}
+
+	public virtual void doPowr(bool bPowr){
+	  if(bPowr){
+	    Debug.Log ("ATTACK POWERUP ACTIVATED!");
+	  }
+	  else{
+	    Debug.Log ("ATTACK POWERUP RELEASED!");
+	  }
+	  if(OnPowrDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
+        OnPowrDelegate(bPowr);
+      }
+	}
+
 #region Property Setters and Getters 
 
     // Button states
@@ -98,9 +122,8 @@ namespace MTON.Class{
 
 #endregion
 
-	public virtual void Start(){
-//      Debug.Log(this + " Start ! ");
-    }
+	public  float kTimePowerUpAC = 0.5f ;
+	private float kTimeOnAttckDN = 0.0f ;
 
     public virtual void Update(){
 
@@ -126,11 +149,19 @@ namespace MTON.Class{
         //check attack
         if(Input.GetButtonDown(__gIO._ATTK_p1)){
 		  this.doAttk(true);
+		  this.kTimeOnAttckDN = Time.time + this.kTimePowerUpAC;
         }
         else if(Input.GetButtonUp(__gIO._ATTK_p1)){
-		  this.doAttk(false);
+		  this.doAttk(false) ;
+		  this.bPowr = false ;
         }
-
+		
+		//check for button hold
+		if(this.bAttk == true){
+		  if(Time.time > this.kTimeOnAttckDN){
+			this.bPowr = true ;
+		  }
+		}
       }
     }
 

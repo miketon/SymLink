@@ -33,6 +33,7 @@ namespace MTON.Class{
 
 		// vState
         public DL_Anim OnGrndDelegate            ; // OnGround
+        public DL_Anim OnCeilDelegate            ; // OnCeiling
         public DL_Anim OnIdleDelegate            ; // Idle
         public DL_Anim OnRiseDelegate            ; // Rise
         public DL_Anim OnApexDelegate            ; // Apex
@@ -82,12 +83,16 @@ namespace MTON.Class{
 		}
 
 		public enum eStateB{ // useful for onGround/Crouch/Footstep
-			Idle, //neutral 
 			UP  , //down
 			DN  , //up
-			BT    //both : for step where both feet can be down
+			HL  , //hold
+			PW  , //power up
 		}
 
+#endregion
+
+#region Enum Define : Custom
+		// STATE : LIFE
 		public  eStateL lstate;
 		public  eStateL lState{
 			get{
@@ -109,6 +114,7 @@ namespace MTON.Class{
 			}
 		}
 
+		// STATE : VERTICAL
 		public  eStateV vstate;
 		public  eStateV vState{
 			get{
@@ -133,6 +139,7 @@ namespace MTON.Class{
 			}
 		}
 
+		// STATE : HORIZONTAL
 		public  eStateH hstate;
 		public  eStateH hState{
 			get{
@@ -158,6 +165,7 @@ namespace MTON.Class{
 			}
 		}
 
+		// STATE : FACING
 		public  eStateF fstate;
 		public  eStateF fState{
 			get{
@@ -179,7 +187,44 @@ namespace MTON.Class{
 				}
 			}
 		}
+#endregion
 
+#region Enum Define : Button/Bool
+		// STATE : Jump
+		public  eStateB jumpst ;
+		public  eStateB jumpST {
+			get{ return jumpst; }
+			set{
+				if(value != jumpst){
+					jumpst = value;
+					if(value == eStateB.DN){
+						this.doJump(true);
+					}
+					else if(value == eStateB.UP){
+						this.doJump(false);
+					}
+				}
+			}
+		}
+
+		// STATE : Attack
+		public  eStateB attkst ;
+		public  eStateB attkST {
+			get{ return attkst; }
+			set{
+				if(value != attkst){
+					attkst = value;
+					if(value == eStateB.DN){
+						this.doAttk(true);
+					}
+					else if(value == eStateB.UP){
+						this.doAttk(false);
+					}
+				}
+			}
+		}
+
+		// STATE : GROUND
 		public  eStateB grndst ;
 		public  eStateB grndST {
 			get{ return grndst; }
@@ -196,6 +241,7 @@ namespace MTON.Class{
 			}
 		}
 
+		// STATE : DUCK/CROUCH
 		public  eStateB duckst ;
 		public  eStateB duckST{
 			get{ return duckst; }
@@ -213,13 +259,30 @@ namespace MTON.Class{
 			}
 		}
 
+		// STATE : CEILING
+		public  eStateB ceilst ;
+		public  eStateB ceilST {
+			get{ return ceilst; }
+			set{
+				if(value != ceilst){
+					ceilst = value;
+					if(value == eStateB.DN){
+						this.doCeil(true);
+					}
+					else{
+						this.doCeil(false);
+					}
+				}
+			}
+		}
+
+		// STATE : FOOT STEP
 		public  eStateB footst ;
 		public  eStateB footST{
 			get{ return footst; }
 			set{
 				if(value != footst){
 					footst = value ;
-//					Debug.Log(this + " dState updated : " + value);
                     if(value == eStateB.DN){
 						doFoot(true);
 					}
@@ -235,66 +298,72 @@ namespace MTON.Class{
 #region Delegate Functions
 
 		//transform functions
-		public virtual void doMove(Vector3 vMove){  //walk/run
+		private void doMove(Vector3 vMove){  //walk/run
 		  if(this.OnMoveDelegate != null){
 		    this.OnMoveDelegate(vMove);
 		  }
 		}
-		public virtual void doFace(Vector3 vFace){
+		private void doFace(Vector3 vFace){
 		  if(this.OnFaceDelegate != null){
 			this.OnFaceDelegate(vFace);
 		  }
 		}
 
-		public virtual void doGrnd(bool bGrnd){
+		private void doGrnd(bool bGrnd){
 		  if(this.OnGrndDelegate != null){
 //			Debug.Log ("cAnimn : doGrnd : " + bGrnd + " : " + this);
 		    this.OnGrndDelegate(bGrnd);
 		  }
 		}
 
-		public virtual void doIdle(bool bIdle){
+		private void doIdle(bool bIdle){
 		  if(this.OnIdleDelegate != null){
 		    this.OnIdleDelegate(bIdle);
 		  }
 		} 
 
-		public virtual void doRise(bool bRise){
+		private void doRise(bool bRise){
 		  if(this.OnRiseDelegate != null){
 		    this.OnRiseDelegate(bRise);
 		  }
 		}
-		public virtual void doFall(bool bFall){
+		private void doFall(bool bFall){
 		  if(this.OnFallDelegate != null){
 		    this.OnFallDelegate(bFall);
 		  }
 		}
 
-		public virtual void doDuck(bool bDuck){
+		private void doDuck(bool bDuck){
 		  if(this.OnDuckDelegate != null){
 		    this.OnDuckDelegate(bDuck);
 		  }
 		}
 
-		public virtual void doJump(bool bJump){
+		private void doJump(bool bJump){
 		  if(this.OnJumpDelegate != null){
 		    this.OnJumpDelegate(bJump);
 		  }
 		}
 
-		public virtual void doAttk(bool bAttk){
+		private void doAttk(bool bAttk){
 		  if(this.OnAttkDelegate != null){
 		    this.OnAttkDelegate(bAttk);
 		  }
 		}
 
-		public virtual void doFoot(bool bFoot){
+		private void doFoot(bool bFoot){
 			if(this.OnFootDelegate != null){
 			  this.OnFootDelegate(bFoot);
 			}
 		}
 
-		public virtual void doHitd(bool bHit){ 
+		private void doCeil(bool bCeil){
+			if(this.OnCeilDelegate != null){
+			  this.OnCeilDelegate(bCeil);
+			}
+		}
+
+		private void doHitd(bool bHit){ 
 			if(this.OnHitdDelegate != null){
 			  this.OnHitdDelegate(bHit);
 			}
@@ -302,7 +371,7 @@ namespace MTON.Class{
 
 #endregion
 
-		public virtual void doDead(bool bDead){
+		private void doDead(bool bDead){
 			if(this.OnDeadDelegate != null){
 			  this.OnDeadDelegate(bDead);
 			}

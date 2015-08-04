@@ -109,7 +109,9 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 
 	public void OnJump(bool bJump){
 	  if(_bJump_ID != 0){
-	    anim.SetTrigger(_bJump_ID);
+		if(bJump == true){ //need to check for trigger; else double tap effect
+	      anim.SetTrigger(_bJump_ID);
+		}
 	  }
 	}
 
@@ -129,18 +131,16 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 
 	#region Get Values
 
-	public bool GetFootStep(){
-	  bool bFoot = false;
-	  if(_fCurve1_ID != 0){
-	    float fVal = anim.GetFloat(_fCurve1_ID);
-		if(Mathf.Abs(fVal) >= 0.90f){
-		  bFoot = true; //footstep is down
-		}
-		else{
-		  bFoot = false; //footstep is in air
-		}
+	public bool GetCurvefBool(int IN_curveID, float IN_threshold = 0.90f){ //Convert float to bool; good for getting footsteps
+	  float fVal = Mathf.Abs(anim.GetFloat(IN_curveID));
+	  if(fVal >= IN_threshold){
+	    return true ; //footstep is down
 	  }
-	  return bFoot;
+	  return false  ;//footstep is in air
+	}
+
+	public float GetCurveFloat(int IN_curveID){
+	  return anim.GetFloat(IN_curveID);
 	}
 
 	#endregion

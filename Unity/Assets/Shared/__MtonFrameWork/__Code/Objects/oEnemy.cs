@@ -1,4 +1,5 @@
 using UnityEngine        ;
+using System             ; //NOTE : ??? must import to use anonymous function ; And the IComparable Interface for Dictionary
 using System.Collections ;
 using MTON.Class         ;
 using MTON.Global        ;
@@ -8,9 +9,10 @@ namespace MTON.codeObjects{
 
   public class oEnemy : oPlayer{
 
-	public Transform player          ;
-	public Color cActv = Color.red   ;
-	public Color cRest = Color.green ;
+	public Transform player           ;
+	public Color cRest = Color.green  ;
+	public Color cAwre = Color.yellow ;
+	public Color cActv = Color.red    ;
 
 	public override void init_Components(){
 	  base.init_Components();
@@ -28,6 +30,9 @@ namespace MTON.codeObjects{
 	  base.Start();
 	  rendr.material.color = cRest;
       __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._ENEMY) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
+	  if(this.player == null){
+	    this.player = __gCONSTANT._LEVEL.mPlayer;
+	  }
 	}
 
 	public virtual void AI_Actv(bool bActive){
@@ -53,6 +58,16 @@ namespace MTON.codeObjects{
 	    io.bInput = false;
 		io.doDPAD_Dir(Vector3.zero);
 	  }
+	}
+
+	public bool doRangeCheck<T>(Transform IN_SRC, Transform IN_TGT, float IN_DIST, Func<bool, T> funcToRun){
+	  float dist = Vector3.Distance(IN_SRC.position, IN_TGT.position);
+	  bool  bRng = false;
+	  if(dist < IN_DIST){
+	    bRng = true ;
+	  }
+	  funcToRun(bRng);
+	  return bRng;
 	}
 
   }

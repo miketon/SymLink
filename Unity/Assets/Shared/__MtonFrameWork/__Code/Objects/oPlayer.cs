@@ -11,6 +11,7 @@ namespace MTON.codeObjects{
   public class oPlayer : MonoBehaviour{
 
     //init interface members
+    public bool      b_2D = true;
     public Transform dispXFORM ; //HACK : Coupling the character dispXFORM => object with an Animator and render mesh
 	public Animator  dispAnmtr ;
     public Transform camrXFORM ; 
@@ -23,7 +24,6 @@ namespace MTON.codeObjects{
     public cLevel.fx_Hit  eHit ; // enum for particle system to emit
 
 	public  bool    bGround = false        ;
-	public  bool    bCeilng = true         ;
 	public  bool    bFaceRt = true         ; // facing Right
 	private float   initHgt = 1.0f         ;
 	private Vector3 prvPos  = Vector3.zero ;
@@ -38,12 +38,6 @@ namespace MTON.codeObjects{
       io.OnJumpDelegate      += doJump;
       io.OnAttkDelegate      += doAttk; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
 	  io.OnActVDelegate      += doActV; //Attack Visual = hitFlash
-	  
-	  //animation : input + character/env state
-	  an.OnDuckDelegate      += doCrouch;
-	  an.OnFaceDelegate      += doFace;
-	  an.OnRiseDelegate      += doRise;
-	  an.OnIdleDelegate      += doIdle;
 
 	  //rigidbody events
 	  rb.OnGround_Delegate   += doGround;
@@ -52,6 +46,12 @@ namespace MTON.codeObjects{
 	  //health logic
 	  ht.OnHitdDelegate      += this.doHitd;
 	  ht.OnDethDelegate      += this.doDead;
+				  
+	  //animation : input + character/env state
+	  an.OnDuckDelegate      += doCrouch;
+	  an.OnFaceDelegate      += doFace;
+	  an.OnRiseDelegate      += doRise;
+	  an.OnIdleDelegate      += doIdle;
     }
 
     private void OnDisable(){
@@ -62,12 +62,6 @@ namespace MTON.codeObjects{
       io.OnAttkDelegate      -= doAttk;
 	  io.OnActVDelegate      -= doActV; //Attack Visual = hitFlash
 
-	  //animation : input + character/env state
-	  an.OnDuckDelegate      -= doCrouch;
-	  an.OnFaceDelegate      -= doFace;
-	  an.OnRiseDelegate      -= doRise;
-	  an.OnIdleDelegate      -= doIdle;
-
 	  //rigidbody events
 	  rb.OnGround_Delegate   -= doGround;
 	  rb.OnCeilng_Delegate   -= doCeilng;
@@ -75,6 +69,12 @@ namespace MTON.codeObjects{
 	  //health logic
 	  ht.OnHitdDelegate      -= this.doHitd;
 	  ht.OnDethDelegate      -= this.doDead;
+
+	  //animation : input + character/env state
+	  an.OnDuckDelegate      -= doCrouch;
+	  an.OnFaceDelegate      -= doFace;
+	  an.OnRiseDelegate      -= doRise;
+	  an.OnIdleDelegate      -= doIdle;
     }
 
 #endregion
@@ -103,6 +103,10 @@ namespace MTON.codeObjects{
 
 	public virtual void Awake(){
 
+	  if(this.b_2D == true){
+//	    this.yRotOffset_3D = 180.0f; //No offset if character is 2D
+	  }
+
 	  rendr = this.dispXFORM.GetComponent<Renderer>();
 //      cColr = rendr.material.color;
       layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
@@ -123,6 +127,7 @@ namespace MTON.codeObjects{
         }
       }
 	  this.yScale = this.dispXFORM.localScale.y;
+	  this.sclX = this.dispXFORM.localScale.x;
 
     }
 
@@ -188,7 +193,7 @@ namespace MTON.codeObjects{
       if(Mathf.Abs(moveDir.x) > 0.001f){
 		an.hState = cAnimn.eStateH.Walk;
 		if(bGround == true){ // check for footsteps
-		  bool bFoot = mc.GetFootStep();
+		  bool bFoot = mc.GetCurvefBool(mc._fCurve1_ID); //IMPORTANT : Implicit that run animation has fCurve where 0==off, 1==on
 		  if(bFoot == true){
 		    an.footST = cAnimn.eStateB.DN;
 		  }
@@ -227,26 +232,29 @@ namespace MTON.codeObjects{
     public virtual void doJump(bool bJump){
       if(bJump){
         if(bGround){    
-          rb.Jump()       ;
-		  an.doJump(bJump) ;
+          rb.Jump()                     ;
+		  an.jumpST = cAnimn.eStateB.DN ;
         }
         else{
-          rb.Flap()                       ; //flap when not on ground
-		  an.doJump(bJump) ;
+          rb.Flap()                     ; //flap when not on ground
+		  an.jumpST = cAnimn.eStateB.DN ;
         }
       }
+	  else{
+		  an.jumpST = cAnimn.eStateB.UP ;
+	  }
     }
 
 	public virtual void doAttk(bool bAttk){
       if(bAttk){
 		if(this.firePnts.Length > 0){
-		  an.doAttk(true);
+		  an.attkST = cAnimn.eStateB.DN;
 		  Transform firePnt;
 		  if(this.bFaceRt == true){
-		    firePnt = this.firePnts[0];
+		    firePnt = this.firePnts[0]; //firing right
 		  }
 		  else{
-		    firePnt = this.firePnts[1];
+		    firePnt = this.firePnts[1]; //firing left
 		  }
 //	    Debug.Log("doAttk : " + bAttk + " : "  + this);
 		  if(firePnt != null){
@@ -267,10 +275,12 @@ namespace MTON.codeObjects{
 	  }
       else{
 //	    Debug.Log("doAttk : " + bAttk + " : "  + this);
+		an.attkST = cAnimn.eStateB.UP;
       }
     }
 
     public virtual void doCrouch(bool bDuck){
+	if(this.b_2D == false){
 	  if(bDuck){
 		tw.doCrouch(this.yScale * this.duckSc, 0.5f);
 	  }
@@ -278,24 +288,40 @@ namespace MTON.codeObjects{
 		tw.doCrouch(this.yScale);
 	  }
 	}
+	}
 
-	public float rotYoffset = -50.0f;
+	public float yRotOffset_3D = -50.0f;
+	public float sclX = 1.0f;
 
 	public virtual void doFace(Vector3 vFace){ //for 2D facing, use x
-	  if(vFace.x > Mathf.Epsilon){
+	  if(vFace.x > 0.01f){ // Mathf.Epsilon){
 	    this.bFaceRt = true;
-	    tw.doRotateTo(new Vector3(0.0f, vFace.x * rotYoffset, 0.0f));
-	  }
-	  else if(vFace.x < -Mathf.Epsilon){
-		this.bFaceRt = false;
-		tw.doRotateTo(new Vector3(0.0f, vFace.x * rotYoffset, 0.0f));
-	  }
-	  else{
-	    if(this.bFaceRt == true){
-		  tw.doRotateTo(new Vector3(0.0f, rotYoffset * 0.65f, 0.0f));
+		if(this.b_2D == true){
+//		  this.dispXFORM.rotation = Quaternion.Euler(new Vector3(0.0f, vFace.x * this.yRotOffset_3D, 0.0f));
+		  this.dispXFORM.SetScaleX(this.sclX);
 		}
 		else{
-		  tw.doRotateTo(new Vector3(0.0f, rotYoffset * -0.65f, 0.0f));
+	    tw.doRotateTo(new Vector3(0.0f, vFace.x * yRotOffset_3D, 0.0f));
+		}
+	  }
+	  else if(vFace.x < -0.01f){ //-Mathf.Epsilon){
+		this.bFaceRt = false;
+		if(this.b_2D == true){
+//		  this.dispXFORM.rotation = Quaternion.Euler(new Vector3(0.0f, vFace.x * this.yRotOffset_3D, 0.0f));
+		  this.dispXFORM.SetScaleX(-this.sclX);
+		}
+		else{
+		tw.doRotateTo(new Vector3(0.0f, vFace.x * yRotOffset_3D, 0.0f));
+		}
+	  }
+	  else{
+	    if(b_2D != true){ //Not 2D; play with rotation offset
+	      if(this.bFaceRt == true){
+		    tw.doRotateTo(new Vector3(0.0f, yRotOffset_3D * 0.65f, 0.0f));
+		  }
+		  else{
+		    tw.doRotateTo(new Vector3(0.0f, yRotOffset_3D * -0.65f, 0.0f));
+		  }
 		}
 	  }
 	}
@@ -354,7 +380,12 @@ namespace MTON.codeObjects{
 	}
 
 	public virtual void doCeilng(bool IN_CEILING){
-	  this.bCeilng = IN_CEILING;
+	  if(IN_CEILING == true){
+	    an.ceilST = cAnimn.eStateB.DN;
+	  }
+	  if(IN_CEILING == false){
+	    an.ceilST = cAnimn.eStateB.UP;
+	  }
 	}
 
 #endregion
@@ -381,7 +412,9 @@ namespace MTON.codeObjects{
       an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject)  ;
 //      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject)  ;
       io = __gUtility.AddComponent_mton<cInput>(this.gameObject)  ;
+	  if(this.b_2D == false){
       tw = __gUtility.AddComponent_mton<cTween>(this.dispXFORM.gameObject)   ; //Tweening display obj vs. character controller
+	  }
       mc = __gUtility.AddComponent_mton<cMcanm>(this.gameObject)  ;
 	  
 	  mc.anST = an;
