@@ -33,6 +33,7 @@ namespace MTON.Class{
 
 		// vState
         public DL_Anim OnGrndDelegate            ; // OnGround
+        public DL_Anim OnCeilDelegate            ; // OnCeiling
         public DL_Anim OnIdleDelegate            ; // Idle
         public DL_Anim OnRiseDelegate            ; // Rise
         public DL_Anim OnApexDelegate            ; // Apex
@@ -82,10 +83,10 @@ namespace MTON.Class{
 		}
 
 		public enum eStateB{ // useful for onGround/Crouch/Footstep
-			Idle, //neutral 
 			UP  , //down
 			DN  , //up
-			BT    //both : for step where both feet can be down
+			HL  , //hold
+			PW  , //power up
 		}
 
 #endregion
@@ -258,6 +259,23 @@ namespace MTON.Class{
 			}
 		}
 
+		// STATE : CEILING
+		public  eStateB ceilst ;
+		public  eStateB ceilST {
+			get{ return ceilst; }
+			set{
+				if(value != ceilst){
+					ceilst = value;
+					if(value == eStateB.DN){
+						this.doCeil(true);
+					}
+					else{
+						this.doCeil(false);
+					}
+				}
+			}
+		}
+
 		// STATE : FOOT STEP
 		public  eStateB footst ;
 		public  eStateB footST{
@@ -336,6 +354,12 @@ namespace MTON.Class{
 		private void doFoot(bool bFoot){
 			if(this.OnFootDelegate != null){
 			  this.OnFootDelegate(bFoot);
+			}
+		}
+
+		private void doCeil(bool bCeil){
+			if(this.OnCeilDelegate != null){
+			  this.OnCeilDelegate(bCeil);
 			}
 		}
 

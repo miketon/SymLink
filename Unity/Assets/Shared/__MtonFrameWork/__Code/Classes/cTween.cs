@@ -21,6 +21,7 @@ namespace MTON.Class{
     public override void Awake (){
 	  base.Awake();
       bOnCompleteHide = true ;
+	  sclGO = this.transform.localScale.y;
     }
 
 	public void doRotateTo(Vector3 IN_rotate){
