@@ -127,6 +127,7 @@ namespace MTON.codeObjects{
         }
       }
 	  this.yScale = this.dispXFORM.localScale.y;
+	  this.sclX = this.dispXFORM.localScale.x;
 
     }
 
@@ -279,6 +280,7 @@ namespace MTON.codeObjects{
     }
 
     public virtual void doCrouch(bool bDuck){
+	if(this.b_2D == false){
 	  if(bDuck){
 		tw.doCrouch(this.yScale * this.duckSc, 0.5f);
 	  }
@@ -286,17 +288,31 @@ namespace MTON.codeObjects{
 		tw.doCrouch(this.yScale);
 	  }
 	}
+	}
 
 	public float yRotOffset_3D = -50.0f;
+	public float sclX = 1.0f;
 
 	public virtual void doFace(Vector3 vFace){ //for 2D facing, use x
-	  if(vFace.x > Mathf.Epsilon){
+	  if(vFace.x > 0.01f){ // Mathf.Epsilon){
 	    this.bFaceRt = true;
+		if(this.b_2D == true){
+//		  this.dispXFORM.rotation = Quaternion.Euler(new Vector3(0.0f, vFace.x * this.yRotOffset_3D, 0.0f));
+		  this.dispXFORM.SetScaleX(this.sclX);
+		}
+		else{
 	    tw.doRotateTo(new Vector3(0.0f, vFace.x * yRotOffset_3D, 0.0f));
+		}
 	  }
-	  else if(vFace.x < -Mathf.Epsilon){
+	  else if(vFace.x < -0.01f){ //-Mathf.Epsilon){
 		this.bFaceRt = false;
+		if(this.b_2D == true){
+//		  this.dispXFORM.rotation = Quaternion.Euler(new Vector3(0.0f, vFace.x * this.yRotOffset_3D, 0.0f));
+		  this.dispXFORM.SetScaleX(-this.sclX);
+		}
+		else{
 		tw.doRotateTo(new Vector3(0.0f, vFace.x * yRotOffset_3D, 0.0f));
+		}
 	  }
 	  else{
 	    if(b_2D != true){ //Not 2D; play with rotation offset
@@ -396,7 +412,9 @@ namespace MTON.codeObjects{
       an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject)  ;
 //      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject)  ;
       io = __gUtility.AddComponent_mton<cInput>(this.gameObject)  ;
+	  if(this.b_2D == false){
       tw = __gUtility.AddComponent_mton<cTween>(this.dispXFORM.gameObject)   ; //Tweening display obj vs. character controller
+	  }
       mc = __gUtility.AddComponent_mton<cMcanm>(this.gameObject)  ;
 	  
 	  mc.anST = an;
