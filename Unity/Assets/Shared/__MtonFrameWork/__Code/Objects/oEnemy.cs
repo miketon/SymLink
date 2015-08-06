@@ -118,7 +118,8 @@ namespace MTON.codeObjects{
 	  GameObject oHit;
 	  Vector3 dCenter = this.xform.position + rb.cen;
 	  Vector3 attkDir = this.player.transform.position - this.xform.position;
-	  oHit = this.doRayDir(dCenter, attkDir, 0.5f);
+//	  oHit = this.doRayDir(dCenter, attkDir, 0.5f);
+	  oHit = this.doRayDir(dCenter, attkDir);
 
 	  if(oHit != null){
 	    oPlayer pHit = oHit.GetComponent<oPlayer>();

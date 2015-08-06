@@ -17,25 +17,29 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	  this.Init();           // Will catch what OnEnable will miss
 	}
 
-	private void Init(){
-	  //animation state delegates
-	  if(anST == null){
-	    anST = this.GetComponent<cAnimn>();
-	  }
-	  if(anST != null){
-        anST.OnMoveDelegate += OnMove;
-	    anST.OnGrndDelegate += OnGrnd;
-        anST.OnDuckDelegate += OnDuck;
-        anST.OnJumpDelegate += OnJump;
+	public void Init(){
+	  if(anim != null){
+	    //animation state delegates
+	    if(anST == null){
+	      anST = this.GetComponent<cAnimn>();
+	    }
+	    if(anST != null){
+          anST.OnMoveDelegate += OnMove;
+	      anST.OnGrndDelegate += OnGrnd;
+          anST.OnDuckDelegate += OnDuck;
+          anST.OnJumpDelegate += OnJump;
+	    }
 	  }
 	}
 
     private void OnDisable(){
-	  //animation state delegates
-      anST.OnMoveDelegate -= OnMove;
-	  anST.OnGrndDelegate -= OnGrnd;
-      anST.OnDuckDelegate -= OnDuck;
-      anST.OnJumpDelegate -= OnJump;
+	  if(anim != null){
+	    //animation state delegates
+        anST.OnMoveDelegate -= OnMove;
+	    anST.OnGrndDelegate -= OnGrnd;
+        anST.OnDuckDelegate -= OnDuck;
+        anST.OnJumpDelegate -= OnJump;
+	  }
 	}
 
 	#region implement IAnimn_ID
@@ -132,15 +136,20 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	#region Get Values
 
 	public bool GetCurvefBool(int IN_curveID, float IN_threshold = 0.90f){ //Convert float to bool; good for getting footsteps
-	  float fVal = Mathf.Abs(anim.GetFloat(IN_curveID));
-	  if(fVal >= IN_threshold){
-	    return true ; //footstep is down
+	  if(IN_curveID != 0){
+	    float fVal = Mathf.Abs(anim.GetFloat(IN_curveID));
+	    if(fVal >= IN_threshold){
+	      return true ; //footstep is down
+	    }
 	  }
 	  return false  ;//footstep is in air
 	}
 
 	public float GetCurveFloat(int IN_curveID){
-	  return anim.GetFloat(IN_curveID);
+	  if(IN_curveID != 0){
+	    return anim.GetFloat(IN_curveID);
+	  }
+	  return 0.0f;
 	}
 
 	#endregion

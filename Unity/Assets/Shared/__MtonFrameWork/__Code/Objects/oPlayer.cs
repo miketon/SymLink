@@ -418,6 +418,9 @@ namespace MTON.codeObjects{
       mc = __gUtility.AddComponent_mton<cMcanm>(this.gameObject)  ;
 	  
 	  mc.anST = an;
+	  if(this.dispAnmtr == null){ //will try to grab from display object if not assigned
+	    this.dispAnmtr = this.dispXFORM.gameObject.GetComponent<Animator>();
+	  }
 	  mc.anim = this.dispAnmtr;
 	 
 	  au = __gUtility.AddComponent_mton<cEmit_Audio>(this.gameObject)  ;
