@@ -115,28 +115,49 @@ namespace MTON.codeObjects{
 	}
 	
 	public bool ai_ATTK(){
-	   Debug.Log ("I am biting!");
-	   Vector3 dCenter = this.xform.position + rb.cen;
-	   RaycastHit hit;
-	   if(this.bFaceRt == true){
-	     Ray ray = new Ray(dCenter, xform.right);
-	     Physics.Raycast(ray, out hit, 2.0f);
-		 Debug.DrawRay(dCenter, xform.right, Color.yellow, 0.5f);
-	   }
-	   else{
-	     Ray ray = new Ray(dCenter, -xform.right);
-		 Physics.Raycast(ray, out hit, 2.0f);
-		 Debug.DrawRay(dCenter, -xform.right, Color.yellow, 0.5f);
-	   }
-	   Collider rbHit = hit.collider;
-	   if(rbHit != null){
-	     Debug.Log ("Found to bite : " + rbHit);
-	   }
-	   else{
-	     Debug.Log ("NO BITE : " + rbHit);
-	   }
-	   
+	  GameObject oHit;
+	  Vector3 dCenter = this.xform.position + rb.cen;
+	  Vector3 attkDir = this.player.transform.position - this.xform.position;
+	  oHit = this.doRayDir(dCenter, attkDir, 0.5f);
+
+	  if(oHit != null){
+	    oPlayer pHit = oHit.GetComponent<oPlayer>();
+		if(pHit != null){
+		  pHit.doJump(true);
+		  Debug.Log ("Attacking : " + pHit);
+		}
+	  }
 	  return false;
+	}
+
+	public GameObject doRayDir(Vector3 IN_POS, Vector3 IN_DIR){
+
+	  RaycastHit hit;
+	  Ray ray = new Ray(IN_POS, IN_DIR);
+	  Physics.Raycast(ray, out hit, 2.0f);
+	  Debug.DrawRay(IN_POS, IN_DIR, Color.yellow, 0.75f);
+	  if(hit.collider != null){
+	    return hit.collider.gameObject;
+	  }
+	  else{
+	    return null;
+	  }
+
+	}
+
+	public GameObject doRayDir(Vector3 IN_POS, Vector3 IN_DIR, float IN_RAD){
+	  RaycastHit hit;
+	  Ray ray = new Ray(IN_POS, IN_DIR);
+	  Physics.SphereCast(ray, IN_RAD, out hit, 2.0f);
+	  Debug.DrawRay(IN_POS, IN_DIR, Color.yellow, 0.5f);
+	  Debug.DrawRay(IN_POS+Vector3.up*IN_RAD, IN_DIR, Color.yellow, 0.5f);
+	  Debug.DrawRay(IN_POS+-Vector3.up*IN_RAD, IN_DIR, Color.yellow, 0.5f);
+	  if(hit.collider != null){
+	    return hit.collider.gameObject;
+	  }
+	  else{
+	    return null;
+	  }
 	}
 
 	public int damag = 1;
