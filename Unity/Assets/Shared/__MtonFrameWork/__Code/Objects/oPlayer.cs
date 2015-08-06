@@ -193,7 +193,7 @@ namespace MTON.codeObjects{
       if(Mathf.Abs(moveDir.x) > 0.001f){
 		an.hState = cAnimn.eStateH.Walk;
 		if(bGround == true){ // check for footsteps
-		  bool bFoot = mc.GetCurvefBool(mc._fCurve1_ID); //IMPORTANT : Implicit that run animation has fCurve where 0==off, 1==on
+		  bool bFoot = mc.GetCurvefBool(mc._fAudio0_ID); //IMPORTANT : Implicit that run animation has fCurve where 0==off, 1==on
 		  if(bFoot == true){
 		    an.footST = cAnimn.eStateB.DN;
 		  }

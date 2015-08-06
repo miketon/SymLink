@@ -55,7 +55,9 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   private void OnEnable() { this.Play(); }
   private void OnDisable(){ this.Stop(); }
 
-  public void Update(){}
+  public void Update(){
+    this.transform.SetPosZ(0.0f); //for 2D
+  }
 
   void OnCollisionEnter(Collision collision) {
 	cHealth oDamage = collision.gameObject.GetComponent<cHealth>();

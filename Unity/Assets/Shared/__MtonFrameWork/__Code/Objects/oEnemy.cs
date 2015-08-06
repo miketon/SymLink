@@ -67,6 +67,8 @@ namespace MTON.codeObjects{
 	  this.doAI_Intel();
 	}
 
+	public float stopRadMult = 3.0f;
+
 	private void doAI_Intel(){
 	  float dist = this.doRangeCheck(this.xform, this.player, fRngAlert, (bool bRange)=>{
 		if(bRange == true){
@@ -86,18 +88,19 @@ namespace MTON.codeObjects{
 	    this.doMove(-Vector3.right * Mathf.Sign(this.xform.position.x - this.player.position.x));
 	    if(Mathf.Abs(dist) < this.fRngAttck){
 	      rendr.material.color = cActv;
-		  if(Mathf.Abs(dist) < (rb.cRadius * 3.5f)){
-		    this.doIdle();
+		  if(Mathf.Abs(dist) < (rb.cRadius * stopRadMult)){
+			this.ai_ATTK();
+		    this.ai_IDLE();
 		  }
 	    }
 	  }
 	  else{
-		this.doIdle();
+		this.ai_IDLE();
 	  }
 		
 	}
 
-	public void doIdle(){
+	public void ai_IDLE(){
 	  this.doMove(Vector3.zero);
 	}
 
@@ -110,6 +113,46 @@ namespace MTON.codeObjects{
 	  funcToRun(bRng);
 	  return dist;
 	}
+	
+	public bool ai_ATTK(){
+	   Debug.Log ("I am biting!");
+	   Vector3 dCenter = this.xform.position + rb.cen;
+	   RaycastHit hit;
+	   if(this.bFaceRt == true){
+	     Ray ray = new Ray(dCenter, xform.right);
+	     Physics.Raycast(ray, out hit, 2.0f);
+		 Debug.DrawRay(dCenter, xform.right, Color.yellow, 0.5f);
+	   }
+	   else{
+	     Ray ray = new Ray(dCenter, -xform.right);
+		 Physics.Raycast(ray, out hit, 2.0f);
+		 Debug.DrawRay(dCenter, -xform.right, Color.yellow, 0.5f);
+	   }
+	   Collider rbHit = hit.collider;
+	   if(rbHit != null){
+	     Debug.Log ("Found to bite : " + rbHit);
+	   }
+	   else{
+	     Debug.Log ("NO BITE : " + rbHit);
+	   }
+	   
+	  return false;
+	}
+
+	public int damag = 1;
+
+//    void OnCollisionEnter(Collision collision) {
+//	  Debug.Log("Enemy ONHIT!! " + collision.gameObject);
+//	  cHealth oDamage = collision.gameObject.GetComponent<cHealth>();
+//	  if(oDamage != null){
+//	    oDamage.onHitd(-this.damag);
+//	  }
+//	  if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+//	      __gCONSTANT._LEVEL.Emit_Hit(eHit, this.transform.position, Quaternion.identity, ()=>{
+//          return true;
+//	    });
+//	  }
+//	}
 
   }
 

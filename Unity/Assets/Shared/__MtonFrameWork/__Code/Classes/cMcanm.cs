@@ -49,7 +49,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
     public string _bSpawnd  ;
     public string _bDeathd  ;
 
-    public string _fCurve1  ; // name of custom curve to get from animator
+    public string _fAudio0  ; // name of custom curve to get from animator
 
 	public int _kVertcl_ID { get; set; } //vertical   delta
     public int _kHorizn_ID { get; set; } //horizontal delta
@@ -60,7 +60,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	public int _bSpawnd_ID { get; set; } 
     public int _bDeathd_ID { get; set; } 
 
-	public int _fCurve1_ID { get; set; } 
+	public int _fAudio0_ID { get; set; } 
 
 	public void Awake(){
 		this.animator_Hash_ID();
@@ -77,7 +77,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 		_bSpawnd_ID = Animator.StringToHash(this._bSpawnd);
 		_bDeathd_ID = Animator.StringToHash(this._bDeathd);
 
-		_fCurve1_ID = Animator.StringToHash(this._fCurve1);
+		_fAudio0_ID = Animator.StringToHash(this._fAudio0);
 	}
 
 	#endregion
