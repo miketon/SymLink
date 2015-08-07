@@ -21,7 +21,7 @@ namespace MTON.codeObjects{
     public GameObject OnDeathPrefab;
 
     public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
-    public cLevel.fx_Hit  eHit ; // enum for particle system to emit
+    public cLevel.fx_Hit  eMit ; // enum for particle system to emit
 
 	public  bool    bGround = false        ;
 	public  bool    bFaceRt = true         ; // facing Right
@@ -181,6 +181,7 @@ namespace MTON.codeObjects{
 			an.vState = cAnimn.eStateV.Idle;
 		}
 		prvPos = curPos;
+
 	}
 
 #endregion
@@ -266,8 +267,8 @@ namespace MTON.codeObjects{
 		        return true;
 		      });
 		    }
-		    if(this.eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-		      __gCONSTANT._LEVEL.Emit_Hit(eHit, firePnt.position, Quaternion.identity, ()=>{
+		    if(this.eMit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+		      __gCONSTANT._LEVEL.Emit_Hit(eMit, firePnt.position, Quaternion.identity, ()=>{
 		        firePnt.gameObject.SetActive(false);
 		        return true;
 		      });
@@ -281,24 +282,37 @@ namespace MTON.codeObjects{
       }
     }
 
-//    private  Vector3 stepDrtn = Vector3.zero;
-//
-//    private mt_TimeStep(float IN_INC, indexDur:int):boolean {
-//      if(Time.time > stepDrtn[indexDur]){
-//        stepDrtn[indexDur]  = Time.time + stepIncm ;
-//        return true                      ;    
-//      }
-//      else{
-//        return false                     ;
-//      }
-//    }
+    private float stepDrtn = 0.0f;
 
-	public float fireRate  = 0.1f ;
-    public float emitDelay = 0.0f ; //delay until emitter can fire
+	private bool mt_TimeStep(float stepIncm){
+      if(Time.time > stepDrtn){
+        stepDrtn  = Time.time + stepIncm ;
+        return true                      ;    
+      }
+      else{
+        return false                     ;
+      }
+    }
 
+	public float fireRate  = 0.25f ;
+
+	private bool bpowr = false;
     public virtual void doPowr(bool bPowr){
-	  
+	  this.bpowr = bPowr;
+	  if(bPowr == true){
+	    StartCoroutine(WhileRapidFire());
+	  }
 	} 
+
+    public IEnumerator WhileRapidFire(){
+	  while(this.bpowr == true){
+	    if(this.mt_TimeStep(this.fireRate)){
+	      Debug.Log ("Rapid Fire : " + Time.time);
+		  this.doAttk(true);
+		}
+        yield return null;
+	  }
+	}
 
     public virtual void doCrouch(bool bDuck){
 	if(this.b_2D == false){

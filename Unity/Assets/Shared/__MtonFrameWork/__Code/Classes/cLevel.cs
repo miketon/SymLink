@@ -87,10 +87,11 @@ namespace MTON.Class{
 	}
 
 	public enum fx_Hit{
-	  HitMark_00 = 0, //moon
-	  GunFlar_00 = 1,
-	  ScoreCn_00 = 2,
-	  None = 3,
+	  HitMark_00, //moon
+	  BteMark_00, //bite mark
+	  GunFlar_00,
+	  ScoreCn_00,
+	  None,
 	}
 
 	public enum e_Bllt{
@@ -165,6 +166,10 @@ namespace MTON.Class{
 	  else if(eHit == fx_Hit.GunFlar_00){
         Emit(this.fx_Hits[1], IN_POS, IN_ROT, funcToRun);
 	  }
+	  else if(eHit == fx_Hit.BteMark_00){
+        Emit(this.fx_Hits[2], IN_POS, IN_ROT, funcToRun);
+	  }
+
 	}
 
 	public void Emit<T>(Transform IN_PS, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){

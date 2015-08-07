@@ -126,9 +126,20 @@ namespace MTON.codeObjects{
 		if(pHit != null){
 		  pHit.doJump(true);
 		  Debug.Log ("Attacking : " + pHit);
+		  ai_BITE(oHit.transform.position);
 		}
 	  }
 	  return false;
+	}
+
+	public cLevel.fx_Hit eBit;
+
+	private void ai_BITE(Vector3 IN_POS){
+	  if(this.eBit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+	    __gCONSTANT._LEVEL.Emit_Hit(eBit, IN_POS, Quaternion.identity, ()=>{
+          return true;
+	    });
+	  }
 	}
 
 	public GameObject doRayDir(Vector3 IN_POS, Vector3 IN_DIR){

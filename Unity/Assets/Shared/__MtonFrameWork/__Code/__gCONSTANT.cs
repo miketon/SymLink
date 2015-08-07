@@ -21,6 +21,7 @@ namespace MTON.Global{
 
     //handles Layers - Entities can move
     public const string _PLAYER = "Player" ;
+    public const string _CAMERA = "Camera" ;
     public const string _ENEMY  = "Enemy"  ;
     public const string _BULLET = "Bullet" ;
     public const string _ITEMS  = "Item"   ;
