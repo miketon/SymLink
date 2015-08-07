@@ -213,9 +213,11 @@ namespace MTON.codeObjects{
 		}
       }
       else{
-		an.hState = cAnimn.eStateH.Idle;
 		an.fState = cAnimn.eStateF.Idle;
-      }
+	    if(this.bDpdX == true){
+		  an.hState = cAnimn.eStateH.Idle;
+        }
+	  }
 	  //duck/crouch state
 	  if(Mathf.Abs(moveDir.y) > 0.001f){
 		float vertDir = Mathf.Sign(moveDir.y); //y == vAxis  ; Sign return -1.0f or 1.0f
@@ -283,7 +285,6 @@ namespace MTON.codeObjects{
     }
 
     private float stepDrtn = 0.0f;
-
 	private bool mt_TimeStep(float stepIncm){
       if(Time.time > stepDrtn){
         stepDrtn  = Time.time + stepIncm ;
@@ -296,18 +297,28 @@ namespace MTON.codeObjects{
 
 	public float fireRate  = 0.25f ;
 
-	private bool bpowr = false;
+	private bool bpowr = false ;
+    private bool bDpdX = true  ;
+    private bool bDpdY = false ;
     public virtual void doPowr(bool bPowr){
 	  this.bpowr = bPowr;
 	  if(bPowr == true){
 	    StartCoroutine(WhileRapidFire());
+		this.bDpdX = false; //dPad x ignore
+		this.bDpdY = true ; //dPad y listen
+	  }
+	  else{
+		this.bDpdX = true  ; //dPad x listen
+		this.bDpdY = false ; //dPad x ignore
 	  }
 	} 
 
     public IEnumerator WhileRapidFire(){
 	  while(this.bpowr == true){
+		an.hState = cAnimn.eStateH.Plnt;
+		this.doMove(Vector3.zero);
 	    if(this.mt_TimeStep(this.fireRate)){
-	      Debug.Log ("Rapid Fire : " + Time.time);
+//	      Debug.Log ("Rapid Fire : " + Time.time); //HACK : time print doesn't match fireRate why???
 		  this.doAttk(true);
 		}
         yield return null;

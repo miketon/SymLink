@@ -28,6 +28,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	      anST.OnGrndDelegate += OnGrnd;
           anST.OnDuckDelegate += OnDuck;
           anST.OnJumpDelegate += OnJump;
+          anST.OnPlntDelegate += OnPlnt;
           anST.OnAttkDelegate += OnAttk;
 	    }
 	  }
@@ -40,6 +41,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	    anST.OnGrndDelegate -= OnGrnd;
         anST.OnDuckDelegate -= OnDuck;
         anST.OnJumpDelegate -= OnJump;
+        anST.OnPlntDelegate -= OnPlnt;
         anST.OnAttkDelegate -= OnAttk;
 	  }
 	}
@@ -48,6 +50,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 
     public string _kVertcl	;
     public string _kHorizn  ;
+    public string _bPlantd  ;
     public string _bGround	;
     public string _bCrouch	;
     public string _bJump    ;
@@ -60,6 +63,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 
 	public int _kVertcl_ID { get; set; } //vertical   delta
     public int _kHorizn_ID { get; set; } //horizontal delta
+    public int _bPlantd_ID { get; set; }
     public int _bGround_ID { get; set; }
     public int _bCrouch_ID { get; set; }
     public int _bJump_ID   { get; set; }
@@ -79,6 +83,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 		_kVertcl_ID = Animator.StringToHash(this._kVertcl);
 		_kHorizn_ID = Animator.StringToHash(this._kHorizn);
 		_bGround_ID = Animator.StringToHash(this._bGround);
+		_bPlantd_ID = Animator.StringToHash(this._bPlantd);
 		_bJump_ID   = Animator.StringToHash(this._bJump  );
 		_bAttk_ID   = Animator.StringToHash(this._bAttk  );
 		_bCrouch_ID = Animator.StringToHash(this._bCrouch);
@@ -131,6 +136,12 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	      anim.SetTrigger(_bAttk_ID);
 	      Debug.Log ("MECANIM : OnAttk Triggered " + bAttk);
 		}
+	  }
+	}
+
+    public void OnPlnt(bool bPlnt){
+	  if(_bPlantd_ID != 0){
+	    anim.SetBool(_bPlantd_ID, bPlnt);
 	  }
 	}
 

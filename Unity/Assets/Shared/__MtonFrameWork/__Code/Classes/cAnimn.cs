@@ -20,16 +20,11 @@ namespace MTON.Class{
         public DL_VDIR OnMoveDelegate              ; //delegate instance
         public DL_VDIR OnFaceDelegate              ; //delegate instance
 
+		// hState
 		public DL_Anim OnWalkDelegate            ; // Dash
 		public DL_Anim OnFootDelegate            ; // Foot Step
 		public DL_Anim OnDashDelegate            ; // Dash
-
-		// lState - life State
-        public DL_Anim OnSpwnDelegate            ; // Spawn
-        public DL_Anim OnActvDelegate            ; // Active
-        public DL_Anim OnAlivDelegate            ; // Alive
-		public DL_Anim OnDactDelegate            ; // Deactived
-        public DL_Anim OnDeadDelegate            ; // Dead
+		public DL_Anim OnPlntDelegate            ; // Plnt; OnGround
 
 		// vState
         public DL_Anim OnGrndDelegate            ; // OnGround
@@ -53,6 +48,13 @@ namespace MTON.Class{
 	    public DL_Anim OnPowrDelegate            ; // Power : Power  Attack
 	    public DL_Anim OnAirPDelegate            ; // Power : Power  Attack in Air
         public DL_Anim OnGardDelegate            ; // Guard
+
+		// lState - life State
+        public DL_Anim OnSpwnDelegate            ; // Spawn
+        public DL_Anim OnActvDelegate            ; // Active
+        public DL_Anim OnAlivDelegate            ; // Alive
+		public DL_Anim OnDactDelegate            ; // Deactived
+        public DL_Anim OnDeadDelegate            ; // Dead
 
         public DL_Anim OnHitdDelegate            ; // Hitd
 
@@ -80,7 +82,8 @@ namespace MTON.Class{
 		public enum eStateH{ // horizontal state
 			Idle,
 			Walk,
-			Dash
+			Dash,
+			Plnt, //Planted
 		}
 
 		public enum eStateF{ // facing state
@@ -165,8 +168,16 @@ namespace MTON.Class{
 				else{
 				  if(value != hstate){ //check for others only on change
 					hstate = value ;
-//					Debug.Log(this + " hState updated : " + value);
 				    doMove(Vector3.zero);
+					if(value == eStateH.Plnt){
+					  if(this.grndST == eStateB.DN){ //onGround is true
+					    doPlnt(true);                //Planted == yes
+					  }
+					}
+					else{
+					  doPlnt(false);                 //Planted == no
+					}
+//					Debug.Log(this + " hState updated : " + value);
 				  }
 				}
 			}
@@ -328,10 +339,16 @@ namespace MTON.Class{
 		  }
 		}
 
-		private void doGrnd(bool bGrnd){
+		private void doGrnd(bool bGrnd){ 
 		  if(this.OnGrndDelegate != null){
 //			Debug.Log ("cAnimn : doGrnd : " + bGrnd + " : " + this);
 		    this.OnGrndDelegate(bGrnd);
+		  }
+		}
+
+		private void doPlnt(bool bPlnt){ //isPlanted ?
+		  if(this.OnPlntDelegate != null){
+		    this.OnPlntDelegate(bPlnt);
 		  }
 		}
 
