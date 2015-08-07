@@ -44,7 +44,14 @@ namespace MTON.Class{
         public DL_Anim OnJumpDelegate            ; // Jump
         public DL_Anim OnFlapDelegate            ; // Flap
 
+		// combat States
         public DL_Anim OnAttkDelegate            ; // Attack
+	    public DL_Anim OnFireDelegate            ; // Fire  : Ranged Attack
+	    public DL_Anim OnAirFDelegate            ; // Fire  : Ranged Attack in Air
+	    public DL_Anim OnMleeDelegate            ; // Melee : Close  Attack
+	    public DL_Anim OnAirMDelegate            ; // Melee : Close  Attack in Air
+	    public DL_Anim OnPowrDelegate            ; // Power : Power  Attack
+	    public DL_Anim OnAirPDelegate            ; // Power : Power  Attack in Air
         public DL_Anim OnGardDelegate            ; // Guard
 
         public DL_Anim OnHitdDelegate            ; // Hitd
@@ -216,9 +223,21 @@ namespace MTON.Class{
 					attkst = value;
 					if(value == eStateB.DN){
 						this.doAttk(true);
+						if(this.grndST == eStateB.DN){
+							this.doFire(true); //ground fire
+						}
+					    else if(this.grndST == eStateB.UP){ //in air
+							this.doAirF(true); //air fire
+						}
 					}
 					else if(value == eStateB.UP){
 						this.doAttk(false);
+						if(this.grndST == eStateB.DN){
+							this.doFire(false); //ground fire
+						}
+					    else if(this.grndST == eStateB.UP){ //in air
+							this.doAirF(false); //air fire
+						}
 					}
 				}
 			}
@@ -348,6 +367,42 @@ namespace MTON.Class{
 		private void doAttk(bool bAttk){
 		  if(this.OnAttkDelegate != null){
 		    this.OnAttkDelegate(bAttk);
+		  }
+		}
+
+		private void doFire(bool bFire){
+		  if(this.OnFireDelegate != null){
+		    this.OnFireDelegate(bFire);
+		  }
+		}
+
+		private void doAirF(bool bAirF){
+		  if(this.OnAirFDelegate != null){
+		    this.OnAirFDelegate(bAirF);
+		  }
+		}
+
+		private void doMlee(bool bMlee){
+		  if(this.OnMleeDelegate != null){
+		    this.OnMleeDelegate(bMlee);
+		  }
+		}
+
+		private void doAirM(bool bAirM){
+		  if(this.OnAirMDelegate != null){
+		    this.OnAirMDelegate(bAirM);
+		  }
+		}
+
+		private void doPowr(bool bPowr){
+		  if(this.OnPowrDelegate != null){
+		    this.OnPowrDelegate(bPowr);
+		  }
+		}
+
+		private void doAirP(bool bAirP){
+		  if(this.OnAirPDelegate != null){
+		    this.OnAirPDelegate(bAirP);
 		  }
 		}
 

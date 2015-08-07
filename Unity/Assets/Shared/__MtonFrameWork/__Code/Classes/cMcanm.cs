@@ -28,6 +28,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	      anST.OnGrndDelegate += OnGrnd;
           anST.OnDuckDelegate += OnDuck;
           anST.OnJumpDelegate += OnJump;
+          anST.OnAttkDelegate += OnAttk;
 	    }
 	  }
 	}
@@ -39,6 +40,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	    anST.OnGrndDelegate -= OnGrnd;
         anST.OnDuckDelegate -= OnDuck;
         anST.OnJumpDelegate -= OnJump;
+        anST.OnAttkDelegate -= OnAttk;
 	  }
 	}
 
@@ -49,6 +51,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
     public string _bGround	;
     public string _bCrouch	;
     public string _bJump    ;
+    public string _bAttk    ;
     public string _bForwrd	;
     public string _bSpawnd  ;
     public string _bDeathd  ;
@@ -60,6 +63,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
     public int _bGround_ID { get; set; }
     public int _bCrouch_ID { get; set; }
     public int _bJump_ID   { get; set; }
+    public int _bAttk_ID   { get; set; }
     public int _bForwrd_ID { get; set; } //2d true == right; 3d true == forward
 	public int _bSpawnd_ID { get; set; } 
     public int _bDeathd_ID { get; set; } 
@@ -76,6 +80,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 		_kHorizn_ID = Animator.StringToHash(this._kHorizn);
 		_bGround_ID = Animator.StringToHash(this._bGround);
 		_bJump_ID   = Animator.StringToHash(this._bJump  );
+		_bAttk_ID   = Animator.StringToHash(this._bAttk  );
 		_bCrouch_ID = Animator.StringToHash(this._bCrouch);
 		_bForwrd_ID = Animator.StringToHash(this._bForwrd);
 		_bSpawnd_ID = Animator.StringToHash(this._bSpawnd);
@@ -115,6 +120,16 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	  if(_bJump_ID != 0){
 		if(bJump == true){ //need to check for trigger; else double tap effect
 	      anim.SetTrigger(_bJump_ID);
+		}
+	  }
+	}
+
+    public void OnAttk(bool bAttk){
+	  Debug.Log ("MECANIM : OnAttk " + bAttk);
+	  if(_bAttk_ID != 0){
+		if(bAttk == true){ //need to check for trigger; else double tap effect
+	      anim.SetTrigger(_bAttk_ID);
+	      Debug.Log ("MECANIM : OnAttk Triggered " + bAttk);
 		}
 	  }
 	}

@@ -37,6 +37,7 @@ namespace MTON.codeObjects{
       io.OnDPAD_DIR_Delegate += doMove;
       io.OnJumpDelegate      += doJump;
       io.OnAttkDelegate      += doAttk; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
+	  io.OnPowrDelegate      += doPowr;
 	  io.OnActVDelegate      += doActV; //Attack Visual = hitFlash
 
 	  //rigidbody events
@@ -60,6 +61,7 @@ namespace MTON.codeObjects{
       io.OnDPAD_DIR_Delegate -= doMove;
       io.OnJumpDelegate      -= doJump; //NOTE: remember to remove delegate in case of wierd memory leaks
       io.OnAttkDelegate      -= doAttk;
+	  io.OnPowrDelegate      -= doPowr;
 	  io.OnActVDelegate      -= doActV; //Attack Visual = hitFlash
 
 	  //rigidbody events
@@ -278,6 +280,25 @@ namespace MTON.codeObjects{
 		an.attkST = cAnimn.eStateB.UP;
       }
     }
+
+//    private  Vector3 stepDrtn = Vector3.zero;
+//
+//    private mt_TimeStep(float IN_INC, indexDur:int):boolean {
+//      if(Time.time > stepDrtn[indexDur]){
+//        stepDrtn[indexDur]  = Time.time + stepIncm ;
+//        return true                      ;    
+//      }
+//      else{
+//        return false                     ;
+//      }
+//    }
+
+	public float fireRate  = 0.1f ;
+    public float emitDelay = 0.0f ; //delay until emitter can fire
+
+    public virtual void doPowr(bool bPowr){
+	  
+	} 
 
     public virtual void doCrouch(bool bDuck){
 	if(this.b_2D == false){
