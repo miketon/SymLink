@@ -21,7 +21,9 @@ namespace MTON.codeObjects{
     public GameObject OnDeathPrefab;
 
     public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
-    public cLevel.fx_Hit  eMit ; // enum for particle system to emit
+    public cLevel.fx_Hit  eGun ; // enum for GunFlare particle system to emit
+    public cLevel.fx_Hit  eDjm ; // enum for Dust Jump particle system to emit
+    public cLevel.fx_Hit  eDld ; // enum for Dust Land particle system to emit
 
 	public  bool    bGround = false        ;
 	public  bool    bFaceRt = true         ; // facing Right
@@ -35,6 +37,7 @@ namespace MTON.codeObjects{
 
 	  //direct input
       io.OnDPAD_DIR_Delegate += doMove;
+      io.OnDPAD_AIM_Delegate += doAimd;
       io.OnJumpDelegate      += doJump;
       io.OnAttkDelegate      += doAttk; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
 	  io.OnPowrDelegate      += doPowr;
@@ -59,6 +62,7 @@ namespace MTON.codeObjects{
 
 	  //direct input
       io.OnDPAD_DIR_Delegate -= doMove;
+      io.OnDPAD_AIM_Delegate -= doAimd;
       io.OnJumpDelegate      -= doJump; //NOTE: remember to remove delegate in case of wierd memory leaks
       io.OnAttkDelegate      -= doAttk;
 	  io.OnPowrDelegate      -= doPowr;
@@ -105,6 +109,8 @@ namespace MTON.codeObjects{
 
 	public virtual void Awake(){
 
+
+
 	  if(this.b_2D == true){
 //	    this.yRotOffset_3D = 180.0f; //No offset if character is 2D
 	  }
@@ -130,6 +136,14 @@ namespace MTON.codeObjects{
       }
 	  this.yScale = this.dispXFORM.localScale.y;
 	  this.sclX = this.dispXFORM.localScale.x;
+
+	  fPoint = new GameObject(this.name + "_FIRINGPOINT_MTON").transform;
+	  fPoint.parent = this.transform;
+	  fPoint.rotation = Quaternion.Euler(this.transform.forward);
+
+	  oPoint = new GameObject(this.name + "_ORIGINPOINT_MTON").transform;
+	  oPoint.parent = this.transform;
+//	  oPoint.position = rb.cen;
 
     }
 
@@ -189,9 +203,14 @@ namespace MTON.codeObjects{
 #region oPlayer moveset Function
     ///---------------------------------------TRANSFORMING CHARACTER--------------------------------------------------------------/// 
 
+    public virtual void doAimd(Vector3 aimdDir){ //Handles movement and facing
+	  Vector3 unitDir = aimdDir.normalized;
+	  an.doAimg(unitDir.y);
+	}
+
     public virtual void doMove(Vector3 moveDir){ //Handles movement and facing
-	  this.xform.SetPosZ(0.0f); // force into 0.0f zPlane so character doesn't slip
       rb.Move(moveDir) ;
+	  this.xform.SetPosZ(0.0f); // force into 0.0f zPlane so character doesn't slip
 	  // horizontal move state
       if(Mathf.Abs(moveDir.x) > 0.001f){
 		an.hState = cAnimn.eStateH.Walk;
@@ -204,8 +223,7 @@ namespace MTON.codeObjects{
 		    an.footST = cAnimn.eStateB.UP;
 		  }
 		}
-        float faceDir = Mathf.Sign(moveDir.x); //x == hAxis ; Sign return -1.0f or 1.0f
-		if(faceDir > 0.0f){
+		if(Mathf.Sign(moveDir.x) > 0.0f){
 		  an.fState = cAnimn.eStateF.Rght;
 		}
 		else{
@@ -220,12 +238,16 @@ namespace MTON.codeObjects{
 	  }
 	  //duck/crouch state
 	  if(Mathf.Abs(moveDir.y) > 0.001f){
+		Debug.Log ("OPLAYER yAXIS : " + moveDir.y);
 		float vertDir = Mathf.Sign(moveDir.y); //y == vAxis  ; Sign return -1.0f or 1.0f
-		if(vertDir < 0.0f){
-		  if(bGround == true){
-		    an.duckST = cAnimn.eStateB.DN;
+	    if(this.bDpdX == true){ // if not on lockdown, then ok to duck
+		  if(vertDir < 0.0f){
+		    if(bGround == true){
+		      an.duckST = cAnimn.eStateB.DN;
+		    }
 		  }
 		}
+
       }
 	  else{
 		if(an.vState != cAnimn.eStateV.Rise){
@@ -239,6 +261,11 @@ namespace MTON.codeObjects{
         if(bGround){    
           rb.Jump()                     ;
 		  an.jumpST = cAnimn.eStateB.DN ;
+		  if(this.eDjm != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+			__gCONSTANT._LEVEL.Emit_Hit(eDjm, this.transform.position + (Vector3.up * 0.9f), Quaternion.identity, ()=>{
+		      return true;
+		    });
+	      }
         }
         else{
           rb.Flap()                     ; //flap when not on ground
@@ -249,33 +276,32 @@ namespace MTON.codeObjects{
 		  an.jumpST = cAnimn.eStateB.UP ;
 	  }
     }
+	
+	private Transform oPoint;
+	private Transform fPoint;
 
 	public virtual void doAttk(bool bAttk){
       if(bAttk){
 		if(this.firePnts.Length > 0){
 		  an.attkST = cAnimn.eStateB.DN;
-		  Transform firePnt;
-		  if(this.bFaceRt == true){
-		    firePnt = this.firePnts[0]; //firing right
+		  Transform firePnt = firePnts[0];
+		  firePnt.gameObject.SetActive(true);
+		  if(this.eBlt != cLevel.e_Bllt.None){
+//			Quaternion rotFire = Quaternion.Euler((this.transform.position - firePnt.position).normalized);
+//			fPoint.position = firePnt.position;
+//	        oPoint.rotation = Quaternion.LookRotation(fPoint.position);
+//			fPoint.rotation = Quaternion.Euler(-firePnt.forward);
+//			fPoint.rotation = firePnt.rotation;
+			__gCONSTANT._LEVEL.Emit_Bullet(this.eBlt, firePnt.position, firePnt.rotation, ()=>{
+		      return true;
+		    });
 		  }
-		  else{
-		    firePnt = this.firePnts[1]; //firing left
-		  }
-//	    Debug.Log("doAttk : " + bAttk + " : "  + this);
-		  if(firePnt != null){
-		    firePnt.gameObject.SetActive(true);
-			if(this.eBlt != cLevel.e_Bllt.None){
-			  __gCONSTANT._LEVEL.Emit_Bullet(this.eBlt, firePnt.position, firePnt.rotation, ()=>{
-		        return true;
-		      });
-		    }
-		    if(this.eMit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-		      __gCONSTANT._LEVEL.Emit_Hit(eMit, firePnt.position, Quaternion.identity, ()=>{
-		        firePnt.gameObject.SetActive(false);
-		        return true;
-		      });
-	        }
-		  }
+		  if(this.eGun != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+		    __gCONSTANT._LEVEL.Emit_Hit(eGun, firePnt.position, Quaternion.identity, ()=>{
+		      firePnt.gameObject.SetActive(false);
+		      return true;
+		    });
+	      }
 		}
 	  }
       else{
@@ -300,18 +326,30 @@ namespace MTON.codeObjects{
 	private bool bpowr = false ;
     private bool bDpdX = true  ;
     private bool bDpdY = false ;
+	private Vector3 vDstOffSet = Vector3.up * 1.85f;
     public virtual void doPowr(bool bPowr){
 	  this.bpowr = bPowr;
 	  if(bPowr == true){
 	    StartCoroutine(WhileRapidFire());
 		this.bDpdX = false; //dPad x ignore
 		this.bDpdY = true ; //dPad y listen
+		if(this.bGround == true){
+		  fx_Dust();
+		}
 	  }
 	  else{
 		this.bDpdX = true  ; //dPad x listen
 		this.bDpdY = false ; //dPad x ignore
 	  }
-	} 
+	}
+
+	private void fx_Dust(){
+	  if(this.eDld != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+	    __gCONSTANT._LEVEL.Emit_Hit(eDld, this.transform.position + this.vDstOffSet, Quaternion.identity, ()=>{
+		  return true;
+		});
+	  }
+    }
 
     public IEnumerator WhileRapidFire(){
 	  while(this.bpowr == true){
@@ -334,6 +372,9 @@ namespace MTON.codeObjects{
 		tw.doCrouch(this.yScale);
 	  }
 	}
+    if(bDuck){
+	  fx_Dust();
+	}	
 	}
 
 	public float yRotOffset_3D = -50.0f;

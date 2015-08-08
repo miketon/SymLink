@@ -49,6 +49,8 @@ namespace MTON.Global{
 	//handles player one IO
 	public const string _hAxs_p1 = "Horizontal" ;
 	public const string _vAxs_p1 = "Vertical"   ;
+	public const string _hAim_p1 = "Horizontal" ;
+	public const string _vAim_p1 = "Vertical"   ;
     public const string _JUMP_p1 = "Jump"       ;
     public const string _ATTK_p1 = "Fire1"      ;
 

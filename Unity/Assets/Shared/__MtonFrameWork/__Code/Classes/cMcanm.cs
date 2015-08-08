@@ -24,7 +24,11 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	      anST = this.GetComponent<cAnimn>();
 	    }
 	    if(anST != null){
+		  //Vector3
           anST.OnMoveDelegate += OnMove;
+		  //Float
+		  anST.OnAimgDelegate += OnAimg;
+		  //Bool
 	      anST.OnGrndDelegate += OnGrnd;
           anST.OnDuckDelegate += OnDuck;
           anST.OnJumpDelegate += OnJump;
@@ -37,7 +41,11 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
     private void OnDisable(){
 	  if(anim != null){
 	    //animation state delegates
+		//Vector3
         anST.OnMoveDelegate -= OnMove;
+		//Float
+		anST.OnAimgDelegate -= OnAimg;
+		//Bool
 	    anST.OnGrndDelegate -= OnGrnd;
         anST.OnDuckDelegate -= OnDuck;
         anST.OnJumpDelegate -= OnJump;
@@ -50,6 +58,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 
     public string _kVertcl	;
     public string _kHorizn  ;
+    public string _kAiming  ;
     public string _bPlantd  ;
     public string _bGround	;
     public string _bCrouch	;
@@ -63,6 +72,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 
 	public int _kVertcl_ID { get; set; } //vertical   delta
     public int _kHorizn_ID { get; set; } //horizontal delta
+    public int _kAiming_ID { get; set; } //horizontal delta
     public int _bPlantd_ID { get; set; }
     public int _bGround_ID { get; set; }
     public int _bCrouch_ID { get; set; }
@@ -82,6 +92,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 //		Debug.Log ("Hashing : " + this);
 		_kVertcl_ID = Animator.StringToHash(this._kVertcl);
 		_kHorizn_ID = Animator.StringToHash(this._kHorizn);
+		_kAiming_ID = Animator.StringToHash(this._kAiming);
 		_bGround_ID = Animator.StringToHash(this._bGround);
 		_bPlantd_ID = Animator.StringToHash(this._bPlantd);
 		_bJump_ID   = Animator.StringToHash(this._bJump  );
@@ -104,14 +115,17 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	  }
 	}
 
-//	public float getvaluemton = 420.0f;
-//	public float getvalueiton = 420.0f;
-
 	public void OnMove(Vector3 moveDir){
 	  if(_kHorizn_ID != 0){
-        anim.SetFloat(_kHorizn_ID, Mathf.Abs (moveDir.x));
-//		this.getvaluemton = anim.GetFloat(_kHorizn_ID);
-//		this.getvalueiton = anim.GetFloat(0); // DAMN : returns 0.0f if it can't find property
+        anim.SetFloat(_kHorizn_ID, Mathf.Abs (moveDir.x)); // x move should be 0.0f to 1.0f
+	  }
+
+	}
+
+	public void OnAimg(float IN_AIM){
+	  if(_kAiming_ID != 0){
+	    anim.SetFloat(_kAiming_ID, IN_AIM);                // aiming can be -1.0f to 1.0f
+	    Debug.Log ("OnAimg : " + IN_AIM);
 	  }
 	}
 

@@ -90,6 +90,8 @@ namespace MTON.Class{
 	  HitMark_00, //moon
 	  BteMark_00, //bite mark
 	  GunFlar_00,
+	  DustLnd_00,
+	  DustJmp_00,
 	  ScoreCn_00,
 	  None,
 	}
@@ -168,6 +170,12 @@ namespace MTON.Class{
 	  }
 	  else if(eHit == fx_Hit.BteMark_00){
         Emit(this.fx_Hits[2], IN_POS, IN_ROT, funcToRun);
+	  }
+	  else if(eHit == fx_Hit.DustJmp_00){
+        Emit(this.fx_Hits[3], IN_POS, IN_ROT, funcToRun);
+	  }
+	  else if(eHit == fx_Hit.DustLnd_00){
+        Emit(this.fx_Hits[4], IN_POS, IN_ROT, funcToRun);
 	  }
 
 	}
