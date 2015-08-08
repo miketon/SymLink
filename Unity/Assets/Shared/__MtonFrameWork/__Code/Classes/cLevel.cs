@@ -86,12 +86,13 @@ namespace MTON.Class{
     }
 
     public float[] fx_Hit_OffSet; // To place effect at feet = particle size(radius)
-    public enum fx_Hit{ //Must be particle system
-      HitMark_00,       //moon
-      BteMark_00,       //bite mark
+    public enum fx_Hit{ // Must be particle system
+      HitMark_00,       // moon
+      BteMark_00,       // bite mark
       GunFlar_00,
-      DustLnd_00,
-      DustJmp_00,
+      DustLnd_00,       // Dust Land
+      DustJmp_00,       // Dust Jump
+      DustStp_00,       // Dust step
       ScoreCn_00,
       None,
     }
@@ -156,6 +157,7 @@ namespace MTON.Class{
       }
     }
 
+	private int iDustStep = 0;
     //fx
     public void Emit_Hit<T>(fx_Hit eHit, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
 
@@ -169,10 +171,15 @@ namespace MTON.Class{
         Emit(this.fx_Hits[2], IN_POS, IN_ROT, funcToRun);
       }
       else if(eHit == fx_Hit.DustJmp_00){
-        Emit(this.fx_Hits[3], IN_POS + (Vector3.up * this.fx_Hit_OffSet[3]) , IN_ROT, funcToRun);
+        Emit(this.fx_Hits[3], IN_POS + (Vector3.up * this.fx_Hit_OffSet[3] * 0.85f) , IN_ROT, funcToRun);
       }
       else if(eHit == fx_Hit.DustLnd_00){
-        Emit(this.fx_Hits[4], IN_POS + (Vector3.up * this.fx_Hit_OffSet[4]) , IN_ROT, funcToRun);
+        Emit(this.fx_Hits[4], IN_POS + (Vector3.up * this.fx_Hit_OffSet[4] * 0.85f) , IN_ROT, funcToRun);
+      }
+	  else if(eHit == fx_Hit.DustStp_00){ // Dust step alternates : HACK : Index + 1
+		int iAltStep = this.iDustStep%2 ;  // alternate between dust steps
+        Emit(this.fx_Hits[5 + iAltStep], IN_POS + (Vector3.up * this.fx_Hit_OffSet[5 + iAltStep] * 0.25f) , IN_ROT, funcToRun);
+		this.iDustStep = this.iDustStep + 1;
       }
 
     }
@@ -180,11 +187,12 @@ namespace MTON.Class{
     public void Emit<T>(ParticleSystem IN_PS, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
       Transform pXform  = IN_PS.transform.lpSpawn(IN_POS, IN_ROT) ; //Get Transform from pool using Liteprint
       GameObject gXform = pXform.gameObject                       ;
+	  Debug.Log ("EMITTING : "+ pXform);
       gXform.SetActive(true)                                      ;
-	  IN_PS.Clear()                                               ; //true == include children
 	  IN_PS.Play()                                                ;
       this.tt().ttAdd(IN_PS.duration, ()=>{
 		  IN_PS.Stop()            ;
+	      IN_PS.Clear()           ; //true == include children
           pXform.lpRecycle()      ; //Return to pool
           funcToRun()             ;
           gXform.SetActive(false) ;
@@ -245,7 +253,10 @@ namespace MTON.Class{
 
         this.fx_Hit_OffSet = new float[this.fx_Hits.Length];
         for(int i=0; i<this.fx_Hit_OffSet.Length; i++){
-          this.fx_Hit_OffSet[i] = this.fx_Hits[i].startSize * 0.5f * 0.85f; // Convert to radius and Offset a bit
+          this.fx_Hit_OffSet[i] = this.fx_Hits[i].startSize * 0.5f; // Convert to radius
+//		  if(this.fx_Hit_OffSet[i] >= 1.0f){
+//		    this.fx_Hit_OffSet[i] *= 0.85f ;                        // HEURISTIC: Offset a bit
+//		  }
         }
 
       }

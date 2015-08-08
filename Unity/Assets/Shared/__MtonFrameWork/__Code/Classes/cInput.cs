@@ -39,7 +39,7 @@ namespace MTON.Class{
     }
 
 	public virtual void doDPAD_Aim(Vector3 vDir){
-	  Debug.Log("doDPAD_Dir Aim!" + vDir);
+//	  Debug.Log("doDPAD_Dir Aim!" + vDir);
 	  if(OnDPAD_AIM_Delegate != null){
 	    OnDPAD_AIM_Delegate(vDir);
 	  }

@@ -144,11 +144,9 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	}
 
     public void OnAttk(bool bAttk){
-	  Debug.Log ("MECANIM : OnAttk " + bAttk);
 	  if(_bAttk_ID != 0){
 		if(bAttk == true){ //need to check for trigger; else double tap effect
 	      anim.SetTrigger(_bAttk_ID);
-	      Debug.Log ("MECANIM : OnAttk Triggered " + bAttk);
 		}
 	  }
 	}
