@@ -261,11 +261,7 @@ namespace MTON.codeObjects{
         if(bGround){    
           rb.Jump()                     ;
 		  an.jumpST = cAnimn.eStateB.DN ;
-		  if(this.eDjm != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-			__gCONSTANT._LEVEL.Emit_Hit(eDjm, this.transform.position + (Vector3.up * 0.9f), Quaternion.identity, ()=>{
-		      return true;
-		    });
-	      }
+		  fx_Dust(this.eDjm);
         }
         else{
           rb.Flap()                     ; //flap when not on ground
@@ -334,7 +330,7 @@ namespace MTON.codeObjects{
 		this.bDpdX = false; //dPad x ignore
 		this.bDpdY = true ; //dPad y listen
 		if(this.bGround == true){
-		  fx_Dust();
+		  fx_Dust(this.eDld);
 		}
 	  }
 	  else{
@@ -343,9 +339,9 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	private void fx_Dust(){
-	  if(this.eDld != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-	    __gCONSTANT._LEVEL.Emit_Hit(eDld, this.transform.position + this.vDstOffSet, Quaternion.identity, ()=>{
+	private void fx_Dust(cLevel.fx_Hit IN_FX){
+	  if(IN_FX != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+		  __gCONSTANT._LEVEL.Emit_Hit(IN_FX, this.transform.position, Quaternion.identity, ()=>{
 		  return true;
 		});
 	  }
@@ -373,7 +369,7 @@ namespace MTON.codeObjects{
 	  }
 	}
     if(bDuck){
-	  fx_Dust();
+	  fx_Dust(this.eDld);
 	}	
 	}
 
