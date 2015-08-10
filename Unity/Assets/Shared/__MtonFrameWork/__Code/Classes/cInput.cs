@@ -9,7 +9,7 @@ namespace MTON.Class{
 
 	public delegate void OnDPAD(Vector3 vDir) ; //set up delegate
     public OnDPAD OnDPAD_DIR_Delegate         ; //delegate instance
-	public OnDPAD OnDPAD_AIMDelegate          ; //delegate instance
+    public OnDPAD OnDPAD_AIM_Delegate         ; //delegate instance
 	
     public delegate void OnBTTN(bool bPrss) ; //set up delegate
     public OnBTTN OnJumpDelegate            ; //delegate instance
@@ -37,8 +37,12 @@ namespace MTON.Class{
 	    OnDPAD_DIR_Delegate(vDir);
 	  }
     }
+
 	public virtual void doDPAD_Aim(Vector3 vDir){
-	  Debug.Log("doDPAD_Dir Aim!" + vDir);
+//	  Debug.Log("doDPAD_Dir Aim!" + vDir);
+	  if(OnDPAD_AIM_Delegate != null){
+	    OnDPAD_AIM_Delegate(vDir);
+	  }
     }
 
 	public virtual void doJump(bool bJump){
@@ -128,14 +132,25 @@ namespace MTON.Class{
     public virtual void Update(){
 
       if(bInput == true){
+		// input move
 		float hAxis = Input.GetAxisRaw(__gIO._hAxs_p1);
 		float vAxis = Input.GetAxisRaw(__gIO._vAxs_p1); //get raw for vAxis == instant crouch/duck; else it will be interpolated
-		if(new Vector2(hAxis, vAxis).magnitude > 0.01f){
-			Vector3 moveDir = new Vector3(hAxis, vAxis, 0.0f);
-			doDPAD_Dir(moveDir);
+
+	    Vector3 moveDir = new Vector3(hAxis, vAxis, 0.0f);
+		if(moveDir.magnitude > 0.01f){
+		  doDPAD_Dir(moveDir);
 		}
 		else{
-			doDPAD_Dir(Vector3.zero);
+		  doDPAD_Dir(Vector3.zero);
+		}
+		
+		// input aim
+		float hAimd = Input.GetAxis(__gIO._hAim_p1);
+		float vAimd = Input.GetAxis(__gIO._vAim_p1); 
+
+	    Vector3 aimdDir = new Vector3(hAimd, vAimd, 0.0f);
+		if(aimdDir.magnitude > 0.01f){
+			doDPAD_Aim(aimdDir);
 		}
 
         //check jump
