@@ -141,15 +141,6 @@ namespace MTON.codeObjects{
         this.yScale = this.dispXFORM.localScale.y;
         this.sclX = this.dispXFORM.localScale.x;
 
-        fPoint = new GameObject(this.name + "_FIRINGPOINT_MTON").transform;
-        fPoint.parent = this.transform;
-        fPoint.rotation = Quaternion.Euler(this.transform.forward);
-
-        oPoint = new GameObject(this.name + "_ORIGINPOINT_MTON").transform;
-        oPoint.parent = this.transform;
-
-        //	  oPoint.position = rb.cen;
-
       }
 
       public virtual void Start(){
@@ -243,7 +234,6 @@ namespace MTON.codeObjects{
         }
         //duck/crouch state
         if(Mathf.Abs(moveDir.y) > 0.001f){
-          Debug.Log ("OPLAYER yAXIS : " + moveDir.y);
           float vertDir = Mathf.Sign(moveDir.y); //y == vAxis  ; Sign return -1.0f or 1.0f
           if(this.bDpdX == true){ // if not on lockdown, then ok to duck
             if(vertDir < 0.0f){
@@ -278,44 +268,22 @@ namespace MTON.codeObjects{
         }
       }
 
-      private Transform oPoint;
-      private Transform fPoint;
-
-	  public Transform angleBase;
-	  public Transform angleEnd;
-
-	  private void returnAngle(){
-	    float retAngle;
-		retAngle = Vector3.Angle(angleBase.position, angleEnd.position);
-		Debug.Log("Angle : " + retAngle);
-	  }
-
-	  public Transform tempRotateObject;
-
       public virtual void doAttk(bool bAttk){
         if(bAttk){
           if(this.firePnts.Length > 0){
-			this.returnAngle();
-            an.attkST         = cAnimn.eStateB.DN ;
-            Transform firePnt = firePnts[0]       ; //facing right
-			Quaternion fireRot = firePnt.rotation ;
-			float fDir = 1.0f;
-			if(this.bFaceRt == false){
-//			  fireRot = Quaternion.Euler(firePnt.transform.right * 270.0f);
-//			  fDir = -1.0f;
-//			  firePnt = firePnts[1];
-//			  fireRot = Quaternion.Euler(-firePnt.transform.forward);
-			  Vector3 vRot = firePnt.rotation.eulerAngles;
-			  vRot = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z);
-//			  fireRot = firePnt.rotation;
-			  fireRot = Quaternion.Euler(vRot);
+            an.attkST          = cAnimn.eStateB.DN ;
+            Transform firePnt  = firePnts[0]       ; //facing right
+			Quaternion fireRot = firePnt.rotation  ;
+			if(this.bFaceRt == false){                                      //Brute force guessing; Understanding of matrix not high enough
+			  Vector3 vRot = firePnt.rotation.eulerAngles                 ;
+			  vRot         = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z) ; //MAGIC NUMBER : Why y = 180.0f ??? Likely related to parent -x scale
+			  fireRot      = Quaternion.Euler(vRot)                       ;
 			}
-			this.tempRotateObject.rotation = fireRot;
             firePnt.gameObject.SetActive(true)    ;
             if(this.eBlt != cLevel.e_Bllt.None){
 				  __gCONSTANT._LEVEL.Emit_Bullet(this.eBlt, firePnt.position, fireRot, ()=>{
                   return true ;
-			  }, fDir)        ;
+			  })              ;
             }
             if(this.eGun != cLevel.fx_Hit.None){ // set to -1 to prevent emission
               __gCONSTANT._LEVEL.Emit_Hit(eGun, firePnt.position, Quaternion.identity, ()=>{
@@ -326,7 +294,6 @@ namespace MTON.codeObjects{
           }
         }
         else{
-          //	    Debug.Log("doAttk : " + bAttk + " : "  + this);
           an.attkST = cAnimn.eStateB.UP;
         }
       }
@@ -347,6 +314,7 @@ namespace MTON.codeObjects{
       private bool bpowr         = false              ;
       private bool bDpdX         = true               ;
       private bool bDpdY         = false              ;
+
       private Vector3 vDstOffSet = Vector3.up * 1.85f ;
       public virtual void doPowr(bool bPowr){
         this.bpowr = bPowr;
@@ -390,7 +358,7 @@ namespace MTON.codeObjects{
 		  }
           yield return null;
         }
-		Debug.Log ("NO MORE RAPID FIRE");
+//		Debug.Log ("NO MORE RAPID FIRE"); //Only called once after while loop is complete
         an.doAimg(0.0f)                 ; //reset gun to face forward
       }
 

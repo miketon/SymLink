@@ -187,7 +187,7 @@ namespace MTON.Class{
     public void Emit<T>(ParticleSystem IN_PS, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
       Transform pXform  = IN_PS.transform.lpSpawn(IN_POS, IN_ROT) ; //Get Transform from pool using Liteprint
       GameObject gXform = pXform.gameObject                       ;
-	  Debug.Log ("EMITTING : "+ pXform);
+//	  Debug.Log ("EMITTING : "+ pXform);
       gXform.SetActive(true)                                      ;
 	  IN_PS.Play()                                                ;
       this.tt().ttAdd(IN_PS.duration, ()=>{
@@ -199,19 +199,15 @@ namespace MTON.Class{
           })                      ; //using TeaTime.cs
     }
 
-	public void Emit_Bullet<T>(e_Bllt eBullet, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun,  float dirForce = 1.0f){
+	public void Emit_Bullet<T>(e_Bllt eBullet, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
       if(eBullet == e_Bllt.Projctl_00){
-        Emit_Bullet(this.e_Bllts[0], IN_POS, IN_ROT, funcToRun, dirForce);
+        Emit_Bullet(this.e_Bllts[0], IN_POS, IN_ROT, funcToRun);
       }
     }
 
-    public void Emit_Bullet<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun,  float dirForce = 1.0f){
+    public void Emit_Bullet<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
       Transform pXform = IN_XFORM.lpSpawn(IN_POS, IN_ROT); //Get Transform from pool using Liteprint
       GameObject gXform = pXform.gameObject;
-	  cEmit_Bullet cBullet = pXform.GetComponent<cEmit_Bullet>();
-	  if(cBullet != null){
-	    cBullet.fDir = dirForce;
-	  }
       gXform.SetActive(true);
       this.tt().ttAdd(3.0f, ()=>{
           pXform.lpRecycle()      ; //Return to pool
@@ -235,8 +231,8 @@ namespace MTON.Class{
 
     public virtual void Awake(){
       if(__gCONSTANT._LEVEL == null){
-        Debug.LogError("CONSTANT LEVEL == null : populating with " + this) ;
-        new __gCONSTANT(this)                                              ;
+        Debug.LogWarning("CONSTANT LEVEL == null : populating with " + this) ;
+        new __gCONSTANT(this)                                                ;
 
         // Init Sound Player
         if(this.sndPlyr == null){
