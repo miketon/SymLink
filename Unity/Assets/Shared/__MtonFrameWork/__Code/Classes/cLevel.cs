@@ -199,15 +199,19 @@ namespace MTON.Class{
           })                      ; //using TeaTime.cs
     }
 
-    public void Emit_Bullet<T>(e_Bllt eBullet, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	public void Emit_Bullet<T>(e_Bllt eBullet, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun,  float dirForce = 1.0f){
       if(eBullet == e_Bllt.Projctl_00){
-        Emit_Bullet(this.e_Bllts[0], IN_POS, IN_ROT, funcToRun);
+        Emit_Bullet(this.e_Bllts[0], IN_POS, IN_ROT, funcToRun, dirForce);
       }
     }
 
-    public void Emit_Bullet<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+    public void Emit_Bullet<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun,  float dirForce = 1.0f){
       Transform pXform = IN_XFORM.lpSpawn(IN_POS, IN_ROT); //Get Transform from pool using Liteprint
       GameObject gXform = pXform.gameObject;
+	  cEmit_Bullet cBullet = pXform.GetComponent<cEmit_Bullet>();
+	  if(cBullet != null){
+	    cBullet.fDir = dirForce;
+	  }
       gXform.SetActive(true);
       this.tt().ttAdd(3.0f, ()=>{
           pXform.lpRecycle()      ; //Return to pool

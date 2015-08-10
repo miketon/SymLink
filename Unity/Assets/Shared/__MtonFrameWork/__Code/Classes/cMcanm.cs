@@ -125,7 +125,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	public void OnAimg(float IN_AIM){
 	  if(_kAiming_ID != 0){
 	    anim.SetFloat(_kAiming_ID, IN_AIM);                // aiming can be -1.0f to 1.0f
-	    Debug.Log ("OnAimg : " + IN_AIM);
+//	    Debug.Log ("OnAimg : " + IN_AIM);
 	  }
 	}
 
