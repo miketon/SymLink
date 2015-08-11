@@ -311,12 +311,13 @@ namespace MTON.Class{
 		  float retDuration = 1.0f;
 		  for(int j=0; j<ac.animationClips.Length; j++){   //For all animations
 //			Debug.Log ("ANIMATORCLIP LENGTH : " + ac.animationClips.Length + " j: " + j + " NAME: " + ac.animationClips[j].name);
-			if(ac.animationClips[j].name == "an_Dust_Run"){
-			  retDuration = ac.animationClips[j].length * 1.85f;
+			if(ac.animationClips[j].name == this.anmEmit[i].name){ // HACK : Prefab Name MUST match clip name
+			  retDuration = ac.animationClips[j].length * 1.85f; // HACK : Magic numbering; need to find a way to get speed at clip level
 //			  Debug.Log ("Found IDLE : " + retDuration + " : " + this);
 			}
 		  }
 		  this.anmEmit_duratn[i] = retDuration;
+//		  Debug.Log ("CURRENT STATE: " + this.anmEmit[i].GetCurrentAnimatorClipInfo(0).ToString() +" Length : " + this.anmEmit[i].GetCurrentAnimatorStateInfo(0).length);
 		}
 
       }
