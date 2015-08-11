@@ -51,6 +51,12 @@ namespace MTON.codeObjects{
 	  }
 	}
 
+    public override void doFace(Vector3 vFace){ 
+	  base.doFace(vFace);
+	  float randomDur = UnityEngine.Random.Range(0.5f, 3.5f);
+	  ai_REST(this.fIntel * randomDur);
+	}
+
 	public virtual void AI_Actv(bool bActive){
 	  if(bActive){
 	    rendr.material.color = cAwre;
@@ -62,9 +68,13 @@ namespace MTON.codeObjects{
 
 	public float fRngAlert = 4.0f;
 	public float fRngAttck = 2.0f;
+	public bool  bIntel = true ; //at rest doesn't actively function
+	public float fIntel = 1.0f ; //How fast can AI switch between rest/active
 	
 	private void Update(){
-	  this.doAI_Intel();
+	  if(this.bIntel){     //if intelligence active : do AI
+	    this.doAI_Intel();
+	  }
 	}
 
 	public float stopRadMult = 3.0f;
@@ -75,11 +85,11 @@ namespace MTON.codeObjects{
 //		  Vector3 centerOffset = new Vector3(0.0f, rb.cHeight * 0.5f, 0.0f);
 //		  Debug.DrawLine(this.xform.position + centerOffset, this.player.position + centerOffset, Color.yellow);
 		  AI_Actv(true);
-	      io.bInput = true;
+//	      io.bInput = true;
 		}
 		else{
 		  AI_Actv(false);
-	      io.bInput = false;
+//	      io.bInput = false;
 		}
 	    return true;
       });
@@ -135,11 +145,20 @@ namespace MTON.codeObjects{
 	public cLevel.fx_Hit eBit;
 
 	private void ai_BITE(Vector3 IN_POS){
+	  ai_REST(this.fIntel);
 	  if(this.eBit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
 	    __gCONSTANT._LEVEL.Emit_pFX(eBit, IN_POS, Quaternion.identity, ()=>{
+		
           return true;
 	    });
 	  }
+	}
+
+	private void ai_REST(float IN_DUR){
+	  this.bIntel = false;
+	  this.tt().ttAdd(IN_DUR, ()=>{
+	    this.bIntel = true;
+	  });
 	}
 
 	public GameObject doRayDir(Vector3 IN_POS, Vector3 IN_DIR){
