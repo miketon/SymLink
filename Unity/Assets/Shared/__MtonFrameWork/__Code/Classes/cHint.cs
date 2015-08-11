@@ -51,7 +51,7 @@ namespace MTON.Class{
 	  }
 	  // collision fx
 	  if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-	    __gCONSTANT._LEVEL.Emit_Hit(eHit, this.xform.position, Quaternion.identity, ()=>{
+	    __gCONSTANT._LEVEL.Emit_pFX(eHit, this.xform.position, Quaternion.identity, ()=>{
 		  return true;
 		});
 	  }

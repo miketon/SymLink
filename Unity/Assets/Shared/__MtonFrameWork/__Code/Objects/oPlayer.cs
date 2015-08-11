@@ -23,7 +23,7 @@ namespace MTON.codeObjects{
 
       public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
       public cLevel.fx_Hit  eGun ; // enum for GunFlare particle system to emit
-      public cLevel.fx_Hit  eDst ; // enum for Dust Step particle system to emit
+	  public cLevel.e_Anim  eDst ; // enum for Dust Step particle system to emit
       public cLevel.fx_Hit  eDjm ; // enum for Dust Jump particle system to emit
       public cLevel.fx_Hit  eDld ; // enum for Dust Land particle system to emit
 
@@ -286,7 +286,7 @@ namespace MTON.codeObjects{
 			  })              ;
             }
             if(this.eGun != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-              __gCONSTANT._LEVEL.Emit_Hit(eGun, firePnt.position, Quaternion.identity, ()=>{
+              __gCONSTANT._LEVEL.Emit_pFX(eGun, firePnt.position, Quaternion.identity, ()=>{
                   firePnt.gameObject.SetActive(false) ;
                   return true                         ;
                   })                                  ;
@@ -333,15 +333,25 @@ namespace MTON.codeObjects{
         }
       }
 
-      private void fx_Dust(cLevel.fx_Hit IN_FX){
+      private void fx_Dust(cLevel.fx_Hit IN_FX, bool bFLIP_2D = false){
         if(IN_FX != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-		  Quaternion fxRot = Quaternion.identity;
-		  if(this.bFaceRt == false){
-		    fxRot = Quaternion.Euler(-Vector3.right);
-		  }
-          __gCONSTANT._LEVEL.Emit_Hit(IN_FX, this.transform.position, fxRot, ()=>{
+          __gCONSTANT._LEVEL.Emit_pFX(IN_FX, this.transform.position, Quaternion.identity, ()=>{
               return true ;
-              })          ;
+              }, bFLIP_2D) ;
+        }
+      }
+
+	  private void fx_Dust(cLevel.e_Anim IN_FX, bool bFLIP_2D = false){
+		Quaternion qRot = Quaternion.identity;
+		if(bFLIP_2D == true){
+		  if(this.bFaceRt == false){
+		    qRot = Quaternion.Euler(Vector3.up); // HACK : Passing anything other than identity signals negative scale
+		  }
+		}
+        if(IN_FX != cLevel.e_Anim.None){ // set to -1 to prevent emission
+		  __gCONSTANT._LEVEL.Emit_ANM(IN_FX, this.transform.position, qRot, ()=>{
+              return true ;
+              }, bFLIP_2D) ;
         }
       }
 
@@ -426,7 +436,7 @@ namespace MTON.codeObjects{
 
         public virtual void doFoot(bool bFoot){
 		  if(bFoot == true){
-		    this.fx_Dust(this.eDst);
+		    this.fx_Dust(this.eDst, true);
 		  }
 		}
 

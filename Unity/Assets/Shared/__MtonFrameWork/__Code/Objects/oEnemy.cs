@@ -136,7 +136,7 @@ namespace MTON.codeObjects{
 
 	private void ai_BITE(Vector3 IN_POS){
 	  if(this.eBit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-	    __gCONSTANT._LEVEL.Emit_Hit(eBit, IN_POS, Quaternion.identity, ()=>{
+	    __gCONSTANT._LEVEL.Emit_pFX(eBit, IN_POS, Quaternion.identity, ()=>{
           return true;
 	    });
 	  }
@@ -181,7 +181,7 @@ namespace MTON.codeObjects{
 //	    oDamage.onHitd(-this.damag);
 //	  }
 //	  if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-//	      __gCONSTANT._LEVEL.Emit_Hit(eHit, this.transform.position, Quaternion.identity, ()=>{
+//	      __gCONSTANT._LEVEL.Emit_pFX(eHit, this.transform.position, Quaternion.identity, ()=>{
 //          return true;
 //	    });
 //	  }
