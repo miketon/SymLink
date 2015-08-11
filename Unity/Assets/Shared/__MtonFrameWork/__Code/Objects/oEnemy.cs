@@ -137,6 +137,7 @@ namespace MTON.codeObjects{
 		  pHit.doJump(true);
 		  Debug.Log ("Attacking : " + pHit);
 		  ai_BITE(oHit.transform.position);
+          this.an.attkST = cAnimn.eStateB.DN;
 		}
 	  }
 	  return false;

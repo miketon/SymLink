@@ -98,7 +98,7 @@ namespace MTON.codeObjects{
       protected cInput              io       ; //protected; can be replaced with ai; vs. input controller
       protected cRbody              rb       ; //protected; to access collider volume info
 
-      private cAnimn    an    ;
+      protected cAnimn  an    ;
       private cEquip    eq    ;
       private cHealth   ht    ;
       private cTween    tw    ;
