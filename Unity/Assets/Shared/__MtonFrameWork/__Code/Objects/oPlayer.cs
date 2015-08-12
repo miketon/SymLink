@@ -23,9 +23,10 @@ namespace MTON.codeObjects{
 
       public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
       public cLevel.fx_Hit  eGun ; // enum for GunFlare particle system to emit
-	  public cLevel.e_Anim  eDst ; // enum for Dust Step particle system to emit
-      public cLevel.e_Anim  eDjm ; // enum for Dust Jump particle system to emit
-      public cLevel.fx_Hit  eDld ; // enum for Dust Land particle system to emit
+	  public cLevel.e_Anim  eDst ; // enum for Dust Step  Animator Object to play
+	  public cLevel.e_Anim  eDjm ; // enum for Dust Jump  Animator Object to play
+	  public cLevel.e_Anim  eDld ; // enum for Dust Land  Animator Object to play
+	  public cLevel.e_Anim  eDsl ; // enum for Dust Slide Animator Object to play
 
       public  bool    bGround = false        ;
       public  bool    bFaceRt = true         ; // facing Right
@@ -57,7 +58,8 @@ namespace MTON.codeObjects{
         an.OnDuckDelegate      += doCrouch;
         an.OnFaceDelegate      += doFace;
         an.OnRiseDelegate      += doRise;
-        an.OnIdleDelegate      += doIdle;
+        an.OnIdlVDelegate      += doIdlV;
+        an.OnIdlHDelegate      += doIdlH;
         an.OnFootDelegate      += doFoot;
       }
 
@@ -83,7 +85,8 @@ namespace MTON.codeObjects{
         an.OnDuckDelegate      -= doCrouch;
         an.OnFaceDelegate      -= doFace;
         an.OnRiseDelegate      -= doRise;
-        an.OnIdleDelegate      -= doIdle;
+        an.OnIdlVDelegate      -= doIdlV;
+        an.OnIdlHDelegate      -= doIdlH;
         an.OnFootDelegate      -= doFoot;
       }
 
@@ -112,12 +115,6 @@ namespace MTON.codeObjects{
       private LayerMask layerGround;
 
       public virtual void Awake(){
-
-
-
-        if(this.b_2D == true){
-          //	    this.yRotOffset_3D = 180.0f; //No offset if character is 2D
-        }
 
         rendr = this.dispXFORM.GetComponent<Renderer>();
         //      cColr = rendr.material.color;
@@ -323,7 +320,7 @@ namespace MTON.codeObjects{
           this.bDpdX = false; //dPad x ignore
           this.bDpdY = true ; //dPad y listen
           if(this.bGround == true){
-            fx_Dust(this.eDld);
+            fx_Dust(this.eDld, true);
           }
         }
         else{
@@ -382,7 +379,7 @@ namespace MTON.codeObjects{
           }
         }
         if(bDuck){
-          fx_Dust(this.eDld);
+          fx_Dust(this.eDld, true);
         }	
       }
 
@@ -411,7 +408,7 @@ namespace MTON.codeObjects{
           }
         }
         else{
-          if(b_2D != true){ //Not 2D; play with rotation offset
+          if(b_2D == false){ //Not 2D; play with rotation offset
             if(this.bFaceRt == true){
               tw.doRotateTo(new Vector3(0.0f, yRotOffset_3D * 0.65f, 0.0f));
             }
@@ -424,13 +421,20 @@ namespace MTON.codeObjects{
 
         public virtual void doFall()  {}
 
-        public virtual void doIdle(bool bIdle){
-          if(bIdle == true){
-            //		this.cControl.height = this.initHgt;
-            this.dispXFORM.gameObject.SetActive(true);
+        public virtual void doIdlV(bool bIdlV){
+          if(bIdlV == true){
             if(this.riseXFORM != null){
-              this.riseXFORM.gameObject.SetActive(false);
+              this.dispXFORM.gameObject.SetActive(true)  ; //Sudden landing visual swap out
+              this.riseXFORM.gameObject.SetActive(false) ;
             }
+          }
+        }
+
+	    public virtual void doIdlH(bool bIdlH){
+          if(bIdlH == true){
+			if(this.bGround){ // If onGround, kick up dust
+		      this.fx_Dust(this.eDsl, true);
+			}
           }
         }
 
@@ -475,7 +479,7 @@ namespace MTON.codeObjects{
           this.bGround = IN_GROUND;
           if(IN_GROUND == true){
             an.grndST = cAnimn.eStateB.DN;
-			this.fx_Dust(eDld);
+			this.fx_Dust(eDld, true);
           }
           if(IN_GROUND == false){
             an.grndST = cAnimn.eStateB.UP;

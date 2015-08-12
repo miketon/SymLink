@@ -24,6 +24,7 @@ namespace MTON.Class{
         public DL_fVal OnAimgDelegate              ; // Aiming
 
 		// hState
+		public DL_Anim OnIdlHDelegate            ; // Idle
 		public DL_Anim OnWalkDelegate            ; // Dash
 		public DL_Anim OnFootDelegate            ; // Foot Step
 		public DL_Anim OnDashDelegate            ; // Dash
@@ -32,7 +33,7 @@ namespace MTON.Class{
 		// vState
         public DL_Anim OnGrndDelegate            ; // OnGround
         public DL_Anim OnCeilDelegate            ; // OnCeiling
-        public DL_Anim OnIdleDelegate            ; // Idle
+        public DL_Anim OnIdlVDelegate            ; // Idle
         public DL_Anim OnRiseDelegate            ; // Rise
         public DL_Anim OnApexDelegate            ; // Apex
         public DL_Anim OnFallDelegate            ; // Fall
@@ -117,7 +118,7 @@ namespace MTON.Class{
 				if(value != vstate){
 					vstate = value ;
 					if(value == eStateV.Idle){
-						this.doIdle(true);
+						this.doIdlV(true);
 					}
 					else if(value == eStateV.Fall || value == eStateV.Apex){
 						this.doRise(false);
@@ -153,7 +154,10 @@ namespace MTON.Class{
 				  if(value != hstate){ //check for others only on change
 					hstate = value ;
 				    doMove(Vector3.zero);
-					if(value == eStateH.Plnt){
+				    if(value == eStateH.Idle){
+					  this.doIdlH(true);
+					}
+					else if(value == eStateH.Plnt){
 					  if(this.grndST == eStateB.DN){ //onGround is true
 					    doPlnt(true);                //Planted == yes
 					  }
@@ -392,9 +396,15 @@ namespace MTON.Class{
 		  }
 		}
 
-		private void doIdle(bool bIdle){
-		  if(this.OnIdleDelegate != null){
-		    this.OnIdleDelegate(bIdle);
+		private void doIdlV(bool bIdlV){
+		  if(this.OnIdlVDelegate != null){
+		    this.OnIdlVDelegate(bIdlV);
+		  }
+		} 
+
+		private void doIdlH(bool bIdlH){
+		  if(this.OnIdlHDelegate != null){
+		    this.OnIdlHDelegate(bIdlH);
 		  }
 		} 
 

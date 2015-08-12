@@ -106,6 +106,7 @@ namespace MTON.Class{
       DustStp_00,       // Dust step
       DustJmp_00,       // Dust Jump
       DustLnd_00,       // Dust Land
+      DustSld_00,       // Dust Slide
       BteMark_00,       // bite mark
       ScoreCn_00,
       None,
@@ -204,10 +205,16 @@ namespace MTON.Class{
 	  if(eAnm == e_Anim.DustStp_00){
 		int iAltStep = this.iDustStep%2 ;  // alternate between dust steps
 	    this.iDustStep++;
-	    Emit(this.anmEmit[0], IN_POS, IN_ROT, this.anmEmit_duratn[0], funcToRun, this.anmEmit_IntScl[0], true);
+		Emit(this.anmEmit[2 + iAltStep], IN_POS, IN_ROT, this.anmEmit_duratn[2 + iAltStep], funcToRun, this.anmEmit_IntScl[2 + iAltStep], true);
 	  }
 	  else if(eAnm == e_Anim.DustJmp_00){
+	    Emit(this.anmEmit[0], IN_POS, IN_ROT, this.anmEmit_duratn[0], funcToRun, this.anmEmit_IntScl[0], true);
+	  }
+	  else if(eAnm == e_Anim.DustLnd_00){
 	    Emit(this.anmEmit[1], IN_POS, IN_ROT, this.anmEmit_duratn[1], funcToRun, this.anmEmit_IntScl[1], true);
+	  }
+	  else if(eAnm == e_Anim.DustSld_00){
+	    Emit(this.anmEmit[4], IN_POS, IN_ROT, this.anmEmit_duratn[4], funcToRun, this.anmEmit_IntScl[4], true);
 	  }
 	}
 
@@ -315,7 +322,7 @@ namespace MTON.Class{
 		  for(int j=0; j<ac.animationClips.Length; j++){   //For all animations
 //			Debug.Log ("ANIMATORCLIP LENGTH : " + ac.animationClips.Length + " j: " + j + " NAME: " + ac.animationClips[j].name);
 			if(ac.animationClips[j].name == this.anmEmit[i].name){ // HACK  : PREFAB NAME MUST MATHC CLIP NAME
-			  retDuration = ac.animationClips[j].length;           // HACK  : Magic numbering; need to find a way to get speed at clip level
+			  retDuration = ac.animationClips[j].length * 0.8f;   // HACK  : Magic numbering; need to find a way to get speed at clip level
 							                                       // FIXED : Use Animation.Samples Not State.Speed
 							                                       // FIXED : Set Animation.LoopTime = false, to prevent frame bleed over
 							                                       // FIXED : Do not set State.Mirror = true, else playback rate becomes choppy
