@@ -96,6 +96,7 @@ namespace MTON.Class{
 		}
 
 		public enum eStateB{ // useful for onGround/Crouch/Footstep
+			Idle,
 			UP  , //down
 			DN  , //up
 			HL  , //hold
@@ -139,6 +140,7 @@ namespace MTON.Class{
 			}
 			set{ // NOTE: INTERESTING !!!
 				if(value == eStateH.Walk){ //continously check for walk
+				  doPlnt(false);                 //Planted == no
 				  hstate = value ;
 				  if(fState == eStateF.Rght){
 				    doMove(Vector3.right);
@@ -225,6 +227,14 @@ namespace MTON.Class{
 		}
 
 #endregion
+
+		public void reset_STATES(){
+
+		  this.vState = eStateV.Idle;
+		  this.hState = eStateH.Idle;
+		  this.fState = eStateF.Idle;
+
+		}
 
 #region Enum Define : Button/Bool
 		// STATE : Jump
@@ -444,6 +454,9 @@ namespace MTON.Class{
 		private void doPowr(bool bPowr){
 		  if(this.OnPowrDelegate != null){
 		    this.OnPowrDelegate(bPowr);
+//			if(bPowr == false){
+//			  this.reset_STATES(); //prevents sliding animation
+//			}
 		  }
 		}
 

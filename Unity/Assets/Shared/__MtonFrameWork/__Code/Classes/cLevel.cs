@@ -186,9 +186,9 @@ namespace MTON.Class{
       else if(eHit == fx_Hit.BteMark_00){
         Emit(this.fx_Hits[2], IN_POS, IN_ROT, funcToRun);
       }
-      else if(eHit == fx_Hit.DustJmp_00){
-        Emit(this.fx_Hits[3], IN_POS + (Vector3.up * this.fx_Hit_OffSet[3] * 0.85f) , IN_ROT, funcToRun);
-      }
+//      else if(eHit == fx_Hit.DustJmp_00){
+//        Emit(this.fx_Hits[3], IN_POS + (Vector3.up * this.fx_Hit_OffSet[3] * 0.85f) , IN_ROT, funcToRun);
+//      }
       else if(eHit == fx_Hit.DustLnd_00){
         Emit(this.fx_Hits[4], IN_POS + (Vector3.up * this.fx_Hit_OffSet[4] * 0.85f) , IN_ROT, funcToRun);
       }
@@ -205,6 +205,9 @@ namespace MTON.Class{
 		int iAltStep = this.iDustStep%2 ;  // alternate between dust steps
 	    this.iDustStep++;
 	    Emit(this.anmEmit[0], IN_POS, IN_ROT, this.anmEmit_duratn[0], funcToRun, this.anmEmit_IntScl[0], true);
+	  }
+	  else if(eAnm == e_Anim.DustJmp_00){
+	    Emit(this.anmEmit[1], IN_POS, IN_ROT, this.anmEmit_duratn[1], funcToRun, this.anmEmit_IntScl[1], true);
 	  }
 	}
 

@@ -24,7 +24,7 @@ namespace MTON.codeObjects{
       public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
       public cLevel.fx_Hit  eGun ; // enum for GunFlare particle system to emit
 	  public cLevel.e_Anim  eDst ; // enum for Dust Step particle system to emit
-      public cLevel.fx_Hit  eDjm ; // enum for Dust Jump particle system to emit
+      public cLevel.e_Anim  eDjm ; // enum for Dust Jump particle system to emit
       public cLevel.fx_Hit  eDld ; // enum for Dust Land particle system to emit
 
       public  bool    bGround = false        ;
@@ -256,7 +256,7 @@ namespace MTON.codeObjects{
           if(bGround){    
             rb.Jump()                     ;
             an.jumpST = cAnimn.eStateB.DN ;
-            fx_Dust(this.eDjm);
+            fx_Dust(this.eDjm, true);
           }
           else{
             rb.Flap()                     ; //flap when not on ground

@@ -84,7 +84,10 @@ namespace MTON.Class{
   // Trigger events will be sent to disabled MonoBehaviours, to allow enabling Behaviours in response to collisions.
   void OnTriggerEnter(Collider other) {
 //    Debug.Log("Triggering Enter : " + other.gameObject);
-	  OnHintEntr(other.GetComponentEX<cInput>());
+	  cInput cEntity = other.GetComponentEX<cInput>();
+	  if(cEntity != null){
+	    OnHintEntr(cEntity);
+	  }
   }
 
   void OnTriggerExit(Collider other){
