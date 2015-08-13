@@ -117,6 +117,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 
 	public void OnMove(Vector3 moveDir){
 	  if(_kHorizn_ID != 0){
+		Debug.Log ("Enemy Mecanim OnMove : "  + moveDir);
         anim.SetFloat(_kHorizn_ID, Mathf.Abs (moveDir.x)); // x move should be 0.0f to 1.0f
 	  }
 

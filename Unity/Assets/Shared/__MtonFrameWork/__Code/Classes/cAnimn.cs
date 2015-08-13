@@ -155,17 +155,14 @@ namespace MTON.Class{
 					hstate = value ;
 				    doMove(Vector3.zero);
 				    if(value == eStateH.Idle){
-					  this.doIdlH(true);
+					  this.doIdlH(true)  ;
+					  this.doPlnt(false) ; //releases bPlanted
 					}
 					else if(value == eStateH.Plnt){
 					  if(this.grndST == eStateB.DN){ //onGround is true
-					    doPlnt(true);                //Planted == yes
+					    doPlnt(true) ;               //Planted == yes
 					  }
 					}
-					else{
-					  doPlnt(false);                 //Planted == no
-					}
-//					Debug.Log(this + " hState updated : " + value);
 				  }
 				}
 			}

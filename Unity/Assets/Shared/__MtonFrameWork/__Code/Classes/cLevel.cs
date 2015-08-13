@@ -317,12 +317,12 @@ namespace MTON.Class{
 		  this.anmEmit[i].transform.lpRefill(this.numPrefill);
 		  
 		  //get clip duration
-		  RuntimeAnimatorController ac = this.anmEmit[0].runtimeAnimatorController;
-		  float retDuration = 1.0f;
+		  RuntimeAnimatorController ac = this.anmEmit[i].runtimeAnimatorController;
+		  float retDuration = 1.1109f;
 		  for(int j=0; j<ac.animationClips.Length; j++){   //For all animations
-//			Debug.Log ("ANIMATORCLIP LENGTH : " + ac.animationClips.Length + " j: " + j + " NAME: " + ac.animationClips[j].name);
+//			Debug.Log ("ANIMATORCLIP LENGTH : " + ac.animationClips.Length + " j: " + j + " NAME: " + ac.animationClips[j].name+" i: ");
 			if(ac.animationClips[j].name == this.anmEmit[i].name){ // HACK  : PREFAB NAME MUST MATHC CLIP NAME
-			  retDuration = ac.animationClips[j].length * 0.8f;   // HACK  : Magic numbering; need to find a way to get speed at clip level
+			  retDuration = ac.animationClips[j].length        ;   // HACK  : Magic numbering; need to find a way to get speed at clip level
 							                                       // FIXED : Use Animation.Samples Not State.Speed
 							                                       // FIXED : Set Animation.LoopTime = false, to prevent frame bleed over
 							                                       // FIXED : Do not set State.Mirror = true, else playback rate becomes choppy

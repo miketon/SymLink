@@ -202,11 +202,12 @@ namespace MTON.codeObjects{
       }
 
       public virtual void doMove(Vector3 moveDir){ //Handles movement and facing
-        rb.Move(moveDir) ;
+		rb.Move(moveDir) ;
         this.xform.SetPosZ(0.0f); // force into 0.0f zPlane so character doesn't slip
         // horizontal move state
         if(Mathf.Abs(moveDir.x) > 0.001f){
-          an.hState = cAnimn.eStateH.Walk;
+
+          an.hState = cAnimn.eStateH.Walk ; //triggering animation for walk
           if(bGround == true){ // check for footsteps
             bool bFoot = mc.GetCurvefBool(mc._fAudio0_ID); //IMPORTANT : Implicit that run animation has fCurve where 0==off, 1==on
             if(bFoot == true){
@@ -225,7 +226,7 @@ namespace MTON.codeObjects{
         }
         else{
           an.fState = cAnimn.eStateF.Idle;
-          if(this.bDpdX == true){
+          if(this.bDpdX == true){ //prevents spamming of Idle
             an.hState = cAnimn.eStateH.Idle;
           }
         }
