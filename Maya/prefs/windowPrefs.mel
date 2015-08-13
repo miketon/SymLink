@@ -22,7 +22,7 @@ windowPref -topLeftCorner 727 115 -widthHeight 1331 684 -maximized false visorPa
 windowPref -topLeftCorner 200 220 -widthHeight 456 670 -maximized false unifiedRenderGlobalsWindow;
 windowPref -topLeftCorner 232 792 -widthHeight 287 351 -maximized false colorSetEditor;
 windowPref -topLeftCorner 314 482 -widthHeight 358 150 -maximized false LayerEditorQuickEditWindow;
-windowPref -topLeftCorner 408 820 -widthHeight 963 325 -maximized false componentEditorPanel1Window;
+windowPref -topLeftCorner 221 731 -widthHeight 963 325 -maximized false componentEditorPanel1Window;
 windowPref -topLeftCorner 385 823 -widthHeight 448 246 -maximized false geometryPaintWindow;
 windowPref -topLeftCorner 314 482 -widthHeight 403 438 -maximized false Viewport20OptionsWindow;
 windowPref -topLeftCorner 722 64 -widthHeight 861 495 -maximized false scriptEditorPanel1Window;

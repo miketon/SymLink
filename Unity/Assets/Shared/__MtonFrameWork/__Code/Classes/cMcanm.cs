@@ -27,6 +27,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 		  //Vector3
           anST.OnMoveDelegate += OnMove;
 		  //Float
+		  anST.OnVelYDelegate += OnVelY;
 		  anST.OnAimgDelegate += OnAimg;
 		  //Bool
 	      anST.OnGrndDelegate += OnGrnd;
@@ -44,6 +45,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 		//Vector3
         anST.OnMoveDelegate -= OnMove;
 		//Float
+		anST.OnVelYDelegate -= OnVelY;
 		anST.OnAimgDelegate -= OnAimg;
 		//Bool
 	    anST.OnGrndDelegate -= OnGrnd;
@@ -109,6 +111,12 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 
 	#region Set Values
 
+	public void OnVelY(float fVel_Y){
+      if(_kVertcl_ID != 0){
+	    anim.SetFloat(_kVertcl_ID, fVel_Y);
+	  }
+	}
+
 	public void OnGrnd(bool bGround){
 	  if(_bGround_ID != 0){
 	    anim.SetBool(_bGround_ID, bGround);
@@ -117,9 +125,9 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 
 	public void OnMove(Vector3 moveDir){
 	  if(_kHorizn_ID != 0){
+//		Debug.Log ("Enemy Mecanim OnMove : "  + moveDir);
         anim.SetFloat(_kHorizn_ID, Mathf.Abs (moveDir.x)); // x move should be 0.0f to 1.0f
 	  }
-
 	}
 
 	public void OnAimg(float IN_AIM){

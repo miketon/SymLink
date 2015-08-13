@@ -9,7 +9,8 @@ namespace MTON.codeObjects{
 
   public class oEnemy : oPlayer{
 
-	private bool binput = false;
+	public Transform player     ;
+	private bool binput = false ;
 	public bool bInput{
 			get{
 				return binput;
@@ -32,15 +33,8 @@ namespace MTON.codeObjects{
 				}
 			}
 	}
-	public Transform player           ;
-	public Color cRest = Color.green  ;
-	public Color cAwre = Color.yellow ;
-	public Color cActv = Color.red    ;
 
-	public override void init_Components(){
-	  base.init_Components();
-	}
-
+#region base Overrides
 	public override void Start(){
 	  base.Start();
 	  this.bInput = false; // don't read input by default
@@ -51,69 +45,72 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	public virtual void AI_Actv(bool bActive){
-	  if(bActive){
-	    rendr.material.color = cAwre;
-	  }
-	  else{
-	    rendr.material.color = cRest;
+    
+    public override void doFace(Vector3 vFace){ // Adding a pause to the face left and right flip
+	  base.doFace(vFace);
+	  float randomDur = UnityEngine.Random.Range(0.5f, 3.5f);
+	  ai_REST(this.fIntel); // * randomDur);
+	}
+
+	public override void doMove (Vector3 moveDir){
+	  if(this.bIntel){ //Only on Intel can move
+	    base.doMove (moveDir);
+//		Debug.Log ("Enemy on the move: "+ moveDir +" : "+ this);
 	  }
 	}
 
-	public float fRngAlert = 4.0f;
-	public float fRngAttck = 2.0f;
+#endregion
 	
 	private void Update(){
-	  this.doAI_Intel();
+	  if(this.bIntel){     //if intelligence active : do AI
+//	    this.doAI_Intel();
+	  }
+	  else{
+	    this.ai_IDLE();
+	  }
 	}
 
+#region AI functions
+
 	public float stopRadMult = 3.0f;
+	public float fRngAlert = 4.0f;
+	public float fRngAttck = 2.0f;
+	public bool  bIntel = true ; //at rest doesn't actively function
+	public float fIntel = 1.0f ; //How fast can AI switch between rest/active
 
 	private void doAI_Intel(){
-	  float dist = this.doRangeCheck(this.xform, this.player, fRngAlert, (bool bRange)=>{
-		if(bRange == true){
+	  this.doRangeCheck(this.xform, this.player, fRngAlert, (bool bRange, float fDist)=>{
+		if(bRange){
 //		  Vector3 centerOffset = new Vector3(0.0f, rb.cHeight * 0.5f, 0.0f);
 //		  Debug.DrawLine(this.xform.position + centerOffset, this.player.position + centerOffset, Color.yellow);
 		  AI_Actv(true);
-	      io.bInput = true;
+		  this.ai_FOLLOW(fDist);
+//	      io.bInput = true;
 		}
 		else{
 		  AI_Actv(false);
-	      io.bInput = false;
+		  this.ai_IDLE();
+//	      io.bInput = false;
 		}
 	    return true;
       });
-
-	  if(Mathf.Abs(dist) < this.fRngAlert){  
-	    this.doMove(-Vector3.right * Mathf.Sign(this.xform.position.x - this.player.position.x));
-	    if(Mathf.Abs(dist) < this.fRngAttck){
-	      rendr.material.color = cActv;
-		  if(Mathf.Abs(dist) < (rb.cRadius * stopRadMult)){
-			this.ai_ATTK();
-		    this.ai_IDLE();
-		  }
-	    }
+	}
+	
+	public void ai_FOLLOW(float IN_DIST){
+	  this.doMove(-Vector3.right * Mathf.Sign(this.xform.position.x - this.player.position.x));
+	  if(Mathf.Abs(IN_DIST) < this.fRngAttck){
+	    this.an.attkST = cAnimn.eStateB.UP; // Reset attack to force state change if true
+	    rendr.material.color = cActv;
+		if(Mathf.Abs(IN_DIST) < (rb.cRadius * 2.0f)){ // * stopRadMult)){
+	      this.ai_ATTK();
+		}
 	  }
-	  else{
-		this.ai_IDLE();
-	  }
-		
 	}
 
 	public void ai_IDLE(){
 	  this.doMove(Vector3.zero);
 	}
 
-	public float doRangeCheck<T>(Transform IN_SRC, Transform IN_TGT, float IN_DIST, Func<bool, T> funcToRun){
-	  float dist = Vector3.Distance(IN_SRC.position, IN_TGT.position);
-	  bool  bRng = false;
-	  if(dist < IN_DIST){
-	    bRng = true ;
-	  }
-	  funcToRun(bRng);
-	  return dist;
-	}
-	
 	public bool ai_ATTK(){
 	  GameObject oHit;
 	  Vector3 dCenter = this.xform.position + rb.cen;
@@ -127,23 +124,62 @@ namespace MTON.codeObjects{
 		  pHit.doJump(true);
 		  Debug.Log ("Attacking : " + pHit);
 		  ai_BITE(oHit.transform.position);
+          this.an.attkST = cAnimn.eStateB.DN;
 		}
 	  }
 	  return false;
 	}
-
-	public cLevel.fx_Hit eBit;
-
-	private void ai_BITE(Vector3 IN_POS){
-	  if(this.eBit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-	    __gCONSTANT._LEVEL.Emit_Hit(eBit, IN_POS, Quaternion.identity, ()=>{
-          return true;
+	
+	private bool bREST_AI = false;
+	private void ai_REST(float IN_DUR=1.0f, bool IN_BOOL=true){
+	  if(IN_BOOL != this.bREST_AI){
+	    Debug.Log ("AI REST : " + IN_DUR);
+	    this.bIntel = false;
+	    this.tt().ttAdd(IN_DUR, ()=>{
+	      this.bIntel   = true  ;
+		  this.bREST_AI = false ;
 	    });
 	  }
 	}
 
-	public GameObject doRayDir(Vector3 IN_POS, Vector3 IN_DIR){
+#endregion
 
+#region Utility
+	public cLevel.fx_Hit eBit;
+
+	private void ai_BITE(Vector3 IN_POS){
+	  if(this.eBit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+	    __gCONSTANT._LEVEL.Emit_pFX(eBit, IN_POS, Quaternion.identity, ()=>{
+		
+          return true;
+	    });
+	  }
+	  ai_REST(this.fIntel);
+	}
+
+	public Color cRest = Color.green  ;
+	public Color cAwre = Color.yellow ;
+	public Color cActv = Color.red    ;
+
+	public virtual void AI_Actv(bool bActive){
+	  if(bActive){
+	    rendr.material.color = cAwre;
+	  }
+	  else{
+	    rendr.material.color = cRest;
+	  }
+	}
+		
+	public void doRangeCheck<T>(Transform IN_SRC, Transform IN_TGT, float IN_DIST, Func<bool, float, T> funcToRun){
+	  float dist = Vector3.Distance(IN_SRC.position, IN_TGT.position);
+	  bool  bRng = false;
+	  if(dist < IN_DIST){
+	    bRng = true ;
+	  }
+	  funcToRun(bRng, dist);
+	}
+
+	public GameObject doRayDir(Vector3 IN_POS, Vector3 IN_DIR){
 	  RaycastHit hit;
 	  Ray ray = new Ray(IN_POS, IN_DIR);
 	  Physics.Raycast(ray, out hit, 2.0f);
@@ -154,7 +190,6 @@ namespace MTON.codeObjects{
 	  else{
 	    return null;
 	  }
-
 	}
 
 	public GameObject doRayDir(Vector3 IN_POS, Vector3 IN_DIR, float IN_RAD){
@@ -172,8 +207,9 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	public int damag = 1;
+#endregion
 
+//	  public int damag = 1;
 //    void OnCollisionEnter(Collision collision) {
 //	  Debug.Log("Enemy ONHIT!! " + collision.gameObject);
 //	  cHealth oDamage = collision.gameObject.GetComponent<cHealth>();
@@ -181,7 +217,7 @@ namespace MTON.codeObjects{
 //	    oDamage.onHitd(-this.damag);
 //	  }
 //	  if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-//	      __gCONSTANT._LEVEL.Emit_Hit(eHit, this.transform.position, Quaternion.identity, ()=>{
+//	      __gCONSTANT._LEVEL.Emit_pFX(eHit, this.transform.position, Quaternion.identity, ()=>{
 //          return true;
 //	    });
 //	  }

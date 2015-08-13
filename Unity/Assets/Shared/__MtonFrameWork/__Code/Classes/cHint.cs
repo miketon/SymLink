@@ -51,7 +51,7 @@ namespace MTON.Class{
 	  }
 	  // collision fx
 	  if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-	    __gCONSTANT._LEVEL.Emit_Hit(eHit, this.xform.position, Quaternion.identity, ()=>{
+	    __gCONSTANT._LEVEL.Emit_pFX(eHit, this.xform.position, Quaternion.identity, ()=>{
 		  return true;
 		});
 	  }
@@ -84,7 +84,10 @@ namespace MTON.Class{
   // Trigger events will be sent to disabled MonoBehaviours, to allow enabling Behaviours in response to collisions.
   void OnTriggerEnter(Collider other) {
 //    Debug.Log("Triggering Enter : " + other.gameObject);
-	  OnHintEntr(other.GetComponentEX<cInput>());
+	  cInput cEntity = other.GetComponentEX<cInput>();
+	  if(cEntity != null){
+	    OnHintEntr(cEntity);
+	  }
   }
 
   void OnTriggerExit(Collider other){

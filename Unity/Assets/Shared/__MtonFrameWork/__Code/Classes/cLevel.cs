@@ -1,5 +1,6 @@
 using UnityEngine        ;
 using System             ; //NOTE : ??? must import to use anonymous function ; And the IComparable Interface for Dictionary
+//using System.UI          ;
 using System.Collections ;
 using System.Collections.Generic ; // Dictionary, List
 using MTON.Interface     ;
@@ -12,7 +13,7 @@ namespace MTON.Class{
     public delegate void  INIT_LEVEL ();
     public static   event INIT_LEVEL OnInit_Delegate;
 
-    public delegate void ADD_TRANSFORM(Transform IN_XFORM) ; //set up delegate
+    public delegate void ADD_TRANSFORM(Transform IN_XFORM)  ; //set up delegate
     public ADD_TRANSFORM camrADD_Delegate                   ; //delegate instance
     public ADD_TRANSFORM camrREM_Delegate                   ; //delegate instance
 
@@ -40,18 +41,18 @@ namespace MTON.Class{
         }
       }
       Debug.Log ("Adding : " + IN_XFORM);
-      this.camTgts.Add(IN_XFORM)     ; //else add to camTgts
+      this.camTgts.Add(IN_XFORM)      ; //else add to camTgts
       this.camrADD_Delegate(IN_XFORM) ;
-      return IN_XFORM                ; //return transform
+      return IN_XFORM                 ; //return transform
     }
 
     public Transform doCamrREM(Transform IN_XFORM){
       foreach(Transform cam in this.camTgts){  //check current camTgts
         if(IN_XFORM == cam){                   //if match camera list entry
           Debug.Log ("Removing : " + IN_XFORM);
-          this.camTgts.Remove(IN_XFORM)  ; //remove xform
+          this.camTgts.Remove(IN_XFORM)   ; //remove xform
           this.camrREM_Delegate(IN_XFORM) ;
-          return IN_XFORM                ; //return xform
+          return IN_XFORM                 ; //return xform
         }
       }
       return null ; //return null if no transform removed
@@ -64,6 +65,7 @@ namespace MTON.Class{
 
     public int numPrefill = 15;
     public ParticleSystem[] fx_Hits;
+    public Animator[] anmEmit;
 
 #region enums
 
@@ -85,7 +87,10 @@ namespace MTON.Class{
       None,
     }
 
-    public float[] fx_Hit_OffSet; // To place effect at feet = particle size(radius)
+    private float[]   fx_Hit_OffSet  ; // To place effect at feet = particle size(radius)
+    public  float[]   anmEmit_duratn ; // Duration of animation clip
+    private Vector3[] anmEmit_IntScl ; // captures scale of animator objects
+
     public enum fx_Hit{ // Must be particle system
       HitMark_00,       // moon
       BteMark_00,       // bite mark
@@ -93,6 +98,16 @@ namespace MTON.Class{
       DustLnd_00,       // Dust Land
       DustJmp_00,       // Dust Jump
       DustStp_00,       // Dust step
+      ScoreCn_00,
+      None,
+    }
+
+	public enum e_Anim{ // Must be Animator
+      DustStp_00,       // Dust step
+      DustJmp_00,       // Dust Jump
+      DustLnd_00,       // Dust Land
+      DustSld_00,       // Dust Slide
+      BteMark_00,       // bite mark
       ScoreCn_00,
       None,
     }
@@ -157,22 +172,24 @@ namespace MTON.Class{
       }
     }
 
+#endregion
+
 	private int iDustStep = 0;
     //fx
-    public void Emit_Hit<T>(fx_Hit eHit, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	public void Emit_pFX<T>(fx_Hit eHit, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun, bool bFLIP_2D = false){
 
       if(eHit == fx_Hit.HitMark_00){ 
-        Emit(this.fx_Hits[0], IN_POS, IN_ROT, funcToRun);
-      }
+		Emit(this.fx_Hits[0], IN_POS, IN_ROT, funcToRun);
+			}
       else if(eHit == fx_Hit.GunFlar_00){
         Emit(this.fx_Hits[1], IN_POS, IN_ROT, funcToRun);
       }
       else if(eHit == fx_Hit.BteMark_00){
         Emit(this.fx_Hits[2], IN_POS, IN_ROT, funcToRun);
       }
-      else if(eHit == fx_Hit.DustJmp_00){
-        Emit(this.fx_Hits[3], IN_POS + (Vector3.up * this.fx_Hit_OffSet[3] * 0.85f) , IN_ROT, funcToRun);
-      }
+//      else if(eHit == fx_Hit.DustJmp_00){
+//        Emit(this.fx_Hits[3], IN_POS + (Vector3.up * this.fx_Hit_OffSet[3] * 0.85f) , IN_ROT, funcToRun);
+//      }
       else if(eHit == fx_Hit.DustLnd_00){
         Emit(this.fx_Hits[4], IN_POS + (Vector3.up * this.fx_Hit_OffSet[4] * 0.85f) , IN_ROT, funcToRun);
       }
@@ -184,7 +201,24 @@ namespace MTON.Class{
 
     }
 
-    public void Emit<T>(ParticleSystem IN_PS, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	public void Emit_ANM<T>(e_Anim eAnm, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun, bool bFLIP_2D = false){
+	  if(eAnm == e_Anim.DustStp_00){
+		int iAltStep = this.iDustStep%2 ;  // alternate between dust steps
+	    this.iDustStep++;
+		Emit(this.anmEmit[2 + iAltStep], IN_POS, IN_ROT, this.anmEmit_duratn[2 + iAltStep], funcToRun, this.anmEmit_IntScl[2 + iAltStep], true);
+	  }
+	  else if(eAnm == e_Anim.DustJmp_00){
+	    Emit(this.anmEmit[0], IN_POS, IN_ROT, this.anmEmit_duratn[0], funcToRun, this.anmEmit_IntScl[0], true);
+	  }
+	  else if(eAnm == e_Anim.DustLnd_00){
+	    Emit(this.anmEmit[1], IN_POS, IN_ROT, this.anmEmit_duratn[1], funcToRun, this.anmEmit_IntScl[1], true);
+	  }
+	  else if(eAnm == e_Anim.DustSld_00){
+	    Emit(this.anmEmit[4], IN_POS, IN_ROT, this.anmEmit_duratn[4], funcToRun, this.anmEmit_IntScl[4], true);
+	  }
+	}
+
+	public void Emit<T>(ParticleSystem IN_PS, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun, bool bFLIP_2D = false){
       Transform pXform  = IN_PS.transform.lpSpawn(IN_POS, IN_ROT) ; //Get Transform from pool using Liteprint
       GameObject gXform = pXform.gameObject                       ;
 //	  Debug.Log ("EMITTING : "+ pXform);
@@ -193,6 +227,27 @@ namespace MTON.Class{
       this.tt().ttAdd(IN_PS.duration, ()=>{
 		  IN_PS.Stop()            ;
 	      IN_PS.Clear()           ; //true == include children
+          pXform.lpRecycle()      ; //Return to pool
+          funcToRun()             ;
+          gXform.SetActive(false) ;
+          })                      ; //using TeaTime.cs
+    }
+
+	public void Emit<T>(Animator IN_PS, Vector3 IN_POS, Quaternion IN_ROT, float IN_DUR, Func<T> funcToRun, Vector3 IN_SCL, bool bFLIP_2D = false){
+      Transform pXform  = IN_PS.transform.lpSpawn(IN_POS, IN_ROT) ; //Get Transform from pool using Liteprint
+      GameObject gXform = pXform.gameObject                       ;
+	  if(bFLIP_2D){
+	    if(IN_ROT == Quaternion.identity){
+		  pXform.localScale = IN_SCL;
+		}
+		else{
+		  Vector3 sclFLIP = new Vector3(-IN_SCL.x, IN_SCL.y, IN_SCL.z);
+		  pXform.localScale = sclFLIP;
+		}
+	  }
+//	  Debug.Log ("EMITTING : "+ pXform);
+      gXform.SetActive(true)                                      ;
+      this.tt().ttAdd(IN_DUR , ()=>{
           pXform.lpRecycle()      ; //Return to pool
           funcToRun()             ;
           gXform.SetActive(false) ;
@@ -216,7 +271,6 @@ namespace MTON.Class{
           })                      ; //using TeaTime.cs
     }
 
-#endregion
 
 #region Level Collision Handler
 
@@ -246,18 +300,38 @@ namespace MTON.Class{
         }
 
         // Init Particle Fx Pool
+        this.fx_Hit_OffSet = new float[this.fx_Hits.Length];
+
         for(int i=0; i<this.fx_Hits.Length; i++){
           this.fx_Hits[i].gameObject.SetActive(false)         ;
           this.fx_Hits[i].transform.lpRefill(this.numPrefill) ;
+          this.fx_Hit_OffSet[i] = this.fx_Hits[i].startSize * 0.5f; // Convert to radius
         }
 
-        this.fx_Hit_OffSet = new float[this.fx_Hits.Length];
-        for(int i=0; i<this.fx_Hit_OffSet.Length; i++){
-          this.fx_Hit_OffSet[i] = this.fx_Hits[i].startSize * 0.5f; // Convert to radius
-//		  if(this.fx_Hit_OffSet[i] >= 1.0f){
-//		    this.fx_Hit_OffSet[i] *= 0.85f ;                        // HEURISTIC: Offset a bit
-//		  }
-        }
+		// Init Animator Pool
+		this.anmEmit_duratn = new float[this.anmEmit.Length];
+		this.anmEmit_IntScl = new Vector3[this.anmEmit.Length];
+		for(int i=0; i<this.anmEmit.Length; i++){
+		  this.anmEmit_IntScl[i] = this.anmEmit[i].transform.localScale; //get scale
+		  this.anmEmit[i].gameObject.SetActive(false);
+		  this.anmEmit[i].transform.lpRefill(this.numPrefill);
+		  
+		  //get clip duration
+		  RuntimeAnimatorController ac = this.anmEmit[i].runtimeAnimatorController;
+		  float retDuration = 1.1109f;
+		  for(int j=0; j<ac.animationClips.Length; j++){   //For all animations
+//			Debug.Log ("ANIMATORCLIP LENGTH : " + ac.animationClips.Length + " j: " + j + " NAME: " + ac.animationClips[j].name+" i: ");
+			if(ac.animationClips[j].name == this.anmEmit[i].name){ // HACK  : PREFAB NAME MUST MATHC CLIP NAME
+			  retDuration = ac.animationClips[j].length        ;   // HACK  : Magic numbering; need to find a way to get speed at clip level
+							                                       // FIXED : Use Animation.Samples Not State.Speed
+							                                       // FIXED : Set Animation.LoopTime = false, to prevent frame bleed over
+							                                       // FIXED : Do not set State.Mirror = true, else playback rate becomes choppy
+//			  Debug.Log ("Found IDLE : " + retDuration + " : " + this);
+			}
+		  }
+		  this.anmEmit_duratn[i] = retDuration;
+//		  Debug.Log ("CURRENT STATE: " + this.anmEmit[i].GetCurrentAnimatorClipInfo(0).ToString() +" Length : " + this.anmEmit[i].GetCurrentAnimatorStateInfo(0).length);
+		}
 
       }
       else{

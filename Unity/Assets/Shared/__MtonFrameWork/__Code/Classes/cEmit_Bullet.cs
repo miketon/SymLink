@@ -65,7 +65,7 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
 	  oDamage.onHitd(-this.damag);
 	}
 	if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-	  __gCONSTANT._LEVEL.Emit_Hit(eHit, this.transform.position, Quaternion.identity, ()=>{
+	  __gCONSTANT._LEVEL.Emit_pFX(eHit, this.transform.position, Quaternion.identity, ()=>{
         return true;
 	  });
 	}
