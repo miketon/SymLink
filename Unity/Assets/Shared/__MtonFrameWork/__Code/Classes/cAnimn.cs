@@ -21,7 +21,7 @@ namespace MTON.Class{
         public DL_VDIR OnMoveDelegate              ; // Movin
         public DL_VDIR OnFaceDelegate              ; // Facing Dir
 
-        public DL_fVal OnAimgDelegate              ; // Aiming
+        public DL_fVal OnAimgDelegate              ; // Aiming Float
 
 		// hState
 		public DL_Anim OnIdlHDelegate            ; // Idle
@@ -31,6 +31,7 @@ namespace MTON.Class{
 		public DL_Anim OnPlntDelegate            ; // Plnt; OnGround
 
 		// vState
+        public DL_fVal OnVelYDelegate            ; // Velocity Y Float
         public DL_Anim OnGrndDelegate            ; // OnGround
         public DL_Anim OnCeilDelegate            ; // OnCeiling
         public DL_Anim OnIdlVDelegate            ; // Idle
@@ -118,15 +119,15 @@ namespace MTON.Class{
 				if(value != vstate){
 					vstate = value ;
 					if(value == eStateV.Idle){
-						this.doIdlV(true);
+						this.setIdlV(true);
 					}
 					else if(value == eStateV.Fall || value == eStateV.Apex){
-						this.doRise(false);
-						this.doFall(true );
+						this.setRise(false);
+						this.setFall(true );
 					}
 					else if(value == eStateV.Rise){
-						this.doRise(true );
-						this.doFall(false);
+						this.setRise(true );
+						this.setFall(false);
 					}
 //					Debug.Log(this + " vState updated : " + value);
 				}
@@ -141,7 +142,7 @@ namespace MTON.Class{
 			}
 			set{ // NOTE: INTERESTING !!!
 				if(value == eStateH.Walk){ //continously check for walk
-				  doPlnt(false);                 //Planted == no
+				  setPlnt(false);                 //Planted == no
 				  hstate = value ;
 				  if(fState == eStateF.Rght){
 				    doMove(Vector3.right);
@@ -155,12 +156,12 @@ namespace MTON.Class{
 					hstate = value ;
 				    doMove(Vector3.zero);
 				    if(value == eStateH.Idle){
-					  this.doIdlH(true)  ;
-					  this.doPlnt(false) ; //releases bPlanted
+					  this.setIdlH(true)  ;
+					  this.setPlnt(false) ; //releases bPlanted
 					}
 					else if(value == eStateH.Plnt){
 					  if(this.grndST == eStateB.DN){ //onGround is true
-					    doPlnt(true) ;               //Planted == yes
+					    setPlnt(true) ;               //Planted == yes
 					  }
 					}
 				  }
@@ -215,13 +216,13 @@ namespace MTON.Class{
 				if(value != lstate){
 				  lstate = value;
 				  if(value == eStateL.Hitd){
-				    this.doHitd(true);
+				    this.setHitd(true);
 					this.tt ("toggleHitFalse").ttAdd(0.5f, ()=>{
 					  lState = eStateL.Idle ; //toggle back to idle after hit
 					});
 				  }
 				  else if(value == eStateL.Dead){
-					this.doDead(true);
+					this.setDead(true);
 				  }
 				}
 			}
@@ -246,10 +247,10 @@ namespace MTON.Class{
 				if(value != jumpst){
 					jumpst = value;
 					if(value == eStateB.DN){
-						this.doJump(true);
+						this.setJump(true);
 					}
 					else if(value == eStateB.UP){
-						this.doJump(false);
+						this.setJump(false);
 					}
 				}
 			}
@@ -263,21 +264,21 @@ namespace MTON.Class{
 				if(value != attkst){
 					attkst = value;
 					if(value == eStateB.DN){
-						this.doAttk(true);
+						this.setAttk(true);
 						if(this.grndST == eStateB.DN){
-							this.doFire(true); //ground fire
+							this.setFire(true); //ground fire
 						}
 					    else if(this.grndST == eStateB.UP){ //in air
-							this.doAirF(true); //air fire
+							this.setAirF(true); //air fire
 						}
 					}
 					else if(value == eStateB.UP){
-						this.doAttk(false);
+						this.setAttk(false);
 						if(this.grndST == eStateB.DN){
-							this.doFire(false); //ground fire
+							this.setFire(false); //ground fire
 						}
 					    else if(this.grndST == eStateB.UP){ //in air
-							this.doAirF(false); //air fire
+							this.setAirF(false); //air fire
 						}
 					}
 				}
@@ -292,10 +293,10 @@ namespace MTON.Class{
 				if(value != grndst){
 					grndst = value;
 					if(value == eStateB.DN){
-						this.doGrnd(true);
+						this.setGrnd(true);
 					}
 					else{
-						this.doGrnd(false);
+						this.setGrnd(false);
 					}
 				}
 			}
@@ -310,10 +311,10 @@ namespace MTON.Class{
 					duckst = value ;
 //					Debug.Log(this + " dState updated : " + value);
                     if(value == eStateB.DN){
-						doDuck(true);
+						setDuck(true);
 					}
 					else{
-						doDuck(false);
+						setDuck(false);
 					}
 				}
 			}
@@ -327,10 +328,10 @@ namespace MTON.Class{
 				if(value != ceilst){
 					ceilst = value;
 					if(value == eStateB.DN){
-						this.doCeil(true);
+						this.setCeil(true);
 					}
 					else{
-						this.doCeil(false);
+						this.setCeil(false);
 					}
 				}
 			}
@@ -344,10 +345,10 @@ namespace MTON.Class{
 				if(value != footst){
 					footst = value ;
                     if(value == eStateB.DN){
-						doFoot(true);
+						setFoot(true);
 					}
 					else{
-						doFoot(false);
+						setFoot(false);
 					}
 				}
 			}
@@ -370,6 +371,12 @@ namespace MTON.Class{
 		  }
 		}
 
+		public void doVelY(float fvelY){
+		  if(this.OnVelYDelegate != null){
+		    this.OnVelYDelegate(fvelY);
+		  }
+		}
+
 		public void doAimg(float fAimg){
 			if(this.OnAimgDelegate != null){
 			  this.OnAimgDelegate(fAimg);
@@ -380,85 +387,85 @@ namespace MTON.Class{
 
 #region Delegate private bool Functions
 
-		private void doGrnd(bool bGrnd){ 
+		private void setGrnd(bool bGrnd){ 
 		  if(this.OnGrndDelegate != null){
-//			Debug.Log ("cAnimn : doGrnd : " + bGrnd + " : " + this);
+//			Debug.Log ("cAnimn : setGrnd : " + bGrnd + " : " + this);
 		    this.OnGrndDelegate(bGrnd);
 		  }
 		}
 
-		private void doPlnt(bool bPlnt){ //isPlanted ?
+		private void setPlnt(bool bPlnt){ //isPlanted ?
 		  if(this.OnPlntDelegate != null){
 		    this.OnPlntDelegate(bPlnt);
 		  }
 		}
 
-		private void doIdlV(bool bIdlV){
+		private void setIdlV(bool bIdlV){
 		  if(this.OnIdlVDelegate != null){
 		    this.OnIdlVDelegate(bIdlV);
 		  }
 		} 
 
-		private void doIdlH(bool bIdlH){
+		private void setIdlH(bool bIdlH){
 		  if(this.OnIdlHDelegate != null){
 		    this.OnIdlHDelegate(bIdlH);
 		  }
 		} 
 
-		private void doRise(bool bRise){
+		private void setRise(bool bRise){
 		  if(this.OnRiseDelegate != null){
 		    this.OnRiseDelegate(bRise);
 		  }
 		}
-		private void doFall(bool bFall){
+		private void setFall(bool bFall){
 		  if(this.OnFallDelegate != null){
 		    this.OnFallDelegate(bFall);
 		  }
 		}
 
-		private void doDuck(bool bDuck){
+		private void setDuck(bool bDuck){
 		  if(this.OnDuckDelegate != null){
 		    this.OnDuckDelegate(bDuck);
 		  }
 		}
 
-		private void doJump(bool bJump){
+		private void setJump(bool bJump){
 		  if(this.OnJumpDelegate != null){
 		    this.OnJumpDelegate(bJump);
 		  }
 		}
 
-		private void doAttk(bool bAttk){
+		private void setAttk(bool bAttk){
 		  if(this.OnAttkDelegate != null){
 		    this.OnAttkDelegate(bAttk);
 		  }
 		}
 
-		private void doFire(bool bFire){
+		private void setFire(bool bFire){
 		  if(this.OnFireDelegate != null){
 		    this.OnFireDelegate(bFire);
 		  }
 		}
 
-		private void doAirF(bool bAirF){
+		private void setAirF(bool bAirF){
 		  if(this.OnAirFDelegate != null){
 		    this.OnAirFDelegate(bAirF);
 		  }
 		}
 
-		private void doMlee(bool bMlee){
+		private void setMlee(bool bMlee){
 		  if(this.OnMleeDelegate != null){
 		    this.OnMleeDelegate(bMlee);
 		  }
 		}
 
-		private void doAirM(bool bAirM){
+		private void setAirM(bool bAirM){
 		  if(this.OnAirMDelegate != null){
 		    this.OnAirMDelegate(bAirM);
 		  }
 		}
 
-		private void doPowr(bool bPowr){
+		private void setPowr(bool bPowr){
 		  if(this.OnPowrDelegate != null){
 		    this.OnPowrDelegate(bPowr);
 //			if(bPowr == false){
@@ -467,25 +474,25 @@ namespace MTON.Class{
 		  }
 		}
 
-		private void doAirP(bool bAirP){
+		private void setAirP(bool bAirP){
 		  if(this.OnAirPDelegate != null){
 		    this.OnAirPDelegate(bAirP);
 		  }
 		}
 
-		private void doFoot(bool bFoot){
+		private void setFoot(bool bFoot){
 			if(this.OnFootDelegate != null){
 			  this.OnFootDelegate(bFoot);
 			}
 		}
 
-		private void doCeil(bool bCeil){
+		private void setCeil(bool bCeil){
 			if(this.OnCeilDelegate != null){
 			  this.OnCeilDelegate(bCeil);
 			}
 		}
 
-		private void doHitd(bool bHit){ 
+		private void setHitd(bool bHit){ 
 			if(this.OnHitdDelegate != null){
 			  this.OnHitdDelegate(bHit);
 			}
@@ -493,7 +500,7 @@ namespace MTON.Class{
 
 #endregion
 
-		private void doDead(bool bDead){
+		private void setDead(bool bDead){
 			if(this.OnDeadDelegate != null){
 			  this.OnDeadDelegate(bDead);
 			}

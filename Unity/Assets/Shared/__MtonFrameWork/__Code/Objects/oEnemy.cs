@@ -45,10 +45,11 @@ namespace MTON.codeObjects{
 	  }
 	}
 
+    
     public override void doFace(Vector3 vFace){ // Adding a pause to the face left and right flip
 	  base.doFace(vFace);
 	  float randomDur = UnityEngine.Random.Range(0.5f, 3.5f);
-	  ai_REST(this.fIntel * randomDur);
+	  ai_REST(this.fIntel); // * randomDur);
 	}
 
 	public override void doMove (Vector3 moveDir){
@@ -59,56 +60,57 @@ namespace MTON.codeObjects{
 	}
 
 #endregion
+	
+	private void Update(){
+	  if(this.bIntel){     //if intelligence active : do AI
+//	    this.doAI_Intel();
+	  }
+	  else{
+	    this.ai_IDLE();
+	  }
+	}
+
+#region AI functions
 
 	public float stopRadMult = 3.0f;
 	public float fRngAlert = 4.0f;
 	public float fRngAttck = 2.0f;
 	public bool  bIntel = true ; //at rest doesn't actively function
 	public float fIntel = 1.0f ; //How fast can AI switch between rest/active
-	
-	private void Update(){
-	  if(this.bIntel){     //if intelligence active : do AI
-	    this.doAI_Intel();
-	  }
-	}
 
 	private void doAI_Intel(){
-	  float dist = this.doRangeCheck(this.xform, this.player, fRngAlert, (bool bRange)=>{
+	  this.doRangeCheck(this.xform, this.player, fRngAlert, (bool bRange, float fDist)=>{
 		if(bRange){
 //		  Vector3 centerOffset = new Vector3(0.0f, rb.cHeight * 0.5f, 0.0f);
 //		  Debug.DrawLine(this.xform.position + centerOffset, this.player.position + centerOffset, Color.yellow);
 		  AI_Actv(true);
+		  this.ai_FOLLOW(fDist);
 //	      io.bInput = true;
 		}
 		else{
 		  AI_Actv(false);
+		  this.ai_IDLE();
 //	      io.bInput = false;
 		}
 	    return true;
       });
-
-	  if(Mathf.Abs(dist) < this.fRngAlert){  
-        this.an.attkST = cAnimn.eStateB.UP; // Reset attack to force state change if true
-	    this.doMove(-Vector3.right * Mathf.Sign(this.xform.position.x - this.player.position.x));
-	    if(Mathf.Abs(dist) < this.fRngAttck){
-	      rendr.material.color = cActv;
-		  if(Mathf.Abs(dist) < (rb.cRadius * 2.0f)){ // * stopRadMult)){
-			this.ai_ATTK();
-//		    this.ai_IDLE();
-		  }
-	    }
+	}
+	
+	public void ai_FOLLOW(float IN_DIST){
+	  this.doMove(-Vector3.right * Mathf.Sign(this.xform.position.x - this.player.position.x));
+	  if(Mathf.Abs(IN_DIST) < this.fRngAttck){
+	    this.an.attkST = cAnimn.eStateB.UP; // Reset attack to force state change if true
+	    rendr.material.color = cActv;
+		if(Mathf.Abs(IN_DIST) < (rb.cRadius * 2.0f)){ // * stopRadMult)){
+	      this.ai_ATTK();
+		}
 	  }
-	  else{
-		this.ai_IDLE();
-	  }
-		
 	}
 
 	public void ai_IDLE(){
 	  this.doMove(Vector3.zero);
 	}
 
-	
 	public bool ai_ATTK(){
 	  GameObject oHit;
 	  Vector3 dCenter = this.xform.position + rb.cen;
@@ -127,14 +129,20 @@ namespace MTON.codeObjects{
 	  }
 	  return false;
 	}
-
-	private void ai_REST(float IN_DUR){
-	  this.bIntel = false;
-	  this.tt().ttAdd(IN_DUR, ()=>{
-	    this.bIntel = true;
-	  });
+	
+	private bool bREST_AI = false;
+	private void ai_REST(float IN_DUR=1.0f, bool IN_BOOL=true){
+	  if(IN_BOOL != this.bREST_AI){
+	    Debug.Log ("AI REST : " + IN_DUR);
+	    this.bIntel = false;
+	    this.tt().ttAdd(IN_DUR, ()=>{
+	      this.bIntel   = true  ;
+		  this.bREST_AI = false ;
+	    });
+	  }
 	}
 
+#endregion
 
 #region Utility
 	public cLevel.fx_Hit eBit;
@@ -162,14 +170,13 @@ namespace MTON.codeObjects{
 	  }
 	}
 		
-	public float doRangeCheck<T>(Transform IN_SRC, Transform IN_TGT, float IN_DIST, Func<bool, T> funcToRun){
+	public void doRangeCheck<T>(Transform IN_SRC, Transform IN_TGT, float IN_DIST, Func<bool, float, T> funcToRun){
 	  float dist = Vector3.Distance(IN_SRC.position, IN_TGT.position);
 	  bool  bRng = false;
 	  if(dist < IN_DIST){
 	    bRng = true ;
 	  }
-	  funcToRun(bRng);
-	  return dist;
+	  funcToRun(bRng, dist);
 	}
 
 	public GameObject doRayDir(Vector3 IN_POS, Vector3 IN_DIR){

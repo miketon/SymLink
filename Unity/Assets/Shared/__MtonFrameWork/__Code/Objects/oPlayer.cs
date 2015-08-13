@@ -176,16 +176,20 @@ namespace MTON.codeObjects{
           float kY = curPos.y - prvPos.y;
           if(kY>0.05f){                   //rising
             an.vState = cAnimn.eStateV.Rise;
+			an.doVelY(1.0f);
           }
           else if(kY<-0.05f){             //falling
             an.vState = cAnimn.eStateV.Fall;
+			an.doVelY(-1.0f);
           }
           else{
             an.vState = cAnimn.eStateV.Apex;
+		    an.doVelY(0.0f);
           }
         }
         else{                                //On Ground
           an.vState = cAnimn.eStateV.Idle;
+		  an.doVelY(0.0f);
         }
         prvPos = curPos;
 
