@@ -206,7 +206,7 @@ namespace MTON.codeObjects{
       }
 
       public virtual void doMove(Vector3 moveDir){ //Handles movement and facing
-		rb.Move(moveDir) ;
+	    rb.Move(moveDir);
         this.xform.SetPosZ(0.0f); // force into 0.0f zPlane so character doesn't slip
         // horizontal move state
         if(Mathf.Abs(moveDir.x) > 0.001f){
@@ -237,7 +237,7 @@ namespace MTON.codeObjects{
         //duck/crouch state
         if(Mathf.Abs(moveDir.y) > 0.001f){
           float vertDir = Mathf.Sign(moveDir.y); //y == vAxis  ; Sign return -1.0f or 1.0f
-          if(this.bDpdX == true){ // if not on lockdown, then ok to duck
+          if(this.bDpdX == true){                // if not on lockdown, then ok to duck
             if(vertDir < 0.0f){
               if(bGround == true){
                 an.duckST = cAnimn.eStateB.DN;
@@ -398,7 +398,7 @@ namespace MTON.codeObjects{
       public float sclX          = 1.0f   ;
 
       public virtual void doFace(Vector3 vFace){ //for 2D facing, use x
-        if(vFace.x > 0.01f){ // Mathf.Epsilon){
+        if(vFace.x > 0.0f){ // Mathf.Epsilon){
           this.bFaceRt = true;
           if(this.b_2D == true){
             //		  this.dispXFORM.rotation = Quaternion.Euler(new Vector3(0.0f, vFace.x * this.yRotOffset_3D, 0.0f));
@@ -408,7 +408,7 @@ namespace MTON.codeObjects{
             tw.doRotateTo(new Vector3(0.0f, vFace.x * yRotOffset_3D, 0.0f));
           }
         }
-        else if(vFace.x < -0.01f){ //-Mathf.Epsilon){
+        else if(vFace.x < 0.0f){ //-Mathf.Epsilon){
           this.bFaceRt = false;
           if(this.b_2D == true){
             //		  this.dispXFORM.rotation = Quaternion.Euler(new Vector3(0.0f, vFace.x * this.yRotOffset_3D, 0.0f));
