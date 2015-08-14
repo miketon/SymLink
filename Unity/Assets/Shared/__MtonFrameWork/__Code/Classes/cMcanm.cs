@@ -22,8 +22,9 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	    //animation state delegates
 	    if(anST == null){
 	      anST = this.GetComponent<cAnimn>();
-	    }
-	    if(anST != null){
+		}
+
+		if(anST != null){ // must do as separate if check
 		  //Vector3
           anST.OnMoveDelegate += OnMove;
 		  //Float
@@ -33,6 +34,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	      anST.OnGrndDelegate += OnGrnd;
           anST.OnDuckDelegate += OnDuck;
           anST.OnJumpDelegate += OnJump;
+          anST.OnJmpADelegate += OnJmpA;
           anST.OnPlntDelegate += OnPlnt;
           anST.OnAttkDelegate += OnAttk;
 	    }
@@ -51,6 +53,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	    anST.OnGrndDelegate -= OnGrnd;
         anST.OnDuckDelegate -= OnDuck;
         anST.OnJumpDelegate -= OnJump;
+        anST.OnJmpADelegate -= OnJmpA;
         anST.OnPlntDelegate -= OnPlnt;
         anST.OnAttkDelegate -= OnAttk;
 	  }
@@ -65,6 +68,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
     public string _bGround	;
     public string _bCrouch	;
     public string _bJump    ;
+    public string _bJmpA  ;
     public string _bAttk    ;
     public string _bForwrd	;
     public string _bSpawnd  ;
@@ -79,6 +83,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
     public int _bGround_ID { get; set; }
     public int _bCrouch_ID { get; set; }
     public int _bJump_ID   { get; set; }
+    public int _bJmpA_ID   { get; set; } //air jump
     public int _bAttk_ID   { get; set; }
     public int _bForwrd_ID { get; set; } //2d true == right; 3d true == forward
 	public int _bSpawnd_ID { get; set; } 
@@ -98,6 +103,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 		_bGround_ID = Animator.StringToHash(this._bGround);
 		_bPlantd_ID = Animator.StringToHash(this._bPlantd);
 		_bJump_ID   = Animator.StringToHash(this._bJump  );
+		_bJmpA_ID   = Animator.StringToHash(this._bJmpA  );
 		_bAttk_ID   = Animator.StringToHash(this._bAttk  );
 		_bCrouch_ID = Animator.StringToHash(this._bCrouch);
 		_bForwrd_ID = Animator.StringToHash(this._bForwrd);
@@ -117,12 +123,6 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	  }
 	}
 
-	public void OnGrnd(bool bGround){
-	  if(_bGround_ID != 0){
-	    anim.SetBool(_bGround_ID, bGround);
-	  }
-	}
-
 	public void OnMove(Vector3 moveDir){
 	  if(_kHorizn_ID != 0){
 //		Debug.Log ("Enemy Mecanim OnMove : "  + moveDir);
@@ -137,6 +137,12 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	  }
 	}
 
+	public void OnGrnd(bool bGround){
+	  if(_bGround_ID != 0){
+	    anim.SetBool(_bGround_ID, bGround);
+	  }
+	}
+
 	public void OnDuck(bool bCrouch){
 	  if(_bCrouch_ID != 0){
 	    anim.SetBool(_bCrouch_ID, bCrouch);
@@ -147,6 +153,14 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	  if(_bJump_ID != 0){
 		if(bJump == true){ //need to check for trigger; else double tap effect
 	      anim.SetTrigger(_bJump_ID);
+		}
+	  }
+	}
+
+    public void OnJmpA(bool bJump){
+	  if(_bJmpA_ID != 0){
+		if(bJump == true){ //need to check for trigger; else double tap effect
+	      anim.SetTrigger(_bJmpA_ID);
 		}
 	  }
 	}

@@ -42,6 +42,7 @@ namespace MTON.Class{
 		// dState
         public DL_Anim OnDuckDelegate            ; // Duck
         public DL_Anim OnJumpDelegate            ; // Jump
+        public DL_Anim OnJmpADelegate            ; // Jump Air
         public DL_Anim OnFlapDelegate            ; // Flap
 
 		// combat States
@@ -199,7 +200,7 @@ namespace MTON.Class{
 			set{
 				if(value != aimgst){
 			        aimgst = value ;
-                    if(value == eStateB.UP){ // NOTE INTERESTING !
+                    if(value == eStateB.Idle){ // NOTE INTERESTING !
 						doAimg(0.0f) ;       // OnAim release reset to 0.0f; Controls mecanim aim layer
 					}
 				}
@@ -249,8 +250,12 @@ namespace MTON.Class{
 					if(value == eStateB.DN){
 						this.setJump(true);
 					}
-					else if(value == eStateB.UP){
+				    else if(value == eStateB.UP){
+						this.setJmpA(true);
+					}
+					else if(value == eStateB.Idle){
 						this.setJump(false);
+						this.setJmpA(false);
 					}
 				}
 			}
@@ -272,7 +277,7 @@ namespace MTON.Class{
 							this.setAirF(true); //air fire
 						}
 					}
-					else if(value == eStateB.UP){
+					else if(value == eStateB.Idle){
 						this.setAttk(false);
 						if(this.grndST == eStateB.DN){
 							this.setFire(false); //ground fire
@@ -432,6 +437,12 @@ namespace MTON.Class{
 		private void setJump(bool bJump){
 		  if(this.OnJumpDelegate != null){
 		    this.OnJumpDelegate(bJump);
+		  }
+		}
+
+		private void setJmpA(bool bJump){ //Air Jump
+		  if(this.OnJmpADelegate != null){
+		    this.OnJmpADelegate(bJump);
 		  }
 		}
 

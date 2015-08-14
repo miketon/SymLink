@@ -218,7 +218,7 @@ namespace MTON.codeObjects{
               an.footST = cAnimn.eStateB.DN;
             }
             else{
-              an.footST = cAnimn.eStateB.UP;
+              an.footST = cAnimn.eStateB.Idle;
             }
           }
           if(Mathf.Sign(moveDir.x) > 0.0f){
@@ -248,7 +248,7 @@ namespace MTON.codeObjects{
         }
         else{
           if(an.vState != cAnimn.eStateV.Rise){
-            an.duckST = cAnimn.eStateB.UP;
+            an.duckST = cAnimn.eStateB.Idle;
           }
         }
       }
@@ -258,15 +258,15 @@ namespace MTON.codeObjects{
           if(bGround){    
             rb.Jump()                     ;
             an.jumpST = cAnimn.eStateB.DN ;
-            fx_Dust(this.eDjm, true);
+            fx_Dust(this.eDjm, true)      ;
           }
           else{
             rb.Flap()                     ; //flap when not on ground
-            an.jumpST = cAnimn.eStateB.DN ;
+            an.jumpST = cAnimn.eStateB.UP ;
           }
         }
         else{
-          an.jumpST = cAnimn.eStateB.UP ;
+          an.jumpST = cAnimn.eStateB.Idle ;
         }
       }
 
@@ -296,7 +296,12 @@ namespace MTON.codeObjects{
           }
         }
         else{
-          an.attkST = cAnimn.eStateB.UP;
+		  if(this.bpowr){ 
+		    an.attkST = cAnimn.eStateB.PW  ; //Power up attack
+		  }
+		  else{
+            an.attkST = cAnimn.eStateB.Idle;
+		  }
         }
       }
 
@@ -372,6 +377,7 @@ namespace MTON.codeObjects{
         }
 //		Debug.Log ("NO MORE RAPID FIRE"); //Only called once after while loop is complete
         an.doAimg(0.0f)                 ; //reset gun to face forward
+		an.attkST = cAnimn.eStateB.Idle ; //release attack from powerup
       }
 
       public virtual void doCrouch(bool bDuck){
@@ -496,7 +502,7 @@ namespace MTON.codeObjects{
             an.ceilST = cAnimn.eStateB.DN;
           }
           if(IN_CEILING == false){
-            an.ceilST = cAnimn.eStateB.UP;
+            an.ceilST = cAnimn.eStateB.Idle;
           }
         }
 

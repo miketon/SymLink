@@ -48,8 +48,11 @@ namespace MTON.codeObjects{
     
     public override void doFace(Vector3 vFace){ // Adding a pause to the face left and right flip
 	  base.doFace(vFace);
+	  if(vFace != Vector3.zero){
+	  Debug.Log ("DOFACE : " + vFace);
 	  float randomDur = UnityEngine.Random.Range(0.5f, 3.5f);
-	  ai_REST(this.fIntel); // * randomDur);
+	  ai_REST(this.fIntel * 2.0f); // * randomDur);
+	  }
 	}
 
 	public override void doMove (Vector3 moveDir){
@@ -63,7 +66,7 @@ namespace MTON.codeObjects{
 	
 	private void Update(){
 	  if(this.bIntel){     //if intelligence active : do AI
-//	    this.doAI_Intel();
+	    this.doAI_Intel();
 	  }
 	  else{
 	    this.ai_IDLE();
@@ -72,14 +75,14 @@ namespace MTON.codeObjects{
 
 #region AI functions
 
-	public float stopRadMult = 3.0f;
-	public float fRngAlert = 4.0f;
-	public float fRngAttck = 2.0f;
-	public bool  bIntel = true ; //at rest doesn't actively function
-	public float fIntel = 1.0f ; //How fast can AI switch between rest/active
+	public float fRngAware = 10.0f ;
+	public float fRngAlert = 6.0f  ;
+	public float fRngAttck = 3.5f  ;
+	public bool  bIntel = true     ; //at rest doesn't actively function
+	public float fIntel = 1.0f     ; //How fast can AI switch between rest/active
 
 	private void doAI_Intel(){
-	  this.doRangeCheck(this.xform, this.player, fRngAlert, (bool bRange, float fDist)=>{
+	  this.doRangeCheck(this.xform, this.player, this.fRngAware * rb.cRadius, (bool bRange, float fDist)=>{
 		if(bRange){
 //		  Vector3 centerOffset = new Vector3(0.0f, rb.cHeight * 0.5f, 0.0f);
 //		  Debug.DrawLine(this.xform.position + centerOffset, this.player.position + centerOffset, Color.yellow);
@@ -98,10 +101,11 @@ namespace MTON.codeObjects{
 	
 	public void ai_FOLLOW(float IN_DIST){
 	  this.doMove(-Vector3.right * Mathf.Sign(this.xform.position.x - this.player.position.x));
-	  if(Mathf.Abs(IN_DIST) < this.fRngAttck){
-	    this.an.attkST = cAnimn.eStateB.UP; // Reset attack to force state change if true
+	  if(Mathf.Abs(IN_DIST) < this.fRngAlert * rb.cRadius){
+	    this.an.attkST = cAnimn.eStateB.Idle; // Reset attack to force state change if true
 	    rendr.material.color = cActv;
-		if(Mathf.Abs(IN_DIST) < (rb.cRadius * 2.0f)){ // * stopRadMult)){
+		if(Mathf.Abs(IN_DIST) < (this.fRngAttck * rb.cRadius)){ 
+	      rendr.material.color = this.cAttk;
 	      this.ai_ATTK();
 		}
 	  }
@@ -112,10 +116,10 @@ namespace MTON.codeObjects{
 	}
 
 	public bool ai_ATTK(){
+	  ai_REST(this.fIntel * 1.5f);
 	  GameObject oHit;
 	  Vector3 dCenter = this.xform.position + rb.cen;
 	  Vector3 attkDir = this.player.transform.position - this.xform.position;
-//	  oHit = this.doRayDir(dCenter, attkDir, 0.5f);
 	  oHit = this.doRayDir(dCenter, attkDir);
 
 	  if(oHit != null){
@@ -130,16 +134,13 @@ namespace MTON.codeObjects{
 	  return false;
 	}
 	
-	private bool bREST_AI = false;
-	private void ai_REST(float IN_DUR=1.0f, bool IN_BOOL=true){
-	  if(IN_BOOL != this.bREST_AI){
+	private string sREST_tt = "tt_REST";
+	private void ai_REST(float IN_DUR=1.0f){
 	    Debug.Log ("AI REST : " + IN_DUR);
 	    this.bIntel = false;
-	    this.tt().ttAdd(IN_DUR, ()=>{
+		this.tt(this.sREST_tt).ttAdd(IN_DUR, ()=>{
 	      this.bIntel   = true  ;
-		  this.bREST_AI = false ;
 	    });
-	  }
 	}
 
 #endregion
@@ -150,16 +151,15 @@ namespace MTON.codeObjects{
 	private void ai_BITE(Vector3 IN_POS){
 	  if(this.eBit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
 	    __gCONSTANT._LEVEL.Emit_pFX(eBit, IN_POS, Quaternion.identity, ()=>{
-		
           return true;
 	    });
 	  }
-	  ai_REST(this.fIntel);
 	}
 
-	public Color cRest = Color.green  ;
-	public Color cAwre = Color.yellow ;
-	public Color cActv = Color.red    ;
+	public Color cRest = Color.white  ;
+	public Color cAwre = Color.green  ;
+	public Color cActv = Color.yellow ;
+	public Color cAttk = Color.red    ;
 
 	public virtual void AI_Actv(bool bActive){
 	  if(bActive){
