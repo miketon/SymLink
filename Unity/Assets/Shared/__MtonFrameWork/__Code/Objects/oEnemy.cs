@@ -138,7 +138,7 @@ namespace MTON.codeObjects{
 	  GameObject oHit;
 	  Vector3 dCenter = this.xform.position + rb.cen;
 	  Vector3 attkDir = this.player.transform.position - this.xform.position;
-	  oHit = this.doRayDir(dCenter, attkDir);
+	  oHit = this.doRayDir(dCenter, attkDir, this.fRngAttck * rb.cRadius);
 
 	  if(oHit != null){
 	    oPlayer pHit = oHit.GetComponent<oPlayer>();
@@ -202,10 +202,10 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	public GameObject doRayDir(Vector3 IN_POS, Vector3 IN_DIR){
+	public GameObject doRayDir(Vector3 IN_POS, Vector3 IN_DIR, float IN_DIST = 2.0f){
 	  RaycastHit hit;
 	  Ray ray = new Ray(IN_POS, IN_DIR);
-	  Physics.Raycast(ray, out hit, 2.0f);
+	  Physics.Raycast(ray, out hit, IN_DIST);
 	  Debug.DrawRay(IN_POS, IN_DIR, Color.yellow, 0.75f);
 	  if(hit.collider != null){
 	    return hit.collider.gameObject;
@@ -215,20 +215,20 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	public GameObject doRayDir(Vector3 IN_POS, Vector3 IN_DIR, float IN_RAD){
-	  RaycastHit hit;
-	  Ray ray = new Ray(IN_POS, IN_DIR);
-	  Physics.SphereCast(ray, IN_RAD, out hit, 2.0f);
-	  Debug.DrawRay(IN_POS, IN_DIR, Color.yellow, 0.5f);
-	  Debug.DrawRay(IN_POS+Vector3.up*IN_RAD, IN_DIR, Color.yellow, 0.5f);
-	  Debug.DrawRay(IN_POS+-Vector3.up*IN_RAD, IN_DIR, Color.yellow, 0.5f);
-	  if(hit.collider != null){
-	    return hit.collider.gameObject;
-	  }
-	  else{
-	    return null;
-	  }
-	}
+//	public GameObject doRayDir(Vector3 IN_POS, Vector3 IN_DIR, float IN_RAD, float IN_DIST = 2.0f){
+//	  RaycastHit hit;
+//	  Ray ray = new Ray(IN_POS, IN_DIR);
+//	  Physics.SphereCast(ray, IN_RAD, out hit, IN_DIST);
+//	  Debug.DrawRay(IN_POS, IN_DIR, Color.yellow, 0.5f);
+//	  Debug.DrawRay(IN_POS+Vector3.up*IN_RAD, IN_DIR, Color.yellow, 0.5f);
+//	  Debug.DrawRay(IN_POS+-Vector3.up*IN_RAD, IN_DIR, Color.yellow, 0.5f);
+//	  if(hit.collider != null){
+//	    return hit.collider.gameObject;
+//	  }
+//	  else{
+//	    return null;
+//	  }
+//	}
 
 #endregion
 
