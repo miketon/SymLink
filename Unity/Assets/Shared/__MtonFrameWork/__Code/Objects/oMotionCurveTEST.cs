@@ -16,24 +16,32 @@ public class oMotionCurveTEST : MonoBehaviour {
         journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
     }
 
+	public bool bCurveInterp = true;
 	public float lifeSpan = 1.0f;
-	public Vector3 startPos = Vector3.zero;
-	public Vector3 endPos   = Vector3.up * 10.0f;
 	public float currentAge = 0.0f; 
 	public float percentAge = 0.0f; 
 
-    void Update() {
-//        float distCovered = (Time.time - startTime) * speed;
-//        float fracJourney = distCovered / journeyLength;
-//		  float curvedValue = motionCurve.Evaluate(fracJourney);
-//        transform.position = Vector3.Lerp(startMarker.position, endMarker.position, fracJourney);
-//        transform.position = Vector3.Lerp(startMarker.position, endMarker.position, curvedValue);
+	public Vector3 startPos = Vector3.zero;
+	public Vector3 endPos   = Vector3.up * 10.0f;
 
-		currentAge -= Time.deltaTime;
-		percentAge = 1.0f - (currentAge % lifeSpan);   
-		float curvedValue = motionCurve.Evaluate(percentAge-1.0f);
+    void Update() {
+
+//		currentAge -= Time.deltaTime;
+//		percentAge = 1.0f - (currentAge % lifeSpan);   
+//		percentAge = (currentAge % lifeSpan);   
 //		Vector3 newPos = Vector3.Lerp(startPos, endPos, percentAge-1.0f);
-		Vector3 newPos = Vector3.Lerp(startPos, endPos, curvedValue);
+//		float curvedValue = motionCurve.Evaluate(percentAge-1.0f);
+//		Vector3 newPos = Vector3.Lerp(startPos, endPos, percentAge);
+
+		percentAge = (Time.time % lifeSpan)/lifeSpan;   
+		Vector3 newPos = Vector3.zero;
+		if(bCurveInterp){
+		  float curvedValue = motionCurve.Evaluate(percentAge);
+		  newPos = Vector3.Lerp(startPos, endPos, curvedValue);
+		}
+		else{
+		  newPos = Vector3.Lerp(startPos, endPos, percentAge);
+		}
 		transform.position = newPos;
     }
 
