@@ -51,7 +51,7 @@ namespace MTON.codeObjects{
 //	  Debug.Log ("DOFACE : " + vFace);
 	  if(vFace != Vector3.zero){
 	    float randomDur = 1.0f; //UnityEngine.Random.Range(0.75f, 1.5f);
-	    if(vFace != this.vFacePrev){       ; //filters to trigger rest only on turn
+	    if(vFace != this.vFacePrev){       ; // MUST : filters to trigger rest only on turn else, stutter turn on faceIdle
 	      ai_REST(this.fIntel * randomDur) ;
 		  this.vFacePrev = vFace           ;
 		}
@@ -61,10 +61,6 @@ namespace MTON.codeObjects{
 	public void doMove_AI (Vector3 moveDir){
 	  if(this.bIntel){ //Only on Intel can move
 	    base.doMove (moveDir);
-//		Debug.Log ("Enemy on the move: "+ moveDir +" : "+ this);
-	  }
-	  else{
-	    base.doMove(Vector3.zero);
 	  }
 	}
 
@@ -75,15 +71,12 @@ namespace MTON.codeObjects{
 	  if(this.bIntel){     //if intelligence active : do AI
 	    this.doAI_Intel();
 	  }
-	  else{
-	    this.ai_IDLE();
-	  }
 
 	  if(Input.GetKeyDown(KeyCode.P)){
 //	    this.bInput = !this.bInput;
 		this.bIntel = !this.bIntel;
 		this.iThought++;
-		this.ai_THNK(1.0f, ()=>{
+		this.ai_REST(1.0f, "tt_THINK", ()=>{
 				  Debug.Log ("Thinking : " + this.iThought);
 				  return true;
 				});
@@ -151,20 +144,25 @@ namespace MTON.codeObjects{
 	  }
 	  return false;
 	}
-
-	private void ai_THNK<T>(float IN_DUR, Func<T> funcToRun, string IN_QUE = "tt_THINK"){
-	  this.tt (IN_QUE).ttReset();
-	  this.tt (IN_QUE).ttAdd(IN_DUR, ()=>{ funcToRun(); });
+	
+    // AI REST *************************
+	private void ai_REST(float IN_DUR=1.0f){
+		this.ai_REST(IN_DUR, "tt_REST", ()=>{ return true; });
 	}
 	
-	private string sREST_tt = "tt_REST";
-	private void ai_REST(float IN_DUR=1.0f){
-	    Debug.Log ("AI REST : " + IN_DUR);
-	    this.bIntel = false;
-		this.tt(this.sREST_tt).ttAdd(IN_DUR, ()=>{
-	      this.bIntel   = true  ;
-	    });
+	private void ai_REST(float IN_DUR, string IN_QUE){
+		this.ai_REST(IN_DUR, IN_QUE, ()=>{ return true; });
 	}
+
+	private void ai_REST<T>(float IN_DUR, string IN_QUE, Func<T> funcToRun){
+	  this.bIntel = false;
+	  this.tt (IN_QUE).ttReset();
+	  this.tt (IN_QUE).ttAdd(IN_DUR, ()=>{ 
+				this.bIntel = true;
+				funcToRun(); 
+	  });
+	}
+    // AI REST *************************
 
 #endregion
 
