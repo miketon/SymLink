@@ -16,8 +16,15 @@ namespace MTON.Class{
     public DL_Deth OnDethDelegate             ; //delegate instance
 
 	public float timeSpan  = 1.0f ;
-	public float intvValue = 0.0f ; // value of current interval on curve
-	public float intvPercn = 0.0f ; // percent position of curve being sampled
+	public float timeSpanH = 1.0f ;
+	public float timeSpanV = 1.0f ;
+
+	public float curveValue  = 0.0f ; // value of current interval on curve
+	public float curveValueH = 0.0f ; // value of current interval on curve
+	public float curveValueV = 0.0f ; // value of current interval on curve
+	public float curvePercn  = 0.0f ; // percent position of curve being sampled
+	public float curvePercnH = 0.0f ; // percent position of curve being sampled
+	public float curvePercnV = 0.0f ; // percent position of curve being sampled
 
 	public enum eStateB{ // curve States
 	  Idle,
@@ -50,23 +57,33 @@ namespace MTON.Class{
 	public int beatInterval = 3;
 	public GameObject[] goArray;
 	
-	private void Start(){
-	  if(goArray.Length > 0){
-
-	  }
-	}
+//	private void Start(){
+//	  if(goArray.Length > 0){
+//
+//	  }
+//	}
 
 #region iCurve implementation
 	public bool bCurve = true;
 	public AnimationCurve curvData;
+	public AnimationCurve curvData_H;
+	public AnimationCurve curvData_V;
+	
+	public float fWave   = 1.0f ;
+	public float fWave_H = 1.0f ;
+	public float fWave_V = 1.0f ;
 
-	public virtual float evalCurve (float IN_PERCENT){ // returning value from curve
+	public void kWave_V(float IN_VALUE){
+	  this.transform.SetPosY(IN_VALUE * fWave_V);
+	}
+
+	public virtual float evalCurve (float IN_PERCENT, AnimationCurve curvData){ // returning value from curve
 	  float retFloat = 0.0f;
 	  if(bCurve){
-	    retFloat = curvData.Evaluate(intvPercn)   ; // transformed by curve
+	    retFloat = curvData.Evaluate(IN_PERCENT)   ; // transformed by curve
 	  }
 	  else{
-	    retFloat = intvPercn;
+	    retFloat = IN_PERCENT;
 	  }
 	  return retFloat;
     }
@@ -114,12 +131,18 @@ namespace MTON.Class{
 	public float kThreshold = 0.5f;
 	public virtual void Update(){
 	  // timeline
-	  intvPercn = (Time.time % timeSpan)/timeSpan ; // modulate timeline, and divide by span
+	  curvePercn  = (Time.time % timeSpan)/timeSpan   ; // modulate timeline, and divide by span
+	  curvePercnH = (Time.time % timeSpanH)/timeSpanH ; // modulate timeline, and divide by span
+//	  curvePercnV = (Time.time % timeSpanV)/timeSpanV ; // modulate timeline, and divide by span
+	  curvePercnV = (Time.time * timeSpanV); // modulate timeline, and divide by span
 	  // filter timeline
-	  intvValue = evalCurve(intvPercn);
-//	  goArray[0].SetActive(!kStart_End(intvValue));
-	  this.kValue(intvValue, this.kThreshold);
-//	  this.kStart_End(intvValue); //not fast enough ??? Race condition ???
+	  curveValue  = evalCurve(curvePercn * fWave, this.curvData);
+	  curveValueH = evalCurve(curvePercnH, this.curvData_H);
+	  curveValueV = evalCurve(curvePercnV, this.curvData_V);
+//	  goArray[0].SetActive(!kStart_End(curveValue));
+	  this.kValue(curveValue, this.kThreshold);
+//	  this.kStart_End(curveValue); //not fast enough ??? Race condition ???
+	  this.kWave_V(curveValueV);
 	}
 
 #endregion
