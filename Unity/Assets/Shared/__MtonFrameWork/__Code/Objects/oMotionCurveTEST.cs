@@ -26,13 +26,6 @@ public class oMotionCurveTEST : MonoBehaviour {
 
     void Update() {
 
-//		currentAge -= Time.deltaTime;
-//		percentAge = 1.0f - (currentAge % lifeSpan);   
-//		percentAge = (currentAge % lifeSpan);   
-//		Vector3 newPos = Vector3.Lerp(startPos, endPos, percentAge-1.0f);
-//		float curvedValue = motionCurve.Evaluate(percentAge-1.0f);
-//		Vector3 newPos = Vector3.Lerp(startPos, endPos, percentAge);
-
 		percentAge = (Time.time % lifeSpan)/lifeSpan;   
 		Vector3 newPos = Vector3.zero;
 		if(bCurveInterp){
