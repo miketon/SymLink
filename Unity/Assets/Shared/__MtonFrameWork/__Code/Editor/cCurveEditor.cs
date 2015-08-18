@@ -17,6 +17,8 @@ namespace MTON{
 	  EditorGUILayout.LabelField("THIS THE EDITOR TAKING OVER.");
 	  if(GUILayout.Button("Build Object")){
 //	    Debug.Log ("ON DOWN PRESS EDITOR");
+		mCurve.AddTimeSpan(25);
+		mCurve.BuildCurveFromObjectArray(mCurve.goArray);
 	    EditorGUILayout.HelpBox("This is a help box", MessageType.Info);
 	  }
 	  else{

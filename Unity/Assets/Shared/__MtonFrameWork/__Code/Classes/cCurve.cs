@@ -20,6 +20,34 @@ namespace MTON.Class{
 	private void Randomize(){
 	  timeSpan = UnityEngine.Random.Range(0.0f, 75.0f);
 	}
+	public void AddTimeSpan(int IN_INT){
+	  timeSpan += timeSpanH + timeSpanV + IN_INT;
+	}
+
+	public bool BuildCurveFromObjectArrayCONTEXT(){
+	  return this.BuildCurveFromObjectArray(this.goArray);
+	}
+	public bool BuildCurveFromObjectArray(GameObject[] IN_GO){
+	  if(IN_GO.Length > 0){
+	    Debug.Log ("BUILD CURVE FROM OBJECT : " + IN_GO.Length);
+		for(int i=0; i<IN_GO.Length; i++){ // Check to verify each entry not null; escape and fire warning if so
+		  if(!IN_GO[i]){
+	        Debug.LogError ("OBJECT NOT VALID AT INDEX : "+i+ " : " + IN_GO);
+		    this.curvData = new AnimationCurve(new Keyframe(0, 0.5f), new Keyframe(1, 0.5f));
+		    return false;
+		  }
+		}
+		for(int i=0; i<IN_GO.Length; i++){ // Else process curve
+	      Debug.Log ("OBJECT IS VALID AT INDEX : "+ i + " : " + IN_GO[i]);
+		}
+		this.curvData = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
+		return true;
+	  }
+	  else{
+	    Debug.LogError ("BUILD CURVE NO VALID OBJECT : " + IN_GO.Length);
+	  }
+	  return false;
+	}
 
 	public float timeSpanH = 1.0f ;
 	public float timeSpanV = 1.0f ;
@@ -60,6 +88,7 @@ namespace MTON.Class{
 		}
 	
 	public int beatInterval = 3;
+    [ContextMenuItem("BuildAnimCurve", "BuildCurveFromObjectArrayCONTEXT")] //MUST : Must have unique name; Context function can not overload
 	public GameObject[] goArray;
 	
 //	private void Start(){
@@ -89,6 +118,7 @@ namespace MTON.Class{
 	public mCurve Hcurv = new mCurve(); //"mCurve", this.curvData);
 
 	public bool bCurve = true;
+    [ContextMenuItem("BuildAnimCurve", "BuildCurveFromObjectArrayCONTEXT")] //MUST : Must have unique name; Context function can not overload
 	public AnimationCurve curvData;
 	public AnimationCurve curvData_H;
 	public AnimationCurve curvData_V;
