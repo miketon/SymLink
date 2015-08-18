@@ -64,6 +64,25 @@ namespace MTON.Class{
 //	}
 
 #region iCurve implementation
+
+	public struct mCurve {
+      //Variable declaration
+      //Note: I'm explicitly declaring them as public, but they are public by default. You can use private if you choose.
+      public string Name;
+      public bool bCurve;
+	  
+	  public AnimationCurve curvData;
+   
+      //Constructor (not necessary, but helpful)
+//      public mCurve(string name, AnimationCurve curvdata, bool bcurve=true) {
+//        this.Name = name;
+//        this.bCurve = bcurve;
+//	    this.curvData = curvdata;
+//      }
+	}
+
+	public mCurve Hcurv = new mCurve(); //"mCurve", this.curvData);
+
 	public bool bCurve = true;
 	public AnimationCurve curvData;
 	public AnimationCurve curvData_H;
@@ -73,8 +92,17 @@ namespace MTON.Class{
 	public float fWave_H = 1.0f ;
 	public float fWave_V = 1.0f ;
 
+	public Transform xformObj;
+
 	public void kWave_V(float IN_VALUE){
-	  this.transform.SetPosY(IN_VALUE * fWave_V);
+//	  this.xformObj.SetPosY(IN_VALUE);
+//	  this.xformObj.localPosition += Vector3.up * IN_VALUE;
+	  this.xformObj.localPosition = new Vector3(xformObj.localPosition.x, IN_VALUE, xformObj.localPosition.z);
+	}
+
+	public void kWave_H(float IN_VALUE){
+//	  this.xformObj.SetPosX(IN_VALUE);
+	  this.xformObj.localPosition = new Vector3(IN_VALUE, xformObj.localPosition.y , xformObj.localPosition.z);
 	}
 
 	public virtual float evalCurve (float IN_PERCENT, AnimationCurve curvData){ // returning value from curve
@@ -142,7 +170,8 @@ namespace MTON.Class{
 //	  goArray[0].SetActive(!kStart_End(curveValue));
 	  this.kValue(curveValue, this.kThreshold);
 //	  this.kStart_End(curveValue); //not fast enough ??? Race condition ???
-	  this.kWave_V(curveValueV);
+	  this.kWave_H(curveValueH * this.fWave_H);
+	  this.kWave_V(curveValueV * this.fWave_V);
 	}
 
 #endregion
