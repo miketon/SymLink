@@ -15,7 +15,12 @@ namespace MTON.Class{
     public delegate void DL_Deth(bool bDead)  ; //set up delegate
     public DL_Deth OnDethDelegate             ; //delegate instance
 
+	[ContextMenuItem("Randomize timeSpan", "Randomize")]
 	public float timeSpan  = 1.0f ;
+	private void Randomize(){
+	  timeSpan = UnityEngine.Random.Range(0.0f, 75.0f);
+	}
+
 	public float timeSpanH = 1.0f ;
 	public float timeSpanV = 1.0f ;
 
