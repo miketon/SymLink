@@ -206,7 +206,7 @@ namespace MTON.codeObjects{
       }
 
       public virtual void doMove(Vector3 moveDir){ //Handles movement and facing
-		rb.Move(moveDir) ;
+	    rb.Move(moveDir);
         this.xform.SetPosZ(0.0f); // force into 0.0f zPlane so character doesn't slip
         // horizontal move state
         if(Mathf.Abs(moveDir.x) > 0.001f){
@@ -218,7 +218,7 @@ namespace MTON.codeObjects{
               an.footST = cAnimn.eStateB.DN;
             }
             else{
-              an.footST = cAnimn.eStateB.UP;
+              an.footST = cAnimn.eStateB.Idle;
             }
           }
           if(Mathf.Sign(moveDir.x) > 0.0f){
@@ -237,7 +237,7 @@ namespace MTON.codeObjects{
         //duck/crouch state
         if(Mathf.Abs(moveDir.y) > 0.001f){
           float vertDir = Mathf.Sign(moveDir.y); //y == vAxis  ; Sign return -1.0f or 1.0f
-          if(this.bDpdX == true){ // if not on lockdown, then ok to duck
+          if(this.bDpdX == true){                // if not on lockdown, then ok to duck
             if(vertDir < 0.0f){
               if(bGround == true){
                 an.duckST = cAnimn.eStateB.DN;
@@ -248,7 +248,7 @@ namespace MTON.codeObjects{
         }
         else{
           if(an.vState != cAnimn.eStateV.Rise){
-            an.duckST = cAnimn.eStateB.UP;
+            an.duckST = cAnimn.eStateB.Idle;
           }
         }
       }
@@ -258,15 +258,15 @@ namespace MTON.codeObjects{
           if(bGround){    
             rb.Jump()                     ;
             an.jumpST = cAnimn.eStateB.DN ;
-            fx_Dust(this.eDjm, true);
+            fx_Dust(this.eDjm, true)      ;
           }
           else{
             rb.Flap()                     ; //flap when not on ground
-            an.jumpST = cAnimn.eStateB.DN ;
+            an.jumpST = cAnimn.eStateB.UP ;
           }
         }
         else{
-          an.jumpST = cAnimn.eStateB.UP ;
+          an.jumpST = cAnimn.eStateB.Idle ;
         }
       }
 
@@ -296,7 +296,12 @@ namespace MTON.codeObjects{
           }
         }
         else{
-          an.attkST = cAnimn.eStateB.UP;
+		  if(this.bpowr){ 
+		    an.attkST = cAnimn.eStateB.PW  ; //Power up attack
+		  }
+		  else{
+            an.attkST = cAnimn.eStateB.Idle;
+		  }
         }
       }
 
@@ -372,6 +377,7 @@ namespace MTON.codeObjects{
         }
 //		Debug.Log ("NO MORE RAPID FIRE"); //Only called once after while loop is complete
         an.doAimg(0.0f)                 ; //reset gun to face forward
+		an.attkST = cAnimn.eStateB.Idle ; //release attack from powerup
       }
 
       public virtual void doCrouch(bool bDuck){
@@ -392,7 +398,7 @@ namespace MTON.codeObjects{
       public float sclX          = 1.0f   ;
 
       public virtual void doFace(Vector3 vFace){ //for 2D facing, use x
-        if(vFace.x > 0.01f){ // Mathf.Epsilon){
+        if(vFace.x > 0.0f){ // Mathf.Epsilon){
           this.bFaceRt = true;
           if(this.b_2D == true){
             //		  this.dispXFORM.rotation = Quaternion.Euler(new Vector3(0.0f, vFace.x * this.yRotOffset_3D, 0.0f));
@@ -402,7 +408,7 @@ namespace MTON.codeObjects{
             tw.doRotateTo(new Vector3(0.0f, vFace.x * yRotOffset_3D, 0.0f));
           }
         }
-        else if(vFace.x < -0.01f){ //-Mathf.Epsilon){
+        else if(vFace.x < 0.0f){ //-Mathf.Epsilon){
           this.bFaceRt = false;
           if(this.b_2D == true){
             //		  this.dispXFORM.rotation = Quaternion.Euler(new Vector3(0.0f, vFace.x * this.yRotOffset_3D, 0.0f));
@@ -496,7 +502,7 @@ namespace MTON.codeObjects{
             an.ceilST = cAnimn.eStateB.DN;
           }
           if(IN_CEILING == false){
-            an.ceilST = cAnimn.eStateB.UP;
+            an.ceilST = cAnimn.eStateB.Idle;
           }
         }
 

@@ -22,8 +22,9 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	    //animation state delegates
 	    if(anST == null){
 	      anST = this.GetComponent<cAnimn>();
-	    }
-	    if(anST != null){
+		}
+
+		if(anST != null){ // must do as separate if check
 		  //Vector3
           anST.OnMoveDelegate += OnMove;
 		  //Float
@@ -33,8 +34,10 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	      anST.OnGrndDelegate += OnGrnd;
           anST.OnDuckDelegate += OnDuck;
           anST.OnJumpDelegate += OnJump;
+          anST.OnJmpADelegate += OnJmpA;
           anST.OnPlntDelegate += OnPlnt;
           anST.OnAttkDelegate += OnAttk;
+		  anST.OnPoseDelegate += OnPose;
 	    }
 	  }
 	}
@@ -51,8 +54,10 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	    anST.OnGrndDelegate -= OnGrnd;
         anST.OnDuckDelegate -= OnDuck;
         anST.OnJumpDelegate -= OnJump;
+        anST.OnJmpADelegate -= OnJmpA;
         anST.OnPlntDelegate -= OnPlnt;
         anST.OnAttkDelegate -= OnAttk;
+		anST.OnPoseDelegate -= OnPose;
 	  }
 	}
 
@@ -65,10 +70,14 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
     public string _bGround	;
     public string _bCrouch	;
     public string _bJump    ;
+    public string _bJmpA    ;
     public string _bAttk    ;
     public string _bForwrd	;
     public string _bSpawnd  ;
     public string _bDeathd  ;
+    public string _bPoseID  ;
+    public string _bPoseWN  ;
+    public string _bPoseLS  ;
 
     public string _fAudio0  ; // name of custom curve to get from animator
 
@@ -79,10 +88,16 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
     public int _bGround_ID { get; set; }
     public int _bCrouch_ID { get; set; }
     public int _bJump_ID   { get; set; }
+    public int _bJmpA_ID   { get; set; } //air jump
     public int _bAttk_ID   { get; set; }
     public int _bForwrd_ID { get; set; } //2d true == right; 3d true == forward
 	public int _bSpawnd_ID { get; set; } 
     public int _bDeathd_ID { get; set; } 
+
+	// Pose
+    public int _bPoseID_ID { get; set; } //Idle
+    public int _bPoseWN_ID { get; set; } //Win
+    public int _bPoseLS_ID { get; set; } //Lose
 
 	public int _fAudio0_ID { get; set; } 
 
@@ -98,11 +113,17 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 		_bGround_ID = Animator.StringToHash(this._bGround);
 		_bPlantd_ID = Animator.StringToHash(this._bPlantd);
 		_bJump_ID   = Animator.StringToHash(this._bJump  );
+		_bJmpA_ID   = Animator.StringToHash(this._bJmpA  );
 		_bAttk_ID   = Animator.StringToHash(this._bAttk  );
 		_bCrouch_ID = Animator.StringToHash(this._bCrouch);
 		_bForwrd_ID = Animator.StringToHash(this._bForwrd);
 		_bSpawnd_ID = Animator.StringToHash(this._bSpawnd);
 		_bDeathd_ID = Animator.StringToHash(this._bDeathd);
+
+		// Pose
+		_bPoseID_ID = Animator.StringToHash(this._bPoseID); // Idle
+		_bPoseWN_ID = Animator.StringToHash(this._bPoseWN); // Win
+		_bPoseLS_ID = Animator.StringToHash(this._bPoseLS); // Lose
 
 		_fAudio0_ID = Animator.StringToHash(this._fAudio0);
 	}
@@ -114,12 +135,6 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	public void OnVelY(float fVel_Y){
       if(_kVertcl_ID != 0){
 	    anim.SetFloat(_kVertcl_ID, fVel_Y);
-	  }
-	}
-
-	public void OnGrnd(bool bGround){
-	  if(_bGround_ID != 0){
-	    anim.SetBool(_bGround_ID, bGround);
 	  }
 	}
 
@@ -137,6 +152,12 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	  }
 	}
 
+	public void OnGrnd(bool bGround){
+	  if(_bGround_ID != 0){
+	    anim.SetBool(_bGround_ID, bGround);
+	  }
+	}
+
 	public void OnDuck(bool bCrouch){
 	  if(_bCrouch_ID != 0){
 	    anim.SetBool(_bCrouch_ID, bCrouch);
@@ -147,6 +168,14 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	  if(_bJump_ID != 0){
 		if(bJump == true){ //need to check for trigger; else double tap effect
 	      anim.SetTrigger(_bJump_ID);
+		}
+	  }
+	}
+
+    public void OnJmpA(bool bJump){
+	  if(_bJmpA_ID != 0){
+		if(bJump == true){ //need to check for trigger; else double tap effect
+	      anim.SetTrigger(_bJmpA_ID);
 		}
 	  }
 	}
@@ -174,6 +203,24 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	public void OnDead(bool bDead){
 	  if(_bDeathd_ID != 0){
 	    anim.SetBool(_bDeathd_ID, bDead);
+	  }
+	}
+
+	public void OnPose(int iPose){                 // Trigger based on int
+	  if(iPose == 0){                             // 0 = Idle pose 
+	    if(this._bPoseID_ID != 0){
+	      anim.SetTrigger(this._bPoseID_ID);
+		}
+      }
+	  else if(iPose == 1){                       // 1 = Win pose 
+	    if(this._bPoseWN_ID != 0){
+	      anim.SetTrigger(this._bPoseWN_ID);
+		}
+	  }
+	  else if(iPose ==-1){                       //-1 = Lose pose 
+	    if(this._bPoseLS_ID != 0){
+	      anim.SetTrigger(this._bPoseLS_ID);
+		}
 	  }
 	}
 

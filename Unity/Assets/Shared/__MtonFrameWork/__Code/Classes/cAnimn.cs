@@ -12,11 +12,11 @@ namespace MTON.Class{
 
 #region cAnimn Delegates
 
-		// hState
-		public delegate void  DL_VDIR(Vector3 vDir  ) ; //set up delegate
-		public delegate void  DL_Anim(bool    bEvnt ) ; //set up delegate
-		public delegate void  DL_fVal(float   fValue) ; //set up delegate
-		public delegate void  DL_iVal(int     iValue) ; //set up delegate
+		// Delegate types
+		public delegate void  DL_VDIR(Vector3 vDir  ) ; // Vector3 type
+		public delegate void  DL_Anim(bool    bEvnt ) ; // Boolean type
+		public delegate void  DL_fVal(float   fValue) ; // Float   type
+		public delegate void  DL_iVal(int     iValue) ; // Int     type
 
         public DL_VDIR OnMoveDelegate              ; // Movin
         public DL_VDIR OnFaceDelegate              ; // Facing Dir
@@ -42,9 +42,10 @@ namespace MTON.Class{
 		// dState
         public DL_Anim OnDuckDelegate            ; // Duck
         public DL_Anim OnJumpDelegate            ; // Jump
+        public DL_Anim OnJmpADelegate            ; // Jump Air
         public DL_Anim OnFlapDelegate            ; // Flap
 
-		// combat States
+		// combat Attk States
         public DL_Anim OnAttkDelegate            ; // Attack
 	    public DL_Anim OnFireDelegate            ; // Fire  : Ranged Attack
 	    public DL_Anim OnAirFDelegate            ; // Fire  : Ranged Attack in Air
@@ -52,7 +53,10 @@ namespace MTON.Class{
 	    public DL_Anim OnAirMDelegate            ; // Melee : Close  Attack in Air
 	    public DL_Anim OnPowrDelegate            ; // Power : Power  Attack
 	    public DL_Anim OnAirPDelegate            ; // Power : Power  Attack in Air
+
+		// combat React States
         public DL_Anim OnGardDelegate            ; // Guard
+        public DL_Anim OnHitdDelegate            ; // Hitd
 
 		// lState - life State
         public DL_Anim OnSpwnDelegate            ; // Spawn
@@ -61,7 +65,8 @@ namespace MTON.Class{
 		public DL_Anim OnDactDelegate            ; // Deactived
         public DL_Anim OnDeadDelegate            ; // Dead
 
-        public DL_Anim OnHitdDelegate            ; // Hitd
+		// PState - Pose State (celebrate, fidget..etc)
+		public DL_iVal OnPoseDelegate            ; // Fidget
 
 #endregion
 
@@ -142,7 +147,7 @@ namespace MTON.Class{
 			}
 			set{ // NOTE: INTERESTING !!!
 				if(value == eStateH.Walk){ //continously check for walk
-				  setPlnt(false);                 //Planted == no
+				  setPlnt(false) ;         //Planted == no
 				  hstate = value ;
 				  if(fState == eStateF.Rght){
 				    doMove(Vector3.right);
@@ -184,9 +189,9 @@ namespace MTON.Class{
 					else if(value == eStateF.Left){
 					  doFace(Vector3.left);
 					}
-					else{
-					  doFace(Vector3.zero);
-					}
+//					else{
+//					  doFace(Vector3.zero);
+//					}
 //					Debug.Log(this + " fState updated : " + value);
 				}
 			}
@@ -199,7 +204,7 @@ namespace MTON.Class{
 			set{
 				if(value != aimgst){
 			        aimgst = value ;
-                    if(value == eStateB.UP){ // NOTE INTERESTING !
+                    if(value == eStateB.Idle){ // NOTE INTERESTING !
 						doAimg(0.0f) ;       // OnAim release reset to 0.0f; Controls mecanim aim layer
 					}
 				}
@@ -230,14 +235,6 @@ namespace MTON.Class{
 
 #endregion
 
-		public void reset_STATES(){
-
-		  this.vState = eStateV.Idle;
-		  this.hState = eStateH.Idle;
-		  this.fState = eStateF.Idle;
-
-		}
-
 #region Enum Define : Button/Bool
 		// STATE : Jump
 		public  eStateB jumpst ;
@@ -249,8 +246,12 @@ namespace MTON.Class{
 					if(value == eStateB.DN){
 						this.setJump(true);
 					}
-					else if(value == eStateB.UP){
+				    else if(value == eStateB.UP){
+						this.setJmpA(true);
+					}
+					else if(value == eStateB.Idle){
 						this.setJump(false);
+						this.setJmpA(false);
 					}
 				}
 			}
@@ -272,7 +273,7 @@ namespace MTON.Class{
 							this.setAirF(true); //air fire
 						}
 					}
-					else if(value == eStateB.UP){
+					else if(value == eStateB.Idle){
 						this.setAttk(false);
 						if(this.grndST == eStateB.DN){
 							this.setFire(false); //ground fire
@@ -349,6 +350,26 @@ namespace MTON.Class{
 					}
 					else{
 						setFoot(false);
+					}
+				}
+			}
+		}
+
+		// STATE : POSING => Win, lose...etc
+		public  eStateB posest ;
+		public  eStateB poseST{
+			get{ return posest; }
+			set{
+				if(value != posest){
+			        posest = value ;
+                    if(value == eStateB.Idle){    //Default Idle
+					  this.setPose(0);
+					}
+					else if(value == eStateB.UP){ //Win
+					  this.setPose(1);
+					}
+					else if(value == eStateB.DN){ //Lose
+					  this.setPose(-1);
 					}
 				}
 			}
@@ -435,6 +456,12 @@ namespace MTON.Class{
 		  }
 		}
 
+		private void setJmpA(bool bJump){ //Air Jump
+		  if(this.OnJmpADelegate != null){
+		    this.OnJmpADelegate(bJump);
+		  }
+		}
+
 		private void setAttk(bool bAttk){
 		  if(this.OnAttkDelegate != null){
 		    this.OnAttkDelegate(bAttk);
@@ -468,9 +495,6 @@ namespace MTON.Class{
 		private void setPowr(bool bPowr){
 		  if(this.OnPowrDelegate != null){
 		    this.OnPowrDelegate(bPowr);
-//			if(bPowr == false){
-//			  this.reset_STATES(); //prevents sliding animation
-//			}
 		  }
 		}
 
@@ -505,6 +529,16 @@ namespace MTON.Class{
 			  this.OnDeadDelegate(bDead);
 			}
 		}
+
+#region Delegate private bool Functions : Pose
+
+		private void setPose(int iPose){
+			if(this.OnPoseDelegate != null){
+			  this.OnPoseDelegate(iPose);
+			}
+		}
+
+#endregion
 
 	}
 

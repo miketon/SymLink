@@ -95,7 +95,7 @@ namespace MTON.Class{
 	  //TODO:Stub out time elapsed logic here
 	  this.doHint(false, other.GetComponentEX<cInput>());
 	}
-	else if(this.hintBoxType == e_HintBoxType.Default){     //Default type 
+	else if(this.hintBoxType == e_HintBoxType.Default){   //Default type 
 	  this.doHint(false, other.GetComponentEX<cInput>()); //just do it
 	}
   }
