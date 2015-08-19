@@ -18,7 +18,7 @@ namespace MTON{
 //	  myScript.flag = GUILayout.Toggle(myScript.flag, "Flag");
 //	  if(myScript.flag)
 //        myScript.i = EditorGUILayout.IntSlider("I field:", myScript.i , 1 , 100);
-	  _Instance.bCurve = GUILayout.Toggle(_Instance.bCurve, "bCurve");
+	  _Instance.Acurv.bCurv = GUILayout.Toggle(_Instance.Acurv.bCurv, "bCurve");
 	  if(_Instance.Acurv.bCurv){
 	    _Instance.Acurv.curvData = EditorGUILayout.CurveField("curvData", _Instance.Acurv.curvData);
 	  }
