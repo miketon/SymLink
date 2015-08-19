@@ -9,7 +9,7 @@ namespace MTON.Interface{
 //	bool           bCurve   { get; set; } // use curve, otherwise default linear interp
 //	AnimationCurve curvData { get; set; } // curve data to evaluate
 
-	float evalCurve(float IN_FLOAT, AnimationCurve curvData); //return curve Value
+//	float evalCurve(float IN_FLOAT, AnimationCurve curvData); //return curve Value
 
   }
 

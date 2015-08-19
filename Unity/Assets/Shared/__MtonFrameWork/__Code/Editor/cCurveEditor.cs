@@ -19,15 +19,14 @@ namespace MTON{
 //	  if(myScript.flag)
 //        myScript.i = EditorGUILayout.IntSlider("I field:", myScript.i , 1 , 100);
 	  _Instance.bCurve = GUILayout.Toggle(_Instance.bCurve, "bCurve");
-	  if(_Instance.bCurve){
-	    _Instance.curvData = EditorGUILayout.CurveField("curvData", _Instance.curvData);
+	  if(_Instance.Acurv.bCurv){
+	    _Instance.Acurv.curvData = EditorGUILayout.CurveField("curvData", _Instance.Acurv.curvData);
 	  }
 	  	
 	  
 	  EditorGUILayout.LabelField("THIS THE EDITOR TAKING OVER.");
 	  if(GUILayout.Button("Build Object")){
 //	    Debug.Log ("ON DOWN PRESS EDITOR");
-		_Instance.AddTimeSpan(25);
 		_Instance.BuildCurveFromObjectArray(_Instance.goArray);
 	    EditorGUILayout.HelpBox("This is a help box", MessageType.Info);
 	  }
