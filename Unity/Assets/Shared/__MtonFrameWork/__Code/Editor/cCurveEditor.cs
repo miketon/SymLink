@@ -13,12 +13,22 @@ namespace MTON{
 
 	public override void OnInspectorGUI (){
 	  base.OnInspectorGUI ();
-	  cCurve mCurve = (cCurve)target; //target is keyword used by Editor object ???
+	  cCurve _Instance = (cCurve)target; //target is keyword used by Editor object ???
+
+//	  myScript.flag = GUILayout.Toggle(myScript.flag, "Flag");
+//	  if(myScript.flag)
+//        myScript.i = EditorGUILayout.IntSlider("I field:", myScript.i , 1 , 100);
+	  _Instance.bCurve = GUILayout.Toggle(_Instance.bCurve, "bCurve");
+	  if(_Instance.bCurve){
+	    _Instance.curvData = EditorGUILayout.CurveField("curvData", _Instance.curvData);
+	  }
+	  	
+	  
 	  EditorGUILayout.LabelField("THIS THE EDITOR TAKING OVER.");
 	  if(GUILayout.Button("Build Object")){
 //	    Debug.Log ("ON DOWN PRESS EDITOR");
-		mCurve.AddTimeSpan(25);
-		mCurve.BuildCurveFromObjectArray(mCurve.goArray);
+		_Instance.AddTimeSpan(25);
+		_Instance.BuildCurveFromObjectArray(_Instance.goArray);
 	    EditorGUILayout.HelpBox("This is a help box", MessageType.Info);
 	  }
 	  else{

@@ -103,25 +103,47 @@ namespace MTON.Class{
 	[Serializable] //MUST : add so that this custom data type can be displayed in the inspector
 	public struct mCurve {
       //Note: I'm explicitly declaring them as public, but they are public by default. You can use private if you choose.
-      public string Name;
+      public string Name  ;
+	  public bool   bCurv ;
+
+	  [ContextMenuItem("DebugHelloWorld", "DebugHelloWorld")] 
 	  public AnimationCurve curvData;
 	  public float fTime; // Time
 	  public float fMagn; // Magnitude
 	  public float fValu; // Value modified by curvData
 	  public float fModu; // Modulus/interval along curvData
+
+	  public float doEvalT(){
+	    fModu  = (Time.time % fTime)/fTime ; // modulate timeline, and divide by span
+	    if(bCurv){
+		  fValu = curvData.Evaluate(fModu)   ; // transformed by curve
+		}
+		else{
+		  fValu = fModu;
+	    }
+		return fValu;
+	  }
    
 //      Constructor (not necessary, but helpful)
-      public mCurve(string name, AnimationCurve curvdata, float ftime=1.0f, float fmagn=1.0f, float fvalu=1.0f, float fmodu=1.0f) {
+      public mCurve(string name, AnimationCurve curvdata, float ftime=1.0f, float fmagn=1.0f, float fvalu=1.0f, float fmodu=1.0f, bool bCurv=true) {
         this.Name     = name;
 	    this.curvData = curvdata;
 		this.fTime    = ftime;
 		this.fMagn    = fmagn;
 		this.fValu    = fvalu;
 		this.fModu    = fmodu;
+		this.bCurv    = bCurv;
       }
 	}
 
-	public mCurve Hcurv = new mCurve(); //"mCurve", this.curvData);
+	private void DebugHelloWorld(){
+	  Debug.Log (" HELLO WORLD MTON !");
+	}
+	
+    [ContextMenuItem("BuildAnimCurve", "BuildCurveFromObjectArrayCONTEXT")] //MUST : Is String Only. Must have unique name; Context function can not overload
+	public mCurve Acurv = new mCurve() ;//"FRAMES", curvData); // Animation/Frame
+	public mCurve Hcurv = new mCurve() ;//"HORIZN", curvData_H); // Horizontal
+	public mCurve Vcurv = new mCurve() ;//"VERTIC", curvData_V); // Vertical
 
 	public bool bCurve = true;
     [ContextMenuItem("BuildAnimCurve", "BuildCurveFromObjectArrayCONTEXT")] //MUST : Must have unique name; Context function can not overload
@@ -146,10 +168,10 @@ namespace MTON.Class{
 	  this.xformObj.localPosition = new Vector3(IN_VALUE, xformObj.localPosition.y , xformObj.localPosition.z);
 	}
 
-	public virtual float evalCurve (float IN_PERCENT, AnimationCurve curvData){ // returning value from curve
+	public virtual float evalCurve (float IN_PERCENT, AnimationCurve IN_CURV){ // returning value from curve
 	  float retFloat = 0.0f;
 	  if(bCurve){
-	    retFloat = curvData.Evaluate(IN_PERCENT)   ; // transformed by curve
+	    retFloat = IN_CURV.Evaluate(IN_PERCENT)   ; // transformed by curve
 	  }
 	  else{
 	    retFloat = IN_PERCENT;
@@ -200,16 +222,17 @@ namespace MTON.Class{
 	public float kThreshold = 0.5f;
 	public virtual void Update(){
 	  // timeline
-	  curvePercn  = (Time.time % timeSpan)/timeSpan   ; // modulate timeline, and divide by span
+	  this.kValue(this.Acurv.doEvalT(), this.kThreshold);
+//	  curvePercn  = (Time.time % timeSpan)/timeSpan   ; // modulate timeline, and divide by span
 	  curvePercnH = (Time.time % timeSpanH)/timeSpanH ; // modulate timeline, and divide by span
 //	  curvePercnV = (Time.time % timeSpanV)/timeSpanV ; // modulate timeline, and divide by span
 	  curvePercnV = (Time.time * timeSpanV); // modulate timeline, and divide by span
 	  // filter timeline
-	  curveValue  = evalCurve(curvePercn * fWave, this.curvData);
+//	  curveValue  = evalCurve(curvePercn * fWave, this.curvData);
 	  curveValueH = evalCurve(curvePercnH, this.curvData_H);
 	  curveValueV = evalCurve(curvePercnV, this.curvData_V);
 //	  goArray[0].SetActive(!kStart_End(curveValue));
-	  this.kValue(curveValue, this.kThreshold);
+//	  this.kValue(curveValue, this.kThreshold);
 //	  this.kStart_End(curveValue); //not fast enough ??? Race condition ???
 	  this.kWave_H(curveValueH * this.fWave_H);
 	  this.kWave_V(curveValueV * this.fWave_V);
