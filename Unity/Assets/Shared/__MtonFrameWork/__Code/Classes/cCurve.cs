@@ -1,4 +1,5 @@
 using UnityEngine        ;
+using System             ; //Must use for [Serializable] attr
 using System.Collections ;
 using MTON.Interface     ;
 using MTON.Class         ;
@@ -98,21 +99,26 @@ namespace MTON.Class{
 //	}
 
 #region iCurve implementation
-
+    // Possible to serialize all public fields of the class to a data stream, which allows it to be stored.
+	[Serializable] //MUST : add so that this custom data type can be displayed in the inspector
 	public struct mCurve {
-      //Variable declaration
       //Note: I'm explicitly declaring them as public, but they are public by default. You can use private if you choose.
       public string Name;
-      public bool bCurve;
-	  
 	  public AnimationCurve curvData;
+	  public float fTime; // Time
+	  public float fMagn; // Magnitude
+	  public float fValu; // Value modified by curvData
+	  public float fModu; // Modulus/interval along curvData
    
-      //Constructor (not necessary, but helpful)
-//      public mCurve(string name, AnimationCurve curvdata, bool bcurve=true) {
-//        this.Name = name;
-//        this.bCurve = bcurve;
-//	    this.curvData = curvdata;
-//      }
+//      Constructor (not necessary, but helpful)
+      public mCurve(string name, AnimationCurve curvdata, float ftime=1.0f, float fmagn=1.0f, float fvalu=1.0f, float fmodu=1.0f) {
+        this.Name     = name;
+	    this.curvData = curvdata;
+		this.fTime    = ftime;
+		this.fMagn    = fmagn;
+		this.fValu    = fvalu;
+		this.fModu    = fmodu;
+      }
 	}
 
 	public mCurve Hcurv = new mCurve(); //"mCurve", this.curvData);
