@@ -27,7 +27,7 @@ namespace MTON{
 	  EditorGUILayout.LabelField("THIS THE EDITOR TAKING OVER.");
 	  if(GUILayout.Button("Build Object")){
 //	    Debug.Log ("ON DOWN PRESS EDITOR");
-		_Instance.BuildCurveFromObjectArray(_Instance.goArray);
+		_Instance.BuildCurveFromObjectArray(_Instance.mGO.gameObjects);
 	    EditorGUILayout.HelpBox("This is a help box", MessageType.Info);
 	  }
 	  else{

@@ -9,9 +9,59 @@ namespace MTON.Class{
 
   public class cCurve : MonoBehaviour, ICurve{
 
-	public Transform xformObj;
 
-	public enum eStateB{ // curve States
+
+	
+    [ContextMenuItem("BuildAnimCurve", "BuildCurveFromObjectArrayCONTEXT")] //MUST : Must have unique name; Context function can not overload
+//	public GameObject[] goArray;
+
+	public mAnimPrefabs mGO = new mAnimPrefabs();
+
+	[Serializable] //MUST : add so that this custom data type can be displayed in the inspector
+	public struct mAnimPrefabs{
+	  public Transform xformObj;
+	  public GameObject[] gameObjects;
+	  public float kThreshold; //0.5f : Threshold at which gameObject switches frames
+
+	  public int   indexC     ;// = 0; //current frame
+	  public float cacheValue ;// = 0.0f; //cache of last curv value
+		
+	  //Handles Curve Hpos
+	  public void kWave_H(float IN_VALUE){
+	    xformObj.localPosition = new Vector3(IN_VALUE, xformObj.localPosition.y , xformObj.localPosition.z);
+	  }
+	  //Handles Curve Vpos
+	  public void kWave_V(float IN_VALUE){
+	    xformObj.localPosition = new Vector3(xformObj.localPosition.x, IN_VALUE, xformObj.localPosition.z);
+	  }
+
+	  public bool kSwitch_GO(float IN_VALUE){
+	    float k = Mathf.Abs(IN_VALUE)-Mathf.Abs(cacheValue);
+	    cacheValue = IN_VALUE;
+	    if(k > kThreshold){
+	      Debug.Log ("DELTA CHANGE : " + IN_VALUE);
+//	      curvST = eStateB.PW;
+		  go_Activate(gameObjects,indexC);
+		  indexC = (indexC+1)%gameObjects.Length;
+		  return true;
+	    }
+//	    curvST = eStateB.Idle;
+	    return false;
+	  }
+	
+	  //ensures only one entry from Prefab group is active at a time
+	  private void go_Activate(GameObject[] IN_GAMEOBJECTS, int IN_INDEX, bool bActive = true){
+	    for(int i=0; i<IN_GAMEOBJECTS.Length; i++){
+	      if(i==IN_INDEX){
+		    IN_GAMEOBJECTS[i].SetActive(bActive);
+		  }
+		  else{
+		    IN_GAMEOBJECTS[i].SetActive(!bActive);
+		  }
+	    }
+	  }
+
+				public enum eStateB{ // curve States
 	  Idle,
 	  UP  , // begin of curve Interval
 	  DN  , // end of curve Interval
@@ -19,7 +69,7 @@ namespace MTON.Class{
 	  PW  , // kDelta
 	}
 
-	public eStateB curvst = eStateB.Idle;
+	public eStateB curvst;
 	public eStateB curvST{
 			get{
 				return curvst;
@@ -29,18 +79,16 @@ namespace MTON.Class{
 					curvst = value;
 					if(value == eStateB.DN){ // Begin of curve Interval
 					  Debug.Log ("BEGIN : " + value);
-					  this.doKBegin_End(true);
+//					  this.doKBegin_End(true);
 					}
 					else if(value == eStateB.UP){ // End of curve Interval
 					  Debug.Log ("END : " + value);
-					  this.doKBegin_End(false);
+//					  this.doKBegin_End(false);
 					}
 				}
 			}
 		}
-	
-    [ContextMenuItem("BuildAnimCurve", "BuildCurveFromObjectArrayCONTEXT")] //MUST : Must have unique name; Context function can not overload
-	public GameObject[] goArray;
+	}
 	
 #region iCurve implementation
     // Possible to serialize all public fields of the class to a data stream, which allows it to be stored.
@@ -60,7 +108,7 @@ namespace MTON.Class{
 	  public float fModu; // Modulus/interval along curvData
 
 	  public float doEvalT(){
-	    fModu  = (Time.time % Mathf.Max(fTime, Mathf.Epsilon)) * fFreq ; // modulate timeline, and divide by span
+	    fModu  = (Time.time % Mathf.Max(fTime, Mathf.Epsilon)) * fFreq ; // modulate timeline, and divide by span; Epsilon prevents divide by zero errors
 	    if(bCurv){
 		  fValu = curvData.Evaluate(fModu)   ; // transformed by curve
 		}
@@ -69,18 +117,7 @@ namespace MTON.Class{
 	    }
 		return fValu * fMagn;
 	  }
-   
-//      Constructor (not necessary, but helpful)
-      public mCurve(string name, AnimationCurve curvdata, float ftime=1.0f, float fmagn=1.0f, float ffreq=1.0f, float fvalu=1.0f, float fmodu=1.0f, bool bCurv=true) {
-        this.Name     = name;
-	    this.curvData = curvdata;
-		this.fTime    = ftime;
-		this.fMagn    = fmagn;
-		this.fFreq    = ffreq;
-		this.fValu    = fvalu;
-		this.fModu    = fmodu;
-		this.bCurv    = bCurv;
-      }
+
 	}
 	
     [ContextMenuItem("BuildAnimCurve", "BuildCurveFromObjectArrayCONTEXT")] //MUST : Is String Only. Must have unique name; Context function can not overload
@@ -90,18 +127,32 @@ namespace MTON.Class{
 
 
 
+	public virtual void Update(){
+	  // timeline
+	  this.mGO.kSwitch_GO(this.Acurv.doEvalT());
+	  this.mGO.kWave_H(this.Hcurv.doEvalT());
+	  this.mGO.kWave_V(this.Vcurv.doEvalT());
+	}
+
+
+#endregion
+
+	private void doKBegin_End(bool IN_BOOL){
+//	  goArray[0].SetActive(IN_BOOL);
+	}
+
 //	public bool bBegin = true;
 	private bool kStart_End(float IN_PERCENT){
 //	  if(this.bBegin){
 		if(IN_PERCENT <= 0.05f){
-		  curvST = eStateB.DN;
+		  this.mGO.curvST = mAnimPrefabs.eStateB.DN;
 		  return true;
 //		  Debug.Log (" BEGIN : " + IN_PERCENT);
 		}
 //	  }
 //	  else{
 		else if(IN_PERCENT >= 0.95f){
-		  curvST = eStateB.UP;
+		  this.mGO.curvST = mAnimPrefabs.eStateB.UP;
 		  return true;
 //		  Debug.Log (" END : " + IN_PERCENT);
 		}
@@ -109,55 +160,8 @@ namespace MTON.Class{
 //	  curvST = eStateB.Idle;
 	  return false;
 	}
-	
-	public int indexC = 0;
-	private float cacheValue = 0.0f;
-	private bool kValue(float IN_VALUE, float kThreshold = 0.5f){
-	  float k = Mathf.Abs(IN_VALUE)-Mathf.Abs(this.cacheValue);
-	  cacheValue = IN_VALUE;
-	  if(k > kThreshold){
-	    Debug.Log ("DELTA CHANGE : " + IN_VALUE);
-	    curvST = eStateB.PW;
-		this.go_Activate(this.goArray, this.indexC);
-		this.indexC = (this.indexC+1)%this.goArray.Length;
-		return true;
-	  }
-	  curvST = eStateB.Idle;
-	  return false;
-	}
 
-	public float kThreshold = 0.5f;
-	public virtual void Update(){
-	  // timeline
-	  this.kValue(this.Acurv.doEvalT(), this.kThreshold);
-	  this.kWave_H(this.Hcurv.doEvalT());
-	  this.kWave_V(this.Vcurv.doEvalT());
-	}
 
-	public void kWave_V(float IN_VALUE){
-	  this.xformObj.localPosition = new Vector3(xformObj.localPosition.x, IN_VALUE, xformObj.localPosition.z);
-	}
-
-	public void kWave_H(float IN_VALUE){
-	  this.xformObj.localPosition = new Vector3(IN_VALUE, xformObj.localPosition.y , xformObj.localPosition.z);
-	}
-
-#endregion
-
-	private void doKBegin_End(bool IN_BOOL){
-	  goArray[0].SetActive(IN_BOOL);
-	}
-
-	private void go_Activate(GameObject[] IN_GAMEOBJECTS, int IN_INDEX, bool bActive = true){
-	  for(int i=0; i<IN_GAMEOBJECTS.Length; i++){
-	    if(i==IN_INDEX){
-		  IN_GAMEOBJECTS[i].SetActive(bActive);
-		}
-		else{
-		  IN_GAMEOBJECTS[i].SetActive(!bActive);
-		}
-	  }
-	}
 
 #region Utilities - Context Functions
 		
@@ -170,7 +174,7 @@ namespace MTON.Class{
 	}
 
 	public bool BuildCurveFromObjectArrayCONTEXT(){
-	  return this.BuildCurveFromObjectArray(this.goArray);
+	  return true;// this.BuildCurveFromObjectArray(this.goArray);
 	}
 	public bool BuildCurveFromObjectArray(GameObject[] IN_GO){
 	  if(IN_GO.Length > 0){
@@ -194,6 +198,18 @@ namespace MTON.Class{
 	  return false;
 	}
 
+		//   
+//      Constructor (not necessary, but helpful)
+//      public mCurve(string name, AnimationCurve curvdata, float ftime=1.0f, float fmagn=1.0f, float ffreq=1.0f, float fvalu=1.0f, float fmodu=1.0f, bool bCurv=true) {
+//        this.Name     = name;
+//	    this.curvData = curvdata;
+//		this.fTime    = ftime;
+//		this.fMagn    = fmagn;
+//		this.fFreq    = ffreq;
+//		this.fValu    = fvalu;
+//		this.fModu    = fmodu;
+//		this.bCurv    = bCurv;
+//      }
 #endregion
 
   }
