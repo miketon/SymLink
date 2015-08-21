@@ -11,28 +11,24 @@ namespace MTON.codeObjects{
     [RequireComponent (typeof (cMcanm))] //must have to call mecanim...need fields so can not populate later
     public class oPlayer : MonoBehaviour{
 
+      public  GameObject OnDeathPrefab          ;
+      private LayerMask  layerGround            ;
+      private Vector3    prvPos  = Vector3.zero ;
+
       //init interface members
-      public bool      b_2D = true;
       public Transform dispXFORM ; //HACK : Coupling the character dispXFORM => object with an Animator and render mesh
       public Animator  dispAnmtr ;
       public Transform camrXFORM ; 
+
       public Transform riseXFORM ; 
 
-      public Transform[] firePnts ; // firing point
+      public  bool    b_2D = true     ;
+      public  bool    bGround = false ;
+      public  bool    bFaceRt = true  ; // facing Right
+      public  float   duckSc  = 1.0f  ; // scale on crouch/duck
 
-      public GameObject OnDeathPrefab;
-
-      public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
-      public cLevel.fx_Hit  eGun ; // enum for GunFlare particle system to emit
-	  public cLevel.e_Anim  eDst ; // enum for Dust Step  Animator Object to play
-	  public cLevel.e_Anim  eDjm ; // enum for Dust Jump  Animator Object to play
-	  public cLevel.e_Anim  eDld ; // enum for Dust Land  Animator Object to play
-	  public cLevel.e_Anim  eDsl ; // enum for Dust Slide Animator Object to play
-
-      public  bool    bGround = false        ;
-      public  bool    bFaceRt = true         ; // facing Right
-      private float   initHgt = 1.0f         ;
-      private Vector3 prvPos  = Vector3.zero ;
+      private float initHgt = 1.0f ;
+      private float yScale  = 1.0f ;   
 
 #region oPlayer Delegates
       private void OnEnable(){
@@ -110,10 +106,6 @@ namespace MTON.codeObjects{
 
       private cEmit_Audio     au ;
 
-      private float yScale = 1.0f ;   
-      public  float duckSc = 1.0f ;   
-
-      private LayerMask layerGround;
 
       public virtual void Awake(){
 
@@ -121,7 +113,7 @@ namespace MTON.codeObjects{
         //      cColr = rendr.material.color;
         layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
         init_Components()                                        ;
-        init_cRbody()                                            ;
+		init_cRbody();
         xform         = this.GetComponent<Transform>()           ;
         cControl      = this.GetComponent<CharacterController>() ;
         this.initHgt  = cControl.height;
@@ -153,36 +145,6 @@ namespace MTON.codeObjects{
 #endregion
 
 #region oPlayer Rbody
-	  [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
-      public struct s_RbodyProperties{
-
-        public  float moveForce;
-        public  float jumpForce;
-        public  float flapForce;
-        public  float dashForce;
-        public  float massForce;
-
-//		public s_RbodyProperties(){
-//		  this.moveForce = 3.0f  ;
-//          this.jumpForce = 4.25f ;
-//          this.flapForce = 4.25f ;
-//          this.dashForce = 3.0f  ;
-//          this.massForce = 1.0f  ;
-//		}
-
-	  }
-
-	  public s_RbodyProperties sRB = new s_RbodyProperties();
-
-      private void init_cRbody(){ //inits this cRbody settings
-			rb.moveForce   = sRB.moveForce                              ;
-			rb.jumpForce   = sRB.jumpForce                              ;
-			rb.flapForce   = sRB.flapForce                              ;
-			rb.dashForce   = sRB.dashForce                              ;
-			rb.massForce   = sRB.massForce                              ;
-        //tw_Cache = xform.DORotate(IN_rotate, durFX, RotateMode.Fast).SetEase(Ease.InOutElastic);
-      }
-
 
       public virtual void FixedUpdate(){
 
@@ -273,7 +235,7 @@ namespace MTON.codeObjects{
           if(bGround){    
             rb.Jump()                     ;
             an.jumpST = cAnimn.eStateB.DN ;
-            fx_Dust(this.eDjm, true)      ;
+            fx_Dust(this.sEM.eDjm, true)      ;
           }
           else{
             rb.Flap()                     ; //flap when not on ground
@@ -287,23 +249,23 @@ namespace MTON.codeObjects{
 
       public virtual void doAttk(bool bAttk){
         if(bAttk){
-          if(this.firePnts.Length > 0){
-            an.attkST          = cAnimn.eStateB.DN ;
-            Transform firePnt  = firePnts[0]       ; //facing right
-			Quaternion fireRot = firePnt.rotation  ;
+          if(this.sEM.firePnts.Length > 0){
+            an.attkST          = cAnimn.eStateB.DN    ;
+            Transform firePnt  = this.sEM.firePnts[0] ; //facing right
+			Quaternion fireRot = firePnt.rotation     ;
 			if(this.bFaceRt == false){                                      //Brute force guessing; Understanding of matrix not high enough
 			  Vector3 vRot = firePnt.rotation.eulerAngles                 ;
 			  vRot         = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z) ; //MAGIC NUMBER : Why y = 180.0f ??? Likely related to parent -x scale
 			  fireRot      = Quaternion.Euler(vRot)                       ;
 			}
             firePnt.gameObject.SetActive(true)    ;
-            if(this.eBlt != cLevel.e_Bllt.None){
-				  __gCONSTANT._LEVEL.Emit_Bullet(this.eBlt, firePnt.position, fireRot, ()=>{
+            if(this.sEM.eBlt != cLevel.e_Bllt.None){
+				  __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eBlt, firePnt.position, fireRot, ()=>{
                   return true ;
 			  })              ;
             }
-            if(this.eGun != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-              __gCONSTANT._LEVEL.Emit_pFX(eGun, firePnt.position, Quaternion.identity, ()=>{
+            if(this.sEM.eGun != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+              __gCONSTANT._LEVEL.Emit_pFX(this.sEM.eGun, firePnt.position, Quaternion.identity, ()=>{
                   firePnt.gameObject.SetActive(false) ;
                   return true                         ;
                   })                                  ;
@@ -331,7 +293,6 @@ namespace MTON.codeObjects{
         }
       }
 
-      public float fireRate  = 0.25f ;
 
       private bool bpowr         = false              ;
       private bool bDpdX         = true               ;
@@ -345,7 +306,7 @@ namespace MTON.codeObjects{
           this.bDpdX = false; //dPad x ignore
           this.bDpdY = true ; //dPad y listen
           if(this.bGround == true){
-            fx_Dust(this.eDld, true);
+            fx_Dust(this.sEM.eDld, true);
           }
         }
         else{
@@ -381,7 +342,7 @@ namespace MTON.codeObjects{
         while(this.bpowr == true){
           an.hState = cAnimn.eStateH.Plnt;
           this.doMove(Vector3.zero);
-          if(this.mt_TimeStep(this.fireRate)){
+          if(this.mt_TimeStep(this.sEM.fireRate)){
             //	      Debug.Log ("Rapid Fire : " + Time.time); //HACK : time print doesn't match fireRate why???
             this.doAttk(true);
           }
@@ -405,7 +366,7 @@ namespace MTON.codeObjects{
           }
         }
         if(bDuck){
-          fx_Dust(this.eDld, true);
+          fx_Dust(this.sEM.eDld, true);
         }	
       }
 
@@ -459,14 +420,14 @@ namespace MTON.codeObjects{
 	    public virtual void doIdlH(bool bIdlH){
           if(bIdlH == true){
 			if(this.bGround){ // If onGround, kick up dust
-		      this.fx_Dust(this.eDsl, true);
+		      this.fx_Dust(this.sEM.eDsl, true);
 			}
           }
         }
 
         public virtual void doFoot(bool bFoot){
 		  if(bFoot == true){
-		    this.fx_Dust(this.eDst, true);
+		    this.fx_Dust(this.sEM.eDst, true);
 		  }
 		}
 
@@ -505,7 +466,7 @@ namespace MTON.codeObjects{
           this.bGround = IN_GROUND;
           if(IN_GROUND == true){
             an.grndST = cAnimn.eStateB.DN;
-			this.fx_Dust(eDld, true);
+			this.fx_Dust(this.sEM.eDld, true);
           }
           if(IN_GROUND == false){
             an.grndST = cAnimn.eStateB.UP;
@@ -535,6 +496,53 @@ namespace MTON.codeObjects{
             }
           }
         }
+
+#region Structs
+
+	  public s_EmitProperties sEM = new s_EmitProperties();
+	  [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
+      public struct s_EmitProperties{
+
+		public float       fireRate ; //0.15f = default
+		public Transform[] firePnts ; //firing point
+
+        public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
+        public cLevel.fx_Hit  eGun ; // enum for GunFlare particle system to emit
+	    public cLevel.e_Anim  eDst ; // enum for Dust Step  Animator Object to play
+	    public cLevel.e_Anim  eDjm ; // enum for Dust Jump  Animator Object to play
+	    public cLevel.e_Anim  eDld ; // enum for Dust Land  Animator Object to play
+	    public cLevel.e_Anim  eDsl ; // enum for Dust Slide Animator Object to play
+
+	  }
+
+	  public s_RbodyProperties sRB = new s_RbodyProperties(3.0f, 4.25f, 4.25f, 3.0f, 1.0f); //set default
+	  [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
+      public struct s_RbodyProperties{
+
+        public  float moveForce;
+        public  float jumpForce;
+        public  float flapForce;
+        public  float dashForce;
+        public  float massForce;
+
+		public s_RbodyProperties(float mv, float jp, float fp, float df, float mf){
+		  this.moveForce = mv ;
+          this.jumpForce = jp ;
+          this.flapForce = fp ;
+          this.dashForce = df ;
+          this.massForce = mf ;
+		}
+	  }
+
+	  private void init_cRbody(){ //inits this cRbody settings
+		rb.moveForce   = sRB.moveForce                              ;
+		rb.jumpForce   = sRB.jumpForce                              ;
+		rb.flapForce   = sRB.flapForce                              ;
+		rb.dashForce   = sRB.dashForce                              ;
+		rb.massForce   = sRB.massForce                              ;
+      }
+
+#endregion
 
 #region Class Utility
 
