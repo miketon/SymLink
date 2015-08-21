@@ -23,6 +23,16 @@ namespace MTON.Class{
       this.mGO.kWave_V(this.Vcurv.doEvalT())    ;
     }
 
+	[ContextMenuItem("ChangeMultiFields", "ChangeMultiFields")] //MUST : Is String Only. Must have unique name; Context function can not overload
+	public int deletemeC;
+	public bool deletemeB;
+
+	private void ChangeMultiFields(){
+      Debug.Log ("CHANGING MULTIPLE FIELDS.");
+	  deletemeB = !deletemeB;
+	  this.deletemeC++;
+    }
+
     [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
       public struct mAnimPrefabs{
         public Transform xformObj       ;
@@ -155,21 +165,19 @@ namespace MTON.Class{
 	    Keyframe[] ks = new Keyframe[IN_GO.Length];
 //	    this.Acurv.curvData = new AnimationCurve(ks);
         for(int i=0; i<IN_GO.Length; i++){ // Else process curve
-//        Debug.Log ("OBJECT IS VALID AT INDEX : "+ i + " : " + IN_GO[i]);
 		  ks[i] = new Keyframe(i, 1.0f/(IN_GO.Length-1) * i); //, 90.0f, 0.0f); //Divide by base 1 == IN_GO.Length -1
-//		  this.Acurv.curvData.keys[i] = new Keyframe(i, 1.0f/(IN_GO.Length-1) * i); //, 90.0f, 0.0f); //Divide by base 1 == IN_GO.Length -1
-//		  ks[i] = this.Acurv.curvData.keys[i];
-//		  ks[i].time = i;
-//		  ks[i].value = 1.0f/(IN_GO.Length-1) * i;
+		  ks[i].inTangent = -1;
+		  ks[i].outTangent= 0;
 		  ks[i].tangentMode = 21; //HACK : 21 = break tangent
-//		  this.Acurv.curvData.keys[i].tangentMode = 21; //HACK : 21 = break tangent
 //		  this.Acurv.curvData.MoveKey(i, ks[i]);
-//		  this.Acurv.curvData.MoveKey(i, this.Acurv.curvData.keys[i]);
-		  ks[i].inTangent = 0.0f;
-		  ks[i].outTangent= 0.0f;
         }
 //        this.Acurv.curvData = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
 		this.Acurv.curvData = new AnimationCurve(ks);
+//		for(int i=0; i<this.Acurv.curvData.keys.Length; i++){
+//		  Keyframe k = this.Acurv.curvData.keys[i];
+//		  k.tangentMode = 21;
+//		  this.Acurv.curvData.MoveKey(i, k);
+//		}
         return true;
       }
       else{
