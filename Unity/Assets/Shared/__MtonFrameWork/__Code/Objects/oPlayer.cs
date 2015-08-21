@@ -11,24 +11,76 @@ namespace MTON.codeObjects{
     [RequireComponent (typeof (cMcanm))] //must have to call mecanim...need fields so can not populate later
     public class oPlayer : MonoBehaviour{
 
+	  public  bool       b_2D    = true         ;
+      public  bool       bGround = false        ;
+      public  bool       bFaceRt = true         ; // facing Right
+      public  Transform  camrXFORM              ; 
       public  GameObject OnDeathPrefab          ;
       private LayerMask  layerGround            ;
       private Vector3    prvPos  = Vector3.zero ;
 
-      //init interface members
-      public Transform dispXFORM ; //HACK : Coupling the character dispXFORM => object with an Animator and render mesh
-      public Animator  dispAnmtr ;
-      public Transform camrXFORM ; 
+#region Structs Display Obj, Emitter, Rbody
 
-      public Transform riseXFORM ; 
+	  public s_DispOProperties sDP = new s_DispOProperties();
+	  [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
+      public struct s_DispOProperties{
+        //init interface members
+        public Animator  dispAnmtr  ;
+        public Transform dispXFORM  ; //HACK : Coupling the character dispXFORM => object with an Animator and render mesh
+        public Transform riseXFORM  ; 
 
-      public  bool    b_2D = true     ;
-      public  bool    bGround = false ;
-      public  bool    bFaceRt = true  ; // facing Right
-      public  float   duckSc  = 1.0f  ; // scale on crouch/duck
+        public  float yRotOffset_3D ; //-50.0f == default
+        public  float   duckSc      ; // scale on crouch/duck
+        public  float __initHgt     ;
+        public  float __yScale      ; 
+        public  float __sclX        ;
 
-      private float initHgt = 1.0f ;
-      private float yScale  = 1.0f ;   
+	  }
+
+	  public s_EmitProperties sEM = new s_EmitProperties();
+	  [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
+      public struct s_EmitProperties{
+
+		public float       fireRate ; //0.15f = default
+		public Transform[] firePnts ; //firing point
+
+        public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
+        public cLevel.fx_Hit  eGun ; // enum for GunFlare particle system to emit
+	    public cLevel.e_Anim  eDst ; // enum for Dust Step  Animator Object to play
+	    public cLevel.e_Anim  eDjm ; // enum for Dust Jump  Animator Object to play
+	    public cLevel.e_Anim  eDld ; // enum for Dust Land  Animator Object to play
+	    public cLevel.e_Anim  eDsl ; // enum for Dust Slide Animator Object to play
+
+	  }
+
+	  public s_RbodyProperties sRB = new s_RbodyProperties(3.0f, 4.25f, 4.25f, 3.0f, 1.0f); //set default
+	  [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
+      public struct s_RbodyProperties{
+
+        public  float moveForce;
+        public  float jumpForce;
+        public  float flapForce;
+        public  float dashForce;
+        public  float massForce;
+
+		public s_RbodyProperties(float mv, float jp, float fp, float df, float mf){
+		  this.moveForce = mv ;
+          this.jumpForce = jp ;
+          this.flapForce = fp ;
+          this.dashForce = df ;
+          this.massForce = mf ;
+		}
+	  }
+
+	  private void init_cRbody(){ //inits this cRbody settings
+		rb.moveForce   = sRB.moveForce                              ;
+		rb.jumpForce   = sRB.jumpForce                              ;
+		rb.flapForce   = sRB.flapForce                              ;
+		rb.dashForce   = sRB.dashForce                              ;
+		rb.massForce   = sRB.massForce                              ;
+      }
+
+#endregion
 
 #region oPlayer Delegates
       private void OnEnable(){
@@ -109,27 +161,27 @@ namespace MTON.codeObjects{
 
       public virtual void Awake(){
 
-        rendr = this.dispXFORM.GetComponent<Renderer>();
+        rendr = this.sDP.dispXFORM.GetComponent<Renderer>();
         //      cColr = rendr.material.color;
         layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
         init_Components()                                        ;
 		init_cRbody();
         xform         = this.GetComponent<Transform>()           ;
         cControl      = this.GetComponent<CharacterController>() ;
-        this.initHgt  = cControl.height;
+        this.sDP.__initHgt  = cControl.height;
 
-        if(this.dispXFORM == null){
+        if(this.sDP.dispXFORM == null){
           Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) NOT ASSIGNED MANUALLY.");
-          this.dispXFORM = this.xform;
-          if(this.dispXFORM == null){
+          this.sDP.dispXFORM = this.xform;
+          if(this.sDP.dispXFORM == null){
             Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) attempting to auto assign this.transform : SUCCESSFUL ");
           }
           else{
             Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) attempting to auto assign this.transform : FAILED     ");
           }
         }
-        this.yScale = this.dispXFORM.localScale.y;
-        this.sclX = this.dispXFORM.localScale.x;
+        this.sDP.__yScale = this.sDP.dispXFORM.localScale.y;
+        this.sDP.__sclX   = this.sDP.dispXFORM.localScale.x;
 
       }
 
@@ -144,7 +196,7 @@ namespace MTON.codeObjects{
 
 #endregion
 
-#region oPlayer Rbody
+#region FixedUPDATE
 
       public virtual void FixedUpdate(){
 
@@ -359,10 +411,10 @@ namespace MTON.codeObjects{
       public virtual void doCrouch(bool bDuck){
         if(this.b_2D == false){
           if(bDuck){
-            tw.doCrouch(this.yScale * this.duckSc, 0.5f);
+            tw.doCrouch(this.sDP.__yScale * this.sDP.duckSc, 0.5f);
           }
           else{
-            tw.doCrouch(this.yScale);
+            tw.doCrouch(this.sDP.__yScale);
           }
         }
         if(bDuck){
@@ -370,37 +422,35 @@ namespace MTON.codeObjects{
         }	
       }
 
-      public float yRotOffset_3D = -50.0f ;
-      public float sclX          = 1.0f   ;
 
       public virtual void doFace(Vector3 vFace){ //for 2D facing, use x
         if(vFace.x > 0.0f){ // Mathf.Epsilon){
           this.bFaceRt = true;
           if(this.b_2D == true){
-            //		  this.dispXFORM.rotation = Quaternion.Euler(new Vector3(0.0f, vFace.x * this.yRotOffset_3D, 0.0f));
-            this.dispXFORM.SetScaleX(this.sclX);
+            //		  this.dispXFORM.rotation = Quaternion.Euler(new Vector3(0.0f, vFace.x * this.sDP.yRotOffset_3D, 0.0f));
+            this.sDP.dispXFORM.SetScaleX(this.sDP.__sclX);
           }
           else{
-            tw.doRotateTo(new Vector3(0.0f, vFace.x * yRotOffset_3D, 0.0f));
+            tw.doRotateTo(new Vector3(0.0f, vFace.x * this.sDP.yRotOffset_3D, 0.0f));
           }
         }
         else if(vFace.x < 0.0f){ //-Mathf.Epsilon){
           this.bFaceRt = false;
           if(this.b_2D == true){
-            //		  this.dispXFORM.rotation = Quaternion.Euler(new Vector3(0.0f, vFace.x * this.yRotOffset_3D, 0.0f));
-            this.dispXFORM.SetScaleX(-this.sclX);
+            //		  this.dispXFORM.rotation = Quaternion.Euler(new Vector3(0.0f, vFace.x * this.sDP.yRotOffset_3D, 0.0f));
+            this.sDP.dispXFORM.SetScaleX(-this.sDP.__sclX);
           }
           else{
-            tw.doRotateTo(new Vector3(0.0f, vFace.x * yRotOffset_3D, 0.0f));
+            tw.doRotateTo(new Vector3(0.0f, vFace.x * this.sDP.yRotOffset_3D, 0.0f));
           }
         }
         else{
           if(b_2D == false){ //Not 2D; play with rotation offset
             if(this.bFaceRt == true){
-              tw.doRotateTo(new Vector3(0.0f, yRotOffset_3D * 0.65f, 0.0f));
+              tw.doRotateTo(new Vector3(0.0f, this.sDP.yRotOffset_3D * 0.65f, 0.0f));
             }
             else{
-              tw.doRotateTo(new Vector3(0.0f, yRotOffset_3D * -0.65f, 0.0f));
+              tw.doRotateTo(new Vector3(0.0f, this.sDP.yRotOffset_3D * -0.65f, 0.0f));
             }
           }
         }
@@ -410,9 +460,9 @@ namespace MTON.codeObjects{
 
         public virtual void doIdlV(bool bIdlV){
           if(bIdlV == true){
-            if(this.riseXFORM != null){
-              this.dispXFORM.gameObject.SetActive(true)  ; //Sudden landing visual swap out
-              this.riseXFORM.gameObject.SetActive(false) ;
+            if(this.sDP.riseXFORM != null){
+              this.sDP.dispXFORM.gameObject.SetActive(true)  ; //Sudden landing visual swap out
+              this.sDP.riseXFORM.gameObject.SetActive(false) ;
             }
           }
         }
@@ -432,16 +482,16 @@ namespace MTON.codeObjects{
 		}
 
         public virtual void doRise(bool bRise){
-          if(this.riseXFORM != null){
+          if(this.sDP.riseXFORM != null){
             if(bRise == true){
-              this.cControl.height = this.initHgt * 0.65f ; //on rise tuck collision
-              this.riseXFORM.gameObject.SetActive(true )  ;
-              this.dispXFORM.gameObject.SetActive(false)  ;
+              this.cControl.height = this.sDP.__initHgt * 0.65f ; //on rise tuck collision
+              this.sDP.riseXFORM.gameObject.SetActive(true )  ;
+              this.sDP.dispXFORM.gameObject.SetActive(false)  ;
             }
             else{
-              this.cControl.height = this.initHgt        ; //on fall expand collision...else bouncy on ground
-              this.riseXFORM.gameObject.SetActive(false) ;
-              this.dispXFORM.gameObject.SetActive(true ) ;
+              this.cControl.height = this.sDP.__initHgt        ; //on fall expand collision...else bouncy on ground
+              this.sDP.riseXFORM.gameObject.SetActive(false) ;
+              this.sDP.dispXFORM.gameObject.SetActive(true ) ;
             }
           }
         }
@@ -497,52 +547,6 @@ namespace MTON.codeObjects{
           }
         }
 
-#region Structs
-
-	  public s_EmitProperties sEM = new s_EmitProperties();
-	  [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
-      public struct s_EmitProperties{
-
-		public float       fireRate ; //0.15f = default
-		public Transform[] firePnts ; //firing point
-
-        public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
-        public cLevel.fx_Hit  eGun ; // enum for GunFlare particle system to emit
-	    public cLevel.e_Anim  eDst ; // enum for Dust Step  Animator Object to play
-	    public cLevel.e_Anim  eDjm ; // enum for Dust Jump  Animator Object to play
-	    public cLevel.e_Anim  eDld ; // enum for Dust Land  Animator Object to play
-	    public cLevel.e_Anim  eDsl ; // enum for Dust Slide Animator Object to play
-
-	  }
-
-	  public s_RbodyProperties sRB = new s_RbodyProperties(3.0f, 4.25f, 4.25f, 3.0f, 1.0f); //set default
-	  [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
-      public struct s_RbodyProperties{
-
-        public  float moveForce;
-        public  float jumpForce;
-        public  float flapForce;
-        public  float dashForce;
-        public  float massForce;
-
-		public s_RbodyProperties(float mv, float jp, float fp, float df, float mf){
-		  this.moveForce = mv ;
-          this.jumpForce = jp ;
-          this.flapForce = fp ;
-          this.dashForce = df ;
-          this.massForce = mf ;
-		}
-	  }
-
-	  private void init_cRbody(){ //inits this cRbody settings
-		rb.moveForce   = sRB.moveForce                              ;
-		rb.jumpForce   = sRB.jumpForce                              ;
-		rb.flapForce   = sRB.flapForce                              ;
-		rb.dashForce   = sRB.dashForce                              ;
-		rb.massForce   = sRB.massForce                              ;
-      }
-
-#endregion
 
 #region Class Utility
 
@@ -554,25 +558,25 @@ namespace MTON.codeObjects{
           //      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject)  ;
           io = __gUtility.AddComponent_mton<cInput>(this.gameObject)  ;
           if(this.b_2D == false){
-            tw = __gUtility.AddComponent_mton<cTween>(this.dispXFORM.gameObject)   ; //Tweening display obj vs. character controller
+            tw = __gUtility.AddComponent_mton<cTween>(this.sDP.dispXFORM.gameObject)   ; //Tweening display obj vs. character controller
           }
           mc = __gUtility.AddComponent_mton<cMcanm>(this.gameObject)  ;
 
           mc.anST = an;
-          if(this.dispAnmtr == null){ //will try to grab from display object if not assigned
-            this.dispAnmtr = this.dispXFORM.gameObject.GetComponent<Animator>();
+          if(this.sDP.dispAnmtr == null){ //will try to grab from display object if not assigned
+            this.sDP.dispAnmtr = this.sDP.dispXFORM.gameObject.GetComponent<Animator>();
           }
-          mc.anim = this.dispAnmtr;
+          mc.anim = this.sDP.dispAnmtr;
 
           au = __gUtility.AddComponent_mton<cEmit_Audio>(this.gameObject)  ;
 
-          rendr = this.dispXFORM.gameObject.GetComponent<Renderer>()   ; //Get Renderer Component
+          rendr = this.sDP.dispXFORM.gameObject.GetComponent<Renderer>()   ; //Get Renderer Component
 
         }
 
-        public Transform GetDispXFORM(){ return this.dispXFORM; }
+        public Transform GetDispXFORM(){ return this.sDP.dispXFORM; }
         public Transform GetCamrXFORM(){ return this.camrXFORM; }
-        public Transform GetRiseXFORM(){ return this.riseXFORM; }
+        public Transform GetRiseXFORM(){ return this.sDP.riseXFORM; }
 
 #endregion
 
