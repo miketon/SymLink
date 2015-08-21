@@ -1,4 +1,5 @@
 using UnityEngine        ;
+using System             ; //Must use for [Serializable] attr
 using System.Collections ;
 using MTON.Class         ;
 using MTON.Global        ;
@@ -152,19 +153,33 @@ namespace MTON.codeObjects{
 #endregion
 
 #region oPlayer Rbody
+	  [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
+      public struct s_RbodyProperties{
 
-      public  float moveForce = 3.0f  ;
-      public  float jumpForce = 4.25f ;
-      public  float flapForce = 4.25f ;
-      public  float dashForce = 3.0f  ;
-      public  float massForce = 1.0f  ;
+        public  float moveForce;
+        public  float jumpForce;
+        public  float flapForce;
+        public  float dashForce;
+        public  float massForce;
+
+//		public s_RbodyProperties(){
+//		  this.moveForce = 3.0f  ;
+//          this.jumpForce = 4.25f ;
+//          this.flapForce = 4.25f ;
+//          this.dashForce = 3.0f  ;
+//          this.massForce = 1.0f  ;
+//		}
+
+	  }
+
+	  public s_RbodyProperties sRB = new s_RbodyProperties();
 
       private void init_cRbody(){ //inits this cRbody settings
-        rb.moveForce   = moveForce                              ;
-        rb.jumpForce   = jumpForce                              ;
-        rb.flapForce   = flapForce                              ;
-        rb.dashForce   = dashForce                              ;
-        rb.massForce   = massForce                              ;
+			rb.moveForce   = sRB.moveForce                              ;
+			rb.jumpForce   = sRB.jumpForce                              ;
+			rb.flapForce   = sRB.flapForce                              ;
+			rb.dashForce   = sRB.dashForce                              ;
+			rb.massForce   = sRB.massForce                              ;
         //tw_Cache = xform.DORotate(IN_rotate, durFX, RotateMode.Fast).SetEase(Ease.InOutElastic);
       }
 
@@ -480,7 +495,7 @@ namespace MTON.codeObjects{
           an.lState = cAnimn.eStateL.Dead  ;
           this.gameObject.SetActive(false) ;
           __gCONSTANT._LEVEL.SpawnObj(cLevel.e_Icon.Death, this.transform.position, this.transform.rotation, (Transform SpawnedObj)=>{
-              float randomF = Random.Range(1.0f, 3.0f)           ;
+              float randomF = UnityEngine.Random.Range(1.0f, 3.0f)           ;
               SpawnedObj.position += Vector3.up * 0.5f * randomF ; // lift slightly off ground to allow for spin and pop
               return true                                        ;
               })                                                 ;
