@@ -49,6 +49,16 @@ namespace MTON.codeObjects{
 	  }
 	}
 
+	public override void OnEnable (){
+	  base.OnEnable ();
+	  an.OnSeekIdleDelegate += ai_IDLE;
+	}
+
+	public override void OnDisable (){
+	  base.OnDisable ();
+	  an.OnSeekIdleDelegate -= ai_IDLE;
+	}
+
     private Vector3 vFacePrev = Vector3.zero;
     public override void doFace(Vector3 vFace){ // Adding a pause to the face left and right flip
 	  base.doFace(vFace);
@@ -71,7 +81,7 @@ namespace MTON.codeObjects{
 #endregion
 	
 	private int iThought = 0;
-	private void Update(){
+	public virtual void Update(){
 	  if(this.sAI.bIntel){     //if intelligence active : do AI
 	    this.doAI_Intel();
 	  }
@@ -106,18 +116,19 @@ namespace MTON.codeObjects{
 
 	}
 
-	private void doAI_Intel(){
+	protected void doAI_Intel(){
 	  this.doRangeCheck(this.xform, this.player, this.sAI.fRngAware * rb.cRadius, (bool bRange, float fDist)=>{
 		if(bRange){
-//		  Vector3 centerOffset = new Vector3(0.0f, rb.cHeight * 0.5f, 0.0f);
-//		  Debug.DrawLine(this.xform.position + centerOffset, this.player.position + centerOffset, Color.yellow);
+		  Vector3 centerOffset = new Vector3(0.0f, rb.cHeight * 0.5f, 0.0f);
+		  Debug.DrawLine(this.xform.position + centerOffset, this.player.position + centerOffset, Color.yellow);
 		  AI_Actv(true);
+		  this.an.seekST = cAnimn.eStateT.Awre;
 		  this.ai_FOLLOW(fDist);
 //	      io.bInput = true;
 		}
 		else{
 		  AI_Actv(false);
-		  this.ai_IDLE();
+		  this.an.seekST = cAnimn.eStateT.Idle;
 //	      io.bInput = false;
 		}
 	    return true;
@@ -139,10 +150,11 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	public virtual  void ai_IDLE(){
-	  this.doMove_AI(Vector3.zero);
-	  this.an.seekst = cAnimn.eStateT.Idle;
-	  this.an.attkST = cAnimn.eStateB.Idle;
+	public virtual  void ai_IDLE(bool bIdle){
+	  if(bIdle){
+	    this.doMove_AI(Vector3.zero);
+	    this.an.attkST = cAnimn.eStateB.Idle;
+	  }
 	}
 
 	public virtual  bool ai_ATTK(){

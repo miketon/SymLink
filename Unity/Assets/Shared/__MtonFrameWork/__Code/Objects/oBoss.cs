@@ -18,8 +18,8 @@ namespace MTON.codeObjects{
 //		  base.doMove_AI(moveDir);
 	}
 	
-	public void Update(){
-
+	public override void Update(){
+	  base.Update();
 	}
   }
 

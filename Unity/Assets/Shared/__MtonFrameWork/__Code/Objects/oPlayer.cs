@@ -83,7 +83,7 @@ namespace MTON.codeObjects{
 #endregion
 
 #region oPlayer Delegates
-      private void OnEnable(){
+      public virtual void OnEnable(){
 
         this.gameObject.SetActive(true);
 
@@ -112,7 +112,7 @@ namespace MTON.codeObjects{
         an.OnFootDelegate      += doFoot;
       }
 
-      private void OnDisable(){
+      public virtual void OnDisable(){
 
         //direct input
         io.OnDPAD_DIR_Delegate -= doMove;
