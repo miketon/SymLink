@@ -45,6 +45,12 @@ namespace MTON.Class{
         public DL_Anim OnJmpADelegate            ; // Jump Air
         public DL_Anim OnFlapDelegate            ; // Flap
 
+		// seek/target state : AI
+        public DL_Anim OnSeekIdleDelegate        ; // Idle no target in range
+        public DL_Anim OnSeekAwareDelegate       ; // Aware of target in range
+        public DL_Anim OnSeekAlertDelegate       ; // Alert! target in range take action
+        public DL_Anim OnSeekFollowDelegate      ; // true = follow; false = flee; else idle
+
 		// combat Attk States
         public DL_Anim OnAttkDelegate            ; // Attack
 	    public DL_Anim OnFireDelegate            ; // Fire  : Ranged Attack
@@ -108,6 +114,14 @@ namespace MTON.Class{
 			DN  , //up
 			HL  , //hold
 			PW  , //power up
+		}
+
+		public enum eStateT{ // targeting system state : AI awareness
+			Idle,
+			Awre , // Aware
+			Alrt , // Alert
+			Folw , // Follow
+			Flee , // Flee
 		}
 
 #endregion
@@ -204,8 +218,38 @@ namespace MTON.Class{
 			set{
 				if(value != aimgst){
 			        aimgst = value ;
-                    if(value == eStateB.Idle){ // NOTE INTERESTING !
+                    if(value == eStateB.Idle){ 
 						doAimg(0.0f) ;       // OnAim release reset to 0.0f; Controls mecanim aim layer
+					}
+				}
+			}
+		}
+
+		public  eStateT seekst ;
+		public  eStateT seekST{
+			get{ return seekst; }
+			set{
+				if(value != seekst){
+			        seekst = value ;
+                    if(value == eStateT.Awre){
+						//doAware
+						this.setSeekAware(true);
+					}
+					else if(value == eStateT.Alrt){
+						//doAlert
+						this.setSeekAlert(true);
+					}
+					else if(value == eStateT.Folw){
+						//doFollow
+					    this.setSeekFollow(true);
+					}
+					else if(value == eStateT.Flee){
+						//doFlee
+					    this.setSeekFollow(false);
+					}
+					else{
+						//doIdle;
+					    this.setSeekIdle(true);
 					}
 				}
 			}
@@ -519,6 +563,30 @@ namespace MTON.Class{
 		private void setHitd(bool bHit){ 
 			if(this.OnHitdDelegate != null){
 			  this.OnHitdDelegate(bHit);
+			}
+		}
+
+		private void setSeekIdle(bool bIdle){
+			if(this.OnSeekIdleDelegate!= null){
+				this.OnSeekIdleDelegate(bIdle);
+			}
+		}
+
+		private void setSeekAware(bool bAware){
+			if(this.OnSeekAwareDelegate!= null){
+			  this.OnSeekAwareDelegate(bAware);
+			}
+		}
+
+		private void setSeekAlert(bool bAlert){
+			if(this.OnSeekAlertDelegate != null){
+			  this.OnSeekAlertDelegate(bAlert);
+			}
+		}
+
+		private void setSeekFollow(bool bFollw){
+			if(this.OnSeekFollowDelegate != null){
+			  this.OnSeekFollowDelegate(bFollw);
 			}
 		}
 

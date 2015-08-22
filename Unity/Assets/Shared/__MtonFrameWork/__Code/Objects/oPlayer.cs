@@ -8,7 +8,7 @@ using DG.Tweening        ; //import DemiGiant DoTween
 namespace MTON.codeObjects{
 
   [RequireComponent (typeof (CharacterController))]
-    [RequireComponent (typeof (cMcanm))] //must have to call mecanim...need fields so can not populate later
+  [RequireComponent (typeof (cMcanm))] //must have to call mecanim...need fields so can not populate later
     public class oPlayer : MonoBehaviour{
 
 	  public  bool       b_2D    = true         ;
