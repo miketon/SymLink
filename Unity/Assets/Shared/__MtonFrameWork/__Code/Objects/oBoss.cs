@@ -6,7 +6,7 @@ namespace MTON.codeObjects{
   public class oBoss : oEnemy {
 
     public  Vector3 vPos_Idle = Vector3.zero;
-    private Vector3 vPos_Alrt = Vector3.zero;
+    public  Vector3 vPos_Alrt = Vector3.zero;
 
 	public override void Start (){
 	  base.Start ()                            ;
@@ -20,7 +20,11 @@ namespace MTON.codeObjects{
 	  if(bAlert){
 		this.transform.position = this.vPos_Alrt;
 	  }
-	  else{
+	}
+
+	public override void ai_IDLE (bool bIdle){
+	  base.ai_IDLE (bIdle);
+	  if(bIdle){
 	    this.transform.position = this.vPos_Idle;
 	  }
 	}
@@ -30,12 +34,9 @@ namespace MTON.codeObjects{
 	}
 
 	public override void doMove_AI(Vector3 moveDir){
-//		  base.doMove_AI(moveDir);
+//      base.doMove_AI(moveDir);
 	}
-	
-	public override void Update(){
-	  base.Update();
-	}
+
   }
 
 }

@@ -1,4 +1,5 @@
 using UnityEngine        ;
+using System             ; //Must use for [Serializable] attr
 using System.Collections ;
 using MTON.Interface     ;
 using MTON.Class         ;
@@ -225,11 +226,14 @@ namespace MTON.Class{
 			}
 		}
 
-		public  eStateT seekst ;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateT seekst ;
 		public  eStateT seekST{
 			get{ return seekst; }
 			set{
+//			    Debug.Log ("SEEK CHANGE");
 				if(value != seekst){
+					Debug.Log ("SETSEEK VALUE :" + value + this);
 			        seekst = value ;
                     if(value == eStateT.Awre){
 						//doAware

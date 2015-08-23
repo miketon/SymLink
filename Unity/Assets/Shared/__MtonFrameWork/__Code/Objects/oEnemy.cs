@@ -125,7 +125,6 @@ namespace MTON.codeObjects{
 		if(bRange){
 		  Vector3 centerOffset = new Vector3(0.0f, rb.cHeight * 0.5f, 0.0f);
 		  Debug.DrawLine(this.xform.position + centerOffset, this.player.position + centerOffset, Color.yellow);
-		  this.an.seekST = cAnimn.eStateT.Awre;
 		  this.ai_FOLLOW(fDist);
 //	      io.bInput = true;
 		}
@@ -141,14 +140,17 @@ namespace MTON.codeObjects{
 	  this.doMove_AI(-Vector3.right * Mathf.Sign(this.xform.position.x - this.player.position.x));
 	  this.an.doMove(Vector3.right);
 	  if(Mathf.Abs(IN_DIST) < this.sAI.fRngAlert * rb.cRadius){     // Entering Alert Range
-	    this.an.seekst = cAnimn.eStateT.Alrt;
+	    this.an.seekST = cAnimn.eStateT.Alrt;
 	    this.an.attkST = cAnimn.eStateB.Idle;                   // Cocking attack : force state change if true
 	    rendr.material.color = sAI.cAlrt;
 		if(Mathf.Abs(IN_DIST) < (this.sAI.fRngAttck * rb.cRadius)){ // Entering Attack Range
-	      this.an.seekst = cAnimn.eStateT.Folw;
+	      this.an.seekST = cAnimn.eStateT.Folw;
 	      rendr.material.color = this.sAI.cAttk;
 	      this.ai_ATTK();
 		}
+	  }
+	  else{
+	    this.an.seekST = cAnimn.eStateT.Awre;
 	  }
 	}
 
@@ -156,6 +158,7 @@ namespace MTON.codeObjects{
 	  if(bIdle){
 	    this.doMove_AI(Vector3.zero);
 	    this.an.attkST = cAnimn.eStateB.Idle;
+		rendr.material.color = this.sAI.cIdle;
 	  }
 	}
 
@@ -223,7 +226,6 @@ namespace MTON.codeObjects{
 	public virtual void ai_AWRE(bool bAware){
 	  if(bAware){
 	    rendr.material.color = sAI.cAwre;
-		this.an.seekST = cAnimn.eStateT.Awre;
 	  }
 	  else{
 	    rendr.material.color = sAI.cIdle;
@@ -233,7 +235,6 @@ namespace MTON.codeObjects{
 	public virtual void ai_ALRT(bool bAlert){
 	  if(bAlert){
 	    rendr.material.color = sAI.cAlrt;
-		this.an.seekST = cAnimn.eStateT.Alrt;
 	  }
 	  else{
 	    rendr.material.color = sAI.cAwre;
