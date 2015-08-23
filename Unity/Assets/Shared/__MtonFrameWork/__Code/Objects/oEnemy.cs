@@ -42,7 +42,7 @@ namespace MTON.codeObjects{
 	public override void Start(){
 	  base.Start();
 	  this.bInput = false; // don't read input by default
-	  rendr.material.color = sAI.cRest;
+	  rendr.material.color = sAI.cIdle;
       __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._ENEMY) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
 	  if(this.player == null){
 	    this.player = __gCONSTANT._LEVEL.mPlayer;
@@ -51,12 +51,16 @@ namespace MTON.codeObjects{
 
 	public override void OnEnable (){
 	  base.OnEnable ();
-	  an.OnSeekIdleDelegate += ai_IDLE;
+	  an.OnSeekIdleDelegate  += ai_IDLE;
+	  an.OnSeekAwareDelegate += ai_AWRE;
+	  an.OnSeekAlertDelegate += ai_ALRT;
 	}
 
 	public override void OnDisable (){
 	  base.OnDisable ();
-	  an.OnSeekIdleDelegate -= ai_IDLE;
+	  an.OnSeekIdleDelegate  -= ai_IDLE;
+	  an.OnSeekAwareDelegate -= ai_AWRE;
+	  an.OnSeekAlertDelegate -= ai_ALRT;
 	}
 
     private Vector3 vFacePrev = Vector3.zero;
@@ -109,9 +113,9 @@ namespace MTON.codeObjects{
 	  public float fRngAlert ; //default = 6.0f  ;
 	  public float fRngAttck ; //default = 3.5f  ;
 
-	  public Color cRest ; //default = Color.white  ;
+	  public Color cIdle ; //default = Color.white  ;
 	  public Color cAwre ; //default = Color.green  ;
-	  public Color cActv ; //default = Color.yellow ;
+	  public Color cAlrt ; //default = Color.yellow ;
 	  public Color cAttk ; //default = Color.red    ;
 
 	}
@@ -121,13 +125,11 @@ namespace MTON.codeObjects{
 		if(bRange){
 		  Vector3 centerOffset = new Vector3(0.0f, rb.cHeight * 0.5f, 0.0f);
 		  Debug.DrawLine(this.xform.position + centerOffset, this.player.position + centerOffset, Color.yellow);
-		  AI_Actv(true);
 		  this.an.seekST = cAnimn.eStateT.Awre;
 		  this.ai_FOLLOW(fDist);
 //	      io.bInput = true;
 		}
 		else{
-		  AI_Actv(false);
 		  this.an.seekST = cAnimn.eStateT.Idle;
 //	      io.bInput = false;
 		}
@@ -141,7 +143,7 @@ namespace MTON.codeObjects{
 	  if(Mathf.Abs(IN_DIST) < this.sAI.fRngAlert * rb.cRadius){     // Entering Alert Range
 	    this.an.seekst = cAnimn.eStateT.Alrt;
 	    this.an.attkST = cAnimn.eStateB.Idle;                   // Cocking attack : force state change if true
-	    rendr.material.color = sAI.cActv;
+	    rendr.material.color = sAI.cAlrt;
 		if(Mathf.Abs(IN_DIST) < (this.sAI.fRngAttck * rb.cRadius)){ // Entering Attack Range
 	      this.an.seekst = cAnimn.eStateT.Folw;
 	      rendr.material.color = this.sAI.cAttk;
@@ -218,14 +220,23 @@ namespace MTON.codeObjects{
 
 #region Utility
 
-
-	public virtual void AI_Actv(bool bActive){
-	  if(bActive){
+	public virtual void ai_AWRE(bool bAware){
+	  if(bAware){
 	    rendr.material.color = sAI.cAwre;
 		this.an.seekST = cAnimn.eStateT.Awre;
 	  }
 	  else{
-	    rendr.material.color = sAI.cRest;
+	    rendr.material.color = sAI.cIdle;
+	  }
+	}
+
+	public virtual void ai_ALRT(bool bAlert){
+	  if(bAlert){
+	    rendr.material.color = sAI.cAlrt;
+		this.an.seekST = cAnimn.eStateT.Alrt;
+	  }
+	  else{
+	    rendr.material.color = sAI.cAwre;
 	  }
 	}
 
