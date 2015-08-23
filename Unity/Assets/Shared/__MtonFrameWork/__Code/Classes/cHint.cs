@@ -59,7 +59,7 @@ namespace MTON.Class{
   }
 
   public virtual void OnHintExit(cInput cINPT) { // Using IHint<cInput> to specify incoming data type
-	StartCoroutine(__gUtility.WaitUntilDistant(this.xform, cINPT.transform, this.fThreshold, (()=>{
+	StartCoroutine(__gUtility.WaitUntilDistantLess(this.xform, cINPT.transform, this.fThreshold, (()=>{
       for(int i=0; i<collidedList.Count; i++){
 		if(cINPT == collidedList[i]){
 //		  Debug.LogError(" Removing : " + cINPT);

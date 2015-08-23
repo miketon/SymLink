@@ -130,7 +130,8 @@ namespace MTON.Class{
 #region Enum Define : Custom
 
 		// STATE : VERTICAL
-		public  eStateV vstate;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateV vstate;
 		public  eStateV vState{
 			get{
 				return vstate;
@@ -155,7 +156,8 @@ namespace MTON.Class{
 		}
 
 		// STATE : HORIZONTAL
-		public  eStateH hstate;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateH hstate;
 		public  eStateH hState{
 			get{
 				return hstate;
@@ -190,7 +192,8 @@ namespace MTON.Class{
 		}
 
 		// STATE : FACING
-		public  eStateF fstate;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateF fstate;
 		public  eStateF fState{
 			get{
 				return fstate;
@@ -213,7 +216,8 @@ namespace MTON.Class{
 		}
 
 		// STATE : AIMING FLOAT
-		public  eStateB aimgst ;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB aimgst ;
 		public  eStateB aimgST{
 			get{ return aimgst; }
 			set{
@@ -260,7 +264,8 @@ namespace MTON.Class{
 		}
 
 		// STATE : LIFE
-		public  eStateL lstate;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateL lstate;
 		public  eStateL lState{
 			get{
 				return lstate;
