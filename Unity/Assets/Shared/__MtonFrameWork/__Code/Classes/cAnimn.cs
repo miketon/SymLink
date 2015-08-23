@@ -1,4 +1,5 @@
 using UnityEngine        ;
+using System             ; //Must use for [Serializable] attr
 using System.Collections ;
 using MTON.Interface     ;
 using MTON.Class         ;
@@ -44,6 +45,12 @@ namespace MTON.Class{
         public DL_Anim OnJumpDelegate            ; // Jump
         public DL_Anim OnJmpADelegate            ; // Jump Air
         public DL_Anim OnFlapDelegate            ; // Flap
+
+		// seek/target state : AI
+        public DL_Anim OnSeekIdleDelegate        ; // Idle no target in range
+        public DL_Anim OnSeekAwareDelegate       ; // Aware of target in range
+        public DL_Anim OnSeekAlertDelegate       ; // Alert! target in range take action
+        public DL_Anim OnSeekFollowDelegate      ; // true = follow; false = flee; else idle
 
 		// combat Attk States
         public DL_Anim OnAttkDelegate            ; // Attack
@@ -110,12 +117,21 @@ namespace MTON.Class{
 			PW  , //power up
 		}
 
+		public enum eStateT{ // targeting system state : AI awareness
+			Idle,
+			Awre , // Aware
+			Alrt , // Alert
+			Folw , // Follow
+			Flee , // Flee
+		}
+
 #endregion
 
 #region Enum Define : Custom
 
 		// STATE : VERTICAL
-		public  eStateV vstate;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateV vstate;
 		public  eStateV vState{
 			get{
 				return vstate;
@@ -140,7 +156,8 @@ namespace MTON.Class{
 		}
 
 		// STATE : HORIZONTAL
-		public  eStateH hstate;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateH hstate;
 		public  eStateH hState{
 			get{
 				return hstate;
@@ -175,7 +192,8 @@ namespace MTON.Class{
 		}
 
 		// STATE : FACING
-		public  eStateF fstate;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateF fstate;
 		public  eStateF fState{
 			get{
 				return fstate;
@@ -198,21 +216,56 @@ namespace MTON.Class{
 		}
 
 		// STATE : AIMING FLOAT
-		public  eStateB aimgst ;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB aimgst ;
 		public  eStateB aimgST{
 			get{ return aimgst; }
 			set{
 				if(value != aimgst){
 			        aimgst = value ;
-                    if(value == eStateB.Idle){ // NOTE INTERESTING !
+                    if(value == eStateB.Idle){ 
 						doAimg(0.0f) ;       // OnAim release reset to 0.0f; Controls mecanim aim layer
 					}
 				}
 			}
 		}
 
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateT seekst ;
+		public  eStateT seekST{
+			get{ return seekst; }
+			set{
+//			    Debug.Log ("SEEK CHANGE");
+				if(value != seekst){
+					Debug.Log ("SETSEEK VALUE :" + value + this);
+			        seekst = value ;
+                    if(value == eStateT.Awre){
+						//doAware
+						this.setSeekAware(true);
+					}
+					else if(value == eStateT.Alrt){
+						//doAlert
+						this.setSeekAlert(true);
+					}
+					else if(value == eStateT.Folw){
+						//doFollow
+					    this.setSeekFollow(true);
+					}
+					else if(value == eStateT.Flee){
+						//doFlee
+					    this.setSeekFollow(false);
+					}
+					else{
+						//doIdle;
+					    this.setSeekIdle(true);
+					}
+				}
+			}
+		}
+
 		// STATE : LIFE
-		public  eStateL lstate;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateL lstate;
 		public  eStateL lState{
 			get{
 				return lstate;
@@ -519,6 +572,30 @@ namespace MTON.Class{
 		private void setHitd(bool bHit){ 
 			if(this.OnHitdDelegate != null){
 			  this.OnHitdDelegate(bHit);
+			}
+		}
+
+		private void setSeekIdle(bool bIdle){
+			if(this.OnSeekIdleDelegate!= null){
+				this.OnSeekIdleDelegate(bIdle);
+			}
+		}
+
+		private void setSeekAware(bool bAware){
+			if(this.OnSeekAwareDelegate!= null){
+			  this.OnSeekAwareDelegate(bAware);
+			}
+		}
+
+		private void setSeekAlert(bool bAlert){
+			if(this.OnSeekAlertDelegate != null){
+			  this.OnSeekAlertDelegate(bAlert);
+			}
+		}
+
+		private void setSeekFollow(bool bFollw){
+			if(this.OnSeekFollowDelegate != null){
+			  this.OnSeekFollowDelegate(bFollw);
 			}
 		}
 

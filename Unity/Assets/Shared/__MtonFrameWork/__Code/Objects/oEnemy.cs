@@ -9,9 +9,11 @@ namespace MTON.codeObjects{
 
   public class oEnemy : oPlayer{
 
-	public Transform player     ;
+#region AI prop
+
+	public  Transform player    ;
 	private bool binput = false ;
-	public bool bInput{
+	public  bool bInput{
 			get{
 				return binput;
 			}
@@ -34,15 +36,31 @@ namespace MTON.codeObjects{
 			}
 	}
 
+#endregion
+
 #region base Overrides
 	public override void Start(){
 	  base.Start();
 	  this.bInput = false; // don't read input by default
-	  rendr.material.color = cRest;
+	  rendr.material.color = sAI.cIdle;
       __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._ENEMY) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
 	  if(this.player == null){
 	    this.player = __gCONSTANT._LEVEL.mPlayer;
 	  }
+	}
+
+	public override void OnEnable (){
+	  base.OnEnable ();
+	  an.OnSeekIdleDelegate  += ai_IDLE;
+	  an.OnSeekAwareDelegate += ai_AWRE;
+	  an.OnSeekAlertDelegate += ai_ALRT;
+	}
+
+	public override void OnDisable (){
+	  base.OnDisable ();
+	  an.OnSeekIdleDelegate  -= ai_IDLE;
+	  an.OnSeekAwareDelegate -= ai_AWRE;
+	  an.OnSeekAlertDelegate -= ai_ALRT;
 	}
 
     private Vector3 vFacePrev = Vector3.zero;
@@ -52,14 +70,14 @@ namespace MTON.codeObjects{
 	  if(vFace != Vector3.zero){
 	    float randomDur = 1.0f; //UnityEngine.Random.Range(0.75f, 1.5f);
 	    if(vFace != this.vFacePrev){       ; // MUST : filters to trigger rest only on turn else, stutter turn on faceIdle
-	      ai_REST(this.fIntel * randomDur) ;
+	      ai_REST(this.sAI.fIntel * randomDur) ;
 		  this.vFacePrev = vFace           ;
 		}
 	  }
 	}
 
-	public void doMove_AI (Vector3 moveDir){
-	  if(this.bIntel){ //Only on Intel can move
+	public virtual void doMove_AI (Vector3 moveDir){
+	  if(this.sAI.bIntel){ //Only on Intel can move
 	    base.doMove (moveDir);
 	  }
 	}
@@ -67,14 +85,14 @@ namespace MTON.codeObjects{
 #endregion
 	
 	private int iThought = 0;
-	private void Update(){
-	  if(this.bIntel){     //if intelligence active : do AI
+	public virtual void Update(){
+	  if(this.sAI.bIntel){     //if intelligence active : do AI
 	    this.doAI_Intel();
 	  }
 
 	  if(Input.GetKeyDown(KeyCode.P)){
 //	    this.bInput = !this.bInput;
-		this.bIntel = !this.bIntel;
+		this.sAI.bIntel = !this.sAI.bIntel;
 		this.iThought++;
 		this.ai_REST(1.0f, "tt_THINK", ()=>{
 				  Debug.Log ("Thinking : " + this.iThought);
@@ -85,53 +103,71 @@ namespace MTON.codeObjects{
 
 #region AI functions
 
-	public float fRngAware = 10.0f ;
-	public float fRngAlert = 6.0f  ;
-	public float fRngAttck = 3.5f  ;
-	public bool  bIntel = true     ; //at rest doesn't actively function
-	public float fIntel = 1.0f     ; //How fast can AI switch between rest/active
+	public s_Ai_Properties sAI = new s_Ai_Properties();
+	[Serializable] //MUST : add so that this custom data type can be displayed in the inspector
+    public struct s_Ai_Properties{
 
-	private void doAI_Intel(){
-	  this.doRangeCheck(this.xform, this.player, this.fRngAware * rb.cRadius, (bool bRange, float fDist)=>{
+	  public bool  bIntel    ; //default = true  ; //at rest doesn't actively function
+	  public float fIntel    ; //defalut = 1.0f  ; //How fast can AI switch between rest/active
+	  public float fRngAware ; //default = 10.0f ;
+	  public float fRngAlert ; //default = 6.0f  ;
+	  public float fRngAttck ; //default = 3.5f  ;
+
+	  public Color cIdle ; //default = Color.white  ;
+	  public Color cAwre ; //default = Color.green  ;
+	  public Color cAlrt ; //default = Color.yellow ;
+	  public Color cAttk ; //default = Color.red    ;
+
+	}
+
+	protected void doAI_Intel(){
+	  this.doRangeCheck(this.xform, this.player, this.sAI.fRngAware * rb.cRadius, (bool bRange, float fDist)=>{
 		if(bRange){
-//		  Vector3 centerOffset = new Vector3(0.0f, rb.cHeight * 0.5f, 0.0f);
-//		  Debug.DrawLine(this.xform.position + centerOffset, this.player.position + centerOffset, Color.yellow);
-		  AI_Actv(true);
+		  Vector3 centerOffset = new Vector3(0.0f, rb.cHeight * 0.5f, 0.0f);
+		  Debug.DrawLine(this.xform.position + centerOffset, this.player.position + centerOffset, Color.yellow);
 		  this.ai_FOLLOW(fDist);
 //	      io.bInput = true;
 		}
 		else{
-		  AI_Actv(false);
-		  this.ai_IDLE();
+		  this.an.seekST = cAnimn.eStateT.Idle;
 //	      io.bInput = false;
 		}
 	    return true;
       });
 	}
 	
-	public void ai_FOLLOW(float IN_DIST){
+   public virtual void ai_FOLLOW(float IN_DIST){
 	  this.doMove_AI(-Vector3.right * Mathf.Sign(this.xform.position.x - this.player.position.x));
 	  this.an.doMove(Vector3.right);
-	  if(Mathf.Abs(IN_DIST) < this.fRngAlert * rb.cRadius){     // Entering Alert Range
+	  if(Mathf.Abs(IN_DIST) < this.sAI.fRngAlert * rb.cRadius){     // Entering Alert Range
+	    this.an.seekST = cAnimn.eStateT.Alrt;
 	    this.an.attkST = cAnimn.eStateB.Idle;                   // Cocking attack : force state change if true
-	    rendr.material.color = cActv;
-		if(Mathf.Abs(IN_DIST) < (this.fRngAttck * rb.cRadius)){ // Entering Attack Range
-	      rendr.material.color = this.cAttk;
+	    rendr.material.color = sAI.cAlrt;
+		if(Mathf.Abs(IN_DIST) < (this.sAI.fRngAttck * rb.cRadius)){ // Entering Attack Range
+	      this.an.seekST = cAnimn.eStateT.Folw;
+	      rendr.material.color = this.sAI.cAttk;
 	      this.ai_ATTK();
 		}
 	  }
+	  else{
+	    this.an.seekST = cAnimn.eStateT.Awre;
+	  }
 	}
 
-	public void ai_IDLE(){
-	  this.doMove_AI(Vector3.zero);
+	public virtual  void ai_IDLE(bool bIdle){
+	  if(bIdle){
+	    this.doMove_AI(Vector3.zero);
+	    this.an.attkST = cAnimn.eStateB.Idle;
+		rendr.material.color = this.sAI.cIdle;
+	  }
 	}
 
-	public bool ai_ATTK(){
-	  ai_REST(this.fIntel * 1.5f);
+	public virtual  bool ai_ATTK(){
+	  ai_REST(this.sAI.fIntel * 1.5f);
 	  GameObject oHit;
 	  Vector3 dCenter = this.xform.position + rb.cen;
 	  Vector3 attkDir = this.player.transform.position - this.xform.position;
-	  oHit = this.doRayDir(dCenter, attkDir, this.fRngAttck * rb.cRadius);
+	  oHit = this.doRayDir(dCenter, attkDir, this.sAI.fRngAttck * rb.cRadius);
 
 	  if(oHit != null){
 	    oPlayer pHit = oHit.GetComponent<oPlayer>();
@@ -155,10 +191,10 @@ namespace MTON.codeObjects{
 	}
 
 	private void ai_REST<T>(float IN_DUR, string IN_QUE, Func<T> funcToRun){
-	  this.bIntel = false;
+	  this.sAI.bIntel = false;
 	  this.tt (IN_QUE).ttReset();
 	  this.tt (IN_QUE).ttAdd(IN_DUR, ()=>{ 
-				this.bIntel = true;
+				this.sAI.bIntel = true;
 				funcToRun(); 
 	  });
 	}
@@ -186,17 +222,22 @@ namespace MTON.codeObjects{
 	}
 
 #region Utility
-	public Color cRest = Color.white  ;
-	public Color cAwre = Color.green  ;
-	public Color cActv = Color.yellow ;
-	public Color cAttk = Color.red    ;
 
-	public virtual void AI_Actv(bool bActive){
-	  if(bActive){
-	    rendr.material.color = cAwre;
+	public virtual void ai_AWRE(bool bAware){
+	  if(bAware){
+	    rendr.material.color = sAI.cAwre;
 	  }
 	  else{
-	    rendr.material.color = cRest;
+	    rendr.material.color = sAI.cIdle;
+	  }
+	}
+
+	public virtual void ai_ALRT(bool bAlert){
+	  if(bAlert){
+	    rendr.material.color = sAI.cAlrt;
+	  }
+	  else{
+	    rendr.material.color = sAI.cAwre;
 	  }
 	}
 

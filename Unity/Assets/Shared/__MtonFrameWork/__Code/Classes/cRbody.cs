@@ -64,11 +64,14 @@ namespace MTON.Class{
       return (IN_CC.height * this.transform.localScale.y) * 0.5f + 0.10f ; //character cylinder  y center
       //HACK: Can't access skin width via code ???, close approximation ??? built in onGround fails ???
     }
-
+	
+	public bool bFall = true;
     private void FixedUpdate(){
       this.bGround = this.OnGround()            ; //calculate ground state
       this.cHeight = this.ccHeight(this.contrl) ; //update ccontrol height
-      Fall()                                    ; //calculate vertical state
+	  if(bFall){
+        Fall()                                    ; //calculate vertical state
+	  }
       doJump()                                  ; //calculate jump state : NOTE : Can't replace with longform bJump prop handler???
 
       gravity.x = move.x                         ; //combine with move from Move()=>oMoveH() for final position
