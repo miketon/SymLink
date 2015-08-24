@@ -237,7 +237,6 @@ namespace MTON.Class{
 			set{
 //			    Debug.Log ("SEEK CHANGE");
 				if(value != seekst){
-					Debug.Log ("SETSEEK VALUE :" + value + this);
 			        seekst = value ;
                     if(value == eStateT.Awre){
 						//doAware

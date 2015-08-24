@@ -71,49 +71,31 @@ namespace MTON.Global{
 	  }
 	}
 
-  public static IEnumerator WaitUntilDistantLess<T>(Transform IN_xform_SRC, Transform IN_xform_TGT, float In_threshold, Func<T> funcToRun){
-    float distToOther = 0.0f  ;
-	while(distToOther  < In_threshold){
+    public static IEnumerator WaitUntilDistantLess<T>(Transform IN_xform_SRC, Transform IN_xform_TGT, float In_threshold, Func<T> funcToRun){
+      float distToOther = 0.0f  ;
+	  while(distToOther  < In_threshold){
 //      distToOther = Vector3.Distance(IN_xform_SRC.position, IN_xform_TGT.position) ;
-      float distX = Mathf.Abs(IN_xform_SRC.position.x - IN_xform_TGT.position.x)        ; // check x
-      float distY = Mathf.Abs(IN_xform_SRC.position.y - IN_xform_TGT.position.y) * 0.5f ; // vertical height too much delta change, weight down by 1/5th
+        float distX = Mathf.Abs(IN_xform_SRC.position.x - IN_xform_TGT.position.x)        ; // check x
+        float distY = Mathf.Abs(IN_xform_SRC.position.y - IN_xform_TGT.position.y) * 0.5f ; // vertical height too much delta change, weight down by 1/5th
 	  
-	  if(distY > distX){
-	    distToOther = distY;
-	  }
-	  else{
-	    distToOther = distX;
-	  }
-      yield return null                                                            ;
+	    if(distY > distX){
+	      distToOther = distY;
+	    }
+	    else{
+	      distToOther = distX;
+	    }
+        yield return null                                                            ;
+      }
+	  funcToRun()                                                                    ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
     }
-	funcToRun()                                                                    ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
-  }
 
-//  public static IEnumerator WaitUntilDistantGreat<T>(Transform IN_xform_SRC, Transform IN_xform_TGT, float In_threshold, Func<T> funcToRun){
-//    float distToOther = 0.0f  ;
-//	while(distToOther  < In_threshold){
-////      distToOther = Vector3.Distance(IN_xform_SRC.position, IN_xform_TGT.position) ;
-//      float distX = Mathf.Abs(IN_xform_SRC.position.x - IN_xform_TGT.position.x)        ; // check x
-//      float distY = Mathf.Abs(IN_xform_SRC.position.y - IN_xform_TGT.position.y) * 0.5f ; // vertical height too much delta change, weight down by 1/5th
-//	  
-//	  if(distY > distX){
-//	    distToOther = distY;
-//	  }
-//	  else{
-//	    distToOther = distX;
-//	  }
-//      yield return null                                                            ;
-//    }
-//	funcToRun()                                                                    ; // NOTE : anonymous method of type `System.Func<T>' must return a value ; else error
-//  }
-	
-	public static void CheckAndInitLayer(GameObject IN_GO, string IN_LAYERNAME){
-	  string curLayer = LayerMask.LayerToName(IN_GO.layer);
+    public static void CheckAndInitLayer(GameObject IN_GO, string IN_LAYERNAME){
+      string curLayer = LayerMask.LayerToName(IN_GO.layer);
 	  if(curLayer != IN_LAYERNAME){
 	    IN_GO.layer = LayerMask.NameToLayer (IN_LAYERNAME); 
-		Debug.LogWarning(IN_GO+" Layer/Level Hint Not Setup Correctly : Converting '" + curLayer + "' to : '" + IN_LAYERNAME + "' ");
+	    Debug.LogWarning(IN_GO+" Layer/Level Hint Not Setup Correctly : Converting '" + curLayer + "' to : '" + IN_LAYERNAME + "' ");
 	  }
-	}
+    }
 
 //	public static string[] LoopThroughEnum<T>(T Tenum){
 //	  string[] retString = Tenum.GetNames(typeof(Tenum));
