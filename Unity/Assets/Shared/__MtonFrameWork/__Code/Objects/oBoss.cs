@@ -32,27 +32,39 @@ namespace MTON.codeObjects{
 	}
 
 	private int deletemeIndex = 0;
+    private bool animActive = true;
 	public override void Update (){
 	  base.Update ();
+	  if(this.animActive){
 	  if(this.boss_ANIMS.Length > 0){
 	    if(Input.GetKeyDown(KeyCode.B)){ //bite
 //		  this.deletemeIndex++;
 //	      this.deletemeIndex = this.deletemeIndex%this.boss_ANIMS.Length;
 //		  this.boss_kState(this.deletemeIndex);
+		  this.boss_kState(1);
 		  this.an.trigST = cAnimn.eStateB.DN;
 	    }
 		else if(Input.GetKeyDown(KeyCode.S)){ // slam
+		  this.boss_kState(4);
 		  this.an.trigST = cAnimn.eStateB.UP;
 		}
 		else if(Input.GetKeyDown(KeyCode.F)){ // barf
+		  this.boss_kState(3);
 		  this.an.trigST = cAnimn.eStateB.HL;
 		}
 		else if(Input.GetKeyDown(KeyCode.L)){ // laser
+		  this.animActive = false;
+		  this.boss_kState(2);
 		  this.an.trigST = cAnimn.eStateB.PW;
+		  this.tt("LerpOverwrite").ttReset().ttAdd(this.anmEmit_duratn[2], delegate(){
+		    this.animActive = true;
+		  });
 		}
 		else{ // set back to neutral state
+		  this.boss_kState(0);
 		  this.an.trigST = cAnimn.eStateB.Idle;
 		}
+	  }
 	  }
 	}
 
@@ -90,6 +102,7 @@ namespace MTON.codeObjects{
     public float curvTime = 3.0f;
 	public bool bCurve = true;
 	private float kTimeCache = 0.0f;
+	private bool bossActive = false;
 	public override void ai_ALRT (bool bAlert){
 	  base.ai_ALRT (bAlert);
 	  if(bAlert){
@@ -97,23 +110,26 @@ namespace MTON.codeObjects{
 		this.sAI.bIntel = false; //turn off range checking to prevent alert/idle flipping
 //		this.transform.position = this.vPos_Alrt;
 		// The queue is selected, then restarted by ttReset()
-		this.tt("LerpOverwrite").ttReset().ttAdd(delegate(){ //start loop
-		  transform.position = this.vPos_Idle;
-		})
-		.ttLoop(curvTime, delegate(ttHandler loop){ //body of loop
-		  if(bCurve){
-		    kTimeCache += loop.deltaTime;
-			float kPercent = kTimeCache/curvTime;
-			float cLookUp  = curvALRT.Evaluate(kPercent);
-		    transform.position = Vector3.Lerp(transform.position, this.vPos_Alrt, cLookUp);
-		  }
-		  else{
-		    transform.position = Vector3.Lerp(transform.position, this.vPos_Alrt, loop.deltaTime);
-		  }
-		})
-		.ttAdd(delegate(){ //on end of loop
-		  this.sAI.bIntel = true; //turn on range checking
-		});
+		if(!this.bossActive){
+		  this.tt("LerpOverwrite").ttReset().ttAdd(delegate(){ //start loop
+		    transform.position = this.vPos_Idle;
+		  })
+		  .ttLoop(curvTime, delegate(ttHandler loop){ //body of loop
+		    if(bCurve){
+		      kTimeCache += loop.deltaTime;
+			  float kPercent = kTimeCache/curvTime;
+			  float cLookUp  = curvALRT.Evaluate(kPercent);
+		      transform.position = Vector3.Lerp(transform.position, this.vPos_Alrt, cLookUp);
+		    }
+		    else{
+		      transform.position = Vector3.Lerp(transform.position, this.vPos_Alrt, loop.deltaTime);
+		    }
+		  })
+		  .ttAdd(delegate(){ //on end of loop
+		    this.bossActive = true; // prevents boss from rerising
+	      });
+		}
+		this.sAI.bIntel = true; //turn on range checking
 	  }
 	}
 
@@ -130,10 +146,10 @@ namespace MTON.codeObjects{
 	    this.pCamera.localPosition = this.vCamInitPos;
 		kTimeCache = 0.0f;
 		this.tt("LerpOverwrite").ttReset()
-		.ttAdd(delegate(){
+		.ttAdd(delegate(){ //start of loop
 			Debug.Log ("BOSS IDLE : " + this);
 		})
-		.ttLoop(curvTime, delegate(ttHandler loop){ //body of loop
+		.ttLoop(curvTime, delegate(ttHandler loop){ // body of loop
 		  if(bCurve){
 		    kTimeCache += loop.deltaTime;
 			float kPercent = kTimeCache/curvTime;
@@ -143,6 +159,9 @@ namespace MTON.codeObjects{
 		  else{
 		    transform.position = Vector3.Lerp(transform.position, this.vPos_Idle, loop.deltaTime);
 		  }
+		})
+		.ttAdd(delegate(){ // end of loop
+		  this.bossActive = false;
 		});
 	  }
 	}
