@@ -289,8 +289,9 @@ namespace MTON.Class{
 
 #region Enum Define : Button/Bool
 		// STATE : Jump
-		public  eStateB jumpst ;
-		public  eStateB jumpST {
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB jumpst ;
+		public  eStateB jumpST { // Interesting Double Duty : Jump = DN; AirJump = UP; else Idle
 			get{ return jumpst; }
 			set{
 				if(value != jumpst){
@@ -310,7 +311,8 @@ namespace MTON.Class{
 		}
 
 		// STATE : Attack
-		public  eStateB attkst ;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB attkst ;
 		public  eStateB attkST {
 			get{ return attkst; }
 			set{
@@ -339,7 +341,8 @@ namespace MTON.Class{
 		}
 
 		// STATE : GROUND
-		public  eStateB grndst ;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB grndst ;
 		public  eStateB grndST {
 			get{ return grndst; }
 			set{
@@ -356,7 +359,8 @@ namespace MTON.Class{
 		}
 
 		// STATE : DUCK/CROUCH
-		public  eStateB duckst ;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB duckst ;
 		public  eStateB duckST{
 			get{ return duckst; }
 			set{
@@ -374,7 +378,8 @@ namespace MTON.Class{
 		}
 
 		// STATE : CEILING
-		public  eStateB ceilst ;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB ceilst ;
 		public  eStateB ceilST {
 			get{ return ceilst; }
 			set{
@@ -391,7 +396,8 @@ namespace MTON.Class{
 		}
 
 		// STATE : FOOT STEP
-		public  eStateB footst ;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB footst ;
 		public  eStateB footST{
 			get{ return footst; }
 			set{
@@ -408,7 +414,8 @@ namespace MTON.Class{
 		}
 
 		// STATE : POSING => Win, lose...etc
-		public  eStateB posest ;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB posest ;
 		public  eStateB poseST{
 			get{ return posest; }
 			set{

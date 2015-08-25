@@ -2,6 +2,7 @@
 using System             ; //NOTE : ??? must import to use anonymous function ; And the IComparable Interface for Dictionary
 using System.Collections ;
 using MTON.Global        ;
+using MTON.Class         ;
 using DG.Tweening        ; //import DemiGiant DoTween
 
 namespace MTON.codeObjects{
@@ -13,6 +14,48 @@ namespace MTON.codeObjects{
 	private  Vector3 vCamInitPos = Vector3.zero;
     private  Vector3 vPos_Idle   = Vector3.zero;
     private  Vector3 vPos_Alrt   = Vector3.zero;
+
+	public GameObject[] boss_STATES; //0==Idle
+
+	private void boss_kState(int kIndex){
+	  if(boss_STATES[kIndex]){
+	    for(int i=0; i<boss_STATES.Length; i++){
+		  if(i != kIndex){
+		    this.boss_STATES[i].SetActive(false);
+		  }
+		  else{
+		    this.boss_STATES[i].SetActive(true);
+		  }
+		}
+	  }
+	}
+
+	private int deletemeIndex = 0;
+	public override void Update (){
+	  base.Update ();
+	  if(this.boss_STATES.Length > 0){
+	    if(Input.GetKeyDown(KeyCode.B)){ //barf
+//		  this.deletemeIndex++;
+//	      this.deletemeIndex = this.deletemeIndex%this.boss_STATES.Length;
+//		  this.boss_kState(this.deletemeIndex);
+		  this.an.attkST = cAnimn.eStateB.DN;
+	    }
+		else if(Input.GetKeyDown(KeyCode.L)){ // laser
+		  this.an.jumpST = cAnimn.eStateB.UP; // air jump
+		}
+		else if(Input.GetKeyDown(KeyCode.S)){ // slam
+		  this.an.jumpST = cAnimn.eStateB.DN; // regular jump
+		}
+		else if(Input.GetKeyDown(KeyCode.T)){ // bite
+		  this.an.duckST = cAnimn.eStateB.DN; // interesting, since duck is bool, and bite is trigger it doesn't work...
+		}
+		else{
+		  this.an.attkST = cAnimn.eStateB.Idle;
+		  this.an.jumpST = cAnimn.eStateB.Idle;
+		  this.an.duckST = cAnimn.eStateB.Idle;
+		}
+	  }
+	}
 
 	public override void Start (){
 	  base.Start ()                            ;
