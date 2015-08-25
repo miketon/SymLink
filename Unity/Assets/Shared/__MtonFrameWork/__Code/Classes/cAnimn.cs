@@ -72,8 +72,11 @@ namespace MTON.Class{
 		public DL_Anim OnDactDelegate            ; // Deactived
         public DL_Anim OnDeadDelegate            ; // Dead
 
+		// TState - Trigger State (specials, Boss Attack)
+		public DL_iVal OnTrigDelegate            ; // Special/Boss Attack Trigger
+
 		// PState - Pose State (celebrate, fidget..etc)
-		public DL_iVal OnPoseDelegate            ; // Fidget
+		public DL_iVal OnPoseDelegate            ; // Pose Trigger
 
 #endregion
 
@@ -413,6 +416,30 @@ namespace MTON.Class{
 			}
 		}
 
+		// STATE : Trigger => Special and Boss Attacks
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB trigst ;
+		public  eStateB trigST{
+			get{ return trigst; }
+			set{
+				if(value != trigst){
+			        trigst = value ;
+                    if(value == eStateB.DN){    
+					  this.setTrig(0);
+					}
+					else if(value == eStateB.UP){ 
+					  this.setTrig(1);
+					}
+					else if(value == eStateB.HL){ 
+					  this.setTrig(2);
+					}
+					else if(value == eStateB.PW){ 
+					  this.setTrig(3);
+					}
+				}
+			}
+		}
+
 		// STATE : POSING => Win, lose...etc
 		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
 		private eStateB posest ;
@@ -613,7 +640,13 @@ namespace MTON.Class{
 			}
 		}
 
-#region Delegate private bool Functions : Pose
+#region Delegate private Functions : Special Trigger and Pose
+
+		private void setTrig(int iTrig){
+			if(this.OnTrigDelegate != null){
+			  this.OnTrigDelegate(iTrig);
+			}
+		}
 
 		private void setPose(int iPose){
 			if(this.OnPoseDelegate != null){

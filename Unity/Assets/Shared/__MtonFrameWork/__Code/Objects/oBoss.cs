@@ -15,16 +15,17 @@ namespace MTON.codeObjects{
     private  Vector3 vPos_Idle   = Vector3.zero;
     private  Vector3 vPos_Alrt   = Vector3.zero;
 
-	public GameObject[] boss_STATES; //0==Idle
+	public  Animator[] boss_ANIMS; //0==Idle
+    public  float[]   anmEmit_duratn ; // Duration of animation clip
 
 	private void boss_kState(int kIndex){
-	  if(boss_STATES[kIndex]){
-	    for(int i=0; i<boss_STATES.Length; i++){
+	  if(boss_ANIMS[kIndex]){
+	    for(int i=0; i<boss_ANIMS.Length; i++){
 		  if(i != kIndex){
-		    this.boss_STATES[i].SetActive(false);
+		    this.boss_ANIMS[i].gameObject.SetActive(false);
 		  }
 		  else{
-		    this.boss_STATES[i].SetActive(true);
+		    this.boss_ANIMS[i].gameObject.SetActive(true);
 		  }
 		}
 	  }
@@ -33,26 +34,24 @@ namespace MTON.codeObjects{
 	private int deletemeIndex = 0;
 	public override void Update (){
 	  base.Update ();
-	  if(this.boss_STATES.Length > 0){
-	    if(Input.GetKeyDown(KeyCode.B)){ //barf
+	  if(this.boss_ANIMS.Length > 0){
+	    if(Input.GetKeyDown(KeyCode.B)){ //bite
 //		  this.deletemeIndex++;
-//	      this.deletemeIndex = this.deletemeIndex%this.boss_STATES.Length;
+//	      this.deletemeIndex = this.deletemeIndex%this.boss_ANIMS.Length;
 //		  this.boss_kState(this.deletemeIndex);
-		  this.an.attkST = cAnimn.eStateB.DN;
+		  this.an.trigST = cAnimn.eStateB.DN;
 	    }
-		else if(Input.GetKeyDown(KeyCode.L)){ // laser
-		  this.an.jumpST = cAnimn.eStateB.UP; // air jump
-		}
 		else if(Input.GetKeyDown(KeyCode.S)){ // slam
-		  this.an.jumpST = cAnimn.eStateB.DN; // regular jump
+		  this.an.trigST = cAnimn.eStateB.UP;
 		}
-		else if(Input.GetKeyDown(KeyCode.T)){ // bite
-		  this.an.duckST = cAnimn.eStateB.DN; // interesting, since duck is bool, and bite is trigger it doesn't work...
+		else if(Input.GetKeyDown(KeyCode.F)){ // barf
+		  this.an.trigST = cAnimn.eStateB.HL;
 		}
-		else{
-		  this.an.attkST = cAnimn.eStateB.Idle;
-		  this.an.jumpST = cAnimn.eStateB.Idle;
-		  this.an.duckST = cAnimn.eStateB.Idle;
+		else if(Input.GetKeyDown(KeyCode.L)){ // laser
+		  this.an.trigST = cAnimn.eStateB.PW;
+		}
+		else{ // set back to neutral state
+		  this.an.trigST = cAnimn.eStateB.Idle;
 		}
 	  }
 	}
@@ -67,6 +66,24 @@ namespace MTON.codeObjects{
 
 	  this.pCamera     = player.GetComponent<MTON.codeObjects.oPlayer>().camrXFORM;
 	  this.vCamInitPos = pCamera.localPosition;
+
+	  //get clip duration
+	  this.anmEmit_duratn = new float[this.boss_ANIMS.Length];
+	  for(int i=0; i<this.boss_ANIMS.Length; i++){
+		RuntimeAnimatorController ac = this.boss_ANIMS[i].runtimeAnimatorController;
+	    float retDuration = 1.1109f;
+	    for(int j=0; j<ac.animationClips.Length; j++){   //For all animations
+//			Debug.Log ("ANIMATORCLIP LENGTH : " + ac.animationClips.Length + " j: " + j + " NAME: " + ac.animationClips[j].name+" i: ");
+		  if(ac.animationClips[j].name == this.boss_ANIMS[i].name){ // HACK  : PREFAB NAME MUST MATHC CLIP NAME
+		    retDuration = ac.animationClips[j].length        ;       // HACK  : Magic numbering; need to find a way to get speed at clip level
+							                                         // FIXED : Use Animation.Samples Not State.Speed
+							                                         // FIXED : Set Animation.LoopTime = false, to prevent frame bleed over
+							                                         // FIXED : Do not set State.Mirror = true, else playback rate becomes choppy
+//			  Debug.Log ("Found IDLE : " + retDuration + " : " + this);
+		  }
+	    }
+	    this.anmEmit_duratn[i] = retDuration;
+	    }
 	}
 
     public AnimationCurve curvALRT;
