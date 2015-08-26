@@ -15,8 +15,9 @@ namespace MTON.codeObjects{
     private  Vector3 vPos_Idle   = Vector3.zero;
     private  Vector3 vPos_Alrt   = Vector3.zero;
 
-	public  Animator[] boss_ANIMS; //0==Idle
-    public  float[]   anmEmit_duratn ; // Duration of animation clip
+	public  Animator[] boss_ANIMS     ; //0==Idle
+	public  cMcanm[]   boss_MCANM     ;
+    public  float[]    anmEmit_duratn ; // Duration of animation clip
 
 	private void boss_kState(int kIndex){
 	  if(boss_ANIMS[kIndex]){
@@ -54,8 +55,9 @@ namespace MTON.codeObjects{
 		}
 		else if(Input.GetKeyDown(KeyCode.L)){ // laser
 		  this.animActive = false;
-//		  this.boss_kState(2);
-		  this.an.trigST = cAnimn.eStateB.PW;
+		  this.boss_kState(2);
+//		  this.an.trigST = cAnimn.eStateB.PW;
+		  this.boss_MCANM[2].OnTrig(3);
 		  this.tt("LerpOverwrite").ttReset().ttAdd(this.anmEmit_duratn[2], delegate(){
 		    this.animActive = true;
 		  });
@@ -79,9 +81,14 @@ namespace MTON.codeObjects{
 	  this.pCamera     = player.GetComponent<MTON.codeObjects.oPlayer>().camrXFORM;
 	  this.vCamInitPos = pCamera.localPosition;
 
-	  //get clip duration
+	  //store clip duration
 	  this.anmEmit_duratn = new float[this.boss_ANIMS.Length];
+	  //store cMcanm
+	  this.boss_MCANM = new cMcanm[this.boss_ANIMS.Length];
 	  for(int i=0; i<this.boss_ANIMS.Length; i++){
+        this.boss_MCANM[i] = __gUtility.AddComponent_mton<cMcanm>(this.boss_ANIMS[i].gameObject)  ;
+		this.boss_MCANM[i].anim = this.boss_ANIMS[i];
+		this.boss_MCANM[i].animator_Hash_ID();
 		RuntimeAnimatorController ac = this.boss_ANIMS[i].runtimeAnimatorController;
 	    float retDuration = 1.1109f;
 	    for(int j=0; j<ac.animationClips.Length; j++){   //For all animations

@@ -154,7 +154,7 @@ namespace MTON.codeObjects{
       private cEquip    eq    ;
       private cHealth   ht    ;
       private cTween    tw    ;
-      private cMcanm    mc    ; //mecanim handler
+      protected cMcanm    mc    ; //mecanim handler
 
       private cEmit_Audio     au ;
 
