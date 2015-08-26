@@ -41,27 +41,27 @@ namespace MTON.codeObjects{
 //		  this.deletemeIndex++;
 //	      this.deletemeIndex = this.deletemeIndex%this.boss_ANIMS.Length;
 //		  this.boss_kState(this.deletemeIndex);
-		  this.boss_kState(1);
+//		  this.boss_kState(1);
 		  this.an.trigST = cAnimn.eStateB.DN;
 	    }
 		else if(Input.GetKeyDown(KeyCode.S)){ // slam
-		  this.boss_kState(4);
+//		  this.boss_kState(4);
 		  this.an.trigST = cAnimn.eStateB.UP;
 		}
 		else if(Input.GetKeyDown(KeyCode.F)){ // barf
-		  this.boss_kState(3);
+//		  this.boss_kState(3);
 		  this.an.trigST = cAnimn.eStateB.HL;
 		}
 		else if(Input.GetKeyDown(KeyCode.L)){ // laser
 		  this.animActive = false;
-		  this.boss_kState(2);
+//		  this.boss_kState(2);
 		  this.an.trigST = cAnimn.eStateB.PW;
 		  this.tt("LerpOverwrite").ttReset().ttAdd(this.anmEmit_duratn[2], delegate(){
 		    this.animActive = true;
 		  });
 		}
 		else{ // set back to neutral state
-		  this.boss_kState(0);
+//		  this.boss_kState(0);
 		  this.an.trigST = cAnimn.eStateB.Idle;
 		}
 	  }
