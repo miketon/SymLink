@@ -87,10 +87,10 @@ namespace MTON.codeObjects{
 	    for(int j=0; j<ac.animationClips.Length; j++){   //For all animations
 //			Debug.Log ("ANIMATORCLIP LENGTH : " + ac.animationClips.Length + " j: " + j + " NAME: " + ac.animationClips[j].name+" i: ");
 		  if(ac.animationClips[j].name == this.boss_ANIMS[i].name){ // HACK  : PREFAB NAME MUST MATHC CLIP NAME
-		    retDuration = ac.animationClips[j].length        ;       // HACK  : Magic numbering; need to find a way to get speed at clip level
-							                                         // FIXED : Use Animation.Samples Not State.Speed
-							                                         // FIXED : Set Animation.LoopTime = false, to prevent frame bleed over
-							                                         // FIXED : Do not set State.Mirror = true, else playback rate becomes choppy
+		    retDuration = ac.animationClips[j].length        ;      // HACK  : Magic numbering; need to find a way to get speed at clip level
+							                                        // FIXED : Use Animation.Samples Not State.Speed
+							                                        // FIXED : Set Animation.LoopTime = false, to prevent frame bleed over
+							                                        // FIXED : Do not set State.Mirror = true, else playback rate becomes choppy
 //			  Debug.Log ("Found IDLE : " + retDuration + " : " + this);
 		  }
 	    }
@@ -144,25 +144,10 @@ namespace MTON.codeObjects{
 	  base.ai_IDLE(bIdle);
 	  if(bIdle){
 	    this.pCamera.localPosition = this.vCamInitPos;
-		kTimeCache = 0.0f;
-		this.tt("LerpOverwrite").ttReset()
-		.ttAdd(delegate(){ //start of loop
-			Debug.Log ("BOSS IDLE : " + this);
-		})
-		.ttLoop(curvTime, delegate(ttHandler loop){ // body of loop
-		  if(bCurve){
-		    kTimeCache += loop.deltaTime;
-			float kPercent = kTimeCache/curvTime;
-			float cLookUp  = curvALRT.Evaluate(kPercent);
-		    transform.position = Vector3.Lerp(transform.position, this.vPos_Idle, cLookUp);
-		  }
-		  else{
-		    transform.position = Vector3.Lerp(transform.position, this.vPos_Idle, loop.deltaTime);
-		  }
-		})
-		.ttAdd(delegate(){ // end of loop
-		  this.bossActive = false;
-		});
+	    transform.DOMove(this.vPos_Idle, this.curvTime).SetEase(this.curvALRT)
+		  .OnComplete(()=>{
+		    this.bossActive = false;
+	      });
 	  }
 	}
 
