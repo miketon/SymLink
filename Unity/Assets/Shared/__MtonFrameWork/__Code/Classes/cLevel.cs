@@ -58,21 +58,24 @@ namespace MTON.Class{
       return null ; //return null if no transform removed
     }
 
+    public int numPrefill = 15;
 	public s_PoolProperties sPL = new s_PoolProperties();
 	[Serializable] //MUST : add so that this custom data type can be displayed in the inspector
     public struct s_PoolProperties{
-
-	  public ParticleSystem[] fx_Hits;
-      public Animator[]       anmEmit;
 
 	  public Transform[]      e_Walks;
       public Transform[]      e_Flyrs;
       public Transform[]      e_Bllts;
       public Transform[]      e_Icons;
 
-	}
+      public Animator[]       anmEmit;
+	  public ParticleSystem[] fx_Hits;
 
-    public int numPrefill = 15;
+      public float[]          fx_Hit_OffSet  ; // To place effect at feet = particle size(radius)
+      public float[]          anmEmit_duratn ; // Duration of animation clip
+      public Vector3[]        anmEmit_IntScl ; // captures scale of animator objects
+
+	}
 
 #region enums
 
@@ -94,9 +97,6 @@ namespace MTON.Class{
       None,
     }
 
-    private float[]   fx_Hit_OffSet  ; // To place effect at feet = particle size(radius)
-    public  float[]   anmEmit_duratn ; // Duration of animation clip
-    private Vector3[] anmEmit_IntScl ; // captures scale of animator objects
 
     public enum fx_Hit{ // Must be particle system
       HitMark_00,       // moon
@@ -123,6 +123,7 @@ namespace MTON.Class{
       Projctl_00, //projectile
       LasrRay_00, 
       Grenade_00,
+	  HomingB_00,
       None,
     }
 
@@ -194,14 +195,14 @@ namespace MTON.Class{
         Emit(this.sPL.fx_Hits[2], IN_POS, IN_ROT, funcToRun);
       }
 //      else if(eHit == fx_Hit.DustJmp_00){
-//        Emit(this.sPL.fx_Hits[3], IN_POS + (Vector3.up * this.fx_Hit_OffSet[3] * 0.85f) , IN_ROT, funcToRun);
+//        Emit(this.sPL.fx_Hits[3], IN_POS + (Vector3.up * this.sPL.fx_Hit_OffSet[3] * 0.85f) , IN_ROT, funcToRun);
 //      }
       else if(eHit == fx_Hit.DustLnd_00){
-        Emit(this.sPL.fx_Hits[4], IN_POS + (Vector3.up * this.fx_Hit_OffSet[4] * 0.85f) , IN_ROT, funcToRun);
+        Emit(this.sPL.fx_Hits[4], IN_POS + (Vector3.up * this.sPL.fx_Hit_OffSet[4] * 0.85f) , IN_ROT, funcToRun);
       }
 	  else if(eHit == fx_Hit.DustStp_00){ // Dust step alternates : HACK : Index + 1
 		int iAltStep = this.iDustStep%2 ;  // alternate between dust steps
-        Emit(this.sPL.fx_Hits[5 + iAltStep], IN_POS + (Vector3.up * this.fx_Hit_OffSet[5 + iAltStep] * 0.25f) , IN_ROT, funcToRun);
+        Emit(this.sPL.fx_Hits[5 + iAltStep], IN_POS + (Vector3.up * this.sPL.fx_Hit_OffSet[5 + iAltStep] * 0.25f) , IN_ROT, funcToRun);
 		this.iDustStep = this.iDustStep + 1;
       }
 
@@ -211,16 +212,16 @@ namespace MTON.Class{
 	  if(eAnm == e_Anim.DustStp_00){
 		int iAltStep = this.iDustStep%2 ;  // alternate between dust steps
 	    this.iDustStep++;
-		Emit(this.sPL.anmEmit[2 + iAltStep], IN_POS, IN_ROT, this.anmEmit_duratn[2 + iAltStep], funcToRun, this.anmEmit_IntScl[2 + iAltStep], true);
+		Emit(this.sPL.anmEmit[2 + iAltStep], IN_POS, IN_ROT, this.sPL.anmEmit_duratn[2 + iAltStep], funcToRun, this.sPL.anmEmit_IntScl[2 + iAltStep], true);
 	  }
 	  else if(eAnm == e_Anim.DustJmp_00){
-	    Emit(this.sPL.anmEmit[0], IN_POS, IN_ROT, this.anmEmit_duratn[0], funcToRun, this.anmEmit_IntScl[0], true);
+	    Emit(this.sPL.anmEmit[0], IN_POS, IN_ROT, this.sPL.anmEmit_duratn[0], funcToRun, this.sPL.anmEmit_IntScl[0], true);
 	  }
 	  else if(eAnm == e_Anim.DustLnd_00){
-	    Emit(this.sPL.anmEmit[1], IN_POS, IN_ROT, this.anmEmit_duratn[1], funcToRun, this.anmEmit_IntScl[1], true);
+	    Emit(this.sPL.anmEmit[1], IN_POS, IN_ROT, this.sPL.anmEmit_duratn[1], funcToRun, this.sPL.anmEmit_IntScl[1], true);
 	  }
 	  else if(eAnm == e_Anim.DustSld_00){
-	    Emit(this.sPL.anmEmit[4], IN_POS, IN_ROT, this.anmEmit_duratn[4], funcToRun, this.anmEmit_IntScl[4], true);
+	    Emit(this.sPL.anmEmit[4], IN_POS, IN_ROT, this.sPL.anmEmit_duratn[4], funcToRun, this.sPL.anmEmit_IntScl[4], true);
 	  }
 	}
 
@@ -264,6 +265,9 @@ namespace MTON.Class{
       if(eBullet == e_Bllt.Projctl_00){
         Emit_Bullet(this.sPL.e_Bllts[0], IN_POS, IN_ROT, funcToRun);
       }
+	  else if(eBullet == e_Bllt.HomingB_00){ // Homing Bullet
+        Emit_Bullet(this.sPL.e_Bllts[1], IN_POS, IN_ROT, funcToRun);
+	  }
     }
 
     public void Emit_Bullet<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
@@ -306,19 +310,19 @@ namespace MTON.Class{
         }
 
         // Init Particle Fx Pool
-        this.fx_Hit_OffSet = new float[this.sPL.fx_Hits.Length];
+        this.sPL.fx_Hit_OffSet = new float[this.sPL.fx_Hits.Length];
 
         for(int i=0; i<this.sPL.fx_Hits.Length; i++){
           this.sPL.fx_Hits[i].gameObject.SetActive(false)         ;
           this.sPL.fx_Hits[i].transform.lpRefill(this.numPrefill) ;
-          this.fx_Hit_OffSet[i] = this.sPL.fx_Hits[i].startSize * 0.5f; // Convert to radius
+          this.sPL.fx_Hit_OffSet[i] = this.sPL.fx_Hits[i].startSize * 0.5f; // Convert to radius
         }
 
 		// Init Animator Pool
-		this.anmEmit_duratn = new float[this.sPL.anmEmit.Length];
-		this.anmEmit_IntScl = new Vector3[this.sPL.anmEmit.Length];
+		this.sPL.anmEmit_duratn = new float[this.sPL.anmEmit.Length];
+		this.sPL.anmEmit_IntScl = new Vector3[this.sPL.anmEmit.Length];
 		for(int i=0; i<this.sPL.anmEmit.Length; i++){
-		  this.anmEmit_IntScl[i] = this.sPL.anmEmit[i].transform.localScale; //get scale
+		  this.sPL.anmEmit_IntScl[i] = this.sPL.anmEmit[i].transform.localScale; //get scale
 		  this.sPL.anmEmit[i].gameObject.SetActive(false);
 		  this.sPL.anmEmit[i].transform.lpRefill(this.numPrefill);
 		  
@@ -335,7 +339,7 @@ namespace MTON.Class{
 //			  Debug.Log ("Found IDLE : " + retDuration + " : " + this);
 			}
 		  }
-		  this.anmEmit_duratn[i] = retDuration;
+		  this.sPL.anmEmit_duratn[i] = retDuration;
 //		  Debug.Log ("CURRENT STATE: " + this.sPL.anmEmit[i].GetCurrentAnimatorClipInfo(0).ToString() +" Length : " + this.anmEmit[i].GetCurrentAnimatorStateInfo(0).length);
 		}
 

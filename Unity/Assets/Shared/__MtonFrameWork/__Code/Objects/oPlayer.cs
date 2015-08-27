@@ -226,6 +226,96 @@ namespace MTON.codeObjects{
 
 #endregion
 
+#region ATTACKLOGIC
+
+	  public virtual void doAttk(bool bAttk){
+        if(bAttk){
+          if(this.sEM.firePnts.Length > 0){
+            an.attkST          = cAnimn.eStateB.DN    ;
+            Transform firePnt  = this.sEM.firePnts[0] ; //facing right
+			Quaternion fireRot = firePnt.rotation     ;
+			if(this.bFaceRt == false){                                      //Brute force guessing; Understanding of matrix not high enough
+			  Vector3 vRot = firePnt.rotation.eulerAngles                 ;
+			  vRot         = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z) ; //MAGIC NUMBER : Why y = 180.0f ??? Likely related to parent -x scale
+			  fireRot      = Quaternion.Euler(vRot)                       ;
+			}
+            firePnt.gameObject.SetActive(true)    ;
+            if(this.sEM.eBlt != cLevel.e_Bllt.None){
+				  __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eBlt, firePnt.position, fireRot, ()=>{
+                  return true ;
+			  })              ;
+            }
+            if(this.sEM.eGun != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+              __gCONSTANT._LEVEL.Emit_pFX(this.sEM.eGun, firePnt.position, Quaternion.identity, ()=>{
+                  firePnt.gameObject.SetActive(false) ;
+                  return true                         ;
+                  })                                  ;
+            }
+          }
+        }
+        else{
+		  if(this.bpowr){ 
+		    an.attkST = cAnimn.eStateB.PW  ; //Power up attack
+		  }
+		  else{
+            an.attkST = cAnimn.eStateB.Idle;
+		  }
+        }
+      }
+
+      private float stepDrtn = 0.0f;
+      private bool mt_TimeStep(float stepIncm){
+        if(Time.time > stepDrtn){
+          stepDrtn  = Time.time + stepIncm ;
+          return true                      ;    
+        }
+        else{
+          return false                     ;
+        }
+      }
+
+      private bool bpowr         = false              ;
+      private bool bDpdX         = true               ;
+      private bool bDpdY         = false              ;
+
+      private Vector3 vDstOffSet = Vector3.up * 1.85f ;
+      public virtual void doPowr(bool bPowr){
+        this.bpowr = bPowr;
+        if(bPowr == true){
+          StartCoroutine(WhileRapidFire());
+          this.bDpdX = false; //dPad x ignore
+          this.bDpdY = true ; //dPad y listen
+          if(this.bGround == true){
+            fx_Dust(this.sEM.eDld, true);
+          }
+        }
+        else{
+          this.bDpdX = true  ; //dPad x listen
+          this.bDpdY = false ; //dPad x ignore
+		  
+        }
+      }
+
+      public IEnumerator WhileRapidFire(){
+        while(this.bpowr == true){
+          an.hState = cAnimn.eStateH.Plnt;
+          this.doMove(Vector3.zero);
+          if(this.mt_TimeStep(this.sEM.fireRate)){
+            //	      Debug.Log ("Rapid Fire : " + Time.time); //HACK : time print doesn't match fireRate why???
+            this.doAttk(true);
+          }
+		  else{
+		    this.doAttk(false);
+		  }
+          yield return null;
+        }
+//		Debug.Log ("NO MORE RAPID FIRE"); //Only called once after while loop is complete
+        an.doAimg(0.0f)                 ; //reset gun to face forward
+		an.attkST = cAnimn.eStateB.Idle ; //release attack from powerup
+      }
+
+#endregion
+
 #region oPlayer moveset Function
       ///---------------------------------------TRANSFORMING CHARACTER--------------------------------------------------------------/// 
 
@@ -299,114 +389,6 @@ namespace MTON.codeObjects{
         }
       }
 
-      public virtual void doAttk(bool bAttk){
-        if(bAttk){
-          if(this.sEM.firePnts.Length > 0){
-            an.attkST          = cAnimn.eStateB.DN    ;
-            Transform firePnt  = this.sEM.firePnts[0] ; //facing right
-			Quaternion fireRot = firePnt.rotation     ;
-			if(this.bFaceRt == false){                                      //Brute force guessing; Understanding of matrix not high enough
-			  Vector3 vRot = firePnt.rotation.eulerAngles                 ;
-			  vRot         = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z) ; //MAGIC NUMBER : Why y = 180.0f ??? Likely related to parent -x scale
-			  fireRot      = Quaternion.Euler(vRot)                       ;
-			}
-            firePnt.gameObject.SetActive(true)    ;
-            if(this.sEM.eBlt != cLevel.e_Bllt.None){
-				  __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eBlt, firePnt.position, fireRot, ()=>{
-                  return true ;
-			  })              ;
-            }
-            if(this.sEM.eGun != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-              __gCONSTANT._LEVEL.Emit_pFX(this.sEM.eGun, firePnt.position, Quaternion.identity, ()=>{
-                  firePnt.gameObject.SetActive(false) ;
-                  return true                         ;
-                  })                                  ;
-            }
-          }
-        }
-        else{
-		  if(this.bpowr){ 
-		    an.attkST = cAnimn.eStateB.PW  ; //Power up attack
-		  }
-		  else{
-            an.attkST = cAnimn.eStateB.Idle;
-		  }
-        }
-      }
-
-      private float stepDrtn = 0.0f;
-      private bool mt_TimeStep(float stepIncm){
-        if(Time.time > stepDrtn){
-          stepDrtn  = Time.time + stepIncm ;
-          return true                      ;    
-        }
-        else{
-          return false                     ;
-        }
-      }
-
-
-      private bool bpowr         = false              ;
-      private bool bDpdX         = true               ;
-      private bool bDpdY         = false              ;
-
-      private Vector3 vDstOffSet = Vector3.up * 1.85f ;
-      public virtual void doPowr(bool bPowr){
-        this.bpowr = bPowr;
-        if(bPowr == true){
-          StartCoroutine(WhileRapidFire());
-          this.bDpdX = false; //dPad x ignore
-          this.bDpdY = true ; //dPad y listen
-          if(this.bGround == true){
-            fx_Dust(this.sEM.eDld, true);
-          }
-        }
-        else{
-          this.bDpdX = true  ; //dPad x listen
-          this.bDpdY = false ; //dPad x ignore
-		  
-        }
-      }
-
-      private void fx_Dust(cLevel.fx_Hit IN_FX, bool bFLIP_2D = false){
-        if(IN_FX != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-          __gCONSTANT._LEVEL.Emit_pFX(IN_FX, this.transform.position, Quaternion.identity, ()=>{
-              return true ;
-              }, bFLIP_2D) ;
-        }
-      }
-
-	  private void fx_Dust(cLevel.e_Anim IN_FX, bool bFLIP_2D = false){
-		Quaternion qRot = Quaternion.identity;
-		if(bFLIP_2D == true){
-		  if(this.bFaceRt == false){
-		    qRot = Quaternion.Euler(Vector3.up); // HACK : Passing anything other than identity signals negative scale
-		  }
-		}
-        if(IN_FX != cLevel.e_Anim.None){ // set to -1 to prevent emission
-		  __gCONSTANT._LEVEL.Emit_ANM(IN_FX, this.transform.position, qRot, ()=>{
-              return true ;
-              }, bFLIP_2D) ;
-        }
-      }
-
-      public IEnumerator WhileRapidFire(){
-        while(this.bpowr == true){
-          an.hState = cAnimn.eStateH.Plnt;
-          this.doMove(Vector3.zero);
-          if(this.mt_TimeStep(this.sEM.fireRate)){
-            //	      Debug.Log ("Rapid Fire : " + Time.time); //HACK : time print doesn't match fireRate why???
-            this.doAttk(true);
-          }
-		  else{
-		    this.doAttk(false);
-		  }
-          yield return null;
-        }
-//		Debug.Log ("NO MORE RAPID FIRE"); //Only called once after while loop is complete
-        an.doAimg(0.0f)                 ; //reset gun to face forward
-		an.attkST = cAnimn.eStateB.Idle ; //release attack from powerup
-      }
 
       public virtual void doCrouch(bool bDuck){
         if(this.b_2D == false){
@@ -533,6 +515,28 @@ namespace MTON.codeObjects{
         }
 
 #endregion
+
+      private void fx_Dust(cLevel.fx_Hit IN_FX, bool bFLIP_2D = false){
+        if(IN_FX != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+          __gCONSTANT._LEVEL.Emit_pFX(IN_FX, this.transform.position, Quaternion.identity, ()=>{
+              return true ;
+              }, bFLIP_2D) ;
+        }
+      }
+
+	  private void fx_Dust(cLevel.e_Anim IN_FX, bool bFLIP_2D = false){
+		Quaternion qRot = Quaternion.identity;
+		if(bFLIP_2D == true){
+		  if(this.bFaceRt == false){
+		    qRot = Quaternion.Euler(Vector3.up); // HACK : Passing anything other than identity signals negative scale
+		  }
+		}
+        if(IN_FX != cLevel.e_Anim.None){ // set to -1 to prevent emission
+		  __gCONSTANT._LEVEL.Emit_ANM(IN_FX, this.transform.position, qRot, ()=>{
+              return true ;
+              }, bFLIP_2D) ;
+        }
+      }
 
         public void doActV(bool bActvV){
           if(bActvV == true){

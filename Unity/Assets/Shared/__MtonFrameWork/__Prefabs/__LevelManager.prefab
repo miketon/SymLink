@@ -142,30 +142,33 @@ MonoBehaviour:
   camTgts:
   - {fileID: 0}
   boidsGp: []
-  e_Walks:
-  - {fileID: 0}
-  e_Flyrs:
-  - {fileID: 400000, guid: 86b819294dfa74a2cb30257d8bc3287c, type: 2}
-  e_Bllts:
-  - {fileID: 465522, guid: 35decb55a98124aebb72f9da6cb40408, type: 2}
-  e_Icons:
-  - {fileID: 485768, guid: 35bfa8716fbbf4a3fae03b03dd6cc09f, type: 2}
   numPrefill: 15
-  fx_Hits:
-  - {fileID: 19800000, guid: 3faa5dbb1848244288e116135640d045, type: 2}
-  - {fileID: 19800000, guid: 5a21b3cd4067c4c74925a3fb66fb8a9b, type: 2}
-  - {fileID: 19893834, guid: 508538795d6df441eb43ca56be0ff47e, type: 2}
-  - {fileID: 19887246, guid: dbc784444a72a4a9e8671f6480e43769, type: 2}
-  - {fileID: 19887246, guid: cd59ade169dec479d8e9da36471b32a6, type: 2}
-  - {fileID: 19839706, guid: c20ab19da1d5f449293553f393b98aaf, type: 2}
-  - {fileID: 19882004, guid: c847c81ffc9e74c69b61b3c535cbb0ef, type: 2}
-  anmEmit:
-  - {fileID: 9561310, guid: f1b464402fd7d4964a10e0139437ff07, type: 2}
-  - {fileID: 9556556, guid: 939c16611638d4d56ac82214f18d0832, type: 2}
-  - {fileID: 9561310, guid: a272adfdf98a34c40a66c2e6194c8f98, type: 2}
-  - {fileID: 9598754, guid: aed7a32a4047b44b28b3d384816df76a, type: 2}
-  - {fileID: 9545828, guid: 1f2b3219d0a454f6a81371c7d358fe17, type: 2}
-  anmEmit_duratn: []
+  sPL:
+    e_Walks: []
+    e_Flyrs:
+    - {fileID: 400000, guid: 86b819294dfa74a2cb30257d8bc3287c, type: 2}
+    e_Bllts:
+    - {fileID: 465522, guid: 35decb55a98124aebb72f9da6cb40408, type: 2}
+    - {fileID: 461494, guid: 38626638a705e4350baeac7723250754, type: 2}
+    e_Icons:
+    - {fileID: 485768, guid: 35bfa8716fbbf4a3fae03b03dd6cc09f, type: 2}
+    anmEmit:
+    - {fileID: 9561310, guid: f1b464402fd7d4964a10e0139437ff07, type: 2}
+    - {fileID: 9556556, guid: 939c16611638d4d56ac82214f18d0832, type: 2}
+    - {fileID: 9561310, guid: a272adfdf98a34c40a66c2e6194c8f98, type: 2}
+    - {fileID: 9598754, guid: aed7a32a4047b44b28b3d384816df76a, type: 2}
+    - {fileID: 9545828, guid: 1f2b3219d0a454f6a81371c7d358fe17, type: 2}
+    fx_Hits:
+    - {fileID: 19800000, guid: 3faa5dbb1848244288e116135640d045, type: 2}
+    - {fileID: 19800000, guid: 5a21b3cd4067c4c74925a3fb66fb8a9b, type: 2}
+    - {fileID: 19893834, guid: 508538795d6df441eb43ca56be0ff47e, type: 2}
+    - {fileID: 19887246, guid: dbc784444a72a4a9e8671f6480e43769, type: 2}
+    - {fileID: 19887246, guid: cd59ade169dec479d8e9da36471b32a6, type: 2}
+    - {fileID: 19839706, guid: c20ab19da1d5f449293553f393b98aaf, type: 2}
+    - {fileID: 19882004, guid: c847c81ffc9e74c69b61b3c535cbb0ef, type: 2}
+    fx_Hit_OffSet: []
+    anmEmit_duratn: []
+    anmEmit_IntScl: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
