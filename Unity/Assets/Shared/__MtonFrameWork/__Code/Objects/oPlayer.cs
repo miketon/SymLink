@@ -150,14 +150,13 @@ namespace MTON.codeObjects{
       protected cInput              io       ; //protected; can be replaced with ai; vs. input controller
       protected cRbody              rb       ; //protected; to access collider volume info
 
-      protected cAnimn  an    ;
-      private cEquip    eq    ;
-      private cHealth   ht    ;
-      private cTween    tw    ;
-      protected cMcanm    mc    ; //mecanim handler
+      protected cAnimn  an ;
+      private   cEquip  eq ;
+      private   cHealth ht ;
+      private   cTween  tw ;
+      protected cMcanm  mc ; //mecanim handler
 
-      private cEmit_Audio     au ;
-
+      private cEmit_Audio au ;
 
       public virtual void Awake(){
 
@@ -191,6 +190,7 @@ namespace MTON.codeObjects{
           //		Debug.Log ("OnEnable DeathPrefab : " + (int)cLevel.e_Icon.Death + OnDeathPrefab);
           OnDeathPrefab = __gCONSTANT._LEVEL.sPL.e_Icons[(int)cLevel.e_Icon.Death].gameObject;
         }
+		this.fpLength = this.sEM.firePnts.Length; // caching number of firingPoints 
       }
 
 
@@ -228,11 +228,22 @@ namespace MTON.codeObjects{
 
 #region ATTACKLOGIC
 
+	  public  int  fpIndex  = 0     ; // firing point index
+	  public  bool fpMod    = false ; // modulate between firing points?
+	  private int  fpLength = 0     ;
+
+	  public virtual void doFPMod(){
+	    if(this.fpMod){
+		  this.fpIndex++;
+		  this.fpIndex = this.fpIndex%this.fpLength;
+		}
+	  }
+
 	  public virtual void doAttk(bool bAttk){
         if(bAttk){
-          if(this.sEM.firePnts.Length > 0){
+          if(this.fpLength > 0){
             an.attkST          = cAnimn.eStateB.DN    ;
-            Transform firePnt  = this.sEM.firePnts[0] ; //facing right
+			Transform firePnt  = this.sEM.firePnts[this.fpIndex] ; //facing right
 			Quaternion fireRot = firePnt.rotation     ;
 			if(this.bFaceRt == false){                                      //Brute force guessing; Understanding of matrix not high enough
 			  Vector3 vRot = firePnt.rotation.eulerAngles                 ;
@@ -252,6 +263,7 @@ namespace MTON.codeObjects{
                   })                                  ;
             }
           }
+		  this.doFPMod();
         }
         else{
 		  if(this.bpowr){ 
@@ -292,7 +304,6 @@ namespace MTON.codeObjects{
         else{
           this.bDpdX = true  ; //dPad x listen
           this.bDpdY = false ; //dPad x ignore
-		  
         }
       }
 
