@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections ;
+using MTON.Class         ;
 using MTON.Global        ;
 
-public class cEmit_HeatSeek : MonoBehaviour {
+public class cEmit_HeatSeek : cEmit_Bullet {
 
 	public Transform target;
 	public float rotationSpeed = 1.0f;

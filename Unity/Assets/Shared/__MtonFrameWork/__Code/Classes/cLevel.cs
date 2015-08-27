@@ -58,14 +58,21 @@ namespace MTON.Class{
       return null ; //return null if no transform removed
     }
 
-    public Transform[]      e_Walks;
-    public Transform[]      e_Flyrs;
-    public Transform[]      e_Bllts;
-    public Transform[]      e_Icons;
+	public s_PoolProperties sPL = new s_PoolProperties();
+	[Serializable] //MUST : add so that this custom data type can be displayed in the inspector
+    public struct s_PoolProperties{
+
+	  public ParticleSystem[] fx_Hits;
+      public Animator[]       anmEmit;
+
+	  public Transform[]      e_Walks;
+      public Transform[]      e_Flyrs;
+      public Transform[]      e_Bllts;
+      public Transform[]      e_Icons;
+
+	}
 
     public int numPrefill = 15;
-    public ParticleSystem[] fx_Hits;
-    public Animator[] anmEmit;
 
 #region enums
 
@@ -129,7 +136,6 @@ namespace MTON.Class{
       return Targ;
     }
 
-
     //Spawning Standard Object
     public Transform Spawn<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
       IN_XFORM.gameObject.SetActive(true)     ;
@@ -140,7 +146,7 @@ namespace MTON.Class{
     // Spawning Icon
     public Transform SpawnObj<T>(e_Icon eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<Transform, T> funcToRun){
       if(eObj == e_Icon.Death){
-        Transform spawnedObj = this.e_Icons[0].lpSpawn(IN_POS, IN_ROT) ;
+        Transform spawnedObj = this.sPL.e_Icons[0].lpSpawn(IN_POS, IN_ROT) ;
         spawnedObj.gameObject.SetActive(true)                          ;
         funcToRun(spawnedObj)                                          ;
         return spawnedObj                                              ;
@@ -154,7 +160,7 @@ namespace MTON.Class{
     public Transform SpawnObj<T>(e_Enmy eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
       if(eObj == e_Enmy.Melee_00){
         funcToRun();
-        return this.e_Walks[0].lpSpawn(IN_POS, IN_ROT);
+        return this.sPL.e_Walks[0].lpSpawn(IN_POS, IN_ROT);
       }
       else{
         return null;
@@ -165,7 +171,7 @@ namespace MTON.Class{
     public Transform SpawnObj<T>(e_Flyr eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
       if(eObj == e_Flyr.Melee_00){
         funcToRun();
-        return this.e_Flyrs[0].lpSpawn(IN_POS, IN_ROT);
+        return this.sPL.e_Flyrs[0].lpSpawn(IN_POS, IN_ROT);
       }
       else{
         return null;
@@ -179,23 +185,23 @@ namespace MTON.Class{
 	public void Emit_pFX<T>(fx_Hit eHit, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun, bool bFLIP_2D = false){
 
       if(eHit == fx_Hit.HitMark_00){ 
-		Emit(this.fx_Hits[0], IN_POS, IN_ROT, funcToRun);
+		Emit(this.sPL.fx_Hits[0], IN_POS, IN_ROT, funcToRun);
 			}
       else if(eHit == fx_Hit.GunFlar_00){
-        Emit(this.fx_Hits[1], IN_POS, IN_ROT, funcToRun);
+        Emit(this.sPL.fx_Hits[1], IN_POS, IN_ROT, funcToRun);
       }
       else if(eHit == fx_Hit.BteMark_00){
-        Emit(this.fx_Hits[2], IN_POS, IN_ROT, funcToRun);
+        Emit(this.sPL.fx_Hits[2], IN_POS, IN_ROT, funcToRun);
       }
 //      else if(eHit == fx_Hit.DustJmp_00){
-//        Emit(this.fx_Hits[3], IN_POS + (Vector3.up * this.fx_Hit_OffSet[3] * 0.85f) , IN_ROT, funcToRun);
+//        Emit(this.sPL.fx_Hits[3], IN_POS + (Vector3.up * this.fx_Hit_OffSet[3] * 0.85f) , IN_ROT, funcToRun);
 //      }
       else if(eHit == fx_Hit.DustLnd_00){
-        Emit(this.fx_Hits[4], IN_POS + (Vector3.up * this.fx_Hit_OffSet[4] * 0.85f) , IN_ROT, funcToRun);
+        Emit(this.sPL.fx_Hits[4], IN_POS + (Vector3.up * this.fx_Hit_OffSet[4] * 0.85f) , IN_ROT, funcToRun);
       }
 	  else if(eHit == fx_Hit.DustStp_00){ // Dust step alternates : HACK : Index + 1
 		int iAltStep = this.iDustStep%2 ;  // alternate between dust steps
-        Emit(this.fx_Hits[5 + iAltStep], IN_POS + (Vector3.up * this.fx_Hit_OffSet[5 + iAltStep] * 0.25f) , IN_ROT, funcToRun);
+        Emit(this.sPL.fx_Hits[5 + iAltStep], IN_POS + (Vector3.up * this.fx_Hit_OffSet[5 + iAltStep] * 0.25f) , IN_ROT, funcToRun);
 		this.iDustStep = this.iDustStep + 1;
       }
 
@@ -205,16 +211,16 @@ namespace MTON.Class{
 	  if(eAnm == e_Anim.DustStp_00){
 		int iAltStep = this.iDustStep%2 ;  // alternate between dust steps
 	    this.iDustStep++;
-		Emit(this.anmEmit[2 + iAltStep], IN_POS, IN_ROT, this.anmEmit_duratn[2 + iAltStep], funcToRun, this.anmEmit_IntScl[2 + iAltStep], true);
+		Emit(this.sPL.anmEmit[2 + iAltStep], IN_POS, IN_ROT, this.anmEmit_duratn[2 + iAltStep], funcToRun, this.anmEmit_IntScl[2 + iAltStep], true);
 	  }
 	  else if(eAnm == e_Anim.DustJmp_00){
-	    Emit(this.anmEmit[0], IN_POS, IN_ROT, this.anmEmit_duratn[0], funcToRun, this.anmEmit_IntScl[0], true);
+	    Emit(this.sPL.anmEmit[0], IN_POS, IN_ROT, this.anmEmit_duratn[0], funcToRun, this.anmEmit_IntScl[0], true);
 	  }
 	  else if(eAnm == e_Anim.DustLnd_00){
-	    Emit(this.anmEmit[1], IN_POS, IN_ROT, this.anmEmit_duratn[1], funcToRun, this.anmEmit_IntScl[1], true);
+	    Emit(this.sPL.anmEmit[1], IN_POS, IN_ROT, this.anmEmit_duratn[1], funcToRun, this.anmEmit_IntScl[1], true);
 	  }
 	  else if(eAnm == e_Anim.DustSld_00){
-	    Emit(this.anmEmit[4], IN_POS, IN_ROT, this.anmEmit_duratn[4], funcToRun, this.anmEmit_IntScl[4], true);
+	    Emit(this.sPL.anmEmit[4], IN_POS, IN_ROT, this.anmEmit_duratn[4], funcToRun, this.anmEmit_IntScl[4], true);
 	  }
 	}
 
@@ -256,7 +262,7 @@ namespace MTON.Class{
 
 	public void Emit_Bullet<T>(e_Bllt eBullet, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
       if(eBullet == e_Bllt.Projctl_00){
-        Emit_Bullet(this.e_Bllts[0], IN_POS, IN_ROT, funcToRun);
+        Emit_Bullet(this.sPL.e_Bllts[0], IN_POS, IN_ROT, funcToRun);
       }
     }
 
@@ -294,34 +300,34 @@ namespace MTON.Class{
         }
 
         // Init Bullet Pool
-        for(int i=0; i<this.e_Bllts.Length; i++){
-          this.e_Bllts[i].gameObject.SetActive(false) ; //WTF: HACK: MUST be set to inactive, else collider causes bullets to vector incorrect direction
-          this.e_Bllts[i].lpRefill(this.numPrefill)   ;
+        for(int i=0; i<this.sPL.e_Bllts.Length; i++){
+          this.sPL.e_Bllts[i].gameObject.SetActive(false) ; //WTF: HACK: MUST be set to inactive, else collider causes bullets to vector incorrect direction
+          this.sPL.e_Bllts[i].lpRefill(this.numPrefill)   ;
         }
 
         // Init Particle Fx Pool
-        this.fx_Hit_OffSet = new float[this.fx_Hits.Length];
+        this.fx_Hit_OffSet = new float[this.sPL.fx_Hits.Length];
 
-        for(int i=0; i<this.fx_Hits.Length; i++){
-          this.fx_Hits[i].gameObject.SetActive(false)         ;
-          this.fx_Hits[i].transform.lpRefill(this.numPrefill) ;
-          this.fx_Hit_OffSet[i] = this.fx_Hits[i].startSize * 0.5f; // Convert to radius
+        for(int i=0; i<this.sPL.fx_Hits.Length; i++){
+          this.sPL.fx_Hits[i].gameObject.SetActive(false)         ;
+          this.sPL.fx_Hits[i].transform.lpRefill(this.numPrefill) ;
+          this.fx_Hit_OffSet[i] = this.sPL.fx_Hits[i].startSize * 0.5f; // Convert to radius
         }
 
 		// Init Animator Pool
-		this.anmEmit_duratn = new float[this.anmEmit.Length];
-		this.anmEmit_IntScl = new Vector3[this.anmEmit.Length];
-		for(int i=0; i<this.anmEmit.Length; i++){
-		  this.anmEmit_IntScl[i] = this.anmEmit[i].transform.localScale; //get scale
-		  this.anmEmit[i].gameObject.SetActive(false);
-		  this.anmEmit[i].transform.lpRefill(this.numPrefill);
+		this.anmEmit_duratn = new float[this.sPL.anmEmit.Length];
+		this.anmEmit_IntScl = new Vector3[this.sPL.anmEmit.Length];
+		for(int i=0; i<this.sPL.anmEmit.Length; i++){
+		  this.anmEmit_IntScl[i] = this.sPL.anmEmit[i].transform.localScale; //get scale
+		  this.sPL.anmEmit[i].gameObject.SetActive(false);
+		  this.sPL.anmEmit[i].transform.lpRefill(this.numPrefill);
 		  
 		  //get clip duration
-		  RuntimeAnimatorController ac = this.anmEmit[i].runtimeAnimatorController;
+		  RuntimeAnimatorController ac = this.sPL.anmEmit[i].runtimeAnimatorController;
 		  float retDuration = 1.1109f;
 		  for(int j=0; j<ac.animationClips.Length; j++){   //For all animations
 //			Debug.Log ("ANIMATORCLIP LENGTH : " + ac.animationClips.Length + " j: " + j + " NAME: " + ac.animationClips[j].name+" i: ");
-			if(ac.animationClips[j].name == this.anmEmit[i].name){ // HACK  : PREFAB NAME MUST MATHC CLIP NAME
+			if(ac.animationClips[j].name == this.sPL.anmEmit[i].name){ // HACK  : PREFAB NAME MUST MATHC CLIP NAME
 			  retDuration = ac.animationClips[j].length        ;   // HACK  : Magic numbering; need to find a way to get speed at clip level
 							                                       // FIXED : Use Animation.Samples Not State.Speed
 							                                       // FIXED : Set Animation.LoopTime = false, to prevent frame bleed over
@@ -330,7 +336,7 @@ namespace MTON.Class{
 			}
 		  }
 		  this.anmEmit_duratn[i] = retDuration;
-//		  Debug.Log ("CURRENT STATE: " + this.anmEmit[i].GetCurrentAnimatorClipInfo(0).ToString() +" Length : " + this.anmEmit[i].GetCurrentAnimatorStateInfo(0).length);
+//		  Debug.Log ("CURRENT STATE: " + this.sPL.anmEmit[i].GetCurrentAnimatorClipInfo(0).ToString() +" Length : " + this.anmEmit[i].GetCurrentAnimatorStateInfo(0).length);
 		}
 
       }

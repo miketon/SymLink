@@ -28,7 +28,8 @@ GameObject:
   - 33: {fileID: 3316278}
   - 65: {fileID: 6523780}
   - 23: {fileID: 2303374}
-  - 114: {fileID: 11445862}
+  - 54: {fileID: 5492446}
+  - 114: {fileID: 11444436}
   m_Layer: 12
   m_Name: Bullet_HeatSeek
   m_TagString: Untagged
@@ -55,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 152158}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.27999997, z: 0}
+  m_LocalPosition: {x: -6.28000021, y: 6.46000004, z: 0}
   m_LocalScale: {x: .75, y: .75, z: .75}
   m_Children:
   - {fileID: 404974}
@@ -123,6 +124,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 134714}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &5492446
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 152158}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &6523780
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -135,7 +151,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11445862
+--- !u!114 &11444436
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -146,12 +162,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c331d16eef574222a3e95540e339703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damag: 1
+  force: 1750
+  eHit: 0
   target: {fileID: 0}
-  rotationSpeed: 100
-  moveSpeed: 1
+  rotationSpeed: 1
+  moveSpeed: 4
   distLockd: 1
   dist: 1
   rotMult: 1
+  posMult: 1
   v3Dir: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
