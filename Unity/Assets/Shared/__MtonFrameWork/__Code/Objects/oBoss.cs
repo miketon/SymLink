@@ -58,8 +58,10 @@ namespace MTON.codeObjects{
 		  this.boss_kState(2);
 //		  this.an.trigST = cAnimn.eStateB.PW;
 		  this.boss_MCANM[2].OnTrig(3);
+		  this.doPowr(true); //rapidFire homing flock
 		  this.tt("LerpOverwrite").ttReset().ttAdd(this.anmEmit_duratn[2], delegate(){
 		    this.animActive = true;
+		    this.doPowr(false); //rapidFire homing flock
 		  });
 		}
 		else{ // set back to neutral state

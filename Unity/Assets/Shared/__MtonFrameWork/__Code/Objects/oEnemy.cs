@@ -25,6 +25,7 @@ namespace MTON.codeObjects{
 				  io.OnJumpDelegate      += doJump;
 				  io.OnAttkDelegate      += doAttk; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
 				  io.OnActVDelegate      += doActV; //Attack Visual = hitFlash
+				  io.OnPowrDelegate      += doPowr;
 				}
 				else{
 				  //direct input
@@ -32,6 +33,7 @@ namespace MTON.codeObjects{
 				  io.OnJumpDelegate      -= doJump;
 				  io.OnAttkDelegate      -= doAttk; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
 				  io.OnActVDelegate      -= doActV; //Attack Visual = hitFlash
+				  io.OnPowrDelegate      -= doPowr;
 				}
 			}
 	}
