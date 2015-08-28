@@ -83,10 +83,10 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
     public string _bPoseWN  ;
     public string _bPoseLS  ;
 
+    public string _tSpec_0 ;
     public string _tSpec_1 ;
     public string _tSpec_2 ;
     public string _tSpec_3 ;
-    public string _tSpec_4 ;
 
     public string _fAudio0  ; // name of custom curve to get from animator
 
@@ -103,10 +103,10 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	public int _bSpawnd_ID { get; set; } 
     public int _bDeathd_ID { get; set; } 
 
-    public int _tSpec_1_ID { get; set; }  //Trigger Special 1-4 (for Boss and Special Attack)
+    public int _tSpec_0_ID { get; set; }  //Trigger Special 1-4 (for Boss and Special Attack)
+    public int _tSpec_1_ID { get; set; } 
     public int _tSpec_2_ID { get; set; } 
     public int _tSpec_3_ID { get; set; } 
-    public int _tSpec_4_ID { get; set; } 
 
 	// Pose
     public int _bPoseID_ID { get; set; } //Idle
@@ -135,10 +135,10 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 		_bDeathd_ID = Animator.StringToHash(this._bDeathd);
 
 		// Trigger Special
+		_tSpec_0_ID = Animator.StringToHash(this._tSpec_0);
 		_tSpec_1_ID = Animator.StringToHash(this._tSpec_1);
 		_tSpec_2_ID = Animator.StringToHash(this._tSpec_2);
 		_tSpec_3_ID = Animator.StringToHash(this._tSpec_3);
-		_tSpec_4_ID = Animator.StringToHash(this._tSpec_4);
 
 		// Pose
 		_bPoseID_ID = Animator.StringToHash(this._bPoseID); // Idle
@@ -228,23 +228,23 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 
 	public void OnTrig(int iTrig){
 	  if(iTrig == 0){
-	    if(_tSpec_1_ID != 0){
-		  anim.SetTrigger(_tSpec_1_ID);
+	    if(_tSpec_0_ID != 0){
+		  anim.SetTrigger(_tSpec_0_ID);
 		}
 	  }
 	  else if(iTrig == 1){
-	    if(_tSpec_2_ID != 1){
-		  anim.SetTrigger(_tSpec_2_ID);
+		if(_tSpec_1_ID != 1){
+			anim.SetTrigger(_tSpec_1_ID);
 		}
 	  }
 	  else if(iTrig == 2){
-	    if(_tSpec_3_ID != 2){
-		  anim.SetTrigger(_tSpec_3_ID);
+		if(_tSpec_2_ID != 2){
+			anim.SetTrigger(_tSpec_2_ID);
 		}
 	  }
 	  else if(iTrig == 3){
-	    if(_tSpec_4_ID != 3){
-		  anim.SetTrigger(_tSpec_4_ID);
+		if(_tSpec_3_ID != 3){
+			anim.SetTrigger(_tSpec_3_ID);
 		}
 	  }
 	}

@@ -425,16 +425,19 @@ namespace MTON.Class{
 				if(value != trigst){
 			        trigst = value ;
                     if(value == eStateB.DN){    
-					  this.setTrig(0);
-					}
-					else if(value == eStateB.UP){ 
 					  this.setTrig(1);
 					}
-					else if(value == eStateB.HL){ 
+					else if(value == eStateB.UP){ 
 					  this.setTrig(2);
 					}
-					else if(value == eStateB.PW){ 
+					else if(value == eStateB.HL){ 
 					  this.setTrig(3);
+					}
+					else if(value == eStateB.PW){ 
+					  this.setTrig(4);
+					}
+					else{
+					  this.setTrig(0);
 					}
 				}
 			}

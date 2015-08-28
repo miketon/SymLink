@@ -55,11 +55,11 @@ namespace MTON.codeObjects{
 		}
 		else if(Input.GetKeyDown(KeyCode.L)){ // laser
 		  this.animActive = false;
-		  this.boss_kState(2);
-//		  this.an.trigST = cAnimn.eStateB.PW;
-		  this.boss_MCANM[2].OnTrig(3);
+		  this.boss_kState(3);
+		  this.an.trigST = cAnimn.eStateB.PW;
+		  this.boss_MCANM[3].OnTrig(3); //trigger laser animation
 		  this.doPowr(true); //rapidFire homing flock
-		  this.tt("LerpOverwrite").ttReset().ttAdd(this.anmEmit_duratn[2], delegate(){
+		  this.tt("LerpOverwrite").ttReset().ttAdd(this.anmEmit_duratn[3], delegate(){
 		    this.animActive = true;
 		    this.doPowr(false); //rapidFire homing flock
 		  });
@@ -94,7 +94,7 @@ namespace MTON.codeObjects{
 		RuntimeAnimatorController ac = this.boss_ANIMS[i].runtimeAnimatorController;
 	    float retDuration = 1.1109f;
 	    for(int j=0; j<ac.animationClips.Length; j++){   //For all animations
-//			Debug.Log ("ANIMATORCLIP LENGTH : " + ac.animationClips.Length + " j: " + j + " NAME: " + ac.animationClips[j].name+" i: ");
+//		  Debug.Log ("ANIMATORCLIP LENGTH : " + ac.animationClips.Length + " j: " + j + " NAME: " + ac.animationClips[j].name+" i: ");
 		  if(ac.animationClips[j].name == this.boss_ANIMS[i].name){ // HACK  : PREFAB NAME MUST MATHC CLIP NAME
 		    retDuration = ac.animationClips[j].length        ;      // HACK  : Magic numbering; need to find a way to get speed at clip level
 							                                        // FIXED : Use Animation.Samples Not State.Speed
