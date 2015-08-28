@@ -72,8 +72,11 @@ namespace MTON.Class{
 		public DL_Anim OnDactDelegate            ; // Deactived
         public DL_Anim OnDeadDelegate            ; // Dead
 
+		// TState - Trigger State (specials, Boss Attack)
+		public DL_iVal OnTrigDelegate            ; // Special/Boss Attack Trigger
+
 		// PState - Pose State (celebrate, fidget..etc)
-		public DL_iVal OnPoseDelegate            ; // Fidget
+		public DL_iVal OnPoseDelegate            ; // Pose Trigger
 
 #endregion
 
@@ -237,7 +240,6 @@ namespace MTON.Class{
 			set{
 //			    Debug.Log ("SEEK CHANGE");
 				if(value != seekst){
-					Debug.Log ("SETSEEK VALUE :" + value + this);
 			        seekst = value ;
                     if(value == eStateT.Awre){
 						//doAware
@@ -290,8 +292,9 @@ namespace MTON.Class{
 
 #region Enum Define : Button/Bool
 		// STATE : Jump
-		public  eStateB jumpst ;
-		public  eStateB jumpST {
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB jumpst ;
+		public  eStateB jumpST { // Interesting Double Duty : Jump = DN; AirJump = UP; else Idle
 			get{ return jumpst; }
 			set{
 				if(value != jumpst){
@@ -311,7 +314,8 @@ namespace MTON.Class{
 		}
 
 		// STATE : Attack
-		public  eStateB attkst ;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB attkst ;
 		public  eStateB attkST {
 			get{ return attkst; }
 			set{
@@ -340,7 +344,8 @@ namespace MTON.Class{
 		}
 
 		// STATE : GROUND
-		public  eStateB grndst ;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB grndst ;
 		public  eStateB grndST {
 			get{ return grndst; }
 			set{
@@ -357,7 +362,8 @@ namespace MTON.Class{
 		}
 
 		// STATE : DUCK/CROUCH
-		public  eStateB duckst ;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB duckst ;
 		public  eStateB duckST{
 			get{ return duckst; }
 			set{
@@ -375,7 +381,8 @@ namespace MTON.Class{
 		}
 
 		// STATE : CEILING
-		public  eStateB ceilst ;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB ceilst ;
 		public  eStateB ceilST {
 			get{ return ceilst; }
 			set{
@@ -392,7 +399,8 @@ namespace MTON.Class{
 		}
 
 		// STATE : FOOT STEP
-		public  eStateB footst ;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB footst ;
 		public  eStateB footST{
 			get{ return footst; }
 			set{
@@ -408,8 +416,36 @@ namespace MTON.Class{
 			}
 		}
 
+		// STATE : Trigger => Special and Boss Attacks
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB trigst ;
+		public  eStateB trigST{
+			get{ return trigst; }
+			set{
+				if(value != trigst){
+			        trigst = value ;
+                    if(value == eStateB.DN){    
+					  this.setTrig(1);
+					}
+					else if(value == eStateB.UP){ 
+					  this.setTrig(2);
+					}
+					else if(value == eStateB.HL){ 
+					  this.setTrig(3);
+					}
+					else if(value == eStateB.PW){ 
+					  this.setTrig(4);
+					}
+					else{
+					  this.setTrig(0);
+					}
+				}
+			}
+		}
+
 		// STATE : POSING => Win, lose...etc
-		public  eStateB posest ;
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB posest ;
 		public  eStateB poseST{
 			get{ return posest; }
 			set{
@@ -607,7 +643,13 @@ namespace MTON.Class{
 			}
 		}
 
-#region Delegate private bool Functions : Pose
+#region Delegate private Functions : Special Trigger and Pose
+
+		private void setTrig(int iTrig){
+			if(this.OnTrigDelegate != null){
+			  this.OnTrigDelegate(iTrig);
+			}
+		}
 
 		private void setPose(int iPose){
 			if(this.OnPoseDelegate != null){

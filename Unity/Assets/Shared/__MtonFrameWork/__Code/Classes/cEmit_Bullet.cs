@@ -14,7 +14,7 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   public delegate void EMIT_ONCOMPLETE()     ; //set up delegate
   public EMIT_ONCOMPLETE OnComplete_Delegate ; //delegate instance
 
-  private Rigidbody rBody ;
+  protected Rigidbody rBody ;
   private Vector3   inScl ;
   public  int       damag = 1       ;
   public  float     force = 1750.0f ;
