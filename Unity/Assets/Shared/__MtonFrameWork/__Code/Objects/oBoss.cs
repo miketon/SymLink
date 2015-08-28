@@ -54,21 +54,29 @@ namespace MTON.codeObjects{
 		  this.an.trigST = cAnimn.eStateB.HL;
 		}
 		else if(Input.GetKeyDown(KeyCode.L)){ // laser
-		  this.animActive = false;
-		  this.boss_kState(3);
 		  this.an.trigST = cAnimn.eStateB.PW;
-		  this.boss_MCANM[3].OnTrig(3); //trigger laser animation
-		  this.doPowr(true); //rapidFire homing flock
-		  this.tt("LerpOverwrite").ttReset().ttAdd(this.anmEmit_duratn[3], delegate(){
-		    this.animActive = true;
-		    this.doPowr(false); //rapidFire homing flock
-		  });
 		}
 		else{ // set back to neutral state
-//		  this.boss_kState(0);
 		  this.an.trigST = cAnimn.eStateB.Idle;
 		}
 	  }
+	  }
+	}
+
+	public override void doTrig (int iTrig){
+	  base.doTrig (iTrig);
+	  if(iTrig ==0){ // 0 == idle
+	    this.boss_kState(0);
+	  }
+	  else if(iTrig == 4){ // 3==laser
+		this.animActive = false;
+		this.boss_kState(4);
+		this.boss_MCANM[4].OnTrig(4); //trigger laser animation
+		this.doPowr(true); //rapidFire homing flock
+		  this.tt("LerpOverwrite").ttReset().ttAdd(this.anmEmit_duratn[4], delegate(){
+		  this.animActive = true;
+		  this.doPowr(false); //rapidFire homing flock
+		});
 	  }
 	}
 

@@ -296,7 +296,7 @@ namespace MTON.Class{
     public virtual void Awake(){
       if(__gCONSTANT._LEVEL == null){
         Debug.LogWarning("CONSTANT LEVEL == null : populating with " + this) ;
-        new __gCONSTANT(this)                                                ;
+		__gCONSTANT._LEVEL = this; // Assign level to global constant and kick off all set up via INIT_CONST_Delegate
 
         // Init Sound Player
         if(this.sndPlyr == null){
