@@ -17,7 +17,7 @@ public class oBullet_Slam : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
 
   public  AnimationCurve ac_SlamY         ;
   private Vector3   inScl                 ;
-  private Vector3   inPos                 ;
+  public Vector3   inPos                 ;
   public  Vector3   initVec3 = Vector3.up ;
   public  int       damag    = 1          ;
   public  float     timeSlam = 1.0f       ;
@@ -38,6 +38,7 @@ public class oBullet_Slam : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   public void Stop(){
 //	Debug.Log(this + " Shots Stopped. ");
     this.transform.position = this.inPos + this.initVec3; //reset back to starting pos
+	this.gameObject.SetActive(false);
   }
 
   public void OnComplete(){
@@ -71,10 +72,10 @@ public class oBullet_Slam : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
         return true;
 	  });
 	}
-	this.transform.DOScale(Vector3.zero, 1.0f).SetEase(Ease.InBounce);
-	this.tt().ttAdd(0.75f, ()=>{
-	  this.gameObject.SetActive(false);
-	}); //using TeaTime.cs
+//	this.transform.DOScale(Vector3.zero, 1.0f).SetEase(Ease.InBounce);
+//	this.tt().ttAdd(0.75f, ()=>{
+//	  this.gameObject.SetActive(false);
+//	}); //using TeaTime.cs
 	this.Stop();
   }
 

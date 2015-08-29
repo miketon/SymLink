@@ -270,27 +270,27 @@ namespace MTON.Class{
     }
 
 	// Bullets Conventional
-	public void Emit_Bullet<T>(e_Bllt eBullet, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	public void Emit_Bullet<T>(e_Bllt eBullet, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun, float retPool=3.0f){
       if(eBullet == e_Bllt.Projctl_00){
-        Emit_Bullet(this.sPL.e_Bllts[0], IN_POS, IN_ROT, funcToRun);
+        Emit_Bullet(this.sPL.e_Bllts[0], IN_POS, IN_ROT, funcToRun, retPool);
       }
 	  else if(eBullet == e_Bllt.HomingB_00){ // Homing Bullet
-        Emit_Bullet(this.sPL.e_Bllts[1], IN_POS, IN_ROT, funcToRun);
+        Emit_Bullet(this.sPL.e_Bllts[1], IN_POS, IN_ROT, funcToRun, retPool);
 	  }
     }
 
 	// Bullets Slam : Thomper, Doors, Spikes
-	public void Emit_Bullet<T>(e_Slams eBullet, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+	public void Emit_Bullet<T>(e_Slams eBullet, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun, float retPool=3.0f){
       if(eBullet == e_Slams.Pillar_00){
         Emit_Bullet(this.sPL.e_Slams[0], IN_POS, IN_ROT, funcToRun);
       }
     }
 
-    public void Emit_Bullet<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+    public void Emit_Bullet<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun, float retPool=3.0f){
       Transform pXform = IN_XFORM.lpSpawn(IN_POS, IN_ROT); //Get Transform from pool using Liteprint
       GameObject gXform = pXform.gameObject;
       gXform.SetActive(true);
-      this.tt().ttAdd(3.0f, ()=>{
+	  this.tt().ttAdd(retPool, ()=>{
           pXform.lpRecycle()      ; //Return to pool
           funcToRun()             ;
           gXform.SetActive(false) ;
@@ -388,14 +388,14 @@ namespace MTON.Class{
     }
 
 #endregion
-	private void Update(){
-	  if(Input.GetKeyDown(KeyCode.S)){
-	    this.Emit_Bullet(this.sPL.e_Slams[0], Vector3.zero, Quaternion.identity, ()=>{
-					Debug.Log(this + " SLAMMING ");
-					return true;
-				});
-	  }
-	}
+//	private void Update(){
+//	  if(Input.GetKeyDown(KeyCode.S)){
+//	    this.Emit_Bullet(this.sPL.e_Slams[0], Vector3.zero, Quaternion.identity, ()=>{
+//					Debug.Log(this + " SLAMMING ");
+//					return true;
+//				}, 1.5f);
+//	  }
+//	}
 
   }
 

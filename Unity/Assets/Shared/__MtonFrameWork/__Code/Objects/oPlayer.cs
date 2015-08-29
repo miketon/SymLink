@@ -45,6 +45,7 @@ namespace MTON.codeObjects{
           public Transform[] firePnts ; //firing point
 
           public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
+		  public cLevel.e_Slams eSlm ; // enum for thomper/slam attack
           public cLevel.fx_Hit  eGun ; // enum for GunFlare particle system to emit
           public cLevel.e_Anim  eDst ; // enum for Dust Step  Animator Object to play
           public cLevel.e_Anim  eDjm ; // enum for Dust Jump  Animator Object to play
