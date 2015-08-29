@@ -16,12 +16,15 @@ public class oBullet_Slam : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   public SLAM_ONCOMPLETE OnComplete_Delegate ; //delegate instance
 
   public  AnimationCurve ac_SlamY         ;
+  public  AnimationCurve ac_FadeX         ;
+  public  float durShake = 1.0f;
   private Vector3   inScl                 ;
-  public Vector3   inPos                 ;
+  public  Vector3   inPos                 ;
   public  Vector3   initVec3 = Vector3.up ;
   public  int       damag    = 1          ;
   public  float     timeSlam = 1.0f       ;
   public  cLevel.fx_Hit  eHit  ; // enum for particle system to emit
+  public  cLevel.e_Anim  eDld  ; // enum for Dust Land  Animator Object to play
 
 #region iEmit implementation
 
@@ -33,7 +36,13 @@ public class oBullet_Slam : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   }
   public void Play(){
 //	Debug.Log(this + " Shots Fired! ");
-    this.transform.DOLocalMove(this.inPos, timeSlam).SetEase(this.ac_SlamY);
+    this.transform.DOLocalMove(this.inPos, timeSlam).SetEase(this.ac_SlamY).OnComplete(()=>{
+	  __gCONSTANT._LEVEL.fx_Dust(this.eDld, this.transform.position, true);
+	  this.transform.DOShakeScale(durShake);
+	  this.tt().ttAdd(1.0f, delegate(){
+	    this.transform.DOScaleX(Mathf.Epsilon, 0.25f).SetEase(ac_FadeX);
+	  });
+    });
   }
   public void Stop(){
 //	Debug.Log(this + " Shots Stopped. ");
@@ -56,7 +65,11 @@ public class oBullet_Slam : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
 
   public virtual void Start(){ }
   private void OnEnable() { this.Play(); }
-  private void OnDisable(){ this.Stop(); }
+  private void OnDisable(){ 
+    this.Stop(); 
+	this.transform.position   = this.inPos; //reset position
+	this.transform.localScale = this.inScl; //reset scale
+  }
 
   public void Update(){
 //    this.transform.SetPosZ(0.0f); //for 2D

@@ -301,7 +301,7 @@ namespace MTON.codeObjects{
           this.bDpdX = false; //dPad x ignore
           this.bDpdY = true ; //dPad y listen
           if(this.bGround == true){
-            fx_Dust(this.sEM.eDld, true);
+		    __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.transform.position, true);
           }
         }
         else{
@@ -391,7 +391,7 @@ namespace MTON.codeObjects{
           if(bGround){    
             rb.Jump()                     ;
             an.jumpST = cAnimn.eStateB.DN ;
-            fx_Dust(this.sEM.eDjm, true)  ;
+			__gCONSTANT._LEVEL.fx_Dust(this.sEM.eDjm, this.transform.position, true)  ;
           }
           else{
             rb.Flap()                     ; //flap when not on ground
@@ -414,7 +414,7 @@ namespace MTON.codeObjects{
           }
         }
         if(bDuck){
-          fx_Dust(this.sEM.eDld, true);
+		  __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.transform.position, true);
         }	
       }
 
@@ -465,14 +465,14 @@ namespace MTON.codeObjects{
         public virtual void doIdlH(bool bIdlH){
           if(bIdlH == true){
             if(this.bGround){ // If onGround, kick up dust
-              this.fx_Dust(this.sEM.eDsl, true);
+			  __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDsl, this.xform.position, true);
             }
           }
         }
 
         public virtual void doFoot(bool bFoot){
           if(bFoot == true){
-            this.fx_Dust(this.sEM.eDst, true);
+		    __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDst, this.xform.position, true);
           }
         }
 
@@ -511,7 +511,7 @@ namespace MTON.codeObjects{
           this.bGround = IN_GROUND;
           if(IN_GROUND == true){
             an.grndST = cAnimn.eStateB.DN     ;
-            this.fx_Dust(this.sEM.eDld, true) ;
+			__gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.xform.position, true) ;
           }
           if(IN_GROUND == false){
             an.grndST = cAnimn.eStateB.UP;
@@ -532,35 +532,6 @@ namespace MTON.codeObjects{
         }
 
 #endregion
-		public void fx_Dust(cLevel.fx_Hit IN_FX, bool bFLIP_2D = false){
-	      fx_Dust(this.transform.position, IN_FX, bFLIP_2D);
-		}
-
-		public virtual void fx_Dust(Vector3 IN_POS, cLevel.fx_Hit IN_FX, bool bFLIP_2D = false){
-          if(IN_FX != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-			__gCONSTANT._LEVEL.Emit_pFX(IN_FX, IN_POS, Quaternion.identity, (Transform xForm)=>{
-              return xForm ;
-            }, bFLIP_2D) ;
-          }
-        }
-
-		public void fx_Dust(cLevel.e_Anim IN_FX, bool bFLIP_2D = false){
-	      fx_Dust(this.transform.position, IN_FX, bFLIP_2D);
-		}
-
-        public virtual void fx_Dust(Vector3 IN_POS, cLevel.e_Anim IN_FX, bool bFLIP_2D = false){
-          Quaternion qRot = Quaternion.identity;
-          if(bFLIP_2D == true){
-            if(this.bFaceRt == false){
-              qRot = Quaternion.Euler(Vector3.up); // HACK : Passing anything other than identity signals negative scale
-            }
-          }
-          if(IN_FX != cLevel.e_Anim.None){ // set to -1 to prevent emission
-			__gCONSTANT._LEVEL.Emit_ANM(IN_FX, IN_POS, qRot, (Transform xForm)=>{
-              return xForm ;
-            }, bFLIP_2D)   ;
-          }
-        }
 
         public void doActV(bool bActvV){
           if(bActvV == true){
@@ -574,7 +545,6 @@ namespace MTON.codeObjects{
             }
           }
         }
-
 
 #region Class Utility
 

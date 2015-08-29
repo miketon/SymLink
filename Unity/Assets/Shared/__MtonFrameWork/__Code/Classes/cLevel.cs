@@ -191,6 +191,7 @@ namespace MTON.Class{
 #endregion
 
 #region Effects functions	
+
     public void fx_Dust(fx_Hit IN_FX, Vector3 IN_POS, bool bFLIP_2D = false){
       if(IN_FX != fx_Hit.None){ // set to -1 to prevent emission
         Emit_pFX(IN_FX, IN_POS, Quaternion.identity, (Transform xForm)=>{
@@ -212,6 +213,7 @@ namespace MTON.Class{
             }, bFLIP_2D) ;
       }
     }
+
 #endregion
 
     private int iDustStep = 0;

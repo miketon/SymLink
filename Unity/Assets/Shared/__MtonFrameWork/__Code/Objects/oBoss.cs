@@ -71,8 +71,8 @@ namespace MTON.codeObjects{
       else if(iTrig == 2){ // 2 == slam
         __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eSlm, this.player.position, Quaternion.identity, (Transform xForm)=>{
           Debug.Log(this + " SLAMMING ") ;
-		  this.fx_Dust(xForm.position, this.sEM.eDld, true);
-          return xForm                     ;
+		  __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDjm, xForm.position, true);
+          return xForm                   ;
         }, 1.5f)                         ;
       }
       else if(iTrig == 4){ // 3==laser
