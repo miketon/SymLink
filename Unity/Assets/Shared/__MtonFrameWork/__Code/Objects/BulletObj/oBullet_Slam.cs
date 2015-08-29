@@ -26,12 +26,15 @@ public class oBullet_Slam : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   public  cLevel.fx_Hit  eHit  ; // enum for particle system to emit
   public  cLevel.e_Anim  eDld  ; // enum for Dust Land  Animator Object to play
 
+  private  Transform pCamera                  ; //player camera
+
 #region iEmit implementation
 
   public void Init(){  
-	  this.inScl = this.transform.localScale;
-	  this.inPos = this.transform.position; //initial slam position
-	  this.transform.position += this.initVec3;
+	pCamera = __gCONSTANT._LEVEL.mCamera.transform;
+    this.inScl = this.transform.localScale;
+    this.inPos = this.transform.position; //initial slam position
+    this.transform.position += this.initVec3;
 //    Debug.Log(this + " Particle INIT ");
   }
   public void Play(){
@@ -39,6 +42,7 @@ public class oBullet_Slam : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
     this.transform.DOLocalMove(this.inPos, timeSlam).SetEase(this.ac_SlamY).OnComplete(()=>{
 	  __gCONSTANT._LEVEL.fx_Dust(this.eDld, this.transform.position, true);
 	  this.transform.DOShakeScale(durShake);
+	  this.pCamera.DOShakePosition(durShake);
 	  this.tt().ttAdd(1.0f, delegate(){
 	    this.transform.DOScaleX(Mathf.Epsilon, 0.25f).SetEase(ac_FadeX);
 	  });
