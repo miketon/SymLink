@@ -66,6 +66,7 @@ namespace MTON.Class{
 	  public Transform[]      e_Walks;
       public Transform[]      e_Flyrs;
       public Transform[]      e_Bllts;
+      public Transform[]      e_Slams; // bullet slams : thompers, groundspikes, doors..etc
       public Transform[]      e_Icons;
 
       public Animator[]       anmEmit;
@@ -124,6 +125,13 @@ namespace MTON.Class{
       LasrRay_00, 
       Grenade_00,
 	  HomingB_00,
+      None,
+    }
+
+	public enum e_Slams{
+      Pillar_00, //projectile
+      DoorCL_00, 
+      Spiker_00,
       None,
     }
 
@@ -261,6 +269,7 @@ namespace MTON.Class{
           })                      ; //using TeaTime.cs
     }
 
+	// Bullets Conventional
 	public void Emit_Bullet<T>(e_Bllt eBullet, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
       if(eBullet == e_Bllt.Projctl_00){
         Emit_Bullet(this.sPL.e_Bllts[0], IN_POS, IN_ROT, funcToRun);
@@ -268,6 +277,13 @@ namespace MTON.Class{
 	  else if(eBullet == e_Bllt.HomingB_00){ // Homing Bullet
         Emit_Bullet(this.sPL.e_Bllts[1], IN_POS, IN_ROT, funcToRun);
 	  }
+    }
+
+	// Bullets Slam : Thomper, Doors, Spikes
+	public void Emit_Bullet<T>(e_Slams eBullet, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+      if(eBullet == e_Slams.Pillar_00){
+        Emit_Bullet(this.sPL.e_Slams[0], IN_POS, IN_ROT, funcToRun);
+      }
     }
 
     public void Emit_Bullet<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
@@ -307,6 +323,11 @@ namespace MTON.Class{
         for(int i=0; i<this.sPL.e_Bllts.Length; i++){
           this.sPL.e_Bllts[i].gameObject.SetActive(false) ; //WTF: HACK: MUST be set to inactive, else collider causes bullets to vector incorrect direction
           this.sPL.e_Bllts[i].lpRefill(this.numPrefill)   ;
+        }
+
+		for(int i=0; i<this.sPL.e_Slams.Length; i++){
+          this.sPL.e_Slams[i].gameObject.SetActive(false) ;
+          this.sPL.e_Slams[i].lpRefill(this.numPrefill)   ;
         }
 
         // Init Particle Fx Pool
@@ -367,6 +388,14 @@ namespace MTON.Class{
     }
 
 #endregion
+	private void Update(){
+	  if(Input.GetKeyDown(KeyCode.S)){
+	    this.Emit_Bullet(this.sPL.e_Slams[0], Vector3.zero, Quaternion.identity, ()=>{
+					Debug.Log(this + " SLAMMING ");
+					return true;
+				});
+	  }
+	}
 
   }
 
