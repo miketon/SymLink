@@ -208,8 +208,8 @@ namespace MTON.codeObjects{
 
 	private void ai_BITE(Vector3 IN_POS){
 	  if(this.eBit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-	    __gCONSTANT._LEVEL.Emit_pFX(eBit, IN_POS, Quaternion.identity, ()=>{
-          return true;
+	    __gCONSTANT._LEVEL.Emit_pFX(eBit, IN_POS, Quaternion.identity, (Transform xForm)=>{
+          return xForm;
 	    });
 	  }
 	}

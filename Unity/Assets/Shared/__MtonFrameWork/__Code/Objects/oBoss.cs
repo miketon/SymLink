@@ -69,10 +69,11 @@ namespace MTON.codeObjects{
         this.boss_kState(0);
       }
       else if(iTrig == 2){ // 2 == slam
-        __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eSlm, this.player.position, Quaternion.identity, ()=>{
-            Debug.Log(this + " SLAMMING ") ;
-            return true                    ;
-            }, 1.5f)                       ;
+        __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eSlm, this.player.position, Quaternion.identity, (Transform xForm)=>{
+          Debug.Log(this + " SLAMMING ") ;
+		  this.fx_Dust(xForm.position, this.sEM.eDld, true);
+          return xForm                     ;
+        }, 1.5f)                         ;
       }
       else if(iTrig == 4){ // 3==laser
         this.animActive = false      ;

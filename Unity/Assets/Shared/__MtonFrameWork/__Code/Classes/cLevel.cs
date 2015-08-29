@@ -31,6 +31,7 @@ namespace MTON.Class{
     public Sound            sndPlyr; // sound player
     public Transform        mCamAim; // msin aim
     public Camera2D         mCamera; // main camera
+    
     public List<Transform>  camTgts = new List<Transform>() ; //need System.Collections.Generic
     public List<Transform>  boidsGp = new List<Transform>() ; //need System.Collections.Generic
 
@@ -59,24 +60,24 @@ namespace MTON.Class{
     }
 
     public int numPrefill = 15;
-	public s_PoolProperties sPL = new s_PoolProperties();
-	[Serializable] //MUST : add so that this custom data type can be displayed in the inspector
-    public struct s_PoolProperties{
+    public s_PoolProperties sPL = new s_PoolProperties();
+    [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
+      public struct s_PoolProperties{
 
-	  public Transform[]      e_Walks;
-      public Transform[]      e_Flyrs;
-      public Transform[]      e_Bllts;
-      public Transform[]      e_Slams; // bullet slams : thompers, groundspikes, doors..etc
-      public Transform[]      e_Icons;
+        public Transform[]      e_Walks;
+        public Transform[]      e_Flyrs;
+        public Transform[]      e_Bllts;
+        public Transform[]      e_Slams; // bullet slams : thompers, groundspikes, doors..etc
+        public Transform[]      e_Icons;
 
-      public Animator[]       anmEmit;
-	  public ParticleSystem[] fx_Hits;
+        public Animator[]       anmEmit;
+        public ParticleSystem[] fx_Hits;
 
-      public float[]          fx_Hit_OffSet  ; // To place effect at feet = particle size(radius)
-      public float[]          anmEmit_duratn ; // Duration of animation clip
-      public Vector3[]        anmEmit_IntScl ; // captures scale of animator objects
+        public float[]          fx_Hit_OffSet  ; // To place effect at feet = particle size(radius)
+        public float[]          anmEmit_duratn ; // Duration of animation clip
+        public Vector3[]        anmEmit_IntScl ; // captures scale of animator objects
 
-	}
+      }
 
 #region enums
 
@@ -87,52 +88,52 @@ namespace MTON.Class{
     }
 
     public enum e_Enmy{
-      Melee_00, 
-      Range_00,
-      None,
+      Melee_00 ,
+      Range_00 ,
+      None     ,
     }
 
     public enum e_Flyr{
-      Melee_00, 
-      Range_00,
-      None,
+      Melee_00 ,
+      Range_00 ,
+      None     ,
     }
 
 
     public enum fx_Hit{ // Must be particle system
-      HitMark_00,       // moon
-      BteMark_00,       // bite mark
-      GunFlar_00,
-      DustLnd_00,       // Dust Land
-      DustJmp_00,       // Dust Jump
-      DustStp_00,       // Dust step
-      ScoreCn_00,
-      None,
+      HitMark_00 , // moon
+      BteMark_00 , // bite mark
+      GunFlar_00 ,
+      DustLnd_00 , // Dust Land
+      DustJmp_00 , // Dust Jump
+      DustStp_00 , // Dust step
+      ScoreCn_00 ,
+      None       ,
     }
 
-	public enum e_Anim{ // Must be Animator
-      DustStp_00,       // Dust step
-      DustJmp_00,       // Dust Jump
-      DustLnd_00,       // Dust Land
-      DustSld_00,       // Dust Slide
-      BteMark_00,       // bite mark
-      ScoreCn_00,
-      None,
+    public enum e_Anim{ // Must be Animator
+      DustStp_00 , // Dust step
+      DustJmp_00 , // Dust Jump
+      DustLnd_00 , // Dust Land
+      DustSld_00 , // Dust Slide
+      BteMark_00 , // bite mark
+      ScoreCn_00 ,
+      None       ,
     }
 
     public enum e_Bllt{
-      Projctl_00, //projectile
-      LasrRay_00, 
-      Grenade_00,
-	  HomingB_00,
-      None,
+      Projctl_00 , //projectile
+      LasrRay_00 ,
+      Grenade_00 ,
+      HomingB_00 ,
+      None       ,
     }
 
-	public enum e_Slams{
-      Pillar_00, //projectile
-      DoorCL_00, 
-      Spiker_00,
-      None,
+    public enum e_Slams{
+      Pillar_00 , //projectile
+      DoorCL_00 ,
+      Spiker_00 ,
+      None      ,
     }
 
 #endregion
@@ -140,9 +141,9 @@ namespace MTON.Class{
 #region Level Spawning logic
 
     public T levelSpawn<T>(T Targ){
-      Debug.Log("Spawning : " + Targ);
-      //		Transform xform = null;
-      return Targ;
+      Debug.Log("Spawning : " + Targ) ;
+      //		Transform xform = null    ;
+      return Targ                     ;
     }
 
     //Spawning Standard Object
@@ -156,9 +157,9 @@ namespace MTON.Class{
     public Transform SpawnObj<T>(e_Icon eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<Transform, T> funcToRun){
       if(eObj == e_Icon.Death){
         Transform spawnedObj = this.sPL.e_Icons[0].lpSpawn(IN_POS, IN_ROT) ;
-        spawnedObj.gameObject.SetActive(true)                          ;
-        funcToRun(spawnedObj)                                          ;
-        return spawnedObj                                              ;
+        spawnedObj.gameObject.SetActive(true)                              ;
+        funcToRun(spawnedObj)                                              ;
+        return spawnedObj                                                  ;
       }
       else{
         return null;
@@ -168,8 +169,8 @@ namespace MTON.Class{
     // Walking Enemy
     public Transform SpawnObj<T>(e_Enmy eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
       if(eObj == e_Enmy.Melee_00){
-        funcToRun();
-        return this.sPL.e_Walks[0].lpSpawn(IN_POS, IN_ROT);
+        funcToRun()                                        ;
+        return this.sPL.e_Walks[0].lpSpawn(IN_POS, IN_ROT) ;
       }
       else{
         return null;
@@ -179,8 +180,8 @@ namespace MTON.Class{
     // Flying Enemy
     public Transform SpawnObj<T>(e_Flyr eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
       if(eObj == e_Flyr.Melee_00){
-        funcToRun();
-        return this.sPL.e_Flyrs[0].lpSpawn(IN_POS, IN_ROT);
+        funcToRun()                                        ;
+        return this.sPL.e_Flyrs[0].lpSpawn(IN_POS, IN_ROT) ;
       }
       else{
         return null;
@@ -189,110 +190,134 @@ namespace MTON.Class{
 
 #endregion
 
-	private int iDustStep = 0;
+#region Effects functions	
+    public void fx_Dust(fx_Hit IN_FX, Vector3 IN_POS, bool bFLIP_2D = false){
+      if(IN_FX != fx_Hit.None){ // set to -1 to prevent emission
+        Emit_pFX(IN_FX, IN_POS, Quaternion.identity, (Transform xForm)=>{
+            return xForm ;
+            }, bFLIP_2D) ;
+      }
+    }
+
+    public void fx_Dust(e_Anim IN_FX, Vector3 IN_POS, bool bFaceRt = true, bool bFLIP_2D = false){
+      Quaternion qRot = Quaternion.identity;
+      if(bFLIP_2D == true){
+        if(bFaceRt == false){
+          qRot = Quaternion.Euler(Vector3.up); // HACK : Passing anything other than identity signals negative scale
+        }
+      }
+      if(IN_FX != e_Anim.None){ // set to -1 to prevent emission
+        Emit_ANM(IN_FX, IN_POS, qRot, (Transform xForm)=>{
+            return xForm ;
+            }, bFLIP_2D) ;
+      }
+    }
+#endregion
+
+    private int iDustStep = 0;
     //fx
-	public void Emit_pFX<T>(fx_Hit eHit, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun, bool bFLIP_2D = false){
+    public void Emit_pFX<T>(fx_Hit eHit, Vector3 IN_POS, Quaternion IN_ROT, Func<Transform,T> funcToRun, bool bFLIP_2D = false){
 
       if(eHit == fx_Hit.HitMark_00){ 
-		Emit(this.sPL.fx_Hits[0], IN_POS, IN_ROT, funcToRun);
-			}
+        Emit(this.sPL.fx_Hits[0], IN_POS, IN_ROT, funcToRun);
+      }
       else if(eHit == fx_Hit.GunFlar_00){
         Emit(this.sPL.fx_Hits[1], IN_POS, IN_ROT, funcToRun);
       }
       else if(eHit == fx_Hit.BteMark_00){
         Emit(this.sPL.fx_Hits[2], IN_POS, IN_ROT, funcToRun);
       }
-//      else if(eHit == fx_Hit.DustJmp_00){
-//        Emit(this.sPL.fx_Hits[3], IN_POS + (Vector3.up * this.sPL.fx_Hit_OffSet[3] * 0.85f) , IN_ROT, funcToRun);
-//      }
+      //      else if(eHit == fx_Hit.DustJmp_00){
+      //        Emit(this.sPL.fx_Hits[3], IN_POS + (Vector3.up * this.sPL.fx_Hit_OffSet[3] * 0.85f) , IN_ROT, funcToRun);
+      //      }
       else if(eHit == fx_Hit.DustLnd_00){
         Emit(this.sPL.fx_Hits[4], IN_POS + (Vector3.up * this.sPL.fx_Hit_OffSet[4] * 0.85f) , IN_ROT, funcToRun);
       }
-	  else if(eHit == fx_Hit.DustStp_00){ // Dust step alternates : HACK : Index + 1
-		int iAltStep = this.iDustStep%2 ;  // alternate between dust steps
-        Emit(this.sPL.fx_Hits[5 + iAltStep], IN_POS + (Vector3.up * this.sPL.fx_Hit_OffSet[5 + iAltStep] * 0.25f) , IN_ROT, funcToRun);
-		this.iDustStep = this.iDustStep + 1;
+      else if(eHit == fx_Hit.DustStp_00){ // Dust step alternates : HACK : Index + 1
+        int iAltStep = this.iDustStep%2                                                                                                ; // alternate between dust steps
+        Emit(this.sPL.fx_Hits[5 + iAltStep], IN_POS + (Vector3.up * this.sPL.fx_Hit_OffSet[5 + iAltStep] * 0.25f) , IN_ROT, funcToRun) ;
+        this.iDustStep = this.iDustStep + 1                                                                                            ;
       }
 
     }
 
-	public void Emit_ANM<T>(e_Anim eAnm, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun, bool bFLIP_2D = false){
-	  if(eAnm == e_Anim.DustStp_00){
-		int iAltStep = this.iDustStep%2 ;  // alternate between dust steps
-	    this.iDustStep++;
-		Emit(this.sPL.anmEmit[2 + iAltStep], IN_POS, IN_ROT, this.sPL.anmEmit_duratn[2 + iAltStep], funcToRun, this.sPL.anmEmit_IntScl[2 + iAltStep], true);
-	  }
-	  else if(eAnm == e_Anim.DustJmp_00){
-	    Emit(this.sPL.anmEmit[0], IN_POS, IN_ROT, this.sPL.anmEmit_duratn[0], funcToRun, this.sPL.anmEmit_IntScl[0], true);
-	  }
-	  else if(eAnm == e_Anim.DustLnd_00){
-	    Emit(this.sPL.anmEmit[1], IN_POS, IN_ROT, this.sPL.anmEmit_duratn[1], funcToRun, this.sPL.anmEmit_IntScl[1], true);
-	  }
-	  else if(eAnm == e_Anim.DustSld_00){
-	    Emit(this.sPL.anmEmit[4], IN_POS, IN_ROT, this.sPL.anmEmit_duratn[4], funcToRun, this.sPL.anmEmit_IntScl[4], true);
-	  }
-	}
+    public void Emit_ANM<T>(e_Anim eAnm, Vector3 IN_POS, Quaternion IN_ROT, Func<Transform,T> funcToRun, bool bFLIP_2D = false){
+      if(eAnm == e_Anim.DustStp_00){
+        int iAltStep = this.iDustStep%2                                                                                                                     ; // alternate between dust steps
+        this.iDustStep++                                                                                                                                    ;
+        Emit(this.sPL.anmEmit[2 + iAltStep], IN_POS, IN_ROT, this.sPL.anmEmit_duratn[2 + iAltStep], funcToRun, this.sPL.anmEmit_IntScl[2 + iAltStep], true) ;
+      }
+      else if(eAnm == e_Anim.DustJmp_00){
+        Emit(this.sPL.anmEmit[0], IN_POS, IN_ROT, this.sPL.anmEmit_duratn[0], funcToRun, this.sPL.anmEmit_IntScl[0], true);
+      }
+      else if(eAnm == e_Anim.DustLnd_00){
+        Emit(this.sPL.anmEmit[1], IN_POS, IN_ROT, this.sPL.anmEmit_duratn[1], funcToRun, this.sPL.anmEmit_IntScl[1], true);
+      }
+      else if(eAnm == e_Anim.DustSld_00){
+        Emit(this.sPL.anmEmit[4], IN_POS, IN_ROT, this.sPL.anmEmit_duratn[4], funcToRun, this.sPL.anmEmit_IntScl[4], true);
+      }
+    }
 
-	public void Emit<T>(ParticleSystem IN_PS, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun, bool bFLIP_2D = false){
+    public void Emit<T>(ParticleSystem IN_PS, Vector3 IN_POS, Quaternion IN_ROT, Func<Transform,T> funcToRun, bool bFLIP_2D = false){
       Transform pXform  = IN_PS.transform.lpSpawn(IN_POS, IN_ROT) ; //Get Transform from pool using Liteprint
       GameObject gXform = pXform.gameObject                       ;
-//	  Debug.Log ("EMITTING : "+ pXform);
+      //	  Debug.Log ("EMITTING : "+ pXform);
       gXform.SetActive(true)                                      ;
-	  IN_PS.Play()                                                ;
+      IN_PS.Play()                                                ;
       this.tt().ttAdd(IN_PS.duration, ()=>{
-		  IN_PS.Stop()            ;
-	      IN_PS.Clear()           ; //true == include children
+          IN_PS.Stop()            ;
+          IN_PS.Clear()           ; //true == include children
           pXform.lpRecycle()      ; //Return to pool
-          funcToRun()             ;
+          funcToRun(pXform)       ;
           gXform.SetActive(false) ;
           })                      ; //using TeaTime.cs
     }
 
-	public void Emit<T>(Animator IN_PS, Vector3 IN_POS, Quaternion IN_ROT, float IN_DUR, Func<T> funcToRun, Vector3 IN_SCL, bool bFLIP_2D = false){
+    public void Emit<T>(Animator IN_PS, Vector3 IN_POS, Quaternion IN_ROT, float IN_DUR, Func<Transform,T> funcToRun, Vector3 IN_SCL, bool bFLIP_2D = false){
       Transform pXform  = IN_PS.transform.lpSpawn(IN_POS, IN_ROT) ; //Get Transform from pool using Liteprint
       GameObject gXform = pXform.gameObject                       ;
-	  if(bFLIP_2D){
-	    if(IN_ROT == Quaternion.identity){
-		  pXform.localScale = IN_SCL;
-		}
-		else{
-		  Vector3 sclFLIP = new Vector3(-IN_SCL.x, IN_SCL.y, IN_SCL.z);
-		  pXform.localScale = sclFLIP;
-		}
-	  }
-//	  Debug.Log ("EMITTING : "+ pXform);
-      gXform.SetActive(true)                                      ;
+      if(bFLIP_2D){
+        if(IN_ROT == Quaternion.identity){
+          pXform.localScale = IN_SCL;
+        }
+        else{
+          Vector3 sclFLIP = new Vector3(-IN_SCL.x, IN_SCL.y, IN_SCL.z) ;
+          pXform.localScale = sclFLIP                                  ;
+        }
+      }
+      //	  Debug.Log ("EMITTING : "+ pXform) ;
+      gXform.SetActive(true)                  ;
       this.tt().ttAdd(IN_DUR , ()=>{
           pXform.lpRecycle()      ; //Return to pool
-          funcToRun()             ;
+          funcToRun(pXform)       ;
           gXform.SetActive(false) ;
           })                      ; //using TeaTime.cs
     }
 
-	// Bullets Conventional
-	public void Emit_Bullet<T>(e_Bllt eBullet, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun, float retPool=3.0f){
+    // Bullets Conventional
+    public void Emit_Bullet<T>(e_Bllt eBullet, Vector3 IN_POS, Quaternion IN_ROT, Func<Transform,T> funcToRun, float retPool=3.0f){
       if(eBullet == e_Bllt.Projctl_00){
         Emit_Bullet(this.sPL.e_Bllts[0], IN_POS, IN_ROT, funcToRun, retPool);
       }
-	  else if(eBullet == e_Bllt.HomingB_00){ // Homing Bullet
+      else if(eBullet == e_Bllt.HomingB_00){ // Homing Bullet
         Emit_Bullet(this.sPL.e_Bllts[1], IN_POS, IN_ROT, funcToRun, retPool);
-	  }
+      }
     }
 
-	// Bullets Slam : Thomper, Doors, Spikes
-	public void Emit_Bullet<T>(e_Slams eBullet, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun, float retPool=3.0f){
+    // Bullets Slam : Thomper, Doors, Spikes
+    public void Emit_Bullet<T>(e_Slams eBullet, Vector3 IN_POS, Quaternion IN_ROT, Func<Transform,T> funcToRun, float retPool=3.0f){
       if(eBullet == e_Slams.Pillar_00){
         Emit_Bullet(this.sPL.e_Slams[0], IN_POS, IN_ROT, funcToRun);
       }
     }
 
-    public void Emit_Bullet<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun, float retPool=3.0f){
-      Transform pXform = IN_XFORM.lpSpawn(IN_POS, IN_ROT); //Get Transform from pool using Liteprint
-      GameObject gXform = pXform.gameObject;
-      gXform.SetActive(true);
-	  this.tt().ttAdd(retPool, ()=>{
+    public void Emit_Bullet<T>(Transform IN_XFORM, Vector3 IN_POS, Quaternion IN_ROT, Func<Transform,T> funcToRun, float retPool=3.0f){
+      Transform pXform = IN_XFORM.lpSpawn(IN_POS, IN_ROT) ; //Get Transform from pool using Liteprint
+      GameObject gXform = pXform.gameObject               ;
+      gXform.SetActive(true)                              ;
+      this.tt().ttAdd(retPool, ()=>{
           pXform.lpRecycle()      ; //Return to pool
-          funcToRun()             ;
+          funcToRun(pXform)       ;
           gXform.SetActive(false) ;
           })                      ; //using TeaTime.cs
     }
@@ -312,7 +337,7 @@ namespace MTON.Class{
     public virtual void Awake(){
       if(__gCONSTANT._LEVEL == null){
         Debug.LogWarning("CONSTANT LEVEL == null : populating with " + this) ;
-		__gCONSTANT._LEVEL = this; // Assign level to global constant and kick off all set up via INIT_CONST_Delegate
+        __gCONSTANT._LEVEL = this                                            ; // Assign level to global constant and kick off all set up via INIT_CONST_Delegate
 
         // Init Sound Player
         if(this.sndPlyr == null){
@@ -325,7 +350,7 @@ namespace MTON.Class{
           this.sPL.e_Bllts[i].lpRefill(this.numPrefill)   ;
         }
 
-		for(int i=0; i<this.sPL.e_Slams.Length; i++){
+        for(int i=0; i<this.sPL.e_Slams.Length; i++){
           this.sPL.e_Slams[i].gameObject.SetActive(false) ;
           this.sPL.e_Slams[i].lpRefill(this.numPrefill)   ;
         }
@@ -334,40 +359,42 @@ namespace MTON.Class{
         this.sPL.fx_Hit_OffSet = new float[this.sPL.fx_Hits.Length];
 
         for(int i=0; i<this.sPL.fx_Hits.Length; i++){
-          this.sPL.fx_Hits[i].gameObject.SetActive(false)         ;
-          this.sPL.fx_Hits[i].transform.lpRefill(this.numPrefill) ;
-          this.sPL.fx_Hit_OffSet[i] = this.sPL.fx_Hits[i].startSize * 0.5f; // Convert to radius
+          this.sPL.fx_Hits[i].gameObject.SetActive(false)                  ;
+          this.sPL.fx_Hits[i].transform.lpRefill(this.numPrefill)          ;
+          this.sPL.fx_Hit_OffSet[i] = this.sPL.fx_Hits[i].startSize * 0.5f ; // Convert to radius
         }
 
-		// Init Animator Pool
-		this.sPL.anmEmit_duratn = new float[this.sPL.anmEmit.Length];
-		this.sPL.anmEmit_IntScl = new Vector3[this.sPL.anmEmit.Length];
-		for(int i=0; i<this.sPL.anmEmit.Length; i++){
-		  this.sPL.anmEmit_IntScl[i] = this.sPL.anmEmit[i].transform.localScale; //get scale
-		  this.sPL.anmEmit[i].gameObject.SetActive(false);
-		  this.sPL.anmEmit[i].transform.lpRefill(this.numPrefill);
-		  
-		  //get clip duration
-		  RuntimeAnimatorController ac = this.sPL.anmEmit[i].runtimeAnimatorController;
-		  float retDuration = 1.1109f;
-		  for(int j=0; j<ac.animationClips.Length; j++){   //For all animations
-//			Debug.Log ("ANIMATORCLIP LENGTH : " + ac.animationClips.Length + " j: " + j + " NAME: " + ac.animationClips[j].name+" i: ");
-			if(ac.animationClips[j].name == this.sPL.anmEmit[i].name){ // HACK  : PREFAB NAME MUST MATHC CLIP NAME
-			  retDuration = ac.animationClips[j].length        ;   // HACK  : Magic numbering; need to find a way to get speed at clip level
-							                                       // FIXED : Use Animation.Samples Not State.Speed
-							                                       // FIXED : Set Animation.LoopTime = false, to prevent frame bleed over
-							                                       // FIXED : Do not set State.Mirror = true, else playback rate becomes choppy
-//			  Debug.Log ("Found IDLE : " + retDuration + " : " + this);
-			}
-		  }
-		  this.sPL.anmEmit_duratn[i] = retDuration;
-//		  Debug.Log ("CURRENT STATE: " + this.sPL.anmEmit[i].GetCurrentAnimatorClipInfo(0).ToString() +" Length : " + this.anmEmit[i].GetCurrentAnimatorStateInfo(0).length);
-		}
+        // Init Animator Pool
+        this.sPL.anmEmit_duratn = new float[this.sPL.anmEmit.Length]   ;
+        this.sPL.anmEmit_IntScl = new Vector3[this.sPL.anmEmit.Length] ;
+
+        for(int i=0; i<this.sPL.anmEmit.Length; i++){
+          this.sPL.anmEmit_IntScl[i] = this.sPL.anmEmit[i].transform.localScale ; //get scale
+          this.sPL.anmEmit[i].gameObject.SetActive(false)                       ;
+          this.sPL.anmEmit[i].transform.lpRefill(this.numPrefill)               ;
+
+          //get clip duration
+          RuntimeAnimatorController ac = this.sPL.anmEmit[i].runtimeAnimatorController ;
+          float retDuration = 1.1109f                                                  ;
+
+          for(int j=0; j<ac.animationClips.Length; j++){   //For all animations
+            //			Debug.Log ("ANIMATORCLIP LENGTH : " + ac.animationClips.Length + " j: " + j + " NAME: " + ac.animationClips[j].name+" i: ");
+            if(ac.animationClips[j].name == this.sPL.anmEmit[i].name){ // HACK  : PREFAB NAME MUST MATHC CLIP NAME
+              retDuration = ac.animationClips[j].length ; // HACK  : Magic numbering ; need to find a way to get speed at clip level
+              // FIXED : Use Animation.Samples Not State.Speed
+              // FIXED : Set Animation.LoopTime = false, to prevent frame bleed over
+              // FIXED : Do not set State.Mirror = true, else playback rate becomes choppy
+              //			  Debug.Log ("Found IDLE : " + retDuration + " : " + this);
+            }
+          }
+          this.sPL.anmEmit_duratn[i] = retDuration;
+          //		  Debug.Log ("CURRENT STATE: " + this.sPL.anmEmit[i].GetCurrentAnimatorClipInfo(0).ToString() +" Length : " + this.anmEmit[i].GetCurrentAnimatorStateInfo(0).length);
+        }
 
       }
       else{
-        Debug.Log("CONSTANT LEVEL == exists : " + __gCONSTANT._LEVEL);
-        __gCONSTANT._LEVEL.levelSpawn<GameObject>(this.gameObject); //Stubbed out logging function
+        Debug.Log("CONSTANT LEVEL == exists : " + __gCONSTANT._LEVEL) ;
+        __gCONSTANT._LEVEL.levelSpawn<GameObject>(this.gameObject)    ; //Stubbed out logging function
       }
     }
 
@@ -388,14 +415,14 @@ namespace MTON.Class{
     }
 
 #endregion
-//	private void Update(){
-//	  if(Input.GetKeyDown(KeyCode.S)){
-//	    this.Emit_Bullet(this.sPL.e_Slams[0], Vector3.zero, Quaternion.identity, ()=>{
-//					Debug.Log(this + " SLAMMING ");
-//					return true;
-//				}, 1.5f);
-//	  }
-//	}
+    //	private void Update(){
+    //	  if(Input.GetKeyDown(KeyCode.S)){
+    //	    this.Emit_Bullet(this.sPL.e_Slams[0], Vector3.zero, Quaternion.identity, ()=>{
+    //					Debug.Log(this + " SLAMMING ");
+    //					return true;
+    //				}, 1.5f);
+    //	  }
+    //	}
 
   }
 

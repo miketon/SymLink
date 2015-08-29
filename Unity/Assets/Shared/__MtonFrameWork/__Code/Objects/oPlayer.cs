@@ -255,15 +255,15 @@ namespace MTON.codeObjects{
             }
             firePnt.gameObject.SetActive(true)    ;
             if(this.sEM.eBlt != cLevel.e_Bllt.None){
-              __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eBlt, firePnt.position, fireRot, ()=>{
-                  return true ;
-                  })          ;
+              __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eBlt, firePnt.position, fireRot, (Transform xForm)=>{
+                return xForm ;
+              })          ;
             }
             if(this.sEM.eGun != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-              __gCONSTANT._LEVEL.Emit_pFX(this.sEM.eGun, firePnt.position, Quaternion.identity, ()=>{
-                  firePnt.gameObject.SetActive(false) ;
-                  return true                         ;
-                  })                                  ;
+              __gCONSTANT._LEVEL.Emit_pFX(this.sEM.eGun, firePnt.position, Quaternion.identity, (Transform xForm)=>{
+                firePnt.gameObject.SetActive(false) ;
+                return xForm                        ;
+              })                                    ;
             }
           }
           this.doFPMod();
@@ -532,16 +532,23 @@ namespace MTON.codeObjects{
         }
 
 #endregion
+		public void fx_Dust(cLevel.fx_Hit IN_FX, bool bFLIP_2D = false){
+	      fx_Dust(this.transform.position, IN_FX, bFLIP_2D);
+		}
 
-        private void fx_Dust(cLevel.fx_Hit IN_FX, bool bFLIP_2D = false){
+		public virtual void fx_Dust(Vector3 IN_POS, cLevel.fx_Hit IN_FX, bool bFLIP_2D = false){
           if(IN_FX != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-            __gCONSTANT._LEVEL.Emit_pFX(IN_FX, this.transform.position, Quaternion.identity, ()=>{
-                return true ;
-                }, bFLIP_2D) ;
+			__gCONSTANT._LEVEL.Emit_pFX(IN_FX, IN_POS, Quaternion.identity, (Transform xForm)=>{
+              return xForm ;
+            }, bFLIP_2D) ;
           }
         }
 
-        private void fx_Dust(cLevel.e_Anim IN_FX, bool bFLIP_2D = false){
+		public void fx_Dust(cLevel.e_Anim IN_FX, bool bFLIP_2D = false){
+	      fx_Dust(this.transform.position, IN_FX, bFLIP_2D);
+		}
+
+        public virtual void fx_Dust(Vector3 IN_POS, cLevel.e_Anim IN_FX, bool bFLIP_2D = false){
           Quaternion qRot = Quaternion.identity;
           if(bFLIP_2D == true){
             if(this.bFaceRt == false){
@@ -549,9 +556,9 @@ namespace MTON.codeObjects{
             }
           }
           if(IN_FX != cLevel.e_Anim.None){ // set to -1 to prevent emission
-            __gCONSTANT._LEVEL.Emit_ANM(IN_FX, this.transform.position, qRot, ()=>{
-                return true ;
-                }, bFLIP_2D) ;
+			__gCONSTANT._LEVEL.Emit_ANM(IN_FX, IN_POS, qRot, (Transform xForm)=>{
+              return xForm ;
+            }, bFLIP_2D)   ;
           }
         }
 

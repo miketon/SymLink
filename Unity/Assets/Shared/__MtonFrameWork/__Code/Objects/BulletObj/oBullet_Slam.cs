@@ -68,8 +68,8 @@ public class oBullet_Slam : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
 	  oDamage.onHitd(-this.damag);
 	}
 	if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-	  __gCONSTANT._LEVEL.Emit_pFX(eHit, this.transform.position, Quaternion.identity, ()=>{
-        return true;
+	  __gCONSTANT._LEVEL.Emit_pFX(eHit, this.transform.position, Quaternion.identity, (Transform xForm)=>{
+	    return xForm;
 	  });
 	}
 //	this.transform.DOScale(Vector3.zero, 1.0f).SetEase(Ease.InBounce);
