@@ -107,10 +107,10 @@ namespace MTON.codeObjects{
 
         this.boss_MCANM[i] = __gUtility.AddComponent_mton<cMcanm>(this.boss_ANIMS[i].gameObject) ;
         __gUtility.GetCopyOf(this.boss_MCANM[i], this.mc)                                        ; // INTERESTING : deep copy
-        cAnimn tempAN = __gUtility.AddComponent_mton<cAnimn>(this.boss_ANIMS[i].gameObject)      ;
         this.boss_MCANM[i].anim = this.boss_ANIMS[i]                                             ;
-        this.boss_MCANM[i].anST = tempAN                                                         ;
+        this.boss_MCANM[i].anST = this.an                                                        ; // Using main parent anim to prevent jitter on state change
         this.boss_MCANM[i].animator_Hash_ID()                                                    ;
+		this.boss_MCANM[i].Init()                                                                ; // forcing subscription to anST
         RuntimeAnimatorController ac = this.boss_ANIMS[i].runtimeAnimatorController              ;
         float retDuration = 1.1109f                                                              ;
 
@@ -125,7 +125,7 @@ namespace MTON.codeObjects{
             //			  Debug.Log ("Found IDLE : " + retDuration + " : " + this);
           }
         }
-        this.anmEmit_duratn[i] = retDuration;
+        this.anmEmit_duratn[i] = retDuration; // Getting list of length(time) of each clip
       }
     }
 
@@ -142,23 +142,11 @@ namespace MTON.codeObjects{
         //		this.transform.position = this.vPos_Alrt ;
         // The queue is selected, then restarted by ttReset()
         if(!this.bossActive){
-          this.tt("LerpOverwrite").ttReset().ttAdd(delegate(){ //start loop
-              transform.position = this.vPos_Idle;
-              })
-          .ttLoop(curvTime, delegate(ttHandler loop){ //body of loop
-              if(bCurve){
-                kTimeCache        += loop.deltaTime                                            ;
-                float kPercent     = kTimeCache/curvTime                                       ;
-                float cLookUp      = curvALRT.Evaluate(kPercent)                               ;
-                transform.position = Vector3.Lerp(transform.position, this.vPos_Alrt, cLookUp) ;
-              }
-              else{
-                transform.position = Vector3.Lerp(transform.position, this.vPos_Alrt, loop.deltaTime);
-              }
-          })
-          .ttAdd(delegate(){ //on end of loop
-              this.bossActive = true; // prevents boss from rerising
-          });
+		  transform.DOMove(this.vPos_Alrt, this.curvTime).SetEase(this.curvALRT)
+            .OnComplete(()=>{
+              this.bossActive = true;
+            });
+
         }
         this.sAI.bIntel = true; //turn on range checking
       }
@@ -178,17 +166,11 @@ namespace MTON.codeObjects{
         transform.DOMove(this.vPos_Idle, this.curvTime).SetEase(this.curvALRT)
           .OnComplete(()=>{
               this.bossActive = false;
-              });
+          });
       }
     }
 
-    // can't be static because of teatime usage
-    //    public void mtonSEQUENCE<T>(float fTime, Func<T> fnInit, Func<T> fnLoop, Func<T> fnComplete, string fName="mtonSEQUENCE"){
-    //      this.tt(fName).ttReset()
-    //	  .ttAdd((Action)fnInit.Invoke())
-    //	  .ttLoop(fTime, fnLoop())
-    //	  .ttAdd(fnComplete());
-    //    }
+
 
     public override void doMove (Vector3 moveDir){
       //	  base.doMove (moveDir);
@@ -201,3 +183,32 @@ namespace MTON.codeObjects{
   }
 
 }
+
+
+/* TEATIME REFERENCE */
+
+//          this.tt("LerpOverwrite").ttReset().ttAdd(delegate(){ //start loop
+//              transform.position = this.vPos_Idle;
+//              })
+//          .ttLoop(curvTime, delegate(ttHandler loop){ //body of loop
+//              if(bCurve){
+//                kTimeCache        += loop.deltaTime                                            ;
+//                float kPercent     = kTimeCache/curvTime                                       ;
+//                float cLookUp      = curvALRT.Evaluate(kPercent)                               ;
+//                transform.position = Vector3.Lerp(transform.position, this.vPos_Alrt, cLookUp) ;
+//              }
+//              else{
+//                transform.position = Vector3.Lerp(transform.position, this.vPos_Alrt, loop.deltaTime);
+//              }
+//          })
+//          .ttAdd(delegate(){ //on end of loop
+//              this.bossActive = true; // prevents boss from rerising
+//          });
+
+    // can't be static because of teatime usage
+    //    public void mtonSEQUENCE<T>(float fTime, Func<T> fnInit, Func<T> fnLoop, Func<T> fnComplete, string fName="mtonSEQUENCE"){
+    //      this.tt(fName).ttReset()
+    //	  .ttAdd((Action)fnInit.Invoke())
+    //	  .ttLoop(fTime, fnLoop())
+    //	  .ttAdd(fnComplete());
+    //    }

@@ -33,13 +33,15 @@ public class oBullet_Slam : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   public void Init(){  
 	pCamera = __gCONSTANT._LEVEL.mCamera.transform;
     this.inScl = this.transform.localScale;
-    this.inPos = this.transform.position; //initial slam position
-    this.transform.position += this.initVec3;
+//    this.inPos = this.transform.position; //initial slam position
+//    this.transform.position += this.initVec3;
 //    Debug.Log(this + " Particle INIT ");
   }
   public void Play(){
 //	Debug.Log(this + " Shots Fired! ");
-    this.transform.DOLocalMove(this.inPos, timeSlam).SetEase(this.ac_SlamY).OnComplete(()=>{
+	this.inPos = this.transform.position; // store updated/target position
+	this.transform.position  += this.initVec3 ;
+    this.transform.DOLocalMoveY(this.inPos.y, timeSlam).SetEase(this.ac_SlamY).OnComplete(()=>{
 	  __gCONSTANT._LEVEL.fx_Dust(this.eDld, this.transform.position, true);
 	  this.transform.DOShakeScale(durShake);
 	  this.pCamera.DOShakePosition(durShake);
@@ -50,7 +52,6 @@ public class oBullet_Slam : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   }
   public void Stop(){
 //	Debug.Log(this + " Shots Stopped. ");
-    this.transform.position = this.inPos + this.initVec3; //reset back to starting pos
 	this.gameObject.SetActive(false);
   }
 
@@ -71,12 +72,7 @@ public class oBullet_Slam : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   private void OnEnable() { this.Play(); }
   private void OnDisable(){ 
     this.Stop(); 
-	this.transform.position   = this.inPos; //reset position
 	this.transform.localScale = this.inScl; //reset scale
-  }
-
-  public void Update(){
-//    this.transform.SetPosZ(0.0f); //for 2D
   }
 
   void OnCollisionEnter(Collision collision) {
