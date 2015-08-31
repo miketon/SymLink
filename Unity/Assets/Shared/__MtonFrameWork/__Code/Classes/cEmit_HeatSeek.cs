@@ -32,15 +32,15 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 		dist = v3Dir.magnitude;
 		if(dist < distLockd){
 		  rotMult = 1.0f-(dist/distLockd);
-		  posMult = 1.0f-(dist/distLockd);
+		  posMult += 1.0f-(dist/distLockd);
 		}
 		else{
 		  rotMult = 1.0f;
 		  posMult = 1.0f;
 		}
+
         float angle = Mathf.Atan2(v3Dir.y, v3Dir.x) * Mathf.Rad2Deg;
 		Quaternion newRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-//		Quaternion newRotation = Quaternion.AngleAxis(angle, Vector3.right);
 
 		transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * this.rotationSpeed * rotMult);
 		transform.position += -transform.right * this.moveSpeed * Time.deltaTime * posMult;
