@@ -89,6 +89,7 @@ namespace MTON.Class{
 
     public enum e_Enmy{
       Melee_00 ,
+	  Biter_00 ,
       Range_00 ,
       None     ,
     }
@@ -127,6 +128,7 @@ namespace MTON.Class{
       Grenade_00 ,
       HomingB_00 ,
 	  Flaming_00 ,
+	  Pillars_00 ,
       None       ,
     }
 
@@ -168,10 +170,16 @@ namespace MTON.Class{
     }
 
     // Walking Enemy
-    public Transform SpawnObj<T>(e_Enmy eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<T> funcToRun){
+    public Transform SpawnObj<T>(e_Enmy eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<Transform, T> funcToRun){
       if(eObj == e_Enmy.Melee_00){
-        funcToRun()                                        ;
-        return this.sPL.e_Walks[0].lpSpawn(IN_POS, IN_ROT) ;
+		Transform spawnedObj = this.sPL.e_Walks[0].lpSpawn(IN_POS, IN_ROT) ;
+        funcToRun(spawnedObj)                                              ;
+        return spawnedObj                                                  ;
+      }
+	  else if(eObj == e_Enmy.Biter_00){
+		Transform spawnedObj = this.sPL.e_Walks[1].lpSpawn(IN_POS, IN_ROT) ;
+        funcToRun(spawnedObj)                                              ;
+        return spawnedObj                                                  ;
       }
       else{
         return null;
@@ -308,6 +316,9 @@ namespace MTON.Class{
 	  else if(eBullet == e_Bllt.Flaming_00){ // Flaming Bullet
         Emit_Bullet(this.sPL.e_Bllts[2], IN_POS, IN_ROT, funcToRun, retPool);
       }
+//	  else if(eBullet == e_Bllt.Pillars_00){ // Satellite
+//        Emit_Bullet(this.sPL.e_Bllts[3], IN_POS, IN_ROT, funcToRun, retPool);
+//      }
     }
 
     // Bullets Slam : Thomper, Doors, Spikes

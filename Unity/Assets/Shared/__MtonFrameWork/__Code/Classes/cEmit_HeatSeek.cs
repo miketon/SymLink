@@ -1,14 +1,14 @@
-﻿using UnityEngine;
+﻿using UnityEngine        ;
 using System.Collections ;
 using MTON.Class         ;
 using MTON.Global        ;
 using MTON.codeObjects   ;
-using DG.Tweening;
+using DG.Tweening        ;
 
 public class cEmit_HeatSeek : cEmit_Bullet {
 
-	public Transform target;
-	public oPlayer _player;
+	public Transform target  ;
+	public oPlayer   _player ;
 
 	public AnimationCurve bHindCurve;
 	[SerializeField] //else can accidentally assign to lowercase var vs. setter var
@@ -19,8 +19,8 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 	  }
 	  set{
 		if(value != bhind){
-		  bhind = value;
-		  doBHind(value);
+		  bhind = value  ;
+		  doBHind(value) ;
 		}
 	  }
 	}
@@ -95,8 +95,25 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 		transform.SetPosZ(0.0f);
 	}
 
+	public cLevel.e_Enmy enemySpawnOnComplete;
+	public cLevel.fx_Hit enemySpawnFX;
+
 	public override void OnComplete (){
 		base.OnComplete ();
 		Debug.Log ("HEAT SEEKER COMPLETE ! " + this);
+		if(this.bHind){
+	      if(this.enemySpawnOnComplete != cLevel.e_Enmy.None){
+		    __gCONSTANT._LEVEL.SpawnObj(this.enemySpawnOnComplete, this.transform.position, Quaternion.identity, (Transform SpawnedObj)=>{
+		      float randomF = UnityEngine.Random.Range(1.0f, 3.0f) ;
+              Vector3 PositionSpawn = SpawnedObj.position + Vector3.up * 0.5f * randomF   ; // lift slightly off ground to allow for spin and pop
+			  SpawnedObj.position = PositionSpawn; // reuse for Spawn Effect
+			  __gCONSTANT._LEVEL.fx_Dust(this.enemySpawnFX, PositionSpawn);
+              return true                                                 ;
+		    });
+		  }
+		}
+		else{
+		  __gCONSTANT._LEVEL.fx_Dust(cLevel.fx_Hit.GunFlar_00, this.transform.position);
+		}
 	}
 }

@@ -127,7 +127,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.78999996, y: -.629999995, z: 0}
+  m_LocalPosition: {x: 82.6999969, y: -.629999995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 463932}
@@ -242,10 +242,10 @@ MonoBehaviour:
   bGround: 0
   bFaceRt: 1
   camrXFORM: {fileID: 437170}
-  OnDeathPrefab: {fileID: 0}
+  OnDeathPrefab: {fileID: 144154, guid: 35bfa8716fbbf4a3fae03b03dd6cc09f, type: 2}
   sDP:
-    dispAnmtr: {fileID: 0}
-    dispXFORM: {fileID: 0}
+    dispAnmtr: {fileID: 9527664}
+    dispXFORM: {fileID: 452032}
     riseXFORM: {fileID: 0}
     yRotOffset_3D: 0
     duckSc: 0
@@ -255,7 +255,8 @@ MonoBehaviour:
   sEM:
     fireRate: 0
     firePnts: []
-    eBlt: 0
+    eBlt: 
+    eSlm: 0
     eGun: 0
     eDst: 0
     eDjm: 0
@@ -267,6 +268,9 @@ MonoBehaviour:
     flapForce: 4.25
     dashForce: 3
     massForce: 1
+  fpIndex: 0
+  fpMod: 0
+  blMod: 0
   player: {fileID: 0}
   sAI:
     bIntel: 0
@@ -307,6 +311,10 @@ MonoBehaviour:
   _bPoseID: 
   _bPoseWN: 
   _bPoseLS: 
+  _tSpec_0: 
+  _tSpec_1: 
+  _tSpec_2: 
+  _tSpec_3: 
   _fAudio0: 
 --- !u!114 &11496114
 MonoBehaviour:

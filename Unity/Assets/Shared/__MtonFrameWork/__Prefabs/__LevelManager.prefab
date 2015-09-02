@@ -170,7 +170,9 @@ MonoBehaviour:
   boidsGp: []
   numPrefill: 15
   sPL:
-    e_Walks: []
+    e_Walks:
+    - {fileID: 462698, guid: 8c8df7616adf84319ad395275177b2ab, type: 2}
+    - {fileID: 451642, guid: 3e827a0a4c18646459be74a367bf4c6d, type: 2}
     e_Flyrs:
     - {fileID: 400000, guid: 86b819294dfa74a2cb30257d8bc3287c, type: 2}
     e_Bllts:
