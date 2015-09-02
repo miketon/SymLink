@@ -15,7 +15,7 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   public EMIT_ONCOMPLETE OnComplete_Delegate ; //delegate instance
 
   protected Rigidbody rBody ;
-  private Vector3   inScl ;
+  protected Vector3   inScl ;
   public  int       damag = 1       ;
   public  float     force = 1750.0f ;
   public cLevel.fx_Hit  eHit ; // enum for particle system to emit

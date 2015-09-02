@@ -126,6 +126,7 @@ namespace MTON.Class{
       LasrRay_00 ,
       Grenade_00 ,
       HomingB_00 ,
+	  Flaming_00 ,
       None       ,
     }
 
@@ -303,6 +304,9 @@ namespace MTON.Class{
       }
       else if(eBullet == e_Bllt.HomingB_00){ // Homing Bullet
         Emit_Bullet(this.sPL.e_Bllts[1], IN_POS, IN_ROT, funcToRun, retPool);
+      }
+	  else if(eBullet == e_Bllt.Flaming_00){ // Flaming Bullet
+        Emit_Bullet(this.sPL.e_Bllts[2], IN_POS, IN_ROT, funcToRun, retPool);
       }
     }
 

@@ -146,7 +146,6 @@ namespace MTON.codeObjects{
             .OnComplete(()=>{
               this.bossActive = true;
             });
-
         }
         this.sAI.bIntel = true; //turn on range checking
       }
