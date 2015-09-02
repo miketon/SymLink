@@ -92,5 +92,11 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 
 		transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * this.rotationSpeed * rotMult);
 		transform.position += transform.forward * this.moveSpeed * Time.deltaTime * posMult;
+		transform.SetPosZ(0.0f);
+	}
+
+	public override void OnComplete (){
+		base.OnComplete ();
+		Debug.Log ("HEAT SEEKER COMPLETE ! " + this);
 	}
 }

@@ -267,17 +267,21 @@ namespace MTON.codeObjects{
             }
             firePnt.gameObject.SetActive(true)    ;
 			if(this.sEM.eBlt.Length > 0){
-              if(this.sEM.eBlt[this.blIndex] != cLevel.e_Bllt.None){
+              if(this.sEM.eBlt[this.blIndex] != cLevel.e_Bllt.None){ //Firing actual bullets
                 __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eBlt[this.blIndex], firePnt.position, fireRot, (Transform xForm)=>{
+				  cEmit_Bullet cBullet = xForm.gameObject.GetComponent<cEmit_Bullet>() ;
+				  if(cBullet){
+				    cBullet.OnComplete();
+				  }
                   return xForm ;
                 })             ;
               }
 			}
-            if(this.sEM.eGun != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+            if(this.sEM.eGun != cLevel.fx_Hit.None){ // Flare : set to -1 to prevent emission
               __gCONSTANT._LEVEL.Emit_pFX(this.sEM.eGun, firePnt.position, Quaternion.identity, (Transform xForm)=>{
-                firePnt.gameObject.SetActive(false) ;
-                return xForm                        ;
-              })                                    ;
+                firePnt.gameObject.SetActive(false)                                  ;
+                return xForm ;
+              })             ;
             }
           }
           this.doFPMod(); // updates firing point index if greater than one

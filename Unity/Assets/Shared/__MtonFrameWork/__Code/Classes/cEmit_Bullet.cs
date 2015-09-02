@@ -37,10 +37,11 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
 	this.rBody.velocity = Vector3.zero ; //reset Velocity
   }
 
-  public void OnComplete(){
+  public virtual void OnComplete(){
 	if(OnComplete_Delegate != null){
 	  OnComplete_Delegate();
 	}
+    Debug.Log ("EMIT BULLET COMPLETE ! " + this);
   }
 
 #endregion
