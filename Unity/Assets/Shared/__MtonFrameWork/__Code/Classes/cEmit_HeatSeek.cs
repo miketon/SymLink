@@ -59,8 +59,6 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 
     }
 
-	public Vector3 v3Dir;
-
 	public override void Awake (){
 	  base.Awake ();
 	  this.rBody.isKinematic = true;
@@ -76,7 +74,7 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 	// Update is called once per frame
 	void Update () {
 //		this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(this.target.position - this.transform.position), this.mvC.rotationSpeed * Time.deltaTime);
-		v3Dir = transform.position - target.position;
+		Vector3 v3Dir = transform.position - target.position;
 		if(this._player){
 		  if(this._player.bFaceRt){
 		    if(v3Dir.x < 0.0f){
