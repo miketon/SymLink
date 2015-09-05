@@ -23,6 +23,8 @@ namespace MTON.Class{
       // Create a vector from the enemy to the player and store the angle between it and forward.
       Vector3 direction = XFORM_TARGET.position - transform.position  ;
       float   angle     = Vector3.Angle(direction, transform.forward) ;
+//      Debug.DrawLine(this.transform.position, XFORM_TARGET.position, Color.yellow, 0.1f, false) ;
+		Debug.DrawLine(this.transform.position, this.transform.position + this.degreeToPos(angle), Color.red, 0.1f, false) ;
        
       // If the angle between forward and where the player is, is less than half the angle of view...
 	  if(angle < IN_FOV * 0.5f){
@@ -32,6 +34,14 @@ namespace MTON.Class{
         lastPlayerSighting = XFORM_TARGET.transform.position;
       }
 	  return playerInSight;
+	}
+
+	public Vector3 degreeToPos(float IN_Angle){
+	  float radians = IN_Angle * Mathf.Deg2Rad;
+      float x = Mathf.Cos(radians);
+      float y = Mathf.Sin(radians);
+      Vector3 retPos = new Vector3(x, y, 0); //Vector2 is fine, if you're in 2D
+	  return retPos;
 	}
 
   }

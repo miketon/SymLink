@@ -112,7 +112,7 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 //		this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(this.target.position - this.transform.position), this.mvC.rotationSpeed * Time.deltaTime);
 		if(this._player){
 		  Vector3 v3Dir = transform.position - target.position;
-//		  this.rotateTowards(v3Dir);
+		  this.rotateTowards(v3Dir);
 		  this.bHind = bPlayerBehind(this._player, v3Dir);
 
  		  mvC.dist = v3Dir.magnitude;
