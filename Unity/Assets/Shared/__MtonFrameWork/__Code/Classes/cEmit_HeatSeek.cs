@@ -59,6 +59,8 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 
     }
 
+	public cSight si;
+
 	public override void Awake (){
 	  base.Awake ();
 	  this.rBody.isKinematic = true;
@@ -69,6 +71,7 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 	  this.mvC.rotationSpeed = UnityEngine.Random.Range(this.mvC.rotationSpeed, this.mvC.rotationSpeed * 1.5f);
 	  target = MTON.Global.__gCONSTANT._LEVEL.mPlayer;
 	  this._player = this.target.GetComponent<oPlayer>();
+	  this.si = __gUtility.AddComponent_mton<cSight>(this.gameObject)  ; 
 	}
 
 	// Update is called once per frame
