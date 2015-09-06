@@ -36,13 +36,6 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 		this.mvC = this.mvF;
 	  }
 	}
-//
-//	public float rotationSpeed = 1.0f;
-//    public float moveSpeed = 1.0f;
-//	public float distLockd = 1.0f; //decrease rotation
-//	public float dist = 1.0f;
-//	public float rotMult = 1.0f;
-//	public float posMult = 1.0f;
 
 	public  s_MoveProperties mvF = new s_MoveProperties(); //move Front  Properties
 	public  s_MoveProperties mvB = new s_MoveProperties(); //move Behind Properties
@@ -67,6 +60,7 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 	}
 
 	void Start(){
+      this.mvC = this.mvF; //copy this over, else mvC starts out with zero values, and heatseek won't respond
 	  mvC.moveSpeed = UnityEngine.Random.Range(mvC.moveSpeed, mvC.moveSpeed * 5.5f);
 	  this.mvC.rotationSpeed = UnityEngine.Random.Range(this.mvC.rotationSpeed, this.mvC.rotationSpeed * 1.5f);
 	  target = MTON.Global.__gCONSTANT._LEVEL.mPlayer;
@@ -97,40 +91,31 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 	  return retBHind;
 	}
 
-	void rotateTowards(Vector3 IN_DIR){
-
-		float angle = Mathf.Atan2(IN_DIR.y, IN_DIR.x) * Mathf.Rad2Deg;
-//		Quaternion newRotation = Quaternion.AngleAxis(angle, Vector3.right);
-		Quaternion newRotation = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.Euler(new Vector3(0.0f, -90.0f, 0.0f));
-
-		transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * this.mvC.rotationSpeed * mvC.rotMult);
-
-	}
-
 	// Update is called once per frame
 	void Update () {
-//		this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(this.target.position - this.transform.position), this.mvC.rotationSpeed * Time.deltaTime);
-		if(this._player){
-		  Vector3 v3Dir = transform.position - target.position;
-		  this.rotateTowards(v3Dir);
-		  this.bHind = bPlayerBehind(this._player, v3Dir);
 
- 		  mvC.dist = v3Dir.magnitude;
-		  if(mvC.dist < mvC.distLockd){
-		    mvC.rotMult = 1.0f-(mvC.dist/mvC.distLockd);
-		    mvC.posMult += 1.0f-(mvC.dist/mvC.distLockd);
+		if(this.target){
+		  Vector3 v3Dir = transform.position - target.position;
+		  if(this._player){
+		    this.bHind = bPlayerBehind(this._player, v3Dir);
 		  }
-		  else{
+		  Quaternion newRotation = this.si.doRotateTowards(v3Dir);
+		  transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * this.mvC.rotationSpeed * mvC.rotMult);
+ 		  mvC.dist = v3Dir.magnitude;
+//		  if(mvC.dist < mvC.distLockd){
+//		    mvC.rotMult = 1.0f-(mvC.dist/mvC.distLockd);
+//		    mvC.posMult += 1.0f-(mvC.dist/mvC.distLockd);
+//		  }
+//		  else{
 		    mvC.rotMult = 1.0f;
 		    mvC.posMult = 1.0f;
-		  }
+//		  }
 		}
 
 		//move Forward
 		transform.position += transform.forward * this.mvC.moveSpeed * Time.deltaTime * mvC.posMult;
 		transform.SetPosZ(0.0f);
 	}
-
 
 	public s_OnCompleteProperties sOC = new s_OnCompleteProperties();
     [Serializable] //MUST : add so that this custom data type can be displayed in the inspector

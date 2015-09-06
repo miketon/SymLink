@@ -168,8 +168,8 @@ MonoBehaviour:
   mvB:
     rotationSpeed: .5
     moveSpeed: 2
-    distLockd: 0
-    dist: 0
+    distLockd: 1
+    dist: 1
     rotMult: .5
     posMult: .5
   si: {fileID: 0}
@@ -279,11 +279,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: mvB.distLockd
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: mvB.dist
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: mvB.rotMult
