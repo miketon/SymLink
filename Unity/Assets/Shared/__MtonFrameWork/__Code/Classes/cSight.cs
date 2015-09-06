@@ -1,0 +1,69 @@
+﻿using UnityEngine        ;
+using System             ; //Must use for [Serializable] attr
+using System.Collections ;
+
+namespace MTON.Class{
+
+  public class cSight : MonoBehaviour {
+
+    private static Vector3 lastPlayerSighting;  // Reference to last global sighting of the player.
+
+	public s_ViewConeProperties sVW = new s_ViewConeProperties();
+    [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
+	public struct s_ViewConeProperties{
+			
+      public  float   FOVangle         ;          // Number of degrees, centred on forward, for the enemy see.
+      public  bool    bInSight         ;          // Whether or not the player is currently sighted.
+      public  Vector3 thisLastSighting ;          // Last place this enemy spotted the player.
+      public  Vector3 previousSighting ;          // Where the player was sighted last frame.
+
+	}
+
+	public bool doViewConeCheck(Transform XFORM_TARGET){
+	  return this.doViewConeCheck(XFORM_TARGET, sVW.FOVangle);
+	}
+
+	public float magFOV = 3.0f;
+	public float angFOV = 11.90f;
+
+	public bool doViewConeCheck(Transform XFORM_TARGET,float IN_FOV) {
+      // By default the player is not in sight.
+      sVW.bInSight = false ;
+
+	  // determine look Rotation
+      Vector3 direction = transform.position - XFORM_TARGET.position; 
+	  Quaternion rLook = this.doRotateTowards(direction);
+            
+      // Create a vector from the enemy to the player and store the angle between it and forward.
+	  angFOV     = Vector3.Angle(direction, transform.forward) ;
+//	  angFOV     = Vector3.Angle(rLook.eulerAngles, transform.forward) ;
+	  
+//      Debug.DrawLine(this.transform.position, XFORM_TARGET.position, Color.yellow, 0.1f, false) ;
+	  Debug.DrawLine(this.transform.position, this.transform.position + this.degreeToPos(angFOV) * magFOV, Color.red, 0.1f, false) ;
+       
+      // If the angle between forward and where the player is, is less than half the angle of view...
+	  if(angFOV < IN_FOV * 0.5f){
+        sVW.bInSight = true; // Player is in Sight
+        lastPlayerSighting = XFORM_TARGET.transform.position; // Set the last global sighting is the players current position.
+      }
+	  return sVW.bInSight;
+	}
+
+	public Quaternion doRotateTowards(Vector3 IN_DIR){
+		float angle = Mathf.Atan2(IN_DIR.y, IN_DIR.x) * Mathf.Rad2Deg;
+//		Quaternion rLook = Quaternion.AngleAxis(angle, Vector3.right);
+		Quaternion rLook = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.Euler(new Vector3(0.0f, -90.0f, 0.0f)); //offset to forward z
+		return rLook;
+	}
+
+	public Vector3 degreeToPos(float IN_Angle){
+	  float radians = IN_Angle * Mathf.Deg2Rad;
+      float x = Mathf.Cos(radians);
+      float y = Mathf.Sin(radians);
+      Vector3 retPos = new Vector3(x, y, 0); //Vector2 is fine, if you're in 2D
+	  return retPos;
+	}
+
+  }
+
+}

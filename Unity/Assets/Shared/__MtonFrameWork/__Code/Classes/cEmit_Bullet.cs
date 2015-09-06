@@ -15,7 +15,7 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   public EMIT_ONCOMPLETE OnComplete_Delegate ; //delegate instance
 
   protected Rigidbody rBody ;
-  private Vector3   inScl ;
+  protected Vector3   inScl ;
   public  int       damag = 1       ;
   public  float     force = 1750.0f ;
   public cLevel.fx_Hit  eHit ; // enum for particle system to emit
@@ -37,10 +37,11 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
 	this.rBody.velocity = Vector3.zero ; //reset Velocity
   }
 
-  public void OnComplete(){
+  public virtual void OnComplete(){
 	if(OnComplete_Delegate != null){
 	  OnComplete_Delegate();
 	}
+    Debug.Log ("EMIT BULLET COMPLETE ! " + this);
   }
 
 #endregion
@@ -65,8 +66,8 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
 	  oDamage.onHitd(-this.damag);
 	}
 	if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-	  __gCONSTANT._LEVEL.Emit_pFX(eHit, this.transform.position, Quaternion.identity, ()=>{
-        return true;
+	  __gCONSTANT._LEVEL.Emit_pFX(eHit, this.transform.position, Quaternion.identity, (Transform xForm)=>{
+        return xForm;
 	  });
 	}
 	this.rBody.AddForce(Vector3.up * 200.0f);

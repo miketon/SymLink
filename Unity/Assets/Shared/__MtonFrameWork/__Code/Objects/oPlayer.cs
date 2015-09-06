@@ -44,7 +44,8 @@ namespace MTON.codeObjects{
           public float       fireRate ; //0.15f = default
           public Transform[] firePnts ; //firing point
 
-          public cLevel.e_Bllt  eBlt ; // enum for bullet type to emit
+          public cLevel.e_Bllt[]  eBlt ; // enum for bullet type to emit
+		  public cLevel.e_Slams eSlm ; // enum for thomper/slam attack
           public cLevel.fx_Hit  eGun ; // enum for GunFlare particle system to emit
           public cLevel.e_Anim  eDst ; // enum for Dust Step  Animator Object to play
           public cLevel.e_Anim  eDjm ; // enum for Dust Jump  Animator Object to play
@@ -192,7 +193,8 @@ namespace MTON.codeObjects{
           //		Debug.Log ("OnEnable DeathPrefab : " + (int)cLevel.e_Icon.Death + OnDeathPrefab);
           OnDeathPrefab = __gCONSTANT._LEVEL.sPL.e_Icons[(int)cLevel.e_Icon.Death].gameObject;
         }
-        this.fpLength = this.sEM.firePnts.Length; // caching number of firingPoints 
+        this.fpLength = this.sEM.firePnts.Length ; // caching number of firingPoints 
+		this.blLength = this.sEM.eBlt.Length     ; 
       }
 
 
@@ -241,38 +243,56 @@ namespace MTON.codeObjects{
         }
       }
 
+	  protected int  blIndex = 0;
+	  public    bool blMod    = false ; // modulate between firing points?
+      private   int  blLength = 0     ;
+
+	  public virtual void doBLMod(){
+        if(this.blMod){
+          this.blIndex++                            ;
+          this.blIndex = this.blIndex%this.blLength ;
+        }
+      }
+
       public virtual void doAttk(bool bAttk){
         if(bAttk){
           if(this.fpLength > 0){
-            an.attkST          = cAnimn.eStateB.DN    ;
-            Transform firePnt  = this.sEM.firePnts[this.fpIndex] ; //facing right
-            Quaternion fireRot = firePnt.rotation     ;
+            an.attkST          = cAnimn.eStateB.DN               ;
+            Transform firePnt  = this.sEM.firePnts[this.fpIndex] ; 
+            Quaternion fireRot = firePnt.rotation                ;
             if(this.bFaceRt == false){                                      //Brute force guessing; Understanding of matrix not high enough
               Vector3 vRot = firePnt.rotation.eulerAngles                 ;
               vRot         = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z) ; //MAGIC NUMBER : Why y = 180.0f ??? Likely related to parent -x scale
               fireRot      = Quaternion.Euler(vRot)                       ;
             }
             firePnt.gameObject.SetActive(true)    ;
-            if(this.sEM.eBlt != cLevel.e_Bllt.None){
-              __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eBlt, firePnt.position, fireRot, ()=>{
-                  return true ;
-                  })          ;
-            }
-            if(this.sEM.eGun != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-              __gCONSTANT._LEVEL.Emit_pFX(this.sEM.eGun, firePnt.position, Quaternion.identity, ()=>{
-                  firePnt.gameObject.SetActive(false) ;
-                  return true                         ;
-                  })                                  ;
+			if(this.sEM.eBlt.Length > 0){
+              if(this.sEM.eBlt[this.blIndex] != cLevel.e_Bllt.None){ //Firing actual bullets
+                __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eBlt[this.blIndex], firePnt.position, fireRot, (Transform xForm)=>{
+				  cEmit_Bullet cBullet = xForm.gameObject.GetComponent<cEmit_Bullet>() ;
+				  if(cBullet){
+				    cBullet.OnComplete();
+				  }
+                  return xForm ;
+                })             ;
+              }
+			}
+            if(this.sEM.eGun != cLevel.fx_Hit.None){ // Flare : set to -1 to prevent emission
+              __gCONSTANT._LEVEL.Emit_pFX(this.sEM.eGun, firePnt.position, Quaternion.identity, (Transform xForm)=>{
+                firePnt.gameObject.SetActive(false)                                  ;
+                return xForm ;
+              })             ;
             }
           }
-          this.doFPMod();
+          this.doFPMod(); // updates firing point index if greater than one
+		  this.doBLMod();
         }
         else{
           if(this.bpowr){ 
-            an.attkST = cAnimn.eStateB.PW  ; //Power up attack
+            an.attkST = cAnimn.eStateB.PW   ; //Power up attack
           }
           else{
-            an.attkST = cAnimn.eStateB.Idle;
+            an.attkST = cAnimn.eStateB.Idle ;
           }
         }
       }
@@ -300,7 +320,7 @@ namespace MTON.codeObjects{
           this.bDpdX = false; //dPad x ignore
           this.bDpdY = true ; //dPad y listen
           if(this.bGround == true){
-            fx_Dust(this.sEM.eDld, true);
+		    __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.transform.position, true);
           }
         }
         else{
@@ -390,7 +410,7 @@ namespace MTON.codeObjects{
           if(bGround){    
             rb.Jump()                     ;
             an.jumpST = cAnimn.eStateB.DN ;
-            fx_Dust(this.sEM.eDjm, true)  ;
+			__gCONSTANT._LEVEL.fx_Dust(this.sEM.eDjm, this.transform.position, true)  ;
           }
           else{
             rb.Flap()                     ; //flap when not on ground
@@ -413,7 +433,7 @@ namespace MTON.codeObjects{
           }
         }
         if(bDuck){
-          fx_Dust(this.sEM.eDld, true);
+		  __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.transform.position, true);
         }	
       }
 
@@ -464,14 +484,14 @@ namespace MTON.codeObjects{
         public virtual void doIdlH(bool bIdlH){
           if(bIdlH == true){
             if(this.bGround){ // If onGround, kick up dust
-              this.fx_Dust(this.sEM.eDsl, true);
+			  __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDsl, this.xform.position, true);
             }
           }
         }
 
         public virtual void doFoot(bool bFoot){
           if(bFoot == true){
-            this.fx_Dust(this.sEM.eDst, true);
+		    __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDst, this.xform.position, true);
           }
         }
 
@@ -510,7 +530,7 @@ namespace MTON.codeObjects{
           this.bGround = IN_GROUND;
           if(IN_GROUND == true){
             an.grndST = cAnimn.eStateB.DN     ;
-            this.fx_Dust(this.sEM.eDld, true) ;
+			__gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.xform.position, true) ;
           }
           if(IN_GROUND == false){
             an.grndST = cAnimn.eStateB.UP;
@@ -532,28 +552,6 @@ namespace MTON.codeObjects{
 
 #endregion
 
-        private void fx_Dust(cLevel.fx_Hit IN_FX, bool bFLIP_2D = false){
-          if(IN_FX != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-            __gCONSTANT._LEVEL.Emit_pFX(IN_FX, this.transform.position, Quaternion.identity, ()=>{
-                return true ;
-                }, bFLIP_2D) ;
-          }
-        }
-
-        private void fx_Dust(cLevel.e_Anim IN_FX, bool bFLIP_2D = false){
-          Quaternion qRot = Quaternion.identity;
-          if(bFLIP_2D == true){
-            if(this.bFaceRt == false){
-              qRot = Quaternion.Euler(Vector3.up); // HACK : Passing anything other than identity signals negative scale
-            }
-          }
-          if(IN_FX != cLevel.e_Anim.None){ // set to -1 to prevent emission
-            __gCONSTANT._LEVEL.Emit_ANM(IN_FX, this.transform.position, qRot, ()=>{
-                return true ;
-                }, bFLIP_2D) ;
-          }
-        }
-
         public void doActV(bool bActvV){
           if(bActvV == true){
             if(rendr != null){
@@ -566,7 +564,6 @@ namespace MTON.codeObjects{
             }
           }
         }
-
 
 #region Class Utility
 

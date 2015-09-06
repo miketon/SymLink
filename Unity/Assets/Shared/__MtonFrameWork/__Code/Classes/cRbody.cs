@@ -50,8 +50,9 @@ namespace MTON.Class{
 
       __layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
       __layerEnemy  = LayerMask.GetMask (__gCONSTANT._ENEMY);
-      //	  __layerCheck  = ~((1<<__layerGround)|(1<<__layerEnemy)); //not layerGround or layerEnemy
-      __layerCheck  = (1<<__layerGround); //only layerGround
+	  __layerCheck  = 0;
+      	  __layerCheck  = ~((1<<__layerGround)|(1<<__layerEnemy)); //not layerGround or layerEnemy
+//      __layerCheck  = (1<<__layerGround); //only layerGround
 
       cRadius   = this.contrl.radius * this.transform.localScale.x  ;
       cHeight   = ccHeight(this.contrl)                             ; //halfing==assumes dToGround measured from center 
@@ -121,9 +122,10 @@ namespace MTON.Class{
     //Utilities -- Not extending xForm so reimplementing ground logic
 
     public virtual bool OnGround(){                                          //completely overriding mXform.OnGround() function
+      float bCentCheck = this.dirRayCheck(-Vector3.up, this.cHeight,  0.0f) ; //check center
       float bLeftCheck = this.dirRayCheck(-Vector3.up, this.cHeight,  this.cRadius * 0.8f) ; //check right edge
       float bRghtCheck = this.dirRayCheck(-Vector3.up, this.cHeight, -this.cRadius * 0.8f) ; //check left edge
-      if (bLeftCheck>0.0f || bRghtCheck>0.0f){                                //either edge connects, then character is onGround
+      if (bLeftCheck>0.0f || bRghtCheck>0.0f || bCentCheck>0.0f){                                //either edge connects, then character is onGround
         return true;
       }
       else{
@@ -200,7 +202,7 @@ namespace MTON.Class{
     }
 
     public float dirRayCheck(Vector3 IN_dir, float IN_magnitude, float IN_offSetX){
-      return dirRayCheck(IN_dir, IN_magnitude, IN_offSetX, cRbody.__layerCheck);
+      return dirRayCheck(IN_dir, IN_magnitude, IN_offSetX, __layerCheck);
     }
 
     public float dirRayCheck(Vector3 IN_dir, float IN_magnitude, float IN_offSetX, int IN_layerMask){    //direction, magnitude and x offset

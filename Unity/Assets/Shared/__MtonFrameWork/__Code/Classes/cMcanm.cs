@@ -227,6 +227,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	}
 
 	public void OnTrig(int iTrig){
+	  Debug.Log (this + " ONTRIGGGGER " + iTrig);
 	  if(iTrig == 0){
 	    if(_tSpec_0_ID != 0){
 		  anim.SetTrigger(_tSpec_0_ID);
@@ -234,17 +235,17 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	  }
 	  else if(iTrig == 1){
 		if(_tSpec_1_ID != 1){
-			anim.SetTrigger(_tSpec_1_ID);
+		  anim.SetTrigger(_tSpec_1_ID);
 		}
 	  }
 	  else if(iTrig == 2){
 		if(_tSpec_2_ID != 2){
-			anim.SetTrigger(_tSpec_2_ID);
+	      anim.SetTrigger(_tSpec_2_ID);
 		}
 	  }
 	  else if(iTrig == 3){
 		if(_tSpec_3_ID != 3){
-			anim.SetTrigger(_tSpec_3_ID);
+		  anim.SetTrigger(_tSpec_3_ID);
 		}
 	  }
 	}
