@@ -31,11 +31,6 @@ namespace MTON.codeObjects{
         public cLevel.e_Slams   eSlm ; // enum for thomper/slam attack
         public cLevel.fx_Hit    eGun ; // enum for GunFlare particle system to emit
 
-        public cLevel.e_Anim    eDst ; // enum for Dust Step  Animator Object to play
-        public cLevel.e_Anim    eDjm ; // enum for Dust Jump  Animator Object to play
-        public cLevel.e_Anim    eDld ; // enum for Dust Land  Animator Object to play
-        public cLevel.e_Anim    eDsl ; // enum for Dust Slide Animator Object to play
-
       }
 
     public s_ModulateProperties sFP_mod = new s_ModulateProperties(); // firing Points modulations
@@ -132,9 +127,9 @@ namespace MTON.codeObjects{
         StartCoroutine(WhileRapidFire());
         this.bDpdX = false; //dPad x ignore
         this.bDpdY = true ; //dPad y listen
-        if(IN_BGROUND == true){
-          __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.transform.position, true);
-        }
+//        if(IN_BGROUND == true){
+//          __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.transform.position, true);
+//        }
       }
       else{
         this.bDpdX = true  ; //dPad x listen

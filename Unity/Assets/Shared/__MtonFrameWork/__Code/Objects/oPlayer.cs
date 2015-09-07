@@ -8,7 +8,7 @@ using DG.Tweening        ; //import DemiGiant DoTween
 namespace MTON.codeObjects{
 
   [RequireComponent (typeof (CharacterController))]
-    [RequireComponent (typeof (cMcanm))] //must have to call mecanim...need fields so can not populate later
+    [RequireComponent (typeof (cMcanm))  ] //must have to call mecanim...need fields so can not populate later
     public class oPlayer : MonoBehaviour{
 
       public  bool       b_2D    = true         ;
@@ -153,12 +153,13 @@ namespace MTON.codeObjects{
       protected cInput              io       ; //protected; can be replaced with ai; vs. input controller
       protected cRbody              rb       ; //protected; to access collider volume info
 
-      public    cAnimn  an ; // Animation Listener making public so other components can access delegates...
-	  public    cRadar  si ; // Like cSight
-      private   cEquip  eq ;
-      private   cHealth ht ;
-      private   cTween  tw ;
-      protected cMcanm  mc ; // mecanim handler
+      protected cAnimn   an ; // Animation Listener making public so other components can access delegates...
+      protected cMcanm   mc ; // mecanim handler
+	  protected oEmitter fp ; // firing point - Handles emission/rapidfire ..etc
+	  public    cRadar   si ; // Auto detection for homing and other functions
+      private   cEquip   eq ;
+      private   cHealth  ht ;
+      private   cTween   tw ;
 
       private cEmit_Audio au ;
 
@@ -313,7 +314,6 @@ namespace MTON.codeObjects{
       private bool bDpdX         = true  ;
       private bool bDpdY         = false ;
 
-      private Vector3 vDstOffSet = Vector3.up * 1.85f ;
       public virtual void doPowr(bool bPowr){
         this.bpowr = bPowr;
         if(bPowr == true){
@@ -571,10 +571,14 @@ namespace MTON.codeObjects{
 
         public virtual void init_Components(){
 
-          rb = __gUtility.AddComponent_mton<cRbody>(this.gameObject)  ; 
-          ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject) ; //HACK : Order matters, must be before an because of delegates
-          an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject)  ;
-          si = __gUtility.AddComponent_mton<cRadar>(this.gameObject)  ;
+          rb = __gUtility.AddComponent_mton<cRbody>(this.gameObject)    ; 
+          ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject)   ; //HACK : Order matters, must be before an because of delegates
+          an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject)    ;
+          si = __gUtility.AddComponent_mton<cRadar>(this.gameObject)    ;
+          fp = __gUtility.AddComponent_mton<oEmitter>(this.gameObject)  ;
+			fp.sEM.fireRate = this.sEM.fireRate ;
+			fp.sEM.firePnts = this.sEM.firePnts ;
+			fp.sEM.eBlt     = this.sEM.eBlt     ;
           //      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject)  ;
           io = __gUtility.AddComponent_mton<cInput>(this.gameObject)  ;
           if(this.b_2D == false){
