@@ -153,11 +153,12 @@ namespace MTON.codeObjects{
       protected cInput              io       ; //protected; can be replaced with ai; vs. input controller
       protected cRbody              rb       ; //protected; to access collider volume info
 
-      protected cAnimn  an ;
+      public    cAnimn  an ; // Animation Listener making public so other components can access delegates...
+	  public    cRadar  si ; // Like cSight
       private   cEquip  eq ;
       private   cHealth ht ;
       private   cTween  tw ;
-      protected cMcanm  mc ; //mecanim handler
+      protected cMcanm  mc ; // mecanim handler
 
       private cEmit_Audio au ;
 
@@ -385,6 +386,7 @@ namespace MTON.codeObjects{
           if(this.bDpdX == true){ //prevents spamming of Idle
             an.hState = cAnimn.eStateH.Idle;
           }
+		  si.doRadar();
         }
         //duck/crouch state
         if(Mathf.Abs(moveDir.y) > 0.001f){
@@ -572,6 +574,7 @@ namespace MTON.codeObjects{
           rb = __gUtility.AddComponent_mton<cRbody>(this.gameObject)  ; 
           ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject) ; //HACK : Order matters, must be before an because of delegates
           an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject)  ;
+          si = __gUtility.AddComponent_mton<cRadar>(this.gameObject)  ;
           //      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject)  ;
           io = __gUtility.AddComponent_mton<cInput>(this.gameObject)  ;
           if(this.b_2D == false){

@@ -4,23 +4,36 @@ using System.Collections ;
 
 namespace MTON.Class{
 
-  public class cSight : MonoBehaviour {
+  public class cRadar : MonoBehaviour {
 
     private static Vector3 lastPlayerSighting;  // Reference to last global sighting of the player.
 
 	public s_ViewConeProperties sVW = new s_ViewConeProperties();
     [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
 	public struct s_ViewConeProperties{
-			
-      public  float   FOVangle         ;          // Number of degrees, centred on forward, for the enemy see.
-      public  bool    bInSight         ;          // Whether or not the player is currently sighted.
-      public  Vector3 thisLastSighting ;          // Last place this enemy spotted the player.
-      public  Vector3 previousSighting ;          // Where the player was sighted last frame.
+
+	  public  GameObject gTarget          ;
+	  public  string     l_Search         ;
+	  public  string     t_Search         ;
+      public  float      FOVangle         ;          // Number of degrees, centred on forward, for the enemy see.
+      public  bool       bInSight         ;          // Whether or not the player is currently sighted.
+      public  Vector3    thisLastSighting ;          // Last place this enemy spotted the player.
+      public  Vector3    previousSighting ;          // Where the player was sighted last frame.
 
 	}
 
 	public bool doViewConeCheck(Transform XFORM_TARGET){
 	  return this.doViewConeCheck(XFORM_TARGET, sVW.FOVangle);
+	}
+
+	public bool doRadar(){
+//	  Debug.Log("DO RADAR : Layer : " + this.sVW.l_Search + " Tag : "+ this.sVW.t_Search + this);
+	  if(this.sVW.l_Search!=""){
+	    return true;
+	  }
+	  else{
+	    return false;
+	  }
 	}
 
 	public float magFOV = 3.0f;
