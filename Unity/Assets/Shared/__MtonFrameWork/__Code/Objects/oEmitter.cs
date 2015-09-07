@@ -9,7 +9,8 @@ namespace MTON.codeObjects{
 
     public delegate void OnEMIT(bool bEmit) ; //set up delegate
 	public OnEMIT OnEmitDelegate            ; //delegate instance
-	public OnEMIT OnPowrDelegate            ; //delegate instance
+	public OnEMIT OnFlarDelegate            ; //delegate instance
+	public OnEMIT OnRapdDelegate            ; //delegate instance
 
     //	public virtual void OnEnable(){
     //        io.OnAttkDelegate      += doAttk ; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
@@ -57,15 +58,21 @@ namespace MTON.codeObjects{
 
 #endregion
 
-	public virtual void doEmit(bool bEmit){
+	public virtual void doEmit(bool bEmit){ //on Bullet Emission (projectile)
 	  if(OnEmitDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
 	    OnEmitDelegate(bEmit);
       }
 	}
 
-	public virtual void doPowr(bool bPowr){
-	  if(OnEmitDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
-	    OnPowrDelegate(bPowr);
+	public virtual void doFlar(bool bFlar){ //on Firing Point Emission (flare)
+	  if(OnFlarDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
+	    OnFlarDelegate(bFlar);
+      }
+	}
+
+	public virtual void doRapd(bool bRapd){ //on Power Up Emission (rapid)
+	  if(OnRapdDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
+	    OnRapdDelegate(bRapd);
       }
 	}
 
@@ -105,7 +112,7 @@ namespace MTON.codeObjects{
         this.sBL_mod.doMod();
       }
       else{
-        if(this.bpowr){ 
+        if(this.brapd){ 
           //            an.attkST = cAnimn.eStateB.PW   ; //Power up attack
         }
         else{
@@ -116,14 +123,14 @@ namespace MTON.codeObjects{
 
 #region RAPIDFIRE ---
 
-	private bool bpowr         = false ;
+	private bool brapd         = false ;
     private bool bDpdX         = true  ;
     private bool bDpdY         = false ;
 
-    public virtual void doRapidFire(bool bPowr, bool IN_BGROUND=true){
-	  this.bpowr = bPowr;
-	  this.doPowr(bPowr); //trigger delegate
-      if(bPowr == true){
+    public virtual void doRapidFire(bool bRapd, bool IN_BGROUND=true){
+	  this.brapd = bRapd;
+	  this.doRapd(bRapd); //trigger delegate
+      if(bRapd == true){
         StartCoroutine(WhileRapidFire());
         this.bDpdX = false; //dPad x ignore
         this.bDpdY = true ; //dPad y listen
@@ -138,7 +145,7 @@ namespace MTON.codeObjects{
     }
 
     public IEnumerator WhileRapidFire(){
-      while(this.bpowr == true){
+      while(this.brapd == true){
         //          an.hState = cAnimn.eStateH.Plnt;
         if(this.mt_TimeStep(this.sEM.fireRate)){
           //	      Debug.Log ("Rapid Fire : " + Time.time); //HACK : time print doesn't match fireRate why???
@@ -166,12 +173,16 @@ namespace MTON.codeObjects{
     }
 	
 #endregion
+
+	public void Init(){
+	  //set mod obj iLength based on emmitter list length
+      this.sFP_mod.iLength = this.sEM.firePnts.Length ;
+      this.sBL_mod.iLength = this.sEM.eBlt.Length     ;
+	}
 		
     // Use this for initialization
     void Start () {
-      //set mod obj iLength based on emmitter list length
-      this.sFP_mod.iLength = this.sEM.firePnts.Length ;
-      this.sBL_mod.iLength = this.sEM.eBlt.Length     ;
+	  Init();
     }
 
     // Update is called once per frame

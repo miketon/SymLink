@@ -195,8 +195,6 @@ namespace MTON.codeObjects{
           //		Debug.Log ("OnEnable DeathPrefab : " + (int)cLevel.e_Icon.Death + OnDeathPrefab);
           OnDeathPrefab = __gCONSTANT._LEVEL.sPL.e_Icons[(int)cLevel.e_Icon.Death].gameObject;
         }
-        this.fpLength = this.sEM.firePnts.Length ; // caching number of firingPoints 
-		this.blLength = this.sEM.eBlt.Length     ; 
       }
 
 
@@ -234,33 +232,11 @@ namespace MTON.codeObjects{
 
 #region ATTACKLOGIC
 
-      public  int  fpIndex  = 0     ; // firing point index
-      public  bool fpMod    = false ; // modulate between firing points?
-      private int  fpLength = 0     ;
-
-      public virtual void doFPMod(){
-        if(this.fpMod){
-          this.fpIndex++                            ;
-          this.fpIndex = this.fpIndex%this.fpLength ;
-        }
-      }
-
-	  protected int  blIndex = 0;
-	  public    bool blMod    = false ; // modulate between firing points?
-      private   int  blLength = 0     ;
-
-	  public virtual void doBLMod(){
-        if(this.blMod){
-          this.blIndex++                            ;
-          this.blIndex = this.blIndex%this.blLength ;
-        }
-      }
-
       public virtual void doAttk(bool bAttk){
         if(bAttk){
-          if(this.fpLength > 0){
+          if(this.sEM.firePnts.Length > 0){
             an.attkST          = cAnimn.eStateB.DN               ;
-            Transform firePnt  = this.sEM.firePnts[this.fpIndex] ; 
+            Transform firePnt  = this.sEM.firePnts[this.fp.sBL_mod.iIndex] ; 
             Quaternion fireRot = firePnt.rotation                ;
             if(this.bFaceRt == false){                                      //Brute force guessing; Understanding of matrix not high enough
               Vector3 vRot = firePnt.rotation.eulerAngles                 ;
@@ -269,8 +245,8 @@ namespace MTON.codeObjects{
             }
             firePnt.gameObject.SetActive(true)    ;
 			if(this.sEM.eBlt.Length > 0){
-              if(this.sEM.eBlt[this.blIndex] != cLevel.e_Bllt.None){ //Firing actual bullets
-                __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eBlt[this.blIndex], firePnt.position, fireRot, (Transform xForm)=>{
+              if(this.sEM.eBlt[this.fp.sBL_mod.iIndex] != cLevel.e_Bllt.None){ //Firing actual bullets
+                __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eBlt[this.fp.sBL_mod.iIndex], firePnt.position, fireRot, (Transform xForm)=>{
 				  cEmit_Bullet cBullet = xForm.gameObject.GetComponent<cEmit_Bullet>() ;
 				  if(cBullet){
 				    cBullet.OnComplete();
@@ -286,8 +262,8 @@ namespace MTON.codeObjects{
               })             ;
             }
           }
-          this.doFPMod(); // updates firing point index if greater than one
-		  this.doBLMod();
+		  this.fp.sFP_mod.doMod();
+		  this.fp.sBL_mod.doMod();
         }
         else{
           if(this.bpowr){ 
@@ -579,6 +555,7 @@ namespace MTON.codeObjects{
 			fp.sEM.fireRate = this.sEM.fireRate ;
 			fp.sEM.firePnts = this.sEM.firePnts ;
 			fp.sEM.eBlt     = this.sEM.eBlt     ;
+			fp.Init();
           //      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject)  ;
           io = __gUtility.AddComponent_mton<cInput>(this.gameObject)  ;
           if(this.b_2D == false){
