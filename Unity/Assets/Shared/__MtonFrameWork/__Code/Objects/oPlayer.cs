@@ -242,6 +242,7 @@ namespace MTON.codeObjects{
               Vector3 vRot = firePnt.rotation.eulerAngles                 ;
               vRot         = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z) ; //MAGIC NUMBER : Why y = 180.0f ??? Likely related to parent -x scale
               fireRot      = Quaternion.Euler(vRot)                       ;
+//			  fireRot = firePnt.rotation * Quaternion.Euler(new Vector3(0.0f, 180.0f, 0.0f));
             }
             firePnt.gameObject.SetActive(true)    ;
 			if(this.sEM.eBlt.Length > 0){
