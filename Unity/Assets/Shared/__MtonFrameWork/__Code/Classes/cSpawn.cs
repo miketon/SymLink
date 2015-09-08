@@ -39,13 +39,16 @@ namespace MTON.Class{
 		    int           indexFP = this.sFP_mod.iIndex                   ; //which Firing Point to emit from
 		    Transform     firePnt = this.sEM.firePnts[indexFP]            ; 
             Quaternion    fireRot = firePnt.rotation                      ;
+			Quaternion    initRot = firePnt.rotation;
             if(IN_FACEFORWARD == false){                                    //Brute force guessing; Understanding of matrix not high enough
               Vector3 vRot = firePnt.rotation.eulerAngles                 ;
               vRot         = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z) ; //MAGIC NUMBER : Why y = 180.0f ??? Likely related to parent -x scale
               fireRot      = Quaternion.Euler(vRot)                       ;
             }
+			firePnt.rotation = fireRot                                    ;
             firePnt.gameObject.SetActive(true)                            ;
 		    this.doEmit(firePnt, oBullet)                                 ;
+			firePnt.rotation = initRot;
 
             this.sFP_mod.doMod()                                          ; //modulate to next firing Point
             this.sBL_mod.doMod()                                          ; //modulate to next bullet
@@ -72,22 +75,22 @@ namespace MTON.Class{
 	  }
 	}
 
-    public virtual void doRapidFire(bool bRapid, bool IN_BGROUND=true){
+    public virtual void doRapidFire(bool bRapid, bool IN_FACERIGHT=true){
 	  this.onRapid = bRapid;
       if(this.onRapid == true){
-        StartCoroutine(WhileRapidFire());
+	    StartCoroutine(WhileRapidFire(IN_FACERIGHT));
       }
     }
 
-    public IEnumerator WhileRapidFire(){
+    public IEnumerator WhileRapidFire(bool IN_FACERIGHT=true){
       while(this.onRapid == true){
         //          an.hState = cAnimn.eStateH.Plnt;
         if(this.mt_TimeStep(this.sEM.fireRate)){
           //	      Debug.Log ("Rapid Fire : " + Time.time); //HACK : time print doesn't match fireRate why???
-          this.doSinglFire(true);
+		  this.doSinglFire(true, IN_FACERIGHT);
         }
         else{
-          this.doSinglFire(false);
+		  this.doSinglFire(false, IN_FACERIGHT);
         }
         yield return null;
       }

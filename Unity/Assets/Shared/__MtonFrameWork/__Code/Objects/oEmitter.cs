@@ -6,9 +6,22 @@ using MTON.Global        ;
 
 namespace MTON.codeObjects{
   public class oEmitter : MonoBehaviour {
+		
+    public virtual void OnEnable(){
+	  this.Init();
+	  if(this.em){
+	    em.OnEmitDelegate += this.doEmit  ;
+		em.OnRapdDelegate += this.doRapid ;
+	  }
+	}
 
-    public  cSpawn.s_EmitProperties sEM = new cSpawn.s_EmitProperties();
-	private cSpawn em;
+    public virtual void OnDisable(){
+	  em.OnEmitDelegate -= this.doEmit  ;
+	  em.OnRapdDelegate -= this.doRapid ; 
+	}
+
+    public cSpawn.s_EmitProperties sEM = new cSpawn.s_EmitProperties();
+	public cSpawn em;
 
 	void Start(){
 	  this.Init();
@@ -41,19 +54,6 @@ namespace MTON.codeObjects{
 
 	private void doRapid(bool bRapid){
 	  Debug.Log ("RAPID TOGGLE : " + bRapid);
-	}
-
-    public virtual void OnEnable(){
-	  this.Init();
-	  if(this.em){
-	    em.OnEmitDelegate += this.doEmit  ;
-		em.OnRapdDelegate += this.doRapid ;
-	  }
-	}
-
-    public virtual void OnDisable(){
-	  em.OnEmitDelegate -= this.doEmit  ;
-	  em.OnRapdDelegate -= this.doRapid ; 
 	}
 
     // Update is called once per frame
