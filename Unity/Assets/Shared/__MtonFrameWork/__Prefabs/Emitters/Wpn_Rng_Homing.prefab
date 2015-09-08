@@ -230,19 +230,7 @@ MonoBehaviour:
     - {fileID: 421204}
     eBlt: 00000000
     eSlm: 0
-    eGun: 2
-    eDst: 0
-    eDjm: 0
-    eDld: 0
-    eDsl: 0
-  sFP_mod:
-    bMod: 1
-    iIndex: 0
-    iLength: 0
-  sBL_mod:
-    bMod: 1
-    iIndex: 0
-    iLength: 0
+    eGun: 0
 --- !u!114 &11472736
 MonoBehaviour:
   m_ObjectHideFlags: 1

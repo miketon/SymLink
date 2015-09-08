@@ -1,4 +1,4 @@
-﻿using UnityEngine        ;
+using UnityEngine        ;
 using System.Collections ;
 using System             ; //Must use for [Serializable] attr
 using MTON.Interface     ;
@@ -127,6 +127,14 @@ namespace MTON.Class{
       }
 
 	public void Init(){
+	  if(this.sEM.firePnts==null){ // if not initialized, go ahead and init
+	    this.sEM.firePnts = new Transform[1];
+		this.sEM.firePnts[0] = this.transform;
+	  }
+	  if(this.sEM.eBlt==null){
+	    this.sEM.eBlt = new cLevel.e_Bllt[1];
+		this.sEM.eBlt[0] = cLevel.e_Bllt.Projctl_00;
+	  }
 	  //set mod obj iLength based on emitter list length
       this.sFP_mod.iLength = this.sEM.firePnts.Length ;
       this.sBL_mod.iLength = this.sEM.eBlt.Length     ;
@@ -137,18 +145,15 @@ namespace MTON.Class{
 	  Init();
     }
 
-#endregion
+	void Awake(){
+	  Init();
+	}
 
-    // Update is called once per frame
-    void Update () {
-      if(Input.GetKeyDown(KeyCode.Space)){
-        this.doSinglFire(true);
-		this.doRapidFire(true);
-      }
-	  else if(Input.GetKeyUp(KeyCode.Space)){
-		this.doRapidFire(false);
-	  }
-    }
+	void OnEnable(){
+	  Init();
+	}
+
+#endregion
 
   }
 

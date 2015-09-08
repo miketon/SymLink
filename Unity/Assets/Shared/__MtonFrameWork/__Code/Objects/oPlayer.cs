@@ -155,7 +155,7 @@ namespace MTON.codeObjects{
 
       protected cAnimn   an ; // Animation Listener making public so other components can access delegates...
       protected cMcanm   mc ; // mecanim handler
-	  protected oEmitter fp ; // firing point - Handles emission/rapidfire ..etc
+	  protected cSpawn   fp ; // firing point - Handles emission/rapidfire ..etc
 	  public    cRadar   si ; // Auto detection for homing and other functions
       private   cEquip   eq ;
       private   cHealth  ht ;
@@ -552,7 +552,7 @@ namespace MTON.codeObjects{
           ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject)   ; //HACK : Order matters, must be before an because of delegates
           an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject)    ;
           si = __gUtility.AddComponent_mton<cRadar>(this.gameObject)    ;
-          fp = __gUtility.AddComponent_mton<oEmitter>(this.gameObject)  ;
+          fp = __gUtility.AddComponent_mton<cSpawn>(this.gameObject)    ;
 			fp.sEM.fireRate = this.sEM.fireRate ;
 			fp.sEM.firePnts = this.sEM.firePnts ;
 			fp.sEM.eBlt     = this.sEM.eBlt     ;
