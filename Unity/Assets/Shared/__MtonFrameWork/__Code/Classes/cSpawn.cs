@@ -145,33 +145,32 @@ namespace MTON.Class{
         }
       }
 
+	// copy source properties
+	public void Init(s_EmitProperties IN_SRC){
+	  this.sEM.fireRate = IN_SRC.fireRate ;
+	  this.sEM.firePnts = IN_SRC.firePnts ;
+	  this.sEM.eBlt     = IN_SRC.eBlt     ;
+      this.sEM.bModFP   = IN_SRC.bModFP   ; // modulating firing point
+	  this.sEM.bModBL   = IN_SRC.bModBL   ; // modulating bullets
+
+	  this.Init();
+	}
+	
+	// init modulation properties
 	public void Init(){
 	  if(this.sEM.firePnts==null){ // if not initialized, go ahead and init
-	    this.sEM.firePnts = new Transform[1];
-		this.sEM.firePnts[0] = this.transform;
+	    this.sEM.firePnts    = new Transform[1] ;
+		this.sEM.firePnts[0] = this.transform   ;
 	  }
 	  if(this.sEM.eBlt==null){
-	    this.sEM.eBlt = new cLevel.e_Bllt[1];
-		this.sEM.eBlt[0] = cLevel.e_Bllt.Projctl_00;
+	    this.sEM.eBlt    = new cLevel.e_Bllt[1]     ;
+		this.sEM.eBlt[0] = cLevel.e_Bllt.Projctl_00 ;
 	  }
 	  //set mod obj iLength based on emitter list length
       this.sFP_mod.iLength = this.sEM.firePnts.Length ;
       this.sBL_mod.iLength = this.sEM.eBlt.Length     ;
 	  this.sFP_mod.bMod    = this.sEM.bModFP          ;
 	  this.sBL_mod.bMod    = this.sEM.bModBL          ;
-	}
-		
-    // Use this for initialization
-    void Start () {
-	  Init();
-    }
-
-	void Awake(){
-	  Init();
-	}
-
-	void OnEnable(){
-	  Init();
 	}
 
 #endregion

@@ -17,12 +17,7 @@ namespace MTON.codeObjects{
 	void Init(){
 	  if(!this.em){
 	    em = __gUtility.AddComponent_mton<cSpawn>(this.gameObject)  ;
-//      __gUtility.GetCopyOf(this.em.sEM, this.sEM)                 ; // INTERESTING : deep copy, doesn't work on structure
-	    em.sEM.fireRate = this.sEM.fireRate ;
-	    em.sEM.firePnts = this.sEM.firePnts ;
-	    em.sEM.eBlt     = this.sEM.eBlt     ;
-		em.sEM.bModFP   = this.sEM.bModFP   ; // modulating firing point
-		em.sEM.bModBL   = this.sEM.bModBL   ; // modulating bullets
+		em.Init(this.sEM)                                           ; //copy this.sEM settings to cSpawn obj
 	  }
 	}
 
@@ -51,14 +46,14 @@ namespace MTON.codeObjects{
     public virtual void OnEnable(){
 	  this.Init();
 	  if(this.em){
-	    em.OnEmitDelegate += this.doEmit;
-		em.OnRapdDelegate += this.doRapid;
+	    em.OnEmitDelegate += this.doEmit  ;
+		em.OnRapdDelegate += this.doRapid ;
 	  }
 	}
 
     public virtual void OnDisable(){
-	  em.OnEmitDelegate -= this.doEmit;
-	  em.OnRapdDelegate -= this.doRapid;
+	  em.OnEmitDelegate -= this.doEmit  ;
+	  em.OnRapdDelegate -= this.doRapid ; 
 	}
 
     // Update is called once per frame
