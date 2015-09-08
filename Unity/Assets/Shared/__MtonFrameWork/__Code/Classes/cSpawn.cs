@@ -7,22 +7,26 @@ using MTON.Global        ;
 namespace MTON.Class{
   public class cSpawn : MonoBehaviour {
 
-    public delegate void OnEMIT(Transform IN_XFORM, int IN_OBJ) ; //set up delegate
-    public delegate void OnRAPD(bool bRapd) ; //set up delegate
+    public delegate void OnEMIT(Transform IN_XFORM, cLevel.e_Bllt IN_OBJ) ; //set up delegate
+    public delegate void OnRAPD(bool bRapid) ; //set up delegate
 	public OnEMIT OnEmitDelegate            ; //delegate instance
 	public OnRAPD OnRapdDelegate            ; //delegate instance
 
-	public virtual void doEmit(Transform IN_XFORM, int IN_OBJ){ //on Bullet Emission (projectile)
+#region Delegate private Functions 
+
+	private void doEmit(Transform IN_XFORM, cLevel.e_Bllt IN_OBJ){ //on Bullet Emission (projectile)
 	  if(OnEmitDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
 	    OnEmitDelegate(IN_XFORM, IN_OBJ);
       }
 	}
 
-	public virtual void doRapd(bool bRapd){ //on Power Up Emission (rapid)
+	private void doRapd(bool bRapid){ //on Power Up Emission (rapid)
 	  if(OnRapdDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
-	    OnRapdDelegate(bRapd);
+	    OnRapdDelegate(bRapid);
       }
 	}
+
+#endregion
 
 #region SINGLESHOT ---
 
@@ -30,17 +34,18 @@ namespace MTON.Class{
       if(bAttk){
         if(this.sEM.firePnts.Length > 0){ // Firing Points exist
           if(this.sEM.eBlt.Length > 0){   // Bullets exist
-		    int        indexBL = this.sBL_mod.iIndex                      ; //which Bullet Object to launch
-		    int        indexFP = this.sFP_mod.iIndex                      ; //which Firing Point to emit from
-		    Transform  firePnt = this.sEM.firePnts[indexFP]               ; 
-            Quaternion fireRot = firePnt.rotation                         ;
+		    int           indexBL = this.sBL_mod.iIndex                   ; //which Bullet Object to launch
+			cLevel.e_Bllt oBullet = this.sEM.eBlt[indexBL]                ;
+		    int           indexFP = this.sFP_mod.iIndex                   ; //which Firing Point to emit from
+		    Transform     firePnt = this.sEM.firePnts[indexFP]            ; 
+            Quaternion    fireRot = firePnt.rotation                      ;
             if(IN_FACEFORWARD == false){                                    //Brute force guessing; Understanding of matrix not high enough
               Vector3 vRot = firePnt.rotation.eulerAngles                 ;
               vRot         = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z) ; //MAGIC NUMBER : Why y = 180.0f ??? Likely related to parent -x scale
               fireRot      = Quaternion.Euler(vRot)                       ;
             }
             firePnt.gameObject.SetActive(true)                            ;
-		    this.doEmit(firePnt, indexBL)                                 ;
+		    this.doEmit(firePnt, oBullet)                                 ;
 
             this.sFP_mod.doMod()                                          ; //modulate to next firing Point
             this.sBL_mod.doMod()                                          ; //modulate to next bullet
@@ -53,17 +58,29 @@ namespace MTON.Class{
 
 #region RAPIDFIRE ---
 
-	private bool brapd         = false ;
-    public virtual void doRapidFire(bool bRapd, bool IN_BGROUND=true){
-	  this.doRapd(bRapd); //trigger delegate
-	  this.brapd = bRapd;
-      if(bRapd == true){
+    [SerializeField] //else can accidentally assign to lowercase var vs. setter var
+	private bool onrapid = false ;
+	public bool  onRapid{
+	  get{
+	    return onrapid;
+	  }
+	  set{
+	    if(value!=onrapid){
+		  onrapid = value;
+	      this.doRapd(value); //trigger delegate
+		}
+	  }
+	}
+
+    public virtual void doRapidFire(bool bRapid, bool IN_BGROUND=true){
+	  this.onRapid = bRapid;
+      if(this.onRapid == true){
         StartCoroutine(WhileRapidFire());
       }
     }
 
     public IEnumerator WhileRapidFire(){
-      while(this.brapd == true){
+      while(this.onRapid == true){
         //          an.hState = cAnimn.eStateH.Plnt;
         if(this.mt_TimeStep(this.sEM.fireRate)){
           //	      Debug.Log ("Rapid Fire : " + Time.time); //HACK : time print doesn't match fireRate why???
@@ -97,10 +114,12 @@ namespace MTON.Class{
 
         public float       fireRate ; //0.15f = default
         public Transform[] firePnts ; //firing point
+		public bool        bModFP   ; //true == modulate through all available firing Points
 
-        public cLevel.e_Bllt[]  eBlt ; // enum for bullet type to emit
-        public cLevel.e_Slams   eSlm ; // enum for thomper/slam attack
-        public cLevel.fx_Hit    eGun ; // enum for GunFlare particle system to emit
+        public cLevel.e_Bllt[]  eBlt   ; // enum for bullet type to emit
+		public bool             bModBL ; // true == modulate through all available bullets
+        public cLevel.e_Slams   eSlm   ; // enum for thomper/slam attack
+        public cLevel.fx_Hit    eGun   ; // enum for GunFlare particle system to emit
 
       }
 
@@ -138,6 +157,8 @@ namespace MTON.Class{
 	  //set mod obj iLength based on emitter list length
       this.sFP_mod.iLength = this.sEM.firePnts.Length ;
       this.sBL_mod.iLength = this.sEM.eBlt.Length     ;
+	  this.sFP_mod.bMod    = this.sEM.bModFP          ;
+	  this.sBL_mod.bMod    = this.sEM.bModBL          ;
 	}
 		
     // Use this for initialization

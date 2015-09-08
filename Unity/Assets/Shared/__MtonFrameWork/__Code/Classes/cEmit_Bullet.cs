@@ -41,7 +41,7 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
 	if(OnComplete_Delegate != null){
 	  OnComplete_Delegate();
 	}
-    Debug.Log ("EMIT BULLET COMPLETE ! " + this);
+//    Debug.Log ("EMIT BULLET COMPLETE ! " + this);
   }
 
 #endregion

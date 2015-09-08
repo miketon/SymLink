@@ -21,13 +21,14 @@ namespace MTON.codeObjects{
 	    em.sEM.fireRate = this.sEM.fireRate ;
 	    em.sEM.firePnts = this.sEM.firePnts ;
 	    em.sEM.eBlt     = this.sEM.eBlt     ;
+		em.sEM.bModFP   = this.sEM.bModFP   ; // modulating firing point
+		em.sEM.bModBL   = this.sEM.bModBL   ; // modulating bullets
 	  }
 	}
 
-	private void doEmit(Transform IN_XFORM, int IN_OBJ){
-	  Debug.Log (" I am emitting! ");
-	  if(this.sEM.eBlt[IN_OBJ] != cLevel.e_Bllt.None){ //Firing actual bullets
-        __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eBlt[IN_OBJ], IN_XFORM.position, IN_XFORM.rotation, (Transform xForm)=>{
+	private void doEmit(Transform IN_XFORM, cLevel.e_Bllt IN_OBJ){
+	  if(IN_OBJ != cLevel.e_Bllt.None){ //Firing actual bullets
+        __gCONSTANT._LEVEL.Emit_Bullet(IN_OBJ, IN_XFORM.position, IN_XFORM.rotation, (Transform xForm)=>{
 		  cEmit_Bullet cBullet = xForm.gameObject.GetComponent<cEmit_Bullet>() ;
 		  if(cBullet){
 		    cBullet.OnComplete();
@@ -43,26 +44,32 @@ namespace MTON.codeObjects{
       }
 	}
 
+	private void doRapid(bool bRapid){
+	  Debug.Log ("RAPID TOGGLE : " + bRapid);
+	}
+
     public virtual void OnEnable(){
 	  this.Init();
 	  if(this.em){
 	    em.OnEmitDelegate += this.doEmit;
+		em.OnRapdDelegate += this.doRapid;
 	  }
 	}
 
     public virtual void OnDisable(){
 	  em.OnEmitDelegate -= this.doEmit;
+	  em.OnRapdDelegate -= this.doRapid;
 	}
 
     // Update is called once per frame
     void Update () {
       if(Input.GetKeyDown(KeyCode.Space)){
-		this.em.doSinglFire(true);
-//		this.doRapidFire(true);
+//		this.em.doSinglFire(true);
+		this.em.doRapidFire(true);
       }
 	  else if(Input.GetKeyUp(KeyCode.Space)){
-		this.em.doSinglFire(false);
-//		this.doRapidFire(false);
+//		this.em.doSinglFire(false);
+		this.em.doRapidFire(false);
 	  }
     }
 
