@@ -7,44 +7,7 @@ using MTON.Global        ;
 namespace MTON.codeObjects{
   public class oEmitter : MonoBehaviour {
 
-    public cSpawn.s_EmitProperties sEM = new cSpawn.s_EmitProperties();
-
-    public virtual void doAttk(bool bAttk, bool IN_FACEFORWARD=true){
-      if(bAttk){
-        Debug.Log ("DO ATTACK : " + this);
-        if(this.em.sEM.firePnts.Length > 0){
-          //            an.attkST          = cAnimn.eStateB.DN                    ;
-          Transform firePnt  = this.em.sEM.firePnts[this.em.sFP_mod.iIndex] ; 
-          firePnt.gameObject.SetActive(true)                          ;
-          Quaternion fireRot = firePnt.rotation                       ;
-          if(IN_FACEFORWARD == false){                                    //Brute force guessing; Understanding of matrix not high enough
-            Vector3 vRot = firePnt.rotation.eulerAngles                 ;
-            vRot         = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z) ; //MAGIC NUMBER : Why y = 180.0f ??? Likely related to parent -x scale
-            fireRot      = Quaternion.Euler(vRot)                       ;
-          }
-          if(this.em.sEM.eBlt.Length > 0){
-            if(this.em.sEM.eBlt[this.em.sBL_mod.iIndex] != cLevel.e_Bllt.None){ //Firing actual bullets
-              __gCONSTANT._LEVEL.Emit_Bullet(this.em.sEM.eBlt[this.em.sBL_mod.iIndex], firePnt.position, fireRot, (Transform xForm)=>{
-                  cEmit_Bullet cBullet = xForm.gameObject.GetComponent<cEmit_Bullet>() ;
-                  if(cBullet){
-                    cBullet.OnComplete();
-                  }
-                  return xForm ;
-              })               ;
-            }
-          }
-          if(this.em.sEM.eGun != cLevel.fx_Hit.None){ // Flare : set to -1 to prevent emission
-            __gCONSTANT._LEVEL.Emit_pFX(this.em.sEM.eGun, firePnt.position, Quaternion.identity, (Transform xForm)=>{
-                firePnt.gameObject.SetActive(false)                                  ;
-                return xForm ;
-            })               ;
-          }
-        }
-        this.em.sFP_mod.doMod();
-        this.em.sBL_mod.doMod();
-      }
-    }
-
+    public  cSpawn.s_EmitProperties sEM = new cSpawn.s_EmitProperties();
 	private cSpawn em;
 
 	void Start(){
@@ -54,15 +17,30 @@ namespace MTON.codeObjects{
 	void Init(){
 	  if(!this.em){
 	    em = __gUtility.AddComponent_mton<cSpawn>(this.gameObject)  ;
-//      __gUtility.GetCopyOf(this.em.sEM, this.sEM)                                        ; // INTERESTING : deep copy
-	    em.sEM.fireRate = this.sEM.fireRate;
-	    em.sEM.firePnts = this.sEM.firePnts;
-	    em.sEM.eBlt     = this.sEM.eBlt;
+//      __gUtility.GetCopyOf(this.em.sEM, this.sEM)                 ; // INTERESTING : deep copy, doesn't work on structure
+	    em.sEM.fireRate = this.sEM.fireRate ;
+	    em.sEM.firePnts = this.sEM.firePnts ;
+	    em.sEM.eBlt     = this.sEM.eBlt     ;
 	  }
 	}
 
-	private void doEmit(Transform IN_XFORM, int IN_OBJ, int IN_FP){
+	private void doEmit(Transform IN_XFORM, int IN_OBJ){
 	  Debug.Log (" I am emitting! ");
+	  if(this.sEM.eBlt[IN_OBJ] != cLevel.e_Bllt.None){ //Firing actual bullets
+        __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eBlt[IN_OBJ], IN_XFORM.position, IN_XFORM.rotation, (Transform xForm)=>{
+		  cEmit_Bullet cBullet = xForm.gameObject.GetComponent<cEmit_Bullet>() ;
+		  if(cBullet){
+		    cBullet.OnComplete();
+		  }
+            return xForm ;
+          })             ;
+      }
+	  if(this.sEM.eGun != cLevel.fx_Hit.None){   // Flare : set to -1 to prevent emission
+        __gCONSTANT._LEVEL.Emit_pFX(this.sEM.eGun, IN_XFORM.position, Quaternion.identity, (Transform xForm)=>{
+          IN_XFORM.gameObject.SetActive(false) ; // NOTE : Using Delegate IN_XFORM to deactivate firing point (light child)
+          return xForm                         ;
+        })                                     ;
+      }
 	}
 
     public virtual void OnEnable(){
@@ -79,10 +57,11 @@ namespace MTON.codeObjects{
     // Update is called once per frame
     void Update () {
       if(Input.GetKeyDown(KeyCode.Space)){
-        this.doAttk(true);
+		this.em.doSinglFire(true);
 //		this.doRapidFire(true);
       }
 	  else if(Input.GetKeyUp(KeyCode.Space)){
+		this.em.doSinglFire(false);
 //		this.doRapidFire(false);
 	  }
     }

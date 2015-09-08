@@ -7,14 +7,14 @@ using MTON.Global        ;
 namespace MTON.Class{
   public class cSpawn : MonoBehaviour {
 
-    public delegate void OnEMIT(Transform IN_XFORM, int IN_OBJ, int IN_FP) ; //set up delegate
+    public delegate void OnEMIT(Transform IN_XFORM, int IN_OBJ) ; //set up delegate
     public delegate void OnRAPD(bool bRapd) ; //set up delegate
 	public OnEMIT OnEmitDelegate            ; //delegate instance
 	public OnRAPD OnRapdDelegate            ; //delegate instance
 
-	public virtual void doEmit(Transform IN_XFORM, int IN_OBJ, int IN_FP){ //on Bullet Emission (projectile)
+	public virtual void doEmit(Transform IN_XFORM, int IN_OBJ){ //on Bullet Emission (projectile)
 	  if(OnEmitDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
-	    OnEmitDelegate(IN_XFORM, IN_OBJ, IN_FP);
+	    OnEmitDelegate(IN_XFORM, IN_OBJ);
       }
 	}
 
@@ -40,7 +40,7 @@ namespace MTON.Class{
               fireRot      = Quaternion.Euler(vRot)                       ;
             }
             firePnt.gameObject.SetActive(true)                            ;
-		    this.doEmit(firePnt, indexBL, indexFP)                        ;
+		    this.doEmit(firePnt, indexBL)                                 ;
 
             this.sFP_mod.doMod()                                          ; //modulate to next firing Point
             this.sBL_mod.doMod()                                          ; //modulate to next bullet
