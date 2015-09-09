@@ -94,7 +94,6 @@ namespace MTON.codeObjects{
         io.OnJumpDelegate      += doJump ;
         io.OnAttkDelegate      += doAttk ; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
         io.OnPowrDelegate      += doPowr ;
-		em.em.OnRapdDelegate   += doRapd ;
         io.OnActVDelegate      += doActV ; //Attack Visual = hitFlash
 
         //rigidbody events
@@ -123,7 +122,6 @@ namespace MTON.codeObjects{
         io.OnJumpDelegate      -= doJump ; //NOTE: remember to remove delegate in case of wierd memory leaks
         io.OnAttkDelegate      -= doAttk ;
         io.OnPowrDelegate      -= doPowr ;
-		em.em.OnRapdDelegate   -= doRapd ;
         io.OnActVDelegate      -= doActV ; //Attack Visual = hitFlash
 
         //rigidbody events
@@ -157,7 +155,7 @@ namespace MTON.codeObjects{
 
       protected cAnimn   an ; // Animation Listener making public so other components can access delegates...
       protected cMcanm   mc ; // mecanim handler
-	  protected cSpawn   fp ; // firing point - Handles emission/rapidfire ..etc
+	  public    oEmitter fp ;
 	  public    cRadar   si ; // Auto detection for homing and other functions
       private   cEquip   eq ;
       private   cHealth  ht ;
@@ -238,118 +236,39 @@ namespace MTON.codeObjects{
       public virtual void doAttk(bool bAttk){
         if(bAttk){
           an.attkST          = cAnimn.eStateB.DN      ;
-		  this.em.em.doSinglFire(bAttk, this.bFaceRt) ;
-//          if(this.sEM.firePnts.Length > 0){
-//            an.attkST          = cAnimn.eStateB.DN               ;
-//            Transform firePnt  = this.sEM.firePnts[this.fp.sBL_mod.iIndex] ; 
-//            Quaternion fireRot = firePnt.rotation                ;
-//            if(this.bFaceRt == false){                                      //Brute force guessing; Understanding of matrix not high enough
-//              Vector3 vRot = firePnt.rotation.eulerAngles                 ;
-//              vRot         = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z) ; //MAGIC NUMBER : Why y = 180.0f ??? Likely related to parent -x scale
-//              fireRot      = Quaternion.Euler(vRot)                       ;
-////			  fireRot = firePnt.rotation * Quaternion.Euler(new Vector3(0.0f, 180.0f, 0.0f));
-//            }
-//            firePnt.gameObject.SetActive(true)    ;
-//			if(this.sEM.eBlt.Length > 0){
-//              if(this.sEM.eBlt[this.fp.sBL_mod.iIndex] != cLevel.e_Bllt.None){ //Firing actual bullets
-//                __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eBlt[this.fp.sBL_mod.iIndex], firePnt.position, fireRot, (Transform xForm)=>{
-//				  cEmit_Bullet cBullet = xForm.gameObject.GetComponent<cEmit_Bullet>() ;
-//				  if(cBullet){
-//				    cBullet.OnComplete();
-//				  }
-//                  return xForm ;
-//                })             ;
-//              }
-//			}
-//            if(this.sEM.eGun != cLevel.fx_Hit.None){ // Flare : set to -1 to prevent emission
-//              __gCONSTANT._LEVEL.Emit_pFX(this.sEM.eGun, firePnt.position, Quaternion.identity, (Transform xForm)=>{
-//                firePnt.gameObject.SetActive(false)                                  ;
-//                return xForm ;
-//              })             ;
-//            }
-//          }
-//		  this.fp.sFP_mod.doMod();
-//		  this.fp.sBL_mod.doMod();
+		  this.fp.em.doSinglFire(bAttk, this.bFaceRt) ;
         }
-//        else{
-//          if(this.bpowr){ 
-//            an.attkST = cAnimn.eStateB.PW   ; //Power up attack
-//          }
-//          else{
-//            an.attkST = cAnimn.eStateB.Idle ;
-//          }
-//        }
       }
 
       private bool bpowr         = false ;
-      private bool bDpdX         = true  ;
-      private bool bDpdY         = false ;
+      public bool bDpdX         = true  ;
+      public bool bDpdY         = false ;
 
 	  public virtual void doRapd(bool bRapd){
 		Debug.Log ("Emit RAPIDLY !! " + this);
-		if(bRapd){
-          an.attkST = cAnimn.eStateB.PW   ; //Power up attack
-          an.hState = cAnimn.eStateH.Plnt;
-		  this.bDpdX = false; //dPad x ignore
+	  }
+
+      public virtual void doPowr(bool bPowr){
+		this.fp.em.doRapidFire(bPowr, this.bFaceRt);
+        this.bpowr = bPowr;
+        if(bPowr == true){
+//          StartCoroutine(WhileRapidFire());
+		  an.attkST = cAnimn.eStateB.PW   ; //Power up attack
+          an.hState = cAnimn.eStateH.Plnt ;
+          this.bDpdX = false; //dPad x ignore
           this.bDpdY = true ; //dPad y listen
           if(this.bGround == true){
 		    __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.transform.position, true);
           }
-		}
-		else{
-          an.attkST = cAnimn.eStateB.Idle ;
-		  an.doAimg(0.0f)                 ; //reset gun to face forward
-		  this.bDpdX = true  ; //dPad x listen
-          this.bDpdY = false ; //dPad x ignore
-		}
-	  }
-
-      private float stepDrtn = 0.0f;
-      private bool mt_TimeStep(float stepIncm){
-        if(Time.time > stepDrtn){
-          stepDrtn  = Time.time + stepIncm ;
-          return true                      ;    
         }
         else{
-          return false                     ;
+          this.bDpdX = true  ; //dPad x listen
+          this.bDpdY = false ; //dPad x ignore
+          an.doAimg(0.0f)                 ; //reset gun to face forward
+          an.attkST = cAnimn.eStateB.Idle ; //release attack from powerup
         }
       }
 
-
-      public virtual void doPowr(bool bPowr){
-		  this.em.em.doRapidFire(bPowr, this.bFaceRt);
-//        this.bpowr = bPowr;
-        if(bPowr == true){
-//          StartCoroutine(WhileRapidFire());
-//          this.bDpdX = false; //dPad x ignore
-//          this.bDpdY = true ; //dPad y listen
-//          if(this.bGround == true){
-//		    __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.transform.position, true);
-//          }
-        }
-//        else{
-//          this.bDpdX = true  ; //dPad x listen
-//          this.bDpdY = false ; //dPad x ignore
-//        }
-      }
-
-//      public IEnumerator WhileRapidFire(){
-//        while(this.bpowr == true){
-//          an.hState = cAnimn.eStateH.Plnt;
-//          this.doMove(Vector3.zero);
-//          if(this.mt_TimeStep(this.sEM.fireRate)){
-//            //	      Debug.Log ("Rapid Fire : " + Time.time); //HACK : time print doesn't match fireRate why???
-//            this.doAttk(true);
-//          }
-//          else{
-//            this.doAttk(false);
-//          }
-//          yield return null;
-//        }
-//        //		Debug.Log ("NO MORE RAPID FIRE"); //Only called once after while loop is complete
-//        an.doAimg(0.0f)                 ; //reset gun to face forward
-//        an.attkST = cAnimn.eStateB.Idle ; //release attack from powerup
-//      }
 
 #endregion
 
@@ -362,12 +281,18 @@ namespace MTON.codeObjects{
       }
 
       public virtual void doMove(Vector3 moveDir){ //Handles movement and facing
-        rb.Move(moveDir);
+		if(this.bDpdX){
+          rb.Move(moveDir);
+		}
+		else{
+		  rb.Move(Vector3.zero);
+		}
         this.xform.SetPosZ(0.0f); // force into 0.0f zPlane so character doesn't slip
         // horizontal move state
         if(Mathf.Abs(moveDir.x) > 0.001f){
-
-          an.hState = cAnimn.eStateH.Walk ; //triggering animation for walk
+		  if(this.bDpdX){
+            an.hState = cAnimn.eStateH.Walk ; //triggering animation for walk
+		  }
           if(bGround == true){ // check for footsteps
             bool bFoot = mc.GetCurvefBool(mc._fAudio0_ID); //IMPORTANT : Implicit that run animation has fCurve where 0==off, 1==on
             if(bFoot == true){
@@ -578,12 +503,12 @@ namespace MTON.codeObjects{
           ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject)   ; //HACK : Order matters, must be before an because of delegates
           an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject)    ;
           si = __gUtility.AddComponent_mton<cRadar>(this.gameObject)    ;
-          em = __gUtility.AddComponent_mton<oEmitter>(this.gameObject)  ;
-          fp = __gUtility.AddComponent_mton<cSpawn>(this.gameObject)    ;
-			fp.sEM.fireRate = this.sEM.fireRate ;
-			fp.sEM.firePnts = this.sEM.firePnts ;
-			fp.sEM.eBlt     = this.sEM.eBlt     ;
-			fp.Init();
+          fp = __gUtility.AddComponent_mton<oEmitter>(this.gameObject)  ;
+		    fp.em.sEM.fireRate = this.sEM.fireRate ;
+		    fp.em.sEM.firePnts = this.sEM.firePnts ;
+		    fp.em.sEM.eBlt     = this.sEM.eBlt     ;
+		    fp.em.Init(); // Sets up firing points; else component.transform is firing point
+
           //      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject)  ;
           io = __gUtility.AddComponent_mton<cInput>(this.gameObject)  ;
           if(this.b_2D == false){
@@ -612,3 +537,80 @@ namespace MTON.codeObjects{
         }
 
       }
+
+
+
+//      public virtual void doAttk(bool bAttk){
+//        if(bAttk){
+//          an.attkST          = cAnimn.eStateB.DN      ;
+//		  this.fp.em.doSinglFire(bAttk, this.bFaceRt) ;
+//          if(this.sEM.firePnts.Length > 0){
+//            an.attkST          = cAnimn.eStateB.DN               ;
+//            Transform firePnt  = this.sEM.firePnts[this.fp.sBL_mod.iIndex] ; 
+//            Quaternion fireRot = firePnt.rotation                ;
+//            if(this.bFaceRt == false){                                      //Brute force guessing; Understanding of matrix not high enough
+//              Vector3 vRot = firePnt.rotation.eulerAngles                 ;
+//              vRot         = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z) ; //MAGIC NUMBER : Why y = 180.0f ??? Likely related to parent -x scale
+//              fireRot      = Quaternion.Euler(vRot)                       ;
+////			  fireRot = firePnt.rotation * Quaternion.Euler(new Vector3(0.0f, 180.0f, 0.0f));
+//            }
+//            firePnt.gameObject.SetActive(true)    ;
+//			if(this.sEM.eBlt.Length > 0){
+//              if(this.sEM.eBlt[this.fp.sBL_mod.iIndex] != cLevel.e_Bllt.None){ //Firing actual bullets
+//                __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eBlt[this.fp.sBL_mod.iIndex], firePnt.position, fireRot, (Transform xForm)=>{
+//				  cEmit_Bullet cBullet = xForm.gameObject.GetComponent<cEmit_Bullet>() ;
+//				  if(cBullet){
+//				    cBullet.OnComplete();
+//				  }
+//                  return xForm ;
+//                })             ;
+//              }
+//			}
+//            if(this.sEM.eGun != cLevel.fx_Hit.None){ // Flare : set to -1 to prevent emission
+//              __gCONSTANT._LEVEL.Emit_pFX(this.sEM.eGun, firePnt.position, Quaternion.identity, (Transform xForm)=>{
+//                firePnt.gameObject.SetActive(false)                                  ;
+//                return xForm ;
+//              })             ;
+//            }
+//          }
+//		  this.fp.sFP_mod.doMod();
+//		  this.fp.sBL_mod.doMod();
+//        }
+//        else{
+//          if(this.bpowr){ 
+//            an.attkST = cAnimn.eStateB.PW   ; //Power up attack
+//          }
+//          else{
+//            an.attkST = cAnimn.eStateB.Idle ;
+//          }
+//        }
+//      }
+		
+//      private float stepDrtn = 0.0f;
+//      private bool mt_TimeStep(float stepIncm){
+//        if(Time.time > stepDrtn){
+//          stepDrtn  = Time.time + stepIncm ;
+//          return true                      ;    
+//        }
+//        else{
+//          return false                     ;
+//        }
+//      }
+
+//      public IEnumerator WhileRapidFire(){
+//        while(this.bpowr == true){
+//          an.hState = cAnimn.eStateH.Plnt;
+//          this.doMove(Vector3.zero);
+//          if(this.mt_TimeStep(this.sEM.fireRate)){
+//            //	      Debug.Log ("Rapid Fire : " + Time.time); //HACK : time print doesn't match fireRate why???
+//            this.doAttk(true);
+//          }
+//          else{
+//            this.doAttk(false);
+//          }
+//          yield return null;
+//        }
+//        //		Debug.Log ("NO MORE RAPID FIRE"); //Only called once after while loop is complete
+//        an.doAimg(0.0f)                 ; //reset gun to face forward
+//        an.attkST = cAnimn.eStateB.Idle ; //release attack from powerup
+//      }
