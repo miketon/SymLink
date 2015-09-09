@@ -249,7 +249,7 @@ namespace MTON.codeObjects{
 	  }
 
       public virtual void doPowr(bool bPowr){
-		this.fp.em.doRapidFire(bPowr, this.bFaceRt);
+		this.fp.em.doRapidFire(bPowr);
         this.bpowr = bPowr;
         if(bPowr == true){
 //          StartCoroutine(WhileRapidFire());
@@ -398,6 +398,7 @@ namespace MTON.codeObjects{
             }
           }
         }
+		  this.fp.em.bFaceRight = this.bFaceRt; // For rapidFire logic
         }
 
         public virtual void doFall()  {}
@@ -507,6 +508,7 @@ namespace MTON.codeObjects{
 		    fp.em.sEM.fireRate = this.sEM.fireRate ;
 		    fp.em.sEM.firePnts = this.sEM.firePnts ;
 		    fp.em.sEM.eBlt     = this.sEM.eBlt     ;
+			fp.em.sEM.eGun     = this.sEM.eGun     ;
 		    fp.em.Init(); // Sets up firing points; else component.transform is firing point
 
           //      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject)  ;

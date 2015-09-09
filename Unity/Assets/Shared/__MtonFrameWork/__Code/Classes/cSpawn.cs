@@ -75,22 +75,23 @@ namespace MTON.Class{
 	  }
 	}
 
-    public virtual void doRapidFire(bool bRapid, bool IN_FACERIGHT=true){
+    public virtual void doRapidFire(bool bRapid){
 	  this.onRapid = bRapid;
       if(this.onRapid == true){
-	    StartCoroutine(WhileRapidFire(IN_FACERIGHT));
+	    StartCoroutine(WhileRapidFire());
       }
     }
-
-    public IEnumerator WhileRapidFire(bool IN_FACERIGHT=true){
+	
+	public bool bFaceRight = true;
+    public IEnumerator WhileRapidFire(){
       while(this.onRapid == true){
         //          an.hState = cAnimn.eStateH.Plnt;
         if(this.mt_TimeStep(this.sEM.fireRate)){
           //	      Debug.Log ("Rapid Fire : " + Time.time); //HACK : time print doesn't match fireRate why???
-		  this.doSinglFire(true, IN_FACERIGHT);
+		  this.doSinglFire(true, this.bFaceRight);
         }
         else{
-		  this.doSinglFire(false, IN_FACERIGHT);
+		  this.doSinglFire(false, this.bFaceRight);
         }
         yield return null;
       }
@@ -153,6 +154,7 @@ namespace MTON.Class{
 	  this.sEM.fireRate = IN_SRC.fireRate ;
 	  this.sEM.firePnts = IN_SRC.firePnts ;
 	  this.sEM.eBlt     = IN_SRC.eBlt     ;
+	  this.sEM.eGun     = IN_SRC.eGun     ;
       this.sEM.bModFP   = IN_SRC.bModFP   ; // modulating firing point
 	  this.sEM.bModBL   = IN_SRC.bModBL   ; // modulating bullets
 
