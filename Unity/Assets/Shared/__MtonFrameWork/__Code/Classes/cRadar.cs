@@ -1,13 +1,21 @@
 ﻿using UnityEngine        ;
 using System             ; //Must use for [Serializable] attr
 using System.Collections ;
+using DG.Tweening        ;
 
 namespace MTON.Class{
 
   public class cRadar : MonoBehaviour {
 
-    private static Vector3 lastPlayerSighting;  // Reference to last global sighting of the player.
-	public Transform ui_dpRing;
+    private static Vector3   lastPlayerSighting ;  // Reference to last global sighting of the player.
+	public         Transform ui_dpRing          ;
+	private        Vector3   ui_Scale           ;
+
+	public         Vector3   vOffset   = Vector3.zero;
+
+	public void Init(){
+	  ui_Scale = ui_dpRing.localScale;
+	}
 
 	public s_ViewConeProperties sVW = new s_ViewConeProperties();
     [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
@@ -17,6 +25,7 @@ namespace MTON.Class{
 	  public  string     l_Search         ;
 	  public  string     t_Search         ;
       public  float      FOVangle         ;          // Number of degrees, centred on forward, for the enemy see.
+	  public  float      FOVmagtd         ;          // distance of Scan
       public  bool       bInSight         ;          // Whether or not the player is currently sighted.
       public  Vector3    thisLastSighting ;          // Last place this enemy spotted the player.
       public  Vector3    previousSighting ;          // Where the player was sighted last frame.
@@ -27,13 +36,30 @@ namespace MTON.Class{
 	  return this.doViewConeCheck(XFORM_TARGET, sVW.FOVangle);
 	}
 
+    //DOTween variables
+    public Tween    tw_Cache ;
+
 	public bool doRadar(bool bActive){
 //	  Debug.Log("DO RADAR : Layer : " + this.sVW.l_Search + " Tag : "+ this.sVW.t_Search + this);
 	  if(bActive){ // display highlight active
 	    Debug.Log("RADAR ON");
+		if(this.ui_dpRing){
+		  this.ui_dpRing.gameObject.SetActive(true);
+		  this.ui_dpRing.position = this.transform.position + this.vOffset;
+		  if(this.tw_Cache!=null){
+            this.tw_Cache.Kill();
+		    this.ui_dpRing.localScale = this.ui_Scale;
+		  }
+		  this.tw_Cache = this.ui_dpRing.DOScale(this.ui_Scale.x * 5.0f, 1.0f).SetEase(Ease.InOutElastic);
+	    }
 	  }
 	  else{ // display highlight hide
 	    Debug.Log("RADAR OFF");
+		if(this.ui_dpRing){
+		  this.tw_Cache = this.ui_dpRing.DOScale(this.ui_Scale, 0.15f).OnComplete(()=>{
+		    this.ui_dpRing.gameObject.SetActive(false);
+		  });
+		}
 	  }
 	  if(this.sVW.l_Search!=""){
 	    return true;

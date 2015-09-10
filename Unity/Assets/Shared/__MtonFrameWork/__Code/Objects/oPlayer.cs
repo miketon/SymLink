@@ -513,6 +513,8 @@ namespace MTON.codeObjects{
           rd = __gUtility.AddComponent_mton<cRadar>(this.gameObject)    ;
 		  if(this.sDP.ui_dpRing){
 		    this.rd.ui_dpRing = this.sDP.ui_dpRing;
+		    this.rd.vOffset = Vector3.up * this.sDP.__initHgt * 0.5f;
+			this.rd.Init();
 			this.sDP.ui_dpRing.gameObject.SetActive(false);
 		  }
           fp = __gUtility.AddComponent_mton<oEmitter>(this.gameObject)  ;
