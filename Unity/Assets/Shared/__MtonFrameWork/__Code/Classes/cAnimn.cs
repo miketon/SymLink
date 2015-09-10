@@ -165,9 +165,10 @@ namespace MTON.Class{
 			get{
 				return hstate;
 			}
-			set{ // NOTE: INTERESTING !!!
+			set{ // NOTE: INTERESTING !!! NO DELTA FILTER. Cache at the delegate level?
 				if(value == eStateH.Walk){ //continously check for walk
-				  setPlnt(false) ;         //Planted == no
+				  this.setPlnt(false) ;    //Planted == no; INTERESTING, must reset continously else slide
+				  this.setIdlH(false) ;    //explicitly set to false so idle based events are updated correctly
 				  hstate = value ;
 				  if(fState == eStateF.Rght){
 				    doMove(Vector3.right);
@@ -504,9 +505,13 @@ namespace MTON.Class{
 		  }
 		}
 
+		private bool bplnt = false ;      //INTERESTING: caching at the delegate level, because setter/getter needs to continously check
 		private void setPlnt(bool bPlnt){ //isPlanted ?
-		  if(this.OnPlntDelegate != null){
-		    this.OnPlntDelegate(bPlnt);
+		  if(bPlnt != this.bplnt){
+		    this.bplnt = bPlnt;
+		    if(this.OnPlntDelegate != null){
+		      this.OnPlntDelegate(bPlnt);
+		    }
 		  }
 		}
 
@@ -516,9 +521,13 @@ namespace MTON.Class{
 		  }
 		} 
 
+		private bool bidlh = false ;      //INTERESTING: caching at the delegate level, because setter/getter needs to continously check
 		private void setIdlH(bool bIdlH){
-		  if(this.OnIdlHDelegate != null){
-		    this.OnIdlHDelegate(bIdlH);
+		  if(bIdlH != this.bidlh){
+		    this.bidlh = bIdlH;
+		    if(this.OnIdlHDelegate != null){
+		      this.OnIdlHDelegate(bIdlH);
+		    }
 		  }
 		} 
 

@@ -75,6 +75,7 @@ GameObject:
   - 54: {fileID: 5475978}
   - 114: {fileID: 11472736}
   - 114: {fileID: 11450400}
+  - 114: {fileID: 11419520}
   m_Layer: 9
   m_Name: Wpn_Rng_Homing
   m_TagString: Untagged
@@ -211,6 +212,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11419520
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8bf7f1d63b94629b56556b37b5d06a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui_dpRing: {fileID: 0}
+  sVW:
+    gTarget: {fileID: 0}
+    l_Search: 
+    t_Search: 
+    FOVangle: 0
+    bInSight: 0
+    thisLastSighting: {x: 0, y: 0, z: 0}
+    previousSighting: {x: 0, y: 0, z: 0}
+  magFOV: 3
+  angFOV: 11.8999996
 --- !u!114 &11450400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,6 +256,7 @@ MonoBehaviour:
     bModBL: 0
     eSlm: 0
     eGun: 2
+  em: {fileID: 0}
 --- !u!114 &11472736
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -7,6 +7,7 @@ namespace MTON.Class{
   public class cRadar : MonoBehaviour {
 
     private static Vector3 lastPlayerSighting;  // Reference to last global sighting of the player.
+	public Transform ui_dpRing;
 
 	public s_ViewConeProperties sVW = new s_ViewConeProperties();
     [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
@@ -26,8 +27,14 @@ namespace MTON.Class{
 	  return this.doViewConeCheck(XFORM_TARGET, sVW.FOVangle);
 	}
 
-	public bool doRadar(){
+	public bool doRadar(bool bActive){
 //	  Debug.Log("DO RADAR : Layer : " + this.sVW.l_Search + " Tag : "+ this.sVW.t_Search + this);
+	  if(bActive){ // display highlight active
+	    Debug.Log("RADAR ON");
+	  }
+	  else{ // display highlight hide
+	    Debug.Log("RADAR OFF");
+	  }
 	  if(this.sVW.l_Search!=""){
 	    return true;
 	  }

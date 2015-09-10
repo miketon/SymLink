@@ -29,6 +29,8 @@ namespace MTON.codeObjects{
           public Transform dispXFORM  ; //HACK : Coupling the character dispXFORM => object with an Animator and render mesh
           public Transform riseXFORM  ; 
 
+	      public Transform ui_dpRing  ;
+
           public  float yRotOffset_3D ; //-50.0f == default
           public  float   duckSc      ; // scale on crouch/duck
           public  float __initHgt     ;
@@ -156,7 +158,7 @@ namespace MTON.codeObjects{
       protected cAnimn   an ; // Animation Listener making public so other components can access delegates...
       protected cMcanm   mc ; // mecanim handler
 	  public    oEmitter fp ;
-	  public    cRadar   si ; // Auto detection for homing and other functions
+	  public    cRadar   rd ; // Auto detection for homing and other functions
       private   cEquip   eq ;
       private   cHealth  ht ;
       private   cTween   tw ;
@@ -314,7 +316,6 @@ namespace MTON.codeObjects{
           if(this.bDpdX == true){ //prevents spamming of Idle
             an.hState = cAnimn.eStateH.Idle;
           }
-		  si.doRadar();
         }
         //duck/crouch state
         if(Mathf.Abs(moveDir.y) > 0.001f){
@@ -414,10 +415,16 @@ namespace MTON.codeObjects{
 
         public virtual void doIdlH(bool bIdlH){
           if(bIdlH == true){
+			Debug.Log ("IDLE : " + bIdlH);
             if(this.bGround){ // If onGround, kick up dust
 			  __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDsl, this.xform.position, true);
+		      rd.doRadar(true); //also do radar search on stand still
             }
           }
+		  else{
+			Debug.Log ("IDLE : " + bIdlH);
+		    rd.doRadar(false); //also do radar search on stand still
+		  }
         }
 
         public virtual void doFoot(bool bFoot){
@@ -503,7 +510,11 @@ namespace MTON.codeObjects{
           rb = __gUtility.AddComponent_mton<cRbody>(this.gameObject)    ; 
           ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject)   ; //HACK : Order matters, must be before an because of delegates
           an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject)    ;
-          si = __gUtility.AddComponent_mton<cRadar>(this.gameObject)    ;
+          rd = __gUtility.AddComponent_mton<cRadar>(this.gameObject)    ;
+		  if(this.sDP.ui_dpRing){
+		    this.rd.ui_dpRing = this.sDP.ui_dpRing;
+			this.sDP.ui_dpRing.gameObject.SetActive(false);
+		  }
           fp = __gUtility.AddComponent_mton<oEmitter>(this.gameObject)  ;
 		    fp.em.sEM.fireRate = this.sEM.fireRate ;
 		    fp.em.sEM.firePnts = this.sEM.firePnts ;

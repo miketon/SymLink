@@ -16,8 +16,10 @@ namespace MTON.codeObjects{
 	}
 
     public virtual void OnDisable(){
-	  em.OnEmitDelegate -= this.doEmit  ;
-	  em.OnRapdDelegate -= this.doRapid ; 
+	  if(this.em){
+	    em.OnEmitDelegate -= this.doEmit  ;
+	    em.OnRapdDelegate -= this.doRapid ;
+	  }
 	}
 
     public cSpawn.s_EmitProperties sEM = new cSpawn.s_EmitProperties();
@@ -30,8 +32,11 @@ namespace MTON.codeObjects{
 	void Init(){
 	  if(!this.em){
 	    em = __gUtility.AddComponent_mton<cSpawn>(this.gameObject)  ;
-		em.Init(this.sEM)                                           ; //copy this.sEM settings to cSpawn obj
+	    em.Init(this.sEM)                                           ; //copy this.sEM settings to cSpawn obj
 	  }
+//	  else if(this.em){
+//	    em.Init(this.sEM)                                           ; //copy this.sEM settings to cSpawn obj
+//	  }
 	}
 
 	private void doEmit(Transform IN_XFORM, cLevel.e_Bllt IN_OBJ){
