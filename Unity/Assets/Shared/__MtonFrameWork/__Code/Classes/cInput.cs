@@ -12,6 +12,7 @@ namespace MTON.Class{
     public OnDPAD OnDPAD_AIM_Delegate         ; //delegate instance
 	
     public delegate void OnBTTN(bool bPrss) ; //set up delegate
+    public OnBTTN On__IODelegate            ; //delegate instance
     public OnBTTN OnJumpDelegate            ; //delegate instance
     public OnBTTN OnAttkDelegate            ; //delegate instance
 	public OnBTTN OnActVDelegate            ; //delegate instance
@@ -93,6 +94,20 @@ namespace MTON.Class{
 
 #region Property Setters and Getters 
 
+    // Overall IO states : Anybutton/dPad = true; else = false
+    private bool b__io = false;
+    public bool b__IO { 
+      get{
+        return b__io;
+      }
+      set{
+		if(value != b__io){  
+		  b__io = value;
+		  this.set__IO(b__io);
+		}
+      } 
+    }
+
     // Button states
     private bool bjump = false;
     public bool bJump { 
@@ -125,6 +140,12 @@ namespace MTON.Class{
 	}
 
 #endregion
+
+	private void set__IO(bool b__io){
+      if(this.On__IODelegate != null){
+	    this.On__IODelegate(b__io);
+	  }
+    }
 
 	public  float kTimePowerUpAC = 0.5f ;
 	private float kTimeOnAttckDN = 0.0f ;

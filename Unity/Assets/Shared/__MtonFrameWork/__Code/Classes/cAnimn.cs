@@ -15,62 +15,63 @@ namespace MTON.Class{
 
 		// Delegate types
 		public delegate void  DL_VDIR(Vector3 vDir  ) ; // Vector3 type
-		public delegate void  DL_Anim(bool    bEvnt ) ; // Boolean type
+		public delegate void  DL_bVal(bool    bEvnt ) ; // Boolean type
 		public delegate void  DL_fVal(float   fValue) ; // Float   type
 		public delegate void  DL_iVal(int     iValue) ; // Int     type
 
         public DL_VDIR OnMoveDelegate              ; // Movin
+		public DL_bVal OnStllDelegate            ; // Idle
         public DL_VDIR OnFaceDelegate              ; // Facing Dir
 
         public DL_fVal OnAimgDelegate              ; // Aiming Float
 
 		// hState
-		public DL_Anim OnIdlHDelegate            ; // Idle
-		public DL_Anim OnWalkDelegate            ; // Dash
-		public DL_Anim OnFootDelegate            ; // Foot Step
-		public DL_Anim OnDashDelegate            ; // Dash
-		public DL_Anim OnPlntDelegate            ; // Plnt; OnGround
+		public DL_bVal OnIdlHDelegate            ; // Idle
+		public DL_bVal OnWalkDelegate            ; // Dash
+		public DL_bVal OnFootDelegate            ; // Foot Step
+		public DL_bVal OnDashDelegate            ; // Dash
+		public DL_bVal OnPlntDelegate            ; // Plnt; OnGround
 
 		// vState
         public DL_fVal OnVelYDelegate            ; // Velocity Y Float
-        public DL_Anim OnGrndDelegate            ; // OnGround
-        public DL_Anim OnCeilDelegate            ; // OnCeiling
-        public DL_Anim OnIdlVDelegate            ; // Idle
-        public DL_Anim OnRiseDelegate            ; // Rise
-        public DL_Anim OnApexDelegate            ; // Apex
-        public DL_Anim OnFallDelegate            ; // Fall
+        public DL_bVal OnGrndDelegate            ; // OnGround
+        public DL_bVal OnCeilDelegate            ; // OnCeiling
+        public DL_bVal OnIdlVDelegate            ; // Idle
+        public DL_bVal OnRiseDelegate            ; // Rise
+        public DL_bVal OnApexDelegate            ; // Apex
+        public DL_bVal OnFallDelegate            ; // Fall
 
 		// dState
-        public DL_Anim OnDuckDelegate            ; // Duck
-        public DL_Anim OnJumpDelegate            ; // Jump
-        public DL_Anim OnJmpADelegate            ; // Jump Air
-        public DL_Anim OnFlapDelegate            ; // Flap
+        public DL_bVal OnDuckDelegate            ; // Duck
+        public DL_bVal OnJumpDelegate            ; // Jump
+        public DL_bVal OnJmpADelegate            ; // Jump Air
+        public DL_bVal OnFlapDelegate            ; // Flap
 
 		// seek/target state : AI
-        public DL_Anim OnSeekIdleDelegate        ; // Idle no target in range
-        public DL_Anim OnSeekAwareDelegate       ; // Aware of target in range
-        public DL_Anim OnSeekAlertDelegate       ; // Alert! target in range take action
-        public DL_Anim OnSeekFollowDelegate      ; // true = follow; false = flee; else idle
+        public DL_bVal OnSeekIdleDelegate        ; // Idle no target in range
+        public DL_bVal OnSeekAwareDelegate       ; // Aware of target in range
+        public DL_bVal OnSeekAlertDelegate       ; // Alert! target in range take action
+        public DL_bVal OnSeekFollowDelegate      ; // true = follow; false = flee; else idle
 
 		// combat Attk States
-        public DL_Anim OnAttkDelegate            ; // Attack
-	    public DL_Anim OnFireDelegate            ; // Fire  : Ranged Attack
-	    public DL_Anim OnAirFDelegate            ; // Fire  : Ranged Attack in Air
-	    public DL_Anim OnMleeDelegate            ; // Melee : Close  Attack
-	    public DL_Anim OnAirMDelegate            ; // Melee : Close  Attack in Air
-	    public DL_Anim OnPowrDelegate            ; // Power : Power  Attack
-	    public DL_Anim OnAirPDelegate            ; // Power : Power  Attack in Air
+        public DL_bVal OnAttkDelegate            ; // Attack
+	    public DL_bVal OnFireDelegate            ; // Fire  : Ranged Attack
+	    public DL_bVal OnAirFDelegate            ; // Fire  : Ranged Attack in Air
+	    public DL_bVal OnMleeDelegate            ; // Melee : Close  Attack
+	    public DL_bVal OnAirMDelegate            ; // Melee : Close  Attack in Air
+	    public DL_bVal OnPowrDelegate            ; // Power : Power  Attack
+	    public DL_bVal OnAirPDelegate            ; // Power : Power  Attack in Air
 
 		// combat React States
-        public DL_Anim OnGardDelegate            ; // Guard
-        public DL_Anim OnHitdDelegate            ; // Hitd
+        public DL_bVal OnGardDelegate            ; // Guard
+        public DL_bVal OnHitdDelegate            ; // Hitd
 
 		// lState - life State
-        public DL_Anim OnSpwnDelegate            ; // Spawn
-        public DL_Anim OnActvDelegate            ; // Active
-        public DL_Anim OnAlivDelegate            ; // Alive
-		public DL_Anim OnDactDelegate            ; // Deactived
-        public DL_Anim OnDeadDelegate            ; // Dead
+        public DL_bVal OnSpwnDelegate            ; // Spawn
+        public DL_bVal OnActvDelegate            ; // Active
+        public DL_bVal OnAlivDelegate            ; // Alive
+		public DL_bVal OnDactDelegate            ; // Deactived
+        public DL_bVal OnDeadDelegate            ; // Dead
 
 		// TState - Trigger State (specials, Boss Attack)
 		public DL_iVal OnTrigDelegate            ; // Special/Boss Attack Trigger
@@ -90,6 +91,12 @@ namespace MTON.Class{
 		    Hitd,
 			Aliv,
 			Dead
+		}
+
+		public enum eStateM{ // overall move state : if curPos == prevPos =>(){ //I am Still; else I am moving }
+			Idle,
+			Move,
+			Stll
 		}
 
 		public enum eStateV{ // vertical state
@@ -131,6 +138,27 @@ namespace MTON.Class{
 #endregion
 
 #region Enum Define : Custom
+
+		// STATE : MOVE (am I moving or still)
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateM mstate;
+		public  eStateM mState{
+			get{
+				return mstate;
+			}
+			set{
+				if(value != mstate){
+					mstate = value ;
+					if(value == eStateM.Stll){
+						this.setStll(true);
+					}
+					else{
+						this.setStll(false);
+					}
+//					Debug.Log(this + " vState updated : " + value);
+				}
+			}
+		}
 
 		// STATE : VERTICAL
 		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
@@ -470,9 +498,15 @@ namespace MTON.Class{
 #region Delegate private bool Functions
 
 		//transform functions
-		public void doMove(Vector3 vMove){  //walk/run
+		public void doMove(Vector3 vMove){  //walk/run from io
 		  if(this.OnMoveDelegate != null){
 		    this.OnMoveDelegate(vMove);
+		  }
+		}
+
+		public void setStll(bool bStill){    //move/still from position update
+		  if(this.OnStllDelegate != null){
+		    this.OnStllDelegate(bStill);
 		  }
 		}
 
