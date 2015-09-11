@@ -97,6 +97,7 @@ namespace MTON.codeObjects{
         io.OnAttkDelegate      += doAttk ; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
         io.OnPowrDelegate      += doPowr ;
         io.OnActVDelegate      += doActV ; //Attack Visual = hitFlash
+		io.On__IODelegate      += rd.doRadarVoid;
 
         //rigidbody events
         rb.OnGround_Delegate   += doGround ;
@@ -125,6 +126,7 @@ namespace MTON.codeObjects{
         io.OnAttkDelegate      -= doAttk ;
         io.OnPowrDelegate      -= doPowr ;
         io.OnActVDelegate      -= doActV ; //Attack Visual = hitFlash
+		io.On__IODelegate      -= rd.doRadarVoid;
 
         //rigidbody events
         rb.OnGround_Delegate   -= doGround ;
@@ -242,7 +244,7 @@ namespace MTON.codeObjects{
         }
       }
 
-      private bool bpowr         = false ;
+      private bool bpowr        = false ;
       public bool bDpdX         = true  ;
       public bool bDpdY         = false ;
 
@@ -418,12 +420,10 @@ namespace MTON.codeObjects{
 			Debug.Log ("IDLE : " + bIdlH);
             if(this.bGround){ // If onGround, kick up dust
 			  __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDsl, this.xform.position, true);
-		      rd.doRadar(true); //also do radar search on stand still
             }
           }
 		  else{
 			Debug.Log ("IDLE : " + bIdlH);
-		    rd.doRadar(false); //also do radar search on stand still
 		  }
         }
 

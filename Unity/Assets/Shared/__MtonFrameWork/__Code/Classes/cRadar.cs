@@ -39,6 +39,10 @@ namespace MTON.Class{
     //DOTween variables
     public Tween    tw_Cache ;
 
+    public void doRadarVoid(bool bActive){ //overload for delegate without bool return such as cInput.On__IODelegate
+	  this.doRadar(!bActive); //IO true = radar false ; IO false = radar true  ;          
+	}
+
 	public bool doRadar(bool bActive){
 //	  Debug.Log("DO RADAR : Layer : " + this.sVW.l_Search + " Tag : "+ this.sVW.t_Search + this);
 	  if(bActive){ // display highlight active

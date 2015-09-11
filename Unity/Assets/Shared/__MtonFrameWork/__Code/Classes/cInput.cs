@@ -37,6 +37,8 @@ namespace MTON.Class{
 	  if(OnDPAD_DIR_Delegate != null){
 	    OnDPAD_DIR_Delegate(vDir);
 	  }
+	  if(vDir != Vector3.zero){ this.b__IO = true  ; }	
+	  else{                     this.b__IO = false ; }
     }
 
 	public virtual void doDPAD_Aim(Vector3 vDir){
@@ -51,6 +53,7 @@ namespace MTON.Class{
 	    if(OnJumpDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
           OnJumpDelegate(bJump);
         }
+		this.b__IO = bJump;
 	}
 
 	public virtual void doAttk(bool bAttk){
@@ -58,6 +61,7 @@ namespace MTON.Class{
 	    if(OnAttkDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
           OnAttkDelegate(bAttk);
         }
+		this.b__IO = bAttk;
 	}
 
 	public virtual void doActV(bool bActV){
@@ -142,6 +146,7 @@ namespace MTON.Class{
 #endregion
 
 	private void set__IO(bool b__io){
+	  Debug.Log ("IO ACTIVE : " + b__io + " : " + this);
       if(this.On__IODelegate != null){
 	    this.On__IODelegate(b__io);
 	  }
