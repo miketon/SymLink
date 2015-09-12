@@ -235,14 +235,18 @@ namespace MTON.codeObjects{
         else{                                //On Ground
           an.vState = cAnimn.eStateV.Idle ;
           an.doVelY(0.0f)                 ;
-		  if(Vector3.Distance(curPos, this.prvPos) < 0.1f){ // I am still
+        }
+
+		// Am I moving?
+		if(Vector3.Distance(curPos, this.prvPos) < 0.1f){ // I am still
+		  if(bGround){
 		    this.an.mState = cAnimn.eStateM.Stll;
 		  }
-		  else{                                             // else I am moving
-		    this.an.mState = cAnimn.eStateM.Move;
-		  }
-        }
-        prvPos = curPos;
+		}
+		else{                                             // else I am moving
+		  this.an.mState = cAnimn.eStateM.Move;
+		}
+        prvPos = curPos; //Cache previous position
 
       }
 
@@ -251,14 +255,16 @@ namespace MTON.codeObjects{
 #region RADARLOGIC
 
 	public virtual void do__IO(bool b__IO ){
-	  if(this.bGround){
-	    this.doRadr(!b__IO);
+	  if(this.bGround){      // doRadr on input, if player is on ground
+	    this.doRadr(!b__IO); // negate because if input, don't radar
 	  }
 	}
 
-	public virtual void doStill(bool b__IO ){
-	  if(!io.b__IO){  //if not taking in input, and not updating position, this is still
-	    this.doRadr(!b__IO);
+	public virtual void doStill(bool bStll ){
+	  if(this.bGround){      // doRadr if player is on ground...
+	    if(!io.b__IO){       // AND not taking in input
+	      this.doRadr(bStll);
+	    }
 	  }
 	}
 
