@@ -95,6 +95,7 @@ namespace MTON.Class{
 	  if(OnPowrDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
         OnPowrDelegate(bPowr);
       }
+	  this.b__IO = bPowr;
 	}
 
 #region Property Setters and Getters 

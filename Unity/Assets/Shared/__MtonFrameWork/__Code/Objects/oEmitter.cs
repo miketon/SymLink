@@ -58,7 +58,7 @@ namespace MTON.codeObjects{
 	}
 
 	private void doRapid(bool bRapid){
-	  Debug.Log ("RAPID TOGGLE : " + bRapid);
+//	  Debug.Log ("RAPID TOGGLE : " + bRapid);
 	}
 
     // Update is called once per frame

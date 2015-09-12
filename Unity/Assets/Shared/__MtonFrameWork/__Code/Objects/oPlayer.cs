@@ -97,7 +97,6 @@ namespace MTON.codeObjects{
         io.OnAttkDelegate      += doAttk ; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
         io.OnPowrDelegate      += doPowr ;
         io.OnActVDelegate      += doActV ; //Attack Visual = hitFlash
-		io.On__IODelegate      += do__IO ;
 
         //rigidbody events
         rb.OnGround_Delegate   += doGround ;
@@ -115,6 +114,10 @@ namespace MTON.codeObjects{
         an.OnIdlHDelegate      += doIdlH   ;
         an.OnFootDelegate      += doFoot   ;
         an.OnTrigDelegate      += doTrig   ;
+		
+		//radar logic
+        an.OnStllDelegate      += doStill  ;
+		io.On__IODelegate      += do__IO   ;
       }
 
       public virtual void OnDisable(){
@@ -126,7 +129,6 @@ namespace MTON.codeObjects{
         io.OnAttkDelegate      -= doAttk ;
         io.OnPowrDelegate      -= doPowr ;
         io.OnActVDelegate      -= doActV ; //Attack Visual = hitFlash
-		io.On__IODelegate      -= do__IO ;
 
         //rigidbody events
         rb.OnGround_Delegate   -= doGround ;
@@ -144,6 +146,10 @@ namespace MTON.codeObjects{
         an.OnIdlHDelegate      -= doIdlH   ;
         an.OnFootDelegate      -= doFoot   ;
         an.OnTrigDelegate      -= doTrig   ;
+
+		//radar logic
+        an.OnStllDelegate      -= doStill  ;
+		io.On__IODelegate      -= do__IO   ;
       }
 
 #endregion
@@ -210,6 +216,7 @@ namespace MTON.codeObjects{
       public virtual void FixedUpdate(){
 
         Vector3 curPos = xform.position;
+
         if(!bGround){                        //Not on Ground :check vertical state
           float kY = curPos.y - prvPos.y;
           if(kY>0.05f){                   //rising
@@ -228,6 +235,12 @@ namespace MTON.codeObjects{
         else{                                //On Ground
           an.vState = cAnimn.eStateV.Idle ;
           an.doVelY(0.0f)                 ;
+		  if(Vector3.Distance(curPos, this.prvPos) < 0.1f){ // I am still
+		    this.an.mState = cAnimn.eStateM.Stll;
+		  }
+		  else{                                             // else I am moving
+		    this.an.mState = cAnimn.eStateM.Move;
+		  }
         }
         prvPos = curPos;
 
@@ -239,6 +252,12 @@ namespace MTON.codeObjects{
 
 	public virtual void do__IO(bool b__IO ){
 	  if(this.bGround){
+	    this.doRadr(!b__IO);
+	  }
+	}
+
+	public virtual void doStill(bool b__IO ){
+	  if(!io.b__IO){  //if not taking in input, and not updating position, this is still
 	    this.doRadr(!b__IO);
 	  }
 	}
