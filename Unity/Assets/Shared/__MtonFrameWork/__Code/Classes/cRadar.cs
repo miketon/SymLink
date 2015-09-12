@@ -15,6 +15,8 @@ namespace MTON.Class{
 
 	public void Init(){
 	  ui_Scale = ui_dpRing.localScale;
+	  this.ui_Scale_Actv = ui_Scale * 5.0f;
+	  this.ui_Scale_Rest = ui_Scale * 3.0f;
 	}
 
 	public s_ViewConeProperties sVW = new s_ViewConeProperties();
@@ -38,32 +40,36 @@ namespace MTON.Class{
 
     //DOTween variables
     public Tween    tw_Cache ;
+	private Vector3 ui_Scale_Rest ;
+	private Vector3 ui_Scale_Actv ;
 
-    public void doRadarVoid(bool bActive){ //overload for delegate without bool return such as cInput.On__IODelegate
-	  this.doRadar(!bActive); //IO true = radar false ; IO false = radar true  ;          
-	}
-
+	private bool bradar = false;
 	public bool doRadar(bool bActive){
+	  if(bActive != bradar){
+
+	  bradar =bActive;
 //	  Debug.Log("DO RADAR : Layer : " + this.sVW.l_Search + " Tag : "+ this.sVW.t_Search + this);
+	  if(this.tw_Cache!=null){ //reset cache
+        this.tw_Cache.Kill()                       ;
+		this.ui_dpRing.localScale = this.ui_Scale  ;
+	  }
 	  if(bActive){ // display highlight active
-	    Debug.Log("RADAR ON");
+//	    Debug.Log("RADAR ON");
 		if(this.ui_dpRing){
 		  this.ui_dpRing.gameObject.SetActive(true);
 		  this.ui_dpRing.position = this.transform.position + this.vOffset;
-		  if(this.tw_Cache!=null){
-            this.tw_Cache.Kill();
-		    this.ui_dpRing.localScale = this.ui_Scale;
-		  }
-		  this.tw_Cache = this.ui_dpRing.DOScale(this.ui_Scale.x * 5.0f, 1.0f).SetEase(Ease.InOutElastic);
+		  this.tw_Cache = this.ui_dpRing.DOScale(this.ui_Scale_Actv.x, 0.50f).SetEase(Ease.InOutElastic);
 	    }
 	  }
 	  else{ // display highlight hide
-	    Debug.Log("RADAR OFF");
+//	    Debug.Log("RADAR OFF");
 		if(this.ui_dpRing){
-		  this.tw_Cache = this.ui_dpRing.DOScale(this.ui_Scale, 0.15f).OnComplete(()=>{
+		  this.ui_dpRing.localScale = this.ui_Scale_Rest;
+		  this.tw_Cache = this.ui_dpRing.DOScale(this.ui_Scale.x, 0.15f).OnComplete(()=>{
 		    this.ui_dpRing.gameObject.SetActive(false);
 		  });
 		}
+	  }
 	  }
 	  if(this.sVW.l_Search!=""){
 	    return true;

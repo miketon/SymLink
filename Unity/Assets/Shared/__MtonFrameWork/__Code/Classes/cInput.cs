@@ -1,5 +1,6 @@
 using UnityEngine        ;
 using System.Collections ;
+using System             ;
 using MTON.Interface     ;
 using MTON.Global        ;
 
@@ -97,8 +98,25 @@ namespace MTON.Class{
 	}
 
 #region Property Setters and Getters 
+	
+//	public int iocount = 0;
+//	public int ioCount{
+//	  get{ return iocount;	}
+//	  set{
+//		if(value!=iocount){
+//		  iocount = value;
+//	      if(value > 0){
+//		    this.set__IO(true);
+//		  }
+//		  else{
+//		    this.set__IO(false);
+//		  }
+//		}
+//	  }
+//	}
 
     // Overall IO states : Anybutton/dPad = true; else = false
+    [SerializeField] //else can accidentally assign to lowercase var vs. setter var
     private bool b__io = false;
     public bool b__IO { 
       get{
@@ -107,7 +125,13 @@ namespace MTON.Class{
       set{
 		if(value != b__io){  
 		  b__io = value;
-		  this.set__IO(b__io);
+		  this.set__IO(value);
+//		  if(value = true){
+//		    this.ioCount++;
+//		  }
+//		  else{
+//		    this.ioCount = 0;
+//		  }
 		}
       } 
     }

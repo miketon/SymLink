@@ -97,7 +97,7 @@ namespace MTON.codeObjects{
         io.OnAttkDelegate      += doAttk ; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
         io.OnPowrDelegate      += doPowr ;
         io.OnActVDelegate      += doActV ; //Attack Visual = hitFlash
-		io.On__IODelegate      += rd.doRadarVoid;
+		io.On__IODelegate      += do__IO ;
 
         //rigidbody events
         rb.OnGround_Delegate   += doGround ;
@@ -126,7 +126,7 @@ namespace MTON.codeObjects{
         io.OnAttkDelegate      -= doAttk ;
         io.OnPowrDelegate      -= doPowr ;
         io.OnActVDelegate      -= doActV ; //Attack Visual = hitFlash
-		io.On__IODelegate      -= rd.doRadarVoid;
+		io.On__IODelegate      -= do__IO ;
 
         //rigidbody events
         rb.OnGround_Delegate   -= doGround ;
@@ -235,6 +235,22 @@ namespace MTON.codeObjects{
 
 #endregion
 
+#region RADARLOGIC
+
+	public virtual void do__IO(bool b__IO ){
+	  if(this.bGround){
+	    this.doRadr(!b__IO);
+	  }
+	}
+
+    public virtual void doRadr(bool bRadar){
+      if(this.rd!=null){
+	    rd.doRadar(bRadar);
+	  }
+    }
+
+#endregion
+
 #region ATTACKLOGIC
 
       public virtual void doAttk(bool bAttk){
@@ -272,7 +288,6 @@ namespace MTON.codeObjects{
           an.attkST = cAnimn.eStateB.Idle ; //release attack from powerup
         }
       }
-
 
 #endregion
 
@@ -355,7 +370,6 @@ namespace MTON.codeObjects{
         }
       }
 
-
       public virtual void doCrouch(bool bDuck){
         if(this.b_2D == false){
           if(bDuck){
@@ -417,14 +431,11 @@ namespace MTON.codeObjects{
 
         public virtual void doIdlH(bool bIdlH){
           if(bIdlH == true){
-			Debug.Log ("IDLE : " + bIdlH);
             if(this.bGround){ // If onGround, kick up dust
 			  __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDsl, this.xform.position, true);
             }
           }
-		  else{
-			Debug.Log ("IDLE : " + bIdlH);
-		  }
+//			Debug.Log ("IDLE : " + bIdlH);
         }
 
         public virtual void doFoot(bool bFoot){
@@ -465,7 +476,7 @@ namespace MTON.codeObjects{
         }
 
         public virtual void doGround(bool IN_GROUND){
-          this.bGround = IN_GROUND;
+          this.bGround = IN_GROUND ;
           if(IN_GROUND == true){
             an.grndST = cAnimn.eStateB.DN     ;
 			__gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.xform.position, true) ;
