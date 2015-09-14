@@ -14,7 +14,7 @@ namespace MTON.Class{
   public DO_HINT DoHint_Delegate           ; //delegate instance
 
   public List<cInput>   collidedList = new List<cInput>() ; // HACK : Don't know how to add list to interface...
-  public cLevel.fx_Hit  eHit                              ; // enum for particle system to emit
+  public cLevel.e_psFX  eHit                              ; // enum for particle system to emit
 
   public enum e_HintBoxType{
 	Default     ,  //standard trigger enter + exit
@@ -50,7 +50,7 @@ namespace MTON.Class{
 	    this.doHint(true, cINPT);
 	  }
 	  // collision fx
-	  if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+	  if(eHit != cLevel.e_psFX.None){ // set to -1 to prevent emission
 	    __gCONSTANT._LEVEL.Emit_pFX(eHit, this.xform.position, Quaternion.identity, (Transform xForm)=>{
 		  return xForm;
 		});

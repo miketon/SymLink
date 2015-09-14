@@ -101,7 +101,7 @@ namespace MTON.Class{
     }
 
 
-    public enum fx_Hit{ // Must be particle system
+    public enum e_psFX{ // Must be particle system
       HitMark_00 , // moon
       BteMark_00 , // bite mark
       GunFlar_00 ,
@@ -201,8 +201,8 @@ namespace MTON.Class{
 
 #region Effects functions	
 
-    public void fx_Dust(fx_Hit IN_FX, Vector3 IN_POS, bool bFLIP_2D = false){
-      if(IN_FX != fx_Hit.None){ // set to -1 to prevent emission
+    public void fx_Dust(e_psFX IN_FX, Vector3 IN_POS, bool bFLIP_2D = false){
+      if(IN_FX != e_psFX.None){ // set to -1 to prevent emission
         Emit_pFX(IN_FX, IN_POS, Quaternion.identity, (Transform xForm)=>{
             return xForm ;
             }, bFLIP_2D) ;
@@ -227,24 +227,24 @@ namespace MTON.Class{
 
     private int iDustStep = 0;
     //fx
-    public void Emit_pFX<T>(fx_Hit eHit, Vector3 IN_POS, Quaternion IN_ROT, Func<Transform,T> funcToRun, bool bFLIP_2D = false){
+    public void Emit_pFX<T>(e_psFX eHit, Vector3 IN_POS, Quaternion IN_ROT, Func<Transform,T> funcToRun, bool bFLIP_2D = false){
 
-      if(eHit == fx_Hit.HitMark_00){ 
+      if(eHit == e_psFX.HitMark_00){ 
         Emit(this.sPL.fx_Hits[0], IN_POS, IN_ROT, funcToRun);
       }
-      else if(eHit == fx_Hit.GunFlar_00){
+      else if(eHit == e_psFX.GunFlar_00){
         Emit(this.sPL.fx_Hits[1], IN_POS, IN_ROT, funcToRun);
       }
-      else if(eHit == fx_Hit.BteMark_00){
+      else if(eHit == e_psFX.BteMark_00){
         Emit(this.sPL.fx_Hits[2], IN_POS, IN_ROT, funcToRun);
       }
       //      else if(eHit == fx_Hit.DustJmp_00){
       //        Emit(this.sPL.fx_Hits[3], IN_POS + (Vector3.up * this.sPL.fx_Hit_OffSet[3] * 0.85f) , IN_ROT, funcToRun);
       //      }
-      else if(eHit == fx_Hit.DustLnd_00){
+      else if(eHit == e_psFX.DustLnd_00){
         Emit(this.sPL.fx_Hits[4], IN_POS + (Vector3.up * this.sPL.fx_Hit_OffSet[4] * 0.85f) , IN_ROT, funcToRun);
       }
-      else if(eHit == fx_Hit.DustStp_00){ // Dust step alternates : HACK : Index + 1
+      else if(eHit == e_psFX.DustStp_00){ // Dust step alternates : HACK : Index + 1
         int iAltStep = this.iDustStep%2                                                                                                ; // alternate between dust steps
         Emit(this.sPL.fx_Hits[5 + iAltStep], IN_POS + (Vector3.up * this.sPL.fx_Hit_OffSet[5 + iAltStep] * 0.25f) , IN_ROT, funcToRun) ;
         this.iDustStep = this.iDustStep + 1                                                                                            ;

@@ -18,7 +18,7 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   protected Vector3   inScl ;
   public  int       damag = 1       ;
   public  float     force = 1750.0f ;
-  public cLevel.fx_Hit  eHit ; // enum for particle system to emit
+  public cLevel.e_psFX  eHit ; // enum for particle system to emit
 
 #region iEmit implementation
 
@@ -65,7 +65,7 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
 	if(oDamage != null){
 	  oDamage.onHitd(-this.damag);
 	}
-	if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+	if(eHit != cLevel.e_psFX.None){ // set to -1 to prevent emission
 	  __gCONSTANT._LEVEL.Emit_pFX(eHit, this.transform.position, Quaternion.identity, (Transform xForm)=>{
         return xForm;
 	  });

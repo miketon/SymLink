@@ -13,10 +13,23 @@ namespace MTON.Class{
 
 	public         Vector3   vOffset   = Vector3.zero;
 
+	[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+	private float distsearch = 5.0f;
+	public float distSearch{
+	  get{
+	    return distsearch;
+	  }
+	  set{
+	    if(value!=distsearch){
+		  this.Init();
+		}
+	  }
+	}
+
 	public void Init(){
 	  ui_Scale = ui_dpRing.localScale;
-	  this.ui_Scale_Actv = ui_Scale * 5.0f;
-	  this.ui_Scale_Rest = ui_Scale * 3.0f;
+	  this.ui_Scale_Actv = ui_Scale * this.distSearch        ;
+	  this.ui_Scale_Rest = ui_Scale * this.distSearch * 0.3f ;
 	}
 
 	public s_ViewConeProperties sVW = new s_ViewConeProperties();
@@ -26,7 +39,7 @@ namespace MTON.Class{
 	  public  GameObject gTarget          ;
 	  public  string     l_Search         ;
 	  public  string     t_Search         ;
-      public  float      FOVangle         ;          // Number of degrees, centred on forward, for the enemy see.
+      public  float      FOVangle         ;          // Number of degrees, centered on forward, for the enemy see.
 	  public  float      FOVmagtd         ;          // distance of Scan
       public  bool       bInSight         ;          // Whether or not the player is currently sighted.
       public  Vector3    thisLastSighting ;          // Last place this enemy spotted the player.
@@ -43,11 +56,7 @@ namespace MTON.Class{
 	private Vector3 ui_Scale_Rest ;
 	private Vector3 ui_Scale_Actv ;
 
-	private bool bradar = false;
 	public bool doRadar(bool bActive){
-	  if(bActive != bradar){
-
-	  bradar =bActive;
 //	  Debug.Log("DO RADAR : Layer : " + this.sVW.l_Search + " Tag : "+ this.sVW.t_Search + this);
 	  if(this.tw_Cache!=null){ //reset cache
         this.tw_Cache.Kill()                       ;
@@ -69,7 +78,6 @@ namespace MTON.Class{
 		    this.ui_dpRing.gameObject.SetActive(false);
 		  });
 		}
-	  }
 	  }
 	  if(this.sVW.l_Search!=""){
 	    return true;

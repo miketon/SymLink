@@ -123,7 +123,7 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 
 	  public bool bCompleteSpawn;
 	  public cLevel.e_Enmy enemySpawnOnComplete;
-	  public cLevel.fx_Hit enemySpawnFX;
+	  public cLevel.e_psFX enemySpawnFX;
 	  public cLevel.e_Anim onCompleteFX;
 
     }

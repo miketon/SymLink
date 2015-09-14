@@ -123,7 +123,7 @@ namespace MTON.Class{
         public cLevel.e_Bllt[]  eBlt   ; // enum for bullet type to emit
 		public bool             bModBL ; // true == modulate through all available bullets
         public cLevel.e_Slams   eSlm   ; // enum for thomper/slam attack
-        public cLevel.fx_Hit    eGun   ; // enum for GunFlare particle system to emit
+        public cLevel.e_psFX    eGun   ; // enum for GunFlare particle system to emit
 
       }
 

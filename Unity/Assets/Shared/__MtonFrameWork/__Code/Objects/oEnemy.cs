@@ -204,10 +204,10 @@ namespace MTON.codeObjects{
 
 #endregion
 
-	public cLevel.fx_Hit eBit;
+	public cLevel.e_psFX eBit;
 
 	private void ai_BITE(Vector3 IN_POS){
-	  if(this.eBit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+	  if(this.eBit != cLevel.e_psFX.None){ // set to -1 to prevent emission
 	    __gCONSTANT._LEVEL.Emit_pFX(eBit, IN_POS, Quaternion.identity, (Transform xForm)=>{
           return xForm;
 	    });

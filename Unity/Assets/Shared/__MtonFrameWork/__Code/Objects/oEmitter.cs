@@ -49,7 +49,7 @@ namespace MTON.codeObjects{
             return xForm ;
           })             ;
       }
-	  if(this.sEM.eGun != cLevel.fx_Hit.None){   // Flare : set to -1 to prevent emission
+	  if(this.sEM.eGun != cLevel.e_psFX.None){   // Flare : set to -1 to prevent emission
         __gCONSTANT._LEVEL.Emit_pFX(this.sEM.eGun, IN_XFORM.position, Quaternion.identity, (Transform xForm)=>{
           IN_XFORM.gameObject.SetActive(false) ; // NOTE : Using Delegate IN_XFORM to deactivate firing point (light child)
           return xForm                         ;
