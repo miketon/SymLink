@@ -171,7 +171,7 @@ namespace MTON.Class{
 #endregion
 
 	private void set__IO(bool b__io){
-	  Debug.Log ("IO ACTIVE : " + b__io + " : " + this);
+//	  Debug.Log ("IO ACTIVE : " + b__io + " : " + this);
       if(this.On__IODelegate != null){
 	    this.On__IODelegate(b__io);
 	  }

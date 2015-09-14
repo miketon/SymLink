@@ -108,12 +108,12 @@ namespace MTON.codeObjects{
 
         //animation : input + character/env state
         an.OnDuckDelegate      += setCrouch ;
-        an.OnFaceDelegate      += doFace   ;
-        an.OnRiseDelegate      += setRise  ;
-        an.OnIdlVDelegate      += setIdlV  ;
-        an.OnIdlHDelegate      += setIdlH  ;
-        an.OnFootDelegate      += setFoot  ;
-        an.OnTrigDelegate      += doTrig   ;
+        an.OnFaceDelegate      += doFace    ;
+        an.OnRiseDelegate      += setRise   ;
+        an.OnIdlVDelegate      += setIdlV   ;
+        an.OnIdlHDelegate      += setIdlH   ;
+        an.OnFootDelegate      += setFoot   ;
+        an.OnTrigDelegate      += doTrig    ;
 		
 		//radar logic
         an.OnStllDelegate      += setStill  ;
@@ -123,8 +123,8 @@ namespace MTON.codeObjects{
       public virtual void OnDisable(){
 
         //direct input
-        io.OnDPAD_DIR_Delegate -= doMove ;
-        io.OnDPAD_AIM_Delegate -= doAimd ;
+        io.OnDPAD_DIR_Delegate -= doMove  ;
+        io.OnDPAD_AIM_Delegate -= doAimd  ;
         io.OnJumpDelegate      -= setJump ; //NOTE: remember to remove delegate in case of wierd memory leaks
         io.OnAttkDelegate      -= setAttk ;
         io.OnPowrDelegate      -= setPowr ;
@@ -135,17 +135,17 @@ namespace MTON.codeObjects{
         rb.OnCeilng_Delegate   -= setCeilng ;
 
         //health logic
-        ht.OnHitdDelegate      -= this.doHitd ;
+        ht.OnHitdDelegate      -= this.doHitd  ;
         ht.OnDethDelegate      -= this.setDead ;
 
         //animation : input + character/env state
         an.OnDuckDelegate      -= setCrouch ;
-        an.OnFaceDelegate      -= doFace   ;
+        an.OnFaceDelegate      -= doFace    ;
         an.OnRiseDelegate      -= setRise   ;
         an.OnIdlVDelegate      -= setIdlV   ;
         an.OnIdlHDelegate      -= setIdlH   ;
         an.OnFootDelegate      -= setFoot   ;
-        an.OnTrigDelegate      -= doTrig   ;
+        an.OnTrigDelegate      -= doTrig    ;
 
 		//radar logic
         an.OnStllDelegate      -= setStill  ;
@@ -222,9 +222,9 @@ namespace MTON.codeObjects{
 
 	public virtual void setStill(bool bStll ){
 	  if(this.bGround){      // doRadr if player is on ground...
-//	    if(!io.b__IO){       // AND not taking in input
+	    if(!io.b__IO){       // AND not taking in input
 	      this.setRadr(bStll);
-//	    }
+	    }
 	  }
 	}
 
@@ -309,12 +309,12 @@ namespace MTON.codeObjects{
         }
 
 		// Am I moving?
-		if(Vector3.Distance(curPos, this.prvPos) < 0.1f){ // I am still
+		if(Vector3.Distance(curPos, this.prvPos) < 0.01f){ // I am still
 		  if(bGround){
 		    this.an.mState = cAnimn.eStateM.Stll;
 		  }
 		}
-		else{                                             // else I am moving
+		else{                                              // else I am moving
 		  this.an.mState = cAnimn.eStateM.Move;
 		}
         prvPos = curPos; //Cache previous position
@@ -326,13 +326,18 @@ namespace MTON.codeObjects{
 #region SETPOSITION
       ///---------------------------------------TRANSFORMING CHARACTER--------------------------------------------------------------/// 
 
+	  private Vector3 pMoveDir = Vector3.zero;
       public virtual void doMove(Vector3 moveDir){         //Handles movement 
 		if(this.bDpdX){
+		  if(this.pMoveDir == Vector3.zero){
+		    moveDir.x *= 3.5f;                             // move burst to prevent pillbox roll ; HACK: hardcoded value
+		  }
           rb.Move(moveDir);
 		}
 		else{
 		  rb.Move(Vector3.zero);
 		}
+		this.pMoveDir = moveDir; //caching current moveDir
         this.xform.SetPosZ(0.0f);                          // force into 0.0f zPlane so character doesn't slip
         // horizontal move state
         if(Mathf.Abs(moveDir.x) > 0.001f){
