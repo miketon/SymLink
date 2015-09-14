@@ -91,33 +91,33 @@ namespace MTON.codeObjects{
         this.gameObject.SetActive(true);
 
         //direct input
-        io.OnDPAD_DIR_Delegate += doMove ;
-        io.OnDPAD_AIM_Delegate += doAimd ;
-        io.OnJumpDelegate      += doJump ;
-        io.OnAttkDelegate      += doAttk ; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
-        io.OnPowrDelegate      += doPowr ;
-        io.OnActVDelegate      += doActV ; //Attack Visual = hitFlash
+        io.OnDPAD_DIR_Delegate += doMove  ;
+        io.OnDPAD_AIM_Delegate += doAimd  ;
+        io.OnJumpDelegate      += setJump ;
+        io.OnAttkDelegate      += setAttk ; //NOTE: Interesting that setAttk executes, then io.OnAttkDelegate executes???
+        io.OnPowrDelegate      += setPowr ;
+        io.OnActVDelegate      += setActV ; //Attack Visual = hitFlash
 
         //rigidbody events
-        rb.OnGround_Delegate   += doGround ;
-        rb.OnCeilng_Delegate   += doCeilng ;
+        rb.OnGround_Delegate   += setGround ;
+        rb.OnCeilng_Delegate   += setCeilng ;
 
         //health logic
-        ht.OnHitdDelegate      += this.doHitd ;
-        ht.OnDethDelegate      += this.doDead ;
+        ht.OnHitdDelegate      += this.doHitd  ;
+        ht.OnDethDelegate      += this.setDead ;
 
         //animation : input + character/env state
-        an.OnDuckDelegate      += doCrouch ;
+        an.OnDuckDelegate      += setCrouch ;
         an.OnFaceDelegate      += doFace   ;
-        an.OnRiseDelegate      += doRise   ;
-        an.OnIdlVDelegate      += doIdlV   ;
-        an.OnIdlHDelegate      += doIdlH   ;
-        an.OnFootDelegate      += doFoot   ;
+        an.OnRiseDelegate      += setRise  ;
+        an.OnIdlVDelegate      += setIdlV  ;
+        an.OnIdlHDelegate      += setIdlH  ;
+        an.OnFootDelegate      += setFoot  ;
         an.OnTrigDelegate      += doTrig   ;
 		
 		//radar logic
-        an.OnStllDelegate      += doStill  ;
-		io.On__IODelegate      += do__IO   ;
+        an.OnStllDelegate      += setStill  ;
+		io.On__IODelegate      += set__IO   ;
       }
 
       public virtual void OnDisable(){
@@ -125,31 +125,31 @@ namespace MTON.codeObjects{
         //direct input
         io.OnDPAD_DIR_Delegate -= doMove ;
         io.OnDPAD_AIM_Delegate -= doAimd ;
-        io.OnJumpDelegate      -= doJump ; //NOTE: remember to remove delegate in case of wierd memory leaks
-        io.OnAttkDelegate      -= doAttk ;
-        io.OnPowrDelegate      -= doPowr ;
-        io.OnActVDelegate      -= doActV ; //Attack Visual = hitFlash
+        io.OnJumpDelegate      -= setJump ; //NOTE: remember to remove delegate in case of wierd memory leaks
+        io.OnAttkDelegate      -= setAttk ;
+        io.OnPowrDelegate      -= setPowr ;
+        io.OnActVDelegate      -= setActV ; //Attack Visual = hitFlash
 
         //rigidbody events
-        rb.OnGround_Delegate   -= doGround ;
-        rb.OnCeilng_Delegate   -= doCeilng ;
+        rb.OnGround_Delegate   -= setGround ;
+        rb.OnCeilng_Delegate   -= setCeilng ;
 
         //health logic
         ht.OnHitdDelegate      -= this.doHitd ;
-        ht.OnDethDelegate      -= this.doDead ;
+        ht.OnDethDelegate      -= this.setDead ;
 
         //animation : input + character/env state
-        an.OnDuckDelegate      -= doCrouch ;
+        an.OnDuckDelegate      -= setCrouch ;
         an.OnFaceDelegate      -= doFace   ;
-        an.OnRiseDelegate      -= doRise   ;
-        an.OnIdlVDelegate      -= doIdlV   ;
-        an.OnIdlHDelegate      -= doIdlH   ;
-        an.OnFootDelegate      -= doFoot   ;
+        an.OnRiseDelegate      -= setRise   ;
+        an.OnIdlVDelegate      -= setIdlV   ;
+        an.OnIdlHDelegate      -= setIdlH   ;
+        an.OnFootDelegate      -= setFoot   ;
         an.OnTrigDelegate      -= doTrig   ;
 
 		//radar logic
-        an.OnStllDelegate      -= doStill  ;
-		io.On__IODelegate      -= do__IO   ;
+        an.OnStllDelegate      -= setStill  ;
+		io.On__IODelegate      -= set__IO   ;
       }
 
 #endregion
@@ -211,7 +211,77 @@ namespace MTON.codeObjects{
 
 #endregion
 
-#region FixedUPDATE
+
+#region RADARLOGIC
+
+	public virtual void set__IO(bool b__IO ){
+	  if(this.bGround){       // doRadr on input, if player is on ground
+	    this.setRadr(!b__IO); // negate because if input, don't radar
+	  }
+	}
+
+	public virtual void setStill(bool bStll ){
+	  if(this.bGround){      // doRadr if player is on ground...
+//	    if(!io.b__IO){       // AND not taking in input
+	      this.setRadr(bStll);
+//	    }
+	  }
+	}
+
+    public virtual void setRadr(bool bRadar){
+      if(this.rd!=null){
+	    rd.doRadar(bRadar);
+	  }
+    }
+
+#endregion
+
+#region ATTACKLOGIC
+		
+      public virtual void doAimd(Vector3 aimdDir){ //Handles aim Dir
+        Vector3 unitDir = aimdDir.normalized ;
+        an.doAimg(unitDir.y)                 ;
+      }
+
+      public virtual void setAttk(bool bAttk){
+        if(bAttk){
+          an.attkST          = cAnimn.eStateB.DN      ;
+		  this.fp.em.doSinglFire(bAttk, this.bFaceRt) ;
+        }
+      }
+
+      private bool bpowr        = false ;
+      public bool bDpdX         = true  ;
+      public bool bDpdY         = false ;
+
+	  public virtual void setRapd(bool bRapd){
+		Debug.Log ("Emit RAPIDLY !! " + this);
+	  }
+
+      public virtual void setPowr(bool bPowr){
+		this.fp.em.doRapidFire(bPowr);
+        this.bpowr = bPowr;
+        if(bPowr == true){
+//          StartCoroutine(WhileRapidFire());
+		  an.attkST = cAnimn.eStateB.PW   ; //Power up attack
+          an.hState = cAnimn.eStateH.Plnt ;
+          this.bDpdX = false; //dPad x ignore
+          this.bDpdY = true ; //dPad y listen
+          if(this.bGround == true){
+		    __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.transform.position, true);
+          }
+        }
+        else{
+          this.bDpdX = true  ; //dPad x listen
+          this.bDpdY = false ; //dPad x ignore
+          an.doAimg(0.0f)                 ; //reset gun to face forward
+          an.attkST = cAnimn.eStateB.Idle ; //release attack from powerup
+        }
+      }
+
+#endregion
+
+#region GETPOSITION :  FixedUPDATE
 
 	  // Calculate position state delta for animator
       public virtual void FixedUpdate(){
@@ -253,76 +323,7 @@ namespace MTON.codeObjects{
 
 #endregion
 
-#region RADARLOGIC
-
-	public virtual void do__IO(bool b__IO ){
-	  if(this.bGround){      // doRadr on input, if player is on ground
-	    this.doRadr(!b__IO); // negate because if input, don't radar
-	  }
-	}
-
-	public virtual void doStill(bool bStll ){
-	  if(this.bGround){      // doRadr if player is on ground...
-	    if(!io.b__IO){       // AND not taking in input
-	      this.doRadr(bStll);
-	    }
-	  }
-	}
-
-    public virtual void doRadr(bool bRadar){
-      if(this.rd!=null){
-	    rd.doRadar(bRadar);
-	  }
-    }
-
-#endregion
-
-#region ATTACKLOGIC
-		
-      public virtual void doAimd(Vector3 aimdDir){ //Handles aim Dir
-        Vector3 unitDir = aimdDir.normalized ;
-        an.doAimg(unitDir.y)                 ;
-      }
-
-      public virtual void doAttk(bool bAttk){
-        if(bAttk){
-          an.attkST          = cAnimn.eStateB.DN      ;
-		  this.fp.em.doSinglFire(bAttk, this.bFaceRt) ;
-        }
-      }
-
-      private bool bpowr        = false ;
-      public bool bDpdX         = true  ;
-      public bool bDpdY         = false ;
-
-	  public virtual void doRapd(bool bRapd){
-		Debug.Log ("Emit RAPIDLY !! " + this);
-	  }
-
-      public virtual void doPowr(bool bPowr){
-		this.fp.em.doRapidFire(bPowr);
-        this.bpowr = bPowr;
-        if(bPowr == true){
-//          StartCoroutine(WhileRapidFire());
-		  an.attkST = cAnimn.eStateB.PW   ; //Power up attack
-          an.hState = cAnimn.eStateH.Plnt ;
-          this.bDpdX = false; //dPad x ignore
-          this.bDpdY = true ; //dPad y listen
-          if(this.bGround == true){
-		    __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.transform.position, true);
-          }
-        }
-        else{
-          this.bDpdX = true  ; //dPad x listen
-          this.bDpdY = false ; //dPad x ignore
-          an.doAimg(0.0f)                 ; //reset gun to face forward
-          an.attkST = cAnimn.eStateB.Idle ; //release attack from powerup
-        }
-      }
-
-#endregion
-
-#region oPlayer moveset Function
+#region SETPOSITION
       ///---------------------------------------TRANSFORMING CHARACTER--------------------------------------------------------------/// 
 
       public virtual void doMove(Vector3 moveDir){         //Handles movement 
@@ -379,7 +380,7 @@ namespace MTON.codeObjects{
         }
       }
 
-      public virtual void doJump(bool bJump){
+      public virtual void setJump(bool bJump){
         if(bJump){
           if(bGround){    
             rb.Jump()                     ;
@@ -396,7 +397,7 @@ namespace MTON.codeObjects{
         }
       }
 
-      public virtual void doCrouch(bool bDuck){
+      public virtual void setCrouch(bool bDuck){
         if(this.b_2D == false){
           if(bDuck){
             tw.doCrouch(this.sDP.__yScale * this.sDP.duckSc, 0.5f);
@@ -409,6 +410,69 @@ namespace MTON.codeObjects{
 		  __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.transform.position, true);
         }	
       }
+
+#endregion
+
+#region SET COLLISION STATE
+
+        public virtual void setGround(bool IN_GROUND){
+          this.bGround = IN_GROUND ;
+          if(IN_GROUND == true){
+            an.grndST = cAnimn.eStateB.DN     ;
+			__gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.xform.position, true) ;
+          }
+          if(IN_GROUND == false){
+            an.grndST = cAnimn.eStateB.UP;
+          }
+        }
+
+        public virtual void setCeilng(bool IN_CEILING){
+          if(IN_CEILING == true){
+            an.ceilST = cAnimn.eStateB.DN;
+          }
+          if(IN_CEILING == false){
+            an.ceilST = cAnimn.eStateB.Idle;
+          }
+        }
+
+        public virtual void setRise(bool bRise){
+          if(this.sDP.riseXFORM != null){
+            if(bRise == true){
+              this.cControl.height = this.sDP.__initHgt * 0.65f ; //on rise tuck collision
+              this.sDP.riseXFORM.gameObject.SetActive(true )    ;
+              this.sDP.dispXFORM.gameObject.SetActive(false)    ;
+            }
+            else{
+              this.cControl.height = this.sDP.__initHgt      ; //on fall expand collision...else bouncy on ground
+              this.sDP.riseXFORM.gameObject.SetActive(false) ;
+              this.sDP.dispXFORM.gameObject.SetActive(true ) ;
+            }
+          }
+        }
+
+#endregion
+
+#region SET HEALTH
+
+      public virtual void doHitd(int iHurt){
+        rb.Jump()                       ;
+        an.lState = cAnimn.eStateL.Hitd ;
+        //	  Debug.Log(this + " OOOCH!!! ");
+      }
+
+      public virtual void setDead(bool bDead){
+        an.lState = cAnimn.eStateL.Dead  ;
+        this.gameObject.SetActive(false) ;
+        __gCONSTANT._LEVEL.SpawnObj(cLevel.e_Icon.Death, this.transform.position, this.transform.rotation, (Transform SpawnedObj)=>{
+          float randomF = UnityEngine.Random.Range(1.0f, 3.0f) ;
+          SpawnedObj.position += Vector3.up * 0.5f * randomF   ; // lift slightly off ground to allow for spin and pop
+          return true                                          ;
+        })                                                   ;
+      }
+
+#endregion
+
+#region SET ANIMATION
 
       public virtual void doFace(Vector3 vFace){ //for 2D facing, use x
         if(vFace.x > 0.0f){ // Mathf.Epsilon){
@@ -444,7 +508,7 @@ namespace MTON.codeObjects{
 		  this.fp.em.bFaceRight = this.bFaceRt; // For rapidFire logic
         }
 
-        public virtual void doIdlV(bool bIdlV){
+        public virtual void setIdlV(bool bIdlV){
           if(bIdlV == true){
             if(this.sDP.riseXFORM != null){
               this.sDP.dispXFORM.gameObject.SetActive(true)  ; //Sudden landing visual swap out
@@ -453,7 +517,7 @@ namespace MTON.codeObjects{
           }
         }
 
-        public virtual void doIdlH(bool bIdlH){
+        public virtual void setIdlH(bool bIdlH){
           if(bIdlH == true){
             if(this.bGround){ // If onGround, kick up dust
 			  __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDsl, this.xform.position, true);
@@ -462,70 +526,22 @@ namespace MTON.codeObjects{
 //			Debug.Log ("IDLE : " + bIdlH);
         }
 
-        public virtual void doFoot(bool bFoot){
+
+#endregion
+
+#region SET FX
+
+		public virtual void doTrig(int iTrig){
+          Debug.Log ("TRIGGERING : " + iTrig);
+        }
+
+        public virtual void setFoot(bool bFoot){
           if(bFoot == true){
 		    __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDst, this.xform.position, true);
           }
         }
 
-        public virtual void doRise(bool bRise){
-          if(this.sDP.riseXFORM != null){
-            if(bRise == true){
-              this.cControl.height = this.sDP.__initHgt * 0.65f ; //on rise tuck collision
-              this.sDP.riseXFORM.gameObject.SetActive(true )    ;
-              this.sDP.dispXFORM.gameObject.SetActive(false)    ;
-            }
-            else{
-              this.cControl.height = this.sDP.__initHgt      ; //on fall expand collision...else bouncy on ground
-              this.sDP.riseXFORM.gameObject.SetActive(false) ;
-              this.sDP.dispXFORM.gameObject.SetActive(true ) ;
-            }
-          }
-        }
-
-        public virtual void doHitd(int iHurt){
-          rb.Jump()                       ;
-          an.lState = cAnimn.eStateL.Hitd ;
-          //	  Debug.Log(this + " OOOCH!!! ");
-        }
-
-        public virtual void doDead(bool bDead){
-          an.lState = cAnimn.eStateL.Dead  ;
-          this.gameObject.SetActive(false) ;
-          __gCONSTANT._LEVEL.SpawnObj(cLevel.e_Icon.Death, this.transform.position, this.transform.rotation, (Transform SpawnedObj)=>{
-              float randomF = UnityEngine.Random.Range(1.0f, 3.0f) ;
-              SpawnedObj.position += Vector3.up * 0.5f * randomF   ; // lift slightly off ground to allow for spin and pop
-              return true                                          ;
-              })                                                   ;
-        }
-
-        public virtual void doGround(bool IN_GROUND){
-          this.bGround = IN_GROUND ;
-          if(IN_GROUND == true){
-            an.grndST = cAnimn.eStateB.DN     ;
-			__gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.xform.position, true) ;
-          }
-          if(IN_GROUND == false){
-            an.grndST = cAnimn.eStateB.UP;
-          }
-        }
-
-        public virtual void doCeilng(bool IN_CEILING){
-          if(IN_CEILING == true){
-            an.ceilST = cAnimn.eStateB.DN;
-          }
-          if(IN_CEILING == false){
-            an.ceilST = cAnimn.eStateB.Idle;
-          }
-        }
-
-        public virtual void doTrig(int iTrig){
-          Debug.Log ("TRIGGERING : " + iTrig);
-        }
-
-#endregion
-
-        public void doActV(bool bActvV){
+        public virtual void setActV(bool bActvV){
           if(bActvV == true){
             if(rendr != null){
               rendr.material.color = Color.blue;
@@ -537,6 +553,8 @@ namespace MTON.codeObjects{
             }
           }
         }
+
+#endregion
 
 #region Class Utility
 
