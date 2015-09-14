@@ -213,28 +213,29 @@ namespace MTON.codeObjects{
 
 #region FixedUPDATE
 
+	  // Calculate position state delta for animator
       public virtual void FixedUpdate(){
 
         Vector3 curPos = xform.position;
 
-        if(!bGround){                        //Not on Ground :check vertical state
-          float kY = curPos.y - prvPos.y;
-          if(kY>0.05f){                   //rising
-            an.vState = cAnimn.eStateV.Rise ;
-            an.doVelY(1.0f)                 ;
+        if(!bGround){                          //Not on Ground :check vertical state
+          float kY = curPos.y - this.prvPos.y ;
+          if(kY>0.05f){                        //rising
+            an.vState = cAnimn.eStateV.Rise   ;
+            an.doVelY(1.0f)                   ;
           }
-          else if(kY<-0.05f){             //falling
-            an.vState = cAnimn.eStateV.Fall ;
-            an.doVelY(-1.0f)                ;
+          else if(kY<-0.05f){                  //falling
+            an.vState = cAnimn.eStateV.Fall   ;
+            an.doVelY(-1.0f)                  ;
           }
           else{
-            an.vState = cAnimn.eStateV.Apex ;
-            an.doVelY(0.0f)                 ;
+            an.vState = cAnimn.eStateV.Apex   ;
+            an.doVelY(0.0f)                   ;
           }
         }
-        else{                                //On Ground
-          an.vState = cAnimn.eStateV.Idle ;
-          an.doVelY(0.0f)                 ;
+        else{                                  //On Ground
+          an.vState = cAnimn.eStateV.Idle     ;
+          an.doVelY(0.0f)                     ;
         }
 
 		// Am I moving?
@@ -277,6 +278,11 @@ namespace MTON.codeObjects{
 #endregion
 
 #region ATTACKLOGIC
+		
+      public virtual void doAimd(Vector3 aimdDir){ //Handles aim Dir
+        Vector3 unitDir = aimdDir.normalized ;
+        an.doAimg(unitDir.y)                 ;
+      }
 
       public virtual void doAttk(bool bAttk){
         if(bAttk){
@@ -319,26 +325,21 @@ namespace MTON.codeObjects{
 #region oPlayer moveset Function
       ///---------------------------------------TRANSFORMING CHARACTER--------------------------------------------------------------/// 
 
-      public virtual void doAimd(Vector3 aimdDir){ //Handles movement and facing
-        Vector3 unitDir = aimdDir.normalized ;
-        an.doAimg(unitDir.y)                 ;
-      }
-
-      public virtual void doMove(Vector3 moveDir){ //Handles movement and facing
+      public virtual void doMove(Vector3 moveDir){         //Handles movement 
 		if(this.bDpdX){
           rb.Move(moveDir);
 		}
 		else{
 		  rb.Move(Vector3.zero);
 		}
-        this.xform.SetPosZ(0.0f); // force into 0.0f zPlane so character doesn't slip
+        this.xform.SetPosZ(0.0f);                          // force into 0.0f zPlane so character doesn't slip
         // horizontal move state
         if(Mathf.Abs(moveDir.x) > 0.001f){
 		  if(this.bDpdX){
-            an.hState = cAnimn.eStateH.Walk ; //triggering animation for walk
+            an.hState = cAnimn.eStateH.Walk ;              // triggering animation for walk
 		  }
-          if(bGround == true){ // check for footsteps
-            bool bFoot = mc.GetCurvefBool(mc._fAudio0_ID); //IMPORTANT : Implicit that run animation has fCurve where 0==off, 1==on
+          if(bGround == true){                             // check for footsteps
+            bool bFoot = mc.GetCurvefBool(mc._fAudio0_ID); // IMPORTANT : Implicit that run animation has fCurve where 0==off, 1==on
             if(bFoot == true){
               an.footST = cAnimn.eStateB.DN;
             }
@@ -346,7 +347,7 @@ namespace MTON.codeObjects{
               an.footST = cAnimn.eStateB.Idle;
             }
           }
-          if(Mathf.Sign(moveDir.x) > 0.0f){
+		  if(Mathf.Sign(moveDir.x) > 0.0f){                // Handles Facing 
             an.fState = cAnimn.eStateF.Rght;
           }
           else{
@@ -442,8 +443,6 @@ namespace MTON.codeObjects{
         }
 		  this.fp.em.bFaceRight = this.bFaceRt; // For rapidFire logic
         }
-
-        public virtual void doFall()  {}
 
         public virtual void doIdlV(bool bIdlV){
           if(bIdlV == true){
@@ -588,80 +587,3 @@ namespace MTON.codeObjects{
         }
 
       }
-
-
-
-//      public virtual void doAttk(bool bAttk){
-//        if(bAttk){
-//          an.attkST          = cAnimn.eStateB.DN      ;
-//		  this.fp.em.doSinglFire(bAttk, this.bFaceRt) ;
-//          if(this.sEM.firePnts.Length > 0){
-//            an.attkST          = cAnimn.eStateB.DN               ;
-//            Transform firePnt  = this.sEM.firePnts[this.fp.sBL_mod.iIndex] ; 
-//            Quaternion fireRot = firePnt.rotation                ;
-//            if(this.bFaceRt == false){                                      //Brute force guessing; Understanding of matrix not high enough
-//              Vector3 vRot = firePnt.rotation.eulerAngles                 ;
-//              vRot         = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z) ; //MAGIC NUMBER : Why y = 180.0f ??? Likely related to parent -x scale
-//              fireRot      = Quaternion.Euler(vRot)                       ;
-////			  fireRot = firePnt.rotation * Quaternion.Euler(new Vector3(0.0f, 180.0f, 0.0f));
-//            }
-//            firePnt.gameObject.SetActive(true)    ;
-//			if(this.sEM.eBlt.Length > 0){
-//              if(this.sEM.eBlt[this.fp.sBL_mod.iIndex] != cLevel.e_Bllt.None){ //Firing actual bullets
-//                __gCONSTANT._LEVEL.Emit_Bullet(this.sEM.eBlt[this.fp.sBL_mod.iIndex], firePnt.position, fireRot, (Transform xForm)=>{
-//				  cEmit_Bullet cBullet = xForm.gameObject.GetComponent<cEmit_Bullet>() ;
-//				  if(cBullet){
-//				    cBullet.OnComplete();
-//				  }
-//                  return xForm ;
-//                })             ;
-//              }
-//			}
-//            if(this.sEM.eGun != cLevel.fx_Hit.None){ // Flare : set to -1 to prevent emission
-//              __gCONSTANT._LEVEL.Emit_pFX(this.sEM.eGun, firePnt.position, Quaternion.identity, (Transform xForm)=>{
-//                firePnt.gameObject.SetActive(false)                                  ;
-//                return xForm ;
-//              })             ;
-//            }
-//          }
-//		  this.fp.sFP_mod.doMod();
-//		  this.fp.sBL_mod.doMod();
-//        }
-//        else{
-//          if(this.bpowr){ 
-//            an.attkST = cAnimn.eStateB.PW   ; //Power up attack
-//          }
-//          else{
-//            an.attkST = cAnimn.eStateB.Idle ;
-//          }
-//        }
-//      }
-		
-//      private float stepDrtn = 0.0f;
-//      private bool mt_TimeStep(float stepIncm){
-//        if(Time.time > stepDrtn){
-//          stepDrtn  = Time.time + stepIncm ;
-//          return true                      ;    
-//        }
-//        else{
-//          return false                     ;
-//        }
-//      }
-
-//      public IEnumerator WhileRapidFire(){
-//        while(this.bpowr == true){
-//          an.hState = cAnimn.eStateH.Plnt;
-//          this.doMove(Vector3.zero);
-//          if(this.mt_TimeStep(this.sEM.fireRate)){
-//            //	      Debug.Log ("Rapid Fire : " + Time.time); //HACK : time print doesn't match fireRate why???
-//            this.doAttk(true);
-//          }
-//          else{
-//            this.doAttk(false);
-//          }
-//          yield return null;
-//        }
-//        //		Debug.Log ("NO MORE RAPID FIRE"); //Only called once after while loop is complete
-//        an.doAimg(0.0f)                 ; //reset gun to face forward
-//        an.attkST = cAnimn.eStateB.Idle ; //release attack from powerup
-//      }
