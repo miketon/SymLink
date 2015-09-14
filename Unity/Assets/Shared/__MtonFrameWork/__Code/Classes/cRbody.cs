@@ -125,7 +125,24 @@ namespace MTON.Class{
       float bCentCheck = this.dirRayCheck(-Vector3.up, this.cHeight,  0.0f) ; //check center
       float bLeftCheck = this.dirRayCheck(-Vector3.up, this.cHeight,  this.cRadius * 0.8f) ; //check right edge
       float bRghtCheck = this.dirRayCheck(-Vector3.up, this.cHeight, -this.cRadius * 0.8f) ; //check left edge
-      if (bLeftCheck>0.0f || bRghtCheck>0.0f || bCentCheck>0.0f){                                //either edge connects, then character is onGround
+	  int countCheck = 0;
+	  if(bCentCheck > 0.0f){
+	    countCheck=countCheck+2; //center counts more
+	  }
+	  if(bLeftCheck > 0.0f){
+	    countCheck++;
+	  }
+	  if(bRghtCheck > 0.0f){
+	    countCheck++;
+	  }
+//      if (bLeftCheck>0.0f || bRghtCheck>0.0f || bCentCheck>0.0f){                                //either edge connects, then character is onGround
+      if (countCheck>0){                                //either edge connects, then character is onGround
+		if(countCheck<2){ //Not all rays hitting ground; reduce radius of collider
+		  contrl.radius = this.cRadius * 0.05f ; //reduce radius collider
+		}
+		else{
+		  contrl.radius = this.cRadius         ; //else leave at default
+		}
         return true;
       }
       else{

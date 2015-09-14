@@ -1,5 +1,6 @@
 using UnityEngine        ;
 using System.Collections ;
+using System             ;
 using MTON.Interface     ;
 using MTON.Global        ;
 
@@ -12,6 +13,7 @@ namespace MTON.Class{
     public OnDPAD OnDPAD_AIM_Delegate         ; //delegate instance
 	
     public delegate void OnBTTN(bool bPrss) ; //set up delegate
+    public OnBTTN On__IODelegate            ; //delegate instance
     public OnBTTN OnJumpDelegate            ; //delegate instance
     public OnBTTN OnAttkDelegate            ; //delegate instance
 	public OnBTTN OnActVDelegate            ; //delegate instance
@@ -36,6 +38,8 @@ namespace MTON.Class{
 	  if(OnDPAD_DIR_Delegate != null){
 	    OnDPAD_DIR_Delegate(vDir);
 	  }
+	  if(vDir != Vector3.zero){ this.b__IO = true  ; }	
+	  else{                     this.b__IO = false ; }
     }
 
 	public virtual void doDPAD_Aim(Vector3 vDir){
@@ -50,6 +54,7 @@ namespace MTON.Class{
 	    if(OnJumpDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
           OnJumpDelegate(bJump);
         }
+		this.b__IO = bJump;
 	}
 
 	public virtual void doAttk(bool bAttk){
@@ -57,6 +62,7 @@ namespace MTON.Class{
 	    if(OnAttkDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
           OnAttkDelegate(bAttk);
         }
+		this.b__IO = bAttk;
 	}
 
 	public virtual void doActV(bool bActV){
@@ -89,9 +95,47 @@ namespace MTON.Class{
 	  if(OnPowrDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
         OnPowrDelegate(bPowr);
       }
+	  this.b__IO = bPowr;
 	}
 
 #region Property Setters and Getters 
+	
+//	public int iocount = 0;
+//	public int ioCount{
+//	  get{ return iocount;	}
+//	  set{
+//		if(value!=iocount){
+//		  iocount = value;
+//	      if(value > 0){
+//		    this.set__IO(true);
+//		  }
+//		  else{
+//		    this.set__IO(false);
+//		  }
+//		}
+//	  }
+//	}
+
+    // Overall IO states : Anybutton/dPad = true; else = false
+    [SerializeField] //else can accidentally assign to lowercase var vs. setter var
+    private bool b__io = false;
+    public bool b__IO { 
+      get{
+        return b__io;
+      }
+      set{
+		if(value != b__io){  
+		  b__io = value;
+		  this.set__IO(value);
+//		  if(value = true){
+//		    this.ioCount++;
+//		  }
+//		  else{
+//		    this.ioCount = 0;
+//		  }
+		}
+      } 
+    }
 
     // Button states
     private bool bjump = false;
@@ -125,6 +169,13 @@ namespace MTON.Class{
 	}
 
 #endregion
+
+	private void set__IO(bool b__io){
+	  Debug.Log ("IO ACTIVE : " + b__io + " : " + this);
+      if(this.On__IODelegate != null){
+	    this.On__IODelegate(b__io);
+	  }
+    }
 
 	public  float kTimePowerUpAC = 0.5f ;
 	private float kTimeOnAttckDN = 0.0f ;

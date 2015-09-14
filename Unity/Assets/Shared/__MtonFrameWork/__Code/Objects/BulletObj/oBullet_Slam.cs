@@ -23,7 +23,7 @@ public class oBullet_Slam : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   public  Vector3   initVec3 = Vector3.up ;
   public  int       damag    = 1          ;
   public  float     timeSlam = 1.0f       ;
-  public  cLevel.fx_Hit  eHit  ; // enum for particle system to emit
+  public  cLevel.e_psFX  eHit  ; // enum for particle system to emit
   public  cLevel.e_Anim  eDld  ; // enum for Dust Land  Animator Object to play
 
   private  Transform pCamera                  ; //player camera
@@ -80,7 +80,7 @@ public class oBullet_Slam : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
 	if(oDamage != null){
 	  oDamage.onHitd(-this.damag);
 	}
-	if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
+	if(eHit != cLevel.e_psFX.None){ // set to -1 to prevent emission
 	  __gCONSTANT._LEVEL.Emit_pFX(eHit, this.transform.position, Quaternion.identity, (Transform xForm)=>{
 	    return xForm;
 	  });

@@ -52,7 +52,7 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 
     }
 
-	public cSight si;
+	public cRadar si;
 
 	public override void Awake (){
 	  base.Awake ();
@@ -65,7 +65,7 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 	  this.mvC.rotationSpeed = UnityEngine.Random.Range(this.mvC.rotationSpeed, this.mvC.rotationSpeed * 1.5f);
 	  target = MTON.Global.__gCONSTANT._LEVEL.mPlayer;
 	  this._player = this.target.GetComponent<oPlayer>();
-	  this.si = __gUtility.AddComponent_mton<cSight>(this.gameObject)  ; 
+	  this.si = __gUtility.AddComponent_mton<cRadar>(this.gameObject)  ; 
 	}
 
 	bool bPlayerBehind(oPlayer IN_PLAYER, Vector3 IN_kDIR){
@@ -123,7 +123,7 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 
 	  public bool bCompleteSpawn;
 	  public cLevel.e_Enmy enemySpawnOnComplete;
-	  public cLevel.fx_Hit enemySpawnFX;
+	  public cLevel.e_psFX enemySpawnFX;
 	  public cLevel.e_Anim onCompleteFX;
 
     }
