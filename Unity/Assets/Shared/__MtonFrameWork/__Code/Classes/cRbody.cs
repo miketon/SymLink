@@ -209,7 +209,7 @@ namespace MTON.Class{
       }	
     }
 	
-	public float magHit = 5.0f;
+	public float magHit = 15.0f;
     public virtual void doHit(Vector3 IN_DIR){
 	  this.ResetVelocity()     ;
 //	  this.Move(IN_DIR * this.magHit);
