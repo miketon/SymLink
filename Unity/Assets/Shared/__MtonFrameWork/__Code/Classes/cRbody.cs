@@ -71,9 +71,9 @@ namespace MTON.Class{
       this.bGround = this.OnGround()            ; //calculate ground state
       this.cHeight = this.ccHeight(this.contrl) ; //update ccontrol height
 	  if(bFall){
-        Fall()                                    ; //calculate vertical state
+        Fall()                                   ; //calculate vertical state
 	  }
-      doJump()                                  ; //calculate jump state : NOTE : Can't replace with longform bJump prop handler???
+      doJump()                                   ; //calculate jump state : NOTE : Can't replace with longform bJump prop handler???
 
       gravity.x = move.x                         ; //combine with move from Move()=>oMoveH() for final position
       gravity.z = 0.0f                           ; //forces character to stay in 2D plane
@@ -208,6 +208,14 @@ namespace MTON.Class{
         bJump     = false          ;
       }	
     }
+	
+	public float magHit = 5.0f;
+    public virtual void doHit(Vector3 IN_DIR){
+	  this.ResetVelocity()     ;
+//	  this.Move(IN_DIR * this.magHit);
+	  this.contrl.Move(IN_DIR * this.magHit * Time.deltaTime) ; //do gravity
+//	  this.contrl.Move(IN_DIR) ;
+	}
 
 #endregion
 
