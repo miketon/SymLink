@@ -459,17 +459,6 @@ namespace MTON.codeObjects{
 
 #region SET HEALTH
 
-	  private void Update(){
-        if(Input.GetKeyDown(KeyCode.H)){
-	      Debug.Log ("PLAYER HURT UP");
-	      this.doHitd(0, Vector3.up);
-	    }
-	    if(Input.GetKeyDown(KeyCode.J)){
-	      Debug.Log ("PLAYER HURT RIGHT");
-	      this.doHitd(0, Vector3.right);
-	    }
-		
-      }
 
 	  public virtual void doHitd(int iHurt){
 	    this.doHitd(iHurt, Vector3.zero);

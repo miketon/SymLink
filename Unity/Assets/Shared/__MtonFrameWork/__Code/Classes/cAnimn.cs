@@ -9,8 +9,6 @@ namespace MTON.Class{
 	// Animation Listener; Keep stateless
 	public class cAnimn : MonoBehaviour, IAnimn{ 
 
-		public cHealth ht;
-
 #region cAnimn Delegates
 
 		// Delegate types

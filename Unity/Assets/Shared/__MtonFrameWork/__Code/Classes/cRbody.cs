@@ -35,7 +35,7 @@ namespace MTON.Class{
     public bool  bJump   = false ;// { get; set; }
     public bool  dash    = false ;
 
-    public  Vector3 move      = Vector3.zero ;
+    public  Vector3 vMove     = Vector3.zero ;
     public  Vector3 gravity   = Vector3.zero ;
     public  Vector3 pGrav     = Vector3.zero ; //physic gravity : sampled from the scene
 
@@ -75,10 +75,27 @@ namespace MTON.Class{
 	  }
       doJump()                                   ; //calculate jump state : NOTE : Can't replace with longform bJump prop handler???
 
-      gravity.x = move.x                         ; //combine with move from Move()=>oMoveH() for final position
-      gravity.z = 0.0f                           ; //forces character to stay in 2D plane
+      gravity.x  = vMove.x                       ; //combine with move from Move()=>oMoveH() for final position
+	  gravity.y += vMove.y                       ;
+      gravity.z  = 0.0f                          ; //forces character to stay in 2D plane
       this.contrl.Move(gravity * Time.deltaTime) ; //do gravity
     }
+
+		
+	  private void Update(){
+        if(Input.GetKeyDown(KeyCode.H)){
+	      Debug.Log ("PLAYER HURT UP");
+//		  this.vy = 0.0f;
+//		  this.gravity = Vector3.up * this.jumpForce;
+		  this.Move(Vector3.up); // * this.jumpForce * Time.deltaTime);
+//	      this.doHit(Vector3.up);
+	    }
+	    if(Input.GetKeyDown(KeyCode.J)){
+	      Debug.Log ("PLAYER HURT RIGHT");
+	      this.doHit(Vector3.right);
+	    }
+		
+      }
 
 #region    IMPLEMENT INTERFACES : IRbody
 
@@ -166,7 +183,7 @@ namespace MTON.Class{
 #region Move Functions
 
     public virtual void Move(Vector3 moveDir){
-      move = moveDir * this.moveForce ; //horizontal transform (move)	
+      this.vMove = moveDir * this.moveForce ; //horizontal transform (move)	
     }
 
     public virtual void Fall(){ //vertical transform (gravity)
@@ -184,31 +201,31 @@ namespace MTON.Class{
       }
       else{ //on ground
         if(Mathf.Abs(this.contrl.velocity.y) < 0.1f){ //and not on rise ; else get caught on ledges
-          ResetVelocity()        ;  //reset velocity when on ground
+          ResetVelocity()         ;  //reset velocity when on ground
         }
         if(dash){
-          move *= this.dashForce ;
+          vMove *= this.dashForce ;
         }
       }
       gravity.y = Mathf.Clamp(gravity.y, -termVeloc, termVeloc) ; //clamp to terminal velocity
     }
 
     public void Jump(){
-      bJump = true;
+      this.bJump = true;
     }
 
     public void Flap(){ //air jump
-      bJump = true;
+      this.bJump = true;
     }
 
     public virtual void doJump(){
-      if(bJump){ //handle jump
+      if(this.bJump){ //handle jump
         gravity.y = this.jumpForce ;
         vy        = 0.0f           ;
         bJump     = false          ;
       }	
     }
-	
+
 	public float magHit = 15.0f;
     public virtual void doHit(Vector3 IN_DIR){
 	  this.ResetVelocity()     ;
