@@ -12,7 +12,7 @@ namespace MTON.Class{
       public delegate void ON_RBODYEVENT(bool bEvent) ; //set up delegate
       public ON_RBODYEVENT OnGround_Delegate          ; //delegate instance
       public ON_RBODYEVENT OnCeilng_Delegate          ; //delegate instance
-      public ON_RBODYEVENT OnStaggr_Delegate          ; //delegate instance
+      public ON_RBODYEVENT OnStunnd_Delegate          ; //delegate instance for onHitd => lock controls...etc
 
       public static LayerMask __layerGround ;
       public static LayerMask __layerEnemy  ;
@@ -119,16 +119,16 @@ namespace MTON.Class{
     }
 
 	[SerializeField] //else can accidentally assign to lowercase var vs. setter var
-    private bool bstaggr = false;
-    public  bool bStaggr { 
+    private bool bstunnd = false;
+    public  bool bStunnd { 
       get{
-	    return this.bstaggr;
+	    return this.bstunnd;
       } 
       set{
-        if(this.bstaggr != value){
-          this.bstaggr = value;
-          if(OnStaggr_Delegate != null){
-            this.OnStaggr_Delegate(value);
+        if(this.bstunnd != value){
+          this.bstunnd = value;
+          if(OnStunnd_Delegate != null){
+            this.OnStunnd_Delegate(value);
           }
         }
       } 
@@ -144,6 +144,7 @@ namespace MTON.Class{
     //Utilities -- Not extending xForm so reimplementing ground logic
 
     public virtual bool OnGround(){                                          //completely overriding mXform.OnGround() function
+//	  this.bStunnd = false;
       float bCentCheck = this.dirRayCheck(-Vector3.up, this.cHeight,  0.0f) ; //check center
       float bLeftCheck = this.dirRayCheck(-Vector3.up, this.cHeight,  this.cRadius * 0.8f) ; //check right edge
       float bRghtCheck = this.dirRayCheck(-Vector3.up, this.cHeight, -this.cRadius * 0.8f) ; //check left edge
@@ -234,6 +235,7 @@ namespace MTON.Class{
 	public float magHit = 0.5f ;
 	public float posHit = 0.75f;
     public virtual void doHit(Vector3 IN_DIR){
+	  this.bStunnd = true;
 	  this.transform.position += IN_DIR * this.posHit ; // For crisper effect, go ahead and pop player into position
       this.Move(IN_DIR * this.magHit)                 ; 
 	}

@@ -47,9 +47,11 @@ namespace MTON.Class{
 	  if(OnDPAD_AIM_Delegate != null){
 	    OnDPAD_AIM_Delegate(vDir);
 	  }
+	  if(vDir != Vector3.zero){ this.b__IO = true  ; }	
+	  else{                     this.b__IO = false ; }
     }
 
-	public virtual void doJump(bool bJump){
+	public virtual void setJump(bool bJump){
 		this.bJump = bJump;
 	    if(OnJumpDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
           OnJumpDelegate(bJump);
@@ -57,7 +59,7 @@ namespace MTON.Class{
 		this.b__IO = bJump;
 	}
 
-	public virtual void doAttk(bool bAttk){
+	public virtual void setAttk(bool bAttk){
 		this.bAttk = bAttk;
 	    if(OnAttkDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
           OnAttkDelegate(bAttk);
@@ -65,27 +67,21 @@ namespace MTON.Class{
 		this.b__IO = bAttk;
 	}
 
-	public virtual void doActV(bool bActV){
+	public virtual void setActV(bool bActV){
 		this.bActV = bActV;
 	    if(OnActVDelegate!=null){
 		  OnActVDelegate(bActV);
 		}
 	}
 
-#endregion
-
-	private bool bpowr = false;
-	private bool bPowr{
-	  get{ return bpowr; }
-	  set{
-	    if(value != bpowr){
-		  bpowr = value;
-		  this.doPowr(value);
-	    }
+	private void set__IO(bool b__io){
+//	  Debug.Log ("IO ACTIVE : " + b__io + " : " + this);
+      if(this.On__IODelegate != null){
+	    this.On__IODelegate(b__io);
 	  }
-	}
+    }
 
-	public virtual void doPowr(bool bPowr){
+	public virtual void setPowr(bool bPowr){
 	  if(bPowr){
 	    Debug.Log ("ATTACK POWERUP ACTIVATED!");
 	  }
@@ -98,23 +94,10 @@ namespace MTON.Class{
 	  this.b__IO = bPowr;
 	}
 
+#endregion
+
+
 #region Property Setters and Getters 
-	
-//	public int iocount = 0;
-//	public int ioCount{
-//	  get{ return iocount;	}
-//	  set{
-//		if(value!=iocount){
-//		  iocount = value;
-//	      if(value > 0){
-//		    this.set__IO(true);
-//		  }
-//		  else{
-//		    this.set__IO(false);
-//		  }
-//		}
-//	  }
-//	}
 
     // Overall IO states : Anybutton/dPad = true; else = false
     [SerializeField] //else can accidentally assign to lowercase var vs. setter var
@@ -127,12 +110,6 @@ namespace MTON.Class{
 		if(value != b__io){  
 		  b__io = value;
 		  this.set__IO(value);
-//		  if(value = true){
-//		    this.ioCount++;
-//		  }
-//		  else{
-//		    this.ioCount = 0;
-//		  }
 		}
       } 
     }
@@ -168,14 +145,18 @@ namespace MTON.Class{
 	  }
 	}
 
-#endregion
-
-	private void set__IO(bool b__io){
-//	  Debug.Log ("IO ACTIVE : " + b__io + " : " + this);
-      if(this.On__IODelegate != null){
-	    this.On__IODelegate(b__io);
+	private bool bpowr = false;
+	private bool bPowr{
+	  get{ return bpowr; }
+	  set{
+	    if(value != bpowr){
+		  bpowr = value;
+		  this.setPowr(value);
+	    }
 	  }
-    }
+	}
+
+#endregion
 
 	public  float kTimePowerUpAC = 0.5f ;
 	private float kTimeOnAttckDN = 0.0f ;
@@ -201,24 +182,24 @@ namespace MTON.Class{
 
 	    Vector3 aimdDir = new Vector3(hAimd, vAimd, 0.0f);
 		if(aimdDir.magnitude > 0.01f){
-			doDPAD_Aim(aimdDir);
+		  doDPAD_Aim(aimdDir);
 		}
 
         //check jump
         if(Input.GetButtonDown(__gIO._JUMP_p1)){
-          this.doJump(true);
+          this.setJump(true);
         }
         else if(Input.GetButtonUp(__gIO._JUMP_p1)){
-          this.doJump(false);
+          this.setJump(false);
         }
 
         //check attack
         if(Input.GetButtonDown(__gIO._ATTK_p1)){
-		  this.doAttk(true);
+		  this.setAttk(true);
 		  this.kTimeOnAttckDN = Time.time + this.kTimePowerUpAC;
         }
         else if(Input.GetButtonUp(__gIO._ATTK_p1)){
-		  this.doAttk(false) ;
+		  this.setAttk(false) ;
 		  this.bPowr = false ;
         }
 		

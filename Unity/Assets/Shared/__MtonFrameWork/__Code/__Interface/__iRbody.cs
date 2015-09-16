@@ -12,6 +12,7 @@ namespace MTON.Interface{
 
     bool  bGround { get; set; } 
     bool  bCeilng { get; set; } 
+    bool  bStunnd { get; set; } 
     Vector3   cen { get; set; } //Center point
 
 	//VState functions

@@ -101,6 +101,7 @@ namespace MTON.codeObjects{
         //rigidbody events
         rb.OnGround_Delegate   += setGround ;
         rb.OnCeilng_Delegate   += setCeilng ;
+        rb.OnStunnd_Delegate   += setStunnd ;
 
         //health logic
         ht.OnHitdDelegate      += this.doHitd  ;
@@ -437,6 +438,15 @@ namespace MTON.codeObjects{
           }
           if(IN_CEILING == false){
             an.ceilST = cAnimn.eStateB.Idle;
+          }
+        }
+
+		public virtual void setStunnd(bool IN_STUNND){
+		  if(IN_STUNND == true){
+//            an.ceilST = cAnimn.eStateB.DN;
+          }
+		  if(IN_STUNND == false){
+//            an.ceilST = cAnimn.eStateB.Idle;
           }
         }
 
