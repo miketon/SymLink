@@ -51,7 +51,7 @@ namespace MTON.Class{
       __layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
       __layerEnemy  = LayerMask.GetMask (__gCONSTANT._ENEMY);
 	  __layerCheck  = 0;
-      	  __layerCheck  = ~((1<<__layerGround)|(1<<__layerEnemy)); //not layerGround or layerEnemy
+      __layerCheck  = ~((1<<__layerGround)|(1<<__layerEnemy)); //not layerGround or layerEnemy
 //      __layerCheck  = (1<<__layerGround); //only layerGround
 
       cRadius   = this.contrl.radius * this.transform.localScale.x  ;
@@ -62,7 +62,7 @@ namespace MTON.Class{
     }
 
     private float ccHeight(CharacterController IN_CC){
-      return (IN_CC.height * this.transform.localScale.y) * 0.5f + 0.10f ; //character cylinder  y center
+      return (IN_CC.height * this.transform.localScale.y) * 0.5f + IN_CC.skinWidth + 0.005f ; //character cylinder  y center
       //HACK: Can't access skin width via code ???, close approximation ??? built in onGround fails ???
     }
 	
@@ -81,21 +81,6 @@ namespace MTON.Class{
       this.contrl.Move(gravity * Time.deltaTime) ; //do gravity
     }
 
-		
-	  private void Update(){
-        if(Input.GetKeyDown(KeyCode.H)){
-	      Debug.Log ("PLAYER HURT UP");
-//		  this.vy = 0.0f;
-//		  this.gravity = Vector3.up * this.jumpForce;
-		  this.Move(Vector3.up); // * this.jumpForce * Time.deltaTime);
-//	      this.doHit(Vector3.up);
-	    }
-	    if(Input.GetKeyDown(KeyCode.J)){
-	      Debug.Log ("PLAYER HURT RIGHT");
-	      this.doHit(Vector3.right);
-	    }
-		
-      }
 
 #region    IMPLEMENT INTERFACES : IRbody
 
@@ -201,7 +186,7 @@ namespace MTON.Class{
       }
       else{ //on ground
         if(Mathf.Abs(this.contrl.velocity.y) < 0.1f){ //and not on rise ; else get caught on ledges
-          ResetVelocity()         ;  //reset velocity when on ground
+          ResetVelocity()         ;                   //reset velocity when on ground
         }
         if(dash){
           vMove *= this.dashForce ;
@@ -226,12 +211,12 @@ namespace MTON.Class{
       }	
     }
 
-	public float magHit = 15.0f;
+	public float magHit = 0.5f ;
+	public float posHit = 0.75f;
     public virtual void doHit(Vector3 IN_DIR){
-	  this.ResetVelocity()     ;
-//	  this.Move(IN_DIR * this.magHit);
-	  this.contrl.Move(IN_DIR * this.magHit * Time.deltaTime) ; //do gravity
-//	  this.contrl.Move(IN_DIR) ;
+//	  this.ResetVelocity()              ;
+	  this.transform.position += IN_DIR * this.posHit ; // For crisper effect, go ahead and pop player into position
+      this.Move(IN_DIR * this.magHit)   ; // 
 	}
 
 #endregion

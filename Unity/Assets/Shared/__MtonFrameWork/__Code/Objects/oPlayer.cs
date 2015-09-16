@@ -459,6 +459,20 @@ namespace MTON.codeObjects{
 
 #region SET HEALTH
 
+	private void Update(){
+
+	   if(Input.GetKeyDown(KeyCode.H)){
+	      Debug.Log ("PLAYER HURT UP");
+		  Vector3 hitDir;
+		  if(this.bFaceRt){
+		    hitDir = new Vector3(-1.0f, 1.0f, 0.0f);
+		  }
+		  else{
+		    hitDir = new Vector3(1.0f, 1.0f, 0.0f);
+		  }
+		  doHitd(0, hitDir);
+	    }
+	  }
 
 	  public virtual void doHitd(int iHurt){
 	    this.doHitd(iHurt, Vector3.zero);
