@@ -1,4 +1,5 @@
 using UnityEngine        ;
+using System             ;
 using System.Collections ;
 using MTON.Interface     ;
 using MTON.Global        ;
@@ -11,6 +12,7 @@ namespace MTON.Class{
       public delegate void ON_RBODYEVENT(bool bEvent) ; //set up delegate
       public ON_RBODYEVENT OnGround_Delegate          ; //delegate instance
       public ON_RBODYEVENT OnCeilng_Delegate          ; //delegate instance
+      public ON_RBODYEVENT OnStaggr_Delegate          ; //delegate instance
 
       public static LayerMask __layerGround ;
       public static LayerMask __layerEnemy  ;
@@ -25,7 +27,7 @@ namespace MTON.Class{
     public  float massForce = 1.0f  ;
 
     public  float accelY    = 0.035f       ;
-    public  float moveSpeed = 1.0f         ; //HACK:Must be set to one else fall through ground. IO will normalize to zero per frame.
+//    public  float moveSpeed = 1.0f         ; //HACK:Must be set to one else fall through ground. IO will normalize to zero per frame.
     private float vy        = 0.0f         ;
     private float termVeloc = 54.0f        ; //Terminal velocity : 54 = a skydiver free-fall to earth according to wikipedia
 
@@ -69,7 +71,7 @@ namespace MTON.Class{
 	public bool bFall = true;
     private void FixedUpdate(){
       this.bGround = this.OnGround()            ; //calculate ground state
-      this.cHeight = this.ccHeight(this.contrl) ; //update ccontrol height
+//      this.cHeight = this.ccHeight(this.contrl) ; //update ccontrol height ??? Why check on every update ???
 	  if(bFall){
         Fall()                                   ; //calculate vertical state
 	  }
@@ -84,7 +86,8 @@ namespace MTON.Class{
 
 #region    IMPLEMENT INTERFACES : IRbody
 
-    public bool bground = false;
+    [SerializeField] //else can accidentally assign to lowercase var vs. setter var
+    private bool bground = false;
     public bool bGround { 
       get{
         return this.bground;
@@ -99,7 +102,8 @@ namespace MTON.Class{
       } 
     }
 
-    public bool bceilng = false;
+    [SerializeField] //else can accidentally assign to lowercase var vs. setter var
+    private bool bceilng = false;
     public bool bCeilng { 
       get{
         return this.bceilng;
@@ -109,6 +113,22 @@ namespace MTON.Class{
           this.bceilng = value;
           if(OnCeilng_Delegate != null){
             OnCeilng_Delegate(value);
+          }
+        }
+      } 
+    }
+
+	[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+    private bool bstaggr = false;
+    public  bool bStaggr { 
+      get{
+	    return this.bstaggr;
+      } 
+      set{
+        if(this.bstaggr != value){
+          this.bstaggr = value;
+          if(OnStaggr_Delegate != null){
+            this.OnStaggr_Delegate(value);
           }
         }
       } 
@@ -214,9 +234,8 @@ namespace MTON.Class{
 	public float magHit = 0.5f ;
 	public float posHit = 0.75f;
     public virtual void doHit(Vector3 IN_DIR){
-//	  this.ResetVelocity()              ;
 	  this.transform.position += IN_DIR * this.posHit ; // For crisper effect, go ahead and pop player into position
-      this.Move(IN_DIR * this.magHit)   ; // 
+      this.Move(IN_DIR * this.magHit)                 ; 
 	}
 
 #endregion
