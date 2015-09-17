@@ -110,6 +110,37 @@ namespace MTON.Class{
 	
 #endregion
 
+#region CenterBURST ---
+
+  public virtual void doRadiusBurst(bool bAttk, bool IN_FACEFORWARD=true){
+	if(bAttk){
+        if(this.sEM.firePnts.Length > 0){ // Firing Points exist
+          if(this.sEM.eBlt.Length > 0){   // Bullets exist
+		    int           indexBL = this.sBL_mod.iIndex                   ; //which Bullet Object to launch
+			cLevel.e_Bllt oBullet = this.sEM.eBlt[indexBL]                ;
+		    int           indexFP = this.sFP_mod.iIndex                   ; //which Firing Point to emit from
+		    Transform     firePnt = this.sEM.firePnts[indexFP]            ; 
+            Quaternion    fireRot = firePnt.rotation                      ;
+			Quaternion    initRot = firePnt.rotation;
+            if(IN_FACEFORWARD == false){                                    //Brute force guessing; Understanding of matrix not high enough
+              Vector3 vRot = firePnt.rotation.eulerAngles                 ;
+              vRot         = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z) ; //MAGIC NUMBER : Why y = 180.0f ??? Likely related to parent -x scale
+              fireRot      = Quaternion.Euler(vRot)                       ;
+            }
+			firePnt.rotation = fireRot                                    ;
+            firePnt.gameObject.SetActive(true)                            ;
+		    this.doEmit(firePnt, oBullet)                                 ;
+			firePnt.rotation = initRot;
+
+            this.sFP_mod.doMod()                                          ; //modulate to next firing Point
+            this.sBL_mod.doMod()                                          ; //modulate to next bullet
+          } 
+	    }
+    }
+  }
+
+#endregion
+
 #region EmitterProperties and Modulation Structures
 
     public s_EmitProperties sEM = new s_EmitProperties();

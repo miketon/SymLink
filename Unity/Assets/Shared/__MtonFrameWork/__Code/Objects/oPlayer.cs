@@ -116,9 +116,12 @@ namespace MTON.codeObjects{
         an.OnFootDelegate      += setFoot   ;
         an.OnTrigDelegate      += doTrig    ;
 		
-		//radar logic
+		//radar trigger logic
         an.OnStllDelegate      += setStill  ;
 		io.On__IODelegate      += set__IO   ;
+
+		//radar
+		rd.OnRadar_Delegate    += setRadar  ;
       }
 
       public virtual void OnDisable(){
@@ -171,7 +174,6 @@ namespace MTON.codeObjects{
       private   cEquip   eq ;
       private   cHealth  ht ;
       private   cTween   tw ;
-	  public    oEmitter em ;
 
       private cEmit_Audio au ;
 
@@ -217,23 +219,31 @@ namespace MTON.codeObjects{
 
 	public virtual void set__IO(bool b__IO ){
 	  if(this.bGround){       // doRadr on input, if player is on ground
-	    this.setRadr(!b__IO); // negate because if input, don't radar
+	    this.msgRadr(!b__IO); // negate because if input, don't radar
 	  }
 	}
 
 	public virtual void setStill(bool bStll ){
 	  if(this.bGround){      // doRadr if player is on ground...
 	    if(!io.b__IO){       // AND not taking in input
-	      this.setRadr(bStll);
+	      this.msgRadr(bStll);
 	    }
 	  }
 	}
 
-    public virtual void setRadr(bool bRadar){
+    public virtual void msgRadr(bool bRadar){
       if(this.rd!=null){
 	    rd.doRadar(bRadar);
 	  }
     }
+
+   private bool bradar = false;
+   public virtual void setRadar(bool bRadar){
+	 if(bRadar != this.bradar){
+	 Debug.Log ("SETRADAR : " + bRadar);
+     this.fp.em.doRadiusBurst(bRadar);
+	 }
+   }
 
 #endregion
 
@@ -424,7 +434,8 @@ namespace MTON.codeObjects{
         public virtual void setGround(bool IN_GROUND){
           this.bGround = IN_GROUND ;
           if(IN_GROUND == true){
-            an.grndST = cAnimn.eStateB.DN     ;
+            an.grndST = cAnimn.eStateB.DN                                        ;
+		    rb.bStunnd = false;
 			__gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.xform.position, true) ;
           }
           if(IN_GROUND == false){
@@ -442,12 +453,7 @@ namespace MTON.codeObjects{
         }
 
 		public virtual void setStunnd(bool IN_STUNND){
-		  if(IN_STUNND == true){
-//            an.ceilST = cAnimn.eStateB.DN;
-          }
-		  if(IN_STUNND == false){
-//            an.ceilST = cAnimn.eStateB.Idle;
-          }
+	      io.bActV = !IN_STUNND;  //if Stunned io is inactive
         }
 
         public virtual void setRise(bool bRise){

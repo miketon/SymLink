@@ -7,6 +7,9 @@ namespace MTON.Class{
 
   public class cRadar : MonoBehaviour {
 
+    public delegate void ON_RADAREVENT(bool bEvent) ; //set up delegate
+	public ON_RADAREVENT OnRadar_Delegate           ; //delegate instance
+
     private static Vector3   lastPlayerSighting ;  // Reference to last global sighting of the player.
 	public         Transform ui_dpRing          ;
 	private        Vector3   ui_Scale           ;
@@ -56,7 +59,12 @@ namespace MTON.Class{
 	private Vector3 ui_Scale_Rest ;
 	private Vector3 ui_Scale_Actv ;
 
+	private bool bradar = false;
 	public bool doRadar(bool bActive){
+	  if(bActive != this.bradar){
+	  if(this.OnRadar_Delegate != null){
+        this.OnRadar_Delegate(bActive);
+      }
 //	  Debug.Log("DO RADAR : Layer : " + this.sVW.l_Search + " Tag : "+ this.sVW.t_Search + this);
 	  if(this.tw_Cache!=null){ //reset cache
         this.tw_Cache.Kill()                       ;
@@ -79,6 +87,8 @@ namespace MTON.Class{
 		  });
 		}
 	  }
+	  }
+	  this.bradar = bActive;
 	  if(this.sVW.l_Search!=""){
 	    return true;
 	  }
