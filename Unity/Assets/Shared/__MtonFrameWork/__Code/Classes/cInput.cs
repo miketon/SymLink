@@ -22,13 +22,15 @@ namespace MTON.Class{
 #region iInput implementation
 
     [SerializeField] //else can accidentally assign to lowercase var vs. setter var
-      private bool binput = true ; //false == ignore input(use AI); true == accept input
+    private bool binput = true ; //false == ignore input(use AI); true == accept input
     public  bool bInput {        //cannot assign default via setter/getter 
       get{
         return binput;
       } 
       set{
-        if(value != binput){  binput = value;  }
+        if(value != binput){  
+		  binput = value;  
+		}
       } 
     }
 
@@ -47,35 +49,27 @@ namespace MTON.Class{
       if(OnDPAD_AIM_Delegate != null){
         OnDPAD_AIM_Delegate(vDir);
       }
-      if(vDir != Vector3.zero){ this.b__IO = true  ; }	
-      else{                     this.b__IO = false ; }
     }
 
     public virtual void setJump(bool bJump){
-      this.bJump = bJump;
       if(OnJumpDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
         OnJumpDelegate(bJump);
       }
-      this.b__IO = bJump;
     }
 
     public virtual void setAttk(bool bAttk){
-      this.bAttk = bAttk;
       if(OnAttkDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
         OnAttkDelegate(bAttk);
       }
-      this.b__IO = bAttk;
     }
 
     public virtual void setActV(bool bActV){
-      this.bActV = bActV;
       if(OnActVDelegate!=null){
         OnActVDelegate(bActV);
       }
     }
 
     private void set__IO(bool b__io){
-      //	  Debug.Log ("IO ACTIVE : " + b__io + " : " + this);
       if(this.On__IODelegate != null){
         this.On__IODelegate(b__io);
       }
@@ -91,7 +85,6 @@ namespace MTON.Class{
       if(OnPowrDelegate != null){ // NOTE: Just in case class exist, but no delegate is assigned
         OnPowrDelegate(bPowr);
       }
-      this.b__IO = bPowr;
     }
 
 #endregion
@@ -101,8 +94,8 @@ namespace MTON.Class{
 
     // Overall IO states : Anybutton/dPad = true; else = false
     [SerializeField] //else can accidentally assign to lowercase var vs. setter var
-      private bool b__io = false;
-    public bool b__IO { 
+    private bool b__io = false;
+    public  bool b__IO { 
       get{
         return b__io;
       }
@@ -115,41 +108,50 @@ namespace MTON.Class{
     }
 
     [SerializeField] //else can accidentally assign to lowercase var vs. setter var
-      // Button states
-      private bool bjump = false;
-    public bool bJump { 
+    // Button states
+    private bool bjump = false;
+    public  bool bJump { 
       get{
         return bjump;
       }
       set{
-        if(value != bjump){  bjump = value;  }
+        if(value != bjump){  
+		  bjump = value; 
+		  this.setJump(value);
+	    }
       } 
     }
 
     [SerializeField] //else can accidentally assign to lowercase var vs. setter var
-      private bool battk = false;
-    public bool bAttk { 
+    private bool battk = false;
+    public  bool bAttk { 
       get{
         return battk;
       }
       set{
-        if(value != battk){  battk = value;  }
+        if(value != battk){  
+		  battk = value;
+		  this.setAttk(value);
+		}
       } 
     }
 
     [SerializeField] //else can accidentally assign to lowercase var vs. setter var
-      private bool bactv = true; //use to control when entity VISUALLY activates/deactivates 
+    private bool bactv = true; //use to control when entity VISUALLY activates/deactivates 
     public  bool bActV{
       get{
         return bactv;
       }
       set{
-        if(value != bactv){  bactv = value;  }
+        if(value != bactv){  
+		  bactv = value;
+		  this.setActV(value);
+		}
       }
     }
 
     [SerializeField] //else can accidentally assign to lowercase var vs. setter var
-      private bool bpowr = false;
+    private bool bpowr = false;
     private bool bPowr{
       get{ return bpowr; }
       set{
@@ -192,19 +194,19 @@ namespace MTON.Class{
 
           //check jump
           if(Input.GetButtonDown(__gIO._JUMP_p1)){
-            this.setJump(true);
+            this.bJump = true;
           }
           else if(Input.GetButtonUp(__gIO._JUMP_p1)){
-            this.setJump(false);
+            this.bJump = false;
           }
 
           //check attack
           if(Input.GetButtonDown(__gIO._ATTK_p1)){
-            this.setAttk(true);
+            this.bAttk = true;
             this.kTimeOnAttckDN = Time.time + this.kTimePowerUpAC;
           }
           else if(Input.GetButtonUp(__gIO._ATTK_p1)){
-            this.setAttk(false) ;
+            this.bAttk = false ;
             this.bPowr = false ;
           }
 
@@ -217,7 +219,6 @@ namespace MTON.Class{
         }
         else{
           doDPAD_Dir(Vector3.zero); //???must zero out else player zooms off screen
-//          doDPAD_Aim(Vector3.zero); 
         }
       }
     }

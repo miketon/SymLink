@@ -217,15 +217,21 @@ namespace MTON.codeObjects{
 
 #region RADARLOGIC
 
+	private bool b__io = false;
 	public virtual void set__IO(bool b__IO ){
 	  if(this.bGround){       // doRadr on input, if player is on ground
+		if(b__IO != this.b__io){
+	    Debug.Log ("set__IO : " + b__IO);
 	    this.msgRadr(!b__IO); // negate because if input, don't radar
+		this.b__io = b__IO;
+		}
 	  }
 	}
 
 	public virtual void setStill(bool bStll ){
 	  if(this.bGround){      // doRadr if player is on ground...
 	    if(!io.b__IO){       // AND not taking in input
+	      Debug.Log ("setSTILL : " + bStll);
 	      this.msgRadr(bStll);
 	    }
 	  }
@@ -237,12 +243,8 @@ namespace MTON.codeObjects{
 	  }
     }
 
-   private bool bradar = false;
    public virtual void setRadar(bool bRadar){
-	 if(bRadar != this.bradar){
-	 Debug.Log ("SETRADAR : " + bRadar);
      this.fp.em.doRadiusBurst(bRadar);
-	 }
    }
 
 #endregion

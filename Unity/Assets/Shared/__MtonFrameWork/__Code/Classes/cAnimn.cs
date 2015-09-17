@@ -18,7 +18,7 @@ namespace MTON.Class{
 		public delegate void  DL_iVal(int     iValue) ; // Int     type
 
         public DL_VDIR OnMoveDelegate              ; // Movin
-		public DL_bVal OnStllDelegate            ; // Idle
+		public DL_bVal OnStllDelegate              ; // Idle
         public DL_VDIR OnFaceDelegate              ; // Facing Dir
 
         public DL_fVal OnAimgDelegate              ; // Aiming Float
