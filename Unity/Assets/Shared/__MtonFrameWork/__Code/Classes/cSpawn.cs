@@ -110,9 +110,10 @@ namespace MTON.Class{
 	
 #endregion
 
-#region CenterBURST ---
+#region BURSTSHOT ---
 
   public virtual void doRadiusBurst(bool bAttk, bool IN_FACEFORWARD=true){
+    int IN_SPAWN = 3;
 	if(bAttk){
         if(this.sEM.firePnts.Length > 0){ // Firing Points exist
           if(this.sEM.eBlt.Length > 0){   // Bullets exist
@@ -120,23 +121,24 @@ namespace MTON.Class{
 			cLevel.e_Bllt oBullet = this.sEM.eBlt[indexBL]                ;
 		    int           indexFP = this.sFP_mod.iIndex                   ; //which Firing Point to emit from
 		    Transform     firePnt = this.sEM.firePnts[indexFP]            ; 
-            Quaternion    fireRot = firePnt.rotation                      ;
-			Quaternion    initRot = firePnt.rotation;
-            if(IN_FACEFORWARD == false){                                    //Brute force guessing; Understanding of matrix not high enough
-              Vector3 vRot = firePnt.rotation.eulerAngles                 ;
-              vRot         = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z) ; //MAGIC NUMBER : Why y = 180.0f ??? Likely related to parent -x scale
-              fireRot      = Quaternion.Euler(vRot)                       ;
-            }
-			firePnt.rotation = fireRot                                    ;
+
+			Vector3 initPos = firePnt.position;
+			firePnt.position = this.doRadiusPos(firePnt.position); // Center Burst
+
             firePnt.gameObject.SetActive(true)                            ;
 		    this.doEmit(firePnt, oBullet)                                 ;
-			firePnt.rotation = initRot;
+			firePnt.position = initPos;
+//			firePnt.rotation = initRot; //COMMENT OUT
 
             this.sFP_mod.doMod()                                          ; //modulate to next firing Point
             this.sBL_mod.doMod()                                          ; //modulate to next bullet
           } 
 	    }
     }
+  }
+
+  public virtual Vector3 doRadiusPos(Vector3 IN_POS, float IN_RAD = 1.0f){
+	return IN_POS + (UnityEngine.Random.insideUnitSphere * IN_RAD);
   }
 
 #endregion
