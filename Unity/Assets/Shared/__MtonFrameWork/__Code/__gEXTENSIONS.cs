@@ -17,6 +17,16 @@ public static class __gEXTENSIONS {
 		return retXform;
 	}
 
+	public static Quaternion doRotateTowards(this Quaternion self, Vector3 IN_DIR){
+		float angle = Mathf.Atan2(IN_DIR.y, IN_DIR.x) * Mathf.Rad2Deg;
+		Quaternion rLook = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.Euler(new Vector3(0.0f, -90.0f, 0.0f)); //offset to forward z
+		return rLook;
+	}
+
+	public static Vector3 doRadiusPos(this Vector3 self, Vector3 IN_POS, float IN_RAD = 1.0f){
+	  return IN_POS + (UnityEngine.Random.insideUnitSphere * IN_RAD);
+    }
+
 	public static Vector3 MoveOrtho(this Transform self, Vector3 IN_VEC3){
 		int max = -1;
 		int len =  2;

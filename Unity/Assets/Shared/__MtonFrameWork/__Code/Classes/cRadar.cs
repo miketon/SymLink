@@ -106,7 +106,9 @@ namespace MTON.Class{
 
 	  // determine look Rotation
       Vector3 direction = transform.position - XFORM_TARGET.position; 
-	  Quaternion rLook = this.doRotateTowards(direction);
+//	  Quaternion rLook = this.doRotateTowards(direction);
+	  Quaternion rLook; // .doRotateTowards(direction);
+	  rLook.doRotateTowards(direction);
             
       // Create a vector from the enemy to the player and store the angle between it and forward.
 	  angFOV     = Vector3.Angle(direction, transform.forward) ;

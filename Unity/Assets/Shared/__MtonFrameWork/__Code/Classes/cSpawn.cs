@@ -123,22 +123,20 @@ namespace MTON.Class{
 		    Transform     firePnt = this.sEM.firePnts[indexFP]            ; 
 
 			Vector3 initPos = firePnt.position;
-			firePnt.position = this.doRadiusPos(firePnt.position); // Center Burst
+			Quaternion initRot = firePnt.rotation;
+			firePnt.position = new Vector3().doRadiusPos(firePnt.position, 3.0f);
+			firePnt.rotation = new Quaternion().doRotateTowards(Vector3.up);
 
             firePnt.gameObject.SetActive(true)                            ;
 		    this.doEmit(firePnt, oBullet)                                 ;
 			firePnt.position = initPos;
-//			firePnt.rotation = initRot; //COMMENT OUT
+			firePnt.rotation = initRot; //COMMENT OUT
 
             this.sFP_mod.doMod()                                          ; //modulate to next firing Point
             this.sBL_mod.doMod()                                          ; //modulate to next bullet
           } 
 	    }
     }
-  }
-
-  public virtual Vector3 doRadiusPos(Vector3 IN_POS, float IN_RAD = 1.0f){
-	return IN_POS + (UnityEngine.Random.insideUnitSphere * IN_RAD);
   }
 
 #endregion
