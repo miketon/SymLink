@@ -19,7 +19,7 @@ public static class __gEXTENSIONS {
 
 	public static Quaternion doRotateTowards(this Quaternion self, Vector3 IN_DIR){
 		float angle = Mathf.Atan2(IN_DIR.y, IN_DIR.x) * Mathf.Rad2Deg;
-		Quaternion rLook = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.Euler(new Vector3(0.0f, -90.0f, 0.0f)); //offset to forward z
+		Quaternion rLook = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.Euler(new Vector3(0.0f, 90.0f, 0.0f)); //offset to forward z
 		return rLook;
 	}
 
