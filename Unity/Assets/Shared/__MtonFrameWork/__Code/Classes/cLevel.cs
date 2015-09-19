@@ -316,9 +316,9 @@ namespace MTON.Class{
 	  else if(eBullet == e_Bllt.Flaming_00){ // Flaming Bullet
         Emit_Bullet(this.sPL.e_Bllts[2], IN_POS, IN_ROT, funcToRun, retPool);
       }
-//	  else if(eBullet == e_Bllt.Pillars_00){ // Satellite
-//        Emit_Bullet(this.sPL.e_Bllts[3], IN_POS, IN_ROT, funcToRun, retPool);
-//      }
+	  else if(eBullet == e_Bllt.Pillars_00){ // Satellite
+        Emit_Bullet(this.sPL.e_Bllts[3], IN_POS, IN_ROT, funcToRun, retPool);
+      }
     }
 
     // Bullets Slam : Thomper, Doors, Spikes

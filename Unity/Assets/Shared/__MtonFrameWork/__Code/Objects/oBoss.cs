@@ -79,10 +79,10 @@ namespace MTON.codeObjects{
         this.animActive = false      ;
         this.boss_kState(4)          ;
         this.boss_MCANM[4].OnTrig(4) ; //trigger laser animation
-        this.doPowr(true)            ; //rapidFire homing flock
+        this.setPowr(true)            ; //rapidFire homing flock
         this.tt("LerpOverwrite").ttReset().ttAdd(this.anmEmit_duratn[4], delegate(){
             this.animActive = true ;
-            this.doPowr(false)     ; //rapidFire homing flock
+            this.setPowr(false)     ; //rapidFire homing flock
             })                     ;
       }
     }

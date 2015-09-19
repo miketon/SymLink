@@ -31,12 +31,13 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 		  anST.OnVelYDelegate += OnVelY;
 		  anST.OnAimgDelegate += OnAimg;
 		  //Bool
-	      anST.OnGrndDelegate += OnGrnd;
-          anST.OnDuckDelegate += OnDuck;
-          anST.OnJumpDelegate += OnJump;
-          anST.OnJmpADelegate += OnJmpA;
-          anST.OnPlntDelegate += OnPlnt;
-          anST.OnAttkDelegate += OnAttk;
+	      anST.OnGrndDelegate += SetGrnd;
+          anST.OnDuckDelegate += SetDuck;
+          anST.OnJumpDelegate += SetJump;
+          anST.OnJmpADelegate += SetJmpA;
+          anST.OnPlntDelegate += SetPlnt;
+          anST.OnAttkDelegate += SetAttk;
+		  anST.OnHitdDelegate += this.SetHitd;
 		  
 		  anST.OnTrigDelegate += OnTrig;
 		  anST.OnPoseDelegate += OnPose;
@@ -53,12 +54,13 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 		anST.OnVelYDelegate -= OnVelY;
 		anST.OnAimgDelegate -= OnAimg;
 		//Bool
-	    anST.OnGrndDelegate -= OnGrnd;
-        anST.OnDuckDelegate -= OnDuck;
-        anST.OnJumpDelegate -= OnJump;
-        anST.OnJmpADelegate -= OnJmpA;
-        anST.OnPlntDelegate -= OnPlnt;
-        anST.OnAttkDelegate -= OnAttk;
+	    anST.OnGrndDelegate -= SetGrnd;
+        anST.OnDuckDelegate -= SetDuck;
+        anST.OnJumpDelegate -= SetJump;
+        anST.OnJmpADelegate -= SetJmpA;
+        anST.OnPlntDelegate -= SetPlnt;
+        anST.OnAttkDelegate -= SetAttk;
+		anST.OnHitdDelegate -= this.SetHitd;
 
 		anST.OnTrigDelegate -= OnTrig;
 		anST.OnPoseDelegate -= OnPose;
@@ -76,6 +78,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
     public string _bJump    ;
     public string _bJmpA    ;
     public string _bAttk    ;
+    public string _bHitd    ;
     public string _bForwrd	;
     public string _bSpawnd  ;
     public string _bDeathd  ;
@@ -99,6 +102,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
     public int _bJump_ID   { get; set; }
     public int _bJmpA_ID   { get; set; } //air jump
     public int _bAttk_ID   { get; set; }
+    public int _bHitd_ID   { get; set; }
     public int _bForwrd_ID { get; set; } //2d true == right; 3d true == forward
 	public int _bSpawnd_ID { get; set; } 
     public int _bDeathd_ID { get; set; } 
@@ -129,6 +133,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 		_bJump_ID   = Animator.StringToHash(this._bJump  );
 		_bJmpA_ID   = Animator.StringToHash(this._bJmpA  );
 		_bAttk_ID   = Animator.StringToHash(this._bAttk  );
+		_bHitd_ID   = Animator.StringToHash(this._bHitd  );
 		_bCrouch_ID = Animator.StringToHash(this._bCrouch);
 		_bForwrd_ID = Animator.StringToHash(this._bForwrd);
 		_bSpawnd_ID = Animator.StringToHash(this._bSpawnd);
@@ -172,19 +177,19 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	  }
 	}
 
-	public void OnGrnd(bool bGround){
+	public void SetGrnd(bool bGround){
 	  if(_bGround_ID != 0){
 	    anim.SetBool(_bGround_ID, bGround);
 	  }
 	}
 
-	public void OnDuck(bool bCrouch){
+	public void SetDuck(bool bCrouch){
 	  if(_bCrouch_ID != 0){
 	    anim.SetBool(_bCrouch_ID, bCrouch);
 	  }
 	}
 
-	public void OnJump(bool bJump){
+	public void SetJump(bool bJump){
 	  if(_bJump_ID != 0){
 		if(bJump == true){ //need to check for trigger; else double tap effect
 	      anim.SetTrigger(_bJump_ID);
@@ -192,7 +197,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	  }
 	}
 
-    public void OnJmpA(bool bJump){
+    public void SetJmpA(bool bJump){
 	  if(_bJmpA_ID != 0){
 		if(bJump == true){ //need to check for trigger; else double tap effect
 	      anim.SetTrigger(_bJmpA_ID);
@@ -200,7 +205,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	  }
 	}
 
-    public void OnAttk(bool bAttk){
+    public void SetAttk(bool bAttk){
 	  if(_bAttk_ID != 0){
 		if(bAttk == true){ //need to check for trigger; else double tap effect
 	      anim.SetTrigger(_bAttk_ID);
@@ -208,7 +213,15 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	  }
 	}
 
-    public void OnPlnt(bool bPlnt){
+	public void SetHitd(bool bHitd){
+	  if(_bHitd_ID != 0){
+		if(bHitd == true){ //need to check for trigger; else double tap effect
+	      anim.SetTrigger(_bHitd_ID);
+		}
+	  }
+	}
+
+    public void SetPlnt(bool bPlnt){
 	  if(_bPlantd_ID != 0){
 	    anim.SetBool(_bPlantd_ID, bPlnt);
 	  }
@@ -220,7 +233,7 @@ public class cMcanm : MonoBehaviour, IAnimn_ID {
 	  }
 	}
 
-	public void OnDead(bool bDead){
+	public void SetDead(bool bDead){
 	  if(_bDeathd_ID != 0){
 	    anim.SetBool(_bDeathd_ID, bDead);
 	  }

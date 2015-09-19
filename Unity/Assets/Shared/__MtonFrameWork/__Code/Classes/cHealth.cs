@@ -8,7 +8,7 @@ namespace MTON.Class{
 
   public class cHealth  : MonoBehaviour, iHealth{
 
-    public delegate void DL_Hurt(int IN_HLTH) ; //set up delegate
+    public delegate void DL_Hurt(int IN_HLTH, Vector3 IN_DIR) ; //set up delegate
     public DL_Hurt OnHitdDelegate             ; //delegate instance
     public DL_Hurt OnHealDelegate             ; //delegate instance
 
@@ -47,14 +47,18 @@ namespace MTON.Class{
       } 
     } 
 
-    public virtual void onHitd (int IN_HLTH){ 
+	public virtual void onHitd (int IN_HLTH){
+	  this.onHitd(IN_HLTH, Vector3.zero);
+	}
+
+    public virtual void onHitd (int IN_HLTH, Vector3 IN_DIR){ 
       if(IN_HLTH <= 0){                        //negative == damage
         this.oHealth = this.oHealth + IN_HLTH;
         if(this.oHealth <= 0){                 //Dead when total health equal or less than zero
           this.onDeth(true);
         }
         if(this.OnHitdDelegate != null){
-          OnHitdDelegate(IN_HLTH);
+          OnHitdDelegate(IN_HLTH, IN_DIR);
         }
       }
       else{                                     //positve == heal
@@ -63,7 +67,7 @@ namespace MTON.Class{
           this.oHealth = newHealth;
         }                                       //else no change in current health to prevent healing past maximum
         if(this.OnHealDelegate != null){
-          OnHealDelegate(IN_HLTH);
+          OnHealDelegate(IN_HLTH, IN_DIR);
         }
       }
     } 

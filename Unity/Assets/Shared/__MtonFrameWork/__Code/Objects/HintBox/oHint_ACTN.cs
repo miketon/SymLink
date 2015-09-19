@@ -20,15 +20,15 @@ namespace MTON.codeObjects{
 	  base.doHint (bHint, cINPT);
 	  if(bHint == true){
 		if(actionType == e_ActionType.Jump){
-          cINPT.doJump(true)            ;
-	      cINPT.doActV(true)            ;
+          cINPT.setJump(true)            ;
+	      cINPT.setActV(true)            ;
 	      this.tw.doCrouch(0.33f, 0.5f) ;
 		}
 	  }
 	  else if(bHint == false){
 		if(actionType == e_ActionType.Jump){
-	      cINPT.doJump(false)    ;
-          cINPT.doActV(false)    ;
+	      cINPT.setJump(false)    ;
+          cINPT.setActV(false)    ;
 	      this.tw.doCrouch(1.0f) ;
 		}
 	  }

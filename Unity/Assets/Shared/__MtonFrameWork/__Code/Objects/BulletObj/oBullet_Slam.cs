@@ -78,7 +78,8 @@ public class oBullet_Slam : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   void OnCollisionEnter(Collision collision) {
 	cHealth oDamage = collision.gameObject.GetComponent<cHealth>();
 	if(oDamage != null){
-	  oDamage.onHitd(-this.damag);
+	  Vector3 hitDir = this.transform.position - collision.transform.position;
+	  oDamage.onHitd(-this.damag, hitDir);
 	}
 	if(eHit != cLevel.e_psFX.None){ // set to -1 to prevent emission
 	  __gCONSTANT._LEVEL.Emit_pFX(eHit, this.transform.position, Quaternion.identity, (Transform xForm)=>{

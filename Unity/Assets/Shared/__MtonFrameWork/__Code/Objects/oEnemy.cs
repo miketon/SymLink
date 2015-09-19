@@ -22,18 +22,18 @@ namespace MTON.codeObjects{
 				if(binput == true){
 				  //direct input
 				  io.OnDPAD_DIR_Delegate += doMove;
-				  io.OnJumpDelegate      += doJump;
-				  io.OnAttkDelegate      += doAttk; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
-				  io.OnActVDelegate      += doActV; //Attack Visual = hitFlash
-				  io.OnPowrDelegate      += doPowr;
+				  io.OnJumpDelegate      += setJump;
+				  io.OnAttkDelegate      += setAttk; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
+				  io.OnActVDelegate      += setActV; //Attack Visual = hitFlash
+				  io.OnPowrDelegate      += setPowr;
 				}
 				else{
 				  //direct input
 				  io.OnDPAD_DIR_Delegate -= doMove;
-				  io.OnJumpDelegate      -= doJump;
-				  io.OnAttkDelegate      -= doAttk; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
-				  io.OnActVDelegate      -= doActV; //Attack Visual = hitFlash
-				  io.OnPowrDelegate      -= doPowr;
+				  io.OnJumpDelegate      -= setJump;
+				  io.OnAttkDelegate      -= setAttk; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
+				  io.OnActVDelegate      -= setActV; //Attack Visual = hitFlash
+				  io.OnPowrDelegate      -= setPowr;
 				}
 			}
 	}
@@ -174,7 +174,7 @@ namespace MTON.codeObjects{
 	  if(oHit != null){
 	    oPlayer pHit = oHit.GetComponent<oPlayer>();
 		if(pHit != null){
-		  pHit.doJump(true);
+		  pHit.setJump(true);
 		  Debug.Log ("Attacking : " + pHit);
 		  ai_BITE(oHit.transform.position);
           this.an.attkST = cAnimn.eStateB.DN;

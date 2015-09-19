@@ -13,11 +13,11 @@ namespace MTON.Interface{
 	void doDPAD_Aim(Vector3 vDir) ; //aim pad
 
 	// Button States
-	void doJump(bool bJump);
-	void doAttk(bool bAttk);
+	void setJump(bool bJump);
+	void setAttk(bool bAttk);
 	
 	// Visual State
-	void doActV(bool bActV);
+	void setActV(bool bActV);
 
   }
 
