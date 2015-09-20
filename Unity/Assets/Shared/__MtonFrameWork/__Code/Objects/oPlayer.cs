@@ -244,7 +244,8 @@ namespace MTON.codeObjects{
     }
 
    public virtual void setRadar(bool bRadar){
-     this.fp.em.doRadiusBurst(bRadar, this.bFaceRt);
+//     this.fp.em.doRadiusBurst(bRadar, this.bFaceRt);
+     this.fp.em.doRadiusSEQNC(bRadar, this.bFaceRt);
    }
 
 #endregion

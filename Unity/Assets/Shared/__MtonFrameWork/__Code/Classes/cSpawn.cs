@@ -81,27 +81,15 @@ namespace MTON.Class{
 #region BURSTSHOT ---
 
 	public virtual void doRadiusBurst(bool bAttk, bool IN_FACEFORWARD=true){
-	int intTea = 0;
-	this.tt("QueueExample").ttReset();
-    this.tt("QueueExample")
-    .ttLoop(3, delegate(ttHandler loop)
-    {
-		Debug.Log ("Tea Time : "+ intTea);
-		intTea++;
-        // ttLoop runs frame by frame for all his duration (3s) and his handler have a
-        // custom delta (loop.deltaTime) that represents the precise loop duration.
-//        Camera.main.backgroundColor
-//            = Color.Lerp(Camera.main.backgroundColor, Color.black, loop.deltaTime);
-    });
-
-      int IN_SPAWN = 15;
+      int maxSPAWN = 15 ;
+	  int iSPAWNED = 0  ;
 	  this.doAttack(bAttk,
 		(Transform firePnt, cLevel.e_Bllt oBullet)=>{
 		  // HACK : duplicating work, because must reset between array/sequence
 		  Vector3       initPos = firePnt.position                      ;
           Quaternion    initRot = firePnt.rotation                      ;
 //		  Debug.Log ("RADIUS BURST LAMBDA!" + firePnt.gameObject) ;
-		  for(var i=0; i <= IN_SPAWN; i++){
+		  for(var i=0; i <= maxSPAWN; i++){
               firePnt.position = new Vector3().doRadiusPos(firePnt.position, 3.0f);
               firePnt.SetPosZ(0.0f);
               firePnt.rotation = new Quaternion().doRotateTowards(firePnt.position - transform.position);
@@ -120,6 +108,42 @@ namespace MTON.Class{
 	}
 
 #endregion
+
+	public virtual void doRadiusSEQNC(bool bAttk, bool IN_FACEFORWARD=true){
+      int maxSPAWN = 15 ;
+	  int iSPAWNED = 0  ;
+	  int iModIntv = 3  ;
+	  this.doAttack(bAttk,
+		(Transform firePnt, cLevel.e_Bllt oBullet)=>{
+		  int intTea = 0;
+	      this.tt("QueueExample").ttReset();
+          this.tt("QueueExample").ttLoop(3, delegate(ttHandler loop){
+		    intTea++;
+		    int spawnMod = intTea%3;
+			if(spawnMod == 0){
+			  iSPAWNED++;
+			  if(iSPAWNED <= maxSPAWN){
+		        Debug.Log ("Tea Time : "+ iSPAWNED + " intTea: " + intTea + " spawnMod : " + spawnMod);
+				// HACK : duplicating work, because must reset between array/sequence
+		        Vector3       initPos = firePnt.position                      ;
+                Quaternion    initRot = firePnt.rotation                      ;
+			    firePnt.position = new Vector3().doRadiusPos(firePnt.position, 3.0f);
+                firePnt.SetPosZ(0.0f);
+                firePnt.rotation = new Quaternion().doRotateTowards(firePnt.position - transform.position);
+
+                firePnt.gameObject.SetActive(true)                            ;
+                this.doEmit(firePnt, oBullet)                                 ;
+                firePnt.position = initPos;
+                firePnt.rotation = initRot; //COMMENT OUT
+
+                this.sFP_mod.doMod()                                          ; //modulate to next firing Point
+                this.sBL_mod.doMod()                                          ; //modulate to next bullet
+			  }
+			}
+          });
+		  return firePnt;
+	    });
+	}
 
 #region RAPIDFIRE ---
 
