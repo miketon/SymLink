@@ -244,8 +244,7 @@ namespace MTON.codeObjects{
     }
 
    public virtual void setRadar(bool bRadar){
-//     this.fp.em.doRadiusBurst(bRadar, this.bFaceRt);
-     this.fp.em.doRadiusSEQNC(bRadar, this.bFaceRt);
+//     this.fp.em.doRadiusSEQNC(bRadar, this.bFaceRt);
    }
 
 #endregion
@@ -290,6 +289,8 @@ namespace MTON.codeObjects{
           this.bDpdY = false ; //dPad x ignore
           an.doAimg(0.0f)                 ; //reset gun to face forward
           an.attkST = cAnimn.eStateB.Idle ; //release attack from powerup
+		  // set Burst Attack
+          this.fp.em.doRadiusSEQNC(true, this.bFaceRt);
         }
       }
 
@@ -341,7 +342,8 @@ namespace MTON.codeObjects{
       ///---------------------------------------TRANSFORMING CHARACTER--------------------------------------------------------------/// 
 
 	  private Vector3 pMoveDir = Vector3.zero;
-      public virtual void doMove(Vector3 moveDir){         //Handles movement 
+      public virtual void doMove(Vector3 moveDir){         // Handles movement 
+		moveDir.y = Mathf.Min(moveDir.y, 0.0f);            // Filter to prevent flight, but allow ground pound
 		if(this.bDpdX){
 		  if(this.pMoveDir == Vector3.zero){
 		    moveDir.x *= 3.5f;                             // move burst to prevent pillbox roll ; HACK: hardcoded value

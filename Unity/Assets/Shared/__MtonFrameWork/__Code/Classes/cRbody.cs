@@ -142,12 +142,15 @@ namespace MTON.Class{
 #region VState Functions
 
     //Utilities -- Not extending xForm so reimplementing ground logic
-
     public virtual bool OnGround(){                                          //completely overriding mXform.OnGround() function
+	  return this.OnGround(-Vector3.up, new Vector3(this.cRadius, this.cHeight, 0.0f));
+	}
+	
+	public virtual bool OnGround(Vector3 vDir, Vector3 vCol){                // vCol: x = cRadius, y = cHeight                             
 //	  this.bStunnd = false;
-      float bCentCheck = this.dirRayCheck(-Vector3.up, this.cHeight,  0.0f) ; //check center
-      float bLeftCheck = this.dirRayCheck(-Vector3.up, this.cHeight,  this.cRadius * 0.8f) ; //check right edge
-      float bRghtCheck = this.dirRayCheck(-Vector3.up, this.cHeight, -this.cRadius * 0.8f) ; //check left edge
+      float bCentCheck = this.dirRayCheck(vDir, vCol.y,  0.0f) ; //check center
+      float bLeftCheck = this.dirRayCheck(vDir, vCol.y,  vCol.x * 0.8f) ; //check right edge
+      float bRghtCheck = this.dirRayCheck(vDir, vCol.y, -vCol.x * 0.8f) ; //check left edge
 	  int countCheck = 0;
 	  if(bCentCheck > 0.0f){
 	    countCheck=countCheck+2; //center counts more
@@ -161,10 +164,10 @@ namespace MTON.Class{
 //      if (bLeftCheck>0.0f || bRghtCheck>0.0f || bCentCheck>0.0f){                                //either edge connects, then character is onGround
       if (countCheck>0){                                //either edge connects, then character is onGround
 		if(countCheck<2){ //Not all rays hitting ground; reduce radius of collider
-		  contrl.radius = this.cRadius * 0.05f ; //reduce radius collider
+		  contrl.radius = vCol.x * 0.05f ; //reduce radius collider
 		}
 		else{
-		  contrl.radius = this.cRadius         ; //else leave at default
+		  contrl.radius = vCol.x         ; //else leave at default
 		}
         return true;
       }
@@ -172,6 +175,7 @@ namespace MTON.Class{
         return false;
       }
     }
+
 
     public virtual bool OnCeilng(){
       float ceilingCheck = this.dirRayCheck(Vector3.up, this.cHeight * 1.25f, 0.0f); //check directly overhead
@@ -263,7 +267,7 @@ namespace MTON.Class{
         return hit.distance     ; //found ground, returning distance > 0.0f
       }
       else{
-        return -groundThreshold ; //not found ground returning < 0.0f
+        return -this.groundThreshold ; //not found ground returning < 0.0f
       }
     }
 
