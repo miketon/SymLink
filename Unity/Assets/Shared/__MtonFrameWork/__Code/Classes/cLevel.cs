@@ -82,9 +82,9 @@ namespace MTON.Class{
 #region enums
 
     public enum e_Icon{
-      Death   = 0,
-      Warning = 1, 
-      None    = 2,
+      Death   ,
+      Warning , 
+      None    ,
     }
 
     public enum e_Enmy{
@@ -158,15 +158,19 @@ namespace MTON.Class{
 
     // Spawning Icon
     public Transform SpawnObj<T>(e_Icon eObj, Vector3 IN_POS, Quaternion IN_ROT, Func<Transform, T> funcToRun){
+	  Transform spawnedObj;
       if(eObj == e_Icon.Death){
-        Transform spawnedObj = this.sPL.e_Icons[0].lpSpawn(IN_POS, IN_ROT) ;
-        spawnedObj.gameObject.SetActive(true)                              ;
-        funcToRun(spawnedObj)                                              ;
-        return spawnedObj                                                  ;
-      }
+        spawnedObj = this.sPL.e_Icons[0].lpSpawn(IN_POS, IN_ROT) ;
+	  }
+	  else if(eObj == e_Icon.Warning){
+        spawnedObj = this.sPL.e_Icons[1].lpSpawn(IN_POS, IN_ROT) ;
+	  }
       else{
         return null;
       }
+	  spawnedObj.gameObject.SetActive(true)                    ;
+      funcToRun(spawnedObj)                                    ;
+      return spawnedObj                                        ;
     }
 
     // Walking Enemy

@@ -86,9 +86,18 @@ namespace MTON.codeObjects{
 #endregion
 
 #region oPlayer Delegates
-      public virtual void OnEnable(){
 
-        this.gameObject.SetActive(true);
+	  private bool bLevelInit = false;
+
+      public virtual void OnEnable(){
+        this.gameObject.SetActive(true)     ; //???
+		cLevel.OnInit_Delegate += InitLevel ;
+	    if(this.bLevelInit){
+		  InitDelegates();
+		}
+	  }
+
+	  public virtual void InitDelegates(){
 
         //direct input
         io.OnDPAD_DIR_Delegate += doMove  ;
@@ -125,6 +134,11 @@ namespace MTON.codeObjects{
       }
 
       public virtual void OnDisable(){
+		cLevel.OnInit_Delegate -= InitLevel;
+	    this.DisableDelegates();
+	  }
+
+	  public virtual void DisableDelegates(){
 
         //direct input
         io.OnDPAD_DIR_Delegate -= doMove  ;
@@ -179,27 +193,7 @@ namespace MTON.codeObjects{
 
       public virtual void Awake(){
 
-        rendr = this.sDP.dispXFORM.GetComponent<Renderer>()      ;
-        //      cColr = rendr.material.color                     ;
-        layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR)     ;
-        init_Components()                                        ;
-        init_cRbody()                                            ;
-        xform         = this.GetComponent<Transform>()           ;
-        cControl      = this.GetComponent<CharacterController>() ;
-        this.sDP.__initHgt  = cControl.height                    ;
 
-        if(this.sDP.dispXFORM == null){
-          Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) NOT ASSIGNED MANUALLY.");
-          this.sDP.dispXFORM = this.xform;
-          if(this.sDP.dispXFORM == null){
-            Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) attempting to auto assign this.transform : SUCCESSFUL ");
-          }
-          else{
-            Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) attempting to auto assign this.transform : FAILED     ");
-          }
-        }
-        this.sDP.__yScale = this.sDP.dispXFORM.localScale.y;
-        this.sDP.__sclX   = this.sDP.dispXFORM.localScale.x;
 
       }
 
@@ -604,18 +598,43 @@ namespace MTON.codeObjects{
 
 #region Class Utility
 
+        void InitLevel (){
+
+	      rendr = this.sDP.dispXFORM.GetComponent<Renderer>()      ;
+          //      cColr = rendr.material.color                     ;
+          layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR)     ;
+          init_Components()                                        ;
+          init_cRbody()                                            ;
+          xform         = this.GetComponent<Transform>()           ;
+          cControl      = this.GetComponent<CharacterController>() ;
+          this.sDP.__initHgt  = cControl.height                    ;
+
+          if(this.sDP.dispXFORM == null){
+            Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) NOT ASSIGNED MANUALLY.");
+            this.sDP.dispXFORM = this.xform;
+            if(this.sDP.dispXFORM == null){
+              Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) attempting to auto assign this.transform : SUCCESSFUL ");
+            }
+            else{
+              Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) attempting to auto assign this.transform : FAILED     ");
+            }
+          }
+
+          this.sDP.__yScale = this.sDP.dispXFORM.localScale.y;
+          this.sDP.__sclX   = this.sDP.dispXFORM.localScale.x;
+
+		  this.bLevelInit = true ; //level ready
+		  this.InitDelegates();
+
+        }
+
         public virtual void init_Components(){
 
           rb = __gUtility.AddComponent_mton<cRbody>(this.gameObject)    ; 
           ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject)   ; //HACK : Order matters, must be before an because of delegates
           an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject)    ;
           rd = __gUtility.AddComponent_mton<cRadar>(this.gameObject)    ;
-		  if(this.sDP.ui_dpRing){
-		    this.rd.ui_dpRing = this.sDP.ui_dpRing;
-		    this.rd.vOffset = Vector3.up * this.sDP.__initHgt * 0.5f;
-			this.rd.Init();
-			this.sDP.ui_dpRing.gameObject.SetActive(false);
-		  }
+
           fp = __gUtility.AddComponent_mton<oEmitter>(this.gameObject)  ;
 		    fp.em.sEM.fireRate = this.sEM.fireRate ;
 		    fp.em.sEM.firePnts = this.sEM.firePnts ;
@@ -639,6 +658,18 @@ namespace MTON.codeObjects{
           au = __gUtility.AddComponent_mton<cEmit_Audio>(this.gameObject)  ;
 
           rendr = this.sDP.dispXFORM.gameObject.GetComponent<Renderer>()   ; //Get Renderer Component
+
+      	  if(!this.sDP.ui_dpRing){                                        //if not set, try to get from cLevel
+			cLevel.e_Icon uiRing = cLevel.e_Icon.Warning;
+			this.sDP.ui_dpRing = __gCONSTANT._LEVEL.SpawnObj(uiRing, Vector3.zero, 
+		    Quaternion.identity, (Transform T)=>{return true;});
+		  }
+		  if(this.sDP.ui_dpRing){
+		    this.rd.ui_dpRing = this.sDP.ui_dpRing;
+		    this.rd.vOffset = Vector3.up * this.sDP.__initHgt * 0.5f;
+			this.rd.Init();
+			this.sDP.ui_dpRing.gameObject.SetActive(false);
+		  }
 
         }
 

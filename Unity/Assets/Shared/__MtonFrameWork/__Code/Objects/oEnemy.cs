@@ -41,8 +41,13 @@ namespace MTON.codeObjects{
 #endregion
 
 #region base Overrides
-	public override void Start(){
-	  base.Start();
+
+	public override void InitDelegates (){
+	  base.InitDelegates ();
+	  an.OnSeekIdleDelegate  += ai_IDLE;
+	  an.OnSeekAwareDelegate += ai_AWRE;
+	  an.OnSeekAlertDelegate += ai_ALRT;
+
 	  this.bInput = false; // don't read input by default
 	  rendr.material.color = sAI.cIdle;
       __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._ENEMY) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
@@ -51,15 +56,8 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	public override void OnEnable (){
-	  base.OnEnable ();
-	  an.OnSeekIdleDelegate  += ai_IDLE;
-	  an.OnSeekAwareDelegate += ai_AWRE;
-	  an.OnSeekAlertDelegate += ai_ALRT;
-	}
-
-	public override void OnDisable (){
-	  base.OnDisable ();
+	public override void DisableDelegates (){
+	  base.DisableDelegates ();
 	  an.OnSeekIdleDelegate  -= ai_IDLE;
 	  an.OnSeekAwareDelegate -= ai_AWRE;
 	  an.OnSeekAlertDelegate -= ai_ALRT;
