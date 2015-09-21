@@ -17,6 +17,18 @@ public static class __gEXTENSIONS {
 		return retXform;
 	}
 
+    private static float groundThreshold = 0.05f; //margin for ground check and object swap out.
+	public static float dirRayCheck(this Transform self, Vector3 vPos, Vector3 vDir, float IN_magnitude, int IN_layerMask){    //direction, magnitude and x offset
+      RaycastHit hit                                                               ;
+      Debug.DrawLine(vPos, vPos + (vDir * IN_magnitude), Color.red, 0.5f, false)   ;
+      if (Physics.Raycast(vPos, vDir, out hit, Mathf.Abs(IN_magnitude), IN_layerMask)){       //return hit distance to the ground
+        return hit.distance     ; //found ground, returning distance > 0.0f
+      }
+      else{
+        return -groundThreshold ; //not found ground returning < 0.0f
+      }
+    }
+
 	public static Quaternion doRotateTowards(this Quaternion self, Vector3 IN_DIR){
 		float angle = Mathf.Atan2(IN_DIR.y, IN_DIR.x) * Mathf.Rad2Deg;
 		Quaternion rLook = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.Euler(new Vector3(0.0f, 90.0f, 0.0f)); //offset to forward z
@@ -62,36 +74,5 @@ public static class __gEXTENSIONS {
 			}
 		}
 	}
-
-//	
-//	public static bool OnGround(this CharacterController self, Vector3 vDir, Vector3 vCol){                // vCol: x = cRadius, y = cHeight                             
-////	  this.bStunnd = false;
-//      float bCentCheck = this.dirRayCheck(vDir, vCol.y,  0.0f) ; //check center
-//      float bLeftCheck = this.dirRayCheck(vDir, vCol.y,  vCol.x * 0.8f) ; //check right edge
-//      float bRghtCheck = this.dirRayCheck(vDir, vCol.y, -vCol.x * 0.8f) ; //check left edge
-//	  int countCheck = 0;
-//	  if(bCentCheck > 0.0f){
-//	    countCheck=countCheck+2; //center counts more
-//	  }
-//	  if(bLeftCheck > 0.0f){
-//	    countCheck++;
-//	  }
-//	  if(bRghtCheck > 0.0f){
-//	    countCheck++;
-//	  }
-////      if (bLeftCheck>0.0f || bRghtCheck>0.0f || bCentCheck>0.0f){                                //either edge connects, then character is onGround
-//      if (countCheck>0){                                //either edge connects, then character is onGround
-//		if(countCheck<2){ //Not all rays hitting ground; reduce radius of collider
-//		  contrl.radius = vCol.x * 0.05f ; //reduce radius collider
-//		}
-//		else{
-//		  contrl.radius = vCol.x         ; //else leave at default
-//		}
-//        return true;
-//      }
-//      else{
-//        return false;
-//      }
-//    }
 
 }
