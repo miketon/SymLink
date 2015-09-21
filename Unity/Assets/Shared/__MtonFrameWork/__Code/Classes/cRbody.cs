@@ -54,7 +54,11 @@ namespace MTON.Class{
       __layerEnemy  = LayerMask.GetMask (__gCONSTANT._ENEMY);
 	  __layerCheck  = 0;
       __layerCheck  = ~((1<<__layerGround)|(1<<__layerEnemy)); //not layerGround or layerEnemy
+	  Debug.Log("LayerMASK: " + LayerMask.LayerToName(__layerCheck) + " int: " + __layerCheck.value + " CONST FLOOR : " + __gCONSTANT._FLOOR);
 //      __layerCheck  = (1<<__layerGround); //only layerGround
+//	  Debug.Log("LayerMASK: " + LayerMask.LayerToName(__layerCheck) + " int: " + __layerCheck.value + " CONST FLOOR : " + __gCONSTANT._FLOOR);
+//      __layerCheck  = LayerMask.GetMask (__gCONSTANT._FLOOR); //only layerGround
+//	  Debug.Log("LayerMASK: " + LayerMask.LayerToName(__layerCheck) + " int: " + __layerCheck.value + " CONST FLOOR : " + __gCONSTANT._FLOOR);
 
       cRadius   = this.contrl.radius * this.transform.localScale.x  ;
       cHeight   = ccHeight(this.contrl)                             ; //halfing==assumes dToGround measured from center 

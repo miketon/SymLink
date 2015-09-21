@@ -191,18 +191,9 @@ namespace MTON.codeObjects{
 
       private cEmit_Audio au ;
 
-      public virtual void Awake(){
-
-
-
-      }
-
       public virtual void Start(){
         __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._PLAYER) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
-        if(OnDeathPrefab == null){
-          //		Debug.Log ("OnEnable DeathPrefab : " + (int)cLevel.e_Icon.Death + OnDeathPrefab);
-          OnDeathPrefab = __gCONSTANT._LEVEL.sPL.e_Icons[(int)cLevel.e_Icon.Death].gameObject;
-        }
+
       }
 
 
@@ -624,7 +615,12 @@ namespace MTON.codeObjects{
           this.sDP.__sclX   = this.sDP.dispXFORM.localScale.x;
 
 		  this.bLevelInit = true ; //level ready
-		  this.InitDelegates();
+		  this.InitDelegates()   ;
+
+		  if(OnDeathPrefab == null){
+            //		Debug.Log ("OnEnable DeathPrefab : " + (int)cLevel.e_Icon.Death + OnDeathPrefab);
+            OnDeathPrefab = __gCONSTANT._LEVEL.sPL.e_Icons[(int)cLevel.e_Icon.Death].gameObject;
+          }
 
         }
 
