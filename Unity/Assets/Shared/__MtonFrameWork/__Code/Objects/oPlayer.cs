@@ -91,9 +91,9 @@ namespace MTON.codeObjects{
 
       public virtual void OnEnable(){
         this.gameObject.SetActive(true)     ; //???
-		cLevel.OnInit_Delegate += InitLevel ;
+		cLevel.OnInit_Delegate += OnLevelINIT ;
 	    if(bLevelInit){
-		  this.InitLevel() ; //Double Call : must init components just in case object spawned after cLevel exist.
+		  this.OnLevelINIT() ; //Double Call : must init components just in case object spawned after cLevel exist.
 		  InitDelegates()  ;
 		}
 	  }
@@ -136,7 +136,7 @@ namespace MTON.codeObjects{
       }
 
       public virtual void OnDisable(){
-		cLevel.OnInit_Delegate -= InitLevel;
+		cLevel.OnInit_Delegate -= OnLevelINIT;
 	    this.DisableDelegates();
 	  }
 
@@ -608,7 +608,7 @@ namespace MTON.codeObjects{
 
         protected Transform pCamera                  ; //player camera
 
-        void InitLevel (){
+        public virtual void OnLevelINIT (){
 
 	      pCamera = __gCONSTANT._LEVEL.mCamera.transform;
 	      rendr = this.sDP.dispXFORM.GetComponent<Renderer>()      ;

@@ -206,7 +206,6 @@ namespace MTON.Class{
     }
 
     public virtual void Fall(){ //vertical transform (gravity)
-
       if(!bGround){ //in air
         gravity   += pGrav * Time.deltaTime * this.massForce  ;
         gravity.y += -vy                                      ; //adding velocity

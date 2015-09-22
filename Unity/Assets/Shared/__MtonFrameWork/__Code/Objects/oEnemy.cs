@@ -35,6 +35,7 @@ namespace MTON.codeObjects{
 				  io.OnActVDelegate      -= setActV; //Attack Visual = hitFlash
 				  io.OnPowrDelegate      -= setPowr;
 				  Component.Destroy(this.rd);
+				  this.rd = null;
 				}
 			}
 	}
