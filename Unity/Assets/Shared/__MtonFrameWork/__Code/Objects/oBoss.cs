@@ -10,7 +10,7 @@ namespace MTON.codeObjects{
   public class oBoss : oEnemy {
 
     public   Transform xformRest                ;
-    private  Transform pCamera                  ; //player camera
+//    private  Transform pCamera                  ; //player camera //already defined in oPlayer Delete me
     private  Vector3 vCamInitPos = Vector3.zero ;
     private  Vector3 vPos_Idle   = Vector3.zero ;
     private  Vector3 vPos_Alrt   = Vector3.zero ;

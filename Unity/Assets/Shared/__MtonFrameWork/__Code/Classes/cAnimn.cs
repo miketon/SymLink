@@ -102,8 +102,7 @@ namespace MTON.Class{
 			Idle,
 			Rise,
 			Apex,
-			Fall,
-			Dive
+			Fall
 		}
 
 		public enum eStateH{ // horizontal state
@@ -180,10 +179,6 @@ namespace MTON.Class{
 					else if(value == eStateV.Rise){
 						this.setRise(true );
 						this.setFall(false);
-						this.setDive(false);
-					}
-					else if(value == eStateV.Dive){
-						this.setDive(true);
 					}
 //					Debug.Log(this + " vState updated : " + value);
 				}
@@ -413,6 +408,25 @@ namespace MTON.Class{
 			}
 		}
 
+		// STATE : DIVE
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB divest ;
+		public  eStateB diveST{
+			get{ return divest; }
+			set{
+				if(value != divest){
+					divest = value ;
+//					Debug.Log(this + " dState updated : " + value);
+                    if(value == eStateB.DN){
+						setDive(true);
+					}
+					else{
+						setDive(false);
+					}
+				}
+			}
+		}
+
 		// STATE : CEILING
 		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
 		private eStateB ceilst ;
@@ -584,7 +598,6 @@ namespace MTON.Class{
 		    this.OnDiveDelegate(bDive);
 		  }
 		}
-
 
 		private void setDuck(bool bDuck){
 		  if(this.OnDuckDelegate != null){

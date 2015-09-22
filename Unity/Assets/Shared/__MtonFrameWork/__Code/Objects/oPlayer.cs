@@ -87,13 +87,14 @@ namespace MTON.codeObjects{
 
 #region oPlayer Delegates
 
-	  private bool bLevelInit = false;
+	  private static bool bLevelInit = false;
 
       public virtual void OnEnable(){
         this.gameObject.SetActive(true)     ; //???
 		cLevel.OnInit_Delegate += InitLevel ;
-	    if(this.bLevelInit){
-		  InitDelegates();
+	    if(bLevelInit){
+		  this.InitLevel() ; //Double Call : must init components just in case object spawned after cLevel exist.
+		  InitDelegates()  ;
 		}
 	  }
 
@@ -120,6 +121,7 @@ namespace MTON.codeObjects{
         an.OnDuckDelegate      += setCrouch ;
         an.OnFaceDelegate      += doFace    ;
         an.OnRiseDelegate      += setRise   ;
+		an.OnDiveDelegate      += setDive   ;
         an.OnIdlVDelegate      += setIdlV   ;
         an.OnIdlHDelegate      += setIdlH   ;
         an.OnFootDelegate      += setFoot   ;
@@ -160,6 +162,7 @@ namespace MTON.codeObjects{
         an.OnDuckDelegate      -= setCrouch ;
         an.OnFaceDelegate      -= doFace    ;
         an.OnRiseDelegate      -= setRise   ;
+		an.OnDiveDelegate      -= setDive   ;
         an.OnIdlVDelegate      -= setIdlV   ;
         an.OnIdlHDelegate      -= setIdlH   ;
         an.OnFootDelegate      -= setFoot   ;
@@ -375,6 +378,9 @@ namespace MTON.codeObjects{
               if(bGround == true){
                 an.duckST = cAnimn.eStateB.DN;
               }
+			  else{
+			    an.diveST = cAnimn.eStateB.DN;
+			  }
             }
           }
 
@@ -425,6 +431,7 @@ namespace MTON.codeObjects{
           this.bGround = IN_GROUND ;
           if(IN_GROUND == true){
             an.grndST = cAnimn.eStateB.DN                                        ;
+			an.diveST = cAnimn.eStateB.Idle                                      ; //Done Diving when on ground
 		    rb.bStunnd = false;
 			__gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.xform.position, true) ;
           }
@@ -458,6 +465,16 @@ namespace MTON.codeObjects{
               this.sDP.riseXFORM.gameObject.SetActive(false) ;
               this.sDP.dispXFORM.gameObject.SetActive(true ) ;
             }
+          }
+        }
+
+		public virtual void setDive(bool bDive){
+          if(bDive == false){
+		    Debug.Log ("DIVE LANDING!");
+	        this.pCamera.DOShakePosition(0.25f);
+          }
+          else{
+		    Debug.Log ("DIVE START!");
           }
         }
 
@@ -589,8 +606,11 @@ namespace MTON.codeObjects{
 
 #region Class Utility
 
+        protected Transform pCamera                  ; //player camera
+
         void InitLevel (){
 
+	      pCamera = __gCONSTANT._LEVEL.mCamera.transform;
 	      rendr = this.sDP.dispXFORM.GetComponent<Renderer>()      ;
           //      cColr = rendr.material.color                     ;
           layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR)     ;
@@ -614,7 +634,7 @@ namespace MTON.codeObjects{
           this.sDP.__yScale = this.sDP.dispXFORM.localScale.y;
           this.sDP.__sclX   = this.sDP.dispXFORM.localScale.x;
 
-		  this.bLevelInit = true ; //level ready
+		  bLevelInit = true ; //level ready
 		  this.InitDelegates()   ;
 
 		  if(OnDeathPrefab == null){
