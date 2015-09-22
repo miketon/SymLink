@@ -34,6 +34,7 @@ namespace MTON.codeObjects{
 				  io.OnAttkDelegate      -= setAttk; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
 				  io.OnActVDelegate      -= setActV; //Attack Visual = hitFlash
 				  io.OnPowrDelegate      -= setPowr;
+				  Component.Destroy(this.rd);
 				}
 			}
 	}

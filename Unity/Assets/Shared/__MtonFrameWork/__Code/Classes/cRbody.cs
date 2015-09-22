@@ -54,11 +54,11 @@ namespace MTON.Class{
       __layerEnemy  = LayerMask.GetMask (__gCONSTANT._ENEMY);
 	  __layerCheck  = 0;
       __layerCheck  = ~((1<<__layerGround)|(1<<__layerEnemy)); //not layerGround or layerEnemy
-	  Debug.Log("LayerMASK: " + LayerMask.LayerToName(__layerCheck) + " int: " + __layerCheck.value + " CONST FLOOR : " + __gCONSTANT._FLOOR);
+//	  Debug.Log("LayerMASK: " + LayerMask.LayerToName(__layerCheck) + " int: " + __layerCheck.value + " CONST FLOOR : " + __gCONSTANT._FLOOR);
 //      __layerCheck  = (1<<__layerGround); //only layerGround
 //	  Debug.Log("LayerMASK: " + LayerMask.LayerToName(__layerCheck) + " int: " + __layerCheck.value + " CONST FLOOR : " + __gCONSTANT._FLOOR);
-//      __layerCheck  = LayerMask.GetMask (__gCONSTANT._FLOOR); //only layerGround
-//	  Debug.Log("LayerMASK: " + LayerMask.LayerToName(__layerCheck) + " int: " + __layerCheck.value + " CONST FLOOR : " + __gCONSTANT._FLOOR);
+      __layerCheck  = LayerMask.GetMask (__gCONSTANT._FLOOR); //only layerGround
+	  Debug.Log("LayerMASK: " + LayerMask.LayerToName(__layerCheck) + " int: " + __layerCheck.value + " CONST FLOOR : " + __gCONSTANT._FLOOR);
 
       cRadius   = this.contrl.radius * this.transform.localScale.x  ;
       cHeight   = ccHeight(this.contrl)                             ; //halfing==assumes dToGround measured from center 
@@ -149,7 +149,7 @@ namespace MTON.Class{
     //Utilities -- Not extending xForm so reimplementing ground logic
     public virtual bool OnGround(){                                          
 	  Vector3 vPos     = this.transform.position + this.cen                                         ;
-	  return this.OnGround(vPos, -Vector3.up, new Vector3(this.cRadius * 0.8f, this.cHeight, 0.0f)) ;
+	  return this.OnGround(vPos, -Vector3.up, new Vector3(this.cRadius * 0.85f, this.cHeight, 0.0f)) ;
 	}
 
 	public virtual bool OnGround(Vector3 vPos, Vector3 vDir, Vector3 vCol){                 // vCol: x = cRadius, y = cHeight   

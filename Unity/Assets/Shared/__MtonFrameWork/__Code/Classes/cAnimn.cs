@@ -38,6 +38,7 @@ namespace MTON.Class{
         public DL_bVal OnRiseDelegate            ; // Rise
         public DL_bVal OnApexDelegate            ; // Apex
         public DL_bVal OnFallDelegate            ; // Fall
+        public DL_bVal OnDiveDelegate            ; // Dive
 
 		// dState
         public DL_bVal OnDuckDelegate            ; // Duck
@@ -101,7 +102,8 @@ namespace MTON.Class{
 			Idle,
 			Rise,
 			Apex,
-			Fall
+			Fall,
+			Dive
 		}
 
 		public enum eStateH{ // horizontal state
@@ -178,6 +180,10 @@ namespace MTON.Class{
 					else if(value == eStateV.Rise){
 						this.setRise(true );
 						this.setFall(false);
+						this.setDive(false);
+					}
+					else if(value == eStateV.Dive){
+						this.setDive(true);
 					}
 //					Debug.Log(this + " vState updated : " + value);
 				}
@@ -573,6 +579,12 @@ namespace MTON.Class{
 		    this.OnFallDelegate(bFall);
 		  }
 		}
+		private void setDive(bool bDive){
+		  if(this.OnDiveDelegate != null){
+		    this.OnDiveDelegate(bDive);
+		  }
+		}
+
 
 		private void setDuck(bool bDuck){
 		  if(this.OnDuckDelegate != null){
