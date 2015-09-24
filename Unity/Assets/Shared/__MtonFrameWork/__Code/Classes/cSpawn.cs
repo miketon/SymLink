@@ -28,52 +28,68 @@ namespace MTON.Class{
 
 #endregion
 
-#region SINGLESHOT ---
-
-    public virtual void doSinglFire(bool bAttk, bool IN_FACEFORWARD=true){
-      if(bAttk){
+	// base attack function NOTE : For Func to pass transform, must set up T generic
+	public virtual void doAttack<T>(bool bAttk, Func<Transform, cLevel.e_Bllt, T> funcToRun, bool IN_FACEFORWARD=true){
+	  if(bAttk){
         if(this.sEM.firePnts.Length > 0){ // Firing Points exist
           if(this.sEM.eBlt.Length > 0){   // Bullets exist
+			// pooling logic
             int           indexBL = this.sBL_mod.iIndex                   ; //which Bullet Object to launch
             cLevel.e_Bllt oBullet = this.sEM.eBlt[indexBL]                ;
             int           indexFP = this.sFP_mod.iIndex                   ; //which Firing Point to emit from
             Transform     firePnt = this.sEM.firePnts[indexFP]            ; 
-            Quaternion    fireRot = firePnt.rotation                      ;
-            Quaternion    initRot = firePnt.rotation;
-            if(IN_FACEFORWARD == false){                                    //Brute force guessing; Understanding of matrix not high enough
-              Vector3 vRot = firePnt.rotation.eulerAngles                 ;
-              vRot         = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z) ; //MAGIC NUMBER : Why y = 180.0f ??? Likely related to parent -x scale
-              fireRot      = Quaternion.Euler(vRot)                       ;
-            }
-            firePnt.rotation = fireRot                                    ;
+            Vector3       initPos = firePnt.position                      ;
+            Quaternion    initRot = firePnt.rotation                      ;
+
+			// firing point logic : direction, position and count/sequence
+			funcToRun(firePnt, oBullet);
+
+			// emit state
             firePnt.gameObject.SetActive(true)                            ;
             this.doEmit(firePnt, oBullet)                                 ;
-            firePnt.rotation = initRot;
+			// HACK: reset firing point position and rotation...bullets get dir value from fp
+            firePnt.position = initPos                                    ; 
+            firePnt.rotation = initRot                                    ; 
 
             this.sFP_mod.doMod()                                          ; //modulate to next firing Point
             this.sBL_mod.doMod()                                          ; //modulate to next bullet
           } 
         }
       }
-    }
+	}
+
+#region SINGLESHOT ---
+
+    public virtual void doSinglFire(bool bAttk, bool IN_FACEFORWARD=true){
+      this.doAttack(bAttk, 
+	    (Transform firePnt, cLevel.e_Bllt oBullet)=>{ // firePnt passed in from base function state so far
+          Quaternion fireRot = firePnt.rotation                         ;
+		  if(IN_FACEFORWARD == false){                                    //Brute force guessing; Understanding of matrix not high enough
+            Vector3 vRot = firePnt.rotation.eulerAngles                 ;
+            vRot         = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z) ; //MAGIC NUMBER : Why y = 180.0f ??? Likely related to parent -x scale
+            fireRot      = Quaternion.Euler(vRot)                       ;
+            firePnt.rotation = fireRot                                  ;
+          }
+//		  Debug.Log ("SINGLE FIRE LAMBDA!" + firePnt.gameObject) ;
+		  return firePnt                                         ;
+		}
+	  );
+	}
 
 #endregion
 
 #region BURSTSHOT ---
 
-    public virtual void doRadiusBurst(bool bAttk, bool IN_FACEFORWARD=true){
-      int IN_SPAWN = 15;
-      if(bAttk){
-        if(this.sEM.firePnts.Length > 0){ // Firing Points exist
-          if(this.sEM.eBlt.Length > 0){   // Bullets exist
-            int           indexBL = this.sBL_mod.iIndex                   ; //which Bullet Object to launch
-            cLevel.e_Bllt oBullet = this.sEM.eBlt[indexBL]                ;
-            int           indexFP = this.sFP_mod.iIndex                   ; //which Firing Point to emit from
-            Transform     firePnt = this.sEM.firePnts[indexFP]            ; 
-
-            Vector3    initPos = firePnt.position ;
-            Quaternion initRot = firePnt.rotation ;
-            for(var i=0; i <= IN_SPAWN; i++){
+	public virtual void doRadiusBurst(bool bAttk, bool IN_FACEFORWARD=true){
+      int maxSPAWN = 15 ;
+	  int iSPAWNED = 0  ;
+	  this.doAttack(bAttk,
+		(Transform firePnt, cLevel.e_Bllt oBullet)=>{
+		  // HACK : duplicating work, because must reset between array/sequence
+		  Vector3       initPos = firePnt.position                      ;
+          Quaternion    initRot = firePnt.rotation                      ;
+//		  Debug.Log ("RADIUS BURST LAMBDA!" + firePnt.gameObject) ;
+		  for(var i=0; i <= maxSPAWN; i++){
               firePnt.position = new Vector3().doRadiusPos(firePnt.position, 3.0f);
               firePnt.SetPosZ(0.0f);
               firePnt.rotation = new Quaternion().doRotateTowards(firePnt.position - transform.position);
@@ -85,13 +101,49 @@ namespace MTON.Class{
 
               this.sFP_mod.doMod()                                          ; //modulate to next firing Point
               this.sBL_mod.doMod()                                          ; //modulate to next bullet
-            }
-          } 
-        }
-      }
-    }
+          }
+		  return firePnt;
+		}
+	  );
+	}
 
 #endregion
+
+	public virtual void doRadiusSEQNC(bool bAttk, bool IN_FACEFORWARD=true){
+      int maxSPAWN = 15 ;
+	  int iSPAWNED = 0  ;
+	  int iModIntv = 3  ;
+	  this.doAttack(bAttk,
+		(Transform firePnt, cLevel.e_Bllt oBullet)=>{
+		  int intTea = 0;
+	      this.tt("QueueExample").ttReset();
+          this.tt("QueueExample").ttLoop(3, delegate(ttHandler loop){
+		    intTea++;
+		    int spawnMod = intTea%3;
+			if(spawnMod == 0){
+			  iSPAWNED++;
+			  if(iSPAWNED <= maxSPAWN){
+		        Debug.Log ("Tea Time : "+ iSPAWNED + " intTea: " + intTea + " spawnMod : " + spawnMod);
+				// HACK : duplicating work, because must reset between array/sequence
+		        Vector3       initPos = firePnt.position                      ;
+                Quaternion    initRot = firePnt.rotation                      ;
+			    firePnt.position = new Vector3().doRadiusPos(firePnt.position, 3.0f);
+                firePnt.SetPosZ(0.0f);
+                firePnt.rotation = new Quaternion().doRotateTowards(firePnt.position - transform.position);
+
+                firePnt.gameObject.SetActive(true)                            ;
+                this.doEmit(firePnt, oBullet)                                 ;
+                firePnt.position = initPos;
+                firePnt.rotation = initRot; //COMMENT OUT
+
+                this.sFP_mod.doMod()                                          ; //modulate to next firing Point
+                this.sBL_mod.doMod()                                          ; //modulate to next bullet
+			  }
+			}
+          });
+		  return firePnt;
+	    });
+	}
 
 #region RAPIDFIRE ---
 
@@ -218,3 +270,62 @@ namespace MTON.Class{
   }
 
 }
+
+
+//    public virtual void doSinglFire(bool bAttk, bool IN_FACEFORWARD=true){
+//      if(bAttk){
+//        if(this.sEM.firePnts.Length > 0){ // Firing Points exist
+//          if(this.sEM.eBlt.Length > 0){   // Bullets exist
+//            int           indexBL = this.sBL_mod.iIndex                   ; //which Bullet Object to launch
+//            cLevel.e_Bllt oBullet = this.sEM.eBlt[indexBL]                ;
+//            int           indexFP = this.sFP_mod.iIndex                   ; //which Firing Point to emit from
+//            Transform     firePnt = this.sEM.firePnts[indexFP]            ; 
+//            Quaternion    fireRot = firePnt.rotation                      ;
+//            Quaternion    initRot = firePnt.rotation;
+//            if(IN_FACEFORWARD == false){                                    //Brute force guessing; Understanding of matrix not high enough
+//              Vector3 vRot = firePnt.rotation.eulerAngles                 ;
+//              vRot         = new Vector3(vRot.x, vRot.y + 180.0f, vRot.z) ; //MAGIC NUMBER : Why y = 180.0f ??? Likely related to parent -x scale
+//              fireRot      = Quaternion.Euler(vRot)                       ;
+//            }
+//            firePnt.rotation = fireRot                                    ;
+//            firePnt.gameObject.SetActive(true)                            ;
+//            this.doEmit(firePnt, oBullet)                                 ;
+//            firePnt.rotation = initRot;
+//
+//            this.sFP_mod.doMod()                                          ; //modulate to next firing Point
+//            this.sBL_mod.doMod()                                          ; //modulate to next bullet
+//          } 
+//        }
+//      }
+//    }
+
+
+//    public virtual void doRadiusBurst(bool bAttk, bool IN_FACEFORWARD=true){
+//      int IN_SPAWN = 15;
+//      if(bAttk){
+//        if(this.sEM.firePnts.Length > 0){ // Firing Points exist
+//          if(this.sEM.eBlt.Length > 0){   // Bullets exist
+//            int           indexBL = this.sBL_mod.iIndex                   ; //which Bullet Object to launch
+//            cLevel.e_Bllt oBullet = this.sEM.eBlt[indexBL]                ;
+//            int           indexFP = this.sFP_mod.iIndex                   ; //which Firing Point to emit from
+//            Transform     firePnt = this.sEM.firePnts[indexFP]            ; 
+//
+//            Vector3    initPos = firePnt.position ;
+//            Quaternion initRot = firePnt.rotation ;
+//            for(var i=0; i <= IN_SPAWN; i++){
+//              firePnt.position = new Vector3().doRadiusPos(firePnt.position, 3.0f);
+//              firePnt.SetPosZ(0.0f);
+//              firePnt.rotation = new Quaternion().doRotateTowards(firePnt.position - transform.position);
+//
+//              firePnt.gameObject.SetActive(true)                            ;
+//              this.doEmit(firePnt, oBullet)                                 ;
+//              firePnt.position = initPos;
+//              firePnt.rotation = initRot; //COMMENT OUT
+//
+//              this.sFP_mod.doMod()                                          ; //modulate to next firing Point
+//              this.sBL_mod.doMod()                                          ; //modulate to next bullet
+//            }
+//          } 
+//        }
+//      }
+//    }

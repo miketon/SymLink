@@ -86,9 +86,19 @@ namespace MTON.codeObjects{
 #endregion
 
 #region oPlayer Delegates
-      public virtual void OnEnable(){
 
-        this.gameObject.SetActive(true);
+	  private static bool bLevelInit = false;
+
+      public virtual void OnEnable(){
+        this.gameObject.SetActive(true)     ; //???
+		cLevel.OnInit_Delegate += OnLevelINIT ;
+	    if(bLevelInit){
+		  this.OnLevelINIT() ; //Double Call : must init components just in case object spawned after cLevel exist.
+		  InitDelegates()  ;
+		}
+	  }
+
+	  public virtual void InitDelegates(){
 
         //direct input
         io.OnDPAD_DIR_Delegate += doMove  ;
@@ -111,6 +121,8 @@ namespace MTON.codeObjects{
         an.OnDuckDelegate      += setCrouch ;
         an.OnFaceDelegate      += doFace    ;
         an.OnRiseDelegate      += setRise   ;
+        an.OnFallDelegate      += setFall   ;
+		an.OnDiveDelegate      += setDive   ;
         an.OnIdlVDelegate      += setIdlV   ;
         an.OnIdlHDelegate      += setIdlH   ;
         an.OnFootDelegate      += setFoot   ;
@@ -125,6 +137,11 @@ namespace MTON.codeObjects{
       }
 
       public virtual void OnDisable(){
+		cLevel.OnInit_Delegate -= OnLevelINIT;
+	    this.DisableDelegates();
+	  }
+
+	  public virtual void DisableDelegates(){
 
         //direct input
         io.OnDPAD_DIR_Delegate -= doMove  ;
@@ -146,6 +163,8 @@ namespace MTON.codeObjects{
         an.OnDuckDelegate      -= setCrouch ;
         an.OnFaceDelegate      -= doFace    ;
         an.OnRiseDelegate      -= setRise   ;
+        an.OnFallDelegate      -= setFall   ;
+		an.OnDiveDelegate      -= setDive   ;
         an.OnIdlVDelegate      -= setIdlV   ;
         an.OnIdlHDelegate      -= setIdlH   ;
         an.OnFootDelegate      -= setFoot   ;
@@ -177,38 +196,9 @@ namespace MTON.codeObjects{
 
       private cEmit_Audio au ;
 
-      public virtual void Awake(){
-
-        rendr = this.sDP.dispXFORM.GetComponent<Renderer>()      ;
-        //      cColr = rendr.material.color                     ;
-        layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR)     ;
-        init_Components()                                        ;
-        init_cRbody()                                            ;
-        xform         = this.GetComponent<Transform>()           ;
-        cControl      = this.GetComponent<CharacterController>() ;
-        this.sDP.__initHgt  = cControl.height                    ;
-
-        if(this.sDP.dispXFORM == null){
-          Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) NOT ASSIGNED MANUALLY.");
-          this.sDP.dispXFORM = this.xform;
-          if(this.sDP.dispXFORM == null){
-            Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) attempting to auto assign this.transform : SUCCESSFUL ");
-          }
-          else{
-            Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) attempting to auto assign this.transform : FAILED     ");
-          }
-        }
-        this.sDP.__yScale = this.sDP.dispXFORM.localScale.y;
-        this.sDP.__sclX   = this.sDP.dispXFORM.localScale.x;
-
-      }
-
       public virtual void Start(){
         __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._PLAYER) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
-        if(OnDeathPrefab == null){
-          //		Debug.Log ("OnEnable DeathPrefab : " + (int)cLevel.e_Icon.Death + OnDeathPrefab);
-          OnDeathPrefab = __gCONSTANT._LEVEL.sPL.e_Icons[(int)cLevel.e_Icon.Death].gameObject;
-        }
+
       }
 
 
@@ -244,7 +234,7 @@ namespace MTON.codeObjects{
     }
 
    public virtual void setRadar(bool bRadar){
-     this.fp.em.doRadiusBurst(bRadar, this.bFaceRt);
+//     this.fp.em.doRadiusSEQNC(bRadar, this.bFaceRt);
    }
 
 #endregion
@@ -289,6 +279,8 @@ namespace MTON.codeObjects{
           this.bDpdY = false ; //dPad x ignore
           an.doAimg(0.0f)                 ; //reset gun to face forward
           an.attkST = cAnimn.eStateB.Idle ; //release attack from powerup
+		  // set Burst Attack
+          this.fp.em.doRadiusSEQNC(true, this.bFaceRt);
         }
       }
 
@@ -340,7 +332,8 @@ namespace MTON.codeObjects{
       ///---------------------------------------TRANSFORMING CHARACTER--------------------------------------------------------------/// 
 
 	  private Vector3 pMoveDir = Vector3.zero;
-      public virtual void doMove(Vector3 moveDir){         //Handles movement 
+      public virtual void doMove(Vector3 moveDir){         // Handles movement 
+		moveDir.y = Mathf.Min(moveDir.y, 0.0f);            // Filter to prevent flight, but allow ground pound
 		if(this.bDpdX){
 		  if(this.pMoveDir == Vector3.zero){
 		    moveDir.x *= 3.5f;                             // move burst to prevent pillbox roll ; HACK: hardcoded value
@@ -353,7 +346,14 @@ namespace MTON.codeObjects{
 		this.pMoveDir = moveDir; //caching current moveDir
         this.xform.SetPosZ(0.0f);                          // force into 0.0f zPlane so character doesn't slip
         // horizontal move state
-        if(Mathf.Abs(moveDir.x) > 0.001f){
+        if(moveDir == Vector3.zero){
+          an.fState = cAnimn.eStateF.Idle;
+          if(this.bDpdX == true){ //prevents spamming of Idle
+            an.hState = cAnimn.eStateH.Idle;
+          }
+        }
+        else if(Mathf.Abs(moveDir.x) > 0.001f){
+		  this.msgRadr(false);
 		  if(this.bDpdX){
             an.hState = cAnimn.eStateH.Walk ;              // triggering animation for walk
 		  }
@@ -373,12 +373,7 @@ namespace MTON.codeObjects{
             an.fState = cAnimn.eStateF.Left;
           }
         }
-        else{
-          an.fState = cAnimn.eStateF.Idle;
-          if(this.bDpdX == true){ //prevents spamming of Idle
-            an.hState = cAnimn.eStateH.Idle;
-          }
-        }
+
         //duck/crouch state
         if(Mathf.Abs(moveDir.y) > 0.001f){
           float vertDir = Mathf.Sign(moveDir.y); //y == vAxis  ; Sign return -1.0f or 1.0f
@@ -387,6 +382,9 @@ namespace MTON.codeObjects{
               if(bGround == true){
                 an.duckST = cAnimn.eStateB.DN;
               }
+			  else{
+			    an.diveST = cAnimn.eStateB.DN;
+			  }
             }
           }
 
@@ -425,6 +423,7 @@ namespace MTON.codeObjects{
           }
         }
         if(bDuck){
+		  this.msgRadr(false);
 		  __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.transform.position, true);
         }	
       }
@@ -437,6 +436,7 @@ namespace MTON.codeObjects{
           this.bGround = IN_GROUND ;
           if(IN_GROUND == true){
             an.grndST = cAnimn.eStateB.DN                                        ;
+			an.diveST = cAnimn.eStateB.Idle                                      ; //Done Diving when on ground
 		    rb.bStunnd = false;
 			__gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.xform.position, true) ;
           }
@@ -473,6 +473,23 @@ namespace MTON.codeObjects{
           }
         }
 
+        public virtual void setFall(bool bFall){
+		  if(bFall){
+		    Debug.Log ("I am falling : " + bFall);
+			this.msgRadr(false);
+		  }
+		}
+
+		public virtual void setDive(bool bDive){
+          if(bDive == false){
+		    Debug.Log ("DIVE LANDING!");
+	        this.pCamera.DOShakePosition(0.25f);
+          }
+          else{
+		    Debug.Log ("DIVE START!");
+          }
+        }
+
 #endregion
 
 #region SET HEALTH
@@ -498,6 +515,8 @@ namespace MTON.codeObjects{
 
       public virtual void doHitd(int iHurt, Vector3 IN_DIR){
 //        rb.Jump()                       ;
+		float dirX = Mathf.Sign(IN_DIR.x);
+		IN_DIR = new Vector3(1.0f * dirX, 1.0f, 0.0f);
 		rb.doHit(IN_DIR);
         an.lState = cAnimn.eStateL.Hitd ;
         //	  Debug.Log(this + " OOOCH!!! ");
@@ -601,18 +620,51 @@ namespace MTON.codeObjects{
 
 #region Class Utility
 
+        protected Transform pCamera                  ; //player camera
+
+        public virtual void OnLevelINIT (){
+
+	      pCamera = __gCONSTANT._LEVEL.mCamera.transform;
+	      rendr = this.sDP.dispXFORM.GetComponent<Renderer>()      ;
+          //      cColr = rendr.material.color                     ;
+          layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR)     ;
+          init_Components()                                        ;
+          init_cRbody()                                            ;
+          xform         = this.GetComponent<Transform>()           ;
+          cControl      = this.GetComponent<CharacterController>() ;
+          this.sDP.__initHgt  = cControl.height                    ;
+
+          if(this.sDP.dispXFORM == null){
+            Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) NOT ASSIGNED MANUALLY.");
+            this.sDP.dispXFORM = this.xform;
+            if(this.sDP.dispXFORM == null){
+              Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) attempting to auto assign this.transform : SUCCESSFUL ");
+            }
+            else{
+              Debug.LogError(this + " AWAKE: Display Object(Animator + Render Mesh) attempting to auto assign this.transform : FAILED     ");
+            }
+          }
+
+          this.sDP.__yScale = this.sDP.dispXFORM.localScale.y;
+          this.sDP.__sclX   = this.sDP.dispXFORM.localScale.x;
+
+		  bLevelInit = true ; //level ready
+		  this.InitDelegates()   ;
+
+		  if(OnDeathPrefab == null){
+            //		Debug.Log ("OnEnable DeathPrefab : " + (int)cLevel.e_Icon.Death + OnDeathPrefab);
+            OnDeathPrefab = __gCONSTANT._LEVEL.sPL.e_Icons[(int)cLevel.e_Icon.Death].gameObject;
+          }
+
+        }
+
         public virtual void init_Components(){
 
           rb = __gUtility.AddComponent_mton<cRbody>(this.gameObject)    ; 
           ht = __gUtility.AddComponent_mton<cHealth>(this.gameObject)   ; //HACK : Order matters, must be before an because of delegates
           an = __gUtility.AddComponent_mton<cAnimn>(this.gameObject)    ;
           rd = __gUtility.AddComponent_mton<cRadar>(this.gameObject)    ;
-		  if(this.sDP.ui_dpRing){
-		    this.rd.ui_dpRing = this.sDP.ui_dpRing;
-		    this.rd.vOffset = Vector3.up * this.sDP.__initHgt * 0.5f;
-			this.rd.Init();
-			this.sDP.ui_dpRing.gameObject.SetActive(false);
-		  }
+
           fp = __gUtility.AddComponent_mton<oEmitter>(this.gameObject)  ;
 		    fp.em.sEM.fireRate = this.sEM.fireRate ;
 		    fp.em.sEM.firePnts = this.sEM.firePnts ;
@@ -636,6 +688,18 @@ namespace MTON.codeObjects{
           au = __gUtility.AddComponent_mton<cEmit_Audio>(this.gameObject)  ;
 
           rendr = this.sDP.dispXFORM.gameObject.GetComponent<Renderer>()   ; //Get Renderer Component
+
+      	  if(!this.sDP.ui_dpRing){                                        //if not set, try to get from cLevel
+			cLevel.e_Icon uiRing = cLevel.e_Icon.Warning;
+			this.sDP.ui_dpRing = __gCONSTANT._LEVEL.SpawnObj(uiRing, Vector3.zero, 
+		    Quaternion.identity, (Transform T)=>{return true;});
+		  }
+		  if(this.sDP.ui_dpRing){
+		    this.rd.ui_dpRing = this.sDP.ui_dpRing;
+		    this.rd.vOffset = Vector3.up * this.sDP.__initHgt * 0.5f;
+			this.rd.Init();
+			this.sDP.ui_dpRing.gameObject.SetActive(false);
+		  }
 
         }
 

@@ -10,7 +10,7 @@ namespace MTON.codeObjects{
   public class oBoss : oEnemy {
 
     public   Transform xformRest                ;
-    private  Transform pCamera                  ; //player camera
+//    private  Transform pCamera                  ; //player camera //already defined in oPlayer Delete me
     private  Vector3 vCamInitPos = Vector3.zero ;
     private  Vector3 vPos_Idle   = Vector3.zero ;
     private  Vector3 vPos_Alrt   = Vector3.zero ;
@@ -87,8 +87,8 @@ namespace MTON.codeObjects{
       }
     }
 
-    public override void Start (){
-      base.Start ()                            ;
+    public override void OnLevelINIT (){
+      base.OnLevelINIT ()                            ;
       this.xformRest.parent = null             ; //unparent to world so boss transform can compare or chase offset in abs space
       this.rb.bFall = false                    ; //prevents boss from falling out of level
       this.vPos_Alrt = this.transform.position ; //assumes starting placement position is the active pos
@@ -168,8 +168,6 @@ namespace MTON.codeObjects{
           });
       }
     }
-
-
 
     public override void doMove (Vector3 moveDir){
       //	  base.doMove (moveDir);

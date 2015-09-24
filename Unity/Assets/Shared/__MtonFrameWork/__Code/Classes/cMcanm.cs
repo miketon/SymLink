@@ -6,16 +6,20 @@ using MTON.Global        ;
 
 public class cMcanm : MonoBehaviour, IAnimn_ID {
 
-	public Animator anim ; // mecanim animator
+	// mecanim animator
+	private Animator _anim;
+	public Animator anim {
+	  get{ return this._anim; }
+	  set{
+	    if(value != this._anim){
+		  this._anim = value;
+		  if(value != null){ //initialize on valid anim assignment
+		    this.Init();  
+		  }
+		}
+	  }
+	}
 	public cAnimn   anST ; // animation state
-
-	private void OnEnable(){ // NOTE : Fires before start
-	  this.Init();           // Will miss delegates on 1st pass...but will get on re Enables???
-	}
-
-	private void Start(){    // NOTE : Fires after OnEnable
-	  this.Init();           // Will catch what OnEnable will miss
-	}
 
 	public void Init(){
 	  if(anim != null){

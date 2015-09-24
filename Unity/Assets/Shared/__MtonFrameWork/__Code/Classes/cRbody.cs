@@ -52,9 +52,9 @@ namespace MTON.Class{
 
       __layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR);
       __layerEnemy  = LayerMask.GetMask (__gCONSTANT._ENEMY);
-	  __layerCheck  = 0;
-      __layerCheck  = ~((1<<__layerGround)|(1<<__layerEnemy)); //not layerGround or layerEnemy
-//      __layerCheck  = (1<<__layerGround); //only layerGround
+//      __layerCheck  = ~((1<<__layerGround)|(1<<__layerEnemy)); //not layerGround or layerEnemy
+//      __layerCheck  = __layerGround|__layerEnemy; // yes layerGround or layerEnemy
+      __layerCheck  = __layerGround; // yes layerGround only
 
       cRadius   = this.contrl.radius * this.transform.localScale.x  ;
       cHeight   = ccHeight(this.contrl)                             ; //halfing==assumes dToGround measured from center 
@@ -134,20 +134,24 @@ namespace MTON.Class{
       } 
     }
 
-    public  Vector3 cen { get; set; }        //Center point
-    private float   groundThreshold = 0.05f; //margin for ground check and object swap out.
+    [SerializeField] //else can accidentally assign to lowercase var vs. setter var
+	private Vector3 pcen = Vector3.zero;
+    public  Vector3 cen { get{return pcen;} set{pcen = value;} }        //Center point
 
 #endregion
 
 #region VState Functions
 
     //Utilities -- Not extending xForm so reimplementing ground logic
+    public virtual bool OnGround(){                                          
+	  Vector3 vPos     = this.transform.position + this.cen                                         ;
+	  return this.OnGround(vPos, -Vector3.up, new Vector3(this.cRadius * 0.85f, this.cHeight, 0.0f)) ;
+	}
 
-    public virtual bool OnGround(){                                          //completely overriding mXform.OnGround() function
-//	  this.bStunnd = false;
-      float bCentCheck = this.dirRayCheck(-Vector3.up, this.cHeight,  0.0f) ; //check center
-      float bLeftCheck = this.dirRayCheck(-Vector3.up, this.cHeight,  this.cRadius * 0.8f) ; //check right edge
-      float bRghtCheck = this.dirRayCheck(-Vector3.up, this.cHeight, -this.cRadius * 0.8f) ; //check left edge
+	public virtual bool OnGround(Vector3 vPos, Vector3 vDir, Vector3 vCol){                 // vCol: x = cRadius, y = cHeight   
+      float bCentCheck = this.dirRayCheck(vPos                            , vDir, vCol.y) ; // check center
+      float bRghtCheck = this.dirRayCheck(vPos + ( Vector3.right * vCol.x), vDir, vCol.y) ; // check right edge
+      float bLeftCheck = this.dirRayCheck(vPos + (-Vector3.right * vCol.x), vDir, vCol.y) ; // check left edge
 	  int countCheck = 0;
 	  if(bCentCheck > 0.0f){
 	    countCheck=countCheck+2; //center counts more
@@ -158,13 +162,13 @@ namespace MTON.Class{
 	  if(bRghtCheck > 0.0f){
 	    countCheck++;
 	  }
-//      if (bLeftCheck>0.0f || bRghtCheck>0.0f || bCentCheck>0.0f){                                //either edge connects, then character is onGround
+
       if (countCheck>0){                                //either edge connects, then character is onGround
 		if(countCheck<2){ //Not all rays hitting ground; reduce radius of collider
-		  contrl.radius = this.cRadius * 0.05f ; //reduce radius collider
+		  contrl.radius = vCol.x * 0.05f ; //reduce radius collider
 		}
 		else{
-		  contrl.radius = this.cRadius         ; //else leave at default
+		  contrl.radius = vCol.x         ; //else leave at default
 		}
         return true;
       }
@@ -174,12 +178,17 @@ namespace MTON.Class{
     }
 
     public virtual bool OnCeilng(){
-      float ceilingCheck = this.dirRayCheck(Vector3.up, this.cHeight * 1.25f, 0.0f); //check directly overhead
+	  Vector3 vPos = this.transform.position + this.cen                                     ;
+	  return this.OnCeilng(vPos, Vector3.up, new Vector3(0.0f, this.cHeight * 1.25f, 0.0f)) ;
+	}
+
+    public virtual bool OnCeilng(Vector3 vPos, Vector3 vDir, Vector3 vCol){
+      float ceilingCheck = dirRayCheck(vPos, vDir, vCol.y) ; //check directly overhead
       if(ceilingCheck > 0.0f){
-        return true;
+        return true  ;
       }
       else{
-        return false;
+        return false ;
       }
     }
 
@@ -193,7 +202,6 @@ namespace MTON.Class{
     }
 
     public virtual void Fall(){ //vertical transform (gravity)
-
       if(!bGround){ //in air
         gravity   += pGrav * Time.deltaTime * this.massForce  ;
         gravity.y += -vy                                      ; //adding velocity
@@ -249,22 +257,8 @@ namespace MTON.Class{
       vy      = 0.0f         ; //also reset y velocity
     }
 
-    public float dirRayCheck(Vector3 IN_dir, float IN_magnitude, float IN_offSetX){
-      return dirRayCheck(IN_dir, IN_magnitude, IN_offSetX, __layerCheck);
-    }
-
-    public float dirRayCheck(Vector3 IN_dir, float IN_magnitude, float IN_offSetX, int IN_layerMask){    //direction, magnitude and x offset
-      RaycastHit hit                                                               ;
-      //var pPos = xform.position + (Vector3.right * IN_offSetX)                   ; //calculate vertical and horizontal offset
-      var pPos = transform.position + (Vector3.right * IN_offSetX) + cen           ; //calculate vertical and horizontal offset
-      Debug.DrawLine(pPos, pPos + (IN_dir * IN_magnitude), Color.red, 0.5f, false) ;
-      //if (Physics.Raycast(pPos, IN_dir, out hit, Mathf.Abs(IN_magnitude), __layerGround)){            //return hit distance to the ground
-      if (Physics.Raycast(pPos, IN_dir, out hit, Mathf.Abs(IN_magnitude), IN_layerMask)){            //return hit distance to the ground
-        return hit.distance     ; //found ground, returning distance > 0.0f
-      }
-      else{
-        return -groundThreshold ; //not found ground returning < 0.0f
-      }
+    public float dirRayCheck(Vector3 vPos, Vector3 vDir, float IN_magnitude){
+      return this.transform.dirRayCheck(vPos, vDir, IN_magnitude, __layerCheck);
     }
 
 #endregion

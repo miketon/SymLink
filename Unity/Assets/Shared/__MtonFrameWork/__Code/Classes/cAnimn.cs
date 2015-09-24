@@ -38,6 +38,7 @@ namespace MTON.Class{
         public DL_bVal OnRiseDelegate            ; // Rise
         public DL_bVal OnApexDelegate            ; // Apex
         public DL_bVal OnFallDelegate            ; // Fall
+        public DL_bVal OnDiveDelegate            ; // Dive
 
 		// dState
         public DL_bVal OnDuckDelegate            ; // Duck
@@ -407,6 +408,25 @@ namespace MTON.Class{
 			}
 		}
 
+		// STATE : DIVE
+		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+		private eStateB divest ;
+		public  eStateB diveST{
+			get{ return divest; }
+			set{
+				if(value != divest){
+					divest = value ;
+//					Debug.Log(this + " dState updated : " + value);
+                    if(value == eStateB.DN){
+						setDive(true);
+					}
+					else{
+						setDive(false);
+					}
+				}
+			}
+		}
+
 		// STATE : CEILING
 		[SerializeField] //else can accidentally assign to lowercase var vs. setter var
 		private eStateB ceilst ;
@@ -571,6 +591,11 @@ namespace MTON.Class{
 		private void setFall(bool bFall){
 		  if(this.OnFallDelegate != null){
 		    this.OnFallDelegate(bFall);
+		  }
+		}
+		private void setDive(bool bDive){
+		  if(this.OnDiveDelegate != null){
+		    this.OnDiveDelegate(bDive);
 		  }
 		}
 

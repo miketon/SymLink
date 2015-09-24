@@ -34,6 +34,8 @@ namespace MTON.codeObjects{
 				  io.OnAttkDelegate      -= setAttk; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
 				  io.OnActVDelegate      -= setActV; //Attack Visual = hitFlash
 				  io.OnPowrDelegate      -= setPowr;
+				  Component.Destroy(this.rd);
+				  this.rd = null;
 				}
 			}
 	}
@@ -41,8 +43,13 @@ namespace MTON.codeObjects{
 #endregion
 
 #region base Overrides
-	public override void Start(){
-	  base.Start();
+
+	public override void InitDelegates (){
+	  base.InitDelegates ();
+	  an.OnSeekIdleDelegate  += ai_IDLE;
+	  an.OnSeekAwareDelegate += ai_AWRE;
+	  an.OnSeekAlertDelegate += ai_ALRT;
+
 	  this.bInput = false; // don't read input by default
 	  rendr.material.color = sAI.cIdle;
       __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._ENEMY) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
@@ -51,15 +58,8 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	public override void OnEnable (){
-	  base.OnEnable ();
-	  an.OnSeekIdleDelegate  += ai_IDLE;
-	  an.OnSeekAwareDelegate += ai_AWRE;
-	  an.OnSeekAlertDelegate += ai_ALRT;
-	}
-
-	public override void OnDisable (){
-	  base.OnDisable ();
+	public override void DisableDelegates (){
+	  base.DisableDelegates ();
 	  an.OnSeekIdleDelegate  -= ai_IDLE;
 	  an.OnSeekAwareDelegate -= ai_AWRE;
 	  an.OnSeekAlertDelegate -= ai_ALRT;
@@ -78,9 +78,10 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	public virtual void doMove_AI (Vector3 moveDir){
+	public virtual void doMove_AI(Vector3 moveDir){
 	  if(this.sAI.bIntel){ //Only on Intel can move
 	    base.doMove (moveDir);
+	    this.an.doMove(moveDir);
 	  }
 	}
 
@@ -123,7 +124,7 @@ namespace MTON.codeObjects{
 	}
 
 	protected void doAI_Intel(){
-	  this.doRangeCheck(this.xform, this.player, this.sAI.fRngAware * rb.cRadius, (bool bRange, float fDist)=>{
+	  this.transform.doRangeCheck(this.player, this.sAI.fRngAware * rb.cRadius, (bool bRange, float fDist)=>{
 		if(bRange){
 		  Vector3 centerOffset = new Vector3(0.0f, rb.cHeight * 0.5f, 0.0f);
 		  Debug.DrawLine(this.xform.position + centerOffset, this.player.position + centerOffset, Color.yellow);
@@ -140,10 +141,9 @@ namespace MTON.codeObjects{
 	
    public virtual void ai_FOLLOW(float IN_DIST){
 	  this.doMove_AI(-Vector3.right * Mathf.Sign(this.xform.position.x - this.player.position.x));
-	  this.an.doMove(Vector3.right);
 	  if(Mathf.Abs(IN_DIST) < this.sAI.fRngAlert * rb.cRadius){     // Entering Alert Range
 	    this.an.seekST = cAnimn.eStateT.Alrt;
-	    this.an.attkST = cAnimn.eStateB.Idle;                   // Cocking attack : force state change if true
+	    this.an.attkST = cAnimn.eStateB.Idle;                       // Cocking attack : force state change if true
 	    rendr.material.color = sAI.cAlrt;
 		if(Mathf.Abs(IN_DIST) < (this.sAI.fRngAttck * rb.cRadius)){ // Entering Attack Range
 	      this.an.seekST = cAnimn.eStateT.Folw;
@@ -169,12 +169,13 @@ namespace MTON.codeObjects{
 	  GameObject oHit;
 	  Vector3 dCenter = this.xform.position + rb.cen;
 	  Vector3 attkDir = this.player.transform.position - this.xform.position;
-	  oHit = this.doRayDir(dCenter, attkDir, this.sAI.fRngAttck * rb.cRadius);
+	  oHit = this.transform.doRayHit(dCenter, attkDir, this.sAI.fRngAttck * rb.cRadius);
 
 	  if(oHit != null){
 	    oPlayer pHit = oHit.GetComponent<oPlayer>();
 		if(pHit != null){
-		  pHit.setJump(true);
+//		  pHit.setJump(true);
+		  pHit.doHitd(0, attkDir);
 		  Debug.Log ("Attacking : " + pHit);
 		  ai_BITE(oHit.transform.position);
           this.an.attkST = cAnimn.eStateB.DN;
@@ -214,15 +215,6 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	public void doRangeCheck<T>(Transform IN_SRC, Transform IN_TGT, float IN_DIST, Func<bool, float, T> funcToRun){
-	  float dist = Vector3.Distance(IN_SRC.position, IN_TGT.position);
-	  bool  bRng = false;
-	  if(dist < IN_DIST){
-	    bRng = true ;
-	  }
-	  funcToRun(bRng, dist);
-	}
-
 #region Utility
 
 	public virtual void ai_AWRE(bool bAware){
@@ -243,49 +235,7 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	public GameObject doRayDir(Vector3 IN_POS, Vector3 IN_DIR, float IN_DIST = 2.0f){
-	  RaycastHit hit;
-	  Ray ray = new Ray(IN_POS, IN_DIR);
-	  Physics.Raycast(ray, out hit, IN_DIST);
-	  Debug.DrawRay(IN_POS, IN_DIR, Color.yellow, 0.75f);
-	  if(hit.collider != null){
-	    return hit.collider.gameObject;
-	  }
-	  else{
-	    return null;
-	  }
-	}
-
-//	public GameObject doRayDir(Vector3 IN_POS, Vector3 IN_DIR, float IN_RAD, float IN_DIST = 2.0f){
-//	  RaycastHit hit;
-//	  Ray ray = new Ray(IN_POS, IN_DIR);
-//	  Physics.SphereCast(ray, IN_RAD, out hit, IN_DIST);
-//	  Debug.DrawRay(IN_POS, IN_DIR, Color.yellow, 0.5f);
-//	  Debug.DrawRay(IN_POS+Vector3.up*IN_RAD, IN_DIR, Color.yellow, 0.5f);
-//	  Debug.DrawRay(IN_POS+-Vector3.up*IN_RAD, IN_DIR, Color.yellow, 0.5f);
-//	  if(hit.collider != null){
-//	    return hit.collider.gameObject;
-//	  }
-//	  else{
-//	    return null;
-//	  }
-//	}
-
 #endregion
-
-//	  public int damag = 1;
-//    void OnCollisionEnter(Collision collision) {
-//	  Debug.Log("Enemy ONHIT!! " + collision.gameObject);
-//	  cHealth oDamage = collision.gameObject.GetComponent<cHealth>();
-//	  if(oDamage != null){
-//	    oDamage.onHitd(-this.damag);
-//	  }
-//	  if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-//	      __gCONSTANT._LEVEL.Emit_pFX(eHit, this.transform.position, Quaternion.identity, ()=>{
-//          return true;
-//	    });
-//	  }
-//	}
 
   }
 
