@@ -515,6 +515,8 @@ namespace MTON.codeObjects{
 
       public virtual void doHitd(int iHurt, Vector3 IN_DIR){
 //        rb.Jump()                       ;
+		float dirX = Mathf.Sign(IN_DIR.x);
+		IN_DIR = new Vector3(1.0f * dirX, 1.0f, 0.0f);
 		rb.doHit(IN_DIR);
         an.lState = cAnimn.eStateL.Hitd ;
         //	  Debug.Log(this + " OOOCH!!! ");

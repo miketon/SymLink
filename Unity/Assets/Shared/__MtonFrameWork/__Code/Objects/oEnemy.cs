@@ -78,9 +78,10 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	public virtual void doMove_AI (Vector3 moveDir){
+	public virtual void doMove_AI(Vector3 moveDir){
 	  if(this.sAI.bIntel){ //Only on Intel can move
 	    base.doMove (moveDir);
+	    this.an.doMove(moveDir);
 	  }
 	}
 
@@ -140,10 +141,9 @@ namespace MTON.codeObjects{
 	
    public virtual void ai_FOLLOW(float IN_DIST){
 	  this.doMove_AI(-Vector3.right * Mathf.Sign(this.xform.position.x - this.player.position.x));
-	  this.an.doMove(Vector3.right);
 	  if(Mathf.Abs(IN_DIST) < this.sAI.fRngAlert * rb.cRadius){     // Entering Alert Range
 	    this.an.seekST = cAnimn.eStateT.Alrt;
-	    this.an.attkST = cAnimn.eStateB.Idle;                   // Cocking attack : force state change if true
+	    this.an.attkST = cAnimn.eStateB.Idle;                       // Cocking attack : force state change if true
 	    rendr.material.color = sAI.cAlrt;
 		if(Mathf.Abs(IN_DIST) < (this.sAI.fRngAttck * rb.cRadius)){ // Entering Attack Range
 	      this.an.seekST = cAnimn.eStateT.Folw;
@@ -174,7 +174,8 @@ namespace MTON.codeObjects{
 	  if(oHit != null){
 	    oPlayer pHit = oHit.GetComponent<oPlayer>();
 		if(pHit != null){
-		  pHit.setJump(true);
+//		  pHit.setJump(true);
+		  pHit.doHitd(0, attkDir);
 		  Debug.Log ("Attacking : " + pHit);
 		  ai_BITE(oHit.transform.position);
           this.an.attkST = cAnimn.eStateB.DN;
