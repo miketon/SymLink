@@ -423,6 +423,7 @@ namespace MTON.codeObjects{
           }
         }
         if(bDuck){
+		  this.msgRadr(false);
 		  __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDld, this.transform.position, true);
         }	
       }

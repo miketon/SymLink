@@ -123,7 +123,7 @@ namespace MTON.codeObjects{
 	}
 
 	protected void doAI_Intel(){
-	  this.doRangeCheck(this.xform, this.player, this.sAI.fRngAware * rb.cRadius, (bool bRange, float fDist)=>{
+	  this.transform.doRangeCheck(this.player, this.sAI.fRngAware * rb.cRadius, (bool bRange, float fDist)=>{
 		if(bRange){
 		  Vector3 centerOffset = new Vector3(0.0f, rb.cHeight * 0.5f, 0.0f);
 		  Debug.DrawLine(this.xform.position + centerOffset, this.player.position + centerOffset, Color.yellow);
@@ -169,7 +169,7 @@ namespace MTON.codeObjects{
 	  GameObject oHit;
 	  Vector3 dCenter = this.xform.position + rb.cen;
 	  Vector3 attkDir = this.player.transform.position - this.xform.position;
-	  oHit = this.doRayDir(dCenter, attkDir, this.sAI.fRngAttck * rb.cRadius);
+	  oHit = this.transform.doRayHit(dCenter, attkDir, this.sAI.fRngAttck * rb.cRadius);
 
 	  if(oHit != null){
 	    oPlayer pHit = oHit.GetComponent<oPlayer>();
@@ -214,15 +214,6 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	public void doRangeCheck<T>(Transform IN_SRC, Transform IN_TGT, float IN_DIST, Func<bool, float, T> funcToRun){
-	  float dist = Vector3.Distance(IN_SRC.position, IN_TGT.position);
-	  bool  bRng = false;
-	  if(dist < IN_DIST){
-	    bRng = true ;
-	  }
-	  funcToRun(bRng, dist);
-	}
-
 #region Utility
 
 	public virtual void ai_AWRE(bool bAware){
@@ -243,49 +234,7 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	public GameObject doRayDir(Vector3 IN_POS, Vector3 IN_DIR, float IN_DIST = 2.0f){
-	  RaycastHit hit;
-	  Ray ray = new Ray(IN_POS, IN_DIR);
-	  Physics.Raycast(ray, out hit, IN_DIST);
-	  Debug.DrawRay(IN_POS, IN_DIR, Color.yellow, 0.75f);
-	  if(hit.collider != null){
-	    return hit.collider.gameObject;
-	  }
-	  else{
-	    return null;
-	  }
-	}
-
-//	public GameObject doRayDir(Vector3 IN_POS, Vector3 IN_DIR, float IN_RAD, float IN_DIST = 2.0f){
-//	  RaycastHit hit;
-//	  Ray ray = new Ray(IN_POS, IN_DIR);
-//	  Physics.SphereCast(ray, IN_RAD, out hit, IN_DIST);
-//	  Debug.DrawRay(IN_POS, IN_DIR, Color.yellow, 0.5f);
-//	  Debug.DrawRay(IN_POS+Vector3.up*IN_RAD, IN_DIR, Color.yellow, 0.5f);
-//	  Debug.DrawRay(IN_POS+-Vector3.up*IN_RAD, IN_DIR, Color.yellow, 0.5f);
-//	  if(hit.collider != null){
-//	    return hit.collider.gameObject;
-//	  }
-//	  else{
-//	    return null;
-//	  }
-//	}
-
 #endregion
-
-//	  public int damag = 1;
-//    void OnCollisionEnter(Collision collision) {
-//	  Debug.Log("Enemy ONHIT!! " + collision.gameObject);
-//	  cHealth oDamage = collision.gameObject.GetComponent<cHealth>();
-//	  if(oDamage != null){
-//	    oDamage.onHitd(-this.damag);
-//	  }
-//	  if(eHit != cLevel.fx_Hit.None){ // set to -1 to prevent emission
-//	      __gCONSTANT._LEVEL.Emit_pFX(eHit, this.transform.position, Quaternion.identity, ()=>{
-//          return true;
-//	    });
-//	  }
-//	}
 
   }
 

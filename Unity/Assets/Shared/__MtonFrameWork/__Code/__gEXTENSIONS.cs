@@ -17,6 +17,7 @@ public static class __gEXTENSIONS {
 		return retXform;
 	}
 
+	// Ray Check Ground
     private static float groundThreshold = 0.05f; //margin for ground check and object swap out.
 	public static float dirRayCheck(this Transform self, Vector3 vPos, Vector3 vDir, float IN_magnitude, int IN_layerMask){    //direction, magnitude and x offset
       RaycastHit hit                                                               ;
@@ -28,6 +29,30 @@ public static class __gEXTENSIONS {
         return -groundThreshold ; //not found ground returning < 0.0f
       }
     }
+
+	// Ray Hit Object
+    public static GameObject doRayHit(this Transform self, Vector3 IN_POS, Vector3 IN_DIR, float IN_DIST = 2.0f){
+	  RaycastHit hit;
+	  Ray ray = new Ray(IN_POS, IN_DIR);
+	  Physics.Raycast(ray, out hit, IN_DIST);
+	  Debug.DrawRay(IN_POS, IN_DIR, Color.yellow, 0.75f);
+	  if(hit.collider != null){
+	    return hit.collider.gameObject;
+	  }
+	  else{
+	    return null;
+	  }
+	}
+
+    // Check Range Between Source and Target transform
+	public static void doRangeCheck<T>(this Transform self, Transform IN_TGT, float IN_DIST, Func<bool, float, T> funcToRun){
+	  float dist = Vector3.Distance(self.position, IN_TGT.position);
+	  bool  bRng = false;
+	  if(dist < IN_DIST){
+	    bRng = true ;
+	  }
+	  funcToRun(bRng, dist);
+	}
 
 	public static Quaternion doRotateTowards(this Quaternion self, Vector3 IN_DIR){
 		float angle = Mathf.Atan2(IN_DIR.y, IN_DIR.x) * Mathf.Rad2Deg;
