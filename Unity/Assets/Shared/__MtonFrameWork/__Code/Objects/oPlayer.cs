@@ -121,6 +121,7 @@ namespace MTON.codeObjects{
         an.OnDuckDelegate      += setCrouch ;
         an.OnFaceDelegate      += doFace    ;
         an.OnRiseDelegate      += setRise   ;
+        an.OnFallDelegate      += setFall   ;
 		an.OnDiveDelegate      += setDive   ;
         an.OnIdlVDelegate      += setIdlV   ;
         an.OnIdlHDelegate      += setIdlH   ;
@@ -162,6 +163,7 @@ namespace MTON.codeObjects{
         an.OnDuckDelegate      -= setCrouch ;
         an.OnFaceDelegate      -= doFace    ;
         an.OnRiseDelegate      -= setRise   ;
+        an.OnFallDelegate      -= setFall   ;
 		an.OnDiveDelegate      -= setDive   ;
         an.OnIdlVDelegate      -= setIdlV   ;
         an.OnIdlHDelegate      -= setIdlH   ;
@@ -344,7 +346,14 @@ namespace MTON.codeObjects{
 		this.pMoveDir = moveDir; //caching current moveDir
         this.xform.SetPosZ(0.0f);                          // force into 0.0f zPlane so character doesn't slip
         // horizontal move state
-        if(Mathf.Abs(moveDir.x) > 0.001f){
+        if(moveDir == Vector3.zero){
+          an.fState = cAnimn.eStateF.Idle;
+          if(this.bDpdX == true){ //prevents spamming of Idle
+            an.hState = cAnimn.eStateH.Idle;
+          }
+        }
+        else if(Mathf.Abs(moveDir.x) > 0.001f){
+		  this.msgRadr(false);
 		  if(this.bDpdX){
             an.hState = cAnimn.eStateH.Walk ;              // triggering animation for walk
 		  }
@@ -364,12 +373,7 @@ namespace MTON.codeObjects{
             an.fState = cAnimn.eStateF.Left;
           }
         }
-        else{
-          an.fState = cAnimn.eStateF.Idle;
-          if(this.bDpdX == true){ //prevents spamming of Idle
-            an.hState = cAnimn.eStateH.Idle;
-          }
-        }
+
         //duck/crouch state
         if(Mathf.Abs(moveDir.y) > 0.001f){
           float vertDir = Mathf.Sign(moveDir.y); //y == vAxis  ; Sign return -1.0f or 1.0f
@@ -467,6 +471,13 @@ namespace MTON.codeObjects{
             }
           }
         }
+
+        public virtual void setFall(bool bFall){
+		  if(bFall){
+		    Debug.Log ("I am falling : " + bFall);
+			this.msgRadr(false);
+		  }
+		}
 
 		public virtual void setDive(bool bDive){
           if(bDive == false){
