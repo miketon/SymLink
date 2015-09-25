@@ -32,7 +32,7 @@ namespace MTON.Class{
 	public void Init(){
 	  ui_Scale = ui_dpRing.localScale;
 	  this.ui_Scale_Actv = ui_Scale * this.distSearch        ;
-	  this.ui_Scale_Rest = ui_Scale * this.distSearch * 0.3f ;
+	  this.ui_Scale_Rest = ui_Scale * this.distSearch * 0.4f ;
 	}
 
 	public s_ViewConeProperties sVW = new s_ViewConeProperties();
@@ -75,7 +75,7 @@ namespace MTON.Class{
 		if(this.ui_dpRing){
 		  this.ui_dpRing.gameObject.SetActive(true);
 		  this.ui_dpRing.position = this.transform.position + this.vOffset;
-		  this.tw_Cache = this.ui_dpRing.DOScale(this.ui_Scale_Actv.x, 0.50f).SetEase(Ease.InOutElastic);
+		  this.tw_Cache = this.ui_dpRing.DOScale(this.ui_Scale_Actv.x, 0.90f).SetEase(Ease.InOutElastic);
 	    }
 	  }
 	  else{ // display highlight hide

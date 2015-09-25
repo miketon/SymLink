@@ -11,6 +11,33 @@ namespace MTON.codeObjects{
     [RequireComponent (typeof (cMcanm))  ] //must have to call mecanim...need fields so can not populate later
     public class oPlayer : MonoBehaviour{
 
+	  public virtual void Awake(){
+        __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._PLAYER) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
+	  }
+
+	  private static bool bInitLevel = true;
+      public virtual void Start(){
+		if(__gCONSTANT._LEVEL == null){ // Must do LevelManager Check on start, not on Awake...
+		  var levelManagerStringSearch = GameObject.Find("__LevelManager"); // HACK: USING STRING SEARCH :(
+		  if(levelManagerStringSearch == null){
+		    Debug.Log ("LEVEL MISSING : " + this.transform);
+			GameObject levelManager = Resources.Load("__LevelManager_DEFAULT_MUSTBEINRESOURCEFOLDER") as GameObject;
+			__gCONSTANT._LEVEL = GameObject.Instantiate(levelManager).GetComponent<cLevel>();
+		    __gCONSTANT._LEVEL.mPlayer = this.transform;
+		  }
+		  else{
+		    Debug.Log ("GENERATING LEVEL");
+			if(bInitLevel){
+			  __gCONSTANT._LEVEL = levelManagerStringSearch.GetComponent<cLevel>();
+			  bInitLevel = false;
+			}
+		  }
+		}
+		else{
+		  Debug.Log ("LEVEL EXIST : " + this.transform);
+		}
+      }
+
       public  bool       b_2D    = true         ;
       public  bool       bGround = false        ;
       public  bool       bFaceRt = true         ; // facing Right
@@ -196,11 +223,6 @@ namespace MTON.codeObjects{
 
       private cEmit_Audio au ;
 
-      public virtual void Start(){
-        __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._PLAYER) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
-
-      }
-
 
 #endregion
 
@@ -211,7 +233,7 @@ namespace MTON.codeObjects{
 	public virtual void set__IO(bool b__IO ){
 	  if(this.bGround){       // doRadr on input, if player is on ground
 		if(b__IO != this.b__io){
-	    Debug.Log ("set__IO : " + b__IO);
+//	    Debug.Log ("set__IO : " + b__IO);
 	    this.msgRadr(!b__IO); // negate because if input, don't radar
 		this.b__io = b__IO;
 		}
@@ -221,7 +243,7 @@ namespace MTON.codeObjects{
 	public virtual void setStill(bool bStll ){
 	  if(this.bGround){      // doRadr if player is on ground...
 	    if(!io.b__IO){       // AND not taking in input
-	      Debug.Log ("setSTILL : " + bStll);
+//	      Debug.Log ("setSTILL : " + bStll);
 	      this.msgRadr(bStll);
 	    }
 	  }
@@ -475,7 +497,7 @@ namespace MTON.codeObjects{
 
         public virtual void setFall(bool bFall){
 		  if(bFall){
-		    Debug.Log ("I am falling : " + bFall);
+//		    Debug.Log ("I am falling : " + bFall);
 			this.msgRadr(false);
 		  }
 		}

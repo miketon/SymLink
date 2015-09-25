@@ -27,6 +27,14 @@ namespace MTON.Class{
     //Shut Down Level
     public void UnLoadLevel(){}
 
+	public void OnEnable(){
+	  __gCONSTANT.INIT_CONST_Delegate += InitLevel;
+	}
+
+	public void OnDisable(){
+	  __gCONSTANT.INIT_CONST_Delegate -= InitLevel;
+	}
+
     public Transform        mPlayer; // main player
     public Sound            sndPlyr; // sound player
     public Transform        mCamAim; // msin aim
@@ -355,8 +363,12 @@ namespace MTON.Class{
 
 #region Class Utility
 
-    public virtual void Awake(){
-      if(__gCONSTANT._LEVEL == null){
+//    public virtual void Awake(){
+    public virtual void InitLevel(){
+	  if(OnInit_Delegate != null){
+        OnInit_Delegate();
+      }
+//      if(__gCONSTANT._LEVEL == null){
         Debug.LogWarning("CONSTANT LEVEL == null : populating with " + this) ;
         __gCONSTANT._LEVEL = this                                            ; // Assign level to global constant and kick off all set up via INIT_CONST_Delegate
 
@@ -412,11 +424,12 @@ namespace MTON.Class{
           //		  Debug.Log ("CURRENT STATE: " + this.sPL.anmEmit[i].GetCurrentAnimatorClipInfo(0).ToString() +" Length : " + this.anmEmit[i].GetCurrentAnimatorStateInfo(0).length);
         }
 
-      }
-      else{
+//      }
+//      else{
         Debug.Log("CONSTANT LEVEL == exists : " + __gCONSTANT._LEVEL) ;
         __gCONSTANT._LEVEL.levelSpawn<GameObject>(this.gameObject)    ; //Stubbed out logging function
-      }
+//      }
+
     }
 
     public virtual void Start(){

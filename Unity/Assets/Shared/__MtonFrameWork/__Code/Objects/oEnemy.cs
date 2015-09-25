@@ -9,6 +9,10 @@ namespace MTON.codeObjects{
 
   public class oEnemy : oPlayer{
 
+    public override void Start(){ //Overriding Player Layer Setting
+      __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._ENEMY) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
+    }
+
 #region AI prop
 
 	public  Transform player    ;
