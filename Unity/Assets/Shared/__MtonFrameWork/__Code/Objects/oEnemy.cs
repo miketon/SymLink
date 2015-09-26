@@ -93,6 +93,7 @@ namespace MTON.codeObjects{
 	
 	private int iThought = 0;
 	public virtual void Update(){
+	  if(this.an != null){
 	  if(this.sAI.bIntel){     //if intelligence active : do AI
 	    this.doAI_Intel();
 	  }
@@ -105,6 +106,7 @@ namespace MTON.codeObjects{
 				  Debug.Log ("Thinking : " + this.iThought);
 				  return true;
 				});
+	  }
 	  }
 	}
 

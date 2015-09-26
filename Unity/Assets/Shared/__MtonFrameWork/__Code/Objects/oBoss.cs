@@ -36,6 +36,7 @@ namespace MTON.codeObjects{
     private bool animActive = true;
     public override void Update (){
       base.Update ();
+	  if(this.an!=null){
       if(this.animActive){
         if(this.boss_ANIMS.Length > 0){
           if(Input.GetKeyDown(KeyCode.B)){ //bite
@@ -61,6 +62,7 @@ namespace MTON.codeObjects{
           }
         }
       }
+	  }
     }
 
     public override void doTrig (int iTrig){
