@@ -15,34 +15,7 @@ namespace MTON.codeObjects{
         __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._PLAYER) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
 	  }
 
-	  public virtual void Start(){ 
-	  }
-	  private static bool bInitLevel = true;
-		public virtual void ONCONST_INIT(){
-		if(__gCONSTANT._LEVEL == null){ // Must do LevelManager Check on start, not on Awake...
-	      if(bInitLevel){
-		  var levelManagerStringSearch = GameObject.Find("__LevelManager"); // HACK: USING STRING SEARCH :(
-		  if(levelManagerStringSearch == null){
-		    Debug.Log ("LEVEL MISSING : " + this.transform);
-			GameObject levelManager = Resources.Load("__LevelManager_DEFAULT_MUSTBEINRESOURCEFOLDER") as GameObject;
-			__gCONSTANT._LEVEL = GameObject.Instantiate(levelManager).GetComponent<cLevel>();
-//		    __gCONSTANT._LEVEL.mPlayer = this.transform;
-			__gCONSTANT._LEVEL.mPlayer = GameObject.Find ("Player_Janitor_MTON _Sprite").transform;
-			__gCONSTANT._LEVEL.mCamera = GameObject.Find ("Main Camera").GetComponent<Camera2D>();
-			__gCONSTANT._LEVEL.InitLevel();
-			Debug.Log("GCONSTANT LEVEL LOADED : " + __gCONSTANT._LEVEL);
-		  }
-		  else{
-		    Debug.Log ("GENERATING LEVEL");
-			  __gCONSTANT._LEVEL = levelManagerStringSearch.GetComponent<cLevel>();
-		  }
-			  bInitLevel = false;
-		  }
-		}
-		else{
-		  Debug.Log ("LEVEL EXIST : " + this.transform);
-		}
-      }
+	  public virtual void Start(){ }
 
       public  bool       b_2D    = true         ;
       public  bool       bGround = false        ;
@@ -124,11 +97,10 @@ namespace MTON.codeObjects{
 
       public virtual void OnEnable(){
         this.gameObject.SetActive(true)     ; //???
-	    __gCONSTANT.INIT_CONST_Delegate += ONCONST_INIT;
 		cLevel.OnInit_Delegate += OnLevelINIT ;
 	    if(bLevelInit){
-		  this.OnLevelINIT() ; //Double Call : must init components just in case object spawned after cLevel exist.
-		  InitDelegates()  ;
+//		  this.OnLevelINIT() ; //Double Call : must init components just in case object spawned after cLevel exist.
+//		  InitDelegates()  ;
 		}
 	  }
 
@@ -171,7 +143,6 @@ namespace MTON.codeObjects{
       }
 
       public virtual void OnDisable(){
-		__gCONSTANT.INIT_CONST_Delegate -= ONCONST_INIT;
 		cLevel.OnInit_Delegate -= OnLevelINIT;
 	    this.DisableDelegates();
 	  }
