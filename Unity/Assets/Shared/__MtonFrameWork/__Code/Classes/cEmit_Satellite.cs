@@ -17,8 +17,10 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
   public Transform xformTarget;
   protected Rigidbody rBody ;
   protected Vector3   inScl ;
-  public  int       damag = 1       ;
-  public  float     force = 1750.0f ;
+  public  int       damag = 1    ;
+  public  float     force = 1.0f ;
+  [Range(0.0f, 1.0f)]
+  public  float     ratioDragForce = 0.5f;
   public cLevel.e_psFX  eHit ; // enum for particle system to emit
 
 #region iEmit implementation
@@ -57,8 +59,6 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
 
   public void Update(){
 	if(this.xformTarget){
-	  var rotDir = this.transform.position - this.xformTarget.position;
-	  Debug.Log ("Rotation : " + rotDir);
 	  var newRotation = Quaternion.LookRotation(this.transform.position - this.xformTarget.position, Vector3.forward);
       newRotation.x = 0.0f;
       newRotation.y = 0.0f;
@@ -67,7 +67,8 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
 //    this.transform.SetPosZ(0.0f); //for 2D
     if(Input.GetKeyDown(KeyCode.Space)){
 	  Debug.Log("Satellite JUMP !");
-	  this.rBody.AddForce(this.transform.up, ForceMode.Impulse);
+	  this.rBody.drag = this.force * this.ratioDragForce;
+	  this.rBody.AddForce(-this.transform.up * this.force, ForceMode.Impulse);
 	}
 
   }
