@@ -73,13 +73,9 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
   public void Update(){
 	
 	if(this.xformTarget){
-      var kDist = this.transform.position - this.xformTarget.position;
+//      var kDist = this.transform.position - this.xformTarget.position;
+	  this.transform.doAimTowardsZ(this.xformTarget.position, -1.0f);
       this.kDistToTarget = Vector3.Distance(this.transform.position, this.xformTarget.position);
-
-	  var newRotation = Quaternion.LookRotation(-kDist, Vector3.forward);
-      newRotation.x = 0.0f;
-      newRotation.y = 0.0f;
-      this.transform.rotation = Quaternion.Slerp(this.transform.rotation, newRotation, Time.deltaTime * 8);
 	}
 //    this.transform.SetPosZ(0.0f); //for 2D
     if(Input.GetKeyDown(KeyCode.F)){

@@ -92,7 +92,8 @@ namespace MTON.Class{
 		  for(var i=0; i <= maxSPAWN; i++){
               firePnt.position = new Vector3().doRadiusPos(firePnt.position, 3.0f);
               firePnt.SetPosZ(0.0f);
-              firePnt.rotation = new Quaternion().doRotateTowards(firePnt.position - transform.position);
+//              firePnt.rotation = new Quaternion().doRotateTowards(firePnt.position - transform.position);
+			  firePnt.doAimTowardsZ(firePnt.position - transform.position);
 
               firePnt.gameObject.SetActive(true)                            ;
               this.doEmit(firePnt, oBullet)                                 ;
@@ -131,7 +132,8 @@ namespace MTON.Class{
                 Quaternion    initRot = firePnt.rotation                      ;
 				firePnt.position = new Vector3().doRadiusPos(firePnt.position, IN_RADIUS);
                 firePnt.SetPosZ(0.0f);
-                firePnt.rotation = new Quaternion().doRotateTowards(firePnt.position - transform.position);
+				firePnt.doAimTowardsZ(firePnt.position - transform.position);
+//                firePnt.rotation = new Quaternion().doRotateTowards(firePnt.position - transform.position);
 
                 firePnt.gameObject.SetActive(true)                            ;
                 this.doEmit(firePnt, oBullet)                                 ;
