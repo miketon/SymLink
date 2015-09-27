@@ -4,6 +4,7 @@ using System.Collections.Generic ; // Dictionary, List
 using System             ; //NOTE : ??? must import to use anonymous function ; And the IComparable Interface for Dictionary
 using MTON.Interface     ;
 using MTON.Global        ;
+using MTON.codeObjects   ;
 using DG.Tweening        ; //import DemiGiant DoTween
 
 namespace MTON.Class{
@@ -26,10 +27,13 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
   public float kDistToTarget = 1.0f;
   public cLevel.e_psFX  eHit ; // enum for particle system to emit
 
+  public    oEmitter fp ;
+
 #region iEmit implementation
 
   public void Init(){  
-	  this.inScl = this.transform.localScale;
+    fp = __gUtility.AddComponent_mton<oEmitter>(this.gameObject)  ;
+	this.inScl = this.transform.localScale;
   }
   public void Play(){
 //	Debug.Log(this + " Shots Fired! ");
@@ -51,28 +55,38 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
 #endregion
 
   public virtual void Awake(){
-	__gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._BULLET) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
+//	__gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._BULLET) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
 	this.rBody = this.gameObject.GetComponent<Rigidbody>();
 	this.Init();
   }
 
-  public virtual void Start(){ }
-  private void OnEnable() { this.Play(); }
-  private void OnDisable(){ this.Stop(); }
+  public virtual void Start(){ 
+    this.xformTarget = GameObject.FindWithTag(__gCONSTANT._PLAYER).transform;	
+  }
+  private void OnEnable() { 
+    this.Play(); 
+  }
+  private void OnDisable(){ 
+    this.Stop(); 
+  }
 
   public void Update(){
 	
-    var kDist = this.transform.position - this.xformTarget.position;
-    this.kDistToTarget = Vector3.Distance(this.transform.position, this.xformTarget.position);
 	if(this.xformTarget){
+      var kDist = this.transform.position - this.xformTarget.position;
+      this.kDistToTarget = Vector3.Distance(this.transform.position, this.xformTarget.position);
+
 	  var newRotation = Quaternion.LookRotation(-kDist, Vector3.forward);
       newRotation.x = 0.0f;
       newRotation.y = 0.0f;
       this.transform.rotation = Quaternion.Slerp(this.transform.rotation, newRotation, Time.deltaTime * 8);
 	}
 //    this.transform.SetPosZ(0.0f); //for 2D
-    if(Input.GetKeyDown(KeyCode.Space)){
+    if(Input.GetKeyDown(KeyCode.F)){
 	  Debug.Log("Satellite JUMP !");
+	  if(this.fp != null){
+	    this.fp.em.doSinglFire(true);
+	  }
 	  this.rBody.drag = this.force * this.ratioDragForce;
 	  this.rBody.AddForce(-this.transform.up * this.force, ForceMode.Impulse);
 	  this.tt().ttAdd(this.kTimeToDrift, ()=>{ //Quickly let satellite drift

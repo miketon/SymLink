@@ -34,9 +34,6 @@ namespace MTON.codeObjects{
 	    em = __gUtility.AddComponent_mton<cSpawn>(this.gameObject)  ;
 	    em.Init(this.sEM)                                           ; //copy this.sEM settings to cSpawn obj
 	  }
-//	  else if(this.em){
-//	    em.Init(this.sEM)                                           ; //copy this.sEM settings to cSpawn obj
-//	  }
 	}
 
 	private void doEmit(Transform IN_XFORM, cLevel.e_Bllt IN_OBJ){

@@ -195,6 +195,7 @@ namespace MTON.codeObjects{
       protected cAnimn   an ; // Animation Listener making public so other components can access delegates...
       protected cMcanm   mc ; // mecanim handler
 	  public    oEmitter fp ;
+	  public    oEmitter pw ;
 	  public    cRadar   rd ; // Auto detection for homing and other functions
       private   cEquip   eq ;
       private   cHealth  ht ;
@@ -263,7 +264,7 @@ namespace MTON.codeObjects{
 	  }
 
       public virtual void setPowr(bool bPowr){
-		this.fp.em.doRapidFire(bPowr);
+		this.pw.em.doRapidFire(bPowr);
         this.bpowr = bPowr;
         if(bPowr == true){
 //          StartCoroutine(WhileRapidFire());
@@ -281,7 +282,7 @@ namespace MTON.codeObjects{
           an.doAimg(0.0f)                 ; //reset gun to face forward
           an.attkST = cAnimn.eStateB.Idle ; //release attack from powerup
 		  // set Burst Attack
-          this.fp.em.doRadiusSEQNC(true, this.bFaceRt);
+          this.pw.em.doRadiusSEQNC(true, 5.0f, this.bFaceRt);
         }
       }
 
@@ -672,6 +673,14 @@ namespace MTON.codeObjects{
 		    fp.em.sEM.eBlt     = this.sEM.eBlt     ;
 			fp.em.sEM.eGun     = this.sEM.eGun     ;
 		    fp.em.Init(); // Sets up firing points; else component.transform is firing point
+
+		  //Power emission
+		  pw = __gUtility.AddComponent_mton<oEmitter>(this.gameObject)  ;
+		    pw.em.sEM.fireRate = this.sEM.fireRate ;
+		    pw.em.sEM.firePnts = this.sEM.firePnts ;
+		    pw.em.sEM.eBlt     = this.sEM.eBlt     ;
+			pw.em.sEM.eGun     = this.sEM.eGun     ;
+		    pw.em.Init(); // Sets up firing points; else component.transform is firing point
 
           //      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject)  ;
           io = __gUtility.AddComponent_mton<cInput>(this.gameObject)  ;
