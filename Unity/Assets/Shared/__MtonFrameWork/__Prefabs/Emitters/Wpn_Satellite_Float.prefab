@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &101896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 441378}
+  m_Layer: 0
+  m_Name: __FiringPnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &102330
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,8 +43,8 @@ GameObject:
   - 33: {fileID: 3346044}
   - 54: {fileID: 5415404}
   - 135: {fileID: 13545156}
-  - 114: {fileID: 11438242}
   - 114: {fileID: 11489000}
+  - 114: {fileID: 11418434}
   m_Layer: 16
   m_Name: Wpn_Satellite_Float
   m_TagString: Untagged
@@ -37,6 +52,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &441378
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101896}
+  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106709}
+  m_LocalPosition: {x: 0, y: .5, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 474270}
+  m_RootOrder: 0
 --- !u!4 &474270
 Transform:
   m_ObjectHideFlags: 1
@@ -47,6 +74,7 @@ Transform:
   m_LocalPosition: {x: 57.5, y: 11.2600002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 441378}
   - {fileID: 492136}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -61,7 +89,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 474270}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!23 &2311272
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -115,29 +143,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
---- !u!114 &11438242
+--- !u!114 &11418434
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 114906}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 314172c476dc945e6851f1ca683ba94f, type: 3}
+  m_Script: {fileID: 11500000, guid: cb86fb47932d74a74832ee1b63960bd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dispObj: {fileID: 492136}
-  player: {fileID: 0}
-  cActv: {r: 1, g: 0, b: 0, a: 1}
-  cRest: {r: 0, g: 1, b: 0, a: 1}
-  fSpeed: 1
-  fAmplt: 1
-  fFreqn: 1
-  playerDir: {x: 0, y: 0, z: 0}
-  distThreshold: 3
-  durTime: 1
-  moveType: 1
-  yCos: 0
+  sEM:
+    fireRate: 0
+    firePnts: []
+    bModFP: 0
+    eBlt: 
+    bModBL: 0
+    eSlm: 0
+    eGun: 0
+  em: {fileID: 0}
 --- !u!114 &11489000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -153,6 +178,8 @@ MonoBehaviour:
   damag: 1
   force: 10
   ratioDragForce: .949999988
+  kTimeToDrift: .125
+  kDistToTarget: 1
   eHit: 0
 --- !u!135 &13545156
 SphereCollider:

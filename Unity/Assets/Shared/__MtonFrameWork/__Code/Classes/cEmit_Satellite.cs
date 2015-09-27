@@ -21,6 +21,9 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
   public  float     force = 1.0f ;
   [Range(0.0f, 1.0f)]
   public  float     ratioDragForce = 0.5f;
+  [Range(0.0f, 1.0f)]
+  public  float     kTimeToDrift = 0.25f;
+  public float kDistToTarget = 1.0f;
   public cLevel.e_psFX  eHit ; // enum for particle system to emit
 
 #region iEmit implementation
@@ -58,8 +61,11 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
   private void OnDisable(){ this.Stop(); }
 
   public void Update(){
+	
+    var kDist = this.transform.position - this.xformTarget.position;
+    this.kDistToTarget = Vector3.Distance(this.transform.position, this.xformTarget.position);
 	if(this.xformTarget){
-	  var newRotation = Quaternion.LookRotation(this.transform.position - this.xformTarget.position, Vector3.forward);
+	  var newRotation = Quaternion.LookRotation(-kDist, Vector3.forward);
       newRotation.x = 0.0f;
       newRotation.y = 0.0f;
       this.transform.rotation = Quaternion.Slerp(this.transform.rotation, newRotation, Time.deltaTime * 8);
@@ -69,6 +75,9 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
 	  Debug.Log("Satellite JUMP !");
 	  this.rBody.drag = this.force * this.ratioDragForce;
 	  this.rBody.AddForce(-this.transform.up * this.force, ForceMode.Impulse);
+	  this.tt().ttAdd(this.kTimeToDrift, ()=>{ //Quickly let satellite drift
+	    this.rBody.drag *= 0.1f;
+	  }); //using TeaTime.cs
 	}
 
   }
