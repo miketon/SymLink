@@ -11,13 +11,14 @@ GameObject:
   - 33: {fileID: 3346044}
   - 54: {fileID: 5415404}
   - 135: {fileID: 13545156}
+  - 114: {fileID: 11438242}
   m_Layer: 16
-  m_Name: DisplayArrow
+  m_Name: Wpn_Satellite_Float
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &133292
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,8 +42,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 114906}
-  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
-  m_LocalPosition: {x: 78.3600006, y: -2.25, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 497496}
@@ -54,7 +55,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 133292}
-  m_LocalRotation: {x: .499999762, y: -.5, z: -.5, w: .500000298}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -108,11 +109,34 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: .0500000007
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 104
   m_CollisionDetection: 0
+--- !u!114 &11438242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 314172c476dc945e6851f1ca683ba94f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dispObj: {fileID: 497496}
+  player: {fileID: 0}
+  cActv: {r: 1, g: 0, b: 0, a: 1}
+  cRest: {r: 0, g: 1, b: 0, a: 1}
+  fSpeed: 1
+  fAmplt: 1
+  fFreqn: 1
+  playerDir: {x: 0, y: 0, z: 0}
+  distThreshold: 3
+  durTime: 1
+  moveType: 1
+  yCos: 0
 --- !u!135 &13545156
 SphereCollider:
   m_ObjectHideFlags: 1
