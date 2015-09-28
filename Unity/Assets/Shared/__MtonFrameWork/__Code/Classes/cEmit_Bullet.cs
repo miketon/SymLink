@@ -30,7 +30,7 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
 //	Debug.Log(this + " Shots Fired! ");
 	this.transform.localScale = this.inScl   ;
 //	this.rBody.velocity       = Vector3.zero ;
-	this.rBody.AddForce(this.transform.forward * this.force) ;
+	this.rBody.AddForce(this.transform.up * this.force) ;
   }
   public void Stop(){
 //	Debug.Log(this + " Shots Stopped. ");

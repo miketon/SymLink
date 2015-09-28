@@ -73,8 +73,7 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
   public void Update(){
 	
 	if(this.xformTarget){
-//      var kDist = this.transform.position - this.xformTarget.position;
-	  this.transform.doAimTowardsZ(this.xformTarget.position, -1.0f);
+	  this.transform.doAimTowardsY(this.xformTarget.position, -1.0f);
       this.kDistToTarget = Vector3.Distance(this.transform.position, this.xformTarget.position);
 	}
 //    this.transform.SetPosZ(0.0f); //for 2D

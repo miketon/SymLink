@@ -99,8 +99,9 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 		  if(this._player){
 		    this.bHind = bPlayerBehind(this._player, v3Dir);
 		  }
-		  Quaternion newRotation = this.si.doRotateTowards(v3Dir);
-		  transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * this.mvC.rotationSpeed * mvC.rotMult);
+//		  Quaternion newRotation = this.si.doRotateTowards(v3Dir);
+//		  transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * this.mvC.rotationSpeed * mvC.rotMult);
+		  transform.doAimTowardsY(target.position, 1.0f, this.mvC.rotationSpeed * this.mvC.rotMult);
  		  mvC.dist = v3Dir.magnitude;
 //		  if(mvC.dist < mvC.distLockd){
 //		    mvC.rotMult = 1.0f-(mvC.dist/mvC.distLockd);
@@ -113,7 +114,7 @@ public class cEmit_HeatSeek : cEmit_Bullet {
 		}
 
 		//move Forward
-		transform.position += transform.forward * this.mvC.moveSpeed * Time.deltaTime * mvC.posMult;
+		transform.position += transform.up * this.mvC.moveSpeed * Time.deltaTime * mvC.posMult;
 		transform.SetPosZ(0.0f);
 	}
 
