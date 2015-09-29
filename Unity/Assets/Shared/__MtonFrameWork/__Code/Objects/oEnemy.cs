@@ -161,17 +161,11 @@ namespace MTON.codeObjects{
 	    this.an.seekST = cAnimn.eStateT.Awre;
 	  }
 	}
-
-	private Vector3 pMoveDir = Vector3.zero;
-	public virtual  void ai_IDLE(bool bIdle){
-	  if(bIdle){
-		if(this.pMoveDir != Vector3.zero){
-	      this.doMove_AI(Vector3.zero);
-		  this.pMoveDir = Vector3.zero; //prevents constant pulse dash
-		}
-	    this.an.attkST = cAnimn.eStateB.Idle;
-		rendr.material.color = this.sAI.cIdle;
-	  }
+	
+	public virtual void ai_IDLE(bool bIdle){
+	  this.doMove_AI(Vector3.zero);
+	  this.an.attkST = cAnimn.eStateB.Idle;
+	  rendr.material.color = this.sAI.cIdle;
 	}
 
 	public virtual  bool ai_ATTK(){
