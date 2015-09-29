@@ -62,18 +62,20 @@ namespace MTON.codeObjects{
 
         }
 
-      public s_RbodyProperties sRB = new s_RbodyProperties(3.0f, 4.25f, 4.25f, 3.0f, 1.0f); //set default
+      public s_RbodyProperties sRB = new s_RbodyProperties(3.0f, 3.5f, 4.25f, 4.25f, 3.0f, 1.0f); //set default
       [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
         public struct s_RbodyProperties{
 
           public  float moveForce ;
+		  public  float movePulse ; //initial movePulse, to cover gaps
           public  float jumpForce ;
           public  float flapForce ;
           public  float dashForce ;
           public  float massForce ;
 
-          public s_RbodyProperties(float mv, float jp, float fp, float df, float mf){
+          public s_RbodyProperties(float mv, float mp, float jp, float fp, float df, float mf){
             this.moveForce = mv ;
+            this.movePulse = mp ;
             this.jumpForce = jp ;
             this.flapForce = fp ;
             this.dashForce = df ;
@@ -338,7 +340,7 @@ namespace MTON.codeObjects{
 		moveDir.y = Mathf.Min(moveDir.y, 0.0f);            // Filter to prevent flight, but allow ground pound
 		if(this.bDpdX){
 		  if(this.pMoveDir == Vector3.zero){
-		    moveDir.x *= 3.5f;                             // move burst to prevent pillbox roll ; HACK: hardcoded value
+		    moveDir.x *= this.sRB.movePulse;               // move burst to prevent pillbox roll ; HACK: hardcoded value
 		  }
           rb.Move(moveDir);
 		}
@@ -584,7 +586,7 @@ namespace MTON.codeObjects{
         public virtual void setIdlH(bool bIdlH){
           if(bIdlH == true){
             if(this.bGround){ // If onGround, kick up dust
-			  __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDsl, this.xform.position, true);
+			  __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDsl, this.xform.position, this.bFaceRt, true);
             }
           }
 //			Debug.Log ("IDLE : " + bIdlH);
@@ -601,7 +603,7 @@ namespace MTON.codeObjects{
 
         public virtual void setFoot(bool bFoot){
           if(bFoot == true){
-		    __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDst, this.xform.position, true);
+		    __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDst, this.xform.position, this.bFaceRt, true);
           }
         }
 

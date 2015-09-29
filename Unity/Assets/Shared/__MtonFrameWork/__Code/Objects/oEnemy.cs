@@ -84,8 +84,8 @@ namespace MTON.codeObjects{
 
 	public virtual void doMove_AI(Vector3 moveDir){
 	  if(this.sAI.bIntel){ //Only on Intel can move
-	    base.doMove (moveDir);
-	    this.an.doMove(moveDir);
+	    base.doMove (moveDir)   ;
+	    this.an.doMove(moveDir) ;
 	  }
 	}
 
@@ -162,9 +162,13 @@ namespace MTON.codeObjects{
 	  }
 	}
 
+	private Vector3 pMoveDir = Vector3.zero;
 	public virtual  void ai_IDLE(bool bIdle){
 	  if(bIdle){
-	    this.doMove_AI(Vector3.zero);
+		if(this.pMoveDir != Vector3.zero){
+	      this.doMove_AI(Vector3.zero);
+		  this.pMoveDir = Vector3.zero; //prevents constant pulse dash
+		}
 	    this.an.attkST = cAnimn.eStateB.Idle;
 		rendr.material.color = this.sAI.cIdle;
 	  }

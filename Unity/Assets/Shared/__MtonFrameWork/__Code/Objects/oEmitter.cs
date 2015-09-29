@@ -43,8 +43,8 @@ namespace MTON.codeObjects{
 		  if(cBullet){
 		    cBullet.OnComplete();
 		  }
-            return xForm ;
-          })             ;
+          return xForm ;
+        })             ;
       }
 	  if(this.sEM.eGun != cLevel.e_psFX.None){   // Flare : set to -1 to prevent emission
         __gCONSTANT._LEVEL.Emit_pFX(this.sEM.eGun, IN_XFORM.position, Quaternion.identity, (Transform xForm)=>{

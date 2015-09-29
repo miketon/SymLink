@@ -98,7 +98,7 @@ namespace MTON.Class{
               firePnt.gameObject.SetActive(true)                            ;
               this.doEmit(firePnt, oBullet)                                 ;
               firePnt.position = initPos;
-              firePnt.rotation = initRot; //COMMENT OUT
+//              firePnt.rotation = initRot; //COMMENT OUT
 
               this.sFP_mod.doMod()                                          ; //modulate to next firing Point
               this.sBL_mod.doMod()                                          ; //modulate to next bullet
@@ -109,8 +109,6 @@ namespace MTON.Class{
 	}
 
 #endregion
-
-
 
 	public virtual void doRadiusSEQNC(bool bAttk, float IN_RADIUS = 3.0f, bool IN_FACEFORWARD=true){
       int maxSPAWN = 15 ;
@@ -132,13 +130,13 @@ namespace MTON.Class{
                 Quaternion    initRot = firePnt.rotation                      ;
 				firePnt.position = new Vector3().doRadiusPos(firePnt.position, IN_RADIUS);
                 firePnt.SetPosZ(0.0f);
-//				firePnt.doAimTowardsY(transform.position);
-                firePnt.rotation = new Quaternion().doRotateTowards(firePnt.position - transform.position);
+				firePnt.doAimTowardsY(transform.position);
+//                firePnt.rotation = new Quaternion().doRotateTowards(firePnt.position - transform.position);
 
                 firePnt.gameObject.SetActive(true)                            ;
                 this.doEmit(firePnt, oBullet)                                 ;
                 firePnt.position = initPos;
-                firePnt.rotation = initRot; //COMMENT OUT
+//                firePnt.rotation = initRot; //COMMENT OUT
 
                 this.sFP_mod.doMod()                                          ; //modulate to next firing Point
                 this.sBL_mod.doMod()                                          ; //modulate to next bullet

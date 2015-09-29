@@ -64,7 +64,8 @@ namespace MTON.Class{
     }
 
     private float ccHeight(CharacterController IN_CC){
-      return (IN_CC.height * this.transform.localScale.y) * 0.5f + IN_CC.skinWidth + 0.005f ; //character cylinder  y center
+//      return (IN_CC.height * this.transform.localScale.y) * 0.5f + IN_CC.skinWidth + 0.005f ; //character cylinder  y center
+      return (IN_CC.height * this.transform.localScale.y) * 0.5f + 0.1f ; //character cylinder  y center
       //HACK: Can't access skin width via code ???, close approximation ??? built in onGround fails ???
     }
 	
