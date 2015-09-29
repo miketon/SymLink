@@ -178,9 +178,7 @@ namespace MTON.codeObjects{
 	  if(oHit != null){
 	    oPlayer pHit = oHit.GetComponent<oPlayer>();
 		if(pHit != null){
-//		  pHit.setJump(true);
 		  pHit.doHitd(0, attkDir);
-		  Debug.Log ("Attacking : " + pHit);
 		  ai_BITE(oHit.transform.position);
           this.an.attkST = cAnimn.eStateB.DN;
 		}

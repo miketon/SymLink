@@ -62,7 +62,7 @@ namespace MTON.codeObjects{
 
         }
 
-      public s_RbodyProperties sRB = new s_RbodyProperties(3.0f, 3.5f, 4.25f, 4.25f, 3.0f, 1.0f); //set default
+      public s_RbodyProperties sRB = new s_RbodyProperties(3.0f, 1.0f, 4.25f, 4.25f, 3.0f, 1.0f); //set default
       [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
         public struct s_RbodyProperties{
 
@@ -502,14 +502,15 @@ namespace MTON.codeObjects{
 
 	   if(Input.GetKeyDown(KeyCode.H)){
 	      Debug.Log ("PLAYER HURT UP");
-		  Vector3 hitDir;
-		  if(this.bFaceRt){
-		    hitDir = new Vector3(-1.0f, 1.0f, 0.0f);
-		  }
-		  else{
-		    hitDir = new Vector3(1.0f, 1.0f, 0.0f);
-		  }
-		  doHitd(0, hitDir);
+		  rb.bHit = true;
+//		  Vector3 hitDir;
+//		  if(this.bFaceRt){
+//		    hitDir = new Vector3(-1.0f, 1.0f, 0.0f);
+//		  }
+//		  else{
+//		    hitDir = new Vector3(1.0f, 1.0f, 0.0f);
+//		  }
+//		  doHitd(0, hitDir);
 	    }
 	  }
 
@@ -520,10 +521,8 @@ namespace MTON.codeObjects{
       public virtual void doHitd(int iHurt, Vector3 IN_DIR){
 //        rb.Jump()                       ;
 		float dirX = Mathf.Sign(IN_DIR.x);
-		IN_DIR = new Vector3(1.0f * dirX, 1.0f, 0.0f);
-		rb.doHit(IN_DIR);
+		rb.doHit(new Vector3(1.0f * dirX, 1.0f, 0.0f));
         an.lState = cAnimn.eStateL.Hitd ;
-        //	  Debug.Log(this + " OOOCH!!! ");
       }
 
       public virtual void setDead(bool bDead){

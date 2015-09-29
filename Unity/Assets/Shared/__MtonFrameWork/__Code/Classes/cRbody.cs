@@ -35,6 +35,7 @@ namespace MTON.Class{
     public float cHeight   = 0.0f     ; //runtime transform/scale
 
     public bool  bJump   = false ;// { get; set; }
+	public bool  bHit    = false ;
     public bool  dash    = false ;
 
     public  Vector3 vMove     = Vector3.zero ;
@@ -77,6 +78,7 @@ namespace MTON.Class{
         Fall()                                   ; //calculate vertical state
 	  }
       doJump()                                   ; //calculate jump state : NOTE : Can't replace with longform bJump prop handler???
+	  doHit(Vector3.up);
 
       gravity.x  = vMove.x                       ; //combine with move from Move()=>oMoveH() for final position
 	  gravity.y += vMove.y                       ;
@@ -244,9 +246,13 @@ namespace MTON.Class{
 	public float magHit = 0.5f ;
 	public float posHit = 0.75f;
     public virtual void doHit(Vector3 IN_DIR){
+	  if(this.bHit){
 	  this.bStunnd = true;
 	  this.transform.position += IN_DIR * this.posHit ; // For crisper effect, go ahead and pop player into position
-      this.Move(IN_DIR * this.magHit)                 ; 
+	  this.gravity = IN_DIR;
+//      this.Move(IN_DIR * this.magHit)                 ; 
+	  this.bHit = false;
+	  }
 	}
 
 #endregion
