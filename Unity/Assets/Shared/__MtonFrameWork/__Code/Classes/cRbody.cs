@@ -14,6 +14,9 @@ namespace MTON.Class{
       public ON_RBODYEVENT OnCeilng_Delegate          ; //delegate instance
       public ON_RBODYEVENT OnStunnd_Delegate          ; //delegate instance for onHitd => lock controls...etc
 
+      public delegate void ON_RBODYV3DIR(Vector3 vDir) ; //set up delegate
+	  public ON_RBODYV3DIR OnHitDir_Delegate           ; //delegate instance
+
       public static LayerMask __layerGround ;
       public static LayerMask __layerEnemy  ;
       public static LayerMask __layerCheck  ;
@@ -35,6 +38,7 @@ namespace MTON.Class{
     public float cHeight   = 0.0f     ; //runtime transform/scale
 
     public bool  bJump   = false ;// { get; set; }
+	public bool  bHit    = false ;
     public bool  dash    = false ;
 
     public  Vector3 vMove     = Vector3.zero ;
@@ -64,7 +68,8 @@ namespace MTON.Class{
     }
 
     private float ccHeight(CharacterController IN_CC){
-      return (IN_CC.height * this.transform.localScale.y) * 0.5f + IN_CC.skinWidth + 0.005f ; //character cylinder  y center
+//      return (IN_CC.height * this.transform.localScale.y) * 0.5f + IN_CC.skinWidth + 0.005f ; //character cylinder  y center
+      return (IN_CC.height * this.transform.localScale.y) * 0.5f + 0.1f ; //character cylinder  y center
       //HACK: Can't access skin width via code ???, close approximation ??? built in onGround fails ???
     }
 	
@@ -75,6 +80,8 @@ namespace MTON.Class{
 	  if(bFall){
         Fall()                                   ; //calculate vertical state
 	  }
+	  doHit(Vector3.up);
+	  //HACK : doJump() must follow Fall(), order matters! Else vertical twitch and not jump curve
       doJump()                                   ; //calculate jump state : NOTE : Can't replace with longform bJump prop handler???
 
       gravity.x  = vMove.x                       ; //combine with move from Move()=>oMoveH() for final position
@@ -115,6 +122,24 @@ namespace MTON.Class{
             OnCeilng_Delegate(value);
           }
         }
+      } 
+    }
+
+   [SerializeField] //else can accidentally assign to lowercase var vs. setter var
+    private Vector3 vdironhit = Vector3.up;
+    public Vector3 vDirOnHit { 
+      get{
+        return this.vdironhit;
+      } 
+      set{
+		  Debug.Log ("ONHIT RBODY : " + value);
+//        if(this.vdironhit != value){
+          this.vdironhit = value;
+		  if(OnHitDir_Delegate != null){
+		    OnHitDir_Delegate(value);
+          }
+		  this.bHit = true ; //remember to set to false on event handle, else continous hit in FixedUpdate
+//        }
       } 
     }
 
@@ -198,7 +223,9 @@ namespace MTON.Class{
 #region Move Functions
 
     public virtual void Move(Vector3 moveDir){
-      this.vMove = moveDir * this.moveForce ; //horizontal transform (move)	
+	  if(!this.bHit){ //if not hit, can move
+        this.vMove = moveDir * this.moveForce ; //horizontal transform (move)	
+	  }
     }
 
     public virtual void Fall(){ //vertical transform (gravity)
@@ -243,10 +270,17 @@ namespace MTON.Class{
 	public float magHit = 0.5f ;
 	public float posHit = 0.75f;
     public virtual void doHit(Vector3 IN_DIR){
-	  this.bStunnd = true;
-	  this.transform.position += IN_DIR * this.posHit ; // For crisper effect, go ahead and pop player into position
-      this.Move(IN_DIR * this.magHit)                 ; 
+	  if(this.bHit){
+	    this.bStunnd = true;
+	    this.transform.position += IN_DIR * this.posHit ; // For crisper effect, go ahead and pop player into position
+//	    this.gravity = IN_DIR;
+	    this.gravity = this.vDirOnHit;
+//      this.Move(IN_DIR * this.magHit)                 ; 
+	    this.bHit = false;
+	  }
 	}
+
+
 
 #endregion
 

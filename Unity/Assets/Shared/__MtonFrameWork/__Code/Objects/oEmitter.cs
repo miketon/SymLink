@@ -34,9 +34,6 @@ namespace MTON.codeObjects{
 	    em = __gUtility.AddComponent_mton<cSpawn>(this.gameObject)  ;
 	    em.Init(this.sEM)                                           ; //copy this.sEM settings to cSpawn obj
 	  }
-//	  else if(this.em){
-//	    em.Init(this.sEM)                                           ; //copy this.sEM settings to cSpawn obj
-//	  }
 	}
 
 	private void doEmit(Transform IN_XFORM, cLevel.e_Bllt IN_OBJ){
@@ -46,8 +43,8 @@ namespace MTON.codeObjects{
 		  if(cBullet){
 		    cBullet.OnComplete();
 		  }
-            return xForm ;
-          })             ;
+          return xForm ;
+        })             ;
       }
 	  if(this.sEM.eGun != cLevel.e_psFX.None){   // Flare : set to -1 to prevent emission
         __gCONSTANT._LEVEL.Emit_pFX(this.sEM.eGun, IN_XFORM.position, Quaternion.identity, (Transform xForm)=>{

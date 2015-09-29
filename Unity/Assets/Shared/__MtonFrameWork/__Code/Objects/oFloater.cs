@@ -31,7 +31,8 @@ namespace MTON.codeObjects{
 	public enum moveTypeMTON {
 		Follow,
 		Wave,
-		None,
+		Satellite,
+		Idle,
 	}
 
 	public virtual void Awake(){

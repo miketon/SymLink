@@ -9,6 +9,10 @@ namespace MTON.codeObjects{
 
   public class oEnemy : oPlayer{
 
+    public override void Start(){ //Overriding Player Layer Setting
+      __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._ENEMY) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
+    }
+
 #region AI prop
 
 	public  Transform player    ;
@@ -80,8 +84,8 @@ namespace MTON.codeObjects{
 
 	public virtual void doMove_AI(Vector3 moveDir){
 	  if(this.sAI.bIntel){ //Only on Intel can move
-	    base.doMove (moveDir);
-	    this.an.doMove(moveDir);
+	    base.doMove (moveDir)   ;
+	    this.an.doMove(moveDir) ;
 	  }
 	}
 
@@ -89,6 +93,7 @@ namespace MTON.codeObjects{
 	
 	private int iThought = 0;
 	public virtual void Update(){
+	  if(this.an != null){
 	  if(this.sAI.bIntel){     //if intelligence active : do AI
 	    this.doAI_Intel();
 	  }
@@ -101,6 +106,7 @@ namespace MTON.codeObjects{
 				  Debug.Log ("Thinking : " + this.iThought);
 				  return true;
 				});
+	  }
 	  }
 	}
 
@@ -155,13 +161,11 @@ namespace MTON.codeObjects{
 	    this.an.seekST = cAnimn.eStateT.Awre;
 	  }
 	}
-
-	public virtual  void ai_IDLE(bool bIdle){
-	  if(bIdle){
-	    this.doMove_AI(Vector3.zero);
-	    this.an.attkST = cAnimn.eStateB.Idle;
-		rendr.material.color = this.sAI.cIdle;
-	  }
+	
+	public virtual void ai_IDLE(bool bIdle){
+	  this.doMove_AI(Vector3.zero);
+	  this.an.attkST = cAnimn.eStateB.Idle;
+	  rendr.material.color = this.sAI.cIdle;
 	}
 
 	public virtual  bool ai_ATTK(){
@@ -174,9 +178,7 @@ namespace MTON.codeObjects{
 	  if(oHit != null){
 	    oPlayer pHit = oHit.GetComponent<oPlayer>();
 		if(pHit != null){
-//		  pHit.setJump(true);
 		  pHit.doHitd(0, attkDir);
-		  Debug.Log ("Attacking : " + pHit);
 		  ai_BITE(oHit.transform.position);
           this.an.attkST = cAnimn.eStateB.DN;
 		}

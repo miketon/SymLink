@@ -11,6 +11,12 @@ namespace MTON.codeObjects{
     [RequireComponent (typeof (cMcanm))  ] //must have to call mecanim...need fields so can not populate later
     public class oPlayer : MonoBehaviour{
 
+	  public virtual void Awake(){
+        __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._PLAYER) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
+	  }
+
+	  public virtual void Start(){ }
+
       public  bool       b_2D    = true         ;
       public  bool       bGround = false        ;
       public  bool       bFaceRt = true         ; // facing Right
@@ -56,18 +62,20 @@ namespace MTON.codeObjects{
 
         }
 
-      public s_RbodyProperties sRB = new s_RbodyProperties(3.0f, 4.25f, 4.25f, 3.0f, 1.0f); //set default
+      public s_RbodyProperties sRB = new s_RbodyProperties(3.0f, 1.0f, 4.25f, 4.25f, 3.0f, 1.0f); //set default
       [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
         public struct s_RbodyProperties{
 
           public  float moveForce ;
+		  public  float movePulse ; //initial movePulse, to cover gaps
           public  float jumpForce ;
           public  float flapForce ;
           public  float dashForce ;
           public  float massForce ;
 
-          public s_RbodyProperties(float mv, float jp, float fp, float df, float mf){
+          public s_RbodyProperties(float mv, float mp, float jp, float fp, float df, float mf){
             this.moveForce = mv ;
+            this.movePulse = mp ;
             this.jumpForce = jp ;
             this.flapForce = fp ;
             this.dashForce = df ;
@@ -93,8 +101,8 @@ namespace MTON.codeObjects{
         this.gameObject.SetActive(true)     ; //???
 		cLevel.OnInit_Delegate += OnLevelINIT ;
 	    if(bLevelInit){
-		  this.OnLevelINIT() ; //Double Call : must init components just in case object spawned after cLevel exist.
-		  InitDelegates()  ;
+//		  this.OnLevelINIT() ; //Double Call : must init components just in case object spawned after cLevel exist.
+//		  InitDelegates()  ;
 		}
 	  }
 
@@ -189,17 +197,13 @@ namespace MTON.codeObjects{
       protected cAnimn   an ; // Animation Listener making public so other components can access delegates...
       protected cMcanm   mc ; // mecanim handler
 	  public    oEmitter fp ;
+	  public    oEmitter pw ;
 	  public    cRadar   rd ; // Auto detection for homing and other functions
       private   cEquip   eq ;
       private   cHealth  ht ;
       private   cTween   tw ;
 
       private cEmit_Audio au ;
-
-      public virtual void Start(){
-        __gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._PLAYER) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
-
-      }
 
 
 #endregion
@@ -211,7 +215,7 @@ namespace MTON.codeObjects{
 	public virtual void set__IO(bool b__IO ){
 	  if(this.bGround){       // doRadr on input, if player is on ground
 		if(b__IO != this.b__io){
-	    Debug.Log ("set__IO : " + b__IO);
+//	    Debug.Log ("set__IO : " + b__IO);
 	    this.msgRadr(!b__IO); // negate because if input, don't radar
 		this.b__io = b__IO;
 		}
@@ -221,7 +225,7 @@ namespace MTON.codeObjects{
 	public virtual void setStill(bool bStll ){
 	  if(this.bGround){      // doRadr if player is on ground...
 	    if(!io.b__IO){       // AND not taking in input
-	      Debug.Log ("setSTILL : " + bStll);
+//	      Debug.Log ("setSTILL : " + bStll);
 	      this.msgRadr(bStll);
 	    }
 	  }
@@ -262,7 +266,7 @@ namespace MTON.codeObjects{
 	  }
 
       public virtual void setPowr(bool bPowr){
-		this.fp.em.doRapidFire(bPowr);
+		this.pw.em.doRapidFire(bPowr);
         this.bpowr = bPowr;
         if(bPowr == true){
 //          StartCoroutine(WhileRapidFire());
@@ -280,7 +284,7 @@ namespace MTON.codeObjects{
           an.doAimg(0.0f)                 ; //reset gun to face forward
           an.attkST = cAnimn.eStateB.Idle ; //release attack from powerup
 		  // set Burst Attack
-          this.fp.em.doRadiusSEQNC(true, this.bFaceRt);
+          this.pw.em.doRadiusSEQNC(true, 5.0f, this.bFaceRt);
         }
       }
 
@@ -290,7 +294,7 @@ namespace MTON.codeObjects{
 
 	  // Calculate position state delta for animator
       public virtual void FixedUpdate(){
-
+		if(an != null){
         Vector3 curPos = xform.position;
 
         if(!bGround){                          //Not on Ground :check vertical state
@@ -323,7 +327,7 @@ namespace MTON.codeObjects{
 		  this.an.mState = cAnimn.eStateM.Move;
 		}
         prvPos = curPos; //Cache previous position
-
+		}
       }
 
 #endregion
@@ -336,7 +340,7 @@ namespace MTON.codeObjects{
 		moveDir.y = Mathf.Min(moveDir.y, 0.0f);            // Filter to prevent flight, but allow ground pound
 		if(this.bDpdX){
 		  if(this.pMoveDir == Vector3.zero){
-		    moveDir.x *= 3.5f;                             // move burst to prevent pillbox roll ; HACK: hardcoded value
+		    moveDir.x *= this.sRB.movePulse;               // move burst to prevent pillbox roll ; HACK: hardcoded value
 		  }
           rb.Move(moveDir);
 		}
@@ -475,7 +479,7 @@ namespace MTON.codeObjects{
 
         public virtual void setFall(bool bFall){
 		  if(bFall){
-		    Debug.Log ("I am falling : " + bFall);
+//		    Debug.Log ("I am falling : " + bFall);
 			this.msgRadr(false);
 		  }
 		}
@@ -494,18 +498,21 @@ namespace MTON.codeObjects{
 
 #region SET HEALTH
 
+	public Vector3 onHitDirTest = Vector3.up;
 	private void Update(){
 
 	   if(Input.GetKeyDown(KeyCode.H)){
-	      Debug.Log ("PLAYER HURT UP");
-		  Vector3 hitDir;
-		  if(this.bFaceRt){
-		    hitDir = new Vector3(-1.0f, 1.0f, 0.0f);
-		  }
-		  else{
-		    hitDir = new Vector3(1.0f, 1.0f, 0.0f);
-		  }
-		  doHitd(0, hitDir);
+	      Debug.Log ("PLAYER HURT UP MTON");
+//		  rb.bHit = true;
+		  rb.vDirOnHit = this.onHitDirTest;
+//		  Vector3 hitDir;
+//		  if(this.bFaceRt){
+//		    hitDir = new Vector3(-1.0f, 1.0f, 0.0f);
+//		  }
+//		  else{
+//		    hitDir = new Vector3(1.0f, 1.0f, 0.0f);
+//		  }
+//		  doHitd(0, hitDir);
 	    }
 	  }
 
@@ -516,10 +523,8 @@ namespace MTON.codeObjects{
       public virtual void doHitd(int iHurt, Vector3 IN_DIR){
 //        rb.Jump()                       ;
 		float dirX = Mathf.Sign(IN_DIR.x);
-		IN_DIR = new Vector3(1.0f * dirX, 1.0f, 0.0f);
-		rb.doHit(IN_DIR);
+		rb.doHit(new Vector3(1.0f * dirX, 1.0f, 0.0f));
         an.lState = cAnimn.eStateL.Hitd ;
-        //	  Debug.Log(this + " OOOCH!!! ");
       }
 
       public virtual void setDead(bool bDead){
@@ -582,7 +587,7 @@ namespace MTON.codeObjects{
         public virtual void setIdlH(bool bIdlH){
           if(bIdlH == true){
             if(this.bGround){ // If onGround, kick up dust
-			  __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDsl, this.xform.position, true);
+			  __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDsl, this.xform.position, this.bFaceRt, true);
             }
           }
 //			Debug.Log ("IDLE : " + bIdlH);
@@ -599,7 +604,7 @@ namespace MTON.codeObjects{
 
         public virtual void setFoot(bool bFoot){
           if(bFoot == true){
-		    __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDst, this.xform.position, true);
+		    __gCONSTANT._LEVEL.fx_Dust(this.sEM.eDst, this.xform.position, this.bFaceRt, true);
           }
         }
 
@@ -671,6 +676,14 @@ namespace MTON.codeObjects{
 		    fp.em.sEM.eBlt     = this.sEM.eBlt     ;
 			fp.em.sEM.eGun     = this.sEM.eGun     ;
 		    fp.em.Init(); // Sets up firing points; else component.transform is firing point
+
+		  //Power emission
+		  pw = __gUtility.AddComponent_mton<oEmitter>(this.gameObject)  ;
+		    pw.em.sEM.fireRate = this.sEM.fireRate ;
+		    pw.em.sEM.firePnts = this.sEM.firePnts ;
+		    pw.em.sEM.eBlt     = this.sEM.eBlt     ;
+			pw.em.sEM.eGun     = this.sEM.eGun     ;
+		    pw.em.Init(); // Sets up firing points; else component.transform is firing point
 
           //      eq = __gUtility.AddComponent_mton<cEquip>(this.gameObject)  ;
           io = __gUtility.AddComponent_mton<cInput>(this.gameObject)  ;

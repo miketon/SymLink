@@ -1,42 +1,42 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &122088
+--- !u!1 &149542
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 426984}
-  - 114: {fileID: 11481266}
-  - 114: {fileID: 11433714}
-  - 82: {fileID: 8265290}
-  - 114: {fileID: 11448730}
+  - 4: {fileID: 454268}
+  - 114: {fileID: 11496490}
+  - 114: {fileID: 11440066}
+  - 82: {fileID: 8289148}
+  - 114: {fileID: 11497026}
   m_Layer: 2
-  m_Name: __LevelManager
+  m_Name: __LevelManager_DEFAULT_MUSTBEINRESOURCEFOLDER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &426984
+--- !u!4 &454268
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122088}
+  m_GameObject: {fileID: 149542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!82 &8265290
+--- !u!82 &8289148
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122088}
+  m_GameObject: {fileID: 149542}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -101,12 +101,12 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &11433714
+--- !u!114 &11440066
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122088}
+  m_GameObject: {fileID: 149542}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52bbcf38e6e31458e9b00fae1f21156a, type: 3}
@@ -126,37 +126,12 @@ MonoBehaviour:
   sfxDarkAmbience: {fileID: 0}
   sfxBreath: {fileID: 8300000, guid: 7c382e1d9c47e9f48aa9fdfde5a69ad8, type: 3}
   sfxGod: {fileID: 0}
---- !u!114 &11448730
+--- !u!114 &11496490
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91bb83d744fea764fa2d202feb9aec6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myPool:
-  - objectID: 1
-    labelName: FlameThrowerProjectile
-    pooledObject: {fileID: 185394, guid: 7b536622eabfccd44b4899f1a2302fc1, type: 2}
-    parent: {fileID: 426984}
-    numberPooled: 10
-    foldOutObject: 1
-    unUsedObjects: []
-    usedObjects: []
-    usedBy: []
-  myObj: {fileID: 0}
-  startTime: 0
-  parentObject: {fileID: 0}
-  PoolManagerInitialized: 0
---- !u!114 &11481266
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122088}
+  m_GameObject: {fileID: 149542}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fcf4d0cdd735428481f8acae96970ec, type: 3}
@@ -180,7 +155,7 @@ MonoBehaviour:
     - {fileID: 465522, guid: 35decb55a98124aebb72f9da6cb40408, type: 2}
     - {fileID: 461494, guid: 38626638a705e4350baeac7723250754, type: 2}
     - {fileID: 485394, guid: 3859b9ee5b93044808e66134d4856f25, type: 2}
-    - {fileID: 474270, guid: adb58b1e2868f4e128eff2cc17da8271, type: 2}
+    - {fileID: 474270, guid: 944eaf0d2cff846de977218693bd369f, type: 2}
     e_Slams:
     - {fileID: 406448, guid: ee15799d9c50d4ad8b9d73ee83dd9efc, type: 2}
     e_Icons:
@@ -203,18 +178,39 @@ MonoBehaviour:
     fx_Hit_OffSet: []
     anmEmit_duratn: []
     anmEmit_IntScl: []
+--- !u!114 &11497026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91bb83d744fea764fa2d202feb9aec6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPool:
+  - objectID: 1
+    labelName: FlameThrowerProjectile
+    pooledObject: {fileID: 185394, guid: 7b536622eabfccd44b4899f1a2302fc1, type: 2}
+    parent: {fileID: 454268}
+    numberPooled: 10
+    foldOutObject: 1
+    unUsedObjects: []
+    usedObjects: []
+    usedBy: []
+  myObj: {fileID: 0}
+  startTime: 0
+  parentObject: {fileID: 0}
+  PoolManagerInitialized: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
+    m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 122088}
+  m_RootGameObject: {fileID: 149542}
   m_IsPrefabParent: 1

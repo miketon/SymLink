@@ -120,8 +120,8 @@ namespace MTON.Class{
 
 		public enum eStateB{ // useful for onGround/Crouch/Footstep
 			Idle,
-			UP  , //down
-			DN  , //up
+			UP  , //up
+			DN  , //DN
 			HL  , //hold
 			PW  , //power up
 		}

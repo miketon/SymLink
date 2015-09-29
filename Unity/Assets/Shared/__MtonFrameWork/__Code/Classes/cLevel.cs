@@ -128,6 +128,7 @@ namespace MTON.Class{
       Grenade_00 ,
       HomingB_00 ,
 	  Flaming_00 ,
+	  Satellt_00 ,
 	  Pillars_00 ,
       None       ,
     }
@@ -320,7 +321,7 @@ namespace MTON.Class{
 	  else if(eBullet == e_Bllt.Flaming_00){ // Flaming Bullet
         Emit_Bullet(this.sPL.e_Bllts[2], IN_POS, IN_ROT, funcToRun, retPool);
       }
-	  else if(eBullet == e_Bllt.Pillars_00){ // Satellite
+	  else if(eBullet == e_Bllt.Satellt_00){ // Satellite
         Emit_Bullet(this.sPL.e_Bllts[3], IN_POS, IN_ROT, funcToRun, retPool);
       }
     }
@@ -356,6 +357,17 @@ namespace MTON.Class{
 #region Class Utility
 
     public virtual void Awake(){
+	  if(OnInit_Delegate != null){
+        OnInit_Delegate();
+      }
+	  if(this.mPlayer == null){
+	    Debug.Log (" LEVEL Player NOT SET");
+		this.mPlayer = GameObject.FindWithTag(__gCONSTANT._PLAYER).transform;
+	  }
+	  if(this.mCamera == null){
+	    Debug.Log (" LEVEL Camera NOT SET");
+		this.mCamera = GameObject.FindWithTag(__gCONSTANT._CAMERA).GetComponent<Camera2D>();
+	  }
       if(__gCONSTANT._LEVEL == null){
         Debug.LogWarning("CONSTANT LEVEL == null : populating with " + this) ;
         __gCONSTANT._LEVEL = this                                            ; // Assign level to global constant and kick off all set up via INIT_CONST_Delegate
@@ -417,6 +429,7 @@ namespace MTON.Class{
         Debug.Log("CONSTANT LEVEL == exists : " + __gCONSTANT._LEVEL) ;
         __gCONSTANT._LEVEL.levelSpawn<GameObject>(this.gameObject)    ; //Stubbed out logging function
       }
+
     }
 
     public virtual void Start(){
