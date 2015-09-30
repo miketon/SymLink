@@ -498,21 +498,18 @@ namespace MTON.codeObjects{
 
 #region SET HEALTH
 
-	public Vector3 onHitDirTest = Vector3.up;
 	private void Update(){
-
 	   if(Input.GetKeyDown(KeyCode.H)){
 	      Debug.Log ("PLAYER HURT UP MTON");
-//		  rb.bHit = true;
-		  rb.vDirOnHit = this.onHitDirTest;
-//		  Vector3 hitDir;
-//		  if(this.bFaceRt){
-//		    hitDir = new Vector3(-1.0f, 1.0f, 0.0f);
-//		  }
-//		  else{
-//		    hitDir = new Vector3(1.0f, 1.0f, 0.0f);
-//		  }
+		  Vector3 hitDir;
+		  if(this.bFaceRt){
+		    hitDir = new Vector3(-1.0f, 1.0f, 0.0f);
+		  }
+		  else{
+		    hitDir = new Vector3(1.0f, 1.0f, 0.0f);
+		  }
 //		  doHitd(0, hitDir);
+		  rb.vDirOnHit = hitDir;
 	    }
 	  }
 
@@ -521,9 +518,9 @@ namespace MTON.codeObjects{
 	  }
 
       public virtual void doHitd(int iHurt, Vector3 IN_DIR){
-//        rb.Jump()                       ;
 		float dirX = Mathf.Sign(IN_DIR.x);
-		rb.doHit(new Vector3(1.0f * dirX, 1.0f, 0.0f));
+//		rb.doHit(new Vector3(1.0f * dirX, 1.0f, 0.0f));
+		rb.vDirOnHit = (new Vector3(1.0f * dirX, 1.0f, 0.0f));
         an.lState = cAnimn.eStateL.Hitd ;
       }
 

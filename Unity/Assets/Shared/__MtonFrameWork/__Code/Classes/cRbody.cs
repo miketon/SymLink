@@ -80,7 +80,7 @@ namespace MTON.Class{
 	  if(bFall){
         Fall()                                   ; //calculate vertical state
 	  }
-	  doHit(Vector3.up);
+	  doHit(this.vDirOnHit);
 	  //HACK : doJump() must follow Fall(), order matters! Else vertical twitch and not jump curve
       doJump()                                   ; //calculate jump state : NOTE : Can't replace with longform bJump prop handler???
 
@@ -131,15 +131,12 @@ namespace MTON.Class{
       get{
         return this.vdironhit;
       } 
-      set{
-		  Debug.Log ("ONHIT RBODY : " + value);
-//        if(this.vdironhit != value){
-          this.vdironhit = value;
-		  if(OnHitDir_Delegate != null){
-		    OnHitDir_Delegate(value);
-          }
-		  this.bHit = true ; //remember to set to false on event handle, else continous hit in FixedUpdate
-//        }
+      set{ // no filter for previous hit dir
+		this.bHit = true ; //remember to set to false on event handle, else continous hit in FixedUpdate
+        this.vdironhit = value;
+		if(OnHitDir_Delegate != null){
+		  OnHitDir_Delegate(value);
+        }
       } 
     }
 
@@ -273,14 +270,10 @@ namespace MTON.Class{
 	  if(this.bHit){
 	    this.bStunnd = true;
 	    this.transform.position += IN_DIR * this.posHit ; // For crisper effect, go ahead and pop player into position
-//	    this.gravity = IN_DIR;
-	    this.gravity = this.vDirOnHit;
-//      this.Move(IN_DIR * this.magHit)                 ; 
+	    this.gravity = IN_DIR;
 	    this.bHit = false;
 	  }
 	}
-
-
 
 #endregion
 
