@@ -122,12 +122,12 @@ namespace MTON.Class{
 		    intTea++;
 		    int spawnMod = intTea%3;
 			if(spawnMod == 0){
-			  iSPAWNED++;
+			  // HACK : duplicating work, because must reset between array/sequence
+		      Vector3       initPos = firePnt.position                      ;
+              Quaternion    initRot = firePnt.rotation                      ;		  iSPAWNED++;
 			  if(iSPAWNED <= maxSPAWN){
 		        Debug.Log ("Tea Time : "+ iSPAWNED + " intTea: " + intTea + " spawnMod : " + spawnMod);
-				// HACK : duplicating work, because must reset between array/sequence
-		        Vector3       initPos = firePnt.position                      ;
-                Quaternion    initRot = firePnt.rotation                      ;
+
 				firePnt.position = new Vector3().doRadiusPos(firePnt.position, IN_RADIUS);
                 firePnt.SetPosZ(0.0f);
 				firePnt.doAimTowardsY(transform.position);
@@ -141,6 +141,8 @@ namespace MTON.Class{
                 this.sFP_mod.doMod()                                          ; //modulate to next firing Point
                 this.sBL_mod.doMod()                                          ; //modulate to next bullet
 			  }
+			  firePnt.position = initPos;
+			  firePnt.rotation = initRot;
 			}
           });
 		  return firePnt;

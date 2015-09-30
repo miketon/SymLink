@@ -508,19 +508,15 @@ namespace MTON.codeObjects{
 		  else{
 		    hitDir = new Vector3(1.0f, 1.0f, 0.0f);
 		  }
-//		  doHitd(0, hitDir);
-		  rb.vDirOnHit = hitDir;
+		  rb.vDirOnHit = hitDir * this.hitMag;
+          an.lState = cAnimn.eStateL.Hitd ;
 	    }
 	  }
 
-	  public virtual void doHitd(int iHurt){
-	    this.doHitd(iHurt, Vector3.zero);
-	  }
-
+	  public float hitMag = 1.0f;
       public virtual void doHitd(int iHurt, Vector3 IN_DIR){
 		float dirX = Mathf.Sign(IN_DIR.x);
-//		rb.doHit(new Vector3(1.0f * dirX, 1.0f, 0.0f));
-		rb.vDirOnHit = (new Vector3(1.0f * dirX, 1.0f, 0.0f));
+		rb.vDirOnHit = (new Vector3(1.0f * dirX, 1.0f, 0.0f)) * this.hitMag;
         an.lState = cAnimn.eStateL.Hitd ;
       }
 

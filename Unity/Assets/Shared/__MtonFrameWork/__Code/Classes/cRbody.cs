@@ -268,6 +268,7 @@ namespace MTON.Class{
 	public float posHit = 0.75f;
     public virtual void doHit(Vector3 IN_DIR){
 	  if(this.bHit){
+		this.vMove   = Vector3.zero ; // clears io effect on hitState 
 	    this.bStunnd = true;
 	    this.transform.position += IN_DIR * this.posHit ; // For crisper effect, go ahead and pop player into position
 	    this.gravity = IN_DIR;
