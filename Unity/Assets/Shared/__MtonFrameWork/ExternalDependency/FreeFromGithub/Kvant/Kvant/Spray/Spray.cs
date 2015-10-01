@@ -234,8 +234,8 @@ public partial class Spray : MonoBehaviour
 
         // GPGPU buffer Initialization.
         ApplyKernelParameters();
-        Graphics.Blit(null, _positionBuffer2, _kernelMaterial, 0);
-        Graphics.Blit(null, _rotationBuffer2, _kernelMaterial, 1);
+        // Graphics.Blit(null, _positionBuffer2, _kernelMaterial, 0);
+        // Graphics.Blit(null, _rotationBuffer2, _kernelMaterial, 1);
 
         _needsReset = false;
     }
@@ -281,13 +281,13 @@ public partial class Spray : MonoBehaviour
         else
         {
             // Editor: initialize the buffer on every update.
-            Graphics.Blit(null, _positionBuffer1, _kernelMaterial, 0);
-            Graphics.Blit(null, _rotationBuffer1, _kernelMaterial, 1);
+            // Graphics.Blit(null, _positionBuffer1, _kernelMaterial, 0);
+            // Graphics.Blit(null, _rotationBuffer1, _kernelMaterial, 1);
         }
 
         // Apply the kernel shaders.
-        Graphics.Blit(_positionBuffer1, _positionBuffer2, _kernelMaterial, 2);
-        Graphics.Blit(_rotationBuffer1, _rotationBuffer2, _kernelMaterial, 3);
+        // Graphics.Blit(_positionBuffer1, _positionBuffer2, _kernelMaterial, 2);
+        // Graphics.Blit(_rotationBuffer1, _rotationBuffer2, _kernelMaterial, 3);
 
         // Draw the bulk mesh.
         _surfaceMaterial.SetTexture("_PositionTex", _positionBuffer2);

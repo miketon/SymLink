@@ -25,6 +25,30 @@ namespace MTON.codeObjects{
       private LayerMask  layerGround            ;
       private Vector3    prvPos  = Vector3.zero ;
 
+      [SerializeField] //else can accidentally assign to lowercase var vs. setter var
+	  private bool binvincible = false;
+	  public float fTimeInvincible = 1.0f;
+	  public bool bInvincible{
+	    get{
+		  return this.binvincible;
+		}
+		set{
+		  if(value != this.binvincible){
+		    this.binvincible = value;
+			if(value == true){
+			  Debug.Log(" I AM INVINCIBLE : " + value);
+			  this.tt().ttAdd(this.fTimeInvincible , ()=>{
+				Debug.Log ("CHANGE INVINCIBLE : " + value);
+			    this.bInvincible = !this.binvincible;
+              })                          ; //using TeaTime.cs
+			}
+			else{
+			  Debug.Log(" I AM MORTAL : " + value);
+			}
+		  }
+		}
+	  }
+
 #region Structs Display Obj, Emitter, Rbody
 
       public s_DispOProperties sDP = new s_DispOProperties();
@@ -518,6 +542,7 @@ namespace MTON.codeObjects{
 		float dirX = Mathf.Sign(IN_DIR.x);
 		rb.vDirOnHit = (new Vector3(1.0f * dirX, 1.0f, 0.0f)) * this.hitMag;
         an.lState = cAnimn.eStateL.Hitd ;
+	    this.binvincible = true; // invincible for a time
       }
 
       public virtual void setDead(bool bDead){
