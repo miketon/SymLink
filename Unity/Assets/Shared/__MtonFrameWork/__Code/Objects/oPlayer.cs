@@ -8,7 +8,7 @@ using DG.Tweening        ; //import DemiGiant DoTween
 namespace MTON.codeObjects{
 
   [RequireComponent (typeof (CharacterController))]
-    [RequireComponent (typeof (cMcanm))  ] //must have to call mecanim...need fields so can not populate later
+    [RequireComponent (typeof (cMcanm))  ] //must have to call mecanim...need fields so can populate later
     public class oPlayer : MonoBehaviour{
 
 	  public virtual void Awake(){
@@ -37,13 +37,13 @@ namespace MTON.codeObjects{
 		    this.binvincible = value;
 			if(value == true){
 			  Debug.Log(" I AM INVINCIBLE : " + value);
+			  var oDisplay = this.sDP.dispXFORM.gameObject;
+			  oDisplay.SetActive(false);
 			  this.tt().ttAdd(this.fTimeInvincible , ()=>{
-				Debug.Log ("CHANGE INVINCIBLE : " + value);
-			    this.bInvincible = !this.binvincible;
-              })                          ; //using TeaTime.cs
-			}
-			else{
-			  Debug.Log(" I AM MORTAL : " + value);
+			    this.bInvincible = false ;
+			    oDisplay.SetActive(true);
+			    Debug.Log(" I AM MORTAL : " + value);
+              })                         ; //using TeaTime.cs
 			}
 		  }
 		}
@@ -534,7 +534,8 @@ namespace MTON.codeObjects{
 		  }
 		  rb.vDirOnHit = hitDir * this.hitMag;
           an.lState = cAnimn.eStateL.Hitd ;
-	    }
+		  this.bInvincible = true;
+		}
 	  }
 
 	  public float hitMag = 1.0f;
