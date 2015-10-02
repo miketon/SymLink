@@ -37,13 +37,17 @@ namespace MTON.codeObjects{
 		    this.binvincible = value;
 			if(value == true){
 			  Debug.Log(" I AM INVINCIBLE : " + value);
-			  var oDisplay = this.sDP.dispXFORM.gameObject;
-			  oDisplay.SetActive(false);
-			  this.tt().ttAdd(this.fTimeInvincible , ()=>{
+			  var oDisplay = this.sDP.dispXFORM.gameObject.GetComponent<Renderer>(); //must use Renderer, not GameObject/Transform else Animator loses initialization
+			  oDisplay.enabled = false;
+			  var countLoop = 0;
+			  this.tt().ttAdd(this.fTimeInvincible , delegate(ttHandler loop){
+				countLoop++;
+			    Debug.Log ("LoopDelta : " + loop.deltaTime + " LoopCount : " + countLoop)	;
+              }).ttAdd(()=>{
+				oDisplay.enabled = true;
 			    this.bInvincible = false ;
-			    oDisplay.SetActive(true);
 			    Debug.Log(" I AM MORTAL : " + value);
-              })                         ; //using TeaTime.cs
+			  })                         ; //using TeaTime.cs
 			}
 		  }
 		}

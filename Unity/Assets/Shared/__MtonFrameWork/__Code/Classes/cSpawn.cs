@@ -126,7 +126,7 @@ namespace MTON.Class{
 		      Vector3       initPos = firePnt.position                      ;
               Quaternion    initRot = firePnt.rotation                      ;		  iSPAWNED++;
 			  if(iSPAWNED <= maxSPAWN){
-		        Debug.Log ("Tea Time : "+ iSPAWNED + " intTea: " + intTea + " spawnMod : " + spawnMod);
+//		        Debug.Log ("Tea Time : "+ iSPAWNED + " intTea: " + intTea + " spawnMod : " + spawnMod);
 
 				firePnt.position = new Vector3().doRadiusPos(firePnt.position, IN_RADIUS);
                 firePnt.SetPosZ(0.0f);
