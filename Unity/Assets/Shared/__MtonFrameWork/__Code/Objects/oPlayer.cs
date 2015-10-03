@@ -35,23 +35,34 @@ namespace MTON.codeObjects{
 		set{
 		  if(value != this.binvincible){
 		    this.binvincible = value;
-			if(value == true){
-			  Debug.Log(" I AM INVINCIBLE : " + value);
-			  var oDisplay = this.sDP.dispXFORM.gameObject.GetComponent<Renderer>(); //must use Renderer, not GameObject/Transform else Animator loses initialization
-			  oDisplay.enabled = false;
-			  var countLoop = 0;
-			  this.tt().ttAdd(this.fTimeInvincible , delegate(ttHandler loop){
-				countLoop++;
-			    Debug.Log ("LoopDelta : " + loop.deltaTime + " LoopCount : " + countLoop)	;
-              }).ttAdd(()=>{
-				oDisplay.enabled = true;
-			    this.bInvincible = false ;
-			    Debug.Log(" I AM MORTAL : " + value);
-			  })                         ; //using TeaTime.cs
-			}
+			this.setInvincible(value);
 		  }
 		}
 	  }
+
+	public virtual void setInvincible(bool IN_BOOL){
+			Debug.Log(" I AM INVINCIBLE : " + IN_BOOL);
+	        if(IN_BOOL){
+			  var oDisplay = this.sDP.dispXFORM.gameObject.GetComponent<Renderer>(); //must use Renderer, not GameObject/Transform else Animator loses initialization
+			  oDisplay.enabled = false;
+			  var countLoop = 0;
+			  this.tt("OnHitBlink").ttReset();
+			  this.tt("OnHitBlink").ttLoop(this.fTimeInvincible , delegate(ttHandler loop){
+				countLoop++;
+				if(countLoop%4==1){
+			      oDisplay.enabled = true;
+				}
+				else{
+			      oDisplay.enabled = false;
+				}
+			    Debug.Log ("LoopDelta : " + loop.deltaTime + " LoopCount : " + countLoop + " MOD : " + countLoop%2)	;
+              }).ttAdd(()=>{
+				oDisplay.enabled = true;
+			    this.bInvincible = false;
+				Debug.Log(" I AM MORTAL : " + IN_BOOL);
+			  })                         ; //using TeaTime.cs
+			}
+	}
 
 #region Structs Display Obj, Emitter, Rbody
 
@@ -313,6 +324,7 @@ namespace MTON.codeObjects{
           an.attkST = cAnimn.eStateB.Idle ; //release attack from powerup
 		  // set Burst Attack
           this.pw.em.doRadiusSEQNC(true, 5.0f, this.bFaceRt);
+//		  this.pw.em.doRadiusBurst(true, this.bFaceRt);
         }
       }
 

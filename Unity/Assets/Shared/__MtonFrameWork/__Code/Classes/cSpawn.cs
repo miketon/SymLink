@@ -119,6 +119,7 @@ namespace MTON.Class{
 		  int intTea = 0;
 	      this.tt("QueueExample").ttReset();
           this.tt("QueueExample").ttLoop(3, delegate(ttHandler loop){
+//			Debug.Log (" Tea TIME LOOP : " + intTea + " LOOP DELTA : " + loop.deltaTime);
 		    intTea++;
 		    int spawnMod = intTea%3;
 			if(spawnMod == 0){
