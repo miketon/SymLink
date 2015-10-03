@@ -16,7 +16,7 @@ namespace MTON.codeObjects{
 #region AI prop
 
 	public  Transform player    ;
-	private bool binput = false ;
+	private bool binput = false ; //if input==true, this is not a player
 	public  bool bInput{
 			get{
 				return binput;
@@ -24,6 +24,10 @@ namespace MTON.codeObjects{
 			set{
 				binput = value;
 				if(binput == true){
+				  //re-add player specific items
+				  this.io = __gUtility.AddComponent_mton<cInput>(this.gameObject);
+//				  this.rd = __gUtility.AddComponent_mton<cRadar>(this.gameObject) ; // Commented out because enemy never needs radar
+
 				  //direct input
 				  io.OnDPAD_DIR_Delegate += doMove;
 				  io.OnJumpDelegate      += setJump;
@@ -38,8 +42,12 @@ namespace MTON.codeObjects{
 				  io.OnAttkDelegate      -= setAttk; //NOTE: Interesting that doAttk executes, then io.OnAttkDelegate executes???
 				  io.OnActVDelegate      -= setActV; //Attack Visual = hitFlash
 				  io.OnPowrDelegate      -= setPowr;
-				  Component.Destroy(this.rd);
-				  this.rd = null;
+
+				  //remove player specific items
+//				  Component.Destroy(this.io); //removing input
+				  this.io = null;
+				  Component.Destroy(this.rd); //removing radar
+				  this.rd = null; 
 				}
 			}
 	}
@@ -135,11 +143,9 @@ namespace MTON.codeObjects{
 		  Vector3 centerOffset = new Vector3(0.0f, rb.cHeight * 0.5f, 0.0f);
 		  Debug.DrawLine(this.xform.position + centerOffset, this.player.position + centerOffset, Color.yellow);
 		  this.ai_FOLLOW(fDist);
-//	      io.bInput = true;
 		}
 		else{
 		  this.an.seekST = cAnimn.eStateT.Idle;
-//	      io.bInput = false;
 		}
 	    return true;
       });

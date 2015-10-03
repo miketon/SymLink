@@ -7,9 +7,11 @@ namespace MTON.Interface{
 
     int levelCurrent { get; set; } 
 
-    //Init Level
+    // Init Level
     void OnLoadLevel() ;    
-    //Shut Down Level
+	// Reset Level
+	void Reset_Level();
+    // Shut Down Level
     void UnLoadLevel() ;   
 
   }

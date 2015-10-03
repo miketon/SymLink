@@ -22,10 +22,17 @@ namespace MTON.Class{
 
     public int levelCurrent { get; set; } //NOTE : interface variable implementation can't be static
 
-    //Init Level
+    // Init Level
     public void OnLoadLevel(){}           //NOTE : interface function implementation must be public
-    //Shut Down Level
-    public void UnLoadLevel(){}
+    // Reset Level
+    public void Reset_Level(){
+	  Debug.Log (" LEVEL GAMEOVER");
+      Application.LoadLevel (2); // go to restart of the level
+	}
+    // Shut Down Level
+    public void UnLoadLevel(){
+	  Debug.Log (" LEVEL COMPLETED");
+	}
 
     public Transform        mPlayer; // main player
     public Sound            sndPlyr; // sound player
