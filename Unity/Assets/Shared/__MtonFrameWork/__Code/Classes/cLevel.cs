@@ -23,15 +23,21 @@ namespace MTON.Class{
     public int levelCurrent { get; set; } //NOTE : interface variable implementation can't be static
 
     // Init Level
-    public void OnLoadLevel(){}           //NOTE : interface function implementation must be public
-    // Reset Level
-    public void Reset_Level(){
-	  Debug.Log (" LEVEL GAMEOVER");
-      Application.LoadLevel (2); // go to restart of the level
-	}
+	public void OnLoadLevel(){ //NOTE : interface function implementation must be public
+	  DynamicGI.UpdateEnvironment()     ; // refreshes environment GI else scene stays dark
+	}           
+
     // Shut Down Level
     public void UnLoadLevel(){
 	  Debug.Log (" LEVEL COMPLETED");
+	}
+
+    // Load Unity Scene based on build index
+    public void LoadSceneIN(int IN_SCENE){
+	  Debug.Log (" LEVEL GAMEOVER");
+	  this.tt ("OnDeath").ttAdd(2.0f, ()=>{ // HACK: 2 second buffer before changing to next screen
+		Application.LoadLevel (IN_SCENE)  ; // load scene based on build index
+	  });
 	}
 
     public Transform        mPlayer; // main player

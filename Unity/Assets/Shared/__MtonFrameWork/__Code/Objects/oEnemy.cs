@@ -182,9 +182,11 @@ namespace MTON.codeObjects{
 	  oHit = this.transform.doRayHit(dCenter, attkDir, this.sAI.fRngAttck * rb.cRadius);
 
 	  if(oHit != null){
-	    oPlayer pHit = oHit.GetComponent<oPlayer>();
+//	    oPlayer pHit = oHit.GetComponent<oPlayer>();
+	    cHealth pHit = oHit.GetComponent<cHealth>();
 		if(pHit != null){
-		  pHit.doHitd(0, attkDir);
+//		  pHit.doHitd(0, attkDir);
+		  pHit.onHitd(-5, attkDir);
 		  ai_BITE(oHit.transform.position);
           this.an.attkST = cAnimn.eStateB.DN;
 		}

@@ -52,7 +52,7 @@ namespace MTON.codeObjects{
 				if(countLoop%4==0){
 			      oDisplay.enabled = !oDisplay.enabled; //toggle on/off
 				}
-			    Debug.Log ("LoopDelta : " + loop.deltaTime + " LoopCount : " + countLoop + " MOD : " + countLoop%2)	;
+//			    Debug.Log ("LoopDelta : " + loop.deltaTime + " LoopCount : " + countLoop + " MOD : " + countLoop%2)	;
               }).ttAdd(()=>{
 				oDisplay.enabled = true;
 			    this.bInvincible = false;
@@ -579,8 +579,8 @@ namespace MTON.codeObjects{
             SpawnedObj.position += Vector3.up * 0.5f * randomF   ; // lift slightly off ground to allow for spin and pop
             return true                                          ;
           })                                                     ;
-		  if(this.io != null){                // if io=true, this is a player, then do player death events
-		    __gCONSTANT._LEVEL.Reset_Level(); // Reset level
+		  if(this.io != null){                 // if io=true, this is a player, then do player death events
+		    __gCONSTANT._LEVEL.LoadSceneIN(2); // Load Scene based on build index; 2=GameOverScreen
 		  }
 		}
       }

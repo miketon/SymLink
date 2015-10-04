@@ -9,10 +9,10 @@ namespace MTON.Interface{
 
     // Init Level
     void OnLoadLevel() ;    
-	// Reset Level
-	void Reset_Level();
     // Shut Down Level
-    void UnLoadLevel() ;   
+    void UnLoadLevel() ;  
+    // Load Unity Scene based on build index
+    void LoadSceneIN(int IN_SCENE); 
 
   }
 
