@@ -7,7 +7,7 @@ using MTON.Interface     ;
 using MTON.Global        ;
 
 namespace MTON.Class{
-
+  // IMPORTANT : Make sure this is given priority in the script execution order congfiguration
   public class cLevel : MonoBehaviour, ILevel{
 
     public delegate void  INIT_LEVEL ();
