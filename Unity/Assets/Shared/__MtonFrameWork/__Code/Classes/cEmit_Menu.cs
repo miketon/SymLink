@@ -61,10 +61,11 @@ public class cEmit_Menu : MonoBehaviour, IEmit<Image>{
   public void Play(){
 	if(this.menu_BG_Image!=null){
 	  this.menu_BG_Image.enabled = true;
-      this.tt("Play").ttLoop(1.0f, delegate(ttHandler loop){
-	    Debug.Log (" MENU FADE IN : " + this);
-	    this.menu_BG_Image.color = Color.Lerp (Color.clear, this.menu_BG_Image.color, loop.deltaTime);
-	  });
+	  this.menu_BG_Image.color = Color.black;
+//      this.tt("Play").ttLoop(1.0f, delegate(ttHandler loop){
+//	    Debug.Log (" MENU FADE IN : " + this);
+//	    this.menu_BG_Image.color = Color.Lerp (Color.clear, Color.black, loop.deltaTime);
+//	  });
 	}
   }
 
@@ -72,7 +73,7 @@ public class cEmit_Menu : MonoBehaviour, IEmit<Image>{
    if(this.menu_BG_Image!=null){
      this.tt("Stop").ttLoop(1.0f, delegate(ttHandler loop){
 	   Debug.Log (" MENU STOP : " + this);
-	   this.menu_BG_Image.color = Color.Lerp (this.menu_BG_Image.color, Color.clear, loop.deltaTime);
+	   this.menu_BG_Image.color = Color.Lerp (Color.black, Color.clear, loop.deltaTime);
 	 }).ttAdd(()=>{
 	   this.menu_BG_Image.enabled = false;
 	 });
