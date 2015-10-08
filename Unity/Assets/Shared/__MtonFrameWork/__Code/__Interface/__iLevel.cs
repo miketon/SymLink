@@ -7,10 +7,12 @@ namespace MTON.Interface{
 
     int levelCurrent { get; set; } 
 
-    //Init Level
+    // Init Level
     void OnLoadLevel() ;    
-    //Shut Down Level
-    void UnLoadLevel() ;   
+    // Shut Down Level
+    void UnLoadLevel() ;  
+    // Load Unity Scene based on build index
+    void LoadSceneIN(int IN_SCENE); 
 
   }
 

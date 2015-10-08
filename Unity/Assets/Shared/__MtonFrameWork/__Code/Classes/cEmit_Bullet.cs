@@ -14,8 +14,9 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   public delegate void EMIT_ONCOMPLETE()     ; //set up delegate
   public EMIT_ONCOMPLETE OnComplete_Delegate ; //delegate instance
 
-  protected Rigidbody rBody ;
-  protected Vector3   inScl ;
+  protected Rigidbody  rBody ;
+  protected Collider   colld ;
+  protected Vector3    inScl ;
   public  int       damag = 1       ;
   public  float     force = 1750.0f ;
   public cLevel.e_psFX  eHit ; // enum for particle system to emit
@@ -24,17 +25,16 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
 
   public void Init(){  
 	  this.inScl = this.transform.localScale;
-//    Debug.Log(this + " Particle INIT ");
   }
   public void Play(){
 //	Debug.Log(this + " Shots Fired! ");
 	this.transform.localScale = this.inScl   ;
-//	this.rBody.velocity       = Vector3.zero ;
+	this.colld.enabled = true;
 	this.rBody.AddForce(this.transform.up * this.force) ;
   }
   public void Stop(){
 //	Debug.Log(this + " Shots Stopped. ");
-	this.rBody.velocity = Vector3.zero ; //reset Velocity
+	this.rBody.velocity = Vector3.zero   ; //reset Velocity
   }
 
   public virtual void OnComplete(){
@@ -49,6 +49,7 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
   public virtual void Awake(){
 	__gUtility.CheckAndInitLayer(this.gameObject, __gCONSTANT._BULLET) ; // HACK :level triggers/hint should ignore ground raycast/collision check!
 	this.rBody = this.gameObject.GetComponent<Rigidbody>();
+	this.colld = this.gameObject.GetComponent<Collider>();
 	this.Init();
   }
 
@@ -70,6 +71,7 @@ public class cEmit_Bullet : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> providin
         return xForm;
 	  });
 	}
+	this.colld.enabled = false;
 	this.rBody.AddForce(Vector3.up * 200.0f);
 	this.transform.DOScale(Vector3.zero, 1.0f).SetEase(Ease.InBounce);
 	this.tt().ttAdd(0.75f, ()=>{

@@ -10,7 +10,6 @@ namespace MTON.Class{
 
     public delegate void DL_Hurt(int IN_HLTH, Vector3 IN_DIR) ; //set up delegate
     public DL_Hurt OnHitdDelegate             ; //delegate instance
-    public DL_Hurt OnHealDelegate             ; //delegate instance
 
     public delegate void DL_Deth(bool bDead)  ; //set up delegate
     public DL_Deth OnDethDelegate             ; //delegate instance
@@ -57,18 +56,12 @@ namespace MTON.Class{
         if(this.oHealth <= 0){                 //Dead when total health equal or less than zero
           this.onDeth(true);
         }
-        if(this.OnHitdDelegate != null){
-          OnHitdDelegate(IN_HLTH, IN_DIR);
-        }
       }
-      else{                                     //positve == heal
-        int newHealth = this.ohealth + IN_HLTH;
-        if(newHealth <= this.mHealth){
-          this.oHealth = newHealth;
-        }                                       //else no change in current health to prevent healing past maximum
-        if(this.OnHealDelegate != null){
-          OnHealDelegate(IN_HLTH, IN_DIR);
-        }
+	  else{
+        this.oHealth = Mathf.Max(this.oHealth + IN_HLTH, this.mhealth); // clamps heal to object's maximum health 
+	  }
+      if(this.OnHitdDelegate != null){
+        OnHitdDelegate(IN_HLTH, IN_DIR);
       }
     } 
 

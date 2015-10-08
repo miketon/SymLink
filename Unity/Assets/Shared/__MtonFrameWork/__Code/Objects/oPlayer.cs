@@ -8,7 +8,7 @@ using DG.Tweening        ; //import DemiGiant DoTween
 namespace MTON.codeObjects{
 
   [RequireComponent (typeof (CharacterController))]
-    [RequireComponent (typeof (cMcanm))  ] //must have to call mecanim...need fields so can not populate later
+    [RequireComponent (typeof (cMcanm))  ] //must have to call mecanim...need fields so can populate later
     public class oPlayer : MonoBehaviour{
 
 	  public virtual void Awake(){
@@ -24,6 +24,42 @@ namespace MTON.codeObjects{
       public  GameObject OnDeathPrefab          ;
       private LayerMask  layerGround            ;
       private Vector3    prvPos  = Vector3.zero ;
+
+      [SerializeField] //else can accidentally assign to lowercase var vs. setter var
+	  private bool binvincible = false;
+	  public float fTimeInvincible = 1.0f;
+	  public bool bInvincible{
+	    get{
+		  return this.binvincible;
+		}
+		set{
+		  if(value != this.binvincible){
+		    this.binvincible = value;
+			this.setInvincible(value);
+		  }
+		}
+	  }
+
+	public virtual void setInvincible(bool IN_BOOL){
+			Debug.Log(" I AM INVINCIBLE : " + IN_BOOL);
+	        if(IN_BOOL){
+			  var oDisplay = this.sDP.dispXFORM.gameObject.GetComponent<Renderer>(); //must use Renderer, not GameObject/Transform else Animator loses initialization
+			  oDisplay.enabled = false;
+			  var countLoop = 0;
+			  this.tt("OnHitBlink").ttReset();
+			  this.tt("OnHitBlink").ttLoop(this.fTimeInvincible , delegate(ttHandler loop){
+				countLoop++;
+				if(countLoop%4==0){
+			      oDisplay.enabled = !oDisplay.enabled; //toggle on/off
+				}
+//			    Debug.Log ("LoopDelta : " + loop.deltaTime + " LoopCount : " + countLoop + " MOD : " + countLoop%2)	;
+              }).ttAdd(()=>{
+				oDisplay.enabled = true;
+			    this.bInvincible = false;
+				Debug.Log(" I AM MORTAL : " + IN_BOOL);
+			  })                         ; //using TeaTime.cs
+			}
+	}
 
 #region Structs Display Obj, Emitter, Rbody
 
@@ -109,12 +145,15 @@ namespace MTON.codeObjects{
 	  public virtual void InitDelegates(){
 
         //direct input
-        io.OnDPAD_DIR_Delegate += doMove  ;
-        io.OnDPAD_AIM_Delegate += doAimd  ;
-        io.OnJumpDelegate      += setJump ;
-        io.OnAttkDelegate      += setAttk ; //NOTE: Interesting that setAttk executes, then io.OnAttkDelegate executes???
-        io.OnPowrDelegate      += setPowr ;
-        io.OnActVDelegate      += setActV ; //Attack Visual = hitFlash
+		if(io){
+          io.OnDPAD_DIR_Delegate += doMove  ;
+          io.OnDPAD_AIM_Delegate += doAimd  ;
+          io.OnJumpDelegate      += setJump ;
+          io.OnAttkDelegate      += setAttk ; //NOTE: Interesting that setAttk executes, then io.OnAttkDelegate executes???
+          io.OnPowrDelegate      += setPowr ;
+          io.OnActVDelegate      += setActV ; //Attack Visual = hitFlash
+		  io.On__IODelegate      += set__IO ;
+		}
 
         //rigidbody events
         rb.OnGround_Delegate   += setGround ;
@@ -138,7 +177,6 @@ namespace MTON.codeObjects{
 		
 		//radar trigger logic
         an.OnStllDelegate      += setStill  ;
-		io.On__IODelegate      += set__IO   ;
 
 		//radar
 		rd.OnRadar_Delegate    += setRadar  ;
@@ -152,12 +190,15 @@ namespace MTON.codeObjects{
 	  public virtual void DisableDelegates(){
 
         //direct input
-        io.OnDPAD_DIR_Delegate -= doMove  ;
-        io.OnDPAD_AIM_Delegate -= doAimd  ;
-        io.OnJumpDelegate      -= setJump ; //NOTE: remember to remove delegate in case of wierd memory leaks
-        io.OnAttkDelegate      -= setAttk ;
-        io.OnPowrDelegate      -= setPowr ;
-        io.OnActVDelegate      -= setActV ; //Attack Visual = hitFlash
+		if(io){
+          io.OnDPAD_DIR_Delegate -= doMove  ;
+          io.OnDPAD_AIM_Delegate -= doAimd  ;
+          io.OnJumpDelegate      -= setJump ; //NOTE: remember to remove delegate in case of wierd memory leaks
+          io.OnAttkDelegate      -= setAttk ;
+          io.OnPowrDelegate      -= setPowr ;
+          io.OnActVDelegate      -= setActV ; //Attack Visual = hitFlash
+		  io.On__IODelegate      -= set__IO ;
+		}
 
         //rigidbody events
         rb.OnGround_Delegate   -= setGround ;
@@ -180,7 +221,6 @@ namespace MTON.codeObjects{
 
 		//radar logic
         an.OnStllDelegate      -= setStill  ;
-		io.On__IODelegate      -= set__IO   ;
       }
 
 #endregion
@@ -191,14 +231,14 @@ namespace MTON.codeObjects{
       protected Transform           xform    ;
       protected Renderer            rendr    ;
       protected Color               cColr    ;
-      protected cInput              io       ; //protected; can be replaced with ai; vs. input controller
-      protected cRbody              rb       ; //protected; to access collider volume info
+      protected cInput              io       ; // protected; can be replaced with ai; vs. input controller
+	  protected cRadar              rd       ; // Auto detection for homing and other functions
+      protected cRbody              rb       ; // protected; to access collider volume info
 
       protected cAnimn   an ; // Animation Listener making public so other components can access delegates...
       protected cMcanm   mc ; // mecanim handler
 	  public    oEmitter fp ;
 	  public    oEmitter pw ;
-	  public    cRadar   rd ; // Auto detection for homing and other functions
       private   cEquip   eq ;
       private   cHealth  ht ;
       private   cTween   tw ;
@@ -224,10 +264,12 @@ namespace MTON.codeObjects{
 
 	public virtual void setStill(bool bStll ){
 	  if(this.bGround){      // doRadr if player is on ground...
-	    if(!io.b__IO){       // AND not taking in input
-//	      Debug.Log ("setSTILL : " + bStll);
-	      this.msgRadr(bStll);
-	    }
+		if(io){              // HACK : subclasses like enemy may not have io; io=player !io=everything else...enemy, bosses...etc
+	      if(!io.b__IO){     // AND not taking in input
+//	        Debug.Log ("setSTILL : " + bStll);
+	        this.msgRadr(bStll);
+	      }
+		}
 	  }
 	}
 
@@ -285,6 +327,7 @@ namespace MTON.codeObjects{
           an.attkST = cAnimn.eStateB.Idle ; //release attack from powerup
 		  // set Burst Attack
           this.pw.em.doRadiusSEQNC(true, 5.0f, this.bFaceRt);
+//		  this.pw.em.doRadiusBurst(true, this.bFaceRt);
         }
       }
 
@@ -498,43 +541,48 @@ namespace MTON.codeObjects{
 
 #region SET HEALTH
 
-	public Vector3 onHitDirTest = Vector3.up;
 	private void Update(){
-
 	   if(Input.GetKeyDown(KeyCode.H)){
-	      Debug.Log ("PLAYER HURT UP MTON");
-//		  rb.bHit = true;
-		  rb.vDirOnHit = this.onHitDirTest;
-//		  Vector3 hitDir;
-//		  if(this.bFaceRt){
-//		    hitDir = new Vector3(-1.0f, 1.0f, 0.0f);
-//		  }
-//		  else{
-//		    hitDir = new Vector3(1.0f, 1.0f, 0.0f);
-//		  }
-//		  doHitd(0, hitDir);
-	    }
+	     if(this.bInvincible == false){
+	       Debug.Log ("PLAYER HURT UP MTON");
+		   Vector3 hitDir;
+		   if(this.bFaceRt){
+		     hitDir = new Vector3(-1.0f, 1.0f, 0.0f);
+		   }
+		   else{
+		     hitDir = new Vector3(1.0f, 1.0f, 0.0f);
+		   }
+		   this.ht.onHitd(-1, hitDir); //must pass -damage to trigger hit; else will trigger heal delegate
+		}  
 	  }
+	}
 
-	  public virtual void doHitd(int iHurt){
-	    this.doHitd(iHurt, Vector3.zero);
-	  }
-
+	  public float hitMag = 1.0f;
       public virtual void doHitd(int iHurt, Vector3 IN_DIR){
-//        rb.Jump()                       ;
 		float dirX = Mathf.Sign(IN_DIR.x);
-		rb.doHit(new Vector3(1.0f * dirX, 1.0f, 0.0f));
-        an.lState = cAnimn.eStateL.Hitd ;
+		rb.vDirOnHit = (new Vector3(1.0f * dirX, 1.0f, 0.0f)) * this.hitMag;
+		if(iHurt<=1){                       // hurt function : if less than or equal to 0 
+          an.lState = cAnimn.eStateL.Hitd ;
+	      this.bInvincible = true         ; // invincible for a time
+		}
+		else{                               // heal function : if greater than 0
+		  // ...heal behaviour goes here	               
+		}
       }
 
       public virtual void setDead(bool bDead){
-        an.lState = cAnimn.eStateL.Dead  ;
-        this.gameObject.SetActive(false) ;
-        __gCONSTANT._LEVEL.SpawnObj(cLevel.e_Icon.Death, this.transform.position, this.transform.rotation, (Transform SpawnedObj)=>{
-          float randomF = UnityEngine.Random.Range(1.0f, 3.0f) ;
-          SpawnedObj.position += Vector3.up * 0.5f * randomF   ; // lift slightly off ground to allow for spin and pop
-          return true                                          ;
-        })                                                   ;
+	    if(bDead){
+          an.lState = cAnimn.eStateL.Dead  ;
+          this.gameObject.SetActive(false) ;
+          __gCONSTANT._LEVEL.SpawnObj(cLevel.e_Icon.Death, this.transform.position, this.transform.rotation, (Transform SpawnedObj)=>{
+            float randomF = UnityEngine.Random.Range(1.0f, 3.0f) ;
+            SpawnedObj.position += Vector3.up * 0.5f * randomF   ; // lift slightly off ground to allow for spin and pop
+            return true                                          ;
+          })                                                     ;
+		  if(this.io != null){                 // if io=true, this is a player, then do player death events
+		    __gCONSTANT._LEVEL.LoadSceneIN(2); // Load Scene based on build index; 2=GameOverScreen
+		  }
+		}
       }
 
 #endregion

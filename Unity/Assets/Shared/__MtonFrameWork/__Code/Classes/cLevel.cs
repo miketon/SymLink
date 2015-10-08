@@ -7,7 +7,7 @@ using MTON.Interface     ;
 using MTON.Global        ;
 
 namespace MTON.Class{
-
+  // IMPORTANT : Make sure this is given priority in the script execution order congfiguration
   public class cLevel : MonoBehaviour, ILevel{
 
     public delegate void  INIT_LEVEL ();
@@ -22,10 +22,23 @@ namespace MTON.Class{
 
     public int levelCurrent { get; set; } //NOTE : interface variable implementation can't be static
 
-    //Init Level
-    public void OnLoadLevel(){}           //NOTE : interface function implementation must be public
-    //Shut Down Level
-    public void UnLoadLevel(){}
+    // Init Level
+	public void OnLoadLevel(){ //NOTE : interface function implementation must be public
+	  DynamicGI.UpdateEnvironment()     ; // refreshes environment GI else scene stays dark
+	}           
+
+    // Shut Down Level
+    public void UnLoadLevel(){
+	  Debug.Log (" LEVEL COMPLETED");
+	}
+
+    // Load Unity Scene based on build index
+    public void LoadSceneIN(int IN_SCENE){
+	  Debug.Log (" LEVEL GAMEOVER");
+	  this.tt ("OnDeath").ttAdd(2.0f, ()=>{ // HACK: 2 second buffer before changing to next screen
+		Application.LoadLevel (IN_SCENE)  ; // load scene based on build index
+	  });
+	}
 
     public Transform        mPlayer; // main player
     public Sound            sndPlyr; // sound player
