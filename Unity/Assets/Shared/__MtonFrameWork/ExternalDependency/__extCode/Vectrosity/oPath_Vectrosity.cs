@@ -10,20 +10,36 @@ using Vectrosity         ;
 
 namespace MTON.codeObjects{
 
-  public class oPath_Vectrosity : MonoBehaviour, IEmit<GameObject> {
+  public class oPath_Vectrosity : MonoBehaviour, IPathCV, IEmit<GameObject>{
 
     public Transform[]   cvP = new Transform[4]     ; //bezier curve Points
-    public List<Vector3> cvV = new List<Vector3>(4) ; //bezier curve Vector3(positions) ; Using Generic List because Vectrosity does
+
+	public Vector3 fPathCurPos = Vector3.zero;
+
+	public float fTempDeleteME = 0.0f;
+	[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+	private float fpath = 0.0f;
+	public float fPath{
+	  get{ return this.fpath; }
+	  set{
+	    if(value != this.fpath){
+		  this.fPathCurPos = this.vGetCurvePos(value);
+		}
+	  }
+	}
     public int vSegment      = 32                   ;
-    public VectorLine vGFX ;
-	public Texture vLineMaterial;
+	public Material vLineMaterial                   ;
+
 	private Transform xform ; //rail Object
-	private Transform rObj ; //rail Object
+	private Transform rObj  ; //rail Object
 
 	public  float rSpd   = 1.0f ; //rail speed
 	private float rLen   = 0.0f ; //rail Length
 	private bool  rDir   = true ; //rail Direction
 	private bool  rOri   = true ; //rail Orientation
+
+    public List<Vector3> cvV = new List<Vector3>(4) ; //bezier curve Vector3(positions) ; Using Generic List because Vectrosity does
+    public VectorLine    vGFX                       ;
 
 	public List<Vector3> setCurve(Transform[] IN_XFORMS){  //regen curve
 	  var retPosFromTransform = new List<Vector3>(IN_XFORMS.Length);
@@ -33,27 +49,41 @@ namespace MTON.codeObjects{
 	  return retPosFromTransform;
 	}
 
+	public virtual void drawCurve(){
+	  var vPoints = this.setCurve(this.cvP);
+	  this.vGFX.MakeSpline(vPoints.ToArray(), this.vSegment, 0);
+	  this.vGFX.Draw3D();
+	}
+
 	private void OnEnable(){
 	  this.Init();
 	}
 
 	private void OnDisable(){}
 
+	private void Update(){
+	  this.drawCurve();
+	  this.fPath = this.fTempDeleteME;
+	}
+
+#region iEmit implementation
+
+  public Vector3 vGetCurvePos(float IN_FLOAT){
+    return Vector3.up * this.fPath;
+  }
+
+#endregion
+
 #region iEmit implementation
 
   public void Init(){  
      this.xform = new GameObject ( "UI_vObject" ) .transform ; //init xform placeholder to draw VectorLine object at
-//	 var vPoints = new List<Vector3>(){new Vector3(20.0f, 30.0f, 0.0f), new Vector3(100.0f, 50.0f, 0.0f)}; // C#
-	 if(this.cvP.Length>=2){ //must have more than 2 points to make a line
-	 var vPoints = this.setCurve(this.cvP);
-//	 this.vGFX = new VectorLine("vCurve", new Vector3[this.vSegment+1], new Color(0.8f, 0.8f, 0.8f, 0.5f), this.vLineMaterial, 2.0f,LineType.Continuous, Joins.None) ;
-//	 this.vGFX = new VectorLine("vCurve", new List<Vector3>[this.vSegment+1], null, 2.0f, LineType.Continuous);
-	 this.vGFX = new VectorLine("Line", vPoints, 2.0f); 
+	 this.vGFX = new VectorLine("vCurve", new List<Vector3>(this.vSegment+1), null, 2.0f,LineType.Continuous, Joins.None) ;
 
-//     this.vGFX.material = materials[0]  ;
-//	 this.cvV = this.setCurve(this.cvP);
-//	 vGFX.MakeCurve(this.cvV, this.vSegment, 0) ;
+	 if(this.vLineMaterial != null){
+       this.vGFX.material = this.vLineMaterial;
 	 }
+	 this.drawCurve();
   }
 
   public void Play(){
