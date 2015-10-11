@@ -12,9 +12,9 @@ namespace MTON.codeObjects{
 
   public class oPath_Vectrosity : MonoBehaviour, IPathCV, IEmit<GameObject>{
 
-    public Transform[]   cvP = new Transform[4]     ; //bezier curve Points
-
-	public Vector3 fPathCurPos = Vector3.zero;
+	public Transform     cTarget                        ; // Target on Curve based on 0..1
+    public Transform[]   cvP         = new Transform[4] ; //bezier curve Points
+	public Vector3       fPathCurPos = Vector3.zero     ;
 
 	public float fTempDeleteME = 0.0f;
 	[SerializeField] //else can accidentally assign to lowercase var vs. setter var
@@ -23,7 +23,10 @@ namespace MTON.codeObjects{
 	  get{ return this.fpath; }
 	  set{
 	    if(value != this.fpath){
-		  this.fPathCurPos = this.vGetCurvePos(value);
+		  if(this.cTarget != null){
+//		    this.fPathCurPos = this.vGetCurvePos(value);
+		    this.cTarget.position = this.vGetCurvePos(value);
+		  }
 		}
 	  }
 	}
@@ -69,7 +72,8 @@ namespace MTON.codeObjects{
 #region iEmit implementation
 
   public Vector3 vGetCurvePos(float IN_FLOAT){
-    return Vector3.up * this.fPath;
+	return this.vGFX.GetPoint3D01(IN_FLOAT); // return a pos based on value between 0...1 
+//    return Vector3.up * this.fPath;
   }
 
 #endregion
