@@ -64,9 +64,20 @@ namespace MTON.codeObjects{
 
 	private void OnDisable(){}
 
+	public float fDest = 0.0f;
 	private void Update(){
 	  this.drawCurve();
-	  this.fPath = this.fTempDeleteME;
+	  if(Input.GetKeyDown(KeyCode.H)){
+	    DOTween.To(()=> this.fPath, x=> fPath = x, this.fDest, 1);
+		  this.fDest = (this.fDest+1.0f)%2.0f;
+//		  this.fPath = 1.0f-this.fDest;
+		  Debug.Log ("Tweened : " + this.fDest);
+//		.OnComplete(()=>{
+//		  this.fDest = (this.fDest+1.0f)%2.0f;
+//		  this.fPath = 1.0f-this.fDest;
+//		  Debug.Log ("Tweened : " + this.fDest);
+//		});
+	  }
 	}
 
 #region iEmit implementation
