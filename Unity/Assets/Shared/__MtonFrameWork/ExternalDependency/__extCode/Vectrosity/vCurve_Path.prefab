@@ -345,6 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d088f7a2bf6994d8895d642fa13ad6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineType: 0
   cTarget: {fileID: 455876}
   cvP:
   - {fileID: 454320}
@@ -352,7 +353,7 @@ MonoBehaviour:
   - {fileID: 478348}
   - {fileID: 484570}
   fPathCurPos: {x: 0, y: 0, z: 0}
-  fTempDeleteME: 0
+  bPingPong: 0
   fpath: 0
   vSegment: 32
   vLineMaterial: {fileID: 0}
@@ -440,7 +441,8 @@ MonoBehaviour:
     m_trigger: 0
     m_physicsMaterial: {fileID: 0}
     m_alignOddWidthToPixels: 0
-  fDest: 0
+  tweenDur: 1
+  deleteTween: 0
 --- !u!135 &13559074
 SphereCollider:
   m_ObjectHideFlags: 1

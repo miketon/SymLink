@@ -13,10 +13,22 @@ namespace MTON.codeObjects{
   public class oPath_Vectrosity : MonoBehaviour, IPathCV, IEmit<GameObject>{
 
 #region oPath_Vectrosity Delegates
+
 	// Delegate types
 	public delegate void  DL_VDIR(Vector3 vPos ) ; // Vector3 type
     public DL_VDIR OnCompleteDelegate            ; // OnComplete passes vPos
+
 #endregion
+
+	public e_Line lineType;
+
+	public enum e_Line{
+	  Spln ,
+      Curv ,
+      Line ,
+	  Circ ,
+      None ,
+    }
 
 	public Transform     cTarget                        ; // Target on Curve based on 0..1
     public Transform[]   cvP         = new Transform[4] ; //bezier curve Points
@@ -61,7 +73,19 @@ namespace MTON.codeObjects{
 
 	public virtual void drawCurve(){
 	  var vPoints = this.setCurve(this.cvP);
-	  this.vGFX.MakeSpline(vPoints.ToArray(), this.vSegment, 0);
+	  if(this.lineType == e_Line.Spln){
+	    this.vGFX.MakeSpline(vPoints.ToArray(), this.vSegment, 0);
+	  }
+	  else if(this.lineType == e_Line.Curv){
+	    this.vGFX.MakeCurve(vPoints.ToArray(), this.vSegment, 0);
+	  }
+	  else if(this.lineType == e_Line.Circ){
+	    this.vGFX.MakeCircle(this.transform.position, 1.0f); 
+	  }
+	  else if(this.lineType == e_Line.Line){
+//	    this.vGFX.MakeCircle(this.transform.position, 1.0f); 
+		
+	  }
 	  this.vGFX.Draw3D();
 	}
 
