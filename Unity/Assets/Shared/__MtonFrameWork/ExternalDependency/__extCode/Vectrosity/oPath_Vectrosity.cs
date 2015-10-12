@@ -23,8 +23,8 @@ namespace MTON.codeObjects{
 	  get{ return this.fpath; }
 	  set{
 	    if(value != this.fpath){
+		  this.fpath = value;
 		  if(this.cTarget != null){
-//		    this.fPathCurPos = this.vGetCurvePos(value);
 		    this.cTarget.position = this.vGetCurvePos(value);
 		  }
 		}
@@ -68,15 +68,13 @@ namespace MTON.codeObjects{
 	private void Update(){
 	  this.drawCurve();
 	  if(Input.GetKeyDown(KeyCode.H)){
-	    DOTween.To(()=> this.fPath, x=> fPath = x, this.fDest, 1);
+		this.cTarget.gameObject.SetActive(true);
+	    DOTween.To(()=> this.fPath, x=> fPath = x, this.fDest, 1)
+		.OnComplete(()=>{
 		  this.fDest = (this.fDest+1.0f)%2.0f;
-//		  this.fPath = 1.0f-this.fDest;
-		  Debug.Log ("Tweened : " + this.fDest);
-//		.OnComplete(()=>{
-//		  this.fDest = (this.fDest+1.0f)%2.0f;
-//		  this.fPath = 1.0f-this.fDest;
-//		  Debug.Log ("Tweened : " + this.fDest);
-//		});
+		  this.fPath = 1.0f - this.fDest;
+		  this.cTarget.gameObject.SetActive(false);
+		});
 	  }
 	}
 
@@ -84,7 +82,6 @@ namespace MTON.codeObjects{
 
   public Vector3 vGetCurvePos(float IN_FLOAT){
 	return this.vGFX.GetPoint3D01(IN_FLOAT); // return a pos based on value between 0...1 
-//    return Vector3.up * this.fPath;
   }
 
 #endregion
