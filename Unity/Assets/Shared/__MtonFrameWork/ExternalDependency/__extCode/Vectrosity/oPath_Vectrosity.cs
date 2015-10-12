@@ -12,11 +12,18 @@ namespace MTON.codeObjects{
 
   public class oPath_Vectrosity : MonoBehaviour, IPathCV, IEmit<GameObject>{
 
+#region oPath_Vectrosity Delegates
+	// Delegate types
+	public delegate void  DL_VDIR(Vector3 vPos ) ; // Vector3 type
+    public DL_VDIR OnCompleteDelegate            ; // OnComplete passes vPos
+#endregion
+
 	public Transform     cTarget                        ; // Target on Curve based on 0..1
     public Transform[]   cvP         = new Transform[4] ; //bezier curve Points
 	public Vector3       fPathCurPos = Vector3.zero     ;
+	public bool          bPingPong   = false            ;
 
-	public float fTempDeleteME = 0.0f;
+	private float fDest = 1.0f;
 	[SerializeField] //else can accidentally assign to lowercase var vs. setter var
 	private float fpath = 0.0f;
 	public float fPath{
@@ -64,15 +71,23 @@ namespace MTON.codeObjects{
 
 	private void OnDisable(){}
 
-	public float fDest = 0.0f;
+	public int tweenDur = 1;
+    public float deleteTween = 0.0f;
 	private void Update(){
 	  this.drawCurve();
 	  if(Input.GetKeyDown(KeyCode.H)){
+		this.deleteTween.doTweenToValue(64.0f, 2.0f);
 		this.cTarget.gameObject.SetActive(true);
-	    DOTween.To(()=> this.fPath, x=> fPath = x, this.fDest, 1)
+	    DOTween.To(()=> this.fPath, x=> fPath = x, this.fDest, this.tweenDur)
 		.OnComplete(()=>{
-		  this.fDest = (this.fDest+1.0f)%2.0f;
-		  this.fPath = 1.0f - this.fDest;
+		  if(this.bPingPong){
+		    this.fDest = (this.fDest+1.0f)%2.0f ;
+		    this.fPath = 1.0f - this.fDest      ;
+		  }
+		  else{
+		    this.fPath = 0.0f;
+		  }
+		  this.OnComplete();
 		  this.cTarget.gameObject.SetActive(false);
 		});
 	  }
@@ -99,15 +114,18 @@ namespace MTON.codeObjects{
   }
 
   public void Play(){
-//    this.vGFX.SetActive(true);
+    this.gameObject.SetActive(true);
   }
 
   public void Stop(){
-//    this.vGFX.SetActive(false);
+    this.gameObject.SetActive(false);
   }
 
   public void OnComplete(){
-
+	Debug.Log ("OnComplete Position : " + this.cTarget.position);
+    if(this.OnCompleteDelegate != null){
+	  this.OnCompleteDelegate(this.cTarget.position);
+	}
   }
 #endregion
 

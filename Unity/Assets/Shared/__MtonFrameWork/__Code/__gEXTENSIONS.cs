@@ -1,6 +1,7 @@
 ﻿using UnityEngine        ;
 using System             ; //NOTE : ??? must import to use anonymous function ; And the IComparable Interface for Dictionary
 using System.Collections ;
+using DG.Tweening        ; //import DemiGiant DoTween
 
 //It is common to create a class to contain all of your
 //extension methods. This class must be static.
@@ -106,6 +107,10 @@ public static class __gEXTENSIONS {
 				return Vector3.forward;
 			}
 		}
+	}
+
+	public static void doTweenToValue(this float self, float fTarget, float fDur){
+		DOTween.To(()=> self, x=> self = x, fTarget, fDur);
 	}
 
 }
