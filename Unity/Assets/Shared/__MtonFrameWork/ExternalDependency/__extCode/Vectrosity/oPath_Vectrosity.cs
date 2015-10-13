@@ -20,13 +20,32 @@ namespace MTON.codeObjects{
 
 #endregion
 
-	public e_Line lineType;
-	private e_Line lineTypePrev;
+	[SerializeField] //else can accidentally assign to lowercase var vs. setter var
+	private e_Line linetype;
+    public e_Line pLineType;
+	public e_Line lineType{
+	  get{
+	    return this.linetype;
+	  }
+	  set{
+	    if(value != this.linetype){
+		  if(value == e_Line.Line){              // currently set to line type
+		    this.vGFX.Resize(this.cvP.Length) ;  // Resize to line segment
+		  }
+		  else if(this.linetype == e_Line.Line){ // previously was line type
+		    this.vGFX.Resize(this.vSegment)   ;  // Resize to segment default
+		  }
+		  this.linetype = value;
+		  this.drawCurve();
+		}
+	  }
+	}
 
 	public enum e_Line{
 	  Spln ,
-      Curv ,
-      Line ,
+	  Curv ,
+	  CurB , // Bezier Curve must have 4 points
+	  Line ,
 	  Circ ,
       None ,
     }
@@ -72,26 +91,23 @@ namespace MTON.codeObjects{
 	  return retPosFromTransform;
 	}
 
-    public int lineSegment = 4;
-	public int lineIndex = 0;
 	public virtual void drawCurve(){
 	  var vPoints = this.setCurve(this.cvP);
 	  if(this.lineType == e_Line.Spln){
-//	    this.vGFX.MakeSpline(vPoints.ToArray(), this.vSegment, 0);
-		this.vGFX.Resize(this.vSegment);
 	    this.vGFX.MakeSpline(vPoints.ToArray());
 	  }
 	  else if(this.lineType == e_Line.Curv){
-//	    this.vGFX.MakeCurve(vPoints.ToArray(), this.vSegment, 0);
-		this.vGFX.Resize(this.vSegment);
 	    this.vGFX.MakeCurve(vPoints.ToArray());
 	  }
+	  else if(this.lineType == e_Line.CurB){ // Bezier Curve must have 4 points
+		if(this.cvP.Length == 4){
+		  this.vGFX.MakeCurve(vPoints[0], vPoints[1], vPoints[3], vPoints[2]);
+		}
+	  }
 	  else if(this.lineType == e_Line.Circ){
-		this.vGFX.Resize(this.vSegment);
 	    this.vGFX.MakeCircle(this.transform.position, 1.0f); 
 	  }
 	  else if(this.lineType == e_Line.Line){
-		this.vGFX.Resize(this.lineSegment);
 	    this.vGFX.MakeSpline(vPoints.ToArray(), false);
 	  }
 	  this.vGFX.Draw3D();
@@ -106,10 +122,8 @@ namespace MTON.codeObjects{
 	public int tweenDur = 1;
     public float deleteTween = 0.0f;
 	private void Update(){
-	  if(this.lineType != this.lineTypePrev){
-		this.lineTypePrev = this.lineType;
-	    this.drawCurve();
-	  }
+	  this.lineType = pLineType;
+//	  this.drawCurve();
 	  if(Input.GetKeyDown(KeyCode.H)){
 		this.deleteTween.doTweenToValue(64.0f, 2.0f);
 		this.cTarget.gameObject.SetActive(true);
@@ -140,7 +154,6 @@ namespace MTON.codeObjects{
 
   public void Init(){  
      this.xform = new GameObject ( "UI_vObject" ) .transform ; //init xform placeholder to draw VectorLine object at
-//	 this.vGFX = new VectorLine("vCurve", new List<Vector3>(this.vSegment+1), null, 2.0f,LineType.Continuous, Joins.None) ;
 	 this.vGFX = new VectorLine("vCurve", new List<Vector3>(this.vSegment), null, 2.0f,LineType.Continuous, Joins.None) ;
 
 	 if(this.vLineMaterial != null){
