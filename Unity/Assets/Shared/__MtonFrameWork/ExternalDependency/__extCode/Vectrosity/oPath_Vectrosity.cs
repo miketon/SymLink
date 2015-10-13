@@ -21,6 +21,7 @@ namespace MTON.codeObjects{
 #endregion
 
 	public e_Line lineType;
+	private e_Line lineTypePrev;
 
 	public enum e_Line{
 	  Spln ,
@@ -71,20 +72,27 @@ namespace MTON.codeObjects{
 	  return retPosFromTransform;
 	}
 
+    public int lineSegment = 4;
+	public int lineIndex = 0;
 	public virtual void drawCurve(){
 	  var vPoints = this.setCurve(this.cvP);
 	  if(this.lineType == e_Line.Spln){
-	    this.vGFX.MakeSpline(vPoints.ToArray(), this.vSegment, 0);
+//	    this.vGFX.MakeSpline(vPoints.ToArray(), this.vSegment, 0);
+		this.vGFX.Resize(this.vSegment);
+	    this.vGFX.MakeSpline(vPoints.ToArray());
 	  }
 	  else if(this.lineType == e_Line.Curv){
-	    this.vGFX.MakeCurve(vPoints.ToArray(), this.vSegment, 0);
+//	    this.vGFX.MakeCurve(vPoints.ToArray(), this.vSegment, 0);
+		this.vGFX.Resize(this.vSegment);
+	    this.vGFX.MakeCurve(vPoints.ToArray());
 	  }
 	  else if(this.lineType == e_Line.Circ){
+		this.vGFX.Resize(this.vSegment);
 	    this.vGFX.MakeCircle(this.transform.position, 1.0f); 
 	  }
 	  else if(this.lineType == e_Line.Line){
-//	    this.vGFX.MakeCircle(this.transform.position, 1.0f); 
-		
+		this.vGFX.Resize(this.lineSegment);
+	    this.vGFX.MakeSpline(vPoints.ToArray(), false);
 	  }
 	  this.vGFX.Draw3D();
 	}
@@ -98,7 +106,10 @@ namespace MTON.codeObjects{
 	public int tweenDur = 1;
     public float deleteTween = 0.0f;
 	private void Update(){
-	  this.drawCurve();
+	  if(this.lineType != this.lineTypePrev){
+		this.lineTypePrev = this.lineType;
+	    this.drawCurve();
+	  }
 	  if(Input.GetKeyDown(KeyCode.H)){
 		this.deleteTween.doTweenToValue(64.0f, 2.0f);
 		this.cTarget.gameObject.SetActive(true);
@@ -129,7 +140,8 @@ namespace MTON.codeObjects{
 
   public void Init(){  
      this.xform = new GameObject ( "UI_vObject" ) .transform ; //init xform placeholder to draw VectorLine object at
-	 this.vGFX = new VectorLine("vCurve", new List<Vector3>(this.vSegment+1), null, 2.0f,LineType.Continuous, Joins.None) ;
+//	 this.vGFX = new VectorLine("vCurve", new List<Vector3>(this.vSegment+1), null, 2.0f,LineType.Continuous, Joins.None) ;
+	 this.vGFX = new VectorLine("vCurve", new List<Vector3>(this.vSegment), null, 2.0f,LineType.Continuous, Joins.None) ;
 
 	 if(this.vLineMaterial != null){
        this.vGFX.material = this.vLineMaterial;
