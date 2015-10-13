@@ -127,8 +127,10 @@ namespace MTON.codeObjects{
 	  if(Input.GetKeyDown(KeyCode.H)){
 		this.deleteTween.doTweenToValue(64.0f, 2.0f);
 		this.cTarget.gameObject.SetActive(true);
+		__gCONSTANT.FreezeTime(true);
 	    DOTween.To(()=> this.fPath, x=> fPath = x, this.fDest, this.tweenDur)
 		.OnComplete(()=>{
+		  __gCONSTANT.FreezeTime(false);
 		  if(this.bPingPong){
 		    this.fDest = (this.fDest+1.0f)%2.0f ;
 		    this.fPath = 1.0f - this.fDest      ;

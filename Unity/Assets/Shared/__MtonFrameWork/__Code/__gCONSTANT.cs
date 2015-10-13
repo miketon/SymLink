@@ -1,8 +1,8 @@
 using UnityEngine        ;
 using System             ; // NOTE : ??? must import to use anonymous function ; And the IComparable Interface for Dictionary
-using System.Collections ;
+using System.Collections         ;
 using System.Collections.Generic ; // Dictionary, List
-using System.Reflection  ; // NOTE : Required for deep copy
+using System.Reflection          ; // NOTE : Required for deep copy
 
 namespace MTON.Global{
 
@@ -10,6 +10,29 @@ namespace MTON.Global{
 
 	public delegate void  INIT_CONST ();
 	public static   event INIT_CONST INIT_CONST_Delegate;
+
+	// Delegate types
+	public delegate void  DL_BOOL(bool IN_BOOL)         ; // Bool type
+	public static   event DL_BOOL SetTimeFreezeDelegate  ; 
+
+	private static int iFreezeCount = 0;
+    public static void FreezeTime(bool IN_BOOL){
+	  if(IN_BOOL){
+	    iFreezeCount++;
+	  }
+	  else{
+	    iFreezeCount--;
+	  }
+	  Debug.Log ("FREEZING TIME gCONTSTANT : " + IN_BOOL + " Freeze Count : " + iFreezeCount);
+	  if(SetTimeFreezeDelegate != null){
+	    SetTimeFreezeDelegate(IN_BOOL);
+		Debug.Log ("SetTimeFreezeDelegate Exists : TRUE " );
+	  }
+	  else{
+		Debug.Log ("SetTimeFreezeDelegate Exists : FALSE ");
+	  }
+	}
+	
 
 	private static MTON.Class.cLevel _level = null;
 	public static MTON.Class.cLevel _LEVEL{
@@ -65,7 +88,7 @@ namespace MTON.Global{
 
   public static class __gUtility{ // ??? NOTE : MUST add static to make class non generic ???
 
-	//Prevents duplicate components, checks to see that one doesn't already exist
+	//Prevents duplicate components, checks to see that one doesn't already exist before adding
 	public static T AddComponent_mton<T>(GameObject IN_GO) where T:Component{ 
 	  T cExist = IN_GO.GetComponent<T>();
 	  if(cExist == null){
