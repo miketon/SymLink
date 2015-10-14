@@ -16,6 +16,10 @@ namespace MTON.Global{
 	public static   event DL_BOOL SetTimeFreezeDelegate  ; 
 
 	private static int iFreezeCount = 0;
+	public static void FreezeTime(float IN_FLOAT){ //freeze duration
+	  FreezeTime(true);
+	  
+	}
     public static void FreezeTime(bool IN_BOOL){
 	  if(IN_BOOL){
 	    iFreezeCount++;
@@ -32,7 +36,6 @@ namespace MTON.Global{
 		Debug.Log ("SetTimeFreezeDelegate Exists : FALSE ");
 	  }
 	}
-	
 
 	private static MTON.Class.cLevel _level = null;
 	public static MTON.Class.cLevel _LEVEL{

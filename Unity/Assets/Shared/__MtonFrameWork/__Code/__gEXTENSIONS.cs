@@ -109,8 +109,9 @@ public static class __gEXTENSIONS {
 		}
 	}
 
-	public static void doTweenToValue(this float self, float fTarget, float fDur){
-		DOTween.To(()=> self, x=> self = x, fTarget, fDur);
+	public static void doTweenToValue<T>(this float self, float fTarget, float fDur, Func<T> funcToRun){
+	  DOTween.To(()=> self, x=> self = x, fTarget, fDur);
+	  funcToRun();
 	}
 
 }
