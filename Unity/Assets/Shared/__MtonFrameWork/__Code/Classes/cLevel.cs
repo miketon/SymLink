@@ -10,6 +10,32 @@ namespace MTON.Class{
   // IMPORTANT : Make sure this is given priority in the script execution order congfiguration
   public class cLevel : MonoBehaviour, ILevel{
 
+	// Delegate types
+	public delegate void  DL_BOOL(bool IN_BOOL)         ; // Bool type
+	public static   event DL_BOOL SetTimeFreezeDelegate  ; 
+
+	private int iFreezeCount = 0;
+	public void FreezeTime(float IN_FLOAT){ //freeze duration
+	  this.FreezeTime(true);
+	  this.tt ("timeFreeze").ttAdd(IN_FLOAT, ()=>{
+	    this.FreezeTime(false);
+		Debug.Log ("UNFREEZED.");
+//		return true;
+	  });
+	}
+    public void FreezeTime(bool IN_BOOL){
+	  if(IN_BOOL){
+	    iFreezeCount++;
+	  }
+	  else{
+	    iFreezeCount--;
+	  }
+	  Debug.Log ("FREEZING TIME gCONTSTANT : " + IN_BOOL + " Freeze Count : " + iFreezeCount);
+	  if(SetTimeFreezeDelegate != null){
+	    SetTimeFreezeDelegate(IN_BOOL);
+	  }
+	}
+
     public delegate void  INIT_LEVEL ();
     public static   event INIT_LEVEL OnInit_Delegate;
 

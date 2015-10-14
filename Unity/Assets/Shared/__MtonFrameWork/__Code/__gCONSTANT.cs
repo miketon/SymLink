@@ -11,32 +11,6 @@ namespace MTON.Global{
 	public delegate void  INIT_CONST ();
 	public static   event INIT_CONST INIT_CONST_Delegate;
 
-	// Delegate types
-	public delegate void  DL_BOOL(bool IN_BOOL)         ; // Bool type
-	public static   event DL_BOOL SetTimeFreezeDelegate  ; 
-
-	private static int iFreezeCount = 0;
-	public static void FreezeTime(float IN_FLOAT){ //freeze duration
-	  FreezeTime(true);
-	  
-	}
-    public static void FreezeTime(bool IN_BOOL){
-	  if(IN_BOOL){
-	    iFreezeCount++;
-	  }
-	  else{
-	    iFreezeCount--;
-	  }
-	  Debug.Log ("FREEZING TIME gCONTSTANT : " + IN_BOOL + " Freeze Count : " + iFreezeCount);
-	  if(SetTimeFreezeDelegate != null){
-	    SetTimeFreezeDelegate(IN_BOOL);
-		Debug.Log ("SetTimeFreezeDelegate Exists : TRUE " );
-	  }
-	  else{
-		Debug.Log ("SetTimeFreezeDelegate Exists : FALSE ");
-	  }
-	}
-
 	private static MTON.Class.cLevel _level = null;
 	public static MTON.Class.cLevel _LEVEL{
 	  get{

@@ -114,4 +114,9 @@ public static class __gEXTENSIONS {
 	  funcToRun();
 	}
 
+//	public static void doCoroutineToValue<T>(this float self, float fTarget, float fDur, Func<T> funcToRun){
+//	  this.
+//	  funcToRun();
+//	}
+
 }
