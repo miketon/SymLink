@@ -130,10 +130,10 @@ namespace MTON.codeObjects{
 					return true;
 				});
 		this.cTarget.gameObject.SetActive(true);
-		__gCONSTANT._LEVEL.FreezeTime(true);
+		__gCONSTANT._LEVEL.FreezeTime(0.01f);
 	    DOTween.To(()=> this.fPath, x=> fPath = x, this.fDest, this.tweenDur)
 		.OnComplete(()=>{
-		  __gCONSTANT._LEVEL.FreezeTime(false);
+//		  __gCONSTANT._LEVEL.FreezeTime(false);
 		  if(this.bPingPong){
 		    this.fDest = (this.fDest+1.0f)%2.0f ;
 		    this.fPath = 1.0f - this.fDest      ;

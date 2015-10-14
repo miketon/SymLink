@@ -14,23 +14,27 @@ namespace MTON.Class{
 	public delegate void  DL_BOOL(bool IN_BOOL)         ; // Bool type
 	public static   event DL_BOOL SetTimeFreezeDelegate  ; 
 
-	private int iFreezeCount = 0;
+	public int iFreezeCount = 0;
 	public void FreezeTime(float IN_FLOAT){ //freeze duration
+	  if(iFreezeCount <= 0){ // if not already frozen
 	  this.FreezeTime(true);
 	  this.tt ("timeFreeze").ttAdd(IN_FLOAT, ()=>{
 	    this.FreezeTime(false);
 		Debug.Log ("UNFREEZED.");
 //		return true;
 	  });
+	  };
 	}
     public void FreezeTime(bool IN_BOOL){
 	  if(IN_BOOL){
 	    iFreezeCount++;
+		Time.timeScale = 0.05f;
 	  }
 	  else{
 	    iFreezeCount--;
+		Time.timeScale = 1.0f;
 	  }
-	  Debug.Log ("FREEZING TIME gCONTSTANT : " + IN_BOOL + " Freeze Count : " + iFreezeCount);
+//	  Debug.Log ("FREEZING TIME gCONTSTANT : " + IN_BOOL + " Freeze Count : " + iFreezeCount);
 	  if(SetTimeFreezeDelegate != null){
 	    SetTimeFreezeDelegate(IN_BOOL);
 	  }
