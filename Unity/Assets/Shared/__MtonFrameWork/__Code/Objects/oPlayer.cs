@@ -530,6 +530,7 @@ namespace MTON.codeObjects{
 		public virtual void setDive(bool bDive){
           if(bDive == false){
 		    Debug.Log ("DIVE LANDING!");
+		    __gCONSTANT._LEVEL.FrameStutter();
 	        this.pCamera.DOShakePosition(0.25f);
           }
           else{
@@ -543,6 +544,7 @@ namespace MTON.codeObjects{
 
 	private void Update(){
 	   if(Input.GetKeyDown(KeyCode.H)){
+		 __gCONSTANT._LEVEL.FrameStutter();
 	     if(this.bInvincible == false){
 	       Debug.Log ("PLAYER HURT UP MTON");
 		   Vector3 hitDir;

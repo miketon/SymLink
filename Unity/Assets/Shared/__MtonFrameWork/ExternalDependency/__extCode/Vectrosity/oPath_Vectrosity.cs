@@ -124,13 +124,12 @@ namespace MTON.codeObjects{
 	private void Update(){
 	  this.lineType = pLineType;
 //	  this.drawCurve();
-	  if(Input.GetKeyDown(KeyCode.H)){
+	  if(Input.GetKeyDown(KeyCode.G)){
 		this.deleteTween.doTweenToValue(64.0f, 2.0f, ()=>{
 					Debug.Log ("Done Tweening."); 
 					return true;
 				});
 		this.cTarget.gameObject.SetActive(true);
-		__gCONSTANT._LEVEL.FreezeTime(0.01f);
 	    DOTween.To(()=> this.fPath, x=> fPath = x, this.fDest, this.tweenDur)
 		.OnComplete(()=>{
 //		  __gCONSTANT._LEVEL.FreezeTime(false);
