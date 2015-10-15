@@ -20,6 +20,8 @@ namespace MTON.codeObjects{
 
 #endregion
 
+	public    oEmitter pw ;
+
 	[SerializeField] //else can accidentally assign to lowercase var vs. setter var
 	private e_Line linetype;
     public e_Line pLineType;
@@ -123,16 +125,12 @@ namespace MTON.codeObjects{
     public float deleteTween = 0.0f;
 	private void Update(){
 	  this.lineType = pLineType;
-//	  this.drawCurve();
+//	  this.drawCurve(); // If curve points animate at runtime; update draw per frame
 	  if(Input.GetKeyDown(KeyCode.G)){
-		this.deleteTween.doTweenToValue(64.0f, 2.0f, ()=>{
-					Debug.Log ("Done Tweening."); 
-					return true;
-				});
 		this.cTarget.gameObject.SetActive(true);
 	    DOTween.To(()=> this.fPath, x=> fPath = x, this.fDest, this.tweenDur)
 		.OnComplete(()=>{
-//		  __gCONSTANT._LEVEL.FreezeTime(false);
+		  this.OnComplete();
 		  if(this.bPingPong){
 		    this.fDest = (this.fDest+1.0f)%2.0f ;
 		    this.fPath = 1.0f - this.fDest      ;
@@ -140,13 +138,12 @@ namespace MTON.codeObjects{
 		  else{
 		    this.fPath = 0.0f;
 		  }
-		  this.OnComplete();
 		  this.cTarget.gameObject.SetActive(false);
 		});
 	  }
 	}
 
-#region iEmit implementation
+#region iPathCV implementation
 
   public Vector3 vGetCurvePos(float IN_FLOAT){
 	return this.vGFX.GetPoint3D01(IN_FLOAT); // return a pos based on value between 0...1 
@@ -156,6 +153,19 @@ namespace MTON.codeObjects{
 
 #region iEmit implementation
 
+  public s_EmitProperties sEM = new s_EmitProperties();
+  [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
+  public struct s_EmitProperties{
+
+		  public float       radiusSPAWN ; //radius used by this.pw.em.doRadiusSEQNC
+          public float       fireRate ; //0.15f = default
+          public Transform[] firePnts ; //firing point
+
+          public cLevel.e_Bllt[]  eBlt ; // enum for bullet type to emit
+		  public cLevel.e_Slams eSlm ; // enum for thomper/slam attack
+          public cLevel.e_psFX  eGun ; // enum for GunFlare particle system to emit
+  }
+
   public void Init(){  
      this.xform = new GameObject ( "UI_vObject" ) .transform ; //init xform placeholder to draw VectorLine object at
 	 this.vGFX = new VectorLine("vCurve", new List<Vector3>(this.vSegment), null, 2.0f,LineType.Continuous, Joins.None) ;
@@ -164,6 +174,14 @@ namespace MTON.codeObjects{
        this.vGFX.material = this.vLineMaterial;
 	 }
 	 this.drawCurve();
+
+	 //Power emission
+     pw = __gUtility.AddComponent_mton<oEmitter>(this.gameObject)  ;
+	   pw.em.sEM.fireRate = this.sEM.fireRate ;
+	   pw.em.sEM.firePnts = this.sEM.firePnts ;
+	   pw.em.sEM.eBlt     = this.sEM.eBlt     ;
+	   pw.em.sEM.eGun     = this.sEM.eGun     ;
+	   pw.em.Init(); // Sets up firing points; else component.transform is firing point
   }
 
   public void Play(){
@@ -175,7 +193,8 @@ namespace MTON.codeObjects{
   }
 
   public void OnComplete(){
-	Debug.Log ("OnComplete Position : " + this.cTarget.position);
+//	Debug.Log ("OnComplete Position : " + this.cTarget.position);
+    this.pw.em.doRadiusSEQNC(true, this.sEM.radiusSPAWN, true); // this.bFaceRt);
     if(this.OnCompleteDelegate != null){
 	  this.OnCompleteDelegate(this.cTarget.position);
 	}

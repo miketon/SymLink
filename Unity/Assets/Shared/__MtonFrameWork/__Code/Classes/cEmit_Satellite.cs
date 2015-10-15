@@ -61,8 +61,11 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
   }
 
   public virtual void Start(){ 
-    this.xformTarget = GameObject.FindWithTag(__gCONSTANT._PLAYER).transform;	
+	if(this.xformTarget == null){
+      this.xformTarget = GameObject.FindWithTag(__gCONSTANT._PLAYER).transform;	
+	}
   }
+
   private void OnEnable() { 
     this.Play(); 
   }

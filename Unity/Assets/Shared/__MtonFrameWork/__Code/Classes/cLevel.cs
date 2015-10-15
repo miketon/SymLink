@@ -24,7 +24,7 @@ namespace MTON.Class{
 	  this.FreezeTime(true);
 	  this.tt ("timeFreeze").ttAdd(IN_FLOAT, ()=>{
 	    this.FreezeTime(false);
-		Debug.Log ("UNFREEZED.2");
+//		Debug.Log ("UNFREEZED.2");
 //		return true;
 	  });
 	  };
