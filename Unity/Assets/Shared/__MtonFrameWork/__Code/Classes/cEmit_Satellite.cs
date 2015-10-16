@@ -15,19 +15,23 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
   public delegate void EMIT_ONCOMPLETE()     ; //set up delegate
   public EMIT_ONCOMPLETE OnComplete_Delegate ; //delegate instance
 
-  public Transform xformTarget;
-  protected Rigidbody rBody ;
-  protected Vector3   inScl ;
-  public  int       damag = 1    ;
-  public  float     force = 1.0f ;
+  public Transform    xformTarget  ;
+  protected Rigidbody rBody        ;
+  protected Vector3   inScl        ;
+  public  int         damag = 1    ;
+  public  float       force = 1.0f ; 
   [Range(0.0f, 1.0f)]
   public  float     ratioDragForce = 0.5f;
   [Range(0.0f, 1.0f)]
-  public  float     kTimeToDrift = 0.25f;
-  public float kDistToTarget = 1.0f;
-  public cLevel.e_psFX  eHit ; // enum for particle system to emit
+  public bool           bIdle         = false ; // if true, wont' react to current level/environment state
+  public float          kTimetoReact  = 1.0f  ; // time between reaction logic; else idling
+  public float          kTimeToDrift  = 0.25f ; // time allowed for drifting (after force event) before drag spikes and holds
+  public float          kDistToTarget = 1.0f  ;
+  public float          fDistTgt_Look = 1.0f  ; // should be larger than seek; else entity will move towards target without 1st facing
+  public float          fDistTgt_Seek = 1.0f  ;
+  public cLevel.e_psFX  eHit                  ; // enum for particle system to emit
 
-  public    oEmitter fp ;
+  public    oEmitter fp ; // HACK: Implicit.  If none exist this satellite doesn't have firing function
 
 #region iEmit implementation
 
@@ -62,7 +66,7 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
 
   public virtual void Start(){ 
 	if(this.xformTarget == null){
-      this.xformTarget = GameObject.FindWithTag(__gCONSTANT._PLAYER).transform;	
+      this.xformTarget = GameObject.FindWithTag(__gCONSTANT._PLAYER).transform;	// HACK : Inline search for target
 	}
   }
 
@@ -76,12 +80,14 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
   public void Update(){
 	
 	if(this.xformTarget){
-	  this.transform.doAimTowardsY(this.xformTarget.position, -1.0f);
       this.kDistToTarget = Vector3.Distance(this.transform.position, this.xformTarget.position);
+	  if(this.kDistToTarget < this.fDistTgt_Look){
+	    this.transform.doAimTowardsY(this.xformTarget.position, -1.0f);
+	  }
 	}
 //    this.transform.SetPosZ(0.0f); //for 2D
     if(Input.GetKeyDown(KeyCode.F)){
-	  Debug.Log("Satellite JUMP !");
+//	  Debug.Log("Satellite JUMP !");
 	  if(this.fp != null){
 	    this.fp.em.doSinglFire(true);
 	  }
@@ -95,15 +101,18 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
   }
 
   void OnCollisionEnter(Collision collision) {
+	// Handle damage
 	cHealth oDamage = collision.gameObject.GetComponent<cHealth>();
 	if(oDamage != null){
 	  oDamage.onHitd(-this.damag);
 	}
+	// Handle particle fx
 	if(eHit != cLevel.e_psFX.None){ // set to -1 to prevent emission
 	  __gCONSTANT._LEVEL.Emit_pFX(eHit, this.transform.position, Quaternion.identity, (Transform xForm)=>{
         return xForm;
 	  });
 	}
+	// Handle on death transform animation
 	this.rBody.AddForce(Vector3.up * 200.0f);
 	this.transform.DOScale(Vector3.zero, 1.0f).SetEase(Ease.InBounce);
 	this.tt().ttAdd(0.75f, ()=>{

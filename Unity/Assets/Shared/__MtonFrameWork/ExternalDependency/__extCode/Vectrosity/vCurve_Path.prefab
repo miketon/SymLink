@@ -345,7 +345,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d088f7a2bf6994d8895d642fa13ad6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineType: 0
+  pw: {fileID: 0}
+  linetype: 0
+  pLineType: 0
   cTarget: {fileID: 455876}
   cvP:
   - {fileID: 454320}
@@ -443,6 +445,14 @@ MonoBehaviour:
     m_alignOddWidthToPixels: 0
   tweenDur: 1
   deleteTween: 0
+  sEM:
+    radiusSPAWN: .5
+    fireRate: 0
+    firePnts:
+    - {fileID: 455876}
+    eBlt: 00000000
+    eSlm: 0
+    eGun: 0
 --- !u!135 &13559074
 SphereCollider:
   m_ObjectHideFlags: 1
