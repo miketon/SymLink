@@ -114,12 +114,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxCheckpoint: {fileID: 0}
   sfxStep:
-  - {fileID: 8300000, guid: 285ab956437a5404f942ccd557619b2c, type: 3}
-  - {fileID: 8300000, guid: 72f4d09247a22ca45906acef0ef2e0e8, type: 3}
-  - {fileID: 8300000, guid: 7a70db8263fc741478279429e8f2cc5d, type: 3}
-  - {fileID: 8300000, guid: 2c59845d56a943a49a0022d7731316aa, type: 3}
-  - {fileID: 8300000, guid: bd8a7fba3a0dea54aa19159755a5cbee, type: 3}
-  - {fileID: 8300000, guid: 7f5ada50a2e1eed40ac7a8b5c9833dde, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   sfxJump: {fileID: 8300000, guid: 2c8b02d37f91f2c4f850460ade71fca4, type: 3}
   sfxClaw: {fileID: 8300000, guid: 9c0e654a1695b914dada81ff06c9da27, type: 3}
   sfxHurt: {fileID: 8300000, guid: 2c59845d56a943a49a0022d7731316aa, type: 3}
@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fcf4d0cdd735428481f8acae96970ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iFreezeCount: 0
   mPlayer: {fileID: 0}
   sndPlyr: {fileID: 0}
   mCamAim: {fileID: 0}
@@ -175,6 +176,7 @@ MonoBehaviour:
     - {fileID: 462698, guid: 8c8df7616adf84319ad395275177b2ab, type: 2}
     - {fileID: 451642, guid: 3e827a0a4c18646459be74a367bf4c6d, type: 2}
     e_Flyrs:
+    - {fileID: 474270, guid: adb58b1e2868f4e128eff2cc17da8271, type: 2}
     - {fileID: 400000, guid: 86b819294dfa74a2cb30257d8bc3287c, type: 2}
     e_Bllts:
     - {fileID: 465522, guid: 35decb55a98124aebb72f9da6cb40408, type: 2}

@@ -37,6 +37,7 @@ namespace MTON.codeObjects{
 	}
 
 	private void doEmit(Transform IN_XFORM, cLevel.e_Bllt IN_OBJ){
+//	private void doEmit<T>(Transform IN_XFORM, T IN_OBJ) where T:cLevel.e_Bllt{ //must be an interface
 	  if(IN_OBJ != cLevel.e_Bllt.None){ //Firing actual bullets
         __gCONSTANT._LEVEL.Emit_Bullet(IN_OBJ, IN_XFORM.position, IN_XFORM.rotation, (Transform xForm)=>{
 		  cEmit_Bullet cBullet = xForm.gameObject.GetComponent<cEmit_Bullet>() ;
@@ -59,16 +60,16 @@ namespace MTON.codeObjects{
 	}
 
     // Update is called once per frame
-    void Update () {
-      if(Input.GetKeyDown(KeyCode.Space)){
-//		this.em.doSinglFire(true);
-		this.em.doRapidFire(true);
-      }
-	  else if(Input.GetKeyUp(KeyCode.Space)){
-//		this.em.doSinglFire(false);
-		this.em.doRapidFire(false);
-	  }
-    }
+//    void Update () {
+//      if(Input.GetKeyDown(KeyCode.Space)){
+////		this.em.doSinglFire(true);
+//		this.em.doRapidFire(true);
+//      }
+//	  else if(Input.GetKeyUp(KeyCode.Space)){
+////		this.em.doSinglFire(false);
+//		this.em.doRapidFire(false);
+//	  }
+//    }
 
   }
 }

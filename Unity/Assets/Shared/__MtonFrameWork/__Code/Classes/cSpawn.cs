@@ -29,13 +29,13 @@ namespace MTON.Class{
 #endregion
 
 	// base attack function NOTE : For Func to pass transform, must set up T generic
-	public virtual void doAttack<T>(bool bAttk, Func<Transform, cLevel.e_Bllt, T> funcToRun, bool IN_FACEFORWARD=true){
+	public virtual void doSpawn<T>(bool bAttk, Func<Transform, cLevel.e_Bllt, T> funcToRun, bool IN_FACEFORWARD=true){
 	  if(bAttk){
         if(this.sEM.firePnts.Length > 0){ // Firing Points exist
           if(this.sEM.eBlt.Length > 0){   // Bullets exist
 			// pooling logic
             int           indexBL = this.sBL_mod.iIndex                   ; //which Bullet Object to launch
-            cLevel.e_Bllt oBullet = this.sEM.eBlt[indexBL]                ;
+            cLevel.e_Bllt oBullet = this.sEM.eBlt[indexBL]                ; //enum for Bullet to spawn
             int           indexFP = this.sFP_mod.iIndex                   ; //which Firing Point to emit from
             Transform     firePnt = this.sEM.firePnts[indexFP]            ; 
             Vector3       initPos = firePnt.position                      ;
@@ -61,7 +61,7 @@ namespace MTON.Class{
 #region SINGLESHOT ---
 
     public virtual void doSinglFire(bool bAttk, bool IN_FACEFORWARD=true){
-      this.doAttack(bAttk, 
+      this.doSpawn(bAttk, 
 	    (Transform firePnt, cLevel.e_Bllt oBullet)=>{ // firePnt passed in from base function state so far
           Quaternion fireRot = firePnt.rotation                         ;
 		  if(IN_FACEFORWARD == false){                                    //Brute force guessing; Understanding of matrix not high enough
@@ -83,7 +83,7 @@ namespace MTON.Class{
 	public virtual void doRadiusBurst(bool bAttk, bool IN_FACEFORWARD=true){
       int maxSPAWN = 15 ;
 	  int iSPAWNED = 0  ;
-	  this.doAttack(bAttk,
+	  this.doSpawn(bAttk,
 		(Transform firePnt, cLevel.e_Bllt oBullet)=>{
 		  // HACK : duplicating work, because must reset between array/sequence
 		  Vector3       initPos = firePnt.position                      ;
@@ -114,7 +114,7 @@ namespace MTON.Class{
       int maxSPAWN = 15 ;
 	  int iSPAWNED = 0  ;
 	  int iModIntv = 3  ;
-	  this.doAttack(bAttk,
+	  this.doSpawn(bAttk,
 		(Transform firePnt, cLevel.e_Bllt oBullet)=>{
 		  int intTea = 0;
 	      this.tt("QueueExample").ttReset();

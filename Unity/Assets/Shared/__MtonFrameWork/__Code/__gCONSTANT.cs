@@ -1,8 +1,8 @@
 using UnityEngine        ;
 using System             ; // NOTE : ??? must import to use anonymous function ; And the IComparable Interface for Dictionary
-using System.Collections ;
+using System.Collections         ;
 using System.Collections.Generic ; // Dictionary, List
-using System.Reflection  ; // NOTE : Required for deep copy
+using System.Reflection          ; // NOTE : Required for deep copy
 
 namespace MTON.Global{
 
@@ -65,7 +65,7 @@ namespace MTON.Global{
 
   public static class __gUtility{ // ??? NOTE : MUST add static to make class non generic ???
 
-	//Prevents duplicate components, checks to see that one doesn't already exist
+	//Prevents duplicate components, checks to see that one doesn't already exist before adding
 	public static T AddComponent_mton<T>(GameObject IN_GO) where T:Component{ 
 	  T cExist = IN_GO.GetComponent<T>();
 	  if(cExist == null){
