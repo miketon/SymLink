@@ -544,7 +544,6 @@ namespace MTON.codeObjects{
 
 	private void Update(){
 	   if(Input.GetKeyDown(KeyCode.H)){
-		 __gCONSTANT._LEVEL.FrameStutter();
 	     if(this.bInvincible == false){
 	       Debug.Log ("PLAYER HURT UP MTON");
 		   Vector3 hitDir;

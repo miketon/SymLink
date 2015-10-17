@@ -22,9 +22,9 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
   public  float       force = 1.0f ; 
   [Range(0.0f, 1.0f)]
   public  float     ratioDragForce = 0.5f;
-  [Range(0.0f, 1.0f)]
   public bool           bIdle         = false ; // if true, wont' react to current level/environment state
   public float          kTimetoReact  = 1.0f  ; // time between reaction logic; else idling
+  [Range(0.0f, 1.0f)]
   public float          kTimeToDrift  = 0.25f ; // time allowed for drifting (after force event) before drag spikes and holds
   public float          kDistToTarget = 1.0f  ;
   public float          fDistTgt_Look = 1.0f  ; // should be larger than seek; else entity will move towards target without 1st facing
@@ -41,7 +41,8 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
   }
   public void Play(){
 //	Debug.Log(this + " Shots Fired! ");
-	this.transform.localScale = this.inScl   ;
+	this.bIdle = false; // else satellite could be locked true due to pooling
+	this.transform.localScale = this.inScl;
 //	this.rBody.AddForce(this.transform.forward * this.force) ;
   }
   public void Stop(){
@@ -83,6 +84,17 @@ public class cEmit_Satellite : MonoBehaviour, IEmit<Rigidbody>{ //IHint<T> provi
       this.kDistToTarget = Vector3.Distance(this.transform.position, this.xformTarget.position);
 	  if(this.kDistToTarget < this.fDistTgt_Look){
 	    this.transform.doAimTowardsY(this.xformTarget.position, -1.0f);
+		if(!this.bIdle){
+		  Debug.Log ("IDLE START");
+		  this.bIdle = true;
+		  this.rBody.AddForce(this.transform.up * this.force, ForceMode.Impulse);
+	      this.rBody.drag = this.force * this.ratioDragForce;
+		  this.tt ("Seek").ttAdd(1.0f, ()=>{
+						  Debug.Log ("IDLE DONE");
+						  this.bIdle = false;
+	                      this.rBody.drag *= 0.1f;
+						});
+		}
 	  }
 	}
 //    this.transform.SetPosZ(0.0f); //for 2D
