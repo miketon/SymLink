@@ -21,7 +21,6 @@ namespace MTON.codeObjects{
       public  bool       bGround = false        ;
       public  bool       bFaceRt = true         ; // facing Right
       public  Transform  camrXFORM              ; 
-      public  GameObject OnDeathPrefab          ;
       private LayerMask  layerGround            ;
       private Vector3    prvPos  = Vector3.zero ;
 
@@ -571,11 +570,12 @@ namespace MTON.codeObjects{
 		}
       }
 
+	  public cLevel.e_Icon onDeadPrefab;
       public virtual void setDead(bool bDead){
 	    if(bDead){
           an.lState = cAnimn.eStateL.Dead  ;
           this.gameObject.SetActive(false) ;
-          __gCONSTANT._LEVEL.SpawnObj(cLevel.e_Icon.Death, this.transform.position, this.transform.rotation, (Transform SpawnedObj)=>{
+			__gCONSTANT._LEVEL.SpawnObj(onDeadPrefab, this.transform.position, this.transform.rotation, (Transform SpawnedObj)=>{
             float randomF = UnityEngine.Random.Range(1.0f, 3.0f) ;
             SpawnedObj.position += Vector3.up * 0.5f * randomF   ; // lift slightly off ground to allow for spin and pop
             return true                                          ;
@@ -705,11 +705,6 @@ namespace MTON.codeObjects{
 		  bLevelInit = true ; //level ready
 		  this.InitDelegates()   ;
 
-		  if(OnDeathPrefab == null){
-            //		Debug.Log ("OnEnable DeathPrefab : " + (int)cLevel.e_Icon.Death + OnDeathPrefab);
-            OnDeathPrefab = __gCONSTANT._LEVEL.sPL.e_Icons[(int)cLevel.e_Icon.Death].gameObject;
-          }
-
         }
 
         public virtual void init_Components(){
@@ -752,7 +747,7 @@ namespace MTON.codeObjects{
           rendr = this.sDP.dispXFORM.gameObject.GetComponent<Renderer>()   ; //Get Renderer Component
 
       	  if(!this.sDP.ui_dpRing){                                        //if not set, try to get from cLevel
-			cLevel.e_Icon uiRing = cLevel.e_Icon.Warning;
+			cLevel.e_Icon uiRing = cLevel.e_Icon.Radar;
 			this.sDP.ui_dpRing = __gCONSTANT._LEVEL.SpawnObj(uiRing, Vector3.zero, 
 		    Quaternion.identity, (Transform T)=>{return true;});
 		  }

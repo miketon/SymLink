@@ -130,6 +130,8 @@ namespace MTON.Class{
 
     public enum e_Icon{
       Death   ,
+	  Radar   ,
+	  Fire    ,
       Warning , 
       None    ,
     }
@@ -210,8 +212,11 @@ namespace MTON.Class{
       if(eObj == e_Icon.Death){
         spawnedObj = this.sPL.e_Icons[0].lpSpawn(IN_POS, IN_ROT) ;
 	  }
-	  else if(eObj == e_Icon.Warning){
+	  else if(eObj == e_Icon.Radar){
         spawnedObj = this.sPL.e_Icons[1].lpSpawn(IN_POS, IN_ROT) ;
+	  }
+	  else if(eObj == e_Icon.Fire){
+        spawnedObj = this.sPL.e_Icons[2].lpSpawn(IN_POS, IN_ROT) ;
 	  }
       else{
         return null;
