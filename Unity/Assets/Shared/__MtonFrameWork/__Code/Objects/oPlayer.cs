@@ -501,7 +501,9 @@ namespace MTON.codeObjects{
         }
 
 		public virtual void setStunnd(bool IN_STUNND){
-	      io.bActV = !IN_STUNND;  //if Stunned io is inactive
+		  if(io!=null){             // ai might not have io
+	        io.bActV = !IN_STUNND;  // if Stunned io is inactive
+		  }
         }
 
         public virtual void setRise(bool bRise){

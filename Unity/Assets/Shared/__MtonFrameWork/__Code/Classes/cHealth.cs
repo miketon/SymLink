@@ -1,4 +1,5 @@
 using UnityEngine        ;
+using System             ; //NOTE : ??? must import to use anonymous function ; And the IComparable Interface for Dictionary
 using System.Collections ;
 using MTON.Interface     ;
 using MTON.Class         ;
@@ -34,12 +35,12 @@ namespace MTON.Class{
       set{
         if(value != ohealth){ //only assign on change
           ohealth = value;
-		  if(value == this.mHealth){
-		    Debug.Log("Maximum Health : " + value);
-		  }
-		  else if(value == 0){
-		    Debug.Log("Minimum Health : " + value + " I am Dead ? : " + this);
-		  }
+          if(value == this.mHealth){
+            Debug.Log("Maximum Health : " + value);
+          }
+          else if(value == 0){
+            Debug.Log("Minimum Health : " + value + " I am Dead ? : " + this);
+          }
         }
       } 
     } 
@@ -54,21 +55,21 @@ namespace MTON.Class{
       } 
     } 
 
-	public virtual void onHitd (int IN_HLTH){
-	  this.onHitd(IN_HLTH, Vector3.zero);
-	}
+    public virtual void onHitd (int IN_HLTH){
+      this.onHitd(IN_HLTH, Vector3.zero);
+    }
 
     public virtual void onHitd (int IN_HLTH, Vector3 IN_DIR){ 
-	  __gCONSTANT._LEVEL.FrameStutter();
+      __gCONSTANT._LEVEL.FrameStutter();
       if(IN_HLTH <= 0){                        //negative == damage
         this.oHealth = this.oHealth + IN_HLTH;
         if(this.oHealth <= 0){                 //Dead when total health equal or less than zero
           this.onDeth(true);
         }
       }
-	  else{
+      else{
         this.oHealth = Mathf.Max(this.oHealth + IN_HLTH, this.mhealth); // clamps heal to object's maximum health 
-	  }
+      }
       if(this.OnHitdDelegate != null){
         OnHitdDelegate(IN_HLTH, IN_DIR);
       }
@@ -82,6 +83,27 @@ namespace MTON.Class{
     }
 
 #endregion
+
+    public virtual void setInvincible<T>(Renderer IN_RENDERER, Func<T> funcOnComplete, float IN_DUR=1.0f, bool IN_BOOL=true){
+      Debug.Log(" I AM INVINCIBLE : " + IN_BOOL);
+      if(IN_BOOL){
+		var oDisplay = IN_RENDERER; //must use Renderer, not GameObject/Transform else Animator loses initialization
+        oDisplay.enabled = false;
+        var countLoop = 0;
+        this.tt("OnHitBlink").ttReset();
+        this.tt("OnHitBlink").ttLoop(IN_DUR, delegate(ttHandler loop){
+            countLoop++;
+            if(countLoop%4==0){
+              oDisplay.enabled = !oDisplay.enabled; //toggle on/off
+            }
+            //			    Debug.Log ("LoopDelta : " + loop.deltaTime + " LoopCount : " + countLoop + " MOD : " + countLoop%2)	;
+            }).ttAdd(()=>{
+              oDisplay.enabled = true;
+              funcOnComplete();
+              Debug.Log(" I AM MORTAL : " + IN_BOOL);
+            })                         ; //using TeaTime.cs
+      }
+    }
 
   }
 
