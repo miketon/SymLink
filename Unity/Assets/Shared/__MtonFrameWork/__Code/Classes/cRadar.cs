@@ -71,6 +71,7 @@ namespace MTON.Class{
 		this.ui_dpRing.localScale = this.ui_Scale  ;
 	  }
 	  if(bActive){ // display highlight active
+        Debug.DrawLine(this.transform.position, this.transform.position + (Vector3.up * (this.distSearch * 0.5f)), Color.yellow, 1.0f, false) ;
 //	    Debug.Log("RADAR ON");
 		if(this.ui_dpRing){
 		  this.ui_dpRing.gameObject.SetActive(true);

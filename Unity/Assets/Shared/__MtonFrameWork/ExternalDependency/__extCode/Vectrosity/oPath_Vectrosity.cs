@@ -12,6 +12,41 @@ namespace MTON.codeObjects{
 
   public class oPath_Vectrosity : MonoBehaviour, IPathCV, IEmit<GameObject>{
 
+
+#region iCurve implementation
+    // Possible to serialize all public fields of the class to a data stream, which allows it to be stored.
+    [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
+      public struct mCurve {
+        //Note: I'm explicitly declaring them as public, but they are public by default. You can use private if you choose.
+        public string Name  ;
+        public bool   bCurv ;
+
+        [ContextMenuItem("DebugHelloWorld", "DebugHelloWorld")] 
+          public AnimationCurve curvData;
+        [ContextMenuItem("Randomize timeSpan", "Randomize")]
+          public float fTime ; // Time                            ; NOTE : Set to 2 if curve of type ping-pong
+        public float fMagn   ; // Magnitude
+        public float fFreq   ; // Frequency
+        public float fValu   ; // Value modified by curvData
+        public float fModu   ; // Modulus/interval along curvData
+
+        public float doEvalT(){
+          fModu  = (Time.time % Mathf.Max(fTime, Mathf.Epsilon)) * fFreq ; // modulate timeline, and divide by span; Epsilon prevents divide by zero errors
+          if(bCurv){
+            fValu = curvData.Evaluate(fModu)   ; // transformed by curve
+          }
+          else{
+            fValu = fModu;
+          }
+          return fValu * fMagn;
+        }
+
+      }
+
+  public mCurve Acurv = new mCurve() ;//"FRAMES", curvData); // Animation/Frame
+
+#endregion
+
 #region oPath_Vectrosity Delegates
 
 	// Delegate types
