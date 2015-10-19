@@ -24,42 +24,6 @@ namespace MTON.codeObjects{
       private LayerMask  layerGround            ;
       private Vector3    prvPos  = Vector3.zero ;
 
-      [SerializeField] //else can accidentally assign to lowercase var vs. setter var
-	  private bool binvincible = false;
-	  public float fTimeInvincible = 1.0f;
-	  public bool bInvincible{
-	    get{
-		  return this.binvincible;
-		}
-		set{
-		  if(value != this.binvincible){
-		    this.binvincible = value;
-			this.setInvincible(value);
-		  }
-		}
-	  }
-
-	public virtual void setInvincible(bool IN_BOOL){
-			Debug.Log(" I AM INVINCIBLE : " + IN_BOOL);
-	        if(IN_BOOL){
-			  var oDisplay = this.sDP.dispXFORM.gameObject.GetComponent<Renderer>(); //must use Renderer, not GameObject/Transform else Animator loses initialization
-			  oDisplay.enabled = false;
-			  var countLoop = 0;
-			  this.tt("OnHitBlink").ttReset();
-			  this.tt("OnHitBlink").ttLoop(this.fTimeInvincible , delegate(ttHandler loop){
-				countLoop++;
-				if(countLoop%4==0){
-			      oDisplay.enabled = !oDisplay.enabled; //toggle on/off
-				}
-//			    Debug.Log ("LoopDelta : " + loop.deltaTime + " LoopCount : " + countLoop + " MOD : " + countLoop%2)	;
-              }).ttAdd(()=>{
-				oDisplay.enabled = true;
-			    this.bInvincible = false;
-				Debug.Log(" I AM MORTAL : " + IN_BOOL);
-			  })                         ; //using TeaTime.cs
-			}
-	}
-
 #region Structs Display Obj, Emitter, Rbody
 
       public s_DispOProperties sDP = new s_DispOProperties();
@@ -162,6 +126,7 @@ namespace MTON.codeObjects{
         //health logic
         ht.OnHitdDelegate      += this.doHitd  ;
         ht.OnDethDelegate      += this.setDead ;
+		ht.OnInvincibleDelegate += this.setInvincible;
 
         //animation : input + character/env state
         an.OnDuckDelegate      += setCrouch ;
@@ -206,6 +171,7 @@ namespace MTON.codeObjects{
         //health logic
         ht.OnHitdDelegate      -= this.doHitd  ;
         ht.OnDethDelegate      -= this.setDead ;
+		ht.OnInvincibleDelegate -= this.setInvincible;
 
         //animation : input + character/env state
         an.OnDuckDelegate      -= setCrouch ;
@@ -244,9 +210,7 @@ namespace MTON.codeObjects{
 
       private cEmit_Audio au ;
 
-
 #endregion
-
 
 #region RADARLOGIC
 
@@ -557,6 +521,10 @@ namespace MTON.codeObjects{
 		   this.ht.onHitd(-1, hitDir); //must pass -damage to trigger hit; else will trigger heal delegate
 		}  
 	  }
+		
+	   if(Input.GetKeyDown(KeyCode.G)){
+	     this.ht.onHitd(100);
+	   }
 	}
 
 	  public float hitMag = 1.0f;
@@ -565,12 +533,18 @@ namespace MTON.codeObjects{
 		rb.vDirOnHit = (new Vector3(1.0f * dirX, 1.0f, 0.0f)) * this.hitMag;
 		if(iHurt<=1){                       // hurt function : if less than or equal to 0 
           an.lState = cAnimn.eStateL.Hitd ;
-	      this.bInvincible = true         ; // invincible for a time
+	      this.ht.setInvincible(this.sDP.dispXFORM.gameObject.GetComponent<Renderer>(), this.fTimeInvincible); //invincible for a time
 		}
 		else{                               // heal function : if greater than 0
 		  // ...heal behaviour goes here	               
 		}
       }
+
+	  public float fTimeInvincible = 1.0f  ;
+	  public bool bInvincible      = false ;
+	  public virtual void setInvincible(bool IN_BOOL){
+	    this.bInvincible = IN_BOOL;
+	  }
 
 	  public cLevel.e_Icon onDeadPrefab;
       public virtual void setDead(bool bDead){
@@ -585,6 +559,9 @@ namespace MTON.codeObjects{
 		  if(this.io != null){                 // if io=true, this is a player, then do player death events
 		    __gCONSTANT._LEVEL.LoadSceneIN(2); // Load Scene based on build index; 2=GameOverScreen
 		  }
+		}
+		else if(!bDead){
+		  Debug.Log ("FULL HEALTH POWER LOGIC HERE ! " + this);
 		}
       }
 
