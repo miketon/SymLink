@@ -496,7 +496,7 @@ namespace MTON.codeObjects{
           if(bDive == false){
 		    Debug.Log ("DIVE LANDING!");
 		    __gCONSTANT._LEVEL.FrameStutter();
-	        this.pCamera.DOShakePosition(0.25f);
+			__gCONSTANT._LEVEL.CameraShake();
           }
           else{
 		    Debug.Log ("DIVE START!");
@@ -653,11 +653,8 @@ namespace MTON.codeObjects{
 
 #region Class Utility
 
-        protected Transform pCamera                  ; //player camera
-
         public virtual void OnLevelINIT (){
 
-	      pCamera = __gCONSTANT._LEVEL.mCamera.transform;
 	      rendr = this.sDP.dispXFORM.GetComponent<Renderer>()      ;
           //      cColr = rendr.material.color                     ;
           layerGround = LayerMask.GetMask (__gCONSTANT._FLOOR)     ;

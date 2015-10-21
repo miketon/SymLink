@@ -5,6 +5,7 @@ using System.Collections ;
 using System.Collections.Generic ; // Dictionary, List
 using MTON.Interface     ;
 using MTON.Global        ;
+using DG.Tweening        ; //import DemiGiant DoTween
 
 namespace MTON.Class{
   // IMPORTANT : Make sure this is given priority in the script execution order congfiguration
@@ -13,6 +14,10 @@ namespace MTON.Class{
 	// Delegate types
 	public delegate void  DL_BOOL(bool IN_BOOL)         ; // Bool type
 	public static   event DL_BOOL SetTimeFreezeDelegate  ; 
+
+	public void CameraShake(){
+//	  this.mCamera.DOShakePosition(0.25f);
+	}
 
 	public void FrameStutter(){
 	  this.FreezeTime(0.003f);

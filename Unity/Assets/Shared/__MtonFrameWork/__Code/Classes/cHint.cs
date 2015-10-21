@@ -23,10 +23,10 @@ namespace MTON.Class{
   }
   public e_HintBoxType hintBoxType;
 
-  public  float fThreshold = 1.0f  ;
-  public  cTween    tw             ;
-  private Transform xform          ;
-  private Vector3   initScl        ;
+  public    float fThreshold = 1.0f  ;
+  protected cTween    tw             ;
+  private   Transform xform          ;
+  private   Vector3   initScl        ;
 
 #region iHint implementation
 
