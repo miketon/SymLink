@@ -8,12 +8,12 @@ using DG.Tweening        ; //import DemiGiant DoTween
 
 namespace MTON.Class{
 
-  public class cHint : MonoBehaviour, IHint<cInput>{ //IHint<T> providing cInput for T placeholder
+  public class cHint : MonoBehaviour, IHint<GameObject>{ //IHint<T> providing cInput for T placeholder
 
   public delegate void DO_HINT(bool bHint) ; //set up delegate
   public DO_HINT DoHint_Delegate           ; //delegate instance
 
-  public List<cInput>   collidedList = new List<cInput>() ; // HACK : Don't know how to add list to interface...
+  public List<GameObject>   collidedList = new List<GameObject>() ; // HACK : Don't know how to add list to interface...
   public cLevel.e_psFX  eHit                              ; // enum for particle system to emit
 
   public enum e_HintBoxType{
@@ -30,7 +30,7 @@ namespace MTON.Class{
 
 #region iHint implementation
 
-  public virtual void OnHintEntr(cInput cINPT){ // Using IHint<cInput> to specify incoming data type
+  public virtual void OnHintEntr(GameObject cINPT){ // Using IHint<cInput> to specify incoming data type
     if(cINPT != null){
 	  if(this.hintBoxType == e_HintBoxType.Distance){
 	    for(int i=0; i<collidedList.Count; i++){
@@ -58,7 +58,7 @@ namespace MTON.Class{
     }
   }
 
-  public virtual void OnHintExit(cInput cINPT) { // Using IHint<cInput> to specify incoming data type
+  public virtual void OnHintExit(GameObject cINPT) { // Using IHint<cInput> to specify incoming data type
 	StartCoroutine(__gUtility.WaitUntilDistantLess(this.xform, cINPT.transform, this.fThreshold, (()=>{
       for(int i=0; i<collidedList.Count; i++){
 		if(cINPT == collidedList[i]){
@@ -73,7 +73,7 @@ namespace MTON.Class{
 
 #endregion
 
-  public virtual void doHint(bool bHint, cInput cINPT){
+  public virtual void doHint(bool bHint, GameObject cINPT){
 	if(this.DoHint_Delegate !=null){
 	  this.DoHint_Delegate(bHint);
 	}
@@ -84,7 +84,8 @@ namespace MTON.Class{
   // Trigger events will be sent to disabled MonoBehaviours, to allow enabling Behaviours in response to collisions.
   void OnTriggerEnter(Collider other) {
 //    Debug.Log("Triggering Enter : " + other.gameObject);
-	  cInput cEntity = other.GetComponentEX<cInput>();
+//	  cInput cEntity = other.GetComponentEX<cInput>();
+	  GameObject cEntity = other.gameObject;
 	  if(cEntity != null){
 	    OnHintEntr(cEntity);
 	  }
@@ -93,10 +94,12 @@ namespace MTON.Class{
   void OnTriggerExit(Collider other){
 	if(this.hintBoxType == e_HintBoxType.TimeElapsed){ //TimeElapsed type
 	  //TODO:Stub out time elapsed logic here
-	  this.doHint(false, other.GetComponentEX<cInput>());
+//	  this.doHint(false, other.GetComponentEX<cInput>());
+	  this.doHint(false, other.gameObject);
 	}
 	else if(this.hintBoxType == e_HintBoxType.Default){   //Default type 
-	  this.doHint(false, other.GetComponentEX<cInput>()); //just do it
+//	  this.doHint(false, other.GetComponentEX<cInput>()); //just do it
+	  this.doHint(false, other.gameObject); //just do it
 	}
   }
 

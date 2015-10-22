@@ -17,6 +17,7 @@ namespace MTON.Class{
 
 	public void CameraShake(){
 //	  this.mCamera.DOShakePosition(0.25f);
+	  this.mCamera.transform.DOShakePosition(0.25f);
 	}
 
 	public void FrameStutter(){

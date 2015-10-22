@@ -35,12 +35,16 @@ namespace MTON.codeObjects{
 	  }
 	}
 
-	public override void doHint (bool bHint, cInput cINPT){
+	public override void doHint (bool bHint, GameObject cINPT){
 	  base.doHint (bHint, cINPT);
 	  if(bHint == true){
 		if(actionType == e_ActionType.Jump){
-          cINPT.setJump(true)            ;
-	      cINPT.setActV(true)            ;
+//		  cInput io = cINPT.GetComponentEX<cInput>();
+		  cInput io = cINPT.GetComponent<cInput>();
+		  if(io != null){
+            io.setJump(true)            ;
+	        io.setActV(true)            ;
+		  }
 	      this.tw.doCrouch(0.33f, 0.5f) ;
 		}
 		else if(actionType == e_ActionType.SpawnPrefab){
@@ -57,8 +61,12 @@ namespace MTON.codeObjects{
 	  }
 	  else if(bHint == false){
 		if(actionType == e_ActionType.Jump){
-	      cINPT.setJump(false)    ;
-          cINPT.setActV(false)    ;
+//		  cInput io = cINPT.GetComponentEX<cInput>();
+		  cInput io = cINPT.GetComponent<cInput>();
+		  if(io != null){
+	        io.setJump(false)    ;
+            io.setActV(false)    ;
+		  }
 	      this.tw.doCrouch(1.0f) ;
 		}
 		else if(actionType == e_ActionType.SpawnPrefab){

@@ -14,7 +14,7 @@ namespace MTON.codeObjects{
 	public float boidVelVartn = 0.5f   ;
 	public float boidDistNbor = 4.0f   ;
 
-	public override void doHint (bool bHint, cInput cINPT){
+	public override void doHint (bool bHint, GameObject cINPT){
 	  base.doHint (bHint, cINPT);
 	  if(bHint == true){
 	    if(bc != null){

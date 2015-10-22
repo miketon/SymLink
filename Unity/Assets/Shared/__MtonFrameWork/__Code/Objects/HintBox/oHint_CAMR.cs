@@ -11,7 +11,7 @@ namespace MTON.codeObjects{
 
     public List<Transform> camrTargets;
 
-	public override void doHint (bool bHint, cInput cINPT){
+	public override void doHint (bool bHint, GameObject cINPT){
 	  base.doHint (bHint, cINPT);
 	  if(bHint == true){
 		if(this.camrTargets.Count > 0){
