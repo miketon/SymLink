@@ -22,6 +22,7 @@ namespace MTON.codeObjects{
 
 	public bool bCamShake = false;
 	public bool bFrameStr = false;
+	public bool bSandbox  = true;
 
     public override void Start(){
 	  base.Start();
@@ -40,10 +41,18 @@ namespace MTON.codeObjects{
 	  if(bHint == true){
 		if(actionType == e_ActionType.Jump){
 //		  cInput io = cINPT.GetComponentEX<cInput>();
-		  cInput io = cINPT.GetComponent<cInput>();
-		  if(io != null){
-            io.setJump(true)            ;
-	        io.setActV(true)            ;
+		  if(this.bSandbox){
+		    cInput io = cINPT.GetComponent<cInput>();
+		    if(io != null){
+              io.setJump(true)            ;
+	          io.setActV(true)            ;
+		    }
+		  }
+		  else{
+			PlayerController io = cINPT.GetComponent<PlayerController>();	
+			if(io != null){
+		      io.inputSource.setButton(InputButton.Jump, true);
+			}
 		  }
 	      this.tw.doCrouch(0.33f, 0.5f) ;
 		}
@@ -62,10 +71,12 @@ namespace MTON.codeObjects{
 	  else if(bHint == false){
 		if(actionType == e_ActionType.Jump){
 //		  cInput io = cINPT.GetComponentEX<cInput>();
-		  cInput io = cINPT.GetComponent<cInput>();
-		  if(io != null){
-	        io.setJump(false)    ;
-            io.setActV(false)    ;
+		  if(this.bSandbox){
+		    cInput io = cINPT.GetComponent<cInput>();
+		    if(io != null){
+	          io.setJump(false)    ;
+              io.setActV(false)    ;
+		    }
 		  }
 	      this.tw.doCrouch(1.0f) ;
 		}
