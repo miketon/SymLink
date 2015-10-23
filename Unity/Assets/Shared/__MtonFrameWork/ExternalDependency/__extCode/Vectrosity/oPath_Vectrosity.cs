@@ -163,7 +163,12 @@ namespace MTON.codeObjects{
 //	  this.drawCurve(); // If curve points animate at runtime; update draw per frame
 	  if(Input.GetKeyDown(KeyCode.G)){
 		this.cTarget.gameObject.SetActive(true);
+		int curStep = 0;
 	    DOTween.To(()=> this.fPath, x=> fPath = x, this.fDest, this.tweenDur)
+		.OnUpdate(()=>{
+		  curStep++;
+		  Debug.Log ("Completing STEP : " + curStep);
+		})
 		.OnComplete(()=>{
 		  this.OnComplete();
 		  if(this.bPingPong){
