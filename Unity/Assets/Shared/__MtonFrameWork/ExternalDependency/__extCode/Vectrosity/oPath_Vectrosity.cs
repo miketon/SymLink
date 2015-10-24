@@ -56,6 +56,7 @@ namespace MTON.codeObjects{
 #endregion
 
 	public    oEmitter pw ;
+    public int iModu = 5;
 
 	[SerializeField] //else can accidentally assign to lowercase var vs. setter var
 	private e_Line linetype;
@@ -90,6 +91,8 @@ namespace MTON.codeObjects{
 	public Transform     cTarget                        ; // Target on Curve based on 0..1
     public Transform[]   cvP         = new Transform[4] ; //bezier curve Points
 	public Vector3       fPathCurPos = Vector3.zero     ;
+	public Vector3       fPathPrvPos = Vector3.zero     ;
+	public bool          bRotCurve   = true             ; // rotatate to curve?
 	public bool          bPingPong   = false            ;
 
 	private float fDest = 1.0f;
@@ -102,6 +105,12 @@ namespace MTON.codeObjects{
 		  this.fpath = value;
 		  if(this.cTarget != null){
 		    this.cTarget.position = this.vGetCurvePos(value);
+		    Debug.Log("Updating Path Position : " );
+			if(this.bRotCurve){
+			  Debug.Log("Rotating Towards : " );
+//			  this.cTarget.rotation = Quaternion.Euler((this.cTarget.position - this.fPathPrvPos).normalized);
+		      this.cTarget.rotation.doRotateTowards(this.cTarget.position - this.fPathPrvPos);
+			}
 		  }
 		}
 	  }
@@ -159,7 +168,7 @@ namespace MTON.codeObjects{
 	public int tweenDur = 1;
     public float deleteTween = 0.0f;
 	private void Update(){
-	  this.lineType = pLineType;
+	  this.lineType = pLineType; // If line type can change at runtime; check for it
 //	  this.drawCurve(); // If curve points animate at runtime; update draw per frame
 	  if(Input.GetKeyDown(KeyCode.G)){
 		this.cTarget.gameObject.SetActive(true);
@@ -167,7 +176,10 @@ namespace MTON.codeObjects{
 	    DOTween.To(()=> this.fPath, x=> fPath = x, this.fDest, this.tweenDur)
 		.OnUpdate(()=>{
 		  curStep++;
-		  Debug.Log ("Completing STEP : " + curStep);
+//		  Debug.Log ("Completing STEP Boogers : " + curStep);
+		  if(curStep%this.iModu == 0){
+		    this.pw.em.doSinglFire(true); // this.bFaceRt);
+		  }
 		})
 		.OnComplete(()=>{
 		  this.OnComplete();
@@ -234,7 +246,7 @@ namespace MTON.codeObjects{
 
   public void OnComplete(){
 //	Debug.Log ("OnComplete Position : " + this.cTarget.position);
-    this.pw.em.doRadiusSEQNC(true, this.sEM.radiusSPAWN, true); // this.bFaceRt);
+//    this.pw.em.doRadiusSEQNC(true, this.sEM.radiusSPAWN, true); // this.bFaceRt);
     if(this.OnCompleteDelegate != null){
 	  this.OnCompleteDelegate(this.cTarget.position);
 	}
