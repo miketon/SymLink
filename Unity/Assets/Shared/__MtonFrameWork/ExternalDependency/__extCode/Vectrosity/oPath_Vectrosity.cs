@@ -12,7 +12,6 @@ namespace MTON.codeObjects{
 
   public class oPath_Vectrosity : MonoBehaviour, IPathCV, IEmit<GameObject>{
 
-
 #region iCurve implementation
     // Possible to serialize all public fields of the class to a data stream, which allows it to be stored.
     [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
@@ -55,9 +54,6 @@ namespace MTON.codeObjects{
 
 #endregion
 
-	public    oEmitter pw ;
-    public int iModu = 5;
-
 	[SerializeField] //else can accidentally assign to lowercase var vs. setter var
 	private e_Line linetype;
     public e_Line pLineType;
@@ -90,9 +86,15 @@ namespace MTON.codeObjects{
 
 	public Transform     cTarget                        ; // Target on Curve based on 0..1
     public Transform[]   cvP         = new Transform[4] ; //bezier curve Points
-	public Vector3       fPathCurPos = Vector3.zero     ;
-	public Vector3       fPathPrvPos = Vector3.zero     ;
+
+	// emission parameters
+    public int cModu =   5 ;
 	public bool          bRotCurve   = true             ; // rotatate to curve?
+	public Transform     eTarget                        ; // if emitter target exists aim at that else
+	public float         fForwardDir = 1.0f             ; // -1.0f == backwardDir
+	public Vector3       fPathPrvPos = Vector3.zero     ; // aim at previous position
+
+	// animation parameters
 	public bool          bPingPong   = false            ;
 
 	private float fDest = 1.0f;
@@ -104,12 +106,19 @@ namespace MTON.codeObjects{
 	    if(value != this.fpath){
 		  this.fpath = value;
 		  if(this.cTarget != null){
+//			Debug.Log("Updating Path Position : " );
 		    this.cTarget.position = this.vGetCurvePos(value);
-		    Debug.Log("Updating Path Position : " );
 			if(this.bRotCurve){
-			  Debug.Log("Rotating Towards : " );
-//			  this.cTarget.rotation = Quaternion.Euler((this.cTarget.position - this.fPathPrvPos).normalized);
-		      this.cTarget.rotation.doRotateTowards(this.cTarget.position - this.fPathPrvPos);
+              Vector3 eAimDir;
+			  if(this.eTarget != null){
+				eAimDir = this.eTarget.position * this.fForwardDir;
+			  }
+			  else{
+				eAimDir = this.fPathPrvPos * this.fForwardDir;
+				this.fPathPrvPos = this.cTarget.position;
+			  }
+//			  Debug.Log("Rotating Towards : " + curvFrontDir);
+			  this.cTarget.doAimTowardsY(eAimDir);
 			}
 		  }
 		}
@@ -177,7 +186,7 @@ namespace MTON.codeObjects{
 		.OnUpdate(()=>{
 		  curStep++;
 //		  Debug.Log ("Completing STEP Boogers : " + curStep);
-		  if(curStep%this.iModu == 0){
+		  if(curStep%this.cModu == 0){
 		    this.pw.em.doSinglFire(true); // this.bFaceRt);
 		  }
 		})
@@ -216,7 +225,10 @@ namespace MTON.codeObjects{
           public cLevel.e_Bllt[]  eBlt ; // enum for bullet type to emit
 		  public cLevel.e_Slams eSlm ; // enum for thomper/slam attack
           public cLevel.e_psFX  eGun ; // enum for GunFlare particle system to emit
+
   }
+
+  public     oEmitter pw ;
 
   public void Init(){  
      this.xform = new GameObject ( "UI_vObject" ) .transform ; //init xform placeholder to draw VectorLine object at
