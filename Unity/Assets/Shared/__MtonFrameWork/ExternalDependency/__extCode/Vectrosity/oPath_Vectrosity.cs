@@ -12,6 +12,40 @@ namespace MTON.codeObjects{
 
   public class oPath_Vectrosity : MonoBehaviour, IPathCV, IEmit<GameObject>{
 
+#region iCurve implementation
+    // Possible to serialize all public fields of the class to a data stream, which allows it to be stored.
+    [Serializable] //MUST : add so that this custom data type can be displayed in the inspector
+      public struct mCurve {
+        //Note: I'm explicitly declaring them as public, but they are public by default. You can use private if you choose.
+        public string Name  ;
+        public bool   bCurv ;
+
+        [ContextMenuItem("DebugHelloWorld", "DebugHelloWorld")] 
+          public AnimationCurve curvData;
+        [ContextMenuItem("Randomize timeSpan", "Randomize")]
+          public float fTime ; // Time                            ; NOTE : Set to 2 if curve of type ping-pong
+        public float fMagn   ; // Magnitude
+        public float fFreq   ; // Frequency
+        public float fValu   ; // Value modified by curvData
+        public float fModu   ; // Modulus/interval along curvData
+
+        public float doEvalT(){
+          fModu  = (Time.time % Mathf.Max(fTime, Mathf.Epsilon)) * fFreq ; // modulate timeline, and divide by span; Epsilon prevents divide by zero errors
+          if(bCurv){
+            fValu = curvData.Evaluate(fModu)   ; // transformed by curve
+          }
+          else{
+            fValu = fModu;
+          }
+          return fValu * fMagn;
+        }
+
+      }
+
+  public mCurve Acurv = new mCurve() ;//"FRAMES", curvData); // Animation/Frame
+
+#endregion
+
 #region oPath_Vectrosity Delegates
 
 	// Delegate types
@@ -19,8 +53,6 @@ namespace MTON.codeObjects{
     public DL_VDIR OnCompleteDelegate            ; // OnComplete passes vPos
 
 #endregion
-
-	public    oEmitter pw ;
 
 	[SerializeField] //else can accidentally assign to lowercase var vs. setter var
 	private e_Line linetype;
@@ -54,7 +86,15 @@ namespace MTON.codeObjects{
 
 	public Transform     cTarget                        ; // Target on Curve based on 0..1
     public Transform[]   cvP         = new Transform[4] ; //bezier curve Points
-	public Vector3       fPathCurPos = Vector3.zero     ;
+
+	// emission parameters
+    public int cModu =   5 ;
+	public bool          bRotCurve   = true             ; // rotatate to curve?
+	public Transform     eTarget                        ; // if emitter target exists aim at that else
+	public float         fForwardDir = 1.0f             ; // -1.0f == backwardDir
+	public Vector3       fPathPrvPos = Vector3.zero     ; // aim at previous position
+
+	// animation parameters
 	public bool          bPingPong   = false            ;
 
 	private float fDest = 1.0f;
@@ -66,7 +106,20 @@ namespace MTON.codeObjects{
 	    if(value != this.fpath){
 		  this.fpath = value;
 		  if(this.cTarget != null){
+//			Debug.Log("Updating Path Position : " );
 		    this.cTarget.position = this.vGetCurvePos(value);
+			if(this.bRotCurve){
+              Vector3 eAimDir;
+			  if(this.eTarget != null){
+				eAimDir = this.eTarget.position * this.fForwardDir;
+			  }
+			  else{
+				eAimDir = this.fPathPrvPos * this.fForwardDir;
+				this.fPathPrvPos = this.cTarget.position;
+			  }
+//			  Debug.Log("Rotating Towards : " + curvFrontDir);
+			  this.cTarget.doAimTowardsY(eAimDir);
+			}
 		  }
 		}
 	  }
@@ -124,11 +177,19 @@ namespace MTON.codeObjects{
 	public int tweenDur = 1;
     public float deleteTween = 0.0f;
 	private void Update(){
-	  this.lineType = pLineType;
+	  this.lineType = pLineType; // If line type can change at runtime; check for it
 //	  this.drawCurve(); // If curve points animate at runtime; update draw per frame
 	  if(Input.GetKeyDown(KeyCode.G)){
 		this.cTarget.gameObject.SetActive(true);
+		int curStep = 0;
 	    DOTween.To(()=> this.fPath, x=> fPath = x, this.fDest, this.tweenDur)
+		.OnUpdate(()=>{
+		  curStep++;
+//		  Debug.Log ("Completing STEP Boogers : " + curStep);
+		  if(curStep%this.cModu == 0){
+		    this.pw.em.doSinglFire(true); // this.bFaceRt);
+		  }
+		})
 		.OnComplete(()=>{
 		  this.OnComplete();
 		  if(this.bPingPong){
@@ -164,7 +225,10 @@ namespace MTON.codeObjects{
           public cLevel.e_Bllt[]  eBlt ; // enum for bullet type to emit
 		  public cLevel.e_Slams eSlm ; // enum for thomper/slam attack
           public cLevel.e_psFX  eGun ; // enum for GunFlare particle system to emit
+
   }
+
+  public     oEmitter pw ;
 
   public void Init(){  
      this.xform = new GameObject ( "UI_vObject" ) .transform ; //init xform placeholder to draw VectorLine object at
@@ -194,7 +258,7 @@ namespace MTON.codeObjects{
 
   public void OnComplete(){
 //	Debug.Log ("OnComplete Position : " + this.cTarget.position);
-    this.pw.em.doRadiusSEQNC(true, this.sEM.radiusSPAWN, true); // this.bFaceRt);
+//    this.pw.em.doRadiusSEQNC(true, this.sEM.radiusSPAWN, true); // this.bFaceRt);
     if(this.OnCompleteDelegate != null){
 	  this.OnCompleteDelegate(this.cTarget.position);
 	}

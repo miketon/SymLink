@@ -89,6 +89,8 @@ namespace MTON.codeObjects{
       }
     }
 
+	private Transform pCamera;
+
     public override void OnLevelINIT (){
       base.OnLevelINIT ()                            ;
       this.xformRest.parent = null             ; //unparent to world so boss transform can compare or chase offset in abs space

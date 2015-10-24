@@ -114,15 +114,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxCheckpoint: {fileID: 0}
   sfxStep:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  sfxJump: {fileID: 8300000, guid: 2c8b02d37f91f2c4f850460ade71fca4, type: 3}
+  - {fileID: 8300000, guid: 970ca9c221192734190c36ea3d145b7c, type: 3}
+  - {fileID: 8300000, guid: a8a41ef2059daa44a884ed8cd9a71623, type: 3}
+  - {fileID: 8300000, guid: 720d4e2e4882b9d4f852b2115bcccabf, type: 3}
+  - {fileID: 8300000, guid: 1b34d3bf4c72e2c4d92b2556e1dfab17, type: 3}
+  - {fileID: 8300000, guid: 818c1260b3bb1e2468acd7cf82665510, type: 3}
+  - {fileID: 8300000, guid: 3741968760e9e0b4e99dc31e88b4c8c3, type: 3}
+  sfxJump: {fileID: 8300000, guid: 0842aa67e4a7dad4787cdfe1ca1f3f14, type: 3}
   sfxClaw: {fileID: 8300000, guid: 9c0e654a1695b914dada81ff06c9da27, type: 3}
-  sfxHurt: {fileID: 8300000, guid: 2c59845d56a943a49a0022d7731316aa, type: 3}
+  sfxHurt: {fileID: 8300000, guid: 1b34d3bf4c72e2c4d92b2556e1dfab17, type: 3}
   sfxDarkAmbience: {fileID: 0}
   sfxBreath: {fileID: 8300000, guid: 7c382e1d9c47e9f48aa9fdfde5a69ad8, type: 3}
   sfxGod: {fileID: 0}
@@ -188,6 +188,7 @@ MonoBehaviour:
     e_Icons:
     - {fileID: 485768, guid: 35bfa8716fbbf4a3fae03b03dd6cc09f, type: 2}
     - {fileID: 417526, guid: 199d0fd3f0b204152a19165291f8f4a4, type: 2}
+    - {fileID: 426784, guid: 2e0ee8d789a41d0419fb4e43340a0b5a, type: 2}
     anmEmit:
     - {fileID: 9561310, guid: f1b464402fd7d4964a10e0139437ff07, type: 2}
     - {fileID: 9556556, guid: 939c16611638d4d56ac82214f18d0832, type: 2}

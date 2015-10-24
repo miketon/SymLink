@@ -17,7 +17,7 @@ namespace MTON.Class{
 	public         Vector3   vOffset   = Vector3.zero;
 
 	[SerializeField] //else can accidentally assign to lowercase var vs. setter var
-	private float distsearch = 5.0f;
+	private float distsearch = 2.5f;
 	public float distSearch{
 	  get{
 	    return distsearch;
@@ -31,8 +31,8 @@ namespace MTON.Class{
 
 	public void Init(){
 	  ui_Scale = ui_dpRing.localScale;
-	  this.ui_Scale_Actv = ui_Scale * this.distSearch        ;
-	  this.ui_Scale_Rest = ui_Scale * this.distSearch * 0.4f ;
+	  this.ui_Scale_Actv = ui_Scale * this.distSearch * 2.0f        ;
+	  this.ui_Scale_Rest = ui_Scale * this.distSearch * 2.0f * 0.4f ;
 	}
 
 	public s_ViewConeProperties sVW = new s_ViewConeProperties();
@@ -71,7 +71,8 @@ namespace MTON.Class{
 		this.ui_dpRing.localScale = this.ui_Scale  ;
 	  }
 	  if(bActive){ // display highlight active
-//	    Debug.Log("RADAR ON");
+        Debug.DrawLine(this.transform.position, this.transform.position + this.vOffset + (Vector3.up * this.distSearch), Color.yellow, 1.0f, false) ;
+//	    Debug.Log("RADAR ON P4 Clean check");
 		if(this.ui_dpRing){
 		  this.ui_dpRing.gameObject.SetActive(true);
 		  this.ui_dpRing.position = this.transform.position + this.vOffset;
